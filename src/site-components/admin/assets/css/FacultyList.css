@@ -1,0 +1,38 @@
+.switch {
+    position: relative;
+  }
+  
+  .switch label {
+    width: 35px;
+    height: 15px;
+    background-color: rgb(46, 46, 46) !important; /* Black color when off */
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50px;
+  }
+  
+  .switch input[type="checkbox"] {
+    visibility: hidden;
+  }
+  
+  .switch label:after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border-radius: 50px;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: 100ms;
+    background-color: white !important; /* White color for the knob */
+  }
+  
+  .switch .look:checked + label:after {
+    left: 19px;
+  }
+  
+  .switch .look:checked + label {
+    background-color: rgb(0, 229, 0) !important; /* Green color when checked */
+  }
+  

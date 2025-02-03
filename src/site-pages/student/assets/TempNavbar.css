@@ -1,0 +1,59 @@
+/* Navbar Styling */
+.custon-navbar {
+  background: #E6E1C5;
+  opacity: 1;
+}
+
+/* Logo Styling */
+.logo-container {
+  margin-right: 10px;
+}
+
+.logo-img {
+  width: 80px;
+  height: 80px;
+}
+
+/* Text Styling */
+.university-name {
+  font-size: 20px;
+  color: #8F0F50;
+  line-height: 1.1;
+  margin: 10px 0 0 0;
+}
+
+.university-address {
+  color: #8f0f4fe8;
+}
+
+/* Navigation Links */
+.navigation-links {
+  font-size: 14px;
+  gap: 20px;
+}
+
+.nav-link {
+  color: #394244;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #8F0F50;
+}
+
+/* Responsive Styling */
+.hide-in-mobile {
+  display: block;
+}
+
+@media screen and (max-width: 786px) {
+  .hide-in-mobile {
+    display: none !important;
+  }
+  .university-name {
+    font-size: 12px;
+  }
+  .university-address {
+    font-size: 11px;
+  }
+}

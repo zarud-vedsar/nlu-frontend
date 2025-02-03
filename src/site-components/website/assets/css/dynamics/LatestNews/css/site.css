@@ -1,0 +1,45 @@
+﻿.glyphicon
+{
+    margin-right:4px !important; /*override*/
+}
+
+.pagination .glyphicon
+{
+    margin-right:0px !important; /*override*/
+}
+
+.pagination a
+{
+    color:#555;
+}
+
+.panel ul
+{
+    padding:0px;
+    margin:0px;
+    list-style:none;
+
+}
+
+.news-item {
+    width: 100%;
+    /*background-color: #ebebeb;*/
+    border-bottom: 1px solid #6b1212;
+    /*padding: 5px 10px 6px 23px;*/
+    /*border-radius: 5px;*/
+    margin-bottom: 10px;
+}
+    .news-item h4 {
+        font-size: 1.01rem;
+        line-height: 15px;
+        margin-bottom: 6px;
+        color: #000;
+        font-weight: 700;
+        padding-bottom: 5px;
+    }
+    .news-item p {
+        font-family:Philosopher;
+        font-size: 13px;
+        color: #000;
+        font-weight: 700;
+    }

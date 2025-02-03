@@ -1,0 +1,109 @@
+.side-chipka-hua-tag{
+    position: fixed;
+    top: 25%;
+    right: 0;
+    width: 35px;
+    height: auto;
+    min-height: 100px;
+    background-color: #fff;
+    z-index: 10000;
+    border-radius: 2px;
+}
+.d-none{
+    display: none;
+}
+.fontsize{
+    position: relative;
+    font-size: 18px;
+    font-weight: 700;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    padding: 5px;
+}
+.itemfont{
+    position: absolute;
+    top: 0;
+    left: -282%;
+    background-color: #fff;
+    color: #383636;
+}
+.itemfont > div{
+    padding: 5px 10px;
+    display: inline-flex;
+}
+.socialiconsize {
+    position: relative;
+    font-size: 14px;
+    font-weight: 500;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.itemSocial {
+    position: absolute;
+    top: 0;
+    left: -418%;
+    background-color: #fff;
+    color: #383636;
+    width: max-content;
+}
+
+.itemSocial {
+    padding: 5px;
+}
+.itemSocial a > img{
+    width: 24px !important;
+    margin-left: 10px;
+}
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575.98px) {
+    /* Your styles here */
+    .side-chipka-hua-tag{
+        top: 45%;
+        left: 0;
+    }
+        .itemfont>div {
+            padding: 5px 10px;
+            display: inline;
+        }
+        .itemfont {
+            top: 0;
+            left: 100%;
+        }
+        .itemSocial {
+            top: 0;
+            left: 100%;
+        }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    /* Your styles here */
+    .side-chipka-hua-tag{
+        top: 40%;
+        left: 0;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* Your styles here */
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    /* Your styles here */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+    /* Your styles here */
+}
+
+/* Extra extra large devices (very large desktops, 1400px and up) */
+@media (min-width: 1400px) {
+    /* Your styles here */
+}

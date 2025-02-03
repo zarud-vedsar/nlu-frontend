@@ -1,0 +1,253 @@
+.card-custom-hover{
+    cursor: pointer;
+}
+.card-custom-inside {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 300px;
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+.card-custom-inside > img {
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 20px 20px 0 0;
+    transition: transform 0.3s ease-in-out; /* Add transition for hover effect */
+}
+.card-custom-inside::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.09);
+    opacity: 0.6;
+    z-index: 1;
+}
+.card-custom-hover:hover .card-custom-inside > img {
+    transform: scale(1.04); /* Scale the image on hover */
+}
+.card-custom-inside + .card-title{
+    text-align: start;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    font-weight: 500 !important;
+}
+@media screen and (max-width: 768px) {
+    .card-custom-inside{
+        margin-top: 20px;
+    }
+}
+/* HTML: <div class="loader-fetch"></div> */
+.loader-fetch {
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 20px;
+    background: radial-gradient(circle closest-side, #000 94%, #0000) right/calc(200% - 1em) 100%;
+    animation: l24 1s infinite alternate linear;
+}
+
+.loader-fetch::before {
+    content: "Loading...";
+    line-height: 1em;
+    color: #0000;
+    background: inherit;
+    background-image: radial-gradient(circle closest-side, #fff 94%, #000);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@keyframes l24 {
+    100% {
+        background-position: left
+    }
+}
+.haruki_Btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    overflow: hidden;
+    transition-duration: 0.3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: rgb(255, 65, 65);
+    z-index: 100;
+    right: 0;
+}
+
+.haruki_sign {
+    width: 100%;
+    transition-duration: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.haruki_sign  {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.haruki_text_view {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    transition-duration: 0.3s;
+}
+
+.haruki_Btn:hover {
+    width: 80px;
+    border-radius: 40px;
+    transition-duration: 0.3s;
+}
+
+.haruki_Btn:hover .haruki_sign {
+    width: 30%;
+    transition-duration: 0.3s;
+    padding-left: 20px;
+}
+
+.haruki_Btn:hover .haruki_text_view {
+    opacity: 1;
+    width: 70%;
+    transition-duration: 0.3s;
+}
+
+.haruki_Btn:active {
+    transform: translate(2px, 2px);
+}
+.thumb-container{
+    display: flex;
+    justify-self: flex-start;
+    align-items: flex-start;
+}
+.thumb-container img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+.thumb-container .thumb-side{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.thumb-side .btn{
+    width: fit-content;
+    font-size: 12px !important;
+    border-radius: 3px;
+}
+.iframe-container-admin {
+position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 40.25%;
+    /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+}
+
+.iframe-container-admin::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 1;
+}
+
+.iframe-admin {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+  .wave-container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 3px;
+      margin-top: 10px;
+  }
+
+  .wave-bar {
+      width: 2px;
+      height: 5px;
+      background: linear-gradient(180deg, #1db954, #1ed760);
+      animation: wave 1s ease-in-out infinite;
+      border-radius: 2px;
+  }
+
+  .wave-bar:nth-child(1) {
+      animation-delay: 0s;
+  }
+
+  .wave-bar:nth-child(2) {
+      animation-delay: 0.1s;
+  }
+
+  .wave-bar:nth-child(3) {
+      animation-delay: 0.2s;
+  }
+
+  .wave-bar:nth-child(4) {
+      animation-delay: 0.3s;
+  }
+
+  .wave-bar:nth-child(5) {
+      animation-delay: 0.4s;
+  }
+
+  @keyframes wave {
+
+      0%,
+      100% {
+          transform: scaleY(1);
+      }
+
+      50% {
+          transform: scaleY(2.5);
+      }
+  }
+@media screen and (min-width: 0px) {
+    .iframe-container-admin {
+        width: 100%;
+    }
+}
+@media screen and (min-width: 0px) and (max-width: 768px){
+    .hide-topic-div{
+        display: none;
+    }
+    .small-w-100{
+        width: 100%;
+    }
+}
+@media screen and (min-width: 768px) {
+    .iframe-container-admin {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .iframe-container-admin {
+        width: 50%;
+    }
+}

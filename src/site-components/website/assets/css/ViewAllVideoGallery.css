@@ -1,0 +1,42 @@
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    @media (max-width: 1024px) {
+      .col-md-4 {
+        flex: 0 0 45%; /* 2 videos per row on tablets */
+        max-width: 45%;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      video {
+        height: 200px; 
+        object-fit: cover; 
+      }
+    }
+
+    @media (max-width: 768px) {
+      .col-md-4 {
+        flex: 0 0 100%; /* 1 video per row on mobile */
+        max-width: 100%;
+      }
+
+      h2 {
+        font-size: 1.5rem; 
+      }
+
+      video {
+        height: 200px; 
+        object-fit: cover;
+      }
+    }
+  

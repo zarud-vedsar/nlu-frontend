@@ -1,0 +1,47 @@
+@media only screen and (min-width: 970px) {
+  .mobile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 970px) {
+  .mobile a {
+    color: #fff !important;
+  }
+
+  .header-top1 {
+    position: absolute;
+    top: 64px;
+    width: 100%;
+    left: 0;
+    z-index: 9999;
+    background-color: none;
+  }
+
+  .mobile ul {
+    padding: 15px 0px;
+
+  }
+
+  li {
+    padding: 10px 5px;
+  }
+
+  .sub-menu {
+    display: none;
+    list-style: none;
+    padding-left: 20px;
+  }
+
+  .sub-menu.open {
+    display: block;
+  }
+
+  .sub-menu li {
+    margin: 5px 0;
+  }
+
+  .desktop {
+    display: none;
+  }
+}

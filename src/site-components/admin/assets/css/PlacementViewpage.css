@@ -1,0 +1,87 @@
+
+    .internship-details {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+    .internship-details h3,
+    .internship-details h4 {
+      color: rgb(128, 0, 32);
+      margin-bottom: 10px;
+    }
+  
+    .internship-details h3 {
+      font-size: 28px;
+    }
+  
+    .internship-details h4 {
+      font-size: 20px;
+    }
+  
+    .p-inputtext {
+    margin-left:10px;
+    }
+  
+    .internship-details p {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  
+    .internship-details .apply-link {
+      color: #007bff;
+    }
+  
+    @media (max-width: 768px) {
+      .internship-details {
+        padding: 15px;
+      }
+  
+      .internship-details h3 {
+        font-size: 24px;
+      }
+  
+      .internship-details h4 {
+        font-size: 18px;
+      }
+  
+      .internship-details p {
+        font-size: 14px;
+      }
+    }
+  
+    @media (max-width: 576px) {
+      .breadcrumb-banner-area {
+        padding: 20px 0;
+      }
+  
+      .internship-details {
+        padding: 10px;
+        margin: 15px;
+      }
+  
+      .internship-details h3 {
+        font-size: 20px;
+      }
+  
+      .internship-details h4 {
+        font-size: 16px;
+      }
+  
+      .internship-details p {
+        font-size: 14px;
+      }
+  
+      .breadcrumb-bar .breadcrumb li {
+        display: block;
+        margin-bottom: 5px;
+      }
+  
+      .breadcrumb-bar .breadcrumb li a {
+        font-size: 14px;
+      }
+    }
+  

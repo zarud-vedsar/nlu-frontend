@@ -1,0 +1,122 @@
+﻿
+
+.fix_side_bar {
+    position: fixed;
+    right: 35px;
+    top: 55%;
+    transform: translate(0px, -50%);
+    z-index: 999;
+}
+
+
+
+    .fix_side_bar li a {
+        display: block;
+        height: 45px;
+        background-color: #f3f3f3;
+        margin-bottom: 5px;
+        background-image: url('../images/side_bar_icons.png');
+        font-size: 0;
+        border-radius: 5px 0 0 5px;
+        background-position: 0 0;
+        background-size: 100%;
+        box-shadow: -1px 1px 1px #ccc;
+        background-size: 45px;
+        background-repeat: no-repeat;
+        padding-left: 45px;
+        animation: right-animate 10s ease infinite alternate;
+        transform: translateX(116px);
+    }
+
+
+
+
+
+        .fix_side_bar li a span {
+            display: block;
+            font-size: 14px;
+            color: #000000;
+            font-weight:bold;
+            padding: 10px 0;
+            padding-right:8px;
+        }
+
+
+
+@keyframes right-animate {
+
+    0% {
+        transform: translateX(156px);
+    }
+
+
+
+    80% {
+        transform: translateX(156px);
+    }
+
+
+
+    100% {
+        transform: translateX(00px);
+    }
+}
+
+
+
+.fix_side_bar li a:hover {
+    transform: translateX(0px) !important;
+    animation-play-state: paused;
+    transition: all ease .5s;
+}
+
+
+
+.fix_side_bar li a.call {
+    background-position: 0 0;
+}
+
+
+
+.fix_side_bar li a.university {
+    background-position: 0 -47px;
+    animation-delay: 5s;
+}
+
+
+
+.fix_side_bar li a.form {
+    background-position: 0 -91px;
+    animation-delay: 10s;
+}
+
+
+
+.fix_side_bar li a.admission {
+    background-position: 0px -140px;
+    animation-delay: 15s;
+}
+
+
+
+.fix_side_bar li a.share {
+    background-position: 0 45px;
+    animation-delay: 20s;
+}
+
+
+
+
+
+/*Animate width to 100%*/
+
+@keyframes grow0 {
+
+    from {
+        width: 10%;
+    }
+
+    to {
+        width: 100%;
+    }
+}

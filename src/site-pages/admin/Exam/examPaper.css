@@ -1,0 +1,168 @@
+.page-container {
+    background-color: #fff !important;
+}
+   p {
+       margin: 0px;
+   }
+   .container-page {
+       width: 100%;
+       /* A4 width */
+       height: auto;
+       /* A4 height */
+       margin: 5px auto 0 auto;
+       padding: 1cm !important;
+       background-color: #fff;
+       display: grid;
+       place-content: center;
+   }
+
+   .id-inner-container {
+       width: 98%;
+       height: auto;
+       margin: auto;
+       padding: 0.5cm 1cm !important;
+       background-color: #fff;
+   }
+
+ .header {
+     text-align: center;
+     font-weight: bold;
+     margin-bottom: 20px;
+ }
+   .id-header-content hr {
+       border-top: 1px solid #333;
+       margin: 0;
+       width: 100%;
+   }
+ .header img {
+     width: 80px;
+     height: auto;
+ }
+   .id-header-img {
+       height: 100px;
+       width: 100px;
+   }
+ .id-title {
+    font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        line-height: 30px;
+        text-align: center;
+        margin-bottom: 0.4cm;
+        margin-top: 0.2cm;
+        text-transform: uppercase;
+ }
+
+ .id-info {
+     margin-bottom: 20px;
+ }
+
+ .id-info span {
+     border: 1px solid #333;
+     width: 5cm;
+     display: inline-block;
+     padding: 4px;
+     font-size: 16px;
+ }
+
+ .id-info div {
+     float: right;
+     font-size: 16px;
+     font-weight: 500;
+ }
+
+ .info span {
+     display: block;
+     font-weight: bold;
+ }
+
+ .section {
+     margin-top: 0.5cm;
+     margin-bottom: 0.5cm;
+ }
+
+ .section h3 {
+     text-align: center;
+     margin-bottom: 0.2cm;
+     text-decoration: underline;
+     font-size: 18px;
+     font-weight: 600;
+ }
+ .questions {
+     list-style-type: decimal;
+     padding-left: 30px;
+ }
+
+ .instructions {
+     margin-bottom: 20px;
+     font-size: 16px;
+ }
+
+ .instructions ol {
+     list-style-type: decimal;
+     padding-left: 30px;
+     margin-top: 2px;
+ }
+
+ .print-btn {
+     text-align: center;
+     margin-top: 20px;
+ }
+
+ .print-btn button {
+     padding: 5px 15px;
+
+ }
+
+ /* new css  */
+   .id-header-wrapper {
+       display: flex;
+       align-items: center;
+       width: 100%;
+   }
+   .id-header-content {
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       width: 85%;
+   }
+   .id-header-content h4 {
+       font-size: 16px;
+       margin-bottom: 5px;
+       font-weight: 600;
+       text-transform: uppercase;
+   }
+
+   .id-header-content h3 {
+       font-size: 18px;
+       font-weight: 600;
+       letter-spacing: 1px;
+       text-align: center;
+       text-transform: uppercase;
+   }
+ .id-text-title-right {
+     text-align: end;
+    font-size: 12px;
+        margin-bottom: 0;
+        font-weight: 500;
+        text-transform: uppercase;
+ }
+
+ .id-paper-subject {
+     text-align: center;
+     margin-top: 0.5cm;
+     margin-bottom: 0.5cm;
+     text-decoration: underline;
+ }
+ .id-paper-subject div > strong, .id-paper-subject div.ss {
+    font-size: 16px !important;
+ }
+ .id-marks-right {
+     text-align: end;
+     margin: 0px;
+     font-size: 16px !important;
+     font-weight: 500 !important;
+     color: #333;
+ }
+ 

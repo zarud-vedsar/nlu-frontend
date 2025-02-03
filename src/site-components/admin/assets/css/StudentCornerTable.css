@@ -1,0 +1,76 @@
+.p-datatable-custom {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+}
+
+.p-dropdown-item {
+  margin-top: 10px;
+
+  margin-left: 10px;
+}
+.p-inputtext {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.p-datatable-custom .p-datatable-header {
+  background-color: rgb(128, 0, 32);
+  color: #fff;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.p-datatable-custom .p-datatable-thead > tr > th {
+  padding: 16px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.p-datatable-custom .p-datatable-tbody > tr > td {
+  padding: 12px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.p-datatable-custom .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.p-datatable-custom .p-paginator {
+  padding: 10px;
+  background-color: rgb(128, 0, 32);
+  color: #fff;
+  border-radius: 8px;
+}
+
+.p-datatable-custom .p-paginator .p-paginator-page {
+  color: #fff;
+}
+.p-column-header-content {
+  display: flex;
+  justify-content: center;
+}
+
+.p-datatable-custom .p-datatable-paginator .p-paginator-first,
+.p-datatable-custom .p-datatable-paginator .p-paginator-prev,
+.p-datatable-custom .p-datatable-paginator .p-paginator-next,
+.p-datatable-custom .p-datatable-paginator .p-paginator-last {
+  background-color: rgb(128, 0, 32);
+  border-radius: 50%;
+}
+
+.p-datatable-custom .p-datatable-paginator .p-paginator-page:focus,
+.p-datatable-custom .p-datatable-paginator .p-paginator-page:hover {
+  background-color: #0056b3;
+}
+
+.p-datatable-custom .p-column-sortable {
+  cursor: pointer;
+}
+
+.p-datatable-custom .p-column-sortable:hover {
+  color: rgb(128, 0, 32);
+}

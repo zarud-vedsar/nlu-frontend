@@ -1,0 +1,21 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.custon-navbar {
+  border-bottom: 1px solid #a59d84;
+  opacity: 10;
+  background: linear-gradient(to right, #faedce 5%, #e0e5b6 95%);
+}
+a:hover {
+  color: rgb(120 11 67) !important;
+}
+.hide-in-mobile {
+  display: block;
+}
+@media screen and (max-width: 786px) {
+  .hide-in-mobile {
+    display: none !important;
+  }
+}

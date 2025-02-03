@@ -1,0 +1,510 @@
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from "react";
+import { RiMenuFold3Fill } from "react-icons/ri";
+import {
+  AiOutlineAppstore,
+  AiOutlineDashboard,
+  AiOutlineLogout,
+} from "react-icons/ai";
+import { RiMenuFold4Fill } from "react-icons/ri";
+import { Link, useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
+import studentAvatar from "./assets/img/studentAvatar.png";
+import axios from "axios";
+import {
+  NODE_API_URL,
+  PHP_API_URL,
+} from "../../site-components/Helper/Constant";
+import Select from "react-select";
+import { Modal, Button } from "react-bootstrap";
+import { toast } from "react-toastify";
+
+const MyVerticallyCenteredModal = (props = {}) => {
+  const [selectedStudent, setSelectedStudent] = useState();
+  const [studentList, setStudentList] = useState([]);
+  useEffect(() => {
+    fetchList();
+    setSelectedStudent(secureLocalStorage.getItem("studentId"));
+  }, []);
+  const fetchList = async () => {
+    try {
+
+      const bformData = new FormData();
+
+      bformData.append("data", "otherchild");
+      bformData.append("student_id", secureLocalStorage.getItem("studentId"));
+      bformData.append(
+        "sguardianemail",
+        secureLocalStorage.getItem("sguardianemail")
+      );
+      bformData.append("logintype", "parent");
+
+      const response = await axios.post(
+        `${PHP_API_URL}/parent.php`,
+        bformData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response?.data?.status === 200 && response.data?.data.length > 0) {
+        setStudentList(response.data?.data);
+      } else {
+        toast.error("Data not found.");
+        setStudentList([]);
+      }
+    } catch (error) {
+      setStudentList([]);
+      const statusCode = error.response?.data?.statusCode;
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        toast.error(error.response.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    }
+  };
+
+  const handleSubmit = () => {
+    secureLocalStorage.setItem("studentId", selectedStudent);
+    let student = studentList?.find(
+      (student) => student.stid == selectedStudent
+    );
+    secureLocalStorage.setItem("registrationNo", student?.registrationNo);
+    toast.success("Student Changed");
+    props.submit();
+  };
+
+  return (
+    <Modal
+      {...props}
+      size="md"
+      aria-labelledby="contained-modal-title-vcenter"
+      top
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Select Student
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="form-group col-md-12">
+          <label className="font-weight-semibold">Select Student</label>
+          <Select
+            name="application_status"
+            id="application_status"
+            onChange={(selectedOption) => {
+              setSelectedStudent(selectedOption.value);
+            }}
+            options={studentList?.map((dep) => ({
+              value: dep.stid,
+              label: `${dep.sname} (${dep.registrationNo})`,
+            }))}
+            value={
+              studentList.find(
+                (item) => item.stid === parseInt(selectedStudent)
+              )
+                ? {
+                    value: parseInt(selectedStudent),
+                    label: `${
+                      studentList.find(
+                        (item) => item.stid == parseInt(selectedStudent)
+                      ).sname
+                    }( ${
+                      studentList.find(
+                        (item) => item.stid == parseInt(selectedStudent)
+                      ).registrationNo
+                    })`,
+                  }
+                : { value: selectedStudent, label: "Select" }
+            }
+          ></Select>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <div className="mx-auto">
+          <Button onClick={props.close} className="btn btn-danger">
+            Close
+          </Button>{" "}
+          <Button onClick={handleSubmit} className="btn btn-success">
+            Submit
+          </Button>
+        </div>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+const Navbar = ({ toggleExpand, toggleFolded }) => {
+  const [activeSidebarMenu, setActiveSidebarMenu] = useState(null);
+  const [activeSubSidebarMenu, setActiveSubSidebarMenu] = useState(null);
+  const [expand, setExpand] = useState(false);
+  const [folded, setFolded] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
+  const [approvedStudent, setApprovedStudent] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [sessionTitle, setSessionTitle] = useState("");
+  const [studentList, setStudentList] = useState([]);
+  const [guardian, setGuardian] = useState(false);
+
+  const navigate = useNavigate();
+
+  const sideBarMenu = [
+    {
+      title: "Home",
+      icon: <AiOutlineDashboard />,
+      url: "home",
+      dropdownMenus: [],
+    },
+  ];
+
+  const fetchList = async () => {
+    try {
+
+      const bformData = new FormData();
+
+      bformData.append("data", "otherchild");
+      bformData.append("student_id", secureLocalStorage.getItem("studentId"));
+      bformData.append(
+        "sguardianemail",
+        secureLocalStorage.getItem("sguardianemail")
+      );
+      bformData.append("logintype", "parent");
+
+      const response = await axios.post(
+        `${PHP_API_URL}/parent.php`,
+        bformData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response?.data?.status === 200 && response.data?.data.length > 0) {
+        setStudentList(response.data?.data);
+      } else {
+        toast.error("Data not found.");
+        setStudentList([]);
+      }
+    } catch (error) {
+      setStudentList([]);
+      const statusCode = error.response?.data?.statusCode;
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        toast.error(error.response.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    }
+  };
+
+  if (approvedStudent) {
+    sideBarMenu.push(
+      {
+        title: "Library",
+        icon: <AiOutlineAppstore />,
+        url: "",
+        dropdownMenus: [
+          { subtitle: "Issued Book", url: "book-issued" },
+          { subtitle: "Issued List", url: "issued-list" },
+          { subtitle: "Book Catalogue", url: "book-catalogue" },
+        ],
+      },
+      {
+        title: "Feedback",
+        icon: <AiOutlineAppstore />,
+        url: "",
+        dropdownMenus: [
+          { subtitle: "Give Feedback", url: "new-feedback" },
+          { subtitle: "My Feedback", url: "feedback-list" },
+        ],
+      },
+
+      {
+        title: "Learning Management System",
+        icon: <AiOutlineAppstore />,
+        url: "lms",
+        dropdownMenus: [],
+      },
+      {
+        title: "Internship",
+        icon: <AiOutlineAppstore />,
+        url: "",
+        dropdownMenus: [
+          { subtitle: "Internship List", url: "internship" },
+          {
+            subtitle: "Internship Applied History",
+            url: "internship-applied-history",
+          },
+        ],
+      },
+      {
+        title: "Job",
+        icon: <AiOutlineAppstore />,
+        url: "",
+        dropdownMenus: [
+          { subtitle: "Job List", url: "joblist" },
+          { subtitle: "Job Applied History", url: "job-applied-history" },
+        ],
+      },
+      {
+        title: "Hostel Management",
+        icon: <AiOutlineAppstore />,
+        url: "",
+        dropdownMenus: [
+          { subtitle: "Raise Room Query", url: "raise-query" },
+          { subtitle: "Raised Room Queries", url: "raised-room-queries" },
+          { subtitle: "Alloted Room History", url: "alloted-room-history" },
+          { subtitle: "Raise Complain", url: "raise-complain" },
+          { subtitle: "Complain History", url: "complain-history" },
+          { subtitle: "New Leave Request", url: "leave-request" },
+          { subtitle: "Leave Request History", url: "leave-request-list" },
+          { subtitle: "Attendance History", url: "attendance-history" },
+        ],
+      },
+      {
+        title: "Time Table",
+        icon: <AiOutlineAppstore />,
+        url: "time-table",
+        dropdownMenus: [],
+      },
+      {
+        title: "Communication Management",
+        icon: <AiOutlineAppstore />,
+        url: "",
+        dropdownMenus: [
+          { subtitle: "New Message", url: "new-message" },
+          { subtitle: "Message List", url: "message-list" },
+        ],
+      }
+    );
+  }
+
+  useEffect(() => {
+    getStudentSelectedCourse();
+    if (secureLocalStorage.getItem("sguardianemail")) {
+      fetchList();
+      setGuardian(true);
+    }
+  }, []);
+  const getStudentSelectedCourse = async () => {
+    try {
+      let formData = {};
+      formData.studentId = secureLocalStorage.getItem("studentId");
+      formData.login_type = "student";
+      const response = await axios.post(
+        `${NODE_API_URL}/api/course-selection/fetchCurrentCourse`,
+        formData
+      );
+
+      if (response.data?.statusCode === 200) {
+        if (
+          response?.data?.data?.semtitle !== "semester 1" ||
+          (response?.data?.data?.semtitle === "semester 1" &&
+            response?.data?.data?.approved === 1)
+        ) {
+          setApprovedStudent(true);
+        }
+      }
+    } catch (error) {
+    } finally {
+    }
+  };
+
+  function toggleSidebar() {
+    setExpand(!expand);
+    toggleExpand(!expand);
+  }
+  const logOut = () => {
+    secureLocalStorage.clear();
+    navigate("/student/login");
+    window.location.reload(); // This will force a page reload
+  };
+
+  function toggleSidebarFolded() {
+    setFolded(!folded);
+    toggleFolded(!folded);
+  }
+
+  useEffect(() => {
+    getStudentDetail();
+  }, [studentList]);
+
+  const getStudentDetail = () => {
+    const studentId = secureLocalStorage.getItem("studentId");
+    if (studentId) {
+      let student = studentList?.find((student) => student?.stid == studentId);
+      setSessionTitle(`${student?.sname} (${student?.registrationNo})`);
+    } else {
+      setSessionTitle("Select Student");
+    }
+  };
+
+  return (
+    <>
+      <div className="header bg-primary border-none shadow-head-sm">
+        <div className="logo logo-dark d-flex justify-content-center align-items-center">
+          <Link to="/admin/home">
+            <img
+              style={{ width: "35%" }}
+              src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+              alt="Logo"
+            />
+            <img
+              style={{ width: "35%" }}
+              className="logo-fold"
+              src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+              alt="Logo Folded"
+            />
+          </Link>
+        </div>
+        <div className="logo logo-white">
+          <Link href="/admin/home">
+            <img
+              style={{ width: "35%" }}
+              src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+              alt="Logo White"
+            />
+            <img
+              style={{ width: "35%" }}
+              className="logo-fold"
+              src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+              alt="Logo Folded White"
+            />
+          </Link>
+        </div>
+        <div className="nav-wrap">
+          <ul className="nav-left">
+            <li className="desktop-toggle mr-3" onClick={toggleSidebarFolded}>
+              <RiMenuFold3Fill />
+            </li>
+            <li className="mobile-toggle mr-3" onClick={toggleSidebar}>
+              <RiMenuFold4Fill />
+            </li>
+            {guardian && (
+              <li
+                className="bg-light text-dark d-flex justify-content-center align-items-center "
+                style={{
+                  padding: "10px 18px",
+                  borderRadius: "20px",
+                  cursor: "pointer",
+                }}
+                onClick={() => setModalShow(true)}
+              >
+                <>
+                  <i class="fa-solid fa-user-tie text-primary mr-3"></i>
+                  <div className="">{sessionTitle}</div>
+                </>
+              </li>
+            )}
+          </ul>
+          <ul className="nav-right">
+            <li className="dropdown dropdown-animated scale-left">
+              <div className="pointer" onClick={() => setShowPopup(!showPopup)}>
+                <div className="avatar avatar-image m-h-10 m-r-15">
+                  <img src={studentAvatar} />
+                </div>
+              </div>
+              {showPopup && (
+                <div className="dropdown-menu pop-profile show">
+                  <div className="p-h-20 p-b-15 m-b-10 border-bottom">
+                    <div className="d-flex">
+                      <div className="avatar avatar-lg avatar-image">
+                        <img src={studentAvatar} />
+                      </div>
+                      <div className="m-l-10">
+                        <p className="m-b-0 text-dark font-weight-semibold">
+                          Marshall Nichols
+                        </p>
+                        <p className="m-b-0 opacity-07">UI/UX Designer</p>
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    className="dropdown-item d-block p-h-15 p-v-10"
+                    onClick={logOut}
+                  >
+                    <AiOutlineLogout />
+                    <span className="m-l-10">Logout</span>
+                  </a>
+                </div>
+              )}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={`side-nav ${expand ? "expanded" : ""}`}>
+        <div className="side-nav-inner">
+          <ul className="side-nav-menu scrollable">
+            {sideBarMenu.map((option, index) =>
+              option.url ? (
+                <li key={index} className="nav-item dropdown cursor">
+                  <Link to={`/student/${option.url}`}>
+                    <span className="icon-holder">{option.icon}</span>
+                    <span className="title font-12">{option.title}</span>
+                  </Link>
+                </li>
+              ) : (
+                <li
+                  key={index}
+                  className={`nav-item dropdown cursor ${
+                    activeSidebarMenu === index ? "open" : ""
+                  }`}
+                  onClick={() =>
+                    setActiveSidebarMenu(
+                      activeSidebarMenu === index ? null : index
+                    )
+                  }
+                >
+                  <a className="dropdown-toggle">
+                    <span className="icon-holder">{option.icon}</span>
+                    <span className="title font-12">{option.title}</span>
+                    <span className="arrow">
+                      <i className="arrow-icon"></i>
+                    </span>
+                  </a>
+                  <ul className="dropdown-menu">
+                    {option.dropdownMenus.map((subOption, subIndex) => (
+                      <li
+                        key={subIndex}
+                        className={`${
+                          activeSubSidebarMenu === subIndex ? "active" : ""
+                        }`}
+                        onClick={() => setActiveSubSidebarMenu(subIndex)}
+                      >
+                        <Link
+                          to={`/student/${subOption.url}`}
+                          className="font-12"
+                        >
+                          {subOption.subtitle}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+      </div>
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        close={() => setModalShow(false)}
+        submit={() => {
+          setModalShow(false);
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }}
+      />
+    </>
+  );
+};
+
+export default Navbar;

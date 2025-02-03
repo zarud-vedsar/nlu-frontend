@@ -1,0 +1,69 @@
+﻿.page_txt {
+    float: left;
+}
+
+.photo-lblPageCountTop {
+    margin-left: 10px;
+    float: right;
+}
+
+input:disabled, input[readonly], textarea:disabled, textarea[readonly] {
+    background-color: white;
+}
+
+.PagerfirstDisabled, .PagerPreviousDisabled {
+    padding-right: 5px;
+    float: left;
+}
+
+.PagerCurPage {
+    color: #000;
+    background-color: #E4E4E4;
+    text-align: center;
+    float: left;
+    padding: 0px 8px;
+}
+
+.cut-text2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: auto;
+    white-space: nowrap;
+    padding: 0 1px;
+    font-size: 12px;
+}
+
+.sharing-posts {
+    border-top: none;
+}
+
+#news-h, .nfullother {
+    float: left;
+    width: 100%;
+    background-color: #393185;
+    margin-top: 3px;
+    line-height: 28px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    border: 0px solid #bcbcbc;
+}
+
+.nupdatetext {
+    border: 1px solid #B3B3B3;
+    background-color: #C7C7C7;
+    font-weight: 700;
+    width: 100%;
+    float: left;
+    padding: 0 1%;
+}
+
+a.nheadingtext {
+    float: left;
+    margin-top: 5px;
+    padding-left: 10px;
+}
+
+.nallurl {
+    padding-bottom: 12px;
+}

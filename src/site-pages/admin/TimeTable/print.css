@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.page-container{
+    background-color: #fff !important;
+}
+.container-page {
+    margin-top: 40px;
+    background-color: #fff;
+    height: 28cm;
+    width: 29cm;
+    display: grid;
+    place-content: center;
+}
+
+.page {
+    width: 28cm;
+    height: 26cm;
+    margin: 0 auto;
+}
+
+.tcenter {
+    text-align: center !important;
+}
+
+.tstart {
+    text-align: start !important;
+}
+
+.head {
+    border: 1px solid #333;
+    position: relative;
+    background: linear-gradient(to left, #8E054E, #630736, #3D031F);
+    padding: 8px;
+    width: 100%;
+}
+
+.head-data {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.head-data img {
+    width: 100px;
+}
+
+.head-data>h1 {
+    font-size: 18px !important;
+    color: #f5f5f5e5;
+    width: 40%;
+}
+
+.f14 {
+    font-size: 14px !important;
+    font-weight: 600;
+    padding-left: 4px;
+}
+
+.taxe {
+    padding: 10px;
+    text-align: center;
+    background-color: #A6B7B8;
+}
+.taxe h3{
+    font-size: 17px !important;
+}
+.footer {
+    padding: 10px;
+    text-align: start;
+    background-color: #F1DAC4;
+}
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    border: 1px solid #ccc !important;
+}
+
+td,
+th {
+    text-align: center;
+    border-bottom: 1px solid #09d1e3ef !important;
+    background-color: rgb(253, 253, 251);
+    padding: 4px;
+}
+.table-cs{
+    width: 100%;
+}
+.table1 th {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.tab1 {
+    padding: 5px 1px !important;
+    background-color: #F1DAC4;
+    color: #333;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+.rotateVer{
+    transform: rotate(-270deg);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    width: 22px;
+}
+
+.sat th {
+    padding: 10px;
+}
+
+.para {
+    text-align: end;
+    padding: 20px;
+    line-height: 25px;
+}

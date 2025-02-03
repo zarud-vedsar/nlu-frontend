@@ -1,0 +1,209 @@
+.logom {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+}
+body{
+    background-color: #f1f1f1 !important;
+}
+.blinking-text {
+    animation: blink .7s linear infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+@media only screen and (min-width: 0px) and (max-width:850px){
+ .order1 {
+    order: 2;
+ }
+ .order2 {
+     order: 1;
+ }
+}
+@media only screen and (min-width: 851px) {
+    .order1 {
+        order: 1;
+    }
+
+    .order2 {
+        order: 2;
+    }
+}
+.form-control {
+    padding: 0.2rem 0;
+    height: auto;
+    color: #53535f;
+    outline: none;
+    border: none;
+    background: transparent !important;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: 0px;
+    border-bottom: 1px solid #bdbdbd;
+}
+label{
+    margin-bottom: 0.2rem !important;
+}
+.form-control:focus, .form-control:hover{
+    background: transparent !important;
+    outline: none !important;
+    border: none !important;
+    border-bottom: 1px solid #e5e58e !important;
+    box-shadow: none !important;
+}
+.form-group {
+    margin-bottom: 10px;
+}
+.floating_btn {
+    position: fixed;
+    bottom: 40px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+@media screen and (max-width: 768) {
+    .floating_btn1 {
+        left: 20px;
+    }
+
+    .floating_btn {
+        left: 20px;
+    }
+}
+
+.floating_btn1 {
+    position: fixed;
+    bottom: 120px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+@keyframes pulsing {
+    to {
+        box-shadow: 0 0 0 30px rgba(232, 76, 61, 0);
+    }
+}
+
+.contact_icon {
+    background-color: #42db87;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translatey(0px);
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 0 0 #42db87;
+    -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    font-weight: normal;
+    font-family: sans-serif;
+    text-decoration: none !important;
+    transition: all 300ms ease-in-out;
+
+}
+
+.contact_icon1 {
+    background-color: #dc3545;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #dc3545;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translatey(0px);
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 0 0 #dc3545;
+    -webkit-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -moz-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    -ms-animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    animation: pulsing 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+    font-weight: normal;
+    font-family: sans-serif;
+    text-decoration: none !important;
+    transition: all 300ms ease-in-out;
+}
+
+.logomr {
+    height: 120px;
+    border-radius: 10px;
+}
+
+.header-top {
+    background-color: #fff;
+}
+
+.nav-tabs>li>a.active.nav-link {
+    border-bottom: 4px solid #73731e;
+    color: #716565;
+    background-color: #e5e58e;
+}
+
+.list-group li::marker {
+    content: 'o';
+    color: #FA5252;
+    font-size: 16px;
+}
+
+.list-group li {
+    padding-left: 5px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #716565;
+}
+
+h1 {
+    font-size: 26px;
+}
+
+@media screen and (min-width:0px) and (max-width:768px) {
+    h1 {
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    .logom {
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+    }
+
+    .logomr {
+        height: 80px;
+        border-radius: 10px;
+    }
+
+    h5.h5_new {
+        font-size: 11px !important;
+    }
+
+    h6.h6_new {
+        font-size: 10px !important;
+    }
+}

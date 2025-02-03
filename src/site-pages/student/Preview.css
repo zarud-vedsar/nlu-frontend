@@ -1,0 +1,23 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+.header, .side-nav{
+    display: none !important;
+}
+.page-container{
+    padding: 0;
+    margin: 0;
+}
+.main-content{
+    padding: 50px 0 !important;
+    width: 21cm;
+    height: auto;
+    margin: 0 auto;
+}
+.page-container {
+    background: #333 !important;
+}
+.card{
+    background-color: #fff !important;
+}

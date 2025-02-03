@@ -224,7 +224,7 @@ const NoticeEventPublication = () => {
                           })}
                         </Link>
                       </div>
-                      <h3 className="butler-regular heading-primary3 two-line-text">
+                      <h3 className="butler-regular heading-primary3 pubtextbx two-line-text">
                         {validator.unescape(publication.title)}
                       </h3>
                     </div>

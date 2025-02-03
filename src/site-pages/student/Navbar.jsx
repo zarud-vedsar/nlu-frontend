@@ -57,14 +57,14 @@ const MyVerticallyCenteredModal = (props = {}) => {
       }
     } catch (error) {
       setStudentList([]);
-      const statusCode = error.response?.data?.statusCode;
-      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
-        toast.error(error.response.message || "A server error occurred.");
-      } else {
-        toast.error(
-          "An error occurred. Please check your connection or try again."
-        );
-      }
+      // const statusCode = error.response?.data?.statusCode;
+      // if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+      //   toast.error(error.response.message || "A server error occurred.");
+      // } else {
+      //   toast.error(
+      //     "An error occurred. Please check your connection or try again."
+      //   );
+      // }
     }
   };
 

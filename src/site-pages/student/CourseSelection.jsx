@@ -1970,6 +1970,9 @@ function CourseSelection() {
         errorMsg("", "");
         setFormData((prev)=>({...prev,id:1}))
         toast.success(response.data.message);
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       } else {
         toast.error("An error occurred. Please try again.");
       }

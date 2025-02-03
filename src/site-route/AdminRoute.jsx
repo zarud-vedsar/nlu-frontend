@@ -174,6 +174,7 @@ const components = {
   BannerList : lazyLoadBanner("BannerList"),
   ExpenseCategory:lazyLoadExpense("ExpenseCategory"),
   AddExpense:lazyLoadExpense("AddExpense"),
+  ExpenseList:lazyLoadExpense("ExpenseList"),
 };
 components.AddResourcePdf = lazy(() => import("../site-pages/admin/Resource/Pdf/AddPdfResource.jsx"));
 components.ResourcePdfList = lazy(() => import("../site-pages/admin/Resource/Pdf/PdfResourceList.jsx"));
@@ -1479,6 +1480,14 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
           <Route
             path="/expense/add-new"
             element={<ProtectedRoute element={<components.AddExpense />} />}
+          />{" "}
+          <Route
+            path="/expense/edit/:expenseId"
+            element={<ProtectedRoute element={<components.AddExpense />} />}
+          />{" "}
+          <Route
+            path="/expense/list"
+            element={<ProtectedRoute element={<components.ExpenseList />} />}
           />{" "}
           {/* Session Management */}
           {/** DEPARTMENT AND FACULTY MANAGEMENT */}

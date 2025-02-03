@@ -41,7 +41,7 @@ const FacultySlider = () => {
 
   const sliderSettings = {
     dots: false, // Disable the dots for pagination
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,

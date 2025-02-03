@@ -43,7 +43,7 @@ const MarqueeSlider = () => {
       if (!isHovered) {
         Next();
       }
-    }, 3000); 
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [isHovered]);
@@ -52,7 +52,7 @@ const MarqueeSlider = () => {
     setAnimationClass("");
     setTimeout(() => {
       setAnimationClass("marqueew");
-    }, 1); 
+    }, 1);
   };
 
   const Next = () => {
@@ -83,8 +83,8 @@ const MarqueeSlider = () => {
                 {items[currentIndex]?.content}{" "}
 
               </a>
-              
-             
+
+
             </p>
           </div>
           <div className="marquee-ctrl-btn ddd-flex">
@@ -96,7 +96,7 @@ const MarqueeSlider = () => {
             </button>
           </div>
         </div>
-        <div className="col-lg-3 ddd-none">
+        <div className="col-lg-3">
           <div className="card border-0 shadow-none cardimlink imp-link-card">
             <div
               className="card-body imp-card-body id-imp-card-body"

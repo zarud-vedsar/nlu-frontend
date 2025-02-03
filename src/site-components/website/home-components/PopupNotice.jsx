@@ -4,7 +4,8 @@ import { dataFetchingPost } from "../../Helper/HelperFunction";
 import { NODE_API_URL } from "../../Helper/Constant";
 import { Link } from "react-router-dom";
 import { right } from "@popperjs/core";
-import { FaRightLong } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
+import logo from '../assets/Images/rpnlu.png';
 
 const PopupNotice = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -46,7 +47,8 @@ const PopupNotice = () => {
           aria-labelledby="contained-modal-title-vcenter"
         >
           <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
+            <Modal.Title id="contained-modal-title-vcenter" className="title-img-bx">
+              <img src={logo} />
               <h6 className="heading-primary2 butler-regular">Important Notice</h6>
             </Modal.Title>
           </Modal.Header>
@@ -73,14 +75,14 @@ const PopupNotice = () => {
                       <td className="text-start">
                         {data.title}
                       </td>
-                      <td className="text-end" style={{verticalAlign:'middle'}}>
+                      <td className="text-end" style={{ verticalAlign: 'middle' }}>
                         <a
                           href={data.link}
                           style={{
                             whiteSpace: "nowrap",
                           }}
-                          className="btn-link">
-                          Click here <FaRightLong />
+                          className="btn btn-primary border border-primary d-flex justify-content-center align-items-center gap-2">
+                          Click here <FaArrowRightLong />
                         </a>
                       </td>
                     </tr>

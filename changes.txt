@@ -3,7 +3,7 @@
 
 Learning Management
 --------------------
-
+-> semester: semester Edit is inappropriate(edits Course)
 -> Session : remove the status switch
 -> faculty department: In recycle Bin remove all other action except restore .
 -> Department: In recycle Bin remove all other action except restore .

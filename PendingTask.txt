@@ -1,0 +1,13 @@
+------------------ Admin Panel ----------------------- 
+1. Menu
+2. Text editor
+3. Save detail of student when visitor in or out
+4. Add student drop down in filter of visitor history
+
+------------------ Student Panel---------------------
+Custom PDF Viewer
+Student Semester completion
+
+------------------ Website Panel --------------------
+Update get data api link
+

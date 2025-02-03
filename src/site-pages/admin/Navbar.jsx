@@ -432,7 +432,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         }, 
         {
           subtitle: "Add New Expense",
-          url: "/expense/add-new",
+          url: "expense/add-new",
+          icon: <MdInventory />,
+        }, 
+        {
+          subtitle: "Expense List",
+          url: "expense/list",
           icon: <MdInventory />,
         }, 
       

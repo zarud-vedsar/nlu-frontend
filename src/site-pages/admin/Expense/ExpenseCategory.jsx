@@ -120,7 +120,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
 
 const ExpenseCategory = () => {
   const [MarqueList, setMarqueList] = useState([]);
-  const [globalFilter, setGlobalFilter] = useState("");
   const [recycleTitle, setRecycleTitle] = useState("Show Recycle Bin");
 
   const [loading, setLoading] = useState(false);
@@ -155,8 +154,8 @@ const ExpenseCategory = () => {
     setLoading(true);
     try {
       const bformData = new FormData();
-      bformData.append("data", "load_ExpenseCategory");
       bformData.append("delete_status", 1);
+      bformData.append("data", "load_ExpenseCategory");
 
       const response = await axios.post(
         `${PHP_API_URL}/expense.php`,

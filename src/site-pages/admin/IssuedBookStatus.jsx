@@ -56,9 +56,7 @@ const IssuedBookStatus = () => {
           return_books_date:
             return_date || new Date().toISOString().split("T")[0],
           hidden_id: id,
-          payable_amount:
-            response?.data?.data?.issueData[0]?.payable_amount || 0,
-          total_amount: 0,
+          // payable_amount:response?.data?.data?.issueData[0]?.payable_amount || 0,
           total_lost_books_amount:
             response?.data?.data?.issueData[0]?.total_lost_books_amount || 0,
           payment_method: response?.data?.data?.issueData[0]?.payment_method,

@@ -64,7 +64,6 @@ const IssueBookReturn = () => {
       if (response?.data?.status === 200) {
         setIssue((pre) => ({
           ...pre,
-          
           sname: response?.data?.data?.issueData[0]?.sname,
           enrollmentNo: response?.data?.data?.issueData[0]?.enrollmentNo,
           issue_books_no: response?.data?.data?.issueData[0]?.issue_books_no,
@@ -74,19 +73,15 @@ const IssueBookReturn = () => {
           return_books_date:
             return_date || new Date().toISOString().split("T")[0],
           hidden_id: id,
-          payable_amount:
-            response?.data?.data?.issueData[0]?.payable_amount || 0,
-          total_amount: 0,
+          // payable_amount: response?.data?.data?.issueData[0]?.payable_amount || 0,
           total_lost_books_amount:
             response?.data?.data?.issueData[0]?.total_lost_books_amount || 0,
           payment_method: response?.data?.data?.issueData[0]?.payment_method,
           fine_amount: fineData?.fine_amount,
           fine_days: fineData?.fine_days,
           fine_perday: fineData?.fine_perday,
-          payable_amount:
-            response?.data?.data?.booksData.length * fineData?.fine_amount,
-          total_amount:
-            response?.data?.data?.booksData.length * fineData?.fine_amount,
+          payable_amount: response?.data?.data?.booksData.length * fineData?.fine_amount,
+          total_amount: response?.data?.data?.booksData.length * fineData?.fine_amount,
           singleBookFine: fineData?.fine_amount * fineData?.fine_perday || 0,
           total_fine: 0,
         }));
@@ -164,9 +159,9 @@ const IssueBookReturn = () => {
         toast.error("Please enter atleast one book detail");
         isValid = false;
       }
-  
-      
-      
+
+
+
 
       if (!isValid) {
         console.log("Form contains errors. Please correct them and try again.");
@@ -239,11 +234,11 @@ const IssueBookReturn = () => {
 
 
   const handleInputChange = (index, event) => {
-    
+
     if (event.target.value && (!/^\d+$/.test(event.target.value) || parseInt(event.target.value) < 1)) {
       return
-    } 
-    
+    }
+
     const inputLostBookAmount = parseFloat(event.target.value);
     let tempissueData = { ...issue };
     let valuesBookList = [...issueBookList];
@@ -272,22 +267,22 @@ const IssueBookReturn = () => {
     let payable_amount = 0;
     let total_lost_books_amount = 0;
     let total_fine = 0;
-  
+
     valuesBookList.map((book) => {
       payable_amount +=
         Number(book.lost_book_price || 0) + Number(book?.late_fine || 0);
       total_lost_books_amount += Number(book.lost_book_price || 0);
       total_fine += Number(book.late_fine || 0);
     });
-  
+
     tempissueData.payable_amount = payable_amount;
     tempissueData.total_books_price = total_lost_books_amount;
     tempissueData.total_fine = total_fine;
     tempissueData.total_amount = payable_amount;
-  
+
     setIssue(tempissueData);
   };
-  
+
 
   const getLateFine = async (value) => {
     try {
@@ -325,7 +320,7 @@ const IssueBookReturn = () => {
   const removeField = (index) => {
 
     const values = [...issueBookList];
-    if(values.length==1){
+    if (values.length == 1) {
       toast.error("Minimum 1 book is required")
       return;
     }
@@ -394,7 +389,7 @@ const IssueBookReturn = () => {
                           className="font-weight-semibold"
                           htmlFor="student_id"
                         >
-                          Student Name 
+                          Student Name
                         </label>
                         <input
                           type="text"
@@ -412,7 +407,7 @@ const IssueBookReturn = () => {
                           className="font-weight-semibold"
                           htmlFor="student_id"
                         >
-                          Enrollment No. 
+                          Enrollment No.
                         </label>
                         <input
                           type="text"
@@ -431,7 +426,7 @@ const IssueBookReturn = () => {
                           className="font-weight-semibold"
                           htmlFor="issue_books_date"
                         >
-                          Issue Book Date 
+                          Issue Book Date
                         </label>
                         <input
                           type="date"

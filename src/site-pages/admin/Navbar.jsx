@@ -619,13 +619,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           url: "video-at-website-home",
           icon: <FaPlayCircle />,
         }, // Play icon for website home video
+        
         {
           subtitle: "Banner",
-          url: "cms/banner/add-new",
-          icon: <FaPlayCircle />,
-        },
-        {
-          subtitle: "Banner List",
           url: "cms/banner/list",
           icon: <FaPlayCircle />,
         },

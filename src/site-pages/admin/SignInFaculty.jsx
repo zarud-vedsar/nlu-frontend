@@ -50,7 +50,6 @@ const SignInFaculty = () => {
     e?.preventDefault();
     setIsSubmit(true);
     let isValid = true;
-    console.log("resendotp", resendOtp);
 
     // Validate email
     if (!email || !/\S+@\S+\.\S+/.test(email)) {

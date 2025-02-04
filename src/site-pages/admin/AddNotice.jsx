@@ -116,7 +116,9 @@ function NoticeList() {
           pdf_file: validator.unescape(response.data[0].pdf_file),
           image: validator.unescape(response.data[0].image),
         }));
-        setPreviewPdf(validator.unescape(response.data[0].pdf_file));
+        if(response.data[0].image){
+          setPreviewPdf(validator.unescape(response.data[0].pdf_file));
+        }
         setPreviewImage(validator.unescape(response.data[0].image));
         if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
           window.CKEDITOR.instances['editor1'].setData(
@@ -148,7 +150,7 @@ function NoticeList() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-    const { dbId, notice_type, title, notice_date, pdf_file, image } = formData;
+    const { dbId, notice_type, title, notice_date, pdf_file, image , description} = formData;
     if (!notice_type) {
       toast.error("Notice Type is required.");
       return setIsSubmit(false);
@@ -161,8 +163,8 @@ function NoticeList() {
       toast.error("Notice Date is required.");
       return setIsSubmit(false);
     }
-    if (!pdf_file) {
-      toast.error("PDF file is required.");
+    if (!pdf_file && !description) {
+      toast.error("Must have to provide one among pdf and description");
       return setIsSubmit(false);
     }
 

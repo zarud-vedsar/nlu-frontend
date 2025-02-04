@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import {
   PHP_API_URL,
   NODE_API_URL,
+  FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import { Link } from "react-router-dom";
 const FacultySlider = () => {

@@ -8,6 +8,7 @@ import axios from "axios";
 import {
   PHP_API_URL,
   NODE_API_URL,
+  FILE_API_URL,
 } from "../../../../site-components/Helper/Constant";
 function DocumentDetail({ sid }) {
   // State declarations

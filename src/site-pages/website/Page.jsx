@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { PHP_API_URL } from "../../site-components/Helper/Constant";
+import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import axios from "axios";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 const Page = () => {

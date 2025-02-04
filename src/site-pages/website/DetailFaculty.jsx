@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   PHP_API_URL,
   NODE_API_URL,
+  FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import { useParams } from "react-router-dom";
 import { dataFetchingGet } from "../../site-components/Helper/HelperFunction";

@@ -3,24 +3,17 @@ import axios from "axios";
 import {
   Modal,
   Button,
-  Form,
-  Table,
+  
   Spinner,
-  Col,
-  Row,
-  InputGroup,
+  
 } from "react-bootstrap";
-import Select from "react-select";
-import { FaFilter } from "react-icons/fa";
+
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
-import { IoIosEye } from "react-icons/io";
-import { IoIosEyeOff } from "react-icons/io";
-import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+
 import "../../site-components/admin/assets/css/FacultyList.css";
 import { Link } from "react-router-dom";
-import { NODE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
+import { FILE_API_URL, NODE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
 import { InputText } from "primereact/inputtext"; // Import InputText for the search box

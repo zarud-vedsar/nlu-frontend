@@ -18,6 +18,7 @@ import { formatDate } from "../../../../site-components/Helper/HelperFunction";
 
 import { Link } from "react-router-dom";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../../../site-components/Helper/Constant";

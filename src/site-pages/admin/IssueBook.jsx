@@ -11,7 +11,7 @@ import { formatDate } from "../../site-components/Helper/HelperFunction";
 
 import { Link } from "react-router-dom";
 import {
-  NODE_API_URL,
+  FILE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
 import { DataTable } from "primereact/datatable";

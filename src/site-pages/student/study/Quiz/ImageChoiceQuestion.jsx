@@ -4,6 +4,7 @@ import axios from "axios";
 import { Modal, Button, Spinner } from "react-bootstrap";
 import secureLocalStorage from "react-secure-storage";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../../../site-components/Helper/Constant";

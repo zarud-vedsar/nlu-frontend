@@ -9,6 +9,7 @@ import {
 import Select from "react-select";
 import { capitalizeFirstLetter } from "../../../site-components/Helper/HelperFunction";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../../site-components/Helper/Constant";

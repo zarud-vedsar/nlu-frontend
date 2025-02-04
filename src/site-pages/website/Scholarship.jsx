@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";

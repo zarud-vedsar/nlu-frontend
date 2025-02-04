@@ -13,6 +13,7 @@ import {
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";

@@ -10,6 +10,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 
 import { Link } from "react-router-dom";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";

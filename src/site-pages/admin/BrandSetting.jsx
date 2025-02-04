@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import {
   PHP_API_URL,
-  NODE_API_URL,
+  FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import SettingSideBar from "./SettingSideBar";

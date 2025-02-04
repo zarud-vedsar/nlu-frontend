@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { NODE_API_URL } from "../../../site-components/Helper/Constant";
+import { FILE_API_URL, NODE_API_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import {
   capitalizeFirstLetter,

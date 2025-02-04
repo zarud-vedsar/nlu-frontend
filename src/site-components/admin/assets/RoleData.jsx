@@ -78,6 +78,7 @@ export const RoleData = [
       },
     ],
   },
+  
   {
     title: "Attendance Management",
     items: [
@@ -452,6 +453,16 @@ export const RoleData = [
         label: "About",
         value: "About",
         crud: ["update"], // CRUD operations
+      },
+      {
+        label: "Banner",
+        value: "Banner",
+        crud: ["create"], // CRUD operations
+      },
+      {
+        label: "Banner List",
+        value: "Banner List",
+        crud: ["create","list","status","delete", "recycle bin"], // CRUD operations
       },
       {
         label: "Important Update Sliders",

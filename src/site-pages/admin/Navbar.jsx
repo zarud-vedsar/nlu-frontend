@@ -131,7 +131,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
     localStorage.setItem("session", selectedSession.value);
     localStorage.setItem("sessionTitle", selectedSession.label);
     toast.success("Session Changed");
-    
+
     props.submit();
   };
 
@@ -159,7 +159,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
       </Modal.Body>
       <Modal.Footer>
         <div className="mx-auto">
-          
+
           <Button onClick={handleSubmit} className="btn btn-success">
             Submit
           </Button>
@@ -422,25 +422,25 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
     },
     {
       title: "Expense Management",
-      icon: <AiOutlineCalendar />, 
+      icon: <AiOutlineCalendar />,
       url: "",
       dropdownMenus: [
         {
           subtitle: "Expense Category",
           url: "expense-category",
           icon: <MdInventory />,
-        }, 
+        },
         {
           subtitle: "Add New Expense",
           url: "expense/add-new",
           icon: <MdInventory />,
-        }, 
+        },
         {
           subtitle: "Expense List",
           url: "expense/list",
           icon: <MdInventory />,
-        }, 
-      
+        },
+
       ],
     },
     {
@@ -623,12 +623,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           subtitle: "Banner",
           url: "cms/banner/add-new",
           icon: <FaPlayCircle />,
-        }, 
+        },
         {
           subtitle: "Banner List",
           url: "cms/banner/list",
           icon: <FaPlayCircle />,
-        }, 
+        },
       ],
     },
     {

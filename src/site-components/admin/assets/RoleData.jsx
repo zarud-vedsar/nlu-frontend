@@ -10,7 +10,7 @@ export const RoleData = [
       {
         label: "Faculty",
         value: "Faculty",
-        crud: ["list","others dashboard"], // CRUD operations
+        crud: ["list", "others dashboard"], // CRUD operations
       },
     ],
   },
@@ -51,16 +51,6 @@ export const RoleData = [
           "delete",
           "add question",
           "recycle bin",
-        ], // CRUD operations
-      },
-      {
-        label: "Expense Management",
-        value: "Expense Management",
-        crud: [
-          "create",
-          "list",
-          "update",
-          "delete",
         ], // CRUD operations
       },
       {
@@ -125,6 +115,26 @@ export const RoleData = [
         label: "View Compile Attendance",
         value: "View Compile Attendance",
         crud: ["list"], // CRUD operations
+      },
+    ],
+  },
+  {
+    title: "Expense Management",
+    items: [
+      {
+        label: "Expense Category",
+        value: "Expense Category",
+        crud: ["create", "update", "list", "delete"], // CRUD operations
+      },
+      {
+        label: "Add New Expense",
+        value: "Add New Expense",
+        crud: ["create"], // CRUD operations
+      },
+      {
+        label: "Expense List",
+        value: "Expense List",
+        crud: ["update", "list", "delete"], // CRUD operations
       },
     ],
   },

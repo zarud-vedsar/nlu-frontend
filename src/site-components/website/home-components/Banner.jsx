@@ -1,155 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { PHP_API_URL, FILE_API_URL } from "../../Helper/Constant";
+import axios from "axios";
+import validator from 'validator';
 const Banner = () => {
+  const [banner, setBanner] = useState([]);
+  const fetchBanner = async () => {
+    try {
+      const bformData = new FormData();
+      bformData.append("data", "load_banner_front");
+
+      const response = await axios.post(
+        `${PHP_API_URL}/banner.php`,
+        bformData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (response.data.status === 200) {
+        setBanner(response.data.data);
+      }
+    } catch (error) { /* empty */ }
+  };
+  useEffect(() => {
+    fetchBanner();
+  }, []);
   return (
     <>
       <div className="slider-areaytutyi">
         <div id="wowslider-container1">
           <div className="ws_images">
             <ul>
-              <li>
-                <img
-                  src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/carousel/0.png"
-                  alt="#"
-                  className="sliderimg"
-                  title=""
-                  id="wows1_[i]"
-                />
-                <div className="banner-text-sec">
-                  <div className="banner-text">
-                    <h1>
-                      Welcome to Dr. Rajendra Prasad National Law University,
-                      Prayagraj
-                    </h1>
-                    <p>
-                      Dr. Rajendra Prasad National Law University (est. 2020),
-                      Prayagraj, stands as a beacon of legal education and
-                      excellence. Renowned for its innovative and
-                      interdisciplinary curriculum, the University is dedicated
-                      to shaping future leaders in law, judiciary, and academia.
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <img
-                  src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/carousel/1500.png"
-                  alt="#"
-                  className="sliderimg"
-                  title=""
-                  id="wows1_[i]"
-                />
-                <div className="banner-text-sec">
-                  <div className="banner-text">
-                    <h1>
-                      Welcome to Dr. Rajendra Prasad National Law University,
-                      Prayagraj
-                    </h1>
-                    <p>
-                      Dr. Rajendra Prasad National Law University (est. 2020),
-                      Prayagraj, stands as a beacon of legal education and
-                      excellence. Renowned for its innovative and
-                      interdisciplinary curriculum, the University is dedicated
-                      to shaping future leaders in law, judiciary, and academia.
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <img
-                  src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/carousel/4500.png"
-                  alt="#"
-                  className="sliderimg"
-                  title=""
-                  id="wows1_[i]"
-                />
-                <div className="banner-text-sec">
-                  <div className="banner-text">
-                    <h1>
-                      Welcome to Dr. Rajendra Prasad National Law University,
-                      Prayagraj
-                    </h1>
-                    <p>
-                      Dr. Rajendra Prasad National Law University (est. 2020),
-                      Prayagraj, stands as a beacon of legal education and
-                      excellence. Renowned for its innovative and
-                      interdisciplinary curriculum, the University is dedicated
-                      to shaping future leaders in law, judiciary, and academia.
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <img
-                  src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/carousel/4000.png"
-                  alt="#"
-                  className="sliderimg"
-                  title=""
-                  id="wows1_[i]"
-                />
-                <div className="banner-text-sec">
-                  <div className="banner-text">
-                    <h1>
-                      Welcome to Dr. Rajendra Prasad National Law University,
-                      Prayagraj
-                    </h1>
-                    <p>
-                      Dr. Rajendra Prasad National Law University (est. 2020),
-                      Prayagraj, stands as a beacon of legal education and
-                      excellence. Renowned for its innovative and
-                      interdisciplinary curriculum, the University is dedicated
-                      to shaping future leaders in law, judiciary, and academia.
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <img
-                  src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/carousel/4511.jpg"
-                  alt="#"
-                  className="sliderimg"
-                  title=""
-                  id="wows1_[i]"
-                />
-                <div className="banner-text-sec">
-                  <div className="banner-text">
-                    <h1>
-                      Welcome to Dr. Rajendra Prasad National Law University,
-                      Prayagraj
-                    </h1>
-                    <p>
-                      Dr. Rajendra Prasad National Law University (est. 2020),
-                      Prayagraj, stands as a beacon of legal education and
-                      excellence. Renowned for its innovative and
-                      interdisciplinary curriculum, the University is dedicated
-                      to shaping future leaders in law, judiciary, and academia.
-                    </p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <img
-                  src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/carousel/4512.jpg"
-                  alt="#"
-                  className="sliderimg"
-                  title=""
-                  id="wows1_[i]"
-                />
-                <div className="banner-text-sec">
-                  <div className="banner-text">
-                    <h1>
-                      Welcome to Dr. Rajendra Prasad National Law University,
-                      Prayagraj
-                    </h1>
-                    <p>
-                      Dr. Rajendra Prasad National Law University (est. 2020),
-                      Prayagraj, stands as a beacon of legal education and
-                      excellence. Renowned for its innovative and
-                      interdisciplinary curriculum, the University is dedicated
-                      to shaping future leaders in law, judiciary, and academia.
-                    </p>
-                  </div>
-                </div>
-              </li>
+              {
+                banner && banner.map((dData, index) => (
+                  <li key={index}>
+                    <img
+                      src={`${FILE_API_URL}/banner/${dData.banner}`}
+                      alt="#"
+                      className="sliderimg"
+                      title=""
+                      id={`wows1_[${index}]`}
+                    />
+                    <div className="banner-text-sec">
+                      <div className="banner-text">
+                        <h1>{dData?.btitle ? validator.unescape(dData.btitle) : ''}</h1>
+                        <p>{dData?.bshort ? validator.unescape(dData.bshort) : ''}</p>
+                      </div>
+                    </div>
+                  </li>
+                ))
+              }
             </ul>
           </div>
           <div

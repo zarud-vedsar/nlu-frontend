@@ -22,6 +22,7 @@ function AddResourceLiveClass() {
         liveDate: '',
         startTime: '',
         endTime: '',
+        description: ''
     };
     const [formData, setFormData] = useState(initialForm); // Form state
     const [isSubmit, setIsSubmit] = useState(false); // Form submission state

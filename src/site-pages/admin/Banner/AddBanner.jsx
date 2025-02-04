@@ -55,22 +55,6 @@ const AddBanner = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-
-    if (!formData.btitle) {
-      toast.error(" Title is required.");
-      return setIsSubmit(false);
-    }
-
-    if (!formData.banner_image) {
-      toast.error("Banner Image is required.");
-      return setIsSubmit(false);
-    }
-
-    if (!formData.bshort) {
-      toast.error("Short description is required.");
-      return setIsSubmit(false);
-    }
-
     const sendFormData = new FormData();
     sendFormData.append("loguserid", secureLocalStorage.getItem("login_id"));
     sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
@@ -158,17 +142,6 @@ const AddBanner = () => {
             <div className="card">
               <div className="card-body">
                 <div className="row mb-4">
-                  <div className="form-group col-md-12">
-                    <label> Title</label> <span className="text-danger">*</span>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="btitle"
-                      value={formData.btitle}
-                      onChange={handleChange}
-                    />
-                  </div>
-
                   <div className="form-group col-md-12 ">
                     <label> Banner Image</label>{" "}
                     <span className="text-danger">*</span>
@@ -188,10 +161,18 @@ const AddBanner = () => {
                       />
                     )}
                   </div>
-
+                  <div className="form-group col-md-12">
+                    <label> Title</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="btitle"
+                      value={formData.btitle}
+                      onChange={handleChange}
+                    />
+                  </div>
                   <div className="form-group col-md-12">
                     <label> Short Description</label>{" "}
-                    <span className="text-danger">*</span>
                     <textarea
                       type="text"
                       className="form-control"

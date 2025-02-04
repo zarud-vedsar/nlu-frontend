@@ -335,7 +335,7 @@ const Home = () => {
                     </TabList>
 
                     <TabPanel>
-                      {data?.LatestNotice?.map((item, index) => (
+                      {data?.LatestNotice && data?.LatestNotice?.map((item, index) => (
                         <div key={index}>
                           <div className="card">
                             <div className="card-body p-1">
@@ -352,7 +352,7 @@ const Home = () => {
                     </TabPanel>
 
                     <TabPanel>
-                      {data?.LatestEvent?.map((item, index) => (
+                      {data?.LatestEvent && data?.LatestEvent?.map((item, index) => (
                         <div key={index}>
                         <div className="card">
                           <div className="card-body p-1">
@@ -369,7 +369,7 @@ const Home = () => {
                     </TabPanel>
 
                     <TabPanel>
-                      {data?.LatestPublication?.map((item, index) => (
+                      {data?.LatestPublication && data?.LatestPublication?.map((item, index) => (
                         <div key={index}>
                         <div className="card">
                           <div className="card-body p-1">

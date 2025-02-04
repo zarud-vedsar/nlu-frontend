@@ -343,7 +343,7 @@ function NoticeList() {
                     </div>
                     <div className="col-md-12 form-group">
                       <label>
-                        Upload Pdf <span className="text-danger">*</span>
+                        Upload Pdf 
                       </label>
                       <input
                         type="file"

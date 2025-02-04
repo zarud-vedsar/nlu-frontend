@@ -78,41 +78,7 @@ export const RoleData = [
       },
     ],
   },
-  {
-    title: "Expense Management",
-    items: [
-      {
-        label: "Expense Category",
-        value: "Expense Category",
-        crud: [
-          "update",
-          "delete",
-          "list",
-          "add category",
-        ],
-      },
-      {
-        label: "Add New Expense",
-        value: "Add New Expense",
-        crud: [
-          "update",
-          "add question",
-          
-        ],
-      },
-      {
-        label: "Expense List",
-        value: "Expense List",
-        crud: [
-          "update",
-          "delete",
-          "list",
-          "add expense",
-        ],
-            },
-     
-    ],
-  },
+  
   {
     title: "Attendance Management",
     items: [
@@ -487,6 +453,16 @@ export const RoleData = [
         label: "About",
         value: "About",
         crud: ["update"], // CRUD operations
+      },
+      {
+        label: "Banner",
+        value: "Banner",
+        crud: ["create"], // CRUD operations
+      },
+      {
+        label: "Banner List",
+        value: "Banner List",
+        crud: ["create","list","status","delete", "recycle bin"], // CRUD operations
       },
       {
         label: "Important Update Sliders",

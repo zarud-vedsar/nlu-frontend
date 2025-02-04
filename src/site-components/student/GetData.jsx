@@ -171,7 +171,7 @@ export const Step = () => {
   const sid = secureLocalStorage.getItem("studentId");
   useEffect(() => {
     getStudentSelectedCourse();
-
+    getStudentSelectedDetail();
     if (sid) {
       studentRecordById(sid).then((res) => {
         if (res.length > 0) {
@@ -186,6 +186,8 @@ export const Step = () => {
     }
   }, [sid]);
 
+  const [courseDetail, setCourseDetail] = useState();
+  const [educationDetailFilled, setEducationDetailFilled] = useState(false);
   const getStudentSelectedCourse = async () => {
     try {
       let formData = {};
@@ -197,27 +199,69 @@ export const Step = () => {
       );
 
       if (response.data?.statusCode === 200) {
-        let { preview, approved, id } = response.data?.data?.[0] || {};
+        let { preview, approved, id } = response.data?.data[0] || {};
 
         if (!id || (preview == 1 && approved == 1)) {
           setIsCourseSelected(false);
         } else {
           setIsCourseSelected(true);
         }
+        setCourseDetail((prev) => ({
+          ...prev,
+          preview: response.data?.data[0]?.preview,
+        }));
       }
     } catch (error) {}
   };
+
+  const getStudentSelectedDetail = async () => {
+    try {
+      let formData = {};
+      formData.studentId = secureLocalStorage.getItem("studentId");
+      formData.login_type = "student";
+      const response = await axios.post(
+        `${NODE_API_URL}/api/course-selection/courseType`,
+        formData
+      );
+      if (response?.data?.statusCode === 200) {
+        setCourseDetail((prev) => ({
+          ...prev,
+          semtitle: response?.data?.data[0]?.semtitle,
+          level: response?.data?.data[0]?.level,
+        }));
+      }
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    if (checkDocument && courseDetail)
+      if (
+        (checkDocument.plroll && courseDetail?.semtitle !== "semester 1") ||
+        (courseDetail?.semtitle === "semester 1" &&
+          courseDetail?.level == "UG" &&
+          checkDocument?.hroll) ||
+        (courseDetail?.semtitle === "semester 1" &&
+          courseDetail?.level == "PG" &&
+          checkDocument?.groll)
+      ) {
+        setEducationDetailFilled(true);
+      }
+  }, [checkDocument, courseDetail]);
 
   return (
     <>
       <ul className="progressbar mb-3">
         <li className={student.spincode ? "active" : ""}>Personal Details</li>
         <li className={isCourseSelected ? "active" : ""}>Course Selection</li>
-        <li className={checkDocument.hroll ? "active" : ""}>
+        <li className={educationDetailFilled ? "active" : ""}>
           Educational Details
         </li>
         <li className={checkDocument.dtc ? "active" : ""}>Documents Upload</li>
-        <li className={checkDocument.dtc ? "active" : ""}>Preview</li>
+        <li
+          className={courseDetail?.preview && isCourseSelected ? "active" : ""}
+        >
+          Preview
+        </li>
         {/* {progressData.preview === 0 && <li>Verification By College</li>}
             {progressData.preview === 1 && <li>Verification Pending</li>}
             {progressData.preview === 3 && <li className="active">Verification Completed</li>}

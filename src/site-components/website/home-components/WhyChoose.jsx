@@ -18,7 +18,7 @@ const WhyChoose = () => {
 
           <div className="row text-center mt-3">
             {/* Column 1: Industry Leaders */}
-            <div className="col-md-4 mb-4 mt-sm-50">
+            <div className="col-md-4">
               <div className="image-box-wrapper">
                 <img
                   className="img-fluid"
@@ -31,7 +31,7 @@ const WhyChoose = () => {
               </div>
             </div>
             {/* Column 2: Learn Courses Online */}
-            <div className="col-md-4 mb-4 mt-sm-50">
+            <div className="col-md-4">
               <div className="image-box-wrapper">
                 <img
                   className="img-fluid"
@@ -44,7 +44,7 @@ const WhyChoose = () => {
               </div>
             </div>
             {/* Column 3: Scholarship Facility */}
-            <div className="col-md-4 mb-4 mt-sm-50">
+            <div className="col-md-4">
               <div className="image-box-wrapper">
                 <img
                   className="img-fluid"

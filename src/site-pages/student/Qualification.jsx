@@ -203,8 +203,6 @@ function Qualification() {
       }
     }
 
-    
-
     if (level?.semtitle !== "semester 1") {
       if (
         !formData?.plroll ||
@@ -321,7 +319,15 @@ function Qualification() {
             : null,
         }));
 
-        if ((res[0].plroll && level?.semtitle !== "semester 1") || (level?.semtitle === "semester 1" && level?.level=="UG" && res[0]?.hroll ) || (level?.semtitle === "semester 1" && level?.level=="PG" && res[0]?.groll )) {
+        if (
+          (res[0].plroll && level?.semtitle !== "semester 1") ||
+          (level?.semtitle === "semester 1" &&
+            level?.level == "UG" &&
+            res[0]?.hroll) ||
+          (level?.semtitle === "semester 1" &&
+            level?.level == "PG" &&
+            res[0]?.groll)
+        ) {
           setAllowToUploadDocument(true);
         }
         if (res[0].hroll) {
@@ -365,17 +371,15 @@ function Qualification() {
         if (response?.data?.data[0]?.semtitle.toLowerCase() !== "semester 1") {
           setNotAllowedToEditInformation(true);
         }
-
-        
       }
     } catch (error) {}
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     if (level?.id) {
       getEducationDetail(level?.id, sid);
     }
-  },[level?.id]);
+  }, [level?.id]);
 
   useEffect(() => {
     getStudentSelectedCourse();

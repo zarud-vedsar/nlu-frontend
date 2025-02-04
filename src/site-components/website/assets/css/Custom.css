@@ -65,22 +65,26 @@
   font-style: normal;
   font-weight: 700;
 }
+
 body {
   font-family: Gordita;
   font-size: 0.9rem;
   line-height: 1.5;
   color: rgb(105, 105, 105);
 }
+
 .gorditas-regular {
   font-style: normal !important;
   font-weight: 400 !important;
   letter-spacing: 0em !important;
 }
+
 .butler-regular {
   font-style: normal !important;
   font-weight: 700;
   letter-spacing: 0em;
 }
+
 .OverlayButton1 {
   position: fixed;
   top: 150px !important;
@@ -197,18 +201,22 @@ body {
   font-weight: 700 !important;
   font-size: 1.42rem !important;
 }
+
 .table {
   width: 100% !important;
 }
+
 .msg_ReghtImg {
   margin-left: 20px;
   float: right;
   margin-bottom: 20px;
   border-radius: 0.4rem;
 }
+
 .text-justify {
   text-align: justify !important;
 }
+
 .msg_LeftImg {
   margin-right: 20px;
   float: Left;
@@ -266,7 +274,7 @@ strong {
   /* box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.14); */
 }
 
-.panel-default > .panel-heading {
+.panel-default>.panel-heading {
   border-color: #0060aa !important;
   /* margin: 0% 55% -12% 0%; */
 }
@@ -275,7 +283,7 @@ strong {
   height: 255px !important;
 }
 
-.panel-default > .panel-heading {
+.panel-default>.panel-heading {
   font-size: 1.01rem;
 }
 
@@ -1242,11 +1250,15 @@ table tbody th {
 .chaiprsn-name-wrapper {
   margin-top: 10px;
 }
+
 .faq-overley {
-  position: relative; /* Ensures the pseudo-element positions relative to this */
+  position: relative;
+  /* Ensures the pseudo-element positions relative to this */
   padding: 100px 0;
-  z-index: 0; /* Keep this layer above the background */
+  z-index: 0;
+  /* Keep this layer above the background */
 }
+
 .faq-overley::before {
   content: "";
   /* Required for pseudo-elements */
@@ -1262,7 +1274,7 @@ table tbody th {
   /* Place it behind the content */
 }
 
-.faq-overley > * {
+.faq-overley>* {
   position: relative;
   /* Ensures the content stays above the overlay */
   z-index: 1;
@@ -1275,6 +1287,7 @@ table tbody th {
   aspect-ratio: 1/1;
   transition: all 0.4s;
 }
+
 .useful-link-col:hover img {
   transform: scale(1.02);
 }
@@ -1296,10 +1309,12 @@ table tbody th {
 .social-media-row {
   margin-top: 30px;
 }
+
 .instagram-media {
   width: 100%;
   height: 100%;
 }
+
 .social-icon {
   font-size: 22px;
   color: #fff;
@@ -1309,6 +1324,7 @@ table tbody th {
   padding: 12px 16px;
   border-radius: 20px 20px 0 0;
 }
+
 .social-icon img {
   width: 50px;
   height: 50px;
@@ -1330,30 +1346,37 @@ table tbody th {
   background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
   /* This gradient is Instagram's brand gradient */
 }
+
 .social-icon.you {
   background-color: #ff0000;
   /* Official YouTube Red */
 }
+
 #u_1_8_Gm,
 #u_1_14_Xh ._53j5 {
   width: 385px !important;
 }
+
 .social-details {
   height: 480px;
   overflow: hidden;
 }
+
 .social-details iframe {
   width: 100% !important;
   height: 100% !important;
   border: none;
   object-fit: fill;
 }
+
 .footer-social-icon {
   display: flex;
 }
+
 .footer-social-icon a {
   margin-right: 10px;
 }
+
 /* General styling for all icons */
 .fticon {
   font-size: 24px;
@@ -1423,6 +1446,7 @@ table tbody th {
   transform: scale(1.1);
   /* Slightly enlarge on hover */
 }
+
 /* notice css start here  */
 .new_sec {
   padding: 0;
@@ -1829,12 +1853,16 @@ table tbody th {
   text-align: center;
   font-size: 16px;
 }
+
 .image-box-wrapper {
   padding: 31px 20px 33px;
+  height: 100%;
 }
+
 .image-box-wrapper:hover {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
 }
+
 /* why choose NLU css end here  */
 
 /* study and program css start here  */
@@ -2360,6 +2388,7 @@ table tbody th {
   background-color: #950e51;
   color: #fff;
 }
+
 .section-contact-home {
   position: relative;
   /* Ensures the pseudo-element positions relative to this */
@@ -2383,7 +2412,7 @@ table tbody th {
   /* Place it behind the content */
 }
 
-.section-contact-home > * {
+.section-contact-home>* {
   position: relative;
   /* Ensures the content stays above the overlay */
   z-index: 1;
@@ -2463,6 +2492,7 @@ table tbody th {
 }
 
 @media (max-width: 768px) {
+
   .kn-prev,
   .kn-next {
     background-color: #2e3e50;
@@ -2471,6 +2501,7 @@ table tbody th {
   .kn-next {
     padding: 5px 7px 2px;
   }
+
   .kn-prev {
     padding: 5px 7px 2px;
   }
@@ -2509,6 +2540,7 @@ table tbody th {
   color: #555;
   background: #f5f5f5;
 }
+
 .img-responsive {
   width: auto;
   max-width: 100%;
@@ -2522,6 +2554,7 @@ table tbody th {
 .faq-img-wrapper img {
   border-radius: 10px;
 }
+
 /* .table {
   width: 100%;
   border-collapse: collapse;
@@ -2622,16 +2655,19 @@ table tbody th {
   background: #2d3e50;
   border-radius: 3px;
 }
+
 .gal-view-all-btn:hover {
   background-color: #2d3e50;
   color: wheat;
 }
+
 .gal-title {
   font-size: 25px;
   font-weight: 600;
   /* font-family: popins, sans-serif; */
   margin: 0px 0px 10px 16px;
 }
+
 .gal-image {
   border-radius: 10px;
   width: 100%;
@@ -2647,9 +2683,11 @@ table tbody th {
   justify-content: center;
   align-items: center;
 }
+
 .gal-mb-4 {
   margin-bottom: 20px;
 }
+
 .gallery-col {
   position: relative;
   transition: 0.5s ease;
@@ -2678,9 +2716,11 @@ table tbody th {
 .gallery-col:hover::before {
   opacity: 1;
 }
+
 .gallery-col:hover .gal-image {
   transform: scale(1.1);
 }
+
 /* .latest-area .container .row {
   display: flex;
   flex-wrap: wrap;
@@ -2712,6 +2752,7 @@ table tbody th {
   .latest-area .row .col-sm-8 {
     order: 2 !important;
   }
+
   .marquee-ctrl-btn button .i {
     font-size: 14px;
   }
@@ -2726,9 +2767,11 @@ table tbody th {
     order: 1;
   }
 }
+
 .border {
   border: 1px solid #ccc;
 }
+
 /* Base styles */
 .container {
   margin-left: auto;
@@ -2739,42 +2782,52 @@ table tbody th {
   /* Prevents overflowing */
   box-sizing: border-box;
 }
+
 .section {
   padding: 20px 15px;
   /* Default padding for all devices */
 }
+
 .btn-primary {
   background-color: #950e51;
 }
+
 .btn-primary:hover,
 .btn-primary:focus {
   background-color: #111 !important;
   color: #fff !important;
   border: 1px solid #111;
 }
+
 .btn-primary:disabled {
   background-color: #1111117c !important;
   color: #fff !important;
   border: 1px solid #1111117c;
 }
+
 .text-primary {
   color: #950e51 !important;
 }
+
 .bg-primary {
   background-color: #950e51 !important;
 }
+
 .border-primary {
   border-color: #950e51 !important;
 }
+
 .border-bottom-2 {
   border-width: 2px !important;
 }
+
 .custom-link {
   color: #950e51;
   text-decoration: none;
   font-size: 15px !important;
   font-weight: 700 !important;
 }
+
 .home-video-btn {
   width: 88px;
   height: 88px;
@@ -2788,6 +2841,7 @@ table tbody th {
   color: #950e51;
   font-size: 30px;
 }
+
 .home-video-btn i {
   position: absolute;
   top: 50%;
@@ -2833,10 +2887,12 @@ table tbody th {
     opacity: 0;
   }
 }
+
 .box-footer {
   text-align: center;
   padding: 0 30px 5px;
 }
+
 .btn-view-more {
   display: inline-block;
   font-size: 30px;
@@ -2845,21 +2901,27 @@ table tbody th {
   height: 52px;
   min-width: 52px;
 }
+
 .d-flex {
   display: flex;
 }
+
 .justify-content-center {
   justify-content: center;
 }
+
 .align-items-center {
   align-items: center;
 }
+
 .w-auto {
   width: auto !important;
 }
+
 .w-fit {
   width: max-content;
 }
+
 .about-read-more {
   padding: 8px 16px !important;
   font-size: 14px;
@@ -2867,12 +2929,14 @@ table tbody th {
   /* background-repeat: no-repeat;
   background-position: left center; */
 }
+
 .nlu-prayagraj {
   width: auto;
   max-width: 100%;
   height: auto;
   border-radius: 3px;
 }
+
 .about-short-img {
   position: absolute;
   width: 30%;
@@ -2880,6 +2944,7 @@ table tbody th {
   bottom: -20%;
   border-radius: 3px;
 }
+
 .heading-primary {
   font-size: 28px;
   margin-bottom: 10px;
@@ -2887,6 +2952,7 @@ table tbody th {
   color: rgb(17, 17, 17);
   font-weight: 700;
 }
+
 .heading-primary2 {
   font-size: 24px;
   margin-bottom: 10px;
@@ -2894,6 +2960,7 @@ table tbody th {
   color: rgb(17, 17, 17);
   font-weight: 700;
 }
+
 .heading-primary3 {
   font-size: 16px;
   margin-bottom: 10px;
@@ -2901,12 +2968,15 @@ table tbody th {
   color: rgb(17, 17, 17);
   font-weight: 500;
 }
+
 .bg-f5 {
   background-color: #f5f5f5 !important;
 }
+
 .bg-f2 {
   background-color: #f2f2f2 !important;
 }
+
 .two-line-text {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -2922,12 +2992,14 @@ table tbody th {
   word-break: break-word;
   /* Prevent words from breaking the layout */
 }
+
 .new-img-container {
   position: relative;
   height: 180px;
   overflow: hidden;
   border-radius: 20px 20px 0 0;
 }
+
 .course-img-container {
   position: relative;
   height: 230px;
@@ -2936,6 +3008,7 @@ table tbody th {
   background-color: transparent;
   z-index: 1;
 }
+
 .course-image {
   width: 100%;
   border-radius: 10px;
@@ -2945,12 +3018,14 @@ table tbody th {
   transition: all 1.5s cubic-bezier(0, 0, 0.2, 1);
   cursor: pointer;
 }
+
 .course-image:hover {
   transform: scale(1.1);
   /* Scale up and rotate slightly */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   /* Add a shadow effect on hover */
 }
+
 .course-detail-link {
   position: relative;
   display: inline-flex;
@@ -2964,15 +3039,17 @@ table tbody th {
   margin-top: -25px;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
   border-radius: 10px;
-    z-index: 0;
-    right: -20px;
+  z-index: 0;
+  right: -20px;
 }
+
 .course-detail-title {
   color: #333;
   margin-bottom: 0;
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
+
 .course-learn-more {
   display: block;
   -webkit-transition: max-height 0.5s ease-in;
@@ -2989,9 +3066,11 @@ table tbody th {
 .course-detail-link:hover .course-detail-title {
   color: rgb(17, 17, 17);
 }
+
 .course-detail-link:hover .course-learn-more {
   display: block;
 }
+
 .news-image {
   position: absolute;
   top: 0;
@@ -3012,6 +3091,7 @@ table tbody th {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   /* Add a shadow effect on hover */
 }
+
 .news-read-more {
   position: absolute;
   bottom: 0;
@@ -3024,6 +3104,7 @@ table tbody th {
   place-content: center;
   visibility: hidden;
 }
+
 .news-read-more-pub {
   display: inline-block;
   line-height: 26px;
@@ -3034,10 +3115,12 @@ table tbody th {
   margin: -5% auto 0 auto;
   z-index: 1;
 }
+
 .new-img-container:hover .news-read-more {
   visibility: visible;
   height: 35px;
 }
+
 .news-read-more a,
 .news-read-more-pub a {
   color: #fff;
@@ -3045,10 +3128,12 @@ table tbody th {
   font-weight: 700;
   text-decoration: none;
 }
+
 .date-event {
   font-size: 34px;
   line-height: 1;
 }
+
 .date-event-month {
   font-size: 13px;
   font-weight: 600 !important;
@@ -3057,14 +3142,17 @@ table tbody th {
   letter-spacing: 1px;
   color: #9b9b9b;
 }
+
 .event-hover-container:hover .event-hover-title {
   color: #950e51;
 }
+
 .heading-divider {
   margin: 11px 0 0;
   font-size: 0;
   line-height: 1;
 }
+
 .heading-divider:before {
   display: inline-block;
   content: "";
@@ -3072,10 +3160,12 @@ table tbody th {
   height: 3px;
   background: #950e51;
 }
+
 .soft-shadow {
   background-color: #fff;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
 }
+
 .heading-para {
   font-size: 16px !important;
   margin-bottom: 20px;
@@ -3083,84 +3173,121 @@ table tbody th {
   color: rgb(105, 105, 105);
   text-align: justify;
 }
+
 @media screen and (max-width: 768px) {
   .mt-sm-50 {
     margin-top: 50px;
   }
 }
+
 /* Extra small devices (phones, less than 576px) */
 @media (min-width: 280px) and (max-width: 399.98px) {
   .container {
     width: 270px !important;
   }
+
   .section {
-    padding: 20px 10px; /* Reduced padding for very small devices */
+    padding: 20px 10px;
+    /* Reduced padding for very small devices */
   }
+
   .heading-primary {
-    font-size: 20px; /* Smaller font size for very small devices */
+    font-size: 20px;
+    /* Smaller font size for very small devices */
   }
+
   .heading-primary2 {
-    font-size: 18px; /* Smaller font size for very small devices */
+    font-size: 18px;
+    /* Smaller font size for very small devices */
   }
+
   .heading-primary3 {
-    font-size: 12px; /* Slightly larger font size for small phones */
+    font-size: 12px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-para {
-    font-size: 14px; /* Smaller font size for very small devices */
+    font-size: 14px;
+    /* Smaller font size for very small devices */
     line-height: 25px;
     /* Adjust line-height */
   }
 }
+
 @media (min-width: 300px) and (max-width: 667px) {
   .container {
     width: 360px !important;
   }
 }
+
 @media (min-width: 400px) and (max-width: 575.98px) {
   .container {
     width: 380px !important;
   }
+
   .section {
-    padding: 25px 15px; /* Slightly more padding for better spacing */
+    padding: 25px 15px;
+    /* Slightly more padding for better spacing */
   }
+
   .heading-primary {
-    font-size: 22px; /* Slightly larger font size for small phones */
+    font-size: 22px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-primary2 {
-    font-size: 20px; /* Slightly larger font size for small phones */
+    font-size: 20px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-primary3 {
-    font-size: 14px; /* Slightly larger font size for small phones */
+    font-size: 14px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-para {
-    font-size: 16px; /* Adjust font size for small phones */
-    line-height: 25px; /* Adjust line-height */
+    font-size: 16px;
+    /* Adjust font size for small phones */
+    line-height: 25px;
+    /* Adjust line-height */
   }
 }
+
 @media (min-width: 400px) and (max-width: 500px) {
   .container {
     width: 380px !important;
   }
 }
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) {
   .container {
     width: 542px !important;
   }
+
   .section {
-    padding: 20px; /* Increased padding for better readability */
+    padding: 20px;
+    /* Increased padding for better readability */
   }
+
   .heading-primary {
-    font-size: 24px; /* Adjust font size for small tablets and larger phones */
+    font-size: 24px;
+    /* Adjust font size for small tablets and larger phones */
   }
+
   .heading-primary2 {
-    font-size: 22px; /* Slightly larger font size for small phones */
+    font-size: 22px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-primary3 {
-    font-size: 14px; /* Slightly larger font size for small phones */
+    font-size: 14px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-para {
-    font-size: 17px; /* Slightly larger font size for better readability */
+    font-size: 17px;
+    /* Slightly larger font size for better readability */
     line-height: 28px;
     /* Adjust line-height */
   }
@@ -3171,43 +3298,66 @@ table tbody th {
   .container {
     width: 738px !important;
   }
+
   .section {
-    padding: 20px 0; /* Comfortable padding for tablet screens */
+    padding: 20px 0;
+    /* Comfortable padding for tablet screens */
   }
+
   .heading-primary {
-    font-size: 26px; /* Font size for tablets */
+    font-size: 26px;
+    /* Font size for tablets */
   }
+
   .heading-primary2 {
-    font-size: 24px; /* Slightly larger font size for small phones */
+    font-size: 24px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-primary3 {
-    font-size: 15px; /* Slightly larger font size for small phones */
+    font-size: 15px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-para {
-    font-size: 18px; /* Larger font size for tablet readability */
-    line-height: 28px; /* Adjust line-height */
+    font-size: 18px;
+    /* Larger font size for tablet readability */
+    line-height: 28px;
+    /* Adjust line-height */
   }
 }
+
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .container {
     width: 960px !important;
   }
+
   .section {
-    padding: 30px 0; /* Generous padding for large screens */
+    padding: 30px 0;
+    /* Generous padding for large screens */
   }
+
   .heading-primary {
-    font-size: 28px; /* Standard font size for desktop */
+    font-size: 28px;
+    /* Standard font size for desktop */
   }
+
   .heading-primary2 {
-    font-size: 26px; /* Slightly larger font size for small phones */
+    font-size: 26px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-primary3 {
-    font-size: 15px; /* Slightly larger font size for small phones */
+    font-size: 15px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-para {
-    font-size: 18px; /* Font size remains consistent on large screens */
-    line-height: 30px; /* Standard line-height for readability */
+    font-size: 18px;
+    /* Font size remains consistent on large screens */
+    line-height: 30px;
+    /* Standard line-height for readability */
   }
 }
 
@@ -3216,22 +3366,32 @@ table tbody th {
   .container {
     width: 1170px !important;
   }
+
   .section {
     padding: 40px 0;
     /* Extra spacing for large desktops */
   }
+
   .heading-primary {
-    font-size: 28px; /* Larger font size for large desktops */
+    font-size: 28px;
+    /* Larger font size for large desktops */
   }
+
   .heading-primary2 {
-    font-size: 28px; /* Slightly larger font size for small phones */
+    font-size: 28px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-primary3 {
-    font-size: 15px; /* Slightly larger font size for small phones */
+    font-size: 15px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-para {
-    font-size: 20px; /* Slightly larger font size for large desktops */
-    line-height: 22px; /* More line-height for spacious layout */
+    font-size: 20px;
+    /* Slightly larger font size for large desktops */
+    line-height: 22px;
+    /* More line-height for spacious layout */
   }
 }
 
@@ -3240,39 +3400,54 @@ table tbody th {
   .container {
     width: 1350px !important;
   }
+
   .section {
-    padding: 50px 0; /* Spacious layout for very large screens */
+    padding: 50px 0;
+    /* Spacious layout for very large screens */
   }
+
   .heading-primary {
-    font-size: 28px; /* Larger font size for very large screens */
+    font-size: 28px;
+    /* Larger font size for very large screens */
   }
+
   .heading-primary2 {
-    font-size: 28px; /* Slightly larger font size for small phones */
+    font-size: 28px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-primary3 {
-    font-size: 16px; /* Slightly larger font size for small phones */
+    font-size: 16px;
+    /* Slightly larger font size for small phones */
   }
+
   .heading-para {
-    font-size: 22px; /* Larger font size for readability */
-    line-height: 24px; /* Comfortable line-height for large screens */
+    font-size: 22px;
+    /* Larger font size for readability */
+    line-height: 24px;
+    /* Comfortable line-height for large screens */
   }
 }
 
 .achivement-bg-image {
   background-color: #f1e85d4d;
 }
+
 .id-position-relative {
   position: relative;
 }
+
 .id-position-abso {
   position: absolute;
   left: 90px;
   top: 0px;
 }
+
 @media only screen and (min-width: 220px) and (max-width: 767px) {
   .col-content {
     padding: 40px !important;
   }
+
   .id-achivement-img {
     height: 400px !important;
     width: auto;
@@ -3291,6 +3466,7 @@ table tbody th {
   justify-content: center;
   gap: 10px;
 }
+
 /* Tab Styles */
 .react-tabs__tab {
   padding: 10px 5px 15px 5px;
@@ -3299,37 +3475,44 @@ table tbody th {
   color: #333;
   /* Default text color */
 }
-.react-tabs__tab + .tab-panel {
+
+.react-tabs__tab+.tab-panel {
   position: absolute !important;
 }
+
 .lg-react-element {
   display: flex;
   flex-wrap: wrap;
 }
+
 .lg-react-element a {
   flex: 1 0 0;
   margin: 10px;
   padding: 10px;
 }
+
 @media (max-width: 600px) {
-  .lg-react-element{
+  .lg-react-element {
     display: block;
     flex-wrap: wrap;
   }
-  .lg-react-element a{
+
+  .lg-react-element a {
     margin: 10px;
     padding: 10px;
     display: flex;
     justify-content: center;
-   
+
   }
-  
+
 }
+
 @media (max-width: 768px) {
   .react-tabs__tab-list {
     flex-direction: column;
     /* Vertical tabs on mobile */
   }
+
   .react-tabs__tab {
     width: 100%;
   }
@@ -3359,23 +3542,27 @@ table tbody th {
   display: none;
   /* Hide inactive panels */
 }
+
 .contact-icon .faicon {
   font-size: 34px;
   color: #890c25;
   margin-right: 15px;
 }
+
 .contact-icon .heading {
   font-size: 20px;
   font-weight: 500;
   line-height: 1.5;
   color: rgb(17, 17, 17);
 }
+
 .contact-iframe {
   position: relative;
   background-color: #fff;
   padding: 20px;
   min-height: 598px;
 }
+
 .contact-iframe iframe {
   position: absolute;
   top: 0;
@@ -3384,6 +3571,7 @@ table tbody th {
   height: 100%;
   object-fit: fill;
 }
+
 .form-group-custom {
   display: flex;
   justify-content: flex-start;
@@ -3392,12 +3580,15 @@ table tbody th {
   background-color: #f5f5f5;
   border: 1px solid transparent;
 }
+
 .mb-18 {
   margin-bottom: 18px;
 }
+
 .form-group-custom:hover {
   border: 1px solid #890c25;
 }
+
 .form-custom-icon {
   font-size: 14px;
   color: #9b9b9b;
@@ -3406,6 +3597,7 @@ table tbody th {
   place-content: center;
   padding: 0 0 0 20px;
 }
+
 .form-custom-input {
   width: 100%;
   padding: 3px 15px;
@@ -3422,6 +3614,7 @@ table tbody th {
 .id-achivement-position-relative {
   position: relative;
 }
+
 .id-achivement-img-wrapper {
   position: absolute;
   bottom: -15px;
@@ -3435,6 +3628,7 @@ table tbody th {
 .background-image {
   border-radius: 30% 0px 30% 30%;
 }
+
 .id-achive-border {
   border: 5px solid goldenrod;
   border-radius: 30% 0px 30% 30%;
@@ -3442,4 +3636,12 @@ table tbody th {
   width: 550px;
   margin-top: 14px;
   margin-left: -15px;
+}
+
+
+@media (max-width:768px) {
+  .image-box-wrapper {
+    padding: 5px 20px 30px;
+  }
+
 }

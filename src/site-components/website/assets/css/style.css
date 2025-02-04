@@ -4832,7 +4832,7 @@ a:hover {
 }
 
 .vicemsgsec {
-	padding: 100px 0;
+	padding: 70px 0;
 	background: #f6fbff;
 }
 
@@ -4901,7 +4901,7 @@ a:hover {
 }
 
 .section-fac {
-	padding: 100px 0 120px;
+	padding: 60px 0 80px;
 }
 
 .spec-imgbx img {
@@ -4915,7 +4915,7 @@ a:hover {
 }
 
 .latest-area {
-	padding: 100px 0 120px !important;
+	padding: 60px 0 80px !important;
 }
 
 .about-img-bx {
@@ -5114,10 +5114,49 @@ a.useful-link-col {
 .campus__life--single {
 	height: unset;
 }
-table.table.tblpad-10>thead>tr>th, table.table.tblpad-10>tbody>tr>th, table.table.tblpad-10>tbody>tr>td {
+
+table.table.tblpad-10>thead>tr>th,
+table.table.tblpad-10>tbody>tr>th,
+table.table.tblpad-10>tbody>tr>td {
 	padding: 16px 20px;
 }
+
+.pubtextbx {
+	line-height: 1.2 !important;
+	height: 36px;
+}
+
+.title-img-bx {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.title-img-bx img {
+	width: 40px;
+}
+
+.title-img-bx h6 {
+	margin: 0;
+}
+
 @media (max-width:768px) {
+	.title-img-bx {
+		justify-content: center;
+		gap: 5px;
+		width: 100%;
+	}
+
+	table.table.tblpad-10>thead>tr>th,
+	table.table.tblpad-10>tbody>tr>th,
+	table.table.tblpad-10>tbody>tr>td {
+		padding: 8px 5px;
+	}
+
+	.title-img-bx img {
+		width: 30px;
+	}
+
 	.speciality-item {
 		width: 100%;
 	}
@@ -5139,7 +5178,8 @@ table.table.tblpad-10>thead>tr>th, table.table.tblpad-10>tbody>tr>th, table.tabl
 		font-size: 14px;
 		line-height: 1.2;
 	}
-		.banner-text-sec {
-			transform: translateY(-40%);
-		}
+
+	.banner-text-sec {
+		transform: translateY(-40%);
+	}
 }

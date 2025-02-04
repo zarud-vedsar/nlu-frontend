@@ -54,6 +54,16 @@ export const RoleData = [
         ], // CRUD operations
       },
       {
+        label: "Expense Management",
+        value: "Expense Management",
+        crud: [
+          "create",
+          "list",
+          "update",
+          "delete",
+        ], // CRUD operations
+      },
+      {
         label: "Assignment Response",
         value: "Assignment Response",
         crud: ["list"], // CRUD operations

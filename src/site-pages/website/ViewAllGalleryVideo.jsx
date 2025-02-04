@@ -106,7 +106,7 @@ const ViewAllVideoGallery = () => {
                       controls
                     >
                       <source
-                        src={`${NODE_API_URL}/public/upload/vidGallery/${video}`}
+                        src={`${FILE_API_URL}/vidGallery/${video}`}
                       />
                       Your browser does not support the video tag.
                     </video>

@@ -328,7 +328,7 @@ const VideoGallery = () => {
                                   alt="Avatar"
                                   className="rs-image mx-auto border_10"
                                 >
-                                  <source  src={`${NODE_API_URL}/public/upload/vidGallery/${item.gallery_videos[0]}`} />
+                                  <source  src={`${FILE_API_URL}/vidGallery/${item.gallery_videos[0]}`} />
                                   Your browser does not support the video tag.
                                 </video>
                              

@@ -89,7 +89,7 @@ const About = () => {
         if (response.data.data[0].image_file) {
           console.log();
           setPreviewImage(
-            `${NODE_API_URL}/public/upload/about/${response.data.data[0].image_file}`
+            `${FILE_API_URL}/about/${response.data.data[0].image_file}`
           );
         }
         if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {

@@ -164,7 +164,7 @@ const IssueBook = () => {
                                                 <div className="info-image mr-4">
                                                   {rowData?.spic ? (
                                                     <img
-                                                      src={`${NODE_API_URL}/public/upload/student/${rowData?.student_id}${rowData?.registrationNo}/${rowData?.spic}`}
+                                                      src={`${FILE_API_URL}/student/${rowData?.student_id}${rowData?.registrationNo}/${rowData?.spic}`}
                                                       alt=""
                                                       style={{
                                                         width: "40px",

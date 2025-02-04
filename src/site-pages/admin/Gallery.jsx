@@ -322,7 +322,7 @@ const Gallery = () => {
                       <div className="rs-container">
                       
                         <img
-                          src={`${NODE_API_URL}/public/upload/gallery/${item.gallery_images[0]}`}
+                          src={`${FILE_API_URL}/gallery/${item.gallery_images[0]}`}
                           style={{
                             width: "auto",
                             maxWidth: "100%",

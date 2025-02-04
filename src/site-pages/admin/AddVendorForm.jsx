@@ -72,9 +72,9 @@ const AddVendorForm = () => {
         state: result[0]?.state,
         email: result[0]?.email,
       });
-      console.log(`${NODE_API_URL}/public/upload/vendor/${result[0].profile}`)
+      console.log(`${FILE_API_URL}/vendor/${result[0].profile}`)
       setPreviewImage(
-        `${NODE_API_URL}/public/upload/vendor/${result[0].profile}`
+        `${FILE_API_URL}/vendor/${result[0].profile}`
       );
     } catch (error) {
       console.log(error);

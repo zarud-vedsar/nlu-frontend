@@ -163,7 +163,7 @@ const Page = () => {
                     {" "}
                     {pageData?.image_file && (
                       <img
-                        src={`${NODE_API_URL}/public/upload/${pageData?.image_file}`}
+                        src={`${FILE_API_URL}/${pageData?.image_file}`}
                         className="thumbnail msg_ReghtImg"
                         style={{
                           maxWidth: "300px",
@@ -193,7 +193,7 @@ const Page = () => {
               {pageData?.page_type === "pdf" && (
                 <iframe
                   src={`https://docs.google.com/viewer?embedded=true&url=${encodeURIComponent(
-                    `${NODE_API_URL}/public/upload/${pageData?.pdf_file}`
+                    `${FILE_API_URL}/${pageData?.pdf_file}`
                   )}`}
                   className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 

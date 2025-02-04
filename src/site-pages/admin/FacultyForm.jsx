@@ -208,7 +208,7 @@ const FacultyForm = () => {
         specialization: result[0]?.specialization,
       });
       setPreviewImage(
-        `${NODE_API_URL}/public/upload/user/${result[0]?.uid}/${result[0].avtar}`
+        `${FILE_API_URL}/user/${result[0]?.uid}/${result[0].avtar}`
       );
     }
     } catch (error) {

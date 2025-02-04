@@ -131,8 +131,8 @@ const DetailFaculty = () => {
                 <img
                   src={
                     facultyData.avtar
-                      ? `${NODE_API_URL}/public/upload/user/${facultyData.uid}/${facultyData.avtar}`
-                      : `${NODE_API_URL}/public/upload/user/dummy.webp`
+                      ? `${FILE_API_URL}/user/${facultyData.uid}/${facultyData.avtar}`
+                      : `${FILE_API_URL}/user/dummy.webp`
                   }
                   alt="faculty image"
                   style={{

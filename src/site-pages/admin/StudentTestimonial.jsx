@@ -332,7 +332,7 @@ const StudentTestimonial = () => {
                           >
                             <div className="info-image mr-4 px-2 py-3 ">
                               <img
-                                src={`${NODE_API_URL}/public/upload/testimonial/${rowData.test_photo}`}
+                                src={`${FILE_API_URL}/testimonial/${rowData.test_photo}`}
                                 alt=""
                                 style={{
                                   width: "120px",

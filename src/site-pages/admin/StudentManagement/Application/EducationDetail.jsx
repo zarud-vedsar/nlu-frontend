@@ -300,22 +300,22 @@ function EducationDetail({sid , trigger }) {
           }
           if (res[0].imarksheet) {
             setPreviewPdfHigh(
-              `${NODE_API_URL}/public/upload/student/${sid}${res[0].registrationNo}/${res[0].imarksheet}`
+              `${FILE_API_URL}/student/${sid}${res[0].registrationNo}/${res[0].imarksheet}`
             );
           }
           if (res[0].imarksheet) {
             setPreviewPdfInter(
-              `${NODE_API_URL}/public/upload/student/${sid}${res[0].registrationNo}/${res[0].imarksheet}`
+              `${FILE_API_URL}/student/${sid}${res[0].registrationNo}/${res[0].imarksheet}`
             );
           }
           if (res[0].plmarksheet) {
             setPreviewPdfGraduation(
-              `${NODE_API_URL}/public/upload/student/${sid}${res[0].registrationNo}/${res[0].plmarksheet}`
+              `${FILE_API_URL}/student/${sid}${res[0].registrationNo}/${res[0].plmarksheet}`
             );
           }
           if (res[0].gmarksheet) {
             setPreviewPdfPostGraduation(
-              `${NODE_API_URL}/public/upload/student/${sid}${res[0].registrationNo}/${res[0].gmarksheet}`
+              `${FILE_API_URL}/student/${sid}${res[0].registrationNo}/${res[0].gmarksheet}`
             );
           }
         }

@@ -522,7 +522,7 @@ function ViewCompiledAttendance() {
                                     <div className="info-image mr-4">
                                       {data.spic ? (
                                         <img
-                                          src={`${NODE_API_URL}/public/upload/student/${data?.student_id}${data.registrationNo}/${data.spic}`}
+                                          src={`${FILE_API_URL}/student/${data?.student_id}${data.registrationNo}/${data.spic}`}
                                           alt=""
                                           style={{
                                             width: "40px",

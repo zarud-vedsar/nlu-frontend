@@ -82,9 +82,9 @@ const Scholarship = () => {
                           </div>
                           <div className="job-meta">
                             <a
-                              href={`${NODE_API_URL}/public/upload/scholarship/${data?.upload_file}`}
+                              href={`${FILE_API_URL}/scholarship/${data?.upload_file}`}
                               target="_blank"
-                              download={`${NODE_API_URL}/public/upload/scholarship/${data?.upload_file}`}
+                              download={`${FILE_API_URL}/scholarship/${data?.upload_file}`}
                               className="heading-primary3 gorditas-regular text-primary"
                             >
                               {" "}

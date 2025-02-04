@@ -101,9 +101,9 @@ const BrandSetting = () => {
         }));
         setPreviewFiles((prevFiles) => ({
           ...prevFiles,
-          logoLight: `${NODE_API_URL}/public/upload/${response?.data?.data[0]?.light_logo}`,
-          logoFavicon: `${NODE_API_URL}/public/upload/${response?.data?.data[0]?.site_favicon}`,
-          logoDark: `${NODE_API_URL}/public/upload/${response?.data?.data[0]?.dark_logo}`,
+          logoLight: `${FILE_API_URL}/${response?.data?.data[0]?.light_logo}`,
+          logoFavicon: `${FILE_API_URL}/${response?.data?.data[0]?.site_favicon}`,
+          logoDark: `${FILE_API_URL}/${response?.data?.data[0]?.dark_logo}`,
         }));
       }
     } catch (error) {

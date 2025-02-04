@@ -307,7 +307,7 @@ const Vendor = () => {
                           <div className="info-image mr-4">
                             {rowData.profile ? (
                               <img
-                                src={`${NODE_API_URL}/public/upload/vendor/${rowData.profile}`}
+                                src={`${FILE_API_URL}/vendor/${rowData.profile}`}
                                 alt=""
                                 style={{
                                   width: "40px",

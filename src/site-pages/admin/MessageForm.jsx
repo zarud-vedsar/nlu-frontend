@@ -95,7 +95,7 @@ const MessageForm = () => {
         }
         if (response.data.data[0].image) {
           setPreviewImage(
-            `${NODE_API_URL}/public/upload/our-authorities/${response.data.data[0].image}`
+            `${FILE_API_URL}/our-authorities/${response.data.data[0].image}`
           );
         }
       }

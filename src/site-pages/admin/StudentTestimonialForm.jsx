@@ -65,7 +65,7 @@ const StudentTestimonialForm = () => {
 
         if (response.data.data[0].test_photo) {
           setPreviewImage(
-            `${NODE_API_URL}/public/upload/testimonial/${response.data.data[0].test_photo}`
+            `${FILE_API_URL}/testimonial/${response.data.data[0].test_photo}`
           );
         }
       }

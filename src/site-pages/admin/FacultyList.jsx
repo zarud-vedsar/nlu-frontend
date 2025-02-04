@@ -439,6 +439,7 @@ const FacultyList = () => {
                           <div className="info-image mr-4">
                             {rowData.avtar ? (
                               <img
+
                                 src={`${FILE_API_URL}/user/${rowData.uid}/${rowData.avtar}`}
                                 alt=""
                                 style={{

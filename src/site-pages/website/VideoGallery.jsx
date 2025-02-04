@@ -120,7 +120,7 @@ const VideoGallery = () => {
                                     className="col-12 col-sm-4 col-md-4 col-lg-3"
                                     onClick={() =>
                                       openFullScreen(
-                                        `${NODE_API_URL}/public/upload/vidGallery/${video}`
+                                        `${FILE_API_URL}/vidGallery/${video}`
                                       )
                                     }
                                   >
@@ -130,7 +130,7 @@ const VideoGallery = () => {
                                       className="gallery-video"
                                     >
                                       <source
-                                        src={`${NODE_API_URL}/public/upload/vidGallery/${video}`}
+                                        src={`${FILE_API_URL}/vidGallery/${video}`}
                                       />
                                       Your browser does not support the video
                                       tag.
@@ -198,7 +198,7 @@ const VideoGallery = () => {
                                               className="gallery-video"
                                             >
                                               <source
-                                                src={`${NODE_API_URL}/public/upload/vidGallery/${video}`}
+                                                src={`${FILE_API_URL}/vidGallery/${video}`}
                                               />
                                               Your browser does not support the
                                               video tag.

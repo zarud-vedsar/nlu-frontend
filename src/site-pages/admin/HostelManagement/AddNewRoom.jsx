@@ -25,14 +25,14 @@ function AddNewRoom() {
     const [formData, setFormData] = useState(initialData);
     const [error, setError] = useState({ field: "", msg: "" }); // Error state
     const [isSubmit, setIsSubmit] = useState(false); // Form submission state
-      const [amenities, setAmenities] = useState([]);
-      const addNewAmenity = (data) => {
+    const [amenities, setAmenities] = useState([]);
+    const addNewAmenity = (data) => {
         setAmenities(data);
         setFormData((prev) => ({
             ...prev,
             amenities: data.join(","),
-          }));
-      };
+        }));
+    };
     // Load CKEditor 4 dynamically
     useEffect(() => {
         const script = document.createElement('script');
@@ -119,7 +119,7 @@ function AddNewRoom() {
             errorMsg("amenities", "Amenities is required.");
             return setIsSubmit(false);
         }
-        
+
         try {
             formData.loguserid = secureLocalStorage.getItem('login_id');
             formData.login_type = secureLocalStorage.getItem('loginType');
@@ -323,18 +323,18 @@ function AddNewRoom() {
                                         </div>
                                         {/* Amenities */}
                                         <div className="form-group col-md-12">
-                          <label>
-                          Amenities <span className="text-danger">*</span>
-                          </label>
-                          <TagsInput
-                            value={amenities}
-                            onChange={addNewAmenity}
-                            name=""
-                            className="form-control"
-                          />
-                         
-                        </div>
-                                        
+                                            <label>
+                                                Amenities <span className="text-danger">*</span>
+                                            </label>
+                                            <TagsInput
+                                                value={amenities}
+                                                onChange={addNewAmenity}
+                                                name=""
+                                                className="form-control"
+                                            />
+
+                                        </div>
+
                                     </div>
                                     <div className='col-md-12 px-0'>
                                         <label className='font-weight-semibold'>Description</label>

@@ -54,16 +54,6 @@ export const RoleData = [
         ], // CRUD operations
       },
       {
-        label: "Expense Management",
-        value: "Expense Management",
-        crud: [
-          "create",
-          "list",
-          "update",
-          "delete",
-        ], // CRUD operations
-      },
-      {
         label: "Assignment Response",
         value: "Assignment Response",
         crud: ["list"], // CRUD operations
@@ -86,6 +76,41 @@ export const RoleData = [
         value: "Quiz Response",
         crud: ["list"], // CRUD operations
       },
+    ],
+  },
+  {
+    title: "Expense Management",
+    items: [
+      {
+        label: "Expense Category",
+        value: "Expense Category",
+        crud: [
+          "update",
+          "delete",
+          "list",
+          "add category",
+        ],
+      },
+      {
+        label: "Add New Expense",
+        value: "Add New Expense",
+        crud: [
+          "update",
+          "add question",
+          
+        ],
+      },
+      {
+        label: "Expense List",
+        value: "Expense List",
+        crud: [
+          "update",
+          "delete",
+          "list",
+          "add expense",
+        ],
+            },
+     
     ],
   },
   {

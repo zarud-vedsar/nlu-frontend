@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import { NODE_API_URL } from "../../../site-components/Helper/Constant";
+import { FILE_API_URL, NODE_API_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import {
   capitalizeFirstLetter,
@@ -470,7 +470,7 @@ function QuizResponse() {
                             <div className="info-image mr-4">
                               {rowData.spic ? (
                                 <img
-                                  src={`${NODE_API_URL}/public/upload/student/${rowData?.sid}${rowData.registrationNo}/${rowData.spic}`}
+                                  src={`${FILE_API_URL}/student/${rowData?.sid}${rowData.registrationNo}/${rowData.spic}`}
                                   alt=""
                                   style={{
                                     width: "40px",

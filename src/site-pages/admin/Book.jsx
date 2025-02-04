@@ -14,6 +14,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 
 import { Link } from "react-router-dom";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
@@ -126,7 +127,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
           <p>
             Download PDF
             <a
-              href={`${NODE_API_URL}/public/upload/bulk_bookSample.csv`}
+              href={`${FILE_API_URL}/bulk_bookSample.csv`}
               download="bulk_bookSample.csv"
             >
               {" "}
@@ -250,7 +251,7 @@ const UploadBookModal = (props = {}) => {
             <p>
               View File
               <a
-                href={`${NODE_API_URL}/public/upload/lib_books/${props?.book?.pdf_file}`}
+                href={`${FILE_API_URL}/lib_books/${props?.book?.pdf_file}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -561,7 +562,7 @@ const Book = () => {
                             <div className="info-image mr-4 d-flex justify-content-center align-items-center">
                               {rowData.image ? (
                                 <img
-                                  src={`${NODE_API_URL}/public/upload/books/${rowData.image}`}
+                                  src={`${FILE_API_URL}/books/${rowData.image}`}
                                   alt=""
                                   style={{
                                     width: "40px",

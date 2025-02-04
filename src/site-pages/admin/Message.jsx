@@ -4,6 +4,7 @@ import { Modal, Button, Spinner } from "react-bootstrap";
 import { IoMdAdd } from "react-icons/io";
 import { Link } from "react-router-dom";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
@@ -318,7 +319,7 @@ const Message = () => {
                           >
                             <div className="info-image mr-4 px-2 py-3 ">
                               <img
-                                src={`${NODE_API_URL}/public/upload/our-authorities/${rowData.image}`}
+                                src={`${FILE_API_URL}/our-authorities/${rowData.image}`}
                                 alt=""
                                 style={{
                                   width: "120px",

@@ -122,7 +122,7 @@ const GalleryVideoView = () => {
                                   className="rs-image mx-auto "
                                   controls
                                 >
-                                  <source  src={`${NODE_API_URL}/public/upload/vidGallery/${item}`} />
+                                  <source  src={`${FILE_API_URL}/vidGallery/${item}`} />
                                   Your browser does not support the video tag.
                                 </video>
                    

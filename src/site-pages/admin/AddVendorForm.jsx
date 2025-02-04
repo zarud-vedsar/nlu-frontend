@@ -3,7 +3,7 @@ import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL } from "../../site-components/Helper/Constant";
+import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import Select from "react-select";
 import { toast, ToastContainer } from "react-toastify";
 import { useParams } from "react-router-dom";
@@ -72,9 +72,9 @@ const AddVendorForm = () => {
         state: result[0]?.state,
         email: result[0]?.email,
       });
-      console.log(`${NODE_API_URL}/public/upload/vendor/${result[0].profile}`)
+      console.log(`${FILE_API_URL}/vendor/${result[0].profile}`)
       setPreviewImage(
-        `${NODE_API_URL}/public/upload/vendor/${result[0].profile}`
+        `${FILE_API_URL}/vendor/${result[0].profile}`
       );
     } catch (error) {
       console.log(error);

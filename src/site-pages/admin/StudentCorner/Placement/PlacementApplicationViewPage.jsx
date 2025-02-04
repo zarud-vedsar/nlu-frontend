@@ -8,6 +8,7 @@ import secureLocalStorage from "react-secure-storage";
 import {
   PHP_API_URL,
   NODE_API_URL,
+  FILE_API_URL,
 } from "../../../../site-components/Helper/Constant";
 import { Modal, Spinner } from "react-bootstrap";
 import { InputText } from "primereact/inputtext";
@@ -437,7 +438,7 @@ const PlacementApplicationViewPage = () => {
                             {customerDetail?.photo ? (
                               <span className="m-auto ">
                                 <img
-                                  src={`${NODE_API_URL}/public/upload/resume/${customerDetail?.photo}`}
+                                  src={`${FILE_API_URL}/resume/${customerDetail?.photo}`}
                                   className="rounded-circle"
                                   alt=""
                                   style={{ width: "80px", height: "80px" }}
@@ -652,7 +653,7 @@ const PlacementApplicationViewPage = () => {
                   <div className="col-md-6">
                     <p>Resume</p>
                     <a
-                      href={`${NODE_API_URL}/public/upload/resume/${customerDetail?.resume}`}
+                      href={`${FILE_API_URL}/resume/${customerDetail?.resume}`}
                       target="_blank"
                       className="btn btn-dark"
                     >
@@ -663,7 +664,7 @@ const PlacementApplicationViewPage = () => {
                     <div className="col-md-6 ">
                       <p>Cover Letter</p>
                       <a
-                        href={`${NODE_API_URL}/public/upload/resume/${customerDetail?.cover_letter}`}
+                        href={`${FILE_API_URL}/resume/${customerDetail?.cover_letter}`}
                         target="_blank"
                         className="btn btn-dark"
                       >

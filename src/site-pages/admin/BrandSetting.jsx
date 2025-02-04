@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import {
   PHP_API_URL,
-  NODE_API_URL,
+  FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import SettingSideBar from "./SettingSideBar";
@@ -101,9 +101,9 @@ const BrandSetting = () => {
         }));
         setPreviewFiles((prevFiles) => ({
           ...prevFiles,
-          logoLight: `${NODE_API_URL}/public/upload/${response?.data?.data[0]?.light_logo}`,
-          logoFavicon: `${NODE_API_URL}/public/upload/${response?.data?.data[0]?.site_favicon}`,
-          logoDark: `${NODE_API_URL}/public/upload/${response?.data?.data[0]?.dark_logo}`,
+          logoLight: `${FILE_API_URL}/${response?.data?.data[0]?.light_logo}`,
+          logoFavicon: `${FILE_API_URL}/${response?.data?.data[0]?.site_favicon}`,
+          logoDark: `${FILE_API_URL}/${response?.data?.data[0]?.dark_logo}`,
         }));
       }
     } catch (error) {

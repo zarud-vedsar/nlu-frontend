@@ -7,6 +7,7 @@ import {
   goBack,
 } from "../../../site-components/Helper/HelperFunction"; // Escape hatch in case things go south.
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../../site-components/Helper/Constant"; // The secret base URL we talk to.
@@ -522,7 +523,7 @@ function ViewCompiledAttendance() {
                                     <div className="info-image mr-4">
                                       {data.spic ? (
                                         <img
-                                          src={`${NODE_API_URL}/public/upload/student/${data?.student_id}${data.registrationNo}/${data.spic}`}
+                                          src={`${FILE_API_URL}/student/${data?.student_id}${data.registrationNo}/${data.spic}`}
                                           alt=""
                                           style={{
                                             width: "40px",

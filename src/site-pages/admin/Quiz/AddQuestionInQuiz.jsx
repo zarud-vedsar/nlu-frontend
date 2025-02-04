@@ -9,6 +9,7 @@ import {
 import Select from "react-select";
 import { capitalizeFirstLetter } from "../../../site-components/Helper/HelperFunction";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../../site-components/Helper/Constant";
@@ -356,19 +357,19 @@ const ImageForm = ({ item, updateFormData, removeQuestion, index }) => {
       setFormData(item);
 
       setPreviewQuestion(
-        `${NODE_API_URL}/public/upload/quiz/${item?.unlink_question_image1}`
+        `${FILE_API_URL}/quiz/${item?.unlink_question_image1}`
       );
       setPreviewOption1(
-        `${NODE_API_URL}/public/upload/quiz/${item?.unlink_option1}`
+        `${FILE_API_URL}/quiz/${item?.unlink_option1}`
       );
       setPreviewOption2(
-        `${NODE_API_URL}/public/upload/quiz/${item?.unlink_option2}`
+        `${FILE_API_URL}/quiz/${item?.unlink_option2}`
       );
       setPreviewOption3(
-        `${NODE_API_URL}/public/upload/quiz/${item?.unlink_option3}`
+        `${FILE_API_URL}/quiz/${item?.unlink_option3}`
       );
       setPreviewOption4(
-        `${NODE_API_URL}/public/upload/quiz/${item?.unlink_option4}`
+        `${FILE_API_URL}/quiz/${item?.unlink_option4}`
       );
     }
   }, []);

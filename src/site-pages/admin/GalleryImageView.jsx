@@ -117,7 +117,7 @@ const GalleryImageView = () => {
                 <div className="card-body ">
                   <div className="rs-container">
                     <img
-                      src={`${NODE_API_URL}/public/upload/gallery/${item}`}
+                      src={`${FILE_API_URL}/gallery/${item}`}
                       style={{
                         width: "auto",
                         maxWidth: "100%",

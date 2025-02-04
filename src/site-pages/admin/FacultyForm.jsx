@@ -3,7 +3,7 @@ import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL } from "../../site-components/Helper/Constant";
+import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import Select from "react-select";
 import { toast,  } from "react-toastify";
 import { useParams } from "react-router-dom";
@@ -208,7 +208,7 @@ const FacultyForm = () => {
         specialization: result[0]?.specialization,
       });
       setPreviewImage(
-        `${NODE_API_URL}/public/upload/user/${result[0]?.uid}/${result[0].avtar}`
+        `${FILE_API_URL}/user/${result[0]?.uid}/${result[0].avtar}`
       );
     }
     } catch (error) {

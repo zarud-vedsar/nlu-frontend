@@ -138,7 +138,7 @@ const VideoGalleryForm = () => {
 
         splitedGallery.map((gallery) => {
           updatedPreviewImages.push(
-            `${NODE_API_URL}/public/upload/vidGallery/${gallery}`
+            `${FILE_API_URL}/vidGallery/${gallery}`
           );
         });
 

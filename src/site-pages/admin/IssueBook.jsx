@@ -11,7 +11,7 @@ import { formatDate } from "../../site-components/Helper/HelperFunction";
 
 import { Link } from "react-router-dom";
 import {
-  NODE_API_URL,
+  FILE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
 import { DataTable } from "primereact/datatable";
@@ -164,7 +164,7 @@ const IssueBook = () => {
                                                 <div className="info-image mr-4">
                                                   {rowData?.spic ? (
                                                     <img
-                                                      src={`${NODE_API_URL}/public/upload/student/${rowData?.student_id}${rowData?.registrationNo}/${rowData?.spic}`}
+                                                      src={`${FILE_API_URL}/student/${rowData?.student_id}${rowData?.registrationNo}/${rowData?.spic}`}
                                                       alt=""
                                                       style={{
                                                         width: "40px",

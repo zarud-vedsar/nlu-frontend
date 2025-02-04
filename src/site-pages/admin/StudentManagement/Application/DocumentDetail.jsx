@@ -8,6 +8,7 @@ import axios from "axios";
 import {
   PHP_API_URL,
   NODE_API_URL,
+  FILE_API_URL,
 } from "../../../../site-components/Helper/Constant";
 function DocumentDetail({ sid }) {
   // State declarations
@@ -154,17 +155,17 @@ function DocumentDetail({ sid }) {
           }
           if (res[0].dtc) {
             setPreviewPdfTc(
-              `${NODE_API_URL}/public/upload/student/${sid}${res[0].registrationNo}/${res[0].dtc}`
+              `${FILE_API_URL}/student/${sid}${res[0].registrationNo}/${res[0].dtc}`
             );
           }
           if (res[0].character_certificate) {
             setPreviewPdfCharacter(
-              `${NODE_API_URL}/public/upload/student/${sid}${res[0].registrationNo}/${res[0].character_certificate}`
+              `${FILE_API_URL}/student/${sid}${res[0].registrationNo}/${res[0].character_certificate}`
             );
           }
           if (res[0].caste_certificate) {
             setPreviewPdfCast(
-              `${NODE_API_URL}/public/upload/student/${sid}${res[0].registrationNo}/${res[0].caste_certificate}`
+              `${FILE_API_URL}/student/${sid}${res[0].registrationNo}/${res[0].caste_certificate}`
             );
           }
         }

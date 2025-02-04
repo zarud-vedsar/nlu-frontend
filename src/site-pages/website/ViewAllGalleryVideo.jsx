@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { capitalizeFirstLetter } from "../../site-components/Helper/HelperFunction";
-import { PHP_API_URL, NODE_API_URL } from "../../site-components/Helper/Constant";
+import { PHP_API_URL, NODE_API_URL, FILE_API_URL } from "../../site-components/Helper/Constant";
 import  "../../site-components/website/assets/css/ViewAllVideoGallery.css"
 
 const ViewAllVideoGallery = () => {
@@ -106,7 +106,7 @@ const ViewAllVideoGallery = () => {
                       controls
                     >
                       <source
-                        src={`${NODE_API_URL}/public/upload/vidGallery/${video}`}
+                        src={`${FILE_API_URL}/vidGallery/${video}`}
                       />
                       Your browser does not support the video tag.
                     </video>

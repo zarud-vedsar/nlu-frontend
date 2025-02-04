@@ -583,6 +583,8 @@ function AddResourceVideo() {
                                                     column="col-md-12 col-lg-12 col-12 col-sm-12"
                                                 />
                                                 <div className="col-md-12 col-lg-12">
+                                                <label className='font-weight-semibold'>Description</label>
+
                                                     <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
                                                 </div>
                                                 <div className="col-md-12 col-lg-12 col-12">

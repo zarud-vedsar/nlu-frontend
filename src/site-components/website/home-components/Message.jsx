@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { PHP_API_URL, NODE_API_URL } from "../../Helper/Constant.jsx";
+import { PHP_API_URL, NODE_API_URL,FILE_API_URL } from "../../Helper/Constant.jsx";
 import ImageProfile from '../assets/Images/profile-img.jpg';
 import { capitalizeEachLetter } from "../../Helper/HelperFunction.jsx";
 import { Link } from "react-router-dom";
@@ -163,7 +163,7 @@ const Message = () => {
                     <div className={`col-sm-5 d-flex justify-content-start align-items-center flex-column col-md-5 col-12 ${index % 2 === 0 ? 'order-first text-right' : 'order-last text-start'}`}>
                       <div className="alum-img-box">
                         <img
-                          src={data.image ? `${NODE_API_URL}/public/upload/our-authorities/${data.image}` : `${ImageProfile}`}
+                          src={data.image ? `${FILE_API_URL}/our-authorities/${data.image}` : `${ImageProfile}`}
                           className="chirmans-img img-fluid mb-0"
                           alt="Chairman's Image"
                         />

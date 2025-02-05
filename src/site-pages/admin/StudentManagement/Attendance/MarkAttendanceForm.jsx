@@ -227,7 +227,7 @@ function MarkAttendanceForm() {
       const status = error.response?.data?.status;
       const errorField = error.response?.data?.errorField;
 
-      if (status === 400 || status === 404 || status === 500) {
+      if (status === 400 || status === 404 || status === 500 || status === 403) {
         if (errorField) errorMsg(errorField, error.response?.data?.msg);
         toast.error(error.response.data.msg || "A server error occurred.");
       } else {

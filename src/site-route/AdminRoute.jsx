@@ -794,6 +794,10 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             element={<ProtectedRoute element={<components.AddSemester />} />}
           />
           <Route
+            path="/edit-semester/:semesterId"
+            element={<ProtectedRoute element={<components.AddSemester />} />}
+          />
+          <Route
             path="/semester-subject"
             element={
               <ProtectedRoute element={<components.SemesterSubjectList />} />

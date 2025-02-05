@@ -108,23 +108,23 @@ function NoticeList() {
         toast.success(response.message);
         setFormData((prev) => ({
           ...prev,
-          dbId: response.data[0].id,
-          title: response.data[0].title,
-          notice_type: response.data[0].notice_type,
-          notice_date: response.data[0].notice_date,
-          description: validator.unescape(response.data[0].description),
-          pdf_file: validator.unescape(response.data[0].pdf_file),
-          image: validator.unescape(response.data[0].image),
+          dbId: response?.data[0]?.id,
+          title: response?.data[0]?.title,
+          notice_type: response?.data[0]?.notice_type,
+          notice_date: response?.data[0]?.notice_date,
+          description: validator.unescape(response?.data[0]?.description),
+          pdf_file: validator.unescape(response?.data[0]?.pdf_file),
+          image: validator.unescape(response?.data[0]?.image),
         }));
-        if(response.data[0].pdf_file){
-          setPreviewPdf(validator.unescape(response.data[0].pdf_file));
+        if(response?.data[0]?.pdf_file){
+          setPreviewPdf(validator.unescape(response?.data[0]?.pdf_file));
         }
-        if(response.data[0].image){
-        setPreviewImage(validator.unescape(response.data[0].image));
+        if(response?.data[0]?.image){
+        setPreviewImage(validator.unescape(response?.data[0]?.image));
         }
         if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
           window.CKEDITOR.instances['editor1'].setData(
-            validator.unescape(validator.unescape(response.data[0].description)) // Ensure content is unescaped properly
+            validator.unescape(validator.unescape(response?.data[0]?.description)) // Ensure content is unescaped properly
           );
         }
 
@@ -132,7 +132,7 @@ function NoticeList() {
         toast.error("Data not found.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -366,7 +366,7 @@ function NoticeList() {
 
                     <div className='col-md-12 px-0'>
                       <label className='font-weight-semibold'>Description</label>
-                      <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
+                      <textarea id="editor1" name="description">{formData?.description ? validator.unescape(formData?.description ):""}</textarea>
                     </div>
                     <div className="col-md-12 col-lg-12 col-12">
                       <button

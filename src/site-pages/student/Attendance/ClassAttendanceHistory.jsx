@@ -69,10 +69,8 @@ function ClassAttendanceHistory() {
     setIsFetching(true);
 
     try {
-      console.log("getAllStudentSubject");
       const bformData = new FormData();
       bformData.append("data", "getStSubjects");
-      console.log(currentCourseDetail);
       bformData.append("selectedcourse", currentCourseDetail?.id);
 
       const response = await axios.post(
@@ -84,9 +82,7 @@ function ClassAttendanceHistory() {
           },
         }
       );
-      console.log(response);
       if (response.data?.status === 200 && response.data.data.length > 0) {
-        console.log(response.data.data);
         setSubjectList(response.data.data);
       } else {
         setSubjectList([]);

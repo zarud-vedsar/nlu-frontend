@@ -56,18 +56,6 @@ const Banner = () => {
           <div className="ws_shadow" />
         </div>
       </div>
-
-      {/* <div className="banner-marquee-container">
- 
-  <div className="marquee-area">
-    <div className="marquee-content">
-      <span>
-      Call for Papers - Three-day International Conference on ‘Law, Technology and Sustainable Development’ on 7th to 9th March, 2025.
-      </span>
-      <span> | test content for marquee slider</span>
-    </div>
-  </div>
-</div> */}
     </>
   );
 };

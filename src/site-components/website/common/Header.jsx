@@ -83,14 +83,16 @@ function Header() {
                 </Link>
               </div>
               <div className="logotext">
-                <h2 className="header-heading2 mb-1">
-                  {/* डॉ राजेन्द्र प्रसाद */}
-                  Dr. Rajendra Prasad
-                </h2>
-                <h3 className="header-heading3">
-                  {/* राष्ट्रीय विधि विश्वविद्यालय प्रयागराज */}
-                  National Law University Prayagraj
-                </h3>
+                <Link to='/'>
+                  <h2 className="header-heading2 mb-1">
+                    {/* डॉ राजेन्द्र प्रसाद */}
+                    Dr. Rajendra Prasad
+                  </h2>
+                  <h3 className="header-heading3">
+                    {/* राष्ट्रीय विधि विश्वविद्यालय प्रयागराज */}
+                    National Law University Prayagraj
+                  </h3>
+                </Link>
               </div>
             </div>
             <header className="page-mine-header">

@@ -192,7 +192,7 @@ const BookCatalogue = () => {
                  <div className="col-md-6 col-lg-6 col-12 col-sm-12 mb-4" key={index}>
                  <div className="d-flex position-relative" style={{backgroundColor:"white",padding:"14px",gap:"40px",minHeight:"200px", borderRadius:"7px"}}>
                    <div className="id-book-img">
-                   <img src={book.image ? `${FILE_API_URL}}/lib_books/${book.image}` : `${BookImage}`} className="card-img-top" alt="..." style={{height:"200px"}}/>
+                   <img src={book.image ? `${FILE_API_URL}/books/${book.image}` : `${BookImage}`} className="card-img-top" alt="..." style={{height:"200px"}}/>
                    </div>
                    <div className="px-3">
                      <h5 className="card-title mb-1">{book.book_name}</h5>

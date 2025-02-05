@@ -118,7 +118,7 @@ const FacultySlider = () => {
                           </div>
                         </Link>
                         <div className="facpost">
-                          <h3 className="sldnn mb-1 mt-2">{`${capitalizeFirstLetter(
+                          <h3 className="sldnn mb-1 mt-2">{`${(
                             faculty.first_name
                           )} ${faculty.middle_name} ${faculty.last_name}`}</h3>
                           <p className="facdesti">{faculty?.designation}</p>

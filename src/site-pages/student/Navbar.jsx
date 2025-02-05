@@ -210,7 +210,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         icon: <AiOutlineAppstore />,
         url: "",
         dropdownMenus: [
-          { subtitle: "Issued Book", url: "book-issued" },
+          
           { subtitle: "Issued List", url: "issued-list" },
           { subtitle: "Book Catalogue", url: "book-catalogue" },
         ],

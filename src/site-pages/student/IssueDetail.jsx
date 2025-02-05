@@ -1,27 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Spinner } from "react-bootstrap";
-import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 import { formatDate } from "../../site-components/Helper/HelperFunction";
-import { Link } from "react-router-dom";
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
-import { DataTable } from "primereact/datatable";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { Column } from "primereact/Column";
-import { InputText } from "primereact/inputtext"; // Import InputText for the search box
 import "../../../node_modules/primeicons/primeicons.css";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
 import { useParams } from "react-router-dom";
-import BookImage from './assets/img/dummy.avif';
-
+import BookImage from "./assets/img/dummy.avif";
+import { useNavigate } from "react-router-dom";
 
 const IssueDetail = () => {
   const [loading, setLoading] = useState(true);
   const [issuedBookList, setIssuedBookList] = useState([]);
   const { id } = useParams();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const loadData = async () => {
       await loadIssueBookList(id);
@@ -53,6 +46,14 @@ const IssueDetail = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const redirectToPdfViewer = (dbId) => {
+    console.log(dbId);
+    navigate(`/student/book-viewer`, {
+      state: { dbId }, // Passing dbId in state
+      replace: false, // This will replace the current entry in the history stack
+    });
   };
 
   return (
@@ -120,10 +121,9 @@ const IssueDetail = () => {
                       {issuedBookList?.issueData[0]?.issue_books_date ? (
                         <div className="col-md-6 col-12 d-flex">
                           <h6>Issued Date: </h6>&nbsp;
-                          {
-                            formatDate(issuedBookList?.issueData[0]
-                              ?.issue_books_date)
-                          }
+                          {formatDate(
+                            issuedBookList?.issueData[0]?.issue_books_date
+                          )}
                         </div>
                       ) : null}
                     </div>
@@ -171,33 +171,115 @@ const IssueDetail = () => {
               </div>
 
               <div className="row">
-                {issuedBookList?.booksData && issuedBookList?.booksData?.map((book,index)=>(
-  <div className="col-md-6 col-lg-6 col-12 col-sm-12 mb-4" key={index} >
-  <div className="d-flex position-relative" style={{backgroundColor:"white",padding:"14px",gap:"40px",minHeight:"200px", borderRadius:"7px"}}>
-  <div className="id-book-img">
-    <img src={BookImage} className="card-img-top" alt="..." style={{height:"200px"}}/>
-    </div>
- <div className="px-3">
- <h5 className="card-title mb-1"> <strong style={{width:"110px",display:"inline-block"}}>ISBN: </strong> {book.isbn_no}</h5>
-     <p className="card-text mb-1"><strong style={{width:"110px",display:"inline-block"}}>Book Name: </strong>  {book.books_name}</p>
-     <p className="card-text mb-1"><strong style={{width:"110px",display:"inline-block"}}>Author Name: </strong>  {book.author}</p>
-     <p className="card-text mb-1"> <strong style={{width:"110px", display:"inline-block"}}>publisher: </strong> {book.publisher}</p>
-     <p className="card-text mb-1"><strong style={{width:"110px", display:"inline-block"}}>Language: </strong>  {book.language}</p>
-     <p className="card-text mb-1"><strong style={{width:"110px", display:"inline-block"}}>Price: </strong>  {book.price}</p>
-     <Link to={''} className="float-right"
-      style={{position:"absolute",
-       bottom:"14px",
-       right:"13px"
-     }}>
-     view pdf  <FaLongArrowAltRight />
-     </Link>
- </div>
-</div> 
-</div>
-                ))}
-               
+                {issuedBookList?.booksData &&
+                  issuedBookList?.booksData?.map((book, index) => (
+                    <div
+                      className="col-md-6 col-lg-6 col-12 col-sm-12 mb-4"
+                      key={index}
+                    >
+                      <div
+                        className="d-flex position-relative"
+                        style={{
+                          backgroundColor: "white",
+                          padding: "14px",
+                          gap: "40px",
+                          minHeight: "200px",
+                          borderRadius: "7px",
+                        }}
+                      >
+                        <div className="id-book-img">
+                          <img
+                            src={BookImage}
+                            className="card-img-top"
+                            alt="..."
+                            style={{ height: "200px" }}
+                          />
+                        </div>
+                        <div className="px-3">
+                          <h5 className="card-title mb-1">
+                            {" "}
+                            <strong
+                              style={{
+                                width: "110px",
+                                display: "inline-block",
+                              }}
+                            >
+                              ISBN:{" "}
+                            </strong>{" "}
+                            {book.isbn_no}
+                          </h5>
+                          <p className="card-text mb-1">
+                            <strong
+                              style={{
+                                width: "110px",
+                                display: "inline-block",
+                              }}
+                            >
+                              Book Name:{" "}
+                            </strong>{" "}
+                            {book.books_name}
+                          </p>
+                          <p className="card-text mb-1">
+                            <strong
+                              style={{
+                                width: "110px",
+                                display: "inline-block",
+                              }}
+                            >
+                              Author Name:{" "}
+                            </strong>{" "}
+                            {book.author}
+                          </p>
+                          <p className="card-text mb-1">
+                            {" "}
+                            <strong
+                              style={{
+                                width: "110px",
+                                display: "inline-block",
+                              }}
+                            >
+                              publisher:{" "}
+                            </strong>{" "}
+                            {book.publisher}
+                          </p>
+                          <p className="card-text mb-1">
+                            <strong
+                              style={{
+                                width: "110px",
+                                display: "inline-block",
+                              }}
+                            >
+                              Language:{" "}
+                            </strong>{" "}
+                            {book.language}
+                          </p>
+                          <p className="card-text mb-1">
+                            <strong
+                              style={{
+                                width: "110px",
+                                display: "inline-block",
+                              }}
+                            >
+                              Price:{" "}
+                            </strong>{" "}
+                            {book.price}
+                          </p>
+                          <button
+                            onClick={() => redirectToPdfViewer(book?.id)}
+                            className="float-right btn btn-success"
+                            style={{
+                              position: "absolute",
+                              bottom: "14px",
+                              right: "13px",
+                            }}
+                          >
+                            View PDF <FaLongArrowAltRight />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
               </div>
-              
             </>
           ) : (
             <div className="text-center">

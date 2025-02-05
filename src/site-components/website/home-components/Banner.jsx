@@ -53,13 +53,6 @@ const Banner = () => {
               }
             </ul>
           </div>
-          <div
-            className="ws_script"
-            style={{ position: "absolute", left: "-99%" }}
-          >
-            <a href="http://wowslider.net/">html slideshow</a> by WOWSlider.com
-            v8.8
-          </div>
           <div className="ws_shadow" />
         </div>
       </div>

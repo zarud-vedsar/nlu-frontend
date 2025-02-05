@@ -7,7 +7,7 @@ import { FaArrowRightLong, FaAnglesDown } from "react-icons/fa6";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import placeholder from "../assets/Images/placeholder-image.jpg";
+import placeholder from "../assets/Images/noticeDefault.png";
 const NoticeEventPublication = () => {
   const [notices, setNotices] = useState([]);
   const [events, setEvents] = useState([]);
@@ -110,8 +110,7 @@ const NoticeEventPublication = () => {
                       <div className="card border-0 soft-shadow mx-auto" style={{ width: '95%', minHeight: '289px' }}>
                         <div className="new-img-container">
                           <Link to={`/notice-details/${notice.id}`}>
-                            {/* <img src={notice.image || placeholder} className="news-image" alt="News Image" /> */}
-                            <img src='https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/carousel/1500.png' className="news-image" alt="News Image" />
+                            <img src={notice.image || placeholder} className="news-image" alt="News Image" />
                           </Link>
 
                         </div>
@@ -142,7 +141,7 @@ const NoticeEventPublication = () => {
                   <div className="rightconten">
                     <div className='d-flex justify-content-between align-items-center'>
                       <h2 className="heading-primary2a">Upcoming Events</h2>
-                      {/* <Link to="/view-all/event" className="text-primary custom-link gorditas-regular">More Events &nbsp; <FaArrowRightLong /></Link> */}
+                      <Link to="/view-all/event" className="text-primary custom-link gorditas-regular">More Events &nbsp; <FaArrowRightLong /></Link>
                     </div>
                     <div className="eventdiv">
                       {events && events.length > 0 && events.map((event, index) => (
@@ -191,13 +190,9 @@ const NoticeEventPublication = () => {
       <section className='section bg-white'>
         <div className='container'>
           <div className="row">
-            {/* <div className='col-md-12 mb-3 text-center'>
-              <h2 className="heading-primary2">Publications</h2>
-              <div className="heading-divider"></div>
-            </div> */}
             <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
               <h2 className="heading-primary2 m-0">Publications</h2>
-              <Link to="/introduction" className="text-primary custom-link gorditas-regular">More Publications &nbsp; <FaArrowRightLong /></Link>
+              <Link to="/view-all/event" className="text-primary custom-link gorditas-regular">More Publications &nbsp; <FaArrowRightLong /></Link>
             </div>
           </div>
           <div className="row mt-3">
@@ -207,8 +202,7 @@ const NoticeEventPublication = () => {
                   <div className="card-custom">
                     <div className="new-img-container">
                       <Link to={`/notice-details/${publication.id}`}>
-                        {/* <img src={publication.image || placeholder} className="news-image" alt="News Image" /> */}
-                        <img src='/src/site-components/website/assets/Images/nlu-prayagraj.jpg' className="news-image" alt="News Image" />
+                        <img src={publication.image || placeholder} className="news-image" alt="News Image" />
                       </Link>
                     </div>
 

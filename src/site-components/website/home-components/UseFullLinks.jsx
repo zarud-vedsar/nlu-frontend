@@ -35,34 +35,40 @@ const UseFullLinks = () => {
             <div className="usefullcontainer mt-4">
               <div className="row">
                 {usefulLinks &&
-                  usefulLinks.map((link, index) => (
-                    <div
-                      className="col-12 col-md-3 mt-3 col-lg-3 text-center"
-                      key={index}
-                    >
-                      <a
-                        href={
-                          link.link_other_link
-                            ? link.link_other_link
-                            : `/page/${link.link_link}/${slug(link.link_title)}`
-                        }
-                        className="useful-link-col"
-                        target={link.target}
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          className="linkiimg"
-                          src={
-                            link?.mage_file
-                              ? `${FILE_API_URL}/${link.image_file}`
-                              : defaultImage
-                          }
-                          alt={link.link_title}
-                        />
-                        <p className="linkttx mt-3">{link.link_title}</p>
-                      </a>
-                    </div>
-                  ))}
+                  usefulLinks.map((link, index) => {
+                    if (link.status == 1 && link.delete_status == 0) {
+                      return (
+                        <div
+                          className="col-12 col-md-3 mt-3 col-lg-3 text-center"
+                          key={index}
+                        >
+                          <a
+                            href={
+                              link.link_other_link
+                                ? link.link_other_link
+                                : `/page/${link.link_link}/${slugify(link.link_title)}`
+                            }
+                            className="useful-link-col"
+                            target={link.target}
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              className="linkiimg"
+                              src={
+                                link?.image_file
+                                  ? `${FILE_API_URL}/${link.image_file}`
+                                  : defaultImage
+                              }
+                              alt={link.link_title}
+                            />
+                            <p className="linkttx mt-3">{link.link_title}</p>
+                          </a>
+                        </div>
+                      )
+                    } else {
+                      return null;
+                    }
+                  })}
               </div>
             </div>
           </div>

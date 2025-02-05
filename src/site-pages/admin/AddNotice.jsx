@@ -103,7 +103,6 @@ function NoticeList() {
         `${NODE_API_URL}/api/notice/fetch`,
         { dbId: noticeid }
       );
-      console.log(response);
       if (response?.statusCode === 200 && response.data.length > 0) {
         toast.success(response.message);
         setFormData((prev) => ({
@@ -152,7 +151,7 @@ function NoticeList() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-    const { dbId, notice_type, title, notice_date, pdf_file, image , description} = formData;
+    const { dbId, notice_type, title, notice_date, pdf_file, image, description } = formData;
     if (!notice_type) {
       toast.error("Notice Type is required.");
       return setIsSubmit(false);
@@ -343,7 +342,7 @@ function NoticeList() {
                     </div>
                     <div className="col-md-12 form-group">
                       <label>
-                        Upload Pdf 
+                        Upload Pdf
                       </label>
                       <input
                         type="file"

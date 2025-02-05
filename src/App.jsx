@@ -28,9 +28,8 @@ function App() {
             path="/admin/*"
             element={
               <div
-                className={`${expand ? "is-expand" : ""} ${
-                  folded ? "is-folded" : ""
-                }`}
+                className={`${expand ? "is-expand" : ""} ${folded ? "is-folded" : ""
+                  }`}
               >
                 <AdminRoute
                   toggleExpand={toggleExpand}

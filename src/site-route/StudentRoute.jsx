@@ -81,6 +81,7 @@ const components = {
 
 // Additional lazy-loaded component
 components.StudyMaterial = lazy(() => import("../site-pages/student/study/StudyMaterial.jsx"));
+components.LmsLiveDetails = lazy(() => import("../site-pages/student/study/LmsLiveDetails.jsx"));
 components.LmsSubjectDashboard = lazy(() => import("../site-pages/student/study/LmsSubjectDashboard.jsx"));
 components.LmsTopicDashboard = lazy(() => import("../site-pages/student/study/LmsTopicDashboard.jsx"));
 components.LmsTopicPdfViewer = lazy(() => import("../site-pages/student/study/LmsTopicPdfViewer.jsx"));
@@ -136,6 +137,7 @@ function StudentRoute({ toggleExpand, toggleFolded }) {
           <Route path="/lms-subject-dashboard/:subjectId/:semesterId"  element={<ProtectedRouteStudent    element={<components.LmsSubjectDashboard />} />} />
           <Route path="/lms-topic-dashboard/:topicId/:subjectId/:semesterId"  element={<ProtectedRouteStudent    element={<components.LmsTopicDashboard />} />} />
           <Route path="/lms-topic-dashboard/:topicId/:subjectId/:semesterId/:courseId/:videoId"  element={<ProtectedRouteStudent    element={<components.LmsTopicDashboard/>} />} />
+          <Route path="/lms-live-details/:dbId/:subjectId/:semesterId"  element={<ProtectedRouteStudent    element={<components.LmsLiveDetails/>} />} />
           <Route path="/topic-pdf-viewer"  element={<ProtectedRouteStudent    element={<components.LmsTopicPdfViewer />} />}/>
           <Route path="/book-viewer"  element={<ProtectedRouteStudent    element={<components.BookPdfViewer />} />}/>
           <Route path="/alloted-room-history"   element={<ProtectedRouteStudent   element={<components.AllotedRoomHistory />}/>} />

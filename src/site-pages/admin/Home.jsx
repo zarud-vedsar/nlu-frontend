@@ -204,7 +204,6 @@ const Home = () => {
               </nav>
             </div>
           </div>
-
           {/* <div className="card border-0 bg-transparent mb-2">
           <div className="card-header border-0 bg-transparent py-1 d-flex justify-content-between align-items-center px-0">
             <h5 className="card-title h6_new">
@@ -212,7 +211,6 @@ const Home = () => {
             </h5>
           </div>
         </div> */}
-
           <div className="row">
             <div className="col-md-3 col-lg-3 col-12">
               <div className="card id-card">
@@ -313,7 +311,6 @@ const Home = () => {
               <div className="card">
                 <div className="card-body">
                   <div className="card-title">Announcements</div>
-
                   <Tabs
                     selectedIndex={["notice", "event", "publication"].indexOf(
                       activeCategory

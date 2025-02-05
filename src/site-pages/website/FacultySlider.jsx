@@ -41,17 +41,19 @@ const FacultySlider = () => {
   }, []);
 
   const sliderSettings = {
-    dots: false, // Disable the dots for pagination
-    infinite: false,
+    dots: true,
+    infinite: true,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     arrows: false,
+    autoplay: true, // Enable auto-scroll
+    autoplaySpeed: 2800, // Change slides every 3 seconds
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
         },
       },
       {

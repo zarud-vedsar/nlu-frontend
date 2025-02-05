@@ -4,48 +4,26 @@ import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import {
   PHP_API_URL,
-  CKEDITOR_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
+import JoditEditor from "jodit-react"; // Import Jodit editor
 
 const PrivacyPolicy = () => {
- 
   const [formData, setFormData] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
 
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData(data);
-        });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
-    };
-}, []);
-  
   const getPrivacyPolicyData = async () => {
     try {
       const bformData = new FormData();
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
-      bformData.append("data","get_latest_privacy");
+      bformData.append("data", "get_latest_privacy");
 
       const response = await axios.post(
         `${PHP_API_URL}/privacy_policy.php`,
@@ -57,27 +35,13 @@ const PrivacyPolicy = () => {
         }
       );
       if (response.data.status === 200) {
-        setFormData(
-          response.data?.data[0].content,
-        );
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(
-              validator.unescape(validator.unescape(response.data.data[0].content)) // Ensure content is unescaped properly
-          );
-      }
+        setFormData(response.data?.data[0].content ? validator.unescape(response.data?.data[0].content) : '');
       }
     } catch (error) {
-      const status = error.response?.status;
-
-      // if (status === 400 || status === 500) {
-      //   toast.error(error.response.data.msg || "A server error occurred.");
-      // } else {
-      //   toast.error(
-      //     "An error occurred. Please check your connection or try again."
-      //   );
-      // }
+      // Handle error
     }
   };
+
   useEffect(() => {
     getPrivacyPolicyData();
   }, []);
@@ -96,8 +60,6 @@ const PrivacyPolicy = () => {
     sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
     sendFormData.append("data", "privacy_add");
     sendFormData.append("content", formData);
-
-   
 
     try {
       const response = await axios.post(
@@ -164,16 +126,19 @@ const PrivacyPolicy = () => {
             </div>
           </div>
           <form onSubmit={handleSubmit}>
-            
-                <div className="card">
-                  <div className="card-body">
-                    <div className="row mb-4">
-                      <div className="col-md-12 ">
-                      <textarea id="editor1" name="description">{formData && validator.unescape(formData)}</textarea>
-
-                      </div>
-                    </div>
-                    <div className="">
+            <div className="card">
+              <div className="card-body">
+                <div className="row mb-4">
+                  <div className="col-md-12">
+                    {/* JoditEditor component */}
+                    <JoditEditor
+                      value={formData}
+                      config={config}
+                      onChange={(newContent) => setFormData(newContent)}
+                    />
+                  </div>
+                </div>
+                <div className="">
                   <button
                     className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
                     type="submit"
@@ -186,11 +151,8 @@ const PrivacyPolicy = () => {
                     )}
                   </button>
                 </div>
-                  </div>
-                </div>
-
-                
-             
+              </div>
+            </div>
           </form>
         </div>
       </div>

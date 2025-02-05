@@ -92,9 +92,8 @@ const Speciality = () => {
                       />
                     </div>
                     <div className="spec-title-bx">
-                      <h3 className="spec-title">
-                        {item.title ? validator.unescape(capitalizeFirstLetter(item.title)) : item.title}
-                      </h3>
+                      <h3 className="spec-title" dangerouslySetInnerHTML={{ __html: validator.unescape(validator.unescape(capitalizeFirstLetter(item.title))) }} />
+
                     </div>
                   </div>
                 </div>

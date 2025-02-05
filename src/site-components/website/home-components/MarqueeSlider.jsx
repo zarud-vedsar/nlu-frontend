@@ -115,7 +115,7 @@ const MarqueeSlider = () => {
                 </div>
                 <Link
                   to="/about"
-                  className="text-white"
+                  className="text-white d-none d-md-block d-lg-block"
                 >
                   <i className="fas"><FaLongArrowAltRight /></i>
                   <span style={{

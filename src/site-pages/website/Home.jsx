@@ -38,7 +38,7 @@ function Home() {
       <ContactFeatures />
       <KeyNote />
       <Achivement />
-      <Facilities/>
+      <Facilities />
       <Gallery />
       <UseFullLinks />
       <SocialMedia />

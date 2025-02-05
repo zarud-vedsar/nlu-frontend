@@ -162,7 +162,8 @@ body {
 }
 
 .container {
-	max-width: 1200px
+	max-width: 1200px;
+	width: 100%;
 }
 
 .container {
@@ -4606,6 +4607,7 @@ span.c-text {
 	overflow: hidden;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	height: 40px;
 }
 
 .xtitle .card-text {
@@ -4650,14 +4652,14 @@ span.c-text {
 /* Adjustments for small screens */
 @media (max-width: 768px) {
 	#wowslider-container1 .ws_images {
-		/* max-height: 500px !important; */
+		max-height: 240px !important;
 	}
 }
 
 /* Adjustments for very small screens (mobile) */
 @media (max-width: 480px) {
 	#wowslider-container1 .ws_images {
-		max-height: 300px !important;
+		max-height: 240px !important;
 	}
 }
 
@@ -4699,14 +4701,14 @@ span.c-text {
 
 .newsttl {
 	font-weight: 600;
-	line-height: 1.2;
-	height: 52px;
+	line-height: 1;
+	height: 30px;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 3;
+	-webkit-line-clamp: 2;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	margin-bottom: 10px;
+	margin-bottom: 6px;
 }
 
 a:hover {
@@ -4748,11 +4750,11 @@ a:hover {
 	}
 
 	#wowslider-container1 {
-		height: 300px !important;
+		height: 240px !important;
 	}
 
 	#wowslider-container1 .ws_images {
-		height: 300px !important;
+		height: 240px !important;
 	}
 
 	.navigation__item_dropdown-content {
@@ -5140,13 +5142,29 @@ table.table.tblpad-10>tbody>tr>td {
 	margin: 0;
 }
 
+.pubsldrbx {
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+.public {
+	padding: 60px 0px 80px;
+}
+
+.letestnncard {
+	width: 95%;
+	min-height: 289px;
+}
+
 @media (max-width:768px) {
 	.title-img-bx {
 		justify-content: center;
 		gap: 5px;
 		width: 100%;
 	}
-
+	.letestnncard {
+		width: 100%;
+	}
 	table.table.tblpad-10>thead>tr>th,
 	table.table.tblpad-10>tbody>tr>th,
 	table.table.tblpad-10>tbody>tr>td {

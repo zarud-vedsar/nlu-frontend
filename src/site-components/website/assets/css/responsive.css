@@ -813,7 +813,7 @@
 	}
 
 	.breadcrumb-banner-area {
-		padding: 60px 0
+		padding: 140px 0 15px;
 	}
 
 	.skill-image {
@@ -850,7 +850,8 @@
 
 	.breadcrumb-text h1 {
 		line-height: 37px;
-		font-size: 32px
+		font-size: 32px;
+		padding-bottom: 20px;
 	}
 
 	.form-container {

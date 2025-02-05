@@ -10,10 +10,9 @@ const CopyRightPolicy = () => {
   async function getContents() {
     try {
       const bformData = new FormData();
-      bformData.append("data", "get_latest_ragging_policy");
-
+      bformData.append("data", "get_latest_cpy");
       const response = await axios.post(
-        `${PHP_API_URL}/ragging_policy.php`,
+        `${PHP_API_URL}/copyright_policy.php`,
         bformData
       );
       if (response.data?.data[0]?.content) {
@@ -25,7 +24,6 @@ const CopyRightPolicy = () => {
         setpcontent(response2.data);
       }
       setGetContent(response.data.data[0]);
-
     } catch (error) {
       console.error("Error occurred:");
     }

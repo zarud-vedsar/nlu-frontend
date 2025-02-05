@@ -12,7 +12,6 @@ import { Link } from "react-router-dom";
 const Achivement = () => {
   const sliderRef = useRef(null);
   const [data, setData] = useState([]);
-  const [currentSlide, setCurrentSlide] = useState(0);
 
   const fetchAchivement = async () => {
     try {
@@ -122,12 +121,6 @@ const Achivement = () => {
                             ),
                           }}
                         ></div>
-                        <div className="">
-                          <Link target="" className="btn-link" to="/">
-                            Read more &nbsp;
-                            <FaArrowRightLong />{" "}
-                          </Link>
-                        </div>
                       </div>
                     </div>
                   </div>

@@ -183,7 +183,7 @@ const KeyNote = () => {
                       </p>
                       <div className="text-center">
                         <Link target="" className="btn-link" to={note.link}>
-                          Read more &nbsp;
+                          Read More &nbsp;
                           <FaArrowRightLong />{" "}
                         </Link>
                       </div>

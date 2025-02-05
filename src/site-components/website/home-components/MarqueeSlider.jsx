@@ -4,7 +4,7 @@ import AboutBg from "../assets/Images/university.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { PHP_API_URL } from "../../Helper/Constant";
-
+import validator from 'validator';
 const MarqueeSlider = () => {
   const [items, setItems] = useState([]);
 
@@ -43,8 +43,10 @@ const MarqueeSlider = () => {
             <div className="marquee-wrapper">
               <div className="marquee">
                 {items.map((item, index) => (
-                  <span key={index} className="marquee-item">
-                    <a href={item.link}>{item.content}</a>
+                  <span key={index} className="marquee-item ml-2">
+                    <a href={item?.link ? validator.unescape(item.link) : '#'}>
+                      {item?.content ? validator.unescape(item.content) : ''}
+                    </a>
                   </span>
                 ))}
               </div>

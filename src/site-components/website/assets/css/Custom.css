@@ -1282,10 +1282,9 @@ table tbody th {
 
 /* useful links css start  */
 .useful-link-col img {
-  width: auto;
   max-width: 100%;
-  aspect-ratio: 1/1;
   transition: all 0.4s;
+  height: 55px;
 }
 
 .useful-link-col:hover img {
@@ -2784,7 +2783,7 @@ table tbody th {
 }
 
 .section {
-  padding: 20px 15px;
+  padding: 20px 0;
   /* Default padding for all devices */
 }
 
@@ -2995,9 +2994,9 @@ table tbody th {
 
 .new-img-container {
   position: relative;
-  height: 180px;
+  height: 140px;
   overflow: hidden;
-  border-radius: 20px 20px 0 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .course-img-container {
@@ -3182,12 +3181,9 @@ table tbody th {
 
 /* Extra small devices (phones, less than 576px) */
 @media (min-width: 280px) and (max-width: 399.98px) {
-  .container {
-    width: 270px !important;
-  }
 
   .section {
-    padding: 20px 10px;
+    padding: 20px 0;
     /* Reduced padding for very small devices */
   }
 
@@ -3214,19 +3210,11 @@ table tbody th {
   }
 }
 
-@media (min-width: 300px) and (max-width: 667px) {
-  .container {
-    width: 360px !important;
-  }
-}
 
 @media (min-width: 400px) and (max-width: 575.98px) {
-  .container {
-    width: 380px !important;
-  }
 
   .section {
-    padding: 25px 15px;
+    padding: 25px 0;
     /* Slightly more padding for better spacing */
   }
 
@@ -3253,20 +3241,12 @@ table tbody th {
   }
 }
 
-@media (min-width: 400px) and (max-width: 500px) {
-  .container {
-    width: 380px !important;
-  }
-}
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767.98px) {
-  .container {
-    width: 542px !important;
-  }
 
   .section {
-    padding: 20px;
+    padding: 20px 0;
     /* Increased padding for better readability */
   }
 
@@ -3295,10 +3275,6 @@ table tbody th {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991.98px) {
-  .container {
-    width: 738px !important;
-  }
-
   .section {
     padding: 20px 0;
     /* Comfortable padding for tablet screens */
@@ -3329,10 +3305,6 @@ table tbody th {
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199.98px) {
-  .container {
-    width: 960px !important;
-  }
-
   .section {
     padding: 30px 0;
     /* Generous padding for large screens */

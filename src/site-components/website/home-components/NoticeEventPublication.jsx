@@ -94,7 +94,7 @@ const NoticeEventPublication = () => {
   };
   return (
     <>
-      <section className='section bg-f5'>
+      <section className='public bg-f5'>
         <div className='container'>
           <div className='row'>
             <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
@@ -107,7 +107,7 @@ const NoticeEventPublication = () => {
                 <Slider {...settings}>
                   {notices.map((notice, index) => (
                     <div key={index} className="col-md-4 col-lg-4 col-12 col-sm-12">
-                      <div className="card border-0 soft-shadow mx-auto" style={{ width: '95%', minHeight: '289px' }}>
+                      <div className="card border-0 soft-shadow mx-auto letestnncard">
                         <div className="new-img-container">
                           <Link to={`/notice-details/${notice.id}`}>
                             <img src={notice.image || placeholder} className="news-image" alt="News Image" />
@@ -187,7 +187,7 @@ const NoticeEventPublication = () => {
           </div>
         </div>
       </section>
-      <section className='section bg-white'>
+      <section className='public bg-white'>
         <div className='container'>
           <div className="row">
             <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
@@ -195,38 +195,40 @@ const NoticeEventPublication = () => {
               <Link to="/view-all/event" className="text-primary custom-link gorditas-regular">More Publications &nbsp; <FaArrowRightLong /></Link>
             </div>
           </div>
-          <div className="row mt-3">
-            <Slider {...settings2}>
-              {publications.map((publication, index) => (
-                <div key={index} className="sldr">
-                  <div className="card-custom">
-                    <div className="new-img-container">
-                      <Link to={`/notice-details/${publication.id}`}>
-                        <img src={publication.image || placeholder} className="news-image" alt="News Image" />
-                      </Link>
-                    </div>
-
-                    <div className="card-fttr p-3">
-                      <div className="news-read-more-pub bg-primary mb-2">
-                        <Link className="text-white" to={`/notice-details/${publication.id}`}>
-                          {new Date(publication.notice_date).toLocaleDateString('en-GB', {
-                            month: 'short'
-                          })} {" "} {new Date(publication.notice_date).toLocaleDateString('en-GB', {
-                            day: '2-digit'
-                          })} {", "}
-                          {new Date(publication.notice_date).toLocaleDateString('en-GB', {
-                            year: 'numeric' // "2021"
-                          })}
+          <div className="w-100">
+            <div className="pubsldrbx">
+              <Slider {...settings2}>
+                {publications.map((publication, index) => (
+                  <div key={index} className="sldr">
+                    <div className="card-custom">
+                      <div className="new-img-container">
+                        <Link to={`/notice-details/${publication.id}`}>
+                          <img src={publication.image || placeholder} className="news-image" alt="News Image" />
                         </Link>
                       </div>
-                      <h3 className="butler-regular heading-primary3 pubtextbx two-line-text">
-                        {validator.unescape(publication.title)}
-                      </h3>
+
+                      <div className="card-fttr p-3">
+                        <div className="news-read-more-pub bg-primary mb-2">
+                          <Link className="text-white" to={`/notice-details/${publication.id}`}>
+                            {new Date(publication.notice_date).toLocaleDateString('en-GB', {
+                              month: 'short'
+                            })} {" "} {new Date(publication.notice_date).toLocaleDateString('en-GB', {
+                              day: '2-digit'
+                            })} {", "}
+                            {new Date(publication.notice_date).toLocaleDateString('en-GB', {
+                              year: 'numeric' // "2021"
+                            })}
+                          </Link>
+                        </div>
+                        <h3 className="butler-regular heading-primary3 pubtextbx two-line-text">
+                          {validator.unescape(publication.title)}
+                        </h3>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </Slider>
+                ))}
+              </Slider>
+            </div>
           </div>
         </div>
       </section>

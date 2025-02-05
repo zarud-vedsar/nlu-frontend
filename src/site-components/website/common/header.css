@@ -13,7 +13,9 @@
     width: 100%;
     background-color: #fff;
 }
-
+.react-tabs__tab-list{
+    flex-wrap: wrap !important;
+}
 .is-sticky .page-h2,
 .is-sticky .page-mine-header__toggle {
     color: #1C2321;

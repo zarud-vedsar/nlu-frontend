@@ -25,6 +25,7 @@ import lgPager from "lightgallery/plugins/pager";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { FaAngleRight } from "react-icons/fa6";
+import validator from 'validator';
 const ImageGallery = () => {
   const [loading, setLoading] = useState();
   const [galleryList, setGalleryList] = useState([]);
@@ -93,7 +94,7 @@ const ImageGallery = () => {
                     galleryList.length > 0 &&
                     galleryList.map((category, index) => (
                       <Tab key={index} onClick={() => togglePanel(index)}>
-                        {capitalizeFirstLetter(category.category)}
+                        {category?.category ? validator.unescape(validator.unescape(capitalizeFirstLetter(category.category))) : ''}
                       </Tab>
                     ))}
                 </TabList>
@@ -104,9 +105,8 @@ const ImageGallery = () => {
                   galleryList.map((category, index) => (
                     <TabPanel
                       key={index}
-                      className={`tab-panel ${
-                        activeIndex === index ? "" : "hidden"
-                      }`}
+                      className={`tab-panel ${activeIndex === index ? "" : "hidden"
+                        }`}
                     >
                       {/* Loop through items in each category */}
                       {category.items &&
@@ -171,9 +171,8 @@ const ImageGallery = () => {
                     galleryList.map((category, index) => (
                       <div key={index}>
                         <div
-                          className={`${
-                            activeIndex == index ? "active_mobile_tab" : "tab"
-                          } `}
+                          className={`${activeIndex == index ? "active_mobile_tab" : "tab"
+                            } `}
                           onClick={() => togglePanel(index)}
                           style={{
                             cursor: "pointer",

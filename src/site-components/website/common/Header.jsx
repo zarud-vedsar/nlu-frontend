@@ -141,6 +141,7 @@ function Header() {
                       <Link to="/scholarship" className="navigation__item_drop_link">Scholarship</Link>
                     </div>
                   </li>
+                  <li className="navigation__item"><Link to={'/student/book-issued'} className='navigation__item_link'>Library</Link></li>
                   <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">Contact </Link>
                     <div className="navigation__item_dropdown-content">

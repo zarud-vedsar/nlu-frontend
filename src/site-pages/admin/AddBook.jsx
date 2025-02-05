@@ -3,7 +3,7 @@ import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL , CKEDITOR_URL} from "../../site-components/Helper/Constant";
+import { PHP_API_URL , CKEDITOR_URL, FILE_API_URL} from "../../site-components/Helper/Constant";
 import Select from "react-select";
 import { toast,  } from "react-toastify";
 import { useParams } from "react-router-dom";
@@ -165,7 +165,7 @@ const AddBook = () => {
 
         console.log(formData);
         setPreviewImage(
-          `${NODE_API_URL}/public/upload/books/${result[0].image}`
+          `${FILE_API_URL}/books/${result[0].image}`
         );
         if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
           window.CKEDITOR.instances['editor1'].setData(
@@ -231,7 +231,7 @@ const AddBook = () => {
         unlink_image: result[0]?.image,
       });
       console.log(formData);
-      setPreviewImage(`${NODE_API_URL}/public/upload/books/${result[0].image}`);
+      setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
       if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
         window.CKEDITOR.instances['editor1'].setData(
             validator.unescape(validator.unescape(result[0]?.des)) // Ensure content is unescaped properly

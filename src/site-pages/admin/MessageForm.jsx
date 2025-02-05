@@ -7,6 +7,7 @@ import {
   PHP_API_URL,
   NODE_API_URL,
   CKEDITOR_URL,
+  FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import { Link } from "react-router-dom";
@@ -95,7 +96,7 @@ const MessageForm = () => {
         }
         if (response.data.data[0].image) {
           setPreviewImage(
-            `${NODE_API_URL}/public/upload/our-authorities/${response.data.data[0].image}`
+            `${FILE_API_URL}/our-authorities/${response.data.data[0].image}`
           );
         }
       }

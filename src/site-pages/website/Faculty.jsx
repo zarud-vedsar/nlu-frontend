@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   PHP_API_URL,
   NODE_API_URL,
+  FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import { dataFetchingGet } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
@@ -127,7 +128,7 @@ const Faculty = () => {
                       >
                         <img
                           style={{ width: "300px", height: "300px" }}
-                          src={faculty.avtar?`${NODE_API_URL}/public/upload/user/${faculty.uid}/${faculty.avtar}`:`${NODE_API_URL}/public/upload/user/dummy.webp`}
+                          src={faculty.avtar?`${FILE_API_URL}/user/${faculty.uid}/${faculty.avtar}`:`${FILE_API_URL}/user/dummy.webp`}
                           alt=""
                         />
                       </div>

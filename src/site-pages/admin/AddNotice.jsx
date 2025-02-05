@@ -115,10 +115,12 @@ function NoticeList() {
           pdf_file: validator.unescape(response.data[0].pdf_file),
           image: validator.unescape(response.data[0].image),
         }));
-        if (response.data[0].image) {
+        if (response.data[0].pdf_file) {
           setPreviewPdf(validator.unescape(response.data[0].pdf_file));
         }
-        setPreviewImage(validator.unescape(response.data[0].image));
+        if (response.data[0].image) {
+          setPreviewImage(validator.unescape(response.data[0].image));
+        }
         if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
           window.CKEDITOR.instances['editor1'].setData(
             validator.unescape(validator.unescape(response.data[0].description)) // Ensure content is unescaped properly
@@ -340,7 +342,7 @@ function NoticeList() {
                     </div>
                     <div className="col-md-12 form-group">
                       <label>
-                        Upload Pdf <span className="text-danger">*</span>
+                        Upload Pdf
                       </label>
                       <input
                         type="file"

@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import {
   PHP_API_URL,
   NODE_API_URL,
+  FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import { Link } from "react-router-dom";
 const FacultySlider = () => {
@@ -106,12 +107,12 @@ const FacultySlider = () => {
                         <Link to={`/faculty/${faculty.id}`} target="_blank">
                           <div className="facimg-bx">
                             <img
-                              src={`${NODE_API_URL}/public/upload/user/${faculty.uid}/${faculty.avtar}`}
+                              src={`${FILE_API_URL}/user/${faculty.uid}/${faculty.avtar}`}
                               alt={faculty.firstname}
                               className="facimg"
                               loading="lazy"
                               onError={(e) =>
-                                (e.target.src = `${NODE_API_URL}/public/upload/user/dummy.webp`)
+                                (e.target.src = `${FILE_API_URL}/user/dummy.webp`)
                               }
                             />
                           </div>

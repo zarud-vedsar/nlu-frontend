@@ -16,6 +16,7 @@ import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
@@ -322,7 +323,7 @@ const Gallery = () => {
                       <div className="rs-container">
                       
                         <img
-                          src={`${NODE_API_URL}/public/upload/gallery/${item.gallery_images[0]}`}
+                          src={`${FILE_API_URL}/gallery/${item.gallery_images[0]}`}
                           style={{
                             width: "auto",
                             maxWidth: "100%",

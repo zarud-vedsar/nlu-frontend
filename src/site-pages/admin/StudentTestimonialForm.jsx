@@ -5,6 +5,7 @@ import axios from "axios";
 import {
   PHP_API_URL,
   NODE_API_URL,
+  FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import { Link } from "react-router-dom";
@@ -65,7 +66,7 @@ const StudentTestimonialForm = () => {
 
         if (response.data.data[0].test_photo) {
           setPreviewImage(
-            `${NODE_API_URL}/public/upload/testimonial/${response.data.data[0].test_photo}`
+            `${FILE_API_URL}/testimonial/${response.data.data[0].test_photo}`
           );
         }
       }

@@ -4,6 +4,7 @@ import axios from "axios";
 import { Modal, Button, Spinner } from "react-bootstrap";
 import secureLocalStorage from "react-secure-storage";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../../../site-components/Helper/Constant";
@@ -384,7 +385,7 @@ function ImageChoiceQuestion() {
                   <div className="col-md-12 mb-4 d-flex justify-content-center">
                     <img
                       className="col-6 "
-                      src={`${NODE_API_URL}/public/upload/assignment/${questionList[currentQuestion]?.question}`}
+                      src={`${FILE_API_URL}/assignment/${questionList[currentQuestion]?.question}`}
                       // src={`https://static.vecteezy.com/system/resources/previews/000/370/016/non_2x/jigsaw-puzzle-game-with-kids-playing-in-the-room-vector.jpg`}
                       alt="question"
                       style={{ width: "40%", height: "40%" }}
@@ -396,7 +397,7 @@ function ImageChoiceQuestion() {
                       <h4 className="px-5" style={{textAlign:"left"}} >Option No: 1</h4>
                       <img
                         className="img-fluid"
-                        src={`${NODE_API_URL}/public/upload/assignment/${questionList[currentQuestion]?.option1}`}
+                        src={`${FILE_API_URL}/assignment/${questionList[currentQuestion]?.option1}`}
                         // src={`https://play-lh.googleusercontent.com/ZpZeppBkhNtSE_IRrWN09fslhQXDBcANI0cVOIJOzfneUBV5wAW0MDW3_4R5hjfF2g=w526-h296-rw`}
                         alt="option1"
                         style={{
@@ -415,7 +416,7 @@ function ImageChoiceQuestion() {
                         <h4 className="px-5" style={{textAlign:"left"}} >Option No: 2</h4>
                         <img
                         className="img-fluid"
-                        src={`${NODE_API_URL}/public/upload/assignment/${questionList[currentQuestion]?.option2}`}
+                        src={`${FILE_API_URL}/assignment/${questionList[currentQuestion]?.option2}`}
                         // src={`https://play-lh.googleusercontent.com/ZpZeppBkhNtSE_IRrWN09fslhQXDBcANI0cVOIJOzfneUBV5wAW0MDW3_4R5hjfF2g=w526-h296-rw`}
                         alt="option2"
                         style={{
@@ -435,7 +436,7 @@ function ImageChoiceQuestion() {
                      <h4 className="px-5" style={{textAlign:"left"}} >Option No: 3</h4>
                      <img
                         className="img-fluid"
-                        src={`${NODE_API_URL}/public/upload/assignment/${questionList[currentQuestion]?.option3}`}
+                        src={`${FILE_API_URL}/assignment/${questionList[currentQuestion]?.option3}`}
                         // src={`https://play-lh.googleusercontent.com/ZpZeppBkhNtSE_IRrWN09fslhQXDBcANI0cVOIJOzfneUBV5wAW0MDW3_4R5hjfF2g=w526-h296-rw`}
                         alt="option3"
                         style={{
@@ -454,7 +455,7 @@ function ImageChoiceQuestion() {
                      <div className="col-6 mb-4 text-center">
                      <h4 className="px-5" style={{textAlign:"left"}} >Option No: 4</h4>
                      <img className="img-fluid "
-                        src={`${NODE_API_URL}/public/upload/assignment/${questionList[currentQuestion]?.option4}`}
+                        src={`${FILE_API_URL}/assignment/${questionList[currentQuestion]?.option4}`}
                         // src={`https://play-lh.googleusercontent.com/ZpZeppBkhNtSE_IRrWN09fslhQXDBcANI0cVOIJOzfneUBV5wAW0MDW3_4R5hjfF2g=w526-h296-rw`}
                         alt="option4"
                         style={{

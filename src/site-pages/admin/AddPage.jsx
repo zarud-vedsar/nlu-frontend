@@ -1,36 +1,43 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Select from 'react-select';
-import { toast } from 'react-toastify';
-import { goBack } from '../../site-components/Helper/HelperFunction';
-import { FormField, TextareaField } from '../../site-components/admin/assets/FormField';
-import axios from 'axios';
-import { PHP_API_URL, FILE_API_URL ,CKEDITOR_URL } from '../../site-components/Helper/Constant';
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import Select from "react-select";
+import { toast } from "react-toastify";
+import { goBack } from "../../site-components/Helper/HelperFunction";
+import {
+  FormField,
+  TextareaField,
+} from "../../site-components/admin/assets/FormField";
+import axios from "axios";
+import {
+  PHP_API_URL,
+  FILE_API_URL,
+  CKEDITOR_URL,
+} from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
 
 function AddPage() {
   const initialForm = {
     updateid: "",
-    ptitle: '',
-    page_type: '',
+    ptitle: "",
+    page_type: "",
     sidebar: 0,
-    image_file: '',
-    pdf_file: '',
-    page_content: '',
-    meta_title: '',
-    meta_content: '',
-    meta_keywords: '',
-    unlink_image_file: '',
-    unlink_pdf_file: ''
+    image_file: "",
+    pdf_file: "",
+    page_content: "",
+    meta_title: "",
+    meta_content: "",
+    meta_keywords: "",
+    unlink_image_file: "",
+    unlink_pdf_file: "",
   };
   const { pageid } = useParams();
   const [formData, setFormData] = useState(initialForm);
   const [previewImage, setPreviewImage] = useState(null);
   const [previewPdf, setPreviewPdf] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
-  const [pageType, setpageType] = useState('');
-  const [html, sethtml] = useState('');
+  const [pageType, setpageType] = useState("");
+  const [html, sethtml] = useState("");
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -38,61 +45,68 @@ function AddPage() {
     });
   };
   useEffect(() => {
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = CKEDITOR_URL;
     script.async = true;
     script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
+      // Initialize CKEditor instance
+      window.CKEDITOR.replace("editor1", {
+        versionCheck: false, // Disable security warnings
+      });
 
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData((prevState) => ({
-                ...prevState,
-                page_content: data, // Update description in formData
-            }));
-        });
+      // Update the formData when the editor content changes
+      window.CKEDITOR.instances["editor1"].on("change", () => {
+        const data = window.CKEDITOR.instances["editor1"].getData();
+        setFormData((prevState) => ({
+          ...prevState,
+          page_content: data, // Update description in formData
+        }));
+      });
     };
     document.body.appendChild(script);
 
     // Cleanup CKEditor instance on component unmount
     return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
+      if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
+        window.CKEDITOR.instances["editor1"].destroy();
+      }
     };
-}, []);
+  }, []);
   const decodeHtml = async (html) => {
     try {
-      const response = await axios.post(`${PHP_API_URL}/page.php`, {
-        data: 'decodeData',
-        html
-      },
+      const response = await axios.post(
+        `${PHP_API_URL}/page.php`,
+        {
+          data: "decodeData",
+          html,
+        },
         {
           headers: {
-            'Content-Type': 'multipart/form-data'
+            "Content-Type": "multipart/form-data",
           },
-        });
-      sethtml(response.data)
+        }
+      );
+      sethtml(response.data);
       // eslint-disable-next-line no-unused-vars
-    } catch (error) { /* empty */ }
-  }
+    } catch (error) {
+      /* empty */
+    }
+  };
   const updatfetchPageById = async (pageid) => {
-
     if (Number.isInteger(parseInt(pageid, 10)) && parseInt(pageid, 10) > 0) {
       try {
-        const response = await axios.post(`${PHP_API_URL}/page.php`, {
-          data: 'fetch_page',
-          id: pageid,
-        },
+        const response = await axios.post(
+          `${PHP_API_URL}/page.php`,
+          {
+            data: "fetch_page",
+            id: pageid,
+          },
           {
             headers: {
-              'Content-Type': 'multipart/form-data'
+              "Content-Type": "multipart/form-data",
             },
-          });
+          }
+        );
         if (response.data.status === 200) {
           setFormData((prev) => ({
             ...prev,
@@ -110,13 +124,17 @@ function AddPage() {
             unlink_pdf_file: response.data.data[0].pdf_file,
           }));
           setpageType(response.data.data[0].page_type);
-          if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].setData(
-                validator.unescape(validator.unescape(response.data?.data[0]?.page_content)) // Ensure content is unescaped properly
+          if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
+            window.CKEDITOR.instances["editor1"].setData(
+              validator.unescape(
+                validator.unescape(response.data?.data[0]?.page_content)
+              ) // Ensure content is unescaped properly
             );
-        }
+          }
           if (response.data.data[0].image_file) {
-            setPreviewImage(`${FILE_API_URL}/${response.data.data[0].image_file}`);
+            setPreviewImage(
+              `${FILE_API_URL}/${response.data.data[0].image_file}`
+            );
           }
           if (response.data.data[0].pdf_file) {
             setPreviewPdf(`${FILE_API_URL}/${response.data.data[0].pdf_file}`);
@@ -134,7 +152,22 @@ function AddPage() {
         }
       }
     }
-  }
+  };
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log(window.CKEDITOR && window.CKEDITOR.instances["editor1"]);
+  //     if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
+  //       window.CKEDITOR.instances["editor1"].setData(
+  //         validator.unescape(validator.unescape(formData?.page_content))
+  //       );
+  //       clearInterval(interval);
+  //     }
+  //   }, 500);
+
+  //   return () => clearInterval(interval);
+  // }, [formData?.page_content]);
+
   useEffect(() => {
     if (pageid) {
       updatfetchPageById(pageid);
@@ -152,7 +185,9 @@ function AddPage() {
         setPreviewPdf(null);
         setFormData((formData) => ({ ...formData, image_file: file }));
       } else {
-        toast.error("Invalid image format. Only png, jpeg, jpg, and webp are allowed.");
+        toast.error(
+          "Invalid image format. Only png, jpeg, jpg, and webp are allowed."
+        );
       }
     } else if (id === "pdf_file") {
       if (file.type === "application/pdf") {
@@ -183,25 +218,29 @@ function AddPage() {
     if (formData.pdf_file) {
       setFormData((prev) => ({
         ...prev,
-        image_file: '',
-        page_content: ''
+        image_file: "",
+        page_content: "",
       }));
     }
     const sendFormData = new FormData();
     for (let key in formData) {
       sendFormData.append(key, formData[key]);
     }
-    sendFormData.append('data', 'pagesave');
-    sendFormData.append('loguserid', secureLocalStorage.getItem('login_id'));
-    sendFormData.append('login_type', secureLocalStorage.getItem('loginType'));
+    sendFormData.append("data", "pagesave");
+    sendFormData.append("loguserid", secureLocalStorage.getItem("login_id"));
+    sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
 
     try {
       // submit to the API here
-      const response = await axios.post(`${PHP_API_URL}/page.php`, sendFormData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
-      });
+      const response = await axios.post(
+        `${PHP_API_URL}/page.php`,
+        sendFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       if (response.data?.status === 200 || response.data?.status === 201) {
         toast.success(response.data.msg);
         if (response.data.status === 201) {
@@ -224,7 +263,8 @@ function AddPage() {
       setIsSubmit(false);
     }
   };
-  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+  const capitalizeFirstLetter = (string) =>
+    string.charAt(0).toUpperCase() + string.slice(1);
 
   return (
     <div className="page-container">
@@ -244,7 +284,9 @@ function AddPage() {
           </div>
           <div className="card bg-transparent mb-2">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
-              <h5 className="card-title h6_new">{formData.updateid ? "Update Page" : "Add New"}</h5>
+              <h5 className="card-title h6_new">
+                {formData.updateid ? "Update Page" : "Add New"}
+              </h5>
               <div className="ml-auto">
                 <button
                   className="ml-auto btn-md btn border-0 btn-light mr-2"
@@ -252,7 +294,8 @@ function AddPage() {
                 >
                   <i className="fas fa-arrow-left" /> Go Back
                 </button>
-                <Link to={'/admin/page-list'}
+                <Link
+                  to={"/admin/page-list"}
                   className="ml-2 btn-md btn border-0 btn-secondary"
                 >
                   <i className="fas fa-list" /> Pages List
@@ -265,7 +308,7 @@ function AddPage() {
               <div className="col-md-8">
                 <div className="card">
                   <div className="card-body">
-                    <div className='row'>
+                    <div className="row">
                       <div className="form-group col-md-12">
                         <label>Title</label>
                         <input
@@ -284,14 +327,28 @@ function AddPage() {
                             { value: "pdf", label: "PDF" },
                             { value: "content", label: "Content" },
                           ]}
-                          value={pageType ? { value: pageType, label: capitalizeFirstLetter(pageType) } : null}
+                          value={
+                            pageType
+                              ? {
+                                  value: pageType,
+                                  label: capitalizeFirstLetter(pageType),
+                                }
+                              : null
+                          }
                           onChange={(selected) => {
-                            setFormData({ ...formData, page_type: selected.value });
+                            setFormData({
+                              ...formData,
+                              page_type: selected.value,
+                            });
                             setpageType(selected.value);
                           }}
                         />
                       </div>
-                      <div className={`form-group col-md-12 ${formData.page_type === 'image' ? '' : 'd-none'}`}>
+                      <div
+                        className={`form-group col-md-12 ${
+                          formData.page_type === "image" ? "" : "d-none"
+                        }`}
+                      >
                         <label>Choose Image</label>
                         <input
                           type="file"
@@ -301,10 +358,19 @@ function AddPage() {
                           onChange={handleFileChange}
                         />
                         {previewImage && (
-                          <img src={previewImage} alt="Preview" className="img-fluid mt-3" style={{ maxHeight: 300 }} />
+                          <img
+                            src={previewImage}
+                            alt="Preview"
+                            className="img-fluid mt-3"
+                            style={{ maxHeight: 300 }}
+                          />
                         )}
                       </div>
-                      <div className={`form-group col-md-12 ${formData.page_type === 'pdf' ? '' : 'd-none'}`}>
+                      <div
+                        className={`form-group col-md-12 ${
+                          formData.page_type === "pdf" ? "" : "d-none"
+                        }`}
+                      >
                         <label>Choose PDF</label>
                         <input
                           type="file"
@@ -318,13 +384,19 @@ function AddPage() {
                             src={previewPdf}
                             title="PDF Preview"
                             className="mt-3"
-                            style={{ width: '100%', height: 300 }}
+                            style={{ width: "100%", height: 300 }}
                           ></iframe>
                         )}
                       </div>
-                      <div className={`col-md-12 ${formData.page_type !== 'pdf' ? '' : 'd-none'}`}>
-                      <textarea id="editor1" name="description">{formData.page_content && validator.unescape(formData.page_content)}</textarea>
-
+                      <div
+                        className={`col-md-12 ${
+                          formData.page_type !== "pdf" ? "" : "d-none"
+                        }`}
+                      >
+                        <textarea id="editor1" name="description">
+                          {formData.page_content &&
+                            validator.unescape(formData.page_content)}
+                        </textarea>
                       </div>
                     </div>
                   </div>
@@ -334,12 +406,37 @@ function AddPage() {
                 <div className="card">
                   <div className="card-body">
                     <div className="row">
-                      <FormField label="Meta Title" name="meta_title" id="meta_title" value={formData.meta_title} column="col-md-12" onChange={handleChange} />
-                      <TextareaField label="Meta Description" name="meta_content" id="meta_content" value={formData.meta_content} column="col-md-12" onChange={handleChange} />
-                      <TextareaField label="Meta Keywords" name="meta_keywords" id="meta_keywords" value={formData.meta_keywords} column="col-md-12" onChange={handleChange} />
+                      <FormField
+                        label="Meta Title"
+                        name="meta_title"
+                        id="meta_title"
+                        value={formData.meta_title}
+                        column="col-md-12"
+                        onChange={handleChange}
+                      />
+                      <TextareaField
+                        label="Meta Description"
+                        name="meta_content"
+                        id="meta_content"
+                        value={formData.meta_content}
+                        column="col-md-12"
+                        onChange={handleChange}
+                      />
+                      <TextareaField
+                        label="Meta Keywords"
+                        name="meta_keywords"
+                        id="meta_keywords"
+                        value={formData.meta_keywords}
+                        column="col-md-12"
+                        onChange={handleChange}
+                      />
                       <div className="col-md-12 col-lg-12 col-12">
-                        <button className='btn btn-dark btn-block d-flex justify-content-center align-items-center' type='submit'>
-                          Save{" "} {isSubmit && (
+                        <button
+                          className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
+                          type="submit"
+                        >
+                          Save{" "}
+                          {isSubmit && (
                             <>
                               &nbsp; <div className="loader-circle"></div>
                             </>

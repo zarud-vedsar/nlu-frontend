@@ -6,7 +6,6 @@ import nluPrayagraj from "../assets/Images/nlu-prayagraj.jpg";
 import Slider from "react-slick";
 import { capitalizeFirstLetter } from "../../Helper/HelperFunction";
 import DOMPurify from "dompurify";
-import { FILE_API_URL } from "../../Helper/Constant";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 

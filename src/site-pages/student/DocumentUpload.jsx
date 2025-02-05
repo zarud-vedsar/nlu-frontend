@@ -141,13 +141,13 @@ function DocumentUpload() {
                         setShowPreview(true);
                     }
                     if (res[0].dtc) {
-                        setPreviewPdfTc(`${NODE_API_URL}/public/upload/student/${sid}${registrationNo}/${res[0].dtc}`);
+                        setPreviewPdfTc(`${FILE_API_URL}/student/${sid}${registrationNo}/${res[0].dtc}`);
                     }
                     if (res[0].character_certificate) {
-                        setPreviewPdfCharacter(`${NODE_API_URL}/public/upload/student/${sid}${registrationNo}/${res[0].character_certificate}`);
+                        setPreviewPdfCharacter(`${FILE_API_URL}/student/${sid}${registrationNo}/${res[0].character_certificate}`);
                     }
                     if (res[0].caste_certificate) {
-                        setPreviewPdfCast(`${NODE_API_URL}/public/upload/student/${sid}${registrationNo}/${res[0].caste_certificate}`);
+                        setPreviewPdfCast(`${FILE_API_URL}/student/${sid}${registrationNo}/${res[0].caste_certificate}`);
                     }
                 }
             });

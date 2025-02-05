@@ -12,6 +12,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 
 import { Link } from "react-router-dom";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
@@ -43,7 +44,7 @@ function MyVerticallyCenteredModal(props) {
       <Modal.Body>
         <div>
           <iframe
-            src={`${NODE_API_URL}/public/upload/scholarship/${props?.selectedscholarship?.upload_file}`}
+            src={`${FILE_API_URL}/scholarship/${props?.selectedscholarship?.upload_file}`}
             style={{ width: "100%", height: "80vh" }}
           ></iframe>
         </div>

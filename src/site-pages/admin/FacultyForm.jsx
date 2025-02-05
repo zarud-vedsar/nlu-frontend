@@ -118,7 +118,6 @@ const FacultyForm = () => {
 
       setDepartments(tempDepartments);
     } catch (e) {
-      console.log(e);
     }
   };
 
@@ -128,7 +127,6 @@ const FacultyForm = () => {
         `${NODE_API_URL}/api/designation/retrieve-all-designation-with-department/${deleteStatus}`
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
-        console.log(response.data);
         const tempDesignation = response.data.map((dep) => ({
           value: dep.id,
           label: dep.title,
@@ -164,7 +162,6 @@ const FacultyForm = () => {
         },
       });
       const result = res.data.data;
-      console.log(result);
       if(res?.data?.status===200 || res?.data?.status ===201){
       setFormData({
         data: "user_add",
@@ -215,7 +212,7 @@ const FacultyForm = () => {
       );
     }
     } catch (error) {
-      console.log(error);
+      
     } finally {
     }
   };
@@ -241,7 +238,7 @@ const FacultyForm = () => {
       }
     } catch (error) {
       setRoleList([]);
-      console.log(error);
+      
     } finally {
     }
   };
@@ -321,7 +318,7 @@ const FacultyForm = () => {
               },
             }
           );
-          console.log(response);
+          
           setFormData((prevState) => ({
             ...prevState,
             c_district: response.data.data.District,
@@ -348,7 +345,7 @@ const FacultyForm = () => {
               },
             }
           );
-          console.log(response);
+          
           setFormData((prevState) => ({
             ...prevState,
             p_district: response.data.data.District,
@@ -446,7 +443,7 @@ const FacultyForm = () => {
         }
       );
 
-      console.log(response?.data?.msg)
+      
       if (response?.data?.status === 200 || response?.data?.status === 201) {
 
         toast.success(response?.data?.msg);

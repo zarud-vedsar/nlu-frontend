@@ -291,7 +291,7 @@ function AttendanceHIstory() {
                 ? months[m][i]
                 : { year: filters?.year, month: m, day: i + 1, attendance: "A" };
 
-            if (attendanceData.attendance === "A") {
+            if (attendanceData.attendance === "P") {
               presentCount++;
             }
             if (attendanceData.attendance === "OD") {

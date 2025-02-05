@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import AOS from "aos";
 import axios from "axios";
 import { PHP_API_URL, NODE_API_URL,FILE_API_URL } from "../../Helper/Constant.jsx";
 import ImageProfile from '../assets/Images/profile-img.jpg';
@@ -10,6 +11,13 @@ import Authority from "../assets/Images/authority.jpg";
 import Slider from 'react-slick';
 
 const Message = () => {
+    useEffect(() => {
+      AOS.init({
+        duration: 700,
+        easing: "ease-out-cubic",
+      });
+    }, []);
+  
   const [messageData, setMessageData] = useState([]);
   const [decodedMessages, setDecodedMessages] = useState({});
   const sliderRef = useRef(null);
@@ -108,7 +116,7 @@ const Message = () => {
   return (
     <>
       <section className="vicemsgsec">
-        <div className="container">
+        <div className="container" data-aos="fade-up" data-aos-delay="80">
           <div className="row justify-content-center">
             <div className="col-md-10">
               <div className="vicemsgsec-bx">

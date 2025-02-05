@@ -4,37 +4,19 @@ import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import {
   PHP_API_URL,
-  CKEDITOR_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
+import JoditEditor from "jodit-react"; // Import Jodit editor
 
 const PrivacyPolicy = () => {
   const [formData, setFormData] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-
-    script.onload = () => {
-      // Ensure that CKEditor is loaded before setting the data
-      if (window.CKEDITOR && !window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.replace('editor1', {
-          inline: true,
-          versionCheck: false,
-        });
-      }
-    };
-    document.body.appendChild(script);
-
-    return () => {
-      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.instances['editor1'].destroy();
-      }
-    };
-  }, []);
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
 
   const getPrivacyPolicyData = async () => {
     try {
@@ -53,22 +35,16 @@ const PrivacyPolicy = () => {
         }
       );
       if (response.data.status === 200) {
-        const content = response.data?.data[0].content;
-        setFormData(content);
-
-        // Set data in CKEditor if it's loaded
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(validator.unescape(content));
-        }
+        setFormData(response.data?.data[0].content ? validator.unescape(response.data?.data[0].content) : '');
       }
     } catch (error) {
-      console.error("Error fetching privacy policy:", error);
+      // Handle error
     }
   };
 
   useEffect(() => {
     getPrivacyPolicyData();
-  }, []); // Run once when the component mounts
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -113,7 +89,9 @@ const PrivacyPolicy = () => {
       if (status === 400 || status === 500) {
         toast.error(error.response.data.msg || "A server error occurred.");
       } else {
-        toast.error("An error occurred. Please check your connection or try again.");
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
       }
     } finally {
       setIsSubmit(false);
@@ -152,10 +130,15 @@ const PrivacyPolicy = () => {
               <div className="card-body">
                 <div className="row mb-4">
                   <div className="col-md-12">
-                    <textarea id="editor1" name="description">{formData && validator.unescape(formData)}</textarea>
+                    {/* JoditEditor component */}
+                    <JoditEditor
+                      value={formData}
+                      config={config}
+                      onChange={(newContent) => setFormData(newContent)}
+                    />
                   </div>
                 </div>
-                <div>
+                <div className="">
                   <button
                     className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
                     type="submit"

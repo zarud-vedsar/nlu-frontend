@@ -2,12 +2,11 @@ import React, { useState, useEffect, } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL,CKEDITOR_URL } from "../../site-components/Helper/Constant";
-import { toast,  } from "react-toastify";
+import { PHP_API_URL, CKEDITOR_URL } from "../../site-components/Helper/Constant";
+import { toast, } from "react-toastify";
 import { useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
-
 
 const UpdateCourseContent = () => {
   const { id } = useParams();
@@ -24,64 +23,64 @@ const UpdateCourseContent = () => {
     bformData.append("login_type", secureLocalStorage.getItem("loginType"));
     bformData.append("data", data);
     bformData.append("course_id", id);
-  
+
     try {
       const response = await axios.post(`${PHP_API_URL}/course.php`, bformData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-  
+
       if (response.data.status === 200) {
         const fieldMapping = {
           load_sllaybus: 'sllaybus',
           load_seminar: 'seminar',
           load_activity: 'activity',
-          load_timetable: 'timetable', 
+          load_timetable: 'timetable',
           load_feestructure: 'fee_structure'
         };
-  
+
         const field = fieldMapping[data];
         if (field) {
           switch (data) {
             case "load_sllaybus":
               if (window.CKEDITOR && window.CKEDITOR.instances['syllabus']) {
-                        window.CKEDITOR.instances['syllabus'].setData(
-                            validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
-                        );
-                    }
-                    setSllaybus(response.data.data[0][field])
+                window.CKEDITOR.instances['syllabus'].setData(
+                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
+                );
+              }
+              setSllaybus(response.data.data[0][field])
               break;
             case "load_seminar":
               if (window.CKEDITOR && window.CKEDITOR.instances['seminar']) {
                 window.CKEDITOR.instances['seminar'].setData(
-                    validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
+                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
                 );
-            }
+              }
               setSeminar(response.data.data[0][field]);
               break;
             case "load_activity":
               if (window.CKEDITOR && window.CKEDITOR.instances['activity']) {
                 window.CKEDITOR.instances['activity'].setData(
-                    validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
+                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
                 );
-            }
-              setActivity(response.data.data[0][field]); 
+              }
+              setActivity(response.data.data[0][field]);
               break;
             case "load_timetable":
               if (window.CKEDITOR && window.CKEDITOR.instances['timetable']) {
                 window.CKEDITOR.instances['timetable'].setData(
-                    validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
+                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
                 );
-            }
+              }
               setTimetable(response.data.data[0][field]);
               break;
             case "load_feestructure":
               if (window.CKEDITOR && window.CKEDITOR.instances['fee_structure']) {
                 window.CKEDITOR.instances['fee_structure'].setData(
-                    validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
+                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
                 );
-            }
+              }
               setFeeStructure(response.data.data[0][field]);
               break;
             default:
@@ -98,27 +97,27 @@ const UpdateCourseContent = () => {
       }
     }
   };
-  
- 
-    useEffect(() => {
-      const content = [
-        "load_sllaybus",
-        "load_seminar",
-        "load_activity",
-        "load_timetable",
-        "load_feestructure",
-      ];
-  
-      const fetchData = async () => {
-        try {
-          await Promise.all(content.map(data => getDetail(data, id)));
-        } catch (error) {
-          console.error("Error in fetching details", error);
-        }
-      };
-  
-      fetchData();
-    }, []); 
+
+
+  useEffect(() => {
+    const content = [
+      "load_sllaybus",
+      "load_seminar",
+      "load_activity",
+      "load_timetable",
+      "load_feestructure",
+    ];
+
+    const fetchData = async () => {
+      try {
+        await Promise.all(content.map(data => getDetail(data, id)));
+      } catch (error) {
+        console.error("Error in fetching details", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSubmit = async (fieldName) => {
     setIsSubmit(true);
@@ -153,8 +152,8 @@ const UpdateCourseContent = () => {
     }
 
     try {
-      
-            const response = await axios.post(
+
+      const response = await axios.post(
         `${PHP_API_URL}/course.php`,
         sendFormData,
         {
@@ -184,84 +183,84 @@ const UpdateCourseContent = () => {
     }
   };
 
-   // Load CKEditor 4 dynamically
-    useEffect(() => {
-      const script = document.createElement('script');
-      script.src = CKEDITOR_URL;
-      script.async = true;
-      script.onload = () => {
-          // Initialize CKEditor instance
-          window.CKEDITOR.replace('syllabus', {
-              versionCheck: false, // Disable security warnings
-          });
-  
-          // Update the formData when the editor content changes
-          window.CKEDITOR.instances['syllabus'].on('change', () => {
-              const data = window.CKEDITOR.instances['syllabus'].getData();
-              setSllaybus(data);
-          });
+  // Load CKEditor 4 dynamically
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = CKEDITOR_URL;
+    script.async = true;
+    script.onload = () => {
+      // Initialize CKEditor instance
+      window.CKEDITOR.replace('syllabus', {
+        versionCheck: false, // Disable security warnings
+      });
 
-          // Initialize CKEditor instance
-          window.CKEDITOR.replace('seminar', {
-              versionCheck: false, // Disable security warnings
-          });
-  
-          // Update the formData when the editor content changes
-          window.CKEDITOR.instances['seminar'].on('change', () => {
-              const data = window.CKEDITOR.instances['seminar'].getData();
-              setSeminar(data);
-          });
-          // Initialize CKEditor instance
-          window.CKEDITOR.replace('activity', {
-              versionCheck: false, // Disable security warnings
-          });
-  
-          // Update the formData when the editor content changes
-          window.CKEDITOR.instances['activity'].on('change', () => {
-              const data = window.CKEDITOR.instances['activity'].getData();
-              setActivity(data);
-          });
-          // Initialize CKEditor instance
-          window.CKEDITOR.replace('timetable', {
-              versionCheck: false, // Disable security warnings
-          });
-  
-          // Update the formData when the editor content changes
-          window.CKEDITOR.instances['timetable'].on('change', () => {
-              const data = window.CKEDITOR.instances['timetable'].getData();
-              setTimetable(data);
-          });
-          // Initialize CKEditor instance
-          window.CKEDITOR.replace('fee_structure', {
-              versionCheck: false, // Disable security warnings
-          });
-  
-          // Update the formData when the editor content changes
-          window.CKEDITOR.instances['fee_structure'].on('change', () => {
-              const data = window.CKEDITOR.instances['fee_structure'].getData();
-              setFeeStructure(data);
-          });
-      };
-      document.body.appendChild(script);
-  
-      // Cleanup CKEditor instance on component unmount
-      return () => {
-          if (window.CKEDITOR && window.CKEDITOR.instances['syllabus']) {
-              window.CKEDITOR.instances['syllabus'].destroy();
-          }
-          if (window.CKEDITOR && window.CKEDITOR.instances['seminar']) {
-              window.CKEDITOR.instances['seminar'].destroy();
-          }
-          if (window.CKEDITOR && window.CKEDITOR.instances['activity']) {
-              window.CKEDITOR.instances['activity'].destroy();
-          }
-          if (window.CKEDITOR && window.CKEDITOR.instances['timetable']) {
-              window.CKEDITOR.instances['timetable'].destroy();
-          }
-          if (window.CKEDITOR && window.CKEDITOR.instances['fee_structure']) {
-              window.CKEDITOR.instances['fee_structure'].destroy();
-          }
-      };
+      // Update the formData when the editor content changes
+      window.CKEDITOR.instances['syllabus'].on('change', () => {
+        const data = window.CKEDITOR.instances['syllabus'].getData();
+        setSllaybus(data);
+      });
+
+      // Initialize CKEditor instance
+      window.CKEDITOR.replace('seminar', {
+        versionCheck: false, // Disable security warnings
+      });
+
+      // Update the formData when the editor content changes
+      window.CKEDITOR.instances['seminar'].on('change', () => {
+        const data = window.CKEDITOR.instances['seminar'].getData();
+        setSeminar(data);
+      });
+      // Initialize CKEditor instance
+      window.CKEDITOR.replace('activity', {
+        versionCheck: false, // Disable security warnings
+      });
+
+      // Update the formData when the editor content changes
+      window.CKEDITOR.instances['activity'].on('change', () => {
+        const data = window.CKEDITOR.instances['activity'].getData();
+        setActivity(data);
+      });
+      // Initialize CKEditor instance
+      window.CKEDITOR.replace('timetable', {
+        versionCheck: false, // Disable security warnings
+      });
+
+      // Update the formData when the editor content changes
+      window.CKEDITOR.instances['timetable'].on('change', () => {
+        const data = window.CKEDITOR.instances['timetable'].getData();
+        setTimetable(data);
+      });
+      // Initialize CKEditor instance
+      window.CKEDITOR.replace('fee_structure', {
+        versionCheck: false, // Disable security warnings
+      });
+
+      // Update the formData when the editor content changes
+      window.CKEDITOR.instances['fee_structure'].on('change', () => {
+        const data = window.CKEDITOR.instances['fee_structure'].getData();
+        setFeeStructure(data);
+      });
+    };
+    document.body.appendChild(script);
+
+    // Cleanup CKEditor instance on component unmount
+    return () => {
+      if (window.CKEDITOR && window.CKEDITOR.instances['syllabus']) {
+        window.CKEDITOR.instances['syllabus'].destroy();
+      }
+      if (window.CKEDITOR && window.CKEDITOR.instances['seminar']) {
+        window.CKEDITOR.instances['seminar'].destroy();
+      }
+      if (window.CKEDITOR && window.CKEDITOR.instances['activity']) {
+        window.CKEDITOR.instances['activity'].destroy();
+      }
+      if (window.CKEDITOR && window.CKEDITOR.instances['timetable']) {
+        window.CKEDITOR.instances['timetable'].destroy();
+      }
+      if (window.CKEDITOR && window.CKEDITOR.instances['fee_structure']) {
+        window.CKEDITOR.instances['fee_structure'].destroy();
+      }
+    };
   }, []);
 
   return (
@@ -308,8 +307,8 @@ const UpdateCourseContent = () => {
                     </h6>
                   </div>
                   <div className="col-md-12 ">
-                                                           <textarea id="syllabus" name="syllabus">{sllaybus && validator.unescape(sllaybus)}</textarea>
-                   
+                    <textarea id="syllabus" name="syllabus">{sllaybus && validator.unescape(sllaybus)}</textarea>
+
                   </div>
 
                   <div className="col-md-12 me-auto d-flex justify-content-between align-items-center mt-3">
@@ -335,7 +334,7 @@ const UpdateCourseContent = () => {
                     </h6>
                   </div>
                   <div className="col-md-12 ">
-                  <textarea id="seminar" name="seminar">{seminar && validator.unescape(seminar)}</textarea>
+                    <textarea id="seminar" name="seminar">{seminar && validator.unescape(seminar)}</textarea>
 
                   </div>
 
@@ -362,7 +361,7 @@ const UpdateCourseContent = () => {
                     </h6>
                   </div>
                   <div className="col-md-12 ">
-                  <textarea id="activity" name="activity">{activity && validator.unescape(activity)}</textarea>
+                    <textarea id="activity" name="activity">{activity && validator.unescape(activity)}</textarea>
 
                   </div>
 
@@ -389,7 +388,7 @@ const UpdateCourseContent = () => {
                     </h6>
                   </div>
                   <div className="col-md-12 ">
-                  <textarea id="timetable" name="timetable">{timetable && validator.unescape(timetable)}</textarea>
+                    <textarea id="timetable" name="timetable">{timetable && validator.unescape(timetable)}</textarea>
 
                   </div>
 
@@ -416,7 +415,7 @@ const UpdateCourseContent = () => {
                     </h6>
                   </div>
                   <div className="col-md-12 ">
-                  <textarea id="fee_structure" name="fee_structure">{feeStructure && validator.unescape(feeStructure)}</textarea>
+                    <textarea id="fee_structure" name="fee_structure">{feeStructure && validator.unescape(feeStructure)}</textarea>
 
                   </div>
 

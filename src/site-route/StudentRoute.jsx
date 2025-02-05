@@ -18,6 +18,8 @@ const lazyLoadPlacement = (path) =>
   lazy(() => import(`../site-pages/student/Jobs/Placement/${path}.jsx`));
 const lazyLoadHostel = (path) =>
   lazy(() => import(`../site-pages/student/Hostel/${path}.jsx`));
+const LazyLoadAttendance = (path) =>
+  lazy(() => import(`../site-pages/student/Attendance/${path}.jsx`));
 const lazyLoadComplain = (path) =>
   lazy(() => import(`../site-pages/student/Complain/${path}.jsx`));
 const lazyLoadAssignment = (path) =>
@@ -62,6 +64,7 @@ const components = {
   LeaveRequestForm: lazyLoadHostel('LeaveRequestForm'),
   LeaveRequestList: lazyLoadHostel('LeaveRequestList'),
   AttendanceHistory: lazyLoadHostel('AttendanceHistory'),
+  ClassAttendanceHistory: LazyLoadAttendance('ClassAttendanceHistory'),
   AssignmentSubject: lazyLoadAssignment('AssignmentSubject'),
   AssignmentSubjectDashboard: lazyLoadAssignment('AssignmentSubjectDashboard'),
   AssignmentPaper: lazyLoadAssignment('AssignmentPaper'),
@@ -140,6 +143,7 @@ function StudentRoute({ toggleExpand, toggleFolded }) {
           <Route path="/leave-request"   element={<ProtectedRouteStudent   element={<components.LeaveRequestForm />}/>} />
           <Route path="/leave-request-list"   element={<ProtectedRouteStudent   element={<components.LeaveRequestList />}/>} />
           <Route path="/attendance-history"   element={<ProtectedRouteStudent   element={<components.AttendanceHistory />} />}/>
+          <Route path="/class-attendance-history"   element={<ProtectedRouteStudent   element={<components.ClassAttendanceHistory />} />}/>
           <Route path="/assignment-subject"   element={<ProtectedRouteStudent   element={<components.AssignmentSubject />} />}/>
           <Route path="/assignment-subject/:courseId/:semesterId/:subjectId"   element={<ProtectedRouteStudent   element={<components.AssignmentSubjectDashboard />}/>} />
           <Route path="/quiz-subject"  element={<ProtectedRouteStudent    element={<components.QuizSubject />}/>} />

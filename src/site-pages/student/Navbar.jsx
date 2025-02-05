@@ -210,7 +210,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         icon: <AiOutlineAppstore />,
         url: "",
         dropdownMenus: [
-          { subtitle: "Issued Book", url: "book-issued" },
+          
           { subtitle: "Issued List", url: "issued-list" },
           { subtitle: "Book Catalogue", url: "book-catalogue" },
         ],
@@ -264,7 +264,15 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           { subtitle: "Complain History", url: "complain-history" },
           { subtitle: "New Leave Request", url: "leave-request" },
           { subtitle: "Leave Request History", url: "leave-request-list" },
-          { subtitle: "Attendance History", url: "attendance-history" },
+        ],
+      },
+      {
+        title: "Attendance",
+        icon: <AiOutlineAppstore />,
+        url: "",
+        dropdownMenus: [
+          { subtitle: "Hostel Attendance History", url: "attendance-history" },
+          { subtitle: "Class Attendance History", url: "class-attendance-history" },
         ],
       },
       {

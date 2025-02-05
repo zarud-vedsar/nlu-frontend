@@ -3,7 +3,6 @@ import {
   NODE_API_URL,
   PHP_API_URL,
 } from "../../../site-components/Helper/Constant";
-import { toast } from "react-toastify";
 import { goBack } from "../../../site-components/Helper/HelperFunction";
 import Select from "react-select";
 

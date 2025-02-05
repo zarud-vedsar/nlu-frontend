@@ -26,6 +26,8 @@ const lazyLoadAssignment = (path) =>
   lazy(() => import(`../site-pages/student/study/Assignment/${path}.jsx`));
 const lazyLoadQuiz = (path) =>
   lazy(() => import(`../site-pages/student/study/Quiz/${path}.jsx`));
+const lazyLoadLibrary = (path) =>
+  lazy(() => import(`../site-pages/student/Library/${path}.jsx`));
 
 
 
@@ -73,7 +75,8 @@ const components = {
   QuizSubject: lazyLoadQuiz('QuizSubject'),
   QuizSubjectDashboard: lazyLoadQuiz('QuizSubjectDashboard'),
   QuizPaper: lazyLoadQuiz('QuizPaper'),
-  QuizResult: lazyLoadQuiz('Result')
+  QuizResult: lazyLoadQuiz('Result'),
+  BookPdfViewer: lazyLoadLibrary('BookPdfViewer'),
 };
 
 // Additional lazy-loaded component
@@ -136,6 +139,7 @@ function StudentRoute({ toggleExpand, toggleFolded }) {
           <Route path="/lms-topic-dashboard/:topicId/:subjectId/:semesterId/:courseId/:videoId"  element={<ProtectedRouteStudent    element={<components.LmsTopicDashboard/>} />} />
           <Route path="/lms-live-details/:dbId/:subjectId/:semesterId"  element={<ProtectedRouteStudent    element={<components.LmsLiveDetails/>} />} />
           <Route path="/topic-pdf-viewer"  element={<ProtectedRouteStudent    element={<components.LmsTopicPdfViewer />} />}/>
+          <Route path="/book-viewer"  element={<ProtectedRouteStudent    element={<components.BookPdfViewer />} />}/>
           <Route path="/alloted-room-history"   element={<ProtectedRouteStudent   element={<components.AllotedRoomHistory />}/>} />
           <Route path="/raise-query"  element={<ProtectedRouteStudent    element={<components.RaiseQueryForHostelRoom />}/>} />
           <Route path="/raised-room-queries"   element={<ProtectedRouteStudent   element={<components.RaisedRoomQueries />}/>} />

@@ -274,7 +274,7 @@ function ClassAttendanceHistory() {
                 {/* Search Box */}
                 <div className="row">
                   <div className="col-md-2  form-group">
-                    <label className="font-weight-semibold">Select Month</label>
+                    <label className="font-weight-semibold">Select Year</label>
                     <Select
                       options={yearOptions}
                       onChange={(selectedOption) => {

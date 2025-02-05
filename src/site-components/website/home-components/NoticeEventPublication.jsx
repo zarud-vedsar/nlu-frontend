@@ -57,7 +57,6 @@ const NoticeEventPublication = () => {
 
     fetchData();
   }, []);
-
   const settings = {
     dots: true,
     infinite: true,
@@ -65,6 +64,8 @@ const NoticeEventPublication = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     arrows: false,
+    autoplay: true, // Enable auto-scroll
+    autoplaySpeed: 3000, // Change slides every 3 seconds
     responsive: [
       {
         breakpoint: 768,
@@ -75,13 +76,16 @@ const NoticeEventPublication = () => {
       },
     ],
   };
+
   const settings2 = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    arrows: false,
     slidesToScroll: 1,
+    arrows: false,
+    autoplay: true, // Enable auto-scroll
+    autoplaySpeed: 2800, // Change slides every 3 seconds
     responsive: [
       {
         breakpoint: 768,

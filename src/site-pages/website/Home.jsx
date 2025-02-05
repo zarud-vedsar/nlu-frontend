@@ -27,11 +27,11 @@ function Home() {
       <Banner />
       <MarqueeSlider />
       <About />
+      <Message />
       <NoticeEventPublication />
+      <Courses />
       <HomeVideo />
       <WhyChoose />
-      <Courses />
-      <Message />
       <FacultySlider />
       <CampusLife />
       <Speciality />

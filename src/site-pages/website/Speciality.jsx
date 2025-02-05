@@ -50,6 +50,7 @@ const Speciality = () => {
         {
           listing: "yes",
           deleteStatus,
+          status:1,
         }
       );
       if (response?.statusCode === 200 && response.data.length > 0) {

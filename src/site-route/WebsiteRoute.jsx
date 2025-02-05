@@ -125,6 +125,8 @@ function WebsiteRoute() {
         <Route path='/internship/:id' element={<InternshipDetail />} />
         <Route path='/internship/apply/:id' element={<InternshipForm />} />
         <Route path='/placement/apply/:id' element={<PlacementForm />} />
+        <Route path='/placement' element={<Navigate to="../student" /> } />
+        <Route path='/internship' element={<Navigate to="../student" /> } />
         <Route path='/scholarship' element={<Scholarship />} />
         <Route path='/career' element={<Career />} />
         <Route path='/job/:id' element={<Job />} />

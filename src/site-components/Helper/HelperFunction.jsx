@@ -147,7 +147,7 @@ export const dataFetchingPatch = async (url, data) => {
 // DELETE request - Delete
 export const dataFetchingDelete = async (url) => {
     try {
-        const response = await axios.get(url);
+        const response = await axios.delete(url);
         return response.data;
     } catch (error) {
         console.error("DELETE Error:", error);

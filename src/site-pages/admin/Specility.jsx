@@ -143,7 +143,7 @@ const Specility = () => {
 
       const deleteAlert = await DeleteSweetAlert(" ");
       if (deleteAlert) {
-        const response = await axios.get(
+        const response = await axios.delete(
           `${NODE_API_URL}/api/speciality/deleteStatus/${id}/${loginid}/${logintype}`
         );
         console.log(response)

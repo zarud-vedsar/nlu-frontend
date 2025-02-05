@@ -25,6 +25,7 @@ const NoticeEventPublication = () => {
           { notice_type: "notice", limit: 20 }
         );
 
+        console.log(noticeResponse)
         if (noticeResponse.data?.statusCode === 200) {
           setNotices(noticeResponse.data.data);
         }

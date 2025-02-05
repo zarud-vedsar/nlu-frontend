@@ -24,7 +24,6 @@ const CopyRightPolicy = () => {
         setpcontent(response2.data);
       }
       setGetContent(response.data.data[0]);
-
     } catch (error) {
       console.error("Error occurred:");
     }

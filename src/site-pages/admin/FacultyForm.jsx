@@ -87,7 +87,6 @@ const FacultyForm = () => {
           id ? getFacultyDetail() : Promise.resolve(),
         ]);
       } catch (error) {
-        console.error("Error loading data", error);
       } finally {
         setLoading(false);
       }
@@ -459,7 +458,6 @@ const FacultyForm = () => {
         toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.error("Error:", error);
       const status = error.response?.data?.status;
 
       if (status === 500 || status === 400 || status === 401) {

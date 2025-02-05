@@ -116,7 +116,7 @@ function StudentRoute({ toggleExpand, toggleFolded }) {
           <Route path="/book-issued" element={<ProtectedRouteStudent element={<components.BookIssued />}/>}  />
           <Route path="/issued-list" element={<ProtectedRouteStudent element={<components.IssueList />} />} />
           <Route path="/issued-detail/:id" element={<ProtectedRouteStudent element={<components.IssueDetail />} />} />
-          <Route path="/internship "element={<ProtectedRouteStudent element={<components.InternshipList />} />} />
+          <Route path="/internship" element={<ProtectedRouteStudent element={<components.InternshipList />} />} />
           <Route path="/internship-applied-history"  element={<ProtectedRouteStudent element={<components.InternshipAppliedHistory />} />} />
           <Route path="/job-applied-history" element={<ProtectedRouteStudent element={<components.JobAppliedHistory />} />} />
           <Route path="/joblist" element={<ProtectedRouteStudent element={<components.Joblist />} />} />

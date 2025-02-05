@@ -92,7 +92,10 @@ function LmsSubjectDashboard() {
     useEffect(() => {
         getSubject(formData.subjectId);
         // Fetch subject dashboard data when courseId, semesterId, and subjectId are updated.
+        if(formData.courseId && formData.semesterId && formData.subjectId){
+            console.log(formData.courseId , formData.semesterId , formData.subjectId)
         fetchTopicsBasedOn(formData.courseId, formData.semesterId, formData.subjectId);
+        }
     }, [formData.courseId, formData.semesterId, formData.subjectId])
 
     return (

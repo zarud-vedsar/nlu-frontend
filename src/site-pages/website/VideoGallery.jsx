@@ -10,6 +10,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { FaAngleRight } from "react-icons/fa6";
 import { capitalizeFirstLetter } from "../../site-components/Helper/HelperFunction";
+import validator from 'validator';
 const VideoGallery = () => {
   const [loading, setLoading] = useState(false);
   const [galleryList, setGalleryList] = useState([]);
@@ -90,7 +91,7 @@ const VideoGallery = () => {
                     galleryList.length > 0 &&
                     galleryList.map((category, index) => (
                       <Tab key={index} onClick={() => togglePanel(index)} >
-                        {capitalizeFirstLetter(category.category)}
+                        {category?.category ? validator.unescape(validator.unescape(capitalizeFirstLetter(category.category))) : ''}
                       </Tab>
                     ))}
                 </TabList>
@@ -100,9 +101,8 @@ const VideoGallery = () => {
                   galleryList.map((category, index) => (
                     <TabPanel
                       key={index}
-                      className={`tab-panel ${
-                        activeIndex === index ? "" : "hidden"
-                      }`}
+                      className={`tab-panel ${activeIndex === index ? "" : "hidden"
+                        }`}
                     >
                       {category.items &&
                         category.items.length > 0 &&
@@ -153,9 +153,8 @@ const VideoGallery = () => {
                     galleryList.map((category, index) => (
                       <div key={index}>
                         <div
-                          className={`${
-                            activeIndex == index ? "active_mobile_tab" : "tab"
-                          } `}
+                          className={`${activeIndex == index ? "active_mobile_tab" : "tab"
+                            } `}
                           onClick={() => togglePanel(index)}
                           style={{
                             cursor: "pointer",
@@ -178,7 +177,7 @@ const VideoGallery = () => {
                             {category.items &&
                               category.items.length > 0 &&
                               category.items.map((item, itemIndex) => (
-                                <div key={itemIndex} className="item-content" style={{marginTop:"20px"}}>
+                                <div key={itemIndex} className="item-content" style={{ marginTop: "20px" }}>
                                   <h2 className="heading-primary3 mb-3 text-center">
                                     {capitalizeFirstLetter(item.title)}
                                   </h2>

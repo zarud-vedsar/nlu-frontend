@@ -174,11 +174,6 @@ const Footer = () => {
                       &nbsp;Video Gallery
                     </Link>
                   </li>
-                  <li>
-                    <Link to="/about">
-                      &nbsp;About University
-                    </Link>
-                  </li>
                 </ul>
               </div>
             </div>

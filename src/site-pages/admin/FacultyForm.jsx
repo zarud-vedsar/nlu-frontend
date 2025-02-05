@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
 import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import Select from "react-select";
-import { toast,  } from "react-toastify";
+import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
@@ -69,6 +69,7 @@ const FacultyForm = () => {
     joining_date: "",
     show_email_on_website: false,
     show_contact_on_website: false,
+    show_content_on_website: false,
   };
 
   const [formData, setFormData] = useState(initilization);
@@ -86,7 +87,6 @@ const FacultyForm = () => {
           id ? getFacultyDetail() : Promise.resolve(),
         ]);
       } catch (error) {
-        console.error("Error loading data", error);
       } finally {
         setLoading(false);
       }
@@ -117,7 +117,6 @@ const FacultyForm = () => {
 
       setDepartments(tempDepartments);
     } catch (e) {
-      console.log(e);
     }
   };
 
@@ -127,7 +126,6 @@ const FacultyForm = () => {
         `${NODE_API_URL}/api/designation/retrieve-all-designation-with-department/${deleteStatus}`
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
-        console.log(response.data);
         const tempDesignation = response.data.map((dep) => ({
           value: dep.id,
           label: dep.title,
@@ -163,7 +161,6 @@ const FacultyForm = () => {
         },
       });
       const result = res.data.data;
-      console.log(result);
       if(res?.data?.status===200 || res?.data?.status ===201){
       setFormData({
         data: "user_add",
@@ -205,6 +202,8 @@ const FacultyForm = () => {
           result[0]?.show_contact_on_website === 1 ? true : false,
         show_email_on_website:
           result[0]?.show_email_on_website === 1 ? true : false,
+          show_content_on_website:
+          result[0]?.show_content_on_website === 1 ? true : false,
         specialization: result[0]?.specialization,
       });
       setPreviewImage(
@@ -212,7 +211,7 @@ const FacultyForm = () => {
       );
     }
     } catch (error) {
-      console.log(error);
+      
     } finally {
     }
   };
@@ -238,7 +237,7 @@ const FacultyForm = () => {
       }
     } catch (error) {
       setRoleList([]);
-      console.log(error);
+      
     } finally {
     }
   };
@@ -318,7 +317,7 @@ const FacultyForm = () => {
               },
             }
           );
-          console.log(response);
+          
           setFormData((prevState) => ({
             ...prevState,
             c_district: response.data.data.District,
@@ -345,7 +344,7 @@ const FacultyForm = () => {
               },
             }
           );
-          console.log(response);
+          
           setFormData((prevState) => ({
             ...prevState,
             p_district: response.data.data.District,
@@ -443,22 +442,25 @@ const FacultyForm = () => {
         }
       );
 
-      if (response.data?.status === 200 || response.data?.status === 201) {
-        toast.success(response.data.msg);
+      
+      if (response?.data?.status === 200 || response?.data?.status === 201) {
+
+        toast.success(response?.data?.msg);
+
         setFormData(initilization);
         setSelectDepartment(null);
         setSelectDesignation(null);
-        if (response.data?.status === 200) {
+
+        if (response?.data?.status === 200) {
           window.history.back();
         }
       } else {
         toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.error("Error:", error);
       const status = error.response?.data?.status;
 
-      if (status === 500 || status === 400) {
+      if (status === 500 || status === 400 || status === 401) {
         toast.error(error.response.data.msg || "A server error occurred.");
       } else if (status == 400) {
         setErrorKey(error.response.data.key);
@@ -1214,7 +1216,30 @@ const FacultyForm = () => {
                           className="form-check-label"
                           htmlFor="show_contact_on_website"
                         >
-                          Show contact on website{" "}
+                          Show content on website{" "}
+                        </label>
+                      </div>
+                      <div className="form-group col-md-2 d-flex align-items-center">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id="show_content_on_website"
+                          name="show_content_on_website"
+                          onChange={() =>
+                            setFormData((prevState) => ({
+                              ...prevState,
+                              show_content_on_website:
+                                !prevState.show_content_on_website,
+                            }))
+                          }
+                          checked={formData.show_content_on_website}
+                        />
+
+                        <label
+                          className="form-check-label"
+                          htmlFor="show_content_on_website"
+                        >
+                          Show contentt on website{" "}
                         </label>
                       </div>
                       <div className="form-group col-md-12">

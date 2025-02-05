@@ -74,29 +74,25 @@ function Header() {
           <div className="headermain-content  id-english">
             <div className="logosec">
               <div className="page-header-logo" >
-                <img
-                  className="page-header-logo-img sm-mt-2"
-                  src={rpnl_logo}
-                  alt="RPNL Logo"
-                />
+                <Link to='/'>
+                  <img
+                    className="page-header-logo-img sm-mt-2"
+                    src={rpnl_logo}
+                    alt="RPNL Logo"
+                  />
+                </Link>
               </div>
-              {/* <div className="page-header-logo-title">
-              <h2 className="id-college-text text-primary mb-1 gorditas-regular">
-                Dr. Rajendra Prasad
-              </h2>
-              <h2 className="id-college-text text-primary gorditas-regular">
-                National Law University Prayagraj
-              </h2>
-            </div> */}
               <div className="logotext">
-                <h2 className="header-heading2 mb-1">
-                  {/* डॉ राजेन्द्र प्रसाद */}
-                  Dr. Rajendra Prasad
-                </h2>
-                <h3 className="header-heading3">
-                  {/* राष्ट्रीय विधि विश्वविद्यालय प्रयागराज */}
-                  National Law University Prayagraj
-                </h3>
+                <Link to='/'>
+                  <h2 className="header-heading2 mb-1">
+                    {/* डॉ राजेन्द्र प्रसाद */}
+                    Dr. Rajendra Prasad
+                  </h2>
+                  <h3 className="header-heading3">
+                    {/* राष्ट्रीय विधि विश्वविद्यालय प्रयागराज */}
+                    National Law University Prayagraj
+                  </h3>
+                </Link>
               </div>
             </div>
             <header className="page-mine-header">
@@ -111,7 +107,7 @@ function Header() {
                       <Link to="/dr-rajendra-prasad" className="navigation__item_drop_link">About Dr. Rajendra Prasad</Link>
                       <Link to="/emblem-motto" className="navigation__item_drop_link">Emblem and Motto</Link>
                       <Link to="/vision-mission" className="navigation__item_drop_link">Vision &amp; Mission</Link>
-                      <Link to="#" className="navigation__item_drop_link">Acts</Link>
+                      <Link to="/page/1/acts" className="navigation__item_drop_link">Acts</Link>
                     </div>
                   </li>
                   <li className="navigation__item arr-li">
@@ -147,6 +143,7 @@ function Header() {
                       <Link to="/scholarship" className="navigation__item_drop_link">Scholarship</Link>
                     </div>
                   </li>
+                  <li className="navigation__item"><Link to={'/student/book-issued'} className='navigation__item_link'>Library</Link></li>
                   <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">Contact </Link>
                     <div className="navigation__item_dropdown-content">

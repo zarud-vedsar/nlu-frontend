@@ -27,18 +27,18 @@ function Home() {
       <Banner />
       <MarqueeSlider />
       <About />
+      <Message />
       <NoticeEventPublication />
+      <Courses />
       <HomeVideo />
       <WhyChoose />
-      <Courses />
-      <Message />
       <FacultySlider />
       <CampusLife />
       <Speciality />
       <ContactFeatures />
       <KeyNote />
       <Achivement />
-      <Facilities/>
+      <Facilities />
       <Gallery />
       <UseFullLinks />
       <SocialMedia />

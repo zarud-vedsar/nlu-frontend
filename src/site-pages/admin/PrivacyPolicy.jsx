@@ -10,7 +10,6 @@ import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
 
 const PrivacyPolicy = () => {
- 
   const [formData, setFormData] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
 
@@ -18,34 +17,31 @@ const PrivacyPolicy = () => {
     const script = document.createElement('script');
     script.src = CKEDITOR_URL;
     script.async = true;
-    script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
 
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData(data);
+    script.onload = () => {
+      // Ensure that CKEditor is loaded before setting the data
+      if (window.CKEDITOR && !window.CKEDITOR.instances['editor1']) {
+        window.CKEDITOR.replace('editor1', {
+          inline: true,
+          versionCheck: false,
         });
+      }
     };
     document.body.appendChild(script);
 
-    // Cleanup CKEditor instance on component unmount
     return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
+      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
+        window.CKEDITOR.instances['editor1'].destroy();
+      }
     };
-}, []);
-  
+  }, []);
+
   const getPrivacyPolicyData = async () => {
     try {
       const bformData = new FormData();
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
-      bformData.append("data","get_latest_privacy");
+      bformData.append("data", "get_latest_privacy");
 
       const response = await axios.post(
         `${PHP_API_URL}/privacy_policy.php`,
@@ -57,30 +53,22 @@ const PrivacyPolicy = () => {
         }
       );
       if (response.data.status === 200) {
-        setFormData(
-          response.data?.data[0].content,
-        );
+        const content = response.data?.data[0].content;
+        setFormData(content);
+
+        // Set data in CKEditor if it's loaded
         if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(
-              validator.unescape(validator.unescape(response.data.data[0].content)) // Ensure content is unescaped properly
-          );
-      }
+          window.CKEDITOR.instances['editor1'].setData(validator.unescape(content));
+        }
       }
     } catch (error) {
-      const status = error.response?.status;
-
-      // if (status === 400 || status === 500) {
-      //   toast.error(error.response.data.msg || "A server error occurred.");
-      // } else {
-      //   toast.error(
-      //     "An error occurred. Please check your connection or try again."
-      //   );
-      // }
+      console.error("Error fetching privacy policy:", error);
     }
   };
+
   useEffect(() => {
     getPrivacyPolicyData();
-  }, []);
+  }, []); // Run once when the component mounts
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -96,8 +84,6 @@ const PrivacyPolicy = () => {
     sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
     sendFormData.append("data", "privacy_add");
     sendFormData.append("content", formData);
-
-   
 
     try {
       const response = await axios.post(
@@ -127,9 +113,7 @@ const PrivacyPolicy = () => {
       if (status === 400 || status === 500) {
         toast.error(error.response.data.msg || "A server error occurred.");
       } else {
-        toast.error(
-          "An error occurred. Please check your connection or try again."
-        );
+        toast.error("An error occurred. Please check your connection or try again.");
       }
     } finally {
       setIsSubmit(false);
@@ -164,16 +148,14 @@ const PrivacyPolicy = () => {
             </div>
           </div>
           <form onSubmit={handleSubmit}>
-            
-                <div className="card">
-                  <div className="card-body">
-                    <div className="row mb-4">
-                      <div className="col-md-12 ">
-                      <textarea id="editor1" name="description">{formData && validator.unescape(formData)}</textarea>
-
-                      </div>
-                    </div>
-                    <div className="">
+            <div className="card">
+              <div className="card-body">
+                <div className="row mb-4">
+                  <div className="col-md-12">
+                    <textarea id="editor1" name="description">{formData && validator.unescape(formData)}</textarea>
+                  </div>
+                </div>
+                <div>
                   <button
                     className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
                     type="submit"
@@ -186,11 +168,8 @@ const PrivacyPolicy = () => {
                     )}
                   </button>
                 </div>
-                  </div>
-                </div>
-
-                
-             
+              </div>
+            </div>
           </form>
         </div>
       </div>

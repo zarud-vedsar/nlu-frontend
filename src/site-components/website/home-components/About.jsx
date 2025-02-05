@@ -9,7 +9,7 @@ const About = () => {
       <section className='section'>
         <div className="container">
           <div className="row g-5" style={{ display: 'flex', alignItems: 'center' }}>
-            <div className='col-md-6 col-lg-6 col-12 col-sm-12 p-3 order-md-1 order-sm-2 order-2'>
+            <div className='col-md-6 col-lg-6 col-12 col-sm-12 order-md-1 order-sm-2 order-2'>
               <h2 className="heading-primary butler-regular">
                 Welcome to Dr. Rajendra Prasad National Law University, Prayagraj
               </h2>

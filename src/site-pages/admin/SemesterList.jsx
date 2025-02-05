@@ -122,7 +122,7 @@ function SemesterList() {
     }
     const updateDataFetch = async (dbId) => {
         if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
-        navigate(`/admin/add-course/${dbId}`, { replace: false });
+        navigate(`/admin/edit-semester/${dbId}`, { replace: false });
     }
 
     return (

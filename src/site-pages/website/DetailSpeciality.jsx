@@ -4,7 +4,7 @@ import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import validator from 'validator';
 const DetailSpeciality = () => {
   const [speciality, setSpeciality] = useState([]);
   const [decodedDescriptions, setDecodedDescriptions] = useState();
@@ -50,7 +50,7 @@ const DetailSpeciality = () => {
         setSpeciality(response.data[0]);
 
         if (response.data[0]?.description) {
-         await decodeHtml(response.data[0]?.description);
+          await decodeHtml(response.data[0]?.description);
         }
       } else {
       }
@@ -58,12 +58,12 @@ const DetailSpeciality = () => {
       const statusCode = error.response?.data?.statusCode;
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
       } else {
-       
+
       }
     }
   };
 
-  
+
   const capitalizeFirstLetter = (str) => {
     if (!str) return "";
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -92,7 +92,7 @@ const DetailSpeciality = () => {
       </div>
 
       <div className="section-padding">
-        
+
 
         <div className="speciality-content-wrapper">
           <div className="speciality-image">
@@ -115,7 +115,11 @@ const DetailSpeciality = () => {
                 fontSize: "1.5rem",
               }}
             >
-              {speciality.title}
+              <span dangerouslySetInnerHTML={{
+                __html: speciality?.title ?
+                  validator.unescape(validator.unescape(speciality.title)) : ''
+              }}></span>
+
             </h3>
             <p
               style={{
@@ -123,8 +127,8 @@ const DetailSpeciality = () => {
                 padding: "30px 10px",
               }}
             >
-<div dangerouslySetInnerHTML={{__html: decodedDescriptions}}></div>
-              
+              <div dangerouslySetInnerHTML={{ __html: decodedDescriptions ? validator.unescape(validator.unescape(decodedDescriptions)) : '' }}></div>
+
             </p>
           </div>
         </div>

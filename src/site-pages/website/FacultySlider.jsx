@@ -41,17 +41,19 @@ const FacultySlider = () => {
   }, []);
 
   const sliderSettings = {
-    dots: false, // Disable the dots for pagination
-    infinite: false,
+    dots: true,
+    infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     arrows: false,
+    autoplay: true, // Enable auto-scroll
+    autoplaySpeed: 2800, // Change slides every 3 seconds
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 3,
         },
       },
       {
@@ -118,7 +120,7 @@ const FacultySlider = () => {
                           </div>
                         </Link>
                         <div className="facpost">
-                          <h3 className="sldnn mb-1 mt-2">{`${capitalizeFirstLetter(
+                          <h3 className="sldnn mb-1 mt-2">{`${(
                             faculty.first_name
                           )} ${faculty.middle_name} ${faculty.last_name}`}</h3>
                           <p className="facdesti">{faculty?.designation}</p>

@@ -6,32 +6,40 @@ import validator from "validator";
 
 const NoticeDetails = () => {
   const [noticeDetails, setNoticeDetails] = useState(null);
-  const [loading, setLoading] = useState(true);  // Start with loading true
+  const [loading, setLoading] = useState(true); // Start with loading true
   const { id } = useParams();
-
+  const [html, setHtml] = useState("");
   useEffect(() => {
     const fetchData = async (id) => {
       try {
-        const noticeResponse = await axios.post(`${NODE_API_URL}/api/notice/website-notice`, { dbId: id });
+        const noticeResponse = await axios.post(
+          `${NODE_API_URL}/api/notice/website-notice`,
+          { dbId: id }
+        );
         if (noticeResponse.data?.statusCode === 200) {
           setNoticeDetails(noticeResponse.data.data[0]); // Save the fetched notice details
+          if (noticeResponse?.data?.data[0]?.description) {
+            setHtml(
+              validator?.unescape(noticeResponse?.data?.data[0]?.description)
+            );
+          }
         } else {
-          console.error('Failed to fetch notices');
+          console.error("Failed to fetch notices");
         }
       } catch (error) {
-        console.error('Error fetching data: ', error);
+        console.error("Error fetching data: ", error);
       } finally {
-        setLoading(false);  // Set loading to false once data is fetched
+        setLoading(false); // Set loading to false once data is fetched
       }
     };
 
     fetchData(id);
-  }, [id]);  // Run only once when the component mounts
+  }, [id]); // Run only once when the component mounts
 
   if (loading) {
     return (
       <div className="loading-container">
-        <h3>Loading...</h3>  {/* A simple loading message */}
+        <h3>Loading...</h3> {/* A simple loading message */}
       </div>
     );
   }
@@ -73,7 +81,7 @@ const NoticeDetails = () => {
           <div className="row">
             <div className="col-md-12">
               <iframe
-                src={noticeDetails?.pdf_file || ''}
+                src={noticeDetails?.pdf_file || ""}
                 width="100%"
                 height="600px"
                 title="Notice PDF"
@@ -84,39 +92,41 @@ const NoticeDetails = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="about-text-container">
-                {
-                  noticeDetails?.description && (
-
-
-                    <div className="events-wrapper">
-                      {/* Render description directly */}
-                      <table style={{ width: "100%" }}>
-                        <tbody>
-                          <tr>
-                            <td style={{ textAlign: "left" }}>
-                              <table
-                                id="ctl00_ctl00_CPH_MainContent_CPH_MainContent_DataList1"
-                                cellSpacing={0}
-                                style={{ width: "100%", borderCollapse: "collapse" }}
-                              >
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      <div className="nfullmain-container">
-                                        {/* Directly render the description */}
-                                        {noticeDetails?.description ? validator.unescape(noticeDetails?.description) : ''}
-                                      </div>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  )
-                }
+                {noticeDetails?.description && (
+                  <div className="events-wrapper">
+                    {/* Render description directly */}
+                    <table style={{ width: "100%" }}>
+                      <tbody>
+                        <tr>
+                          <td style={{ textAlign: "left" }}>
+                            <table
+                              id="ctl00_ctl00_CPH_MainContent_CPH_MainContent_DataList1"
+                              cellSpacing={0}
+                              style={{
+                                width: "100%",
+                                borderCollapse: "collapse",
+                              }}
+                            >
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <div
+                                      className="nfullmain-container"
+                                      dangerouslySetInnerHTML={{ __html: html }}
+                                      style={{ padding: "30px" }}
+                                    >
+                                      {/* Directly render the description */}
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -79,7 +79,7 @@ const BookCatalogueDetail = () => {
             <div className="card-body">
               <div className="row">
                 <div className="col-md-5 col-lg-5 col-12 col-sm-12 p-input-icon-left mb-3 ">
-                <img src={book.image ? `${FILE_API_URL}}/lib_books/${book.image}` : `${BookImage}`} alt=".." style={{height:"300px", width:"auto"}}
+                <img src={book.image ? `${FILE_API_URL}/books/${book.image}` : `${BookImage}`} alt=".." style={{height:"300px", width:"auto"}}
                  />
                 </div>
                 <div className="col-md-7 col-lg-7 col-12 col-sm-12 p-input-icon-left mb-3 ">

@@ -165,7 +165,7 @@ function LmsSubjectDashboard() {
     }
 
     // If the event is yet to start, it's pending
-    return "Pending";
+    return "Upcoming";
   };
   return (
     <>

@@ -19,6 +19,7 @@
     "@tiptap/react": "^2.11.5",
     "@tiptap/starter-kit": "^2.11.5",
     "@types/prop-types": "^15.7.14",
+    "aos": "^2.3.4",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",

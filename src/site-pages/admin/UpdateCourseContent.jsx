@@ -7,7 +7,7 @@ import { toast, } from "react-toastify";
 import { useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
-
+import JoditEditor from "jodit-react"; // Import Jodit editor
 const UpdateCourseContent = () => {
   const { id } = useParams();
   const [sllaybus, setSllaybus] = useState("");
@@ -15,22 +15,18 @@ const UpdateCourseContent = () => {
   const [activity, setActivity] = useState("");
   const [timetable, setTimetable] = useState("");
   const [feeStructure, setFeeStructure] = useState("");
-
-  const [isSubmit, setIsSubmit] = useState(false);
   const getDetail = async (data, id) => {
     const bformData = new FormData();
     bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
     bformData.append("login_type", secureLocalStorage.getItem("loginType"));
     bformData.append("data", data);
     bformData.append("course_id", id);
-
     try {
       const response = await axios.post(`${PHP_API_URL}/course.php`, bformData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-
       if (response.data.status === 200) {
         const fieldMapping = {
           load_sllaybus: 'sllaybus',
@@ -39,49 +35,23 @@ const UpdateCourseContent = () => {
           load_timetable: 'timetable',
           load_feestructure: 'fee_structure'
         };
-
         const field = fieldMapping[data];
         if (field) {
           switch (data) {
             case "load_sllaybus":
-              if (window.CKEDITOR && window.CKEDITOR.instances['syllabus']) {
-                window.CKEDITOR.instances['syllabus'].setData(
-                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
-                );
-              }
-              setSllaybus(response.data.data[0][field])
+              setSllaybus(validator.unescape(response.data.data[0][field] || ""));
               break;
             case "load_seminar":
-              if (window.CKEDITOR && window.CKEDITOR.instances['seminar']) {
-                window.CKEDITOR.instances['seminar'].setData(
-                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
-                );
-              }
-              setSeminar(response.data.data[0][field]);
+              setSeminar(validator.unescape(response.data.data[0][field] || ""));
               break;
             case "load_activity":
-              if (window.CKEDITOR && window.CKEDITOR.instances['activity']) {
-                window.CKEDITOR.instances['activity'].setData(
-                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
-                );
-              }
-              setActivity(response.data.data[0][field]);
+              setActivity(validator.unescape(response.data.data[0][field] || ""));
               break;
             case "load_timetable":
-              if (window.CKEDITOR && window.CKEDITOR.instances['timetable']) {
-                window.CKEDITOR.instances['timetable'].setData(
-                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
-                );
-              }
-              setTimetable(response.data.data[0][field]);
+              setTimetable(validator.unescape(response.data.data[0][field] || ""));
               break;
             case "load_feestructure":
-              if (window.CKEDITOR && window.CKEDITOR.instances['fee_structure']) {
-                window.CKEDITOR.instances['fee_structure'].setData(
-                  validator.unescape(validator.unescape(response.data.data[0][field])) // Ensure content is unescaped properly
-                );
-              }
-              setFeeStructure(response.data.data[0][field]);
+              setFeeStructure(validator.unescape(response.data.data[0][field] || ""));
               break;
             default:
               break;
@@ -97,8 +67,6 @@ const UpdateCourseContent = () => {
       }
     }
   };
-
-
   useEffect(() => {
     const content = [
       "load_sllaybus",
@@ -107,7 +75,6 @@ const UpdateCourseContent = () => {
       "load_timetable",
       "load_feestructure",
     ];
-
     const fetchData = async () => {
       try {
         await Promise.all(content.map(data => getDetail(data, id)));
@@ -115,19 +82,14 @@ const UpdateCourseContent = () => {
         console.error("Error in fetching details", error);
       }
     };
-
     fetchData();
   }, []);
 
   const handleSubmit = async (fieldName) => {
-    setIsSubmit(true);
-
     const sendFormData = new FormData();
     sendFormData.append("loguserid", secureLocalStorage.getItem("login_id"));
     sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
     sendFormData.append("course_id", id);
-
-
     switch (fieldName) {
       case "sllaybus":
         sendFormData.append("sllaybus", sllaybus);
@@ -150,9 +112,7 @@ const UpdateCourseContent = () => {
         sendFormData.append("data", "feestructure_update");
         break;
     }
-
     try {
-
       const response = await axios.post(
         `${PHP_API_URL}/course.php`,
         sendFormData,
@@ -162,7 +122,6 @@ const UpdateCourseContent = () => {
           },
         }
       );
-
       if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response.data.msg);
       } else {
@@ -170,7 +129,6 @@ const UpdateCourseContent = () => {
       }
     } catch (error) {
       const status = error.response.data?.status;
-
       if (status === 400 || status === 500) {
         toast.error(error.response.data.msg || "A server error occurred.");
       } else {
@@ -178,91 +136,12 @@ const UpdateCourseContent = () => {
           "An error occurred. Please check your connection or try again."
         );
       }
-    } finally {
-      setIsSubmit(false);
     }
   };
-
-  // Load CKEditor 4 dynamically
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace('syllabus', {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances['syllabus'].on('change', () => {
-        const data = window.CKEDITOR.instances['syllabus'].getData();
-        setSllaybus(data);
-      });
-
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace('seminar', {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances['seminar'].on('change', () => {
-        const data = window.CKEDITOR.instances['seminar'].getData();
-        setSeminar(data);
-      });
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace('activity', {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances['activity'].on('change', () => {
-        const data = window.CKEDITOR.instances['activity'].getData();
-        setActivity(data);
-      });
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace('timetable', {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances['timetable'].on('change', () => {
-        const data = window.CKEDITOR.instances['timetable'].getData();
-        setTimetable(data);
-      });
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace('fee_structure', {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances['fee_structure'].on('change', () => {
-        const data = window.CKEDITOR.instances['fee_structure'].getData();
-        setFeeStructure(data);
-      });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-      if (window.CKEDITOR && window.CKEDITOR.instances['syllabus']) {
-        window.CKEDITOR.instances['syllabus'].destroy();
-      }
-      if (window.CKEDITOR && window.CKEDITOR.instances['seminar']) {
-        window.CKEDITOR.instances['seminar'].destroy();
-      }
-      if (window.CKEDITOR && window.CKEDITOR.instances['activity']) {
-        window.CKEDITOR.instances['activity'].destroy();
-      }
-      if (window.CKEDITOR && window.CKEDITOR.instances['timetable']) {
-        window.CKEDITOR.instances['timetable'].destroy();
-      }
-      if (window.CKEDITOR && window.CKEDITOR.instances['fee_structure']) {
-        window.CKEDITOR.instances['fee_structure'].destroy();
-      }
-    };
-  }, []);
-
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
   return (
     <>
       <div className="page-container ">
@@ -306,9 +185,12 @@ const UpdateCourseContent = () => {
                       <span className="custo-head">Syllabus</span>
                     </h6>
                   </div>
-                  <div className="col-md-12 ">
-                    <textarea id="syllabus" name="syllabus">{sllaybus && validator.unescape(sllaybus)}</textarea>
-
+                  <div className="col-md-12">
+                    <JoditEditor
+                      value={sllaybus || ''}
+                      config={config}
+                      onChange={(newContent) => setSllaybus(newContent)}
+                    />
                   </div>
 
                   <div className="col-md-12 me-auto d-flex justify-content-between align-items-center mt-3">
@@ -334,8 +216,11 @@ const UpdateCourseContent = () => {
                     </h6>
                   </div>
                   <div className="col-md-12 ">
-                    <textarea id="seminar" name="seminar">{seminar && validator.unescape(seminar)}</textarea>
-
+                    <JoditEditor
+                      value={seminar || ''}
+                      config={config}
+                      onChange={(newContent) => setSeminar(newContent)}
+                    />
                   </div>
 
                   <div className="col-md-12 me-auto d-flex justify-content-between align-items-center mt-3">
@@ -361,10 +246,12 @@ const UpdateCourseContent = () => {
                     </h6>
                   </div>
                   <div className="col-md-12 ">
-                    <textarea id="activity" name="activity">{activity && validator.unescape(activity)}</textarea>
-
+                    <JoditEditor
+                      value={activity || ''}
+                      config={config}
+                      onChange={(newContent) => setActivity(newContent)}
+                    />
                   </div>
-
                   <div className="col-md-12 me-auto d-flex justify-content-between align-items-center mt-3">
                     <button
                       type="submit"
@@ -387,11 +274,13 @@ const UpdateCourseContent = () => {
                       <span className="custo-head">Time Table</span>
                     </h6>
                   </div>
-                  <div className="col-md-12 ">
-                    <textarea id="timetable" name="timetable">{timetable && validator.unescape(timetable)}</textarea>
-
+                  <div className="col-md-12">
+                    <JoditEditor
+                      value={timetable || ''}
+                      config={config}
+                      onChange={(newContent) => setTimetable(newContent)}
+                    />
                   </div>
-
                   <div className="col-md-12 me-auto d-flex justify-content-between align-items-center mt-3">
                     <button
                       type="submit"
@@ -414,9 +303,12 @@ const UpdateCourseContent = () => {
                       <span className="custo-head">Fee Structure</span>
                     </h6>
                   </div>
-                  <div className="col-md-12 ">
-                    <textarea id="fee_structure" name="fee_structure">{feeStructure && validator.unescape(feeStructure)}</textarea>
-
+                  <div className="col-md-12">
+                    <JoditEditor
+                      value={feeStructure || ''}
+                      config={config}
+                      onChange={(newContent) => setFeeStructure(newContent)}
+                    />
                   </div>
 
                   <div className="col-md-12 me-auto d-flex justify-content-between align-items-center mt-3">

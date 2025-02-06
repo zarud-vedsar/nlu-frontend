@@ -1,5 +1,5 @@
 // Import the usual suspects (like a hacker assembling a team for a heist)
-import React, { useEffect, useState } from 'react'; // React is life; state is chaos.
+import React, { useCallback, useEffect, useState } from 'react'; // React is life; state is chaos.
 import { Link, useLocation, useNavigate } from 'react-router-dom'; // For navigating the matrix.
 import { capitalizeFirstLetter, dataFetchingPost, goBack } from '../../../site-components/Helper/HelperFunction'; // Escape hatch in case things go south.
 import { FormField } from '../../../site-components/admin/assets/FormField'; // The sacred field for all inputs.
@@ -14,6 +14,8 @@ import axios from 'axios'; // Axios is like the courier for your HTTP requests.
 import Select from 'react-select'; // React Select
 import Swal from 'sweetalert2';
 import useRolePermission from '../../../site-components/admin/useRolePermission';
+import JoditEditor from "jodit-react"; // Import Jodit editor
+
 function AddExam() {
   const location = useLocation();
   const dbId = location?.state?.dbId; // Destructure dbId from the state
@@ -63,35 +65,10 @@ function AddExam() {
     section: [defaultSection], // A container of sections: the real MVPs.
     pass: 0,
   };
-  // Load CKEditor 4 dynamically
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace('editor1', {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances['editor1'].on('change', () => {
-        const data = window.CKEDITOR.instances['editor1'].getData();
-        setFormData((prevState) => ({
-          ...prevState,
-          instruction: data, // Update instruction in formData
-        }));
-      });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.instances['editor1'].destroy();
-      }
-    };
-  }, []);
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
   // State variables: The true chaos handlers.
   const [formData, setFormData] = useState(initialFormData); // For holding all the exam data.
   const [error, setError] = useState({ field: "", msg: "" }); // For pointing fingers at mistakes.
@@ -242,21 +219,11 @@ function AddExam() {
           paperCode: response.data[0].paperCode,
           timeDuration: response.data[0].timeDuration,
           maxMarks: response.data[0].maxMarks,
-          instruction: response.data[0].instruction,
+          instruction: validator.unescape(response.data[0].instruction || ""),
           section: JSON.parse(response.data[0].section), // A container of sections: the real MVPs.
           pass: 1,
         }));
         setSections(JSON.parse(response.data[0].section));
-        // Set CKEditor content after data is fetched
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances["editor1"].setData(
-            response.data[0].instruction
-              ? validator.unescape(
-                validator.unescape(response.data[0].instruction)
-              )
-              : response.data[0].instruction // Ensure content is unescaped properly
-          );
-        }
       } else {
         toast.error("Data not found.");
       }
@@ -389,7 +356,12 @@ function AddExam() {
       setIsSubmit(false);
     }
   };
-
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      instruction: newContent,
+    }));
+  }, []);
   return (
     <>
       {/* HTML Skeleton of Doom */}
@@ -735,10 +707,11 @@ function AddExam() {
                       <label className="font-weight-semibold">
                         Instruction
                       </label>
-                      <textarea id="editor1" name="instruction">
-                        {formData.instruction &&
-                          validator.unescape(formData.instruction)}
-                      </textarea>
+                      <JoditEditor
+                        value={formData.instruction || ""}
+                        config={config}
+                        onChange={handleEditorChange}
+                      />
                     </div>
                     <div className="col-md-12 col-12">
                       <button

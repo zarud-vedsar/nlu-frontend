@@ -5,14 +5,13 @@ import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import {
   PHP_API_URL,
-  NODE_API_URL,
-  CKEDITOR_URL,
-  FILE_API_URL,
+  FILE_API_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import validator from "validator";
+import JoditEditor from "jodit-react"; // Import Jodit editor
 
 const MessageForm = () => {
   const { id } = useParams();
@@ -26,43 +25,16 @@ const MessageForm = () => {
   const [formData, setFormData] = useState(initialForm);
   const [previewImage, setPreviewImage] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
-  const [html, sethtml] = useState("");
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace("editor1", {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances["editor1"].on("change", () => {
-        const data = window.CKEDITOR.instances["editor1"].getData();
-        setFormData((prevState) => ({
-          ...prevState,
-          message: data, // Update description in formData
-        }));
-      });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-      if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
-        window.CKEDITOR.instances["editor1"].destroy();
-      }
-    };
-  }, []);
-
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
   const getMessage = async () => {
     try {
       const bformData = new FormData();
@@ -83,17 +55,9 @@ const MessageForm = () => {
           name: response.data.data[0].name,
           from: response.data.data[0].msg_from,
           authority_img: response.data.data[0].image,
-          message: response.data.data[0].message,
-
+          message: validator.unescape(response.data.data[0].message || "'"),
           hiddenthumbnail: response.data.data[0].image,
         });
-        if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
-          window.CKEDITOR.instances["editor1"].setData(
-            validator.unescape(
-              validator.unescape(response.data.data[0].message)
-            ) // Ensure content is unescaped properly
-          );
-        }
         if (response.data.data[0].image) {
           setPreviewImage(
             `${FILE_API_URL}/our-authorities/${response.data.data[0].image}`
@@ -102,7 +66,6 @@ const MessageForm = () => {
       }
     } catch (error) {
       const status = error.response?.data?.status;
-
       if (status === 400 || status === 500) {
         toast.error(error.response.data.msg || "A server error occurred.");
       } else {
@@ -112,17 +75,14 @@ const MessageForm = () => {
       }
     }
   };
-
   useEffect(() => {
     if (id) {
       getMessage();
     }
   }, []);
-
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const { id } = e.target;
-
     if (!file) return;
     if (id === "authority_img") {
       if (file.type.startsWith("image/")) {
@@ -135,7 +95,6 @@ const MessageForm = () => {
       }
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
@@ -147,24 +106,18 @@ const MessageForm = () => {
       toast.error("Message From is required.");
       return setIsSubmit(false);
     }
-
     if (!formData.authority_img && !formData.message) {
       toast.error("Content is required.");
       return setIsSubmit(false);
     }
-
     const sendFormData = new FormData();
     sendFormData.append("data", "savemessage");
     sendFormData.append("loguserid", secureLocalStorage.getItem("login_id"));
     sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
-    if (id) {
-      sendFormData.append("updateid", id);
-    }
-
+    if (id) sendFormData.append("updateid", id);
     for (let key in formData) {
       sendFormData.append(key, formData[key]);
     }
-
     try {
       const response = await axios.post(
         `${PHP_API_URL}/message.php`,
@@ -172,7 +125,7 @@ const MessageForm = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-          }, 
+          },
         }
       );
 
@@ -180,7 +133,6 @@ const MessageForm = () => {
         toast.success(response.data.msg);
         setFormData(initialForm);
         setPreviewImage(null);
-        sethtml("");
         if (response?.data?.status === 200) {
           window.history.back();
         }
@@ -290,10 +242,15 @@ const MessageForm = () => {
                     <label>
                       Message <span className="text-danger">*</span>
                     </label>
-
-                    <textarea id="editor1" name="message">
-                      {formData.message && validator.unescape(formData.message)}
-                    </textarea>
+                    {/* JoditEditor component */}
+                    <JoditEditor
+                      value={formData?.message || ''}
+                      config={config}
+                      onChange={(newContent) => setFormData((prev) => ({
+                        ...prev,
+                        message: newContent
+                      }))}
+                    />
                   </div>
                 </div>
                 <div className="">

@@ -129,7 +129,7 @@ function AddExam() {
       console.error("Error fetching saved questions", error);
     }
   };
-useEffect(() => {
+  useEffect(() => {
     questionForm.section.forEach((item, index) => {
       const editorId = `editor${index}`;
       const editor = window.CKEDITOR?.instances[editorId];
@@ -141,7 +141,7 @@ useEffect(() => {
         console.warn(`CKEditor instance for ${editorId} is not initialized.`);
       }
     });
-}, [isrefresh]);
+  }, [isrefresh]);
   const fetchDataForUpdate = useCallback(async (id) => {
     if (!id || parseInt(id, 10) < 1) {
       toast.error("Invalid exam ID");

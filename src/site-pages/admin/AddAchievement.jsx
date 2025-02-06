@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NODE_API_URL ,CKEDITOR_URL} from "../../site-components/Helper/Constant";
+import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import { Link, useParams } from "react-router-dom";
 import {
@@ -13,54 +13,26 @@ import {
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import validator from "validator";
+import JoditEditor from "jodit-react"; // Import Jodit editor
+
 
 function AddAchievement() {
   // Initial form state
   const initialForm = {
-    dbId: "", 
+    dbId: "",
     title: "",
     description: "",
     bgImage: "",
   };
-  const { id:achievementId } = useParams();
+  const { id: achievementId } = useParams();
   const [previewImage, setPreviewImage] = useState(null);
   const [formData, setFormData] = useState(initialForm); // Form state
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
-
-
-
-  
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
-
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData((prevState) => ({
-                ...prevState,
-                description: data, // Update description in formData
-            }));
-        });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
-    };
-}, []);
-
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
   const updateFetchData = async (achievementId) => {
     if (
       !achievementId ||
@@ -80,17 +52,13 @@ function AddAchievement() {
           ...prev,
           dbId: response.data[0].id,
           title: response.data[0].title,
-          description: validator.unescape(response.data[0].description),
+          description: validator.unescape(response.data[0].description || ''),
           bgImage: validator.unescape(response.data[0].image),
         }));
         if (response.data[0].image) {
           setPreviewImage(`${response.data[0].image}`);
         }
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(
-              validator.unescape(validator.unescape(response.data[0].description)) 
-          );
-      }
+
       } else {
         toast.error("Data not found.");
       }
@@ -132,7 +100,7 @@ function AddAchievement() {
     const { id } = e.target;
 
     if (!file) return;
-    
+
     if (id === "bgImage") {
       if (file.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(file));
@@ -144,12 +112,12 @@ function AddAchievement() {
       }
     }
   };
- 
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-   
+
     setError((prev) => ({
       ...prev,
       field: "",
@@ -158,24 +126,24 @@ function AddAchievement() {
     if (!formData.title) {
       toast.error("Title is required.");
       errorMsg("Title", "Title  is required.");
-       setIsSubmit(false);
-       return
+      setIsSubmit(false);
+      return
     }
 
     if (!formData.bgImage) {
-        toast.error("Image is required.");
-        errorMsg("Image", "Image  is required.");
-        return setIsSubmit(false);
-      }
+      toast.error("Image is required.");
+      errorMsg("Image", "Image  is required.");
+      return setIsSubmit(false);
+    }
     if (!formData.description) {
       toast.error("Description is required.");
       errorMsg("Description", "Image  is required.");
       return setIsSubmit(false);
     }
-    
+
     const highLevelData = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
-       highLevelData.append(key, value);
+      highLevelData.append(key, value);
     });
     highLevelData.append("loguserid", secureLocalStorage.getItem("login_id"));
     highLevelData.append("login_type", secureLocalStorage.getItem("loginType"));
@@ -191,17 +159,14 @@ function AddAchievement() {
           },
         }
       );
-      if (
-        response.data?.statusCode === 200 ||
-        response.data?.statusCode === 201
-      ) {
+      if ([200, 201].includes(response.data?.statusCode)) {
         errorMsg("", "");
         if (response.data?.statusCode === 201) {
           setFormData({ ...initialForm });
           setPreviewImage(null);
-         
+
         }
-        if(response.data?.statusCode ===200){
+        if (response.data?.statusCode === 200) {
           setFormData({ ...initialForm });
           setPreviewImage(null);
           goBack();
@@ -226,7 +191,6 @@ function AddAchievement() {
       setIsSubmit(false);
     }
   };
-
   return (
     <>
       <div className="page-container">
@@ -268,7 +232,7 @@ function AddAchievement() {
               <div className="card-body">
                 <form onSubmit={handleSubmit}>
                   <div className="row">
-                    
+
 
                     {/* Course Name */}
                     <FormField
@@ -283,7 +247,7 @@ function AddAchievement() {
                       required
                     />
 
-                    
+
                     <div className="form-group col-md-12">
                       <label>Choose Image <span className="text-danger">*</span></label>
                       <input
@@ -302,12 +266,20 @@ function AddAchievement() {
                         />
                       )}
                     </div>
-                    
+
 
                     <div className='col-md-12 px-0'>
-                                        <label className='font-weight-semibold'>Description</label>
-                                        <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
-                                    </div>
+                      {/* JoditEditor component */}
+                      <label className='font-weight-semibold'>Description</label>
+                      <JoditEditor
+                        value={formData?.description || ''}
+                        config={config}
+                        onChange={(newContent) => setFormData((prev) => ({
+                          ...prev,
+                          description: newContent
+                        }))}
+                      />
+                    </div>
                     <div className="col-md-12 col-lg-12 col-12">
                       <button
                         className="btn btn-dark btn-block d-flex justify-content-center align-items-center"

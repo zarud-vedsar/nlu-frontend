@@ -11,6 +11,7 @@ import axios from "axios";
 import { NODE_API_URL, CKEDITOR_URL } from "../../site-components/Helper/Constant";
 import validator from "validator";
 import secureLocalStorage from "react-secure-storage";
+import JoditEditor from "jodit-react"; // Import Jodit editor
 function NoticeList() {
   // initialize form fields
   const initialData = {
@@ -28,36 +29,10 @@ function NoticeList() {
   const [previewPdf, setPreviewPdf] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace('editor1', {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances['editor1'].on('change', () => {
-        const data = window.CKEDITOR.instances['editor1'].getData();
-        setFormData((prevState) => ({
-          ...prevState,
-          description: data, // Update description in formData
-        }));
-      });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.instances['editor1'].destroy();
-      }
-    };
-  }, []);
-
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
   // handle Input fields data and stored them in the formData
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -67,7 +42,6 @@ function NoticeList() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const { id } = e.target;
-
     if (!file) return;
     if (id === "pdf_file") {
       if (file.type === "application/pdf") {
@@ -88,7 +62,6 @@ function NoticeList() {
         );
       }
     }
-    console.log(formData)
   };
   const updateFetchData = async (noticeid) => {
     if (
@@ -111,27 +84,21 @@ function NoticeList() {
           title: response?.data[0]?.title,
           notice_type: response?.data[0]?.notice_type,
           notice_date: response?.data[0]?.notice_date,
-          description: validator.unescape(response?.data[0]?.description),
+          description: validator.unescape(response?.data[0]?.description || ''),
           pdf_file: validator.unescape(response?.data[0]?.pdf_file),
           image: validator.unescape(response?.data[0]?.image),
         }));
-        if(response?.data[0]?.pdf_file){
+        if (response?.data[0]?.pdf_file) {
           setPreviewPdf(validator.unescape(response?.data[0]?.pdf_file));
         }
-        if(response?.data[0]?.image){
-        setPreviewImage(validator.unescape(response?.data[0]?.image));
+        if (response?.data[0]?.image) {
+          setPreviewImage(validator.unescape(response?.data[0]?.image));
         }
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(
-            validator.unescape(validator.unescape(response?.data[0]?.description)) // Ensure content is unescaped properly
-          );
-        }
-
       } else {
         toast.error("Data not found.");
       }
     } catch (error) {
-      
+
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -168,7 +135,6 @@ function NoticeList() {
       toast.error("Must have to provide one among pdf and description");
       return setIsSubmit(false);
     }
-
     const highLevelData = new FormData();
     highLevelData.append("dbId", dbId);
     highLevelData.append("notice_type", notice_type);
@@ -179,8 +145,6 @@ function NoticeList() {
     highLevelData.append("description", formData.description);
     highLevelData.append("loguserid", secureLocalStorage.getItem("login_id"));
     highLevelData.append("login_type", secureLocalStorage.getItem("loginType"));
-
-
     try {
       // submit to the API here
       const response = await axios.post(
@@ -364,8 +328,16 @@ function NoticeList() {
                     )}
 
                     <div className='col-md-12 px-0'>
+                      {/* JoditEditor component */}
                       <label className='font-weight-semibold'>Description</label>
-                      <textarea id="editor1" name="description">{formData?.description ? validator.unescape(formData?.description ):""}</textarea>
+                      <JoditEditor
+                        value={formData?.description || ''}
+                        config={config}
+                        onChange={(newContent) => setFormData((prev) => ({
+                          ...prev,
+                          description: newContent
+                        }))}
+                      />
                     </div>
                     <div className="col-md-12 col-lg-12 col-12">
                       <button

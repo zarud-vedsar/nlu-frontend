@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import {
   FormField,
   TextareaField,
 } from "../../site-components/admin/assets/FormField";
-
 import axios from "axios";
 import {
-  PHP_API_URL,
-  NODE_API_URL,  CKEDITOR_URL,FILE_API_URL
+  PHP_API_URL, FILE_API_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
-
+import JoditEditor from "jodit-react"; // Import Jodit editor
 const About = () => {
   const initialForm = {
     atitle: "",
@@ -27,7 +25,10 @@ const About = () => {
   const [formData, setFormData] = useState(initialForm);
   const [previewImage, setPreviewImage] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
-  const [html, sethtml] = useState("");
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -35,36 +36,6 @@ const About = () => {
     });
   };
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
-
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData((prevState) => ({
-                ...prevState,
-                about_content: data, // Update description in formData
-            }));
-        });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
-    };
-}, []);
-
- 
   const getAboutData = async () => {
     try {
       const bformData = new FormData();
@@ -80,23 +51,17 @@ const About = () => {
           ...prev,
           atitle: response.data.data[0].atitle,
           image_file: response.data.data[0].image_file,
-          about_content: response.data.data[0].about_content,
+          about_content: response.data.data[0].about_content ? validator.unescape(response.data.data[0].about_content) : '',
           meta_title: response.data.data[0].meta_title,
           meta_content: response.data.data[0].meta_content,
           meta_keywords: response.data.data[0].meta_keywords,
           unlink_image_file: response.data.data[0].image_file,
         }));
         if (response.data.data[0].image_file) {
-          console.log();
           setPreviewImage(
             `${FILE_API_URL}/about/${response.data.data[0].image_file}`
           );
         }
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(
-              validator.unescape(validator.unescape(response.data.data[0].about_content)) // Ensure content is unescaped properly
-          );
-      }
       }
     } catch (error) {
       const status = error.response?.data?.status;
@@ -117,7 +82,6 @@ const About = () => {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const { id } = e.target;
-
     if (!file) return;
     console.log(file);
     if (id === "image_file") {
@@ -132,7 +96,6 @@ const About = () => {
       }
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
@@ -140,35 +103,20 @@ const About = () => {
       toast.error("Page Title is required.");
       return setIsSubmit(false);
     }
-    console.log(formData);
-
     if (!formData.image_file && !formData.about_content) {
       toast.error("Content is required.");
       return setIsSubmit(false);
     }
-
-    
-
     const sendFormData = new FormData();
     sendFormData.append("data", "aboutsave");
     sendFormData.append("loguserid", secureLocalStorage.getItem("login_id"));
     sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
-
     for (let key in formData) {
       sendFormData.append(key, formData[key]);
     }
-
     try {
-      const response = await axios.post(
-        `${PHP_API_URL}/about.php`,
-        sendFormData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      if (response.data?.status === 200 || response.data?.status === 201) {
+      const response = await axios.post(`${PHP_API_URL}/about.php`, sendFormData, { headers: { "Content-Type": "multipart/form-data" } });
+      if ([200, 201].includes(response.data?.status)) {
         toast.success(response.data.msg);
         if (response.data.status === 201) {
           setFormData(initialForm);
@@ -178,19 +126,17 @@ const About = () => {
       }
     } catch (error) {
       const status = error.response?.data?.status;
-
-      if (status === 400 || status === 500) {
-        toast.error(error.response.data.msg || "A server error occurred.");
-      } else {
-        toast.error(
-          "An error occurred. Please check your connection or try again."
-        );
-      }
+      [400, 404, 401, 500].includes(status) ? toast.error(error.response.data.msg || "A server error occurred.") : toast.error("An error occurred. Please check your connection or try again.");
     } finally {
       setIsSubmit(false);
     }
   };
-
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      about_content: newContent,
+    }));
+  }, []);
   return (
     <div className="page-container">
       <div className="main-content">
@@ -208,7 +154,7 @@ const About = () => {
           <div className="card bg-transparent mb-2">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
               <h5 className="card-title h6_new">
-                 Update About Section
+                Update About Section
               </h5>
               <div className="ml-auto">
                 <button
@@ -255,11 +201,15 @@ const About = () => {
                           />
                         )}
                       </div>
-
                       <div className='col-md-12 px-0'>
-                                        <label className='font-weight-semibold'>Description</label>
-                                        <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.about_content)}</textarea>
-                                    </div>
+                        {/* JoditEditor component */}
+                        <label className='font-weight-semibold'>Description</label>
+                        <JoditEditor
+                          value={formData.about_content || ""}
+                          config={config}
+                          onChange={handleEditorChange}
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -14,6 +14,7 @@ import {
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import validator from "validator";
+import JoditEditor from "jodit-react"; // Import Jodit editor
 
 function CourseAdd() {
   // Initial form state
@@ -48,38 +49,10 @@ function CourseAdd() {
   const courseDuration = [1, 2, 3, 4, 5, 6];
   const courseMedium = ["Hindi", "English", "Hindi + English"];
   const [previewPdf, setPreviewPdf] = useState(null);
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace('editor1', {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances['editor1'].on('change', () => {
-        const data = window.CKEDITOR.instances['editor1'].getData();
-        setFormData((prevState) => ({
-          ...prevState,
-          description: data, // Update description in formData
-        }));
-      });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.instances['editor1'].destroy();
-      }
-    };
-  }, []);
-
-
-
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
   // Fetch department list
   const fetchDepartmentList = async (deleteStatus = 0) => {
     try {
@@ -138,17 +111,9 @@ function CourseAdd() {
           description: validator.unescape(response.data[0].description),
           pdf_file: validator.unescape(response.data[0].pdf_file),
           thumbnail: validator.unescape(response.data[0].thumbnail),
-
         }));
-
         setPreviewPdf(validator.unescape(response.data[0].pdf_file));
         setPreviewImage(validator.unescape(response.data[0].thumbnail));
-
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(
-            validator.unescape(validator.unescape(response.data[0].description)) // Ensure content is unescaped properly
-          );
-        }
       } else {
         toast.error("Data not found.");
       }
@@ -316,7 +281,6 @@ function CourseAdd() {
       setIsSubmit(false);
     }
   };
-
   return (
     <>
       <div className="page-container">
@@ -588,8 +552,16 @@ function CourseAdd() {
                     />
 
                     <div className='col-md-12 px-0'>
+                      {/* JoditEditor component */}
                       <label className='font-weight-semibold'>Description</label>
-                      <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
+                      <JoditEditor
+                        value={formData?.description || ''}
+                        config={config}
+                        onChange={(newContent) => setFormData((prev) => ({
+                          ...prev,
+                          description: newContent
+                        }))}
+                      />
                     </div>
 
                     <div className="col-md-12 col-lg-12 col-12">

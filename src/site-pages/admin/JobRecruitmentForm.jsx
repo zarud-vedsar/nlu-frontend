@@ -3,22 +3,17 @@ import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL ,CKEDITOR_URL } from "../../site-components/Helper/Constant";
+import { PHP_API_URL, CKEDITOR_URL } from "../../site-components/Helper/Constant";
 import Select from "react-select";
-import { toast} from "react-toastify";
+import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import validator from "validator";
-
+import JoditEditor from "jodit-react"; // Import Jodit editor
 import secureLocalStorage from "react-secure-storage";
-
-
 const JobRecruitmentForm = () => {
   const { id } = useParams();
-
   const [errorKey, setErrorKey] = useState();
   const [errorMessage, setErrorMessage] = useState();
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [html, sethtml] = useState("");
   const [category, setCategory] = useState([]);
   const [jobTypes, setJobTypes] = useState([]);
   const [minExperienceList, setMinExperienceList] = useState([]);
@@ -26,7 +21,6 @@ const JobRecruitmentForm = () => {
   const [selectMinExperience, setSelectMinExperience] = useState("");
   const [loading, setLoading] = useState();
   const [selectCategory, setSelectCategory] = useState("");
-
   const initialization = {
     data: "savejobpost",
     job_category: "",
@@ -46,35 +40,10 @@ const JobRecruitmentForm = () => {
     description: "",
   };
   const [formData, setFormData] = useState(initialization);
-
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
-
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData((prevState) => ({
-                ...prevState,
-                description: data, // Update description in formData
-            }));
-        });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
-    };
-}, []);
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
   const updateCategory = (e) => {
     setSelectCategory(e);
     setFormData((prevState) => ({
@@ -195,24 +164,6 @@ const JobRecruitmentForm = () => {
     loadData();
   }, []);
 
-  const decodeHtml = async (html) => {
-    try {
-      const response = await axios.post(
-        `${PHP_API_URL}/page.php`,
-        {
-          data: "decodeData",
-          html,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      sethtml(response.data);
-    } catch (error) {}
-  };
-
   const getInternshipDetail = async () => {
     try {
       const bformData = new FormData();
@@ -245,10 +196,9 @@ const JobRecruitmentForm = () => {
         education_level: result?.data?.data[0]?.education_level,
         salary_starting: result?.data?.data[0]?.salary_starting,
         salary_to: result?.data?.data[0]?.salary_to,
-        description: result?.data?.data[0]?.description,
+        description: validator.unescape(result?.data?.data[0]?.description || ""),
       };
       setFormData((prev) => ({ ...prev, ...updatedFormData }));
-
       const jobtype = jobTypes?.find((job) => job.value === result[0].job_type);
       if (jobtype) {
         setSelectJobType(jobtype);
@@ -264,21 +214,13 @@ const JobRecruitmentForm = () => {
         setMinExperienceList(minexp);
       }
 
-      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.instances['editor1'].setData(
-            validator.unescape(validator.unescape(result?.data?.data[0]?.description)) // Ensure content is unescaped properly
-        );
-    }
-
     } catch (error) {
       console.log(error);
-    } finally {
     }
   };
 
   const handleChange = async (e) => {
-    const { name, value, type } = e.target;
-
+    const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -293,7 +235,6 @@ const JobRecruitmentForm = () => {
       setErrorMessage("Please select job category");
       toast.error("Please select job category");
       setErrorKey(".job_category");
-
       isValid = false;
     } else if (!formData.position) {
       setErrorMessage("Please enter position");
@@ -366,14 +307,11 @@ const JobRecruitmentForm = () => {
         bformData.append(key, value);
         console.log(key, value);
       });
-
       // bformData.append("description", formData["description"]);
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
       bformData.append("data", "savejobpost");
-
       // Log FormData using FormData.entries()
-
       try {
         const response = await axios.post(
           `${PHP_API_URL}/recrutment.php`,
@@ -411,13 +349,9 @@ const JobRecruitmentForm = () => {
             "An error occurred. Please check your connection or try again."
           );
         }
-      } finally {
       }
     }
   };
-
-  const fileInputRef = useRef(null);
-
   return (
     <div className="page-container">
       <div className="main-content">
@@ -705,14 +639,19 @@ const JobRecruitmentForm = () => {
                         <span className="text-danger">{errorMessage}</span>
                       )}
                     </div>
-
                     <div className="form-group col-md-12">
-                      
-
                       <div className='col-md-12 px-0'>
-                                        <label className='font-weight-semibold'>Description</label>
-                                        <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
-                                    </div>
+                        {/* JoditEditor component */}
+                        <label className='font-weight-semibold'>Description</label>
+                        <JoditEditor
+                          value={formData?.description || ''}
+                          config={config}
+                          onChange={(newContent) => setFormData((prev) => ({
+                            ...prev,
+                            description: newContent
+                          }))}
+                        />
+                      </div>
                     </div>
 
                     <div className="col-md-12 me-auto d-flex justify-content-between align-items-center">

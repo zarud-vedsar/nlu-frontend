@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NODE_API_URL, CKEDITOR_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,7 +14,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import validator from "validator";
 import useRolePermission from "../../../site-components/admin/useRolePermission";
-
+import JoditEditor from "jodit-react"; // Import Jodit editor
 function AssignmentAddNew() {
   const initialForm = {
     dbId: "",
@@ -57,74 +57,11 @@ function AssignmentAddNew() {
   /**
    * THE END OF ROLE & PERMISSION
    */
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace('editor1', {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances['editor1'].on('change', () => {
-        const data = window.CKEDITOR.instances['editor1'].getData();
-        setFormData((prevState) => ({
-          ...prevState,
-          description: data, // Update description in formData
-        }));
-      });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.instances['editor1'].destroy();
-      }
-    };
-  }, []);
-  const questionTypes = ["mcq", "scq", "image", "description"];
-
-  // Rich text editor configurations
-  const formats = [
-    "header",
-    "font",
-    "size",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-    "color",
-    "background",
-    "align",
-    "script",
-    "clean",
-  ];
-
-  const modules = {
-    toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
-      ["blockquote", "code-block"],
-      ["bold", "italic", "underline", "strike"],
-      [{ list: "ordered" }, { list: "bullet" }],
-      [{ script: "sub" }, { script: "super" }],
-      [{ indent: "-1" }, { indent: "+1" }],
-      ["link", "image", "video"],
-      [{ size: ["small", false, "large", "huge"] }],
-      [{ color: [] }, { background: [] }],
-      [{ align: [] }],
-      ["clean"],
-    ],
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
   };
-
+  const questionTypes = ["mcq", "scq", "image", "description"];
   const courseListDropdown = async () => {
     try {
       const response = await axios.get(`${NODE_API_URL}/api/course/dropdown`);
@@ -138,9 +75,6 @@ function AssignmentAddNew() {
       setCourseListing([]);
     }
   };
-
-
-
   useEffect(() => {
     courseListDropdown();
   }, []);
@@ -243,17 +177,9 @@ function AssignmentAddNew() {
           marks_per_question: data.marks_per_question,
           question_type: data?.question_type,
           pdf_file: data.pdf_file ? validator.unescape(data.pdf_file) : "",
-          description: validator.unescape(data.description) || " ",
+          description: validator.unescape(data.description || " "),
         }));
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(
-            validator.unescape(validator.unescape(data.description)) // Ensure content is unescaped properly
-          );
-        }
-        if (data.pdf_file) {
-          setPreviewPdf(validator.unescape(data.pdf_file));
-        }
-
+        if (data.pdf_file) setPreviewPdf(validator.unescape(data.pdf_file));
         return response;
       } else {
         toast.error("Data not found.");
@@ -264,11 +190,9 @@ function AssignmentAddNew() {
       return null;
     }
   };
-
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const { id } = e.target;
-
     if (!file) return;
     if (id === "pdf_file") {
       if (file.type === "application/pdf") {
@@ -276,16 +200,6 @@ function AssignmentAddNew() {
         setFormData((formData) => ({ ...formData, pdf_file: file }));
       } else {
         toast.error("Invalid PDF format. Only .pdf and .pdfx are allowed.");
-      }
-    }
-    if (id === "thumbnail") {
-      if (file.type.startsWith("image/")) {
-        setPreviewImage(URL.createObjectURL(file));
-        setFormData((formData) => ({ ...formData, thumbnail: file }));
-      } else {
-        toast.error(
-          "Invalid image format. Only png, jpeg, jpg, and webp are allowed."
-        );
       }
     }
   };
@@ -335,19 +249,16 @@ function AssignmentAddNew() {
       toast.error("Course is required.");
       return setIsSubmit(false);
     }
-
     if (!formData.semesterid) {
       errorMsg("semesterid", "Semester is required.");
       toast.error("Semester is required.");
       return setIsSubmit(false);
     }
-
     if (!formData.subject) {
       errorMsg("subject", "Subject is required.");
       toast.error("Subject is required.");
       return setIsSubmit(false);
     }
-
     if (!formData.assignment_title) {
       errorMsg("assignment_title", "Assignment title is required.");
       toast.error("Assignment Title is required.");
@@ -418,7 +329,6 @@ function AssignmentAddNew() {
     } catch (error) {
       const statusCode = error.response?.data?.statusCode;
       const errorField = error.response?.data?.errorField;
-
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
         if (errorField) errorMsg(errorField, error.response?.data?.message);
         toast.error(error.response.data.message || "A server error occurred.");
@@ -443,7 +353,12 @@ function AssignmentAddNew() {
       });
     }
   }, [assignmentId]);
-
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      about_content: newContent,
+    }));
+  }, []);
   return (
     <>
       <div className="page-container">
@@ -512,9 +427,6 @@ function AssignmentAddNew() {
                                 ...formData,
                                 courseid: selectedOption.value,
                               });
-                              const year = selectedOption.year
-                                ? selectedOption.year.split(",")
-                                : [];
                               fetchSemesterBasedOnCourse(selectedOption.value);
                             }}
                             value={
@@ -808,10 +720,12 @@ function AssignmentAddNew() {
                         )}
                         <div className='col-md-12 px-0'>
                           <label className='font-weight-semibold'>Description</label>
-                          <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
+                          <JoditEditor
+                            value={formData?.description || ''}
+                            config={config}
+                            onChange={handleEditorChange}
+                          />
                         </div>
-
-
                         <div className="col-md-12 col-lg-12 col-12">
                           {!isSubmit ? (
                             <button

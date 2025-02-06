@@ -3,57 +3,31 @@ import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL , CKEDITOR_URL, FILE_API_URL} from "../../site-components/Helper/Constant";
+import { PHP_API_URL, FILE_API_URL } from "../../site-components/Helper/Constant";
 import Select from "react-select";
-import { toast,  } from "react-toastify";
+import { toast, } from "react-toastify";
 import { useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { dataFetchingPost } from "../../site-components/Helper/HelperFunction";
 import validator from "validator";
+import JoditEditor from "jodit-react"; // Import Jodit editor
 
 const AddBook = () => {
 
   const { id } = useParams();
   const [previewImage, setPreviewImage] = useState();
-
   const [errorKey, setErrorKey] = useState();
   const [errorMessage, setErrorMessage] = useState();
-
-  const [isSubmit, setIsSubmit] = useState(false);
   const [subjectList, setSubjectList] = useState([]);
   const [subject, setSubject] = useState({});
   const [isFetching, setIsFetching] = useState(false);
   const [isbnValid, setIsbnValid] = useState(false);
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
-
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData((prevState) => ({
-                ...prevState,
-                des: data, // Update description in formData
-            }));
-        });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
-    };
-}, []);
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
 
   useEffect(() => {
     fetchSubject();
@@ -63,7 +37,6 @@ const AddBook = () => {
   }, []);
 
   const fetchSubject = async (deleteStatus = 0) => {
-    setIsFetching(true);
     try {
       const response = await dataFetchingPost(
         `${NODE_API_URL}/api/subject/fetch`,
@@ -88,15 +61,12 @@ const AddBook = () => {
       setSubjectList([]);
       const statusCode = error.response?.data?.statusCode;
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
-        setTitleError(error.response.message);
         toast.error(error.response.message || "A server error occurred.");
       } else {
         toast.error(
           "An error occurred. Please check your connection or try again."
         );
       }
-    } finally {
-      setIsFetching(false);
     }
   };
 
@@ -140,14 +110,12 @@ const AddBook = () => {
         },
       });
       const result = res.data.data;
-      console.log(result);
-      console.log(res);
       if (res?.data?.status == 200) {
         setFormData({
           user_update_id: result[0].id,
           user_updateu_id: result[0]?.uid,
           image: result[0]?.image,
-          des: result[0]?.des,
+          des: result[0]?.des ? validator.unescape(result[0]?.des) : '',
           qty: result[0]?.qty,
           price: result[0]?.price,
           language: result[0]?.language,
@@ -162,17 +130,9 @@ const AddBook = () => {
           vendor: result[0]?.vendor,
           unlink_image: result[0]?.image,
         });
-
-        console.log(formData);
         setPreviewImage(
           `${FILE_API_URL}/books/${result[0].image}`
         );
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(
-              validator.unescape(validator.unescape(result[0].des)) 
-          );
-      }
-
         const selSubject = subjectList?.find(
           (sub) => sub.value === result[0].subject_id
         );
@@ -188,11 +148,7 @@ const AddBook = () => {
         isbn_no: isbn_no,
       }));
       setSubject(null);
-
       setIsbnValid(false);
-
-      console.log(error);
-    } finally {
     }
   };
 
@@ -210,12 +166,11 @@ const AddBook = () => {
         },
       });
       const result = res.data.data;
-      console.log(result);
       setFormData({
         user_update_id: result[0].id,
         user_updateu_id: result[0]?.uid,
         image: result[0]?.image,
-        des: result[0]?.des,
+        des: result[0]?.des ? validator.unescape(result[0]?.des) : '',
         qty: result[0]?.qty,
         price: result[0]?.price,
         language: result[0]?.language,
@@ -232,12 +187,6 @@ const AddBook = () => {
       });
       console.log(formData);
       setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
-      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.instances['editor1'].setData(
-            validator.unescape(validator.unescape(result[0]?.des)) // Ensure content is unescaped properly
-        );
-    }
-
       const selSubject = subjectList?.find(
         (sub) => sub.value === result[0].subject_id
       );
@@ -246,17 +195,14 @@ const AddBook = () => {
       }
     } catch (error) {
       console.log(error);
-    } finally {
     }
   };
 
   const handleChange = async (e) => {
     const { name, value, type } = e.target;
-
     if (type == "number" && value.length > 10) {
       return;
     }
-
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -265,27 +211,19 @@ const AddBook = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let isValid = true;
-    console.log(formData);
-
     if (formData.isbn_no == "") {
-      console.log("error");
-
       setErrorMessage("Please enter ISBN number");
       setErrorKey(".isbn_no");
       isValid = false;
     } else if (formData.book_name == "") {
-      console.log("error");
-
       setErrorMessage("Please enter book name");
       setErrorKey(".book_name");
       isValid = false;
     } else if (formData.qty == "" || formData.qty < 1) {
-      console.log("error");
       setErrorMessage("Quantity must be greater than and equal to 1");
       setErrorKey(".qty");
       isValid = false;
     } else if (formData.price == "" || formData.price < 0) {
-      console.log("error");
       setErrorMessage("Price valid price");
       setErrorKey(".price");
       isValid = false;
@@ -310,11 +248,9 @@ const AddBook = () => {
         bformData.append(key, value);
         console.log(key, value);
       });
-
       if (id) {
         bformData.append("update_id", id);
       }
-
       try {
         const response = await axios.post(
           `${PHP_API_URL}/lib_books.php`,
@@ -325,7 +261,6 @@ const AddBook = () => {
             },
           }
         );
-        console.log(response);
         if (response.data?.status === 200 || response.data?.status === 201) {
           toast.success(response.data.msg);
           setFormData(initialization);
@@ -350,7 +285,6 @@ const AddBook = () => {
             "An error occurred. Please check your connection or try again."
           );
         }
-      } finally {
       }
     }
   };
@@ -362,9 +296,7 @@ const AddBook = () => {
       subject_id: e.value,
     }));
   };
-
   const fileInputRef = useRef(null);
-
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     setPreviewImage(URL.createObjectURL(file));
@@ -375,11 +307,9 @@ const AddBook = () => {
       });
     }
   };
-
   const triggerFileInput = () => {
     fileInputRef.current.click();
   };
-
   return (
     <>
       <div className="page-container ">
@@ -707,17 +637,23 @@ const AddBook = () => {
                           onChange={updateSubject}
                           disabled={isbnValid}
                         />
-
                         {errorKey === ".subject_id" && (
                           <span className="text-danger">{errorMessage}</span>
                         )}
                       </div>
 
-                        <div className='col-md-12 px-0'>
-                                        <label className='font-weight-semibold'>Description</label>
-                                        <textarea id="editor1" name="description">{formData.des && validator.unescape(formData.des)}</textarea>
-                                    </div>
-
+                      <div className='col-md-12 px-0'>
+                        {/* JoditEditor component */}
+                        <label className='font-weight-semibold'>Description</label>
+                        <JoditEditor
+                          value={formData?.des || ''}
+                          config={config}
+                          onChange={(newContent) => setFormData((prev) => ({
+                            ...prev,
+                            des: newContent
+                          }))}
+                        />
+                      </div>
                       <div className="col-md-12 me-auto d-flex justify-content-between align-items-center">
                         <button
                           type="submit"

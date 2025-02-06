@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
-
 import axios from "axios";
-import {
-  PHP_API_URL,
-  NODE_API_URL,
-  CKEDITOR_URL
-} from "../../site-components/Helper/Constant";
+import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import validator from 'validator';
-
+import JoditEditor from "jodit-react"; // Import Jodit editor
 const Vission = () => {
   const initialForm = {
     title: "",
@@ -20,7 +15,6 @@ const Vission = () => {
   const [formData, setFormData] = useState(initialForm);
   const [previewImage, setPreviewImage] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
-  const [html, sethtml] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -28,52 +22,11 @@ const Vission = () => {
       [e.target.name]: e.target.value,
     });
   };
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
-
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData((prevState) => ({
-                ...prevState,
-                content: data, // Update description in formData
-            }));
-        });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
-    };
-}, []);
-
-  const decodeHtml = async (html) => {
-    try {
-      const response = await axios.post(
-        `${PHP_API_URL}/page.php`,
-        {
-          data: "decodeData",
-          html,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      sethtml(response.data);
-    } catch (error) { }
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
   };
+
   const getVissionData = async () => {
     try {
       const bformData = new FormData();
@@ -95,13 +48,8 @@ const Vission = () => {
           ...prev,
           title: response.data?.data[0]?.title,
           image: response.data?.data[0]?.image,
-          content: response.data?.data[0]?.content,
+          content: validator.unescape(response.data?.data[0]?.content || ""),
         }));
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-          window.CKEDITOR.instances['editor1'].setData(
-              validator.unescape(validator.unescape(response.data?.data[0]?.content)) // Ensure content is unescaped properly
-          );
-      }
         if (response.data?.data[0].image) {
           console.log();
           setPreviewImage(response.data?.data[0]?.image);
@@ -110,7 +58,6 @@ const Vission = () => {
       }
     } catch (error) {
       const status = error.response?.statusCode;
-
       if (status === 400 || status === 500) {
         toast.error(error.response.data.message || "A server error occurred.");
       } else {
@@ -127,7 +74,6 @@ const Vission = () => {
   const handleFileChange = (e) => {
     const image = e.target.files[0];
     const { id } = e.target;
-
     if (!image) return;
     console.log(image);
     if (id === "image") {
@@ -150,23 +96,18 @@ const Vission = () => {
       toast.error("Page Title is required.");
       return setIsSubmit(false);
     }
-    console.log(formData);
-
     if (!formData.image && !formData.content) {
       toast.error("Content is required.");
       return setIsSubmit(false);
     }
-
     const sendFormData = new FormData();
     sendFormData.append("loguserid", secureLocalStorage.getItem("login_id"));
     sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
-
     Object.keys(formData).forEach((key) => {
       if (formData[key] !== undefined) {
         sendFormData.append(key, formData[key]);
       }
     });
-
     try {
       const response = await axios.post(
         `${NODE_API_URL}/api/vission/register`,
@@ -177,8 +118,6 @@ const Vission = () => {
           },
         }
       );
-      console.log(response);
-
       if (
         response?.data?.statusCode === 200 ||
         response?.data?.statusCode === 201
@@ -192,7 +131,6 @@ const Vission = () => {
       }
     } catch (error) {
       const status = error.response.data?.statusCode;
-
       if (status === 400 || status === 500) {
         toast.error(error.response.data.message || "A server error occurred.");
       } else {
@@ -204,7 +142,6 @@ const Vission = () => {
       setIsSubmit(false);
     }
   };
-
   return (
     <div className="page-container">
       <div className="main-content">
@@ -269,8 +206,16 @@ const Vission = () => {
                       </div>
 
                       <div className="col-md-12 ">
-                      <textarea id="editor1" name="description">{formData.content && validator.unescape(formData.content)}</textarea>
-
+                        {/* JoditEditor component */}
+                        <label className='font-weight-semibold'>Description</label>
+                        <JoditEditor
+                          value={formData?.content || ''}
+                          config={config}
+                          onChange={(newContent) => setFormData((prev) => ({
+                            ...prev,
+                            content: newContent
+                          }))}
+                        />
                       </div>
                     </div>
                   </div>

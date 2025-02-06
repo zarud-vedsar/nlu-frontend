@@ -10,11 +10,11 @@ import {
 import axios from "axios";
 import {
   PHP_API_URL,
-  FILE_API_URL,
-  CKEDITOR_URL,
+  FILE_API_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
+import JoditEditor from "jodit-react"; // Import Jodit editor
 
 function AddPage() {
   const initialForm = {
@@ -37,60 +37,15 @@ function AddPage() {
   const [previewPdf, setPreviewPdf] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
   const [pageType, setpageType] = useState("");
-  const [html, sethtml] = useState("");
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace("editor1", {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances["editor1"].on("change", () => {
-        const data = window.CKEDITOR.instances["editor1"].getData();
-        setFormData((prevState) => ({
-          ...prevState,
-          page_content: data, // Update description in formData
-        }));
-      });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-      if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
-        window.CKEDITOR.instances["editor1"].destroy();
-      }
-    };
-  }, []);
-  const decodeHtml = async (html) => {
-    try {
-      const response = await axios.post(
-        `${PHP_API_URL}/page.php`,
-        {
-          data: "decodeData",
-          html,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      sethtml(response.data);
-      // eslint-disable-next-line no-unused-vars
-    } catch (error) {
-      /* empty */
-    }
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
   };
   const updatfetchPageById = async (pageid) => {
     if (Number.isInteger(parseInt(pageid, 10)) && parseInt(pageid, 10) > 0) {
@@ -116,7 +71,7 @@ function AddPage() {
             sidebar: response.data.data[0].sidebar,
             image_file: response.data.data[0].image_file,
             pdf_file: response.data.data[0].pdf_file,
-            page_content: response.data.data[0].page_content,
+            page_content: validator.unescape(response.data.data[0]?.page_content || ""),
             meta_title: response.data.data[0].meta_title,
             meta_content: response.data.data[0].meta_content,
             meta_keywords: response.data.data[0].meta_keywords,
@@ -124,13 +79,6 @@ function AddPage() {
             unlink_pdf_file: response.data.data[0].pdf_file,
           }));
           setpageType(response.data.data[0].page_type);
-          if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
-            window.CKEDITOR.instances["editor1"].setData(
-              validator.unescape(
-                validator.unescape(response.data?.data[0]?.page_content)
-              ) // Ensure content is unescaped properly
-            );
-          }
           if (response.data.data[0].image_file) {
             setPreviewImage(
               `${FILE_API_URL}/${response.data.data[0].image_file}`
@@ -153,32 +101,13 @@ function AddPage() {
       }
     }
   };
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     console.log(window.CKEDITOR && window.CKEDITOR.instances["editor1"]);
-  //     if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
-  //       window.CKEDITOR.instances["editor1"].setData(
-  //         validator.unescape(validator.unescape(formData?.page_content))
-  //       );
-  //       clearInterval(interval);
-  //     }
-  //   }, 500);
-
-  //   return () => clearInterval(interval);
-  // }, [formData?.page_content]);
-
   useEffect(() => {
-    if (pageid) {
-      updatfetchPageById(pageid);
-    }
+    if (pageid) updatfetchPageById(pageid);
   }, [pageid]);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const { id } = e.target;
-
     if (!file) return;
-
     if (id === "image_file") {
       if (file.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(file));
@@ -330,9 +259,9 @@ function AddPage() {
                           value={
                             pageType
                               ? {
-                                  value: pageType,
-                                  label: capitalizeFirstLetter(pageType),
-                                }
+                                value: pageType,
+                                label: capitalizeFirstLetter(pageType),
+                              }
                               : null
                           }
                           onChange={(selected) => {
@@ -345,9 +274,8 @@ function AddPage() {
                         />
                       </div>
                       <div
-                        className={`form-group col-md-12 ${
-                          formData.page_type === "image" ? "" : "d-none"
-                        }`}
+                        className={`form-group col-md-12 ${formData.page_type === "image" ? "" : "d-none"
+                          }`}
                       >
                         <label>Choose Image</label>
                         <input
@@ -367,9 +295,8 @@ function AddPage() {
                         )}
                       </div>
                       <div
-                        className={`form-group col-md-12 ${
-                          formData.page_type === "pdf" ? "" : "d-none"
-                        }`}
+                        className={`form-group col-md-12 ${formData.page_type === "pdf" ? "" : "d-none"
+                          }`}
                       >
                         <label>Choose PDF</label>
                         <input
@@ -389,14 +316,19 @@ function AddPage() {
                         )}
                       </div>
                       <div
-                        className={`col-md-12 ${
-                          formData.page_type !== "pdf" ? "" : "d-none"
-                        }`}
+                        className={`col-md-12 ${formData.page_type !== "pdf" ? "" : "d-none"
+                          }`}
                       >
-                        <textarea id="editor1" name="description">
-                          {formData.page_content &&
-                            validator.unescape(formData.page_content)}
-                        </textarea>
+                        {/* JoditEditor component */}
+                        <label className='font-weight-semibold'>Description</label>
+                        <JoditEditor
+                          value={formData?.page_content || ''}
+                          config={config}
+                          onChange={(newContent) => setFormData((prev) => ({
+                            ...prev,
+                            page_content: newContent
+                          }))}
+                        />
                       </div>
                     </div>
                   </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import AOS from "aos";
 import { NODE_API_URL } from "../../Helper/Constant";
 import axios from "axios";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -7,6 +8,13 @@ import placeholder from "../assets/Images/placeholder-image.jpg";
 import validator from 'validator';
 const Courses = () => {
   const [course, setCourse] = useState([]);
+    useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease-out-cubic",
+      });
+    }, []);
+  
   useEffect(() => {
 
     const fetchData = async () => {
@@ -26,7 +34,7 @@ const Courses = () => {
     fetchData();
   }, []);
   return (
-    <section className="section" style={{ background: '#C6D6DC' }}>
+    <section className="section" style={{ background: '#C6D6DC' }} data-aos="fade-up" data-aos-delay="100" >
       <div className='container'>
         <div className="row">
           <div className='col-md-12 mb-3 text-center'>

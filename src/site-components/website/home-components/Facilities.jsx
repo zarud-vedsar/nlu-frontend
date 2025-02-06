@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
 import classroom from "../assets/Images/classroom.png";
 import lib from "../assets/Images/library-64.png";
 import judge from "../assets/Images/judge-64.png";
@@ -9,11 +10,18 @@ import research from "../assets/Images/research-64.png";
 import dance from "../assets/Images/dance-64.png";
 
 const Facilities = () => {
+    useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease-out-cubic",
+      });
+    }, []);
+  
   return (
     <>
       <section className="facilities-sec">
         <div className="container id-position-relative">
-          <div className="row">
+          <div className="row" data-aos="fade-up" data-aos-delay="100">
             <div className="col-md-12 mb-3 text-center">
               <h2 className="heading-primary2">Our Facilities</h2>
               <div className="heading-divider"></div>
@@ -22,7 +30,7 @@ const Facilities = () => {
           <div className="faccontainer">
             <div className="facitems-sec">
               <ul className="facitems">
-                <li className="facitem">
+                <li className="facitem" data-aos="fade-right" data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={classroom} />
@@ -35,7 +43,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem">
+                <li className="facitem" data-aos="fade-up" data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={lib} />
@@ -49,7 +57,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem">
+                <li className="facitem" data-aos="fade-up" data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={judge} />
@@ -63,7 +71,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem">
+                <li className="facitem" data-aos="fade-left" data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={hostel} />
@@ -74,7 +82,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem">
+                <li className="facitem" data-aos="fade-up" data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={football} />
@@ -85,7 +93,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem">
+                <li className="facitem" data-aos="fade-up" data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={wifi} />
@@ -99,7 +107,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem">
+                <li className="facitem" data-aos="fade-up" data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={research} />
@@ -110,7 +118,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem">
+                <li className="facitem" data-aos="fade-left" data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={dance} />

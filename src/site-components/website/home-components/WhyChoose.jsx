@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
 import BgImg from '../assets/Images/whychoosebg.png';
 import AcademicPng from '../assets/Images/academic.jpg'
 import Distinguished from '../assets/Images/distinguished.jpg'
 import Holistic from '../assets/Images/holistic.png'
 const WhyChoose = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
   return (
     <>
-      <section className="section bg-white"
-      >
+      <section className="section bg-white">
         <div className="container">
           <div className="row">
             <div className='col-md-12 mb-3 text-center'>
@@ -18,7 +25,7 @@ const WhyChoose = () => {
 
           <div className="row text-center mt-3">
             {/* Column 1: Industry Leaders */}
-            <div className="col-md-4">
+            <div className="col-md-4" data-aos="fade-right" data-aos-delay="100">
               <div className="image-box-wrapper">
                 <img
                   className="img-fluid"
@@ -31,7 +38,7 @@ const WhyChoose = () => {
               </div>
             </div>
             {/* Column 2: Learn Courses Online */}
-            <div className="col-md-4">
+            <div className="col-md-4" data-aos="fade-up" data-aos-delay="100">
               <div className="image-box-wrapper">
                 <img
                   className="img-fluid"
@@ -44,7 +51,7 @@ const WhyChoose = () => {
               </div>
             </div>
             {/* Column 3: Scholarship Facility */}
-            <div className="col-md-4">
+            <div className="col-md-4" data-aos="fade-left" data-aos-delay="100">
               <div className="image-box-wrapper">
                 <img
                   className="img-fluid"

@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import AOS from "aos";
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import { FaChevronRight } from "react-icons/fa";
@@ -16,6 +17,13 @@ import P10 from '../assets/Images/keynote/p10.jpg';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 const KeyNote = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
   const sliderRef = useRef(null);
 
   // Define an array of keynote data
@@ -134,8 +142,7 @@ const KeyNote = () => {
   return (
     <div
       className="latest-area section-padding-20 kn-position-realative"
-      style={{ background: "#F2F2F2" }}
-    >
+      style={{ background: "#F2F2F2" }} data-aos="fade-up" data-aos-delay="100">
       <div className="container">
         <div className="row">
           <div className="col-md-12 mb-3 text-center">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import AOS from "aos";
 import axios from "axios";
-import { PHP_API_URL, NODE_API_URL,FILE_API_URL } from "../../Helper/Constant.jsx";
+import { PHP_API_URL, NODE_API_URL, FILE_API_URL } from "../../Helper/Constant.jsx";
 import ImageProfile from '../assets/Images/profile-img.jpg';
 import { capitalizeEachLetter } from "../../Helper/HelperFunction.jsx";
 import { Link } from "react-router-dom";
@@ -11,13 +11,13 @@ import Authority from "../assets/Images/authority.jpg";
 import Slider from 'react-slick';
 
 const Message = () => {
-    useEffect(() => {
-      AOS.init({
-        duration: 700,
-        easing: "ease-out-cubic",
-      });
-    }, []);
-  
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
   const [messageData, setMessageData] = useState([]);
   const [decodedMessages, setDecodedMessages] = useState({});
   const sliderRef = useRef(null);
@@ -115,8 +115,8 @@ const Message = () => {
 
   return (
     <>
-      <section className="vicemsgsec">
-        <div className="container" data-aos="fade-up" data-aos-delay="80">
+      <section className="vicemsgsec" data-aos="fade-up" data-aos-delay="100">
+        <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-10">
               <div className="vicemsgsec-bx">

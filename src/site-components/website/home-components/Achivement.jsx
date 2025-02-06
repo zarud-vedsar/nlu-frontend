@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import AOS from "aos";
 import { NODE_API_URL } from "../../Helper/Constant";
 import { dataFetchingPost } from "../../Helper/HelperFunction";
 import validator from "validator";
@@ -12,6 +13,12 @@ import { Link } from "react-router-dom";
 const Achivement = () => {
   const sliderRef = useRef(null);
   const [data, setData] = useState([]);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
 
   const fetchAchivement = async () => {
     try {
@@ -75,7 +82,7 @@ const Achivement = () => {
   return (
     <>
       <section className="achivement">
-        <div className="container id-position-relative">
+        <div className="container id-position-relative" data-aos="fade-up" data-aos-delay="100">
           <div className="row">
             <div className="col-md-12 mb-3 text-center">
               <h2 className="heading-primary2">Our Achievements</h2>

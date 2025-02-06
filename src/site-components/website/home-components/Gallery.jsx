@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import AOS from "aos";
 import Slider from 'react-slick';
 import { FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 import Img2 from '../assets/Images/img-2.jpg';
@@ -29,6 +30,12 @@ import lgPager from "lightgallery/plugins/pager";
 const Gallery = () => {
   const sliderRef = useRef(null);
   const [image, setImage] = useState([]);
+    useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease-out-cubic",
+      });
+    }, []);
 
   const sliderSettings = {
     infinite: true,
@@ -80,7 +87,7 @@ const Gallery = () => {
     getGallery()
   }, [])
   return (
-    <div className="latest-area section-padding-30 kn-position-realative" >
+    <div className="latest-area section-padding-30 kn-position-realative" data-aos="fade-up" data-aos-delay="100">
       <div className="container">
         <div className="row">
           <div className="col-md-12">

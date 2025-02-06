@@ -6,13 +6,14 @@ import {
 } from "../../../site-components/Helper/HelperFunction";
 import {
   NODE_API_URL,
-  CKEDITOR_URL,
+ 
 } from "../../../site-components/Helper/Constant";
 import validator from "validator";
 import { toast } from "react-toastify";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import Swal from "sweetalert2";
+import JoditEditor from "jodit-react"; // Import Jodit editor
 
 function AddExam() {
   const location = useLocation();
@@ -44,61 +45,17 @@ function AddExam() {
       },
     ],
   });
+
+
   const [isSubmit, setIsSubmit] = useState(false);
   const [isrefresh, setisrefresh] = useState(false);
 
-  const editorsInitialized = useRef([]); // Ref to track CKEditor initialization for each section
-
-  const initializeCKEditors = () => {
-    if (!window.CKEDITOR) {
-      console.error("CKEDITOR is not defined.");
-      return;
-    }
-
-    questionForm.section.forEach((_, index) => {
-      const editorId = `editor${index}`;
-      if (!editorsInitialized.current.includes(editorId)) {
-        window.CKEDITOR.replace(editorId, { versionCheck: false });
-        window.CKEDITOR.instances[editorId].on("change", () => {
-          const data = window.CKEDITOR.instances[editorId].getData();
-          setQuestionForm((prev) => {
-            const updatedSections = [...prev.section];
-            updatedSections[index].question = data;
-            return { ...prev, section: updatedSections };
-          });
-        });
-        editorsInitialized.current.push(editorId); // Track that this editor has been initialized
-      }
-    });
+  const config = {
+    readonly: false, // set to true if you want readonly mode
   };
 
-  useEffect(() => {
-    const loadCKEditorScript = () => {
-      if (!document.querySelector(`script[src="${CKEDITOR_URL}"]`)) {
-        const script = document.createElement("script");
-        script.src = CKEDITOR_URL;
-        script.async = true;
-        script.onload = () => {
-          initializeCKEditors();
-        };
-        document.body.appendChild(script);
-      } else if (window.CKEDITOR && editorsInitialized.current.length === 0) {
-        initializeCKEditors();
-      }
-    };
 
-    loadCKEditorScript();
-
-    return () => {
-      questionForm.section.forEach((_, index) => {
-        const editorId = `editor${index}`;
-        if (window.CKEDITOR.instances[editorId]) {
-          window.CKEDITOR.instances[editorId].destroy();
-        }
-      });
-      editorsInitialized.current = []; // Reset editorsInitialized list
-    };
-  }, [questionForm.section.length]); // Trigger initialization only when section length changes
+ 
 
   // Fetch and set the session list
   const fetchSavedQuestion = async () => {
@@ -129,19 +86,7 @@ function AddExam() {
       console.error("Error fetching saved questions", error);
     }
   };
-  useEffect(() => {
-    questionForm.section.forEach((item, index) => {
-      const editorId = `editor${index}`;
-      const editor = window.CKEDITOR?.instances[editorId];
-
-      if (editor) {
-        const unescapedContent = validator.unescape(item.question || "");
-        editor.setData(unescapedContent); // Set the unescaped content to CKEditor
-      } else {
-        console.warn(`CKEditor instance for ${editorId} is not initialized.`);
-      }
-    });
-  }, [isrefresh]);
+  
   const fetchDataForUpdate = useCallback(async (id) => {
     if (!id || parseInt(id, 10) < 1) {
       toast.error("Invalid exam ID");
@@ -284,11 +229,21 @@ function AddExam() {
                       <label className="font-weight-semibold">
                         Section {item.title}
                       </label>
-                      <textarea id={`editor${index}`} name="instruction">
-                        {validator.unescape(item.question || "")}
-                      </textarea>
+                      {console.log(item)}
+                      <JoditEditor
+                      value={item?.question || ''}
+                      config={config}
+
+                      onBlur={(newContent) => {
+                        const updatedQuestionForm = { ...questionForm };
+                        updatedQuestionForm.section[index].question = newContent;
+                        setQuestionForm(updatedQuestionForm);
+                      }}
+                    />                    
+                     
                     </div>
                   ))}
+                 
                   <div className="col-md-12 col-12">
                     <button
                       className="btn btn-dark d-flex justify-content-center align-items-center"

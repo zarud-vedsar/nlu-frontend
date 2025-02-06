@@ -311,12 +311,12 @@ const AddBook = () => {
     fileInputRef.current.click();
   };
 
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       des: newContent,
     }));
-  }, []);
+  };
   return (
     <>
       <div className="page-container ">
@@ -657,7 +657,7 @@ const AddBook = () => {
                         <JoditEditor
                           value={formData?.des || ""}
                           config={config}
-                          onChange={handleEditorChange}
+                          onBlur={handleEditorChange}
                         />
                       </div>
                       <div className="col-md-12 me-auto d-flex justify-content-between align-items-center">

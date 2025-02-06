@@ -195,12 +195,12 @@ function AddPage() {
   const capitalizeFirstLetter = (string) =>
     string.charAt(0).toUpperCase() + string.slice(1);
 
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       page_content: newContent
     }))
-  }, []);
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -330,7 +330,7 @@ function AddPage() {
                         <JoditEditor
                           value={formData?.page_content || ''}
                           config={config}
-                          onChange={handleEditorChange}
+                          onBlur={handleEditorChange}
                         />
                       </div>
                     </div>

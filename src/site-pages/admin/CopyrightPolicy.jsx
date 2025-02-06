@@ -95,8 +95,7 @@ const CopyrightPolicy = () => {
 
   const handleEditorChange = (newContent) => {
     setFormData(newContent)
-  };
-
+  }
   return (
     <div className="page-container">
       <div className="main-content">

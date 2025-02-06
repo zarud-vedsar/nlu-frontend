@@ -8,6 +8,7 @@ import IsStudentoggedIn from "../site-pages/student/IsStudentoggedIn";
 import ProtectedRouteStudent from "../site-pages/student/ProtectedRoute";
 import RouteGaurd from "../site-pages/student/RouteGaurd";
 import Navbar from '../site-pages/student/Navbar';
+import StudentDashboard from "../site-pages/student/StudentDashboard.jsx";
 const lazyLoad = (path) => lazy(() => import(`../site-pages/student/${path}.jsx`));
 
 const lazyLoadPreviousRegistration = (path) =>
@@ -34,6 +35,7 @@ const lazyLoadLibrary = (path) =>
 // Lazy-loaded components
 const components = {
   Index: lazyLoad("Index"),
+  StudentDashboard: lazyLoad("StudentDashboard"),
   Home: lazyLoad("Home"),
   Login: lazyLoad("Login"),
   Forgot: lazyLoad("Forgot"),
@@ -109,6 +111,7 @@ function StudentRoute({ toggleExpand, toggleFolded }) {
           <Route path="/" element={<Navigate to="/student/register" />} />
           <Route path="/register" element={<components.Index />} />
           <Route path="/home" element={<ProtectedRouteStudent element={<components.Home />} />} />
+          <Route path="/dashboard" element={<ProtectedRouteStudent element={<components.StudentDashboard />} />} />
           <Route path="/profile" element={<ProtectedRouteStudent element={<components.Profile />} />} />
           <Route path="/course-selection" element={<ProtectedRouteStudent element={<RouteGaurd element={<components.CourseSelection />} />} />} />
           <Route path="/qualification" element={<ProtectedRouteStudent element={<RouteGaurd element={<components.Qualification />} />} />} />

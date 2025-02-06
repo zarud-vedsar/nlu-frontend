@@ -154,12 +154,12 @@ const MessageForm = () => {
     }
   };
 
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       message: newContent
     }))
-  }, []);
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -252,7 +252,7 @@ const MessageForm = () => {
                     <JoditEditor
                       value={formData?.message || ''}
                       config={config}
-                      onChange={handleEditorChange}
+                      onBlur={handleEditorChange}
                     />
                   </div>
                 </div>

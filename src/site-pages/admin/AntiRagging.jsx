@@ -92,9 +92,9 @@ const AntiRagging = () => {
     }
   };
 
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData(newContent);
-  }, []);
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -134,7 +134,7 @@ const AntiRagging = () => {
                     <JoditEditor
                       value={formData || ""}
                       config={config}
-                      onChange={handleEditorChange}
+                      onBlur={handleEditorChange}
                     />
                   </div>
                 </div>

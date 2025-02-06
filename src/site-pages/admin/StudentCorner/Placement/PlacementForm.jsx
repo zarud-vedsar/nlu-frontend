@@ -1,51 +1,25 @@
 
 
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL,CKEDITOR_URL } from "../../../../site-components/Helper/Constant";
-import { toast,  } from "react-toastify";
+import { PHP_API_URL, CKEDITOR_URL } from "../../../../site-components/Helper/Constant";
+import { toast, } from "react-toastify";
 import { useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
-
-
+import JoditEditor from "jodit-react"; // Import Jodit editor
 const AddPlacementForm = () => {
   const { id } = useParams();
 
   const [errorKey, setErrorKey] = useState();
   const [errorMessage, setErrorMessage] = useState();
-  const [html, sethtml] = useState("");
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
-
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData((prevState) => ({
-                ...prevState,
-                description: data, // Update description in formData
-            }));
-        });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
-    };
-}, []);
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
 
   const initialization = {
     data: "savejobpost",
@@ -64,34 +38,15 @@ const AddPlacementForm = () => {
     description: "",
   };
   const [formData, setFormData] = useState(initialization);
-  
+
   useEffect(() => {
     const loadData = async () => {
       if (id) {
         getPlacementDetail();
       }
     };
-
     loadData();
   }, []);
-
-  const decodeHtml = async (html) => {
-    try {
-      const response = await axios.post(
-        `${PHP_API_URL}/page.php`,
-        {
-          data: "decodeData",
-          html,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      sethtml(response.data);
-    } catch (error) {}
-  };
 
   const getPlacementDetail = async () => {
     try {
@@ -122,25 +77,15 @@ const AddPlacementForm = () => {
         education_level: result?.data?.data[0]?.education_level,
         salary_starting: result?.data?.data[0]?.salary_starting,
         salary_to: result?.data?.data[0]?.salary_to,
-        description: result?.data?.data[0]?.description,
+        description: validator.unescape(result?.data?.data[0]?.description || ""),
       };
       setFormData((prev) => ({ ...prev, ...updatedFormData }));
-
-      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.instances['editor1'].setData(
-            validator.unescape(validator.unescape(result?.data?.data[0].description)) // Ensure content is unescaped properly
-        );
-    }
-
     } catch (error) {
-      console.log(error);
-    } finally {
     }
   };
 
   const handleChange = async (e) => {
-    const { name, value, type } = e.target;
-
+    const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -253,25 +198,27 @@ const AddPlacementForm = () => {
             "An error occurred. Please check your connection or try again."
           );
         }
-      } finally {
       }
     }
   };
-
-  const fileInputRef = useRef(null);
-
+  const handleEditorChange = (newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      description: newContent,
+    }));
+  }
   return (
     <div className="page-container">
       <div className="main-content">
         <div className="container-fluid">
           <div className="">
-          <nav className="breadcrumb breadcrumb-dash">
-                <a href="./" className="breadcrumb-item">
-                  Student Corner
-                </a>
+            <nav className="breadcrumb breadcrumb-dash">
+              <a href="./" className="breadcrumb-item">
+                Student Corner
+              </a>
 
-                <span className="breadcrumb-item active">Placement</span>
-              </nav>
+              <span className="breadcrumb-item active">Placement</span>
+            </nav>
           </div>
           <div className="card bg-transparent mb-2">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
@@ -296,7 +243,7 @@ const AddPlacementForm = () => {
               <form onSubmit={handleSubmit}>
                 <div className="modal-body">
                   <div className="row">
-                    
+
 
                     <div className="form-group col-md-4">
                       <label
@@ -317,7 +264,7 @@ const AddPlacementForm = () => {
                       )}
                     </div>
 
-                   
+
 
                     <div className="form-group col-md-4">
                       <label className="font-weight-semibold" htmlFor="vacancy">
@@ -335,7 +282,7 @@ const AddPlacementForm = () => {
                       )}
                     </div>
 
-                    
+
 
                     <div className="form-group col-md-4">
                       <label
@@ -499,13 +446,17 @@ const AddPlacementForm = () => {
                         <span className="text-danger">{errorMessage}</span>
                       )}
                     </div>
-                 
+
 
                     <div className="form-group col-md-12">
-                    <div className='col-md-12 px-0'>
-                                        <label className='font-weight-semibold'>Description</label>
-                                        <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
-                                    </div>
+                      <div className='col-md-12 px-0'>
+                        <label className='font-weight-semibold'>Description</label>
+                        <JoditEditor
+                          value={formData?.description ? validator.unescape(formData.description) : ""}
+                          config={config}
+                          onBlur={handleEditorChange}
+                        />
+                      </div>
                     </div>
 
                     <div className="col-md-12 me-auto d-flex justify-content-between align-items-center">

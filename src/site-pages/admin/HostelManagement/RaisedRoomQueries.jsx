@@ -13,11 +13,9 @@ import axios from "axios";
 import { FormField } from "../../../site-components/admin/assets/FormField";
 import { capitalizeFirstLetter } from "../../../site-components/Helper/HelperFunction";
 import { dataFetchingPost } from "../../../site-components/Helper/HelperFunction";
-import secureLocalStorage from "react-secure-storage";
-import { Modal, Button, Spinner } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import validator from "validator";
 import Select from "react-select";
 
 function MyVerticallyCenteredModal(props) {
@@ -49,11 +47,34 @@ function RaisedRoomQueries() {
   const [courseListing, setCourseListing] = useState([]);
   const [semesterListing, setSemesterListing] = useState([]);
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
+ 
+
+
+const formatDateForMonth = (date) => {
+  return new Intl.DateTimeFormat("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+};
+
+  
+const getFirstDayOfMonth = () => {
+  const now = new Date();
+  return formatDateForMonth(new Date(now.getFullYear(), now.getMonth(), 1));
+};
+
+const getLastDayOfMonth = () => {
+  const now = new Date();
+  return formatDateForMonth(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+};
+
   const [formData, setFormData] = useState({
-    startDate: "",
-    endDate: "",
+    startDate: getFirstDayOfMonth(), // Example: "2025-02-01"
+    endDate: getLastDayOfMonth(), // Example: "2025-02-29"
     studentId: "",
   });
+
 
   const [modalShow, setModalShow] = useState(false);
   const [modalMessage, setModalMessage] = useState();
@@ -71,7 +92,7 @@ function RaisedRoomQueries() {
       const response = await axios.get(
         `${NODE_API_URL}/api/student-detail/get-student`
       );
-      console.log(response);
+      
       if (
         response?.data?.statusCode === 200 &&
         response?.data?.data.length > 0
@@ -82,7 +103,7 @@ function RaisedRoomQueries() {
         setStudentListing([]);
       }
     } catch (error) {
-      console.log(error);
+      
       setStudentListing([]);
     }
   };
@@ -115,7 +136,7 @@ function RaisedRoomQueries() {
 
   const handleSubmit = async (e = false) => {
     if (e) e.preventDefault();
-    console.log(formData);
+    
     setIsFetching(true);
     if (!formData.startDate) {
       errorMsg("startDate", "Start Date is required.");
@@ -161,6 +182,7 @@ function RaisedRoomQueries() {
     courseListDropdown();
     fetchSemesterListing();
     fetchStudent();
+    handleSubmit();
   }, []);
 
   const courseListDropdown = async () => {
@@ -259,11 +281,13 @@ function RaisedRoomQueries() {
                     type="date"
                     value={formData.startDate}
                     column="col-md-4 col-lg-4"
-                    onChange={(e) =>
+                    onChange={(e) =>{
+                      
                       setFormData((prev) => ({
                         ...prev,
                         startDate: e.target.value,
                       }))
+                    }
                     }
                     required
                   />
@@ -287,7 +311,7 @@ function RaisedRoomQueries() {
 
                   <div className="col-md-4 col-12 form-group">
                     <label className="font-weight-semibold">
-                      Student <span className="text-danger">*</span>
+                      Student 
                     </label>
                     <Select
                       options={

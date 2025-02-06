@@ -5,7 +5,6 @@ Learning Management
 --------------------
 -> faculty department: In recycle Bin remove all other action except restore .
 -> Department: In recycle Bin remove all other action except restore .
--> Session wise semester list: by default the selected session data is to be viewed
 =================================================================================
 
 Inventory
@@ -23,8 +22,6 @@ mail communication
  Hostel Management
  -----------------
  -> Hostle room addition: occupied bed is unable to set to 0
- -> Raised room querry: by default no data is visible
- -> Student filter in room querry is optional but is marked with *
  -> Room Update : Unable to update room detail
  -> Room Addition: Occupied Bed can be set greater then available beds
  

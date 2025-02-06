@@ -212,13 +212,12 @@ const AddInternshipForm = () => {
     }
   };
 
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       description: newContent,
     }));
-  }, []);
-
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -468,7 +467,7 @@ const AddInternshipForm = () => {
                         <JoditEditor
                           value={formData?.description ? validator.unescape(formData.description) : ""}
                           config={config}
-                          onChange={handleEditorChange}
+                          onBlur={handleEditorChange}
                         />
                       </div>
                     </div>

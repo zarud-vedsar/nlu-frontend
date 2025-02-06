@@ -191,12 +191,12 @@ function AddAchievement() {
       setIsSubmit(false);
     }
   };
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       description: newContent
     }))
-  }, []);
+  };
   return (
     <>
       <div className="page-container">
@@ -280,8 +280,8 @@ function AddAchievement() {
                       <JoditEditor
                         value={formData?.description || ''}
                         config={config}
-                        onChange={handleEditorChange}
-                        
+                        onBlur={handleEditorChange}
+
                       />
                     </div>
                     <div className="col-md-12 col-lg-12 col-12">

@@ -356,12 +356,12 @@ function AddExam() {
       setIsSubmit(false);
     }
   };
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       instruction: newContent,
     }));
-  }, []);
+  }
   return (
     <>
       {/* HTML Skeleton of Doom */}
@@ -710,7 +710,7 @@ function AddExam() {
                       <JoditEditor
                         value={formData?.instruction ? validator.unescape(formData.instruction) : ""}
                         config={config}
-                        onChange={handleEditorChange}
+                        onBlur={handleEditorChange}
                       />
                     </div>
                     <div className="col-md-12 col-12">

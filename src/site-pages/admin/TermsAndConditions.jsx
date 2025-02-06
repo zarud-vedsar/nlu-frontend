@@ -31,7 +31,7 @@ const TermsAndConditions = () => {
       if (response.data.status === 200) {
         setFormData(validator.unescape(response.data?.data[0]?.content || ""));
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   useEffect(() => {
     getTermsAndConditionsData();
@@ -78,9 +78,9 @@ const TermsAndConditions = () => {
     }
   };
 
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData(newContent);
-  }, []);
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -124,7 +124,7 @@ const TermsAndConditions = () => {
                         <JoditEditor
                           value={formData || ""}
                           config={config}
-                          onChange={handleEditorChange}
+                          onBlur={handleEditorChange}
                         />
                       </div>
                     </div>

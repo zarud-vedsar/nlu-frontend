@@ -98,10 +98,9 @@ const PrivacyPolicy = () => {
     }
   };
 
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData(newContent)
-  }, []);
-
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -138,7 +137,7 @@ const PrivacyPolicy = () => {
                     <JoditEditor
                       value={formData}
                       config={config}
-                      onChange={handleEditorChange}
+                      onBlur={handleEditorChange}
                     />
                   </div>
                 </div>

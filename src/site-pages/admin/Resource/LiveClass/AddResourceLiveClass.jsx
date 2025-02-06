@@ -38,12 +38,12 @@ function AddResourceLiveClass() {
     const config = {
         readonly: false, // set to true if you want readonly mode
     };
-    const handleEditorChange = useCallback((newContent) => {
+    const handleEditorChange = (newContent) => {
         setFormData((prev) => ({
             ...prev,
             description: newContent,
         }));
-    }, []);
+    }
     const courseListDropdown = async () => {
         try {
             const response = await axios.get(`${NODE_API_URL}/api/course/dropdown`);
@@ -560,7 +560,7 @@ function AddResourceLiveClass() {
                                                     <JoditEditor
                                                         value={formData?.description ? validator.unescape(formData.description) : ""}
                                                         config={config}
-                                                        onChange={handleEditorChange}
+                                                        onBlur={handleEditorChange}
                                                     />
                                                 </div>
                                                 <div className="col-md-12 col-lg-12 col-12">

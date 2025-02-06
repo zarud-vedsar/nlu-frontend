@@ -279,12 +279,12 @@ function TopicAddNew() {
       }
     }
   };
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       description: newContent,
     }));
-  }, []);
+  }
   return (
     <>
       <div className="page-container">
@@ -497,7 +497,7 @@ function TopicAddNew() {
                           <JoditEditor
                             value={formData?.description ? validator.unescape(formData.description) : ""}
                             config={config}
-                            onChange={handleEditorChange}
+                            onBlur={handleEditorChange}
                           />
                         </div>
 

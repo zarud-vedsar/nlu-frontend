@@ -143,12 +143,12 @@ const Vission = () => {
     }
   };
 
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       content: newContent
     }))
-  }, []);
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -218,7 +218,7 @@ const Vission = () => {
                         <JoditEditor
                           value={formData?.content || ''}
                           config={config}
-                          onChange={handleEditorChange}
+                          onBlur={handleEditorChange}
                         />
                       </div>
                     </div>

@@ -39,12 +39,12 @@ function AddResourceVideo() {
     const config = {
         readonly: false, // set to true if you want readonly mode
     };
-    const handleEditorChange = useCallback((newContent) => {
+    const handleEditorChange = (newContent) => {
         setFormData((prev) => ({
             ...prev,
             description: newContent,
         }));
-    }, []);
+    }
     const fetchTopicBasedOnCSS = async (courseid, semesterid, subjectid) => {
         try {
             const response = await axios.post(`${NODE_API_URL}/api/topic/fetch`, {
@@ -562,7 +562,7 @@ function AddResourceVideo() {
                                                     <JoditEditor
                                                         value={formData?.description ? validator.unescape(formData.description) : ""}
                                                         config={config}
-                                                        onChange={handleEditorChange}
+                                                        onBlur={handleEditorChange}
                                                     />
 
                                                 </div>

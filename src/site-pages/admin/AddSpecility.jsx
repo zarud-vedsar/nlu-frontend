@@ -159,12 +159,12 @@ const AddSpeciality = () => {
     }
   };
 
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       description: newContent
     }))
-  }, []);
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -236,7 +236,7 @@ const AddSpeciality = () => {
                     <JoditEditor
                       value={formData?.description || ''}
                       config={config}
-                      onChange={handleEditorChange}
+                      onBlur={handleEditorChange}
                     />
                   </div>
                 </div>

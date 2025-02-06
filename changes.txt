@@ -30,3 +30,9 @@ Student Registration
 -------------------
 -> Student Registration step 1: make Whats app no required field
 
+Student panel
+-> current detail profile detai modal
+-> student dashboard 
+
+
+Assignment session wise in all occurances 

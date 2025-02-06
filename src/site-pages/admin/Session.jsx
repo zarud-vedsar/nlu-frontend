@@ -100,32 +100,7 @@ function Session() {
         setToggleShow(!toggleShow);
         setFormData(iniatialForm)
     };
-    const handleToggleStatus = async (dbId) => {
-        if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
-        try {
-            const loguserid = secureLocalStorage.getItem('login_id');
-            const login_type = secureLocalStorage.getItem('loginType');
-            const response = await dataFetchingPatch(`${NODE_API_URL}/api/session/status/${dbId}/${loguserid}/${login_type}`);
-            if (response?.statusCode === 200) {
-                toast.success(response.message);
-                setTitleError('');
-                fetchList(0);
-            } else {
-                toast.error("An error occurred. Please try again.");
-            }
-        } catch (error) {
-            const statusCode = error.response?.data?.statusCode;
-
-            if (statusCode === 400 ||  statusCode === 401 || statusCode === 500) {
-                setTitleError(error.response.message);
-                toast.error(error.response.message || "A server error occurred.");
-            } else {
-                toast.error(
-                    "An error occurred. Please check your connection or try again."
-                );
-            }
-        }
-    }
+    
        const updateDataFetch = async (dbId) => {
         if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
         try {
@@ -231,10 +206,7 @@ function Session() {
                                             header="Action"
                                             body={(rowData) => (
                                                 <div className="d-flex">
-                                                    <div className="switch mt-1 w-auto">
-                                                        <input type="checkbox" checked={rowData.status == 1 ? true : false} onChange={() => handleToggleStatus(rowData.id)} className="facultydepartment-checkbox" id={`switch${rowData.id}`} />
-                                                        <label className="mt-0" htmlFor={`switch${rowData.id}`}></label>
-                                                    </div>
+                                                    
                                                     <div onClick={() => updateDataFetch(rowData.id)} className="avatar avatar-icon avatar-md avatar-orange">
                                                         <i className="fas fa-edit"></i>
                                                     </div>

@@ -430,7 +430,7 @@ const FacultyDashboard = () => {
                             ))
                           ) : (
                             <tr>
-                              <td colSpan="8">No upcoming exams available</td>
+                              <td colSpan="8">No pending assignment</td>
                             </tr>
                           )}
                         </tbody>

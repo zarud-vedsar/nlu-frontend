@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AOS from "aos";
 import { dataFetchingPost } from "../../site-components/Helper/HelperFunction";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
@@ -10,6 +11,12 @@ const Speciality = () => {
   const [speciality, setSpeciality] = useState([]);
   const navigate = useNavigate();
   const [decodedDescriptions, setDecodedDescriptions] = useState({});
+    useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease-out-cubic",
+      });
+    }, []);
 
   const decodeHtml = async (html, id) => {
     try {
@@ -67,7 +74,7 @@ const Speciality = () => {
 
   return (<>
     {speciality.length > 0 && <div className="section-fac">
-      <div className="container">
+      <div className="container" data-aos="fade-up" data-aos-delay="100">
         <div className="row">
           <div className="col-md-12">
             <div className='col-md-12 mb-3 text-center'>

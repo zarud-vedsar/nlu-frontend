@@ -3,7 +3,10 @@ import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL, CKEDITOR_URL } from "../../site-components/Helper/Constant";
+import {
+  PHP_API_URL,
+  CKEDITOR_URL,
+} from "../../site-components/Helper/Constant";
 import Select from "react-select";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
@@ -17,10 +20,7 @@ const JobRecruitmentForm = () => {
   const [category, setCategory] = useState([]);
   const [jobTypes, setJobTypes] = useState([]);
   const [minExperienceList, setMinExperienceList] = useState([]);
-  const [selectJobType, setSelectJobType] = useState("");
-  const [selectMinExperience, setSelectMinExperience] = useState("");
   const [loading, setLoading] = useState();
-  const [selectCategory, setSelectCategory] = useState("");
   const initialization = {
     data: "savejobpost",
     job_category: "",
@@ -45,14 +45,13 @@ const JobRecruitmentForm = () => {
     readonly: false, // set to true if you want readonly mode
   };
   const updateCategory = (e) => {
-    setSelectCategory(e);
     setFormData((prevState) => ({
       ...prevState,
       job_category: e.value,
     }));
   };
   const updateJobType = (e) => {
-    setSelectJobType(e);
+
     setFormData((prevState) => ({
       ...prevState,
       job_type: e.value,
@@ -60,7 +59,7 @@ const JobRecruitmentForm = () => {
   };
 
   const updateMinExp = (e) => {
-    setSelectMinExperience(e);
+
     setFormData((prevState) => ({
       ...prevState,
       job_experience: e.value,
@@ -199,20 +198,7 @@ const JobRecruitmentForm = () => {
         description: validator.unescape(result?.data?.data[0]?.description || ""),
       };
       setFormData((prev) => ({ ...prev, ...updatedFormData }));
-      const jobtype = jobTypes?.find((job) => job.value === result[0].job_type);
-      if (jobtype) {
-        setSelectJobType(jobtype);
-      }
-      const cat = category?.find((cat) => cat.value === result[0].category);
-      if (cat) {
-        setSelectCategory(cat);
-      }
-      const minexp = minExperienceList?.find(
-        (minexp) => minexp.value === result[0].job_experience
-      );
-      if (minexp) {
-        setMinExperienceList(minexp);
-      }
+
 
     } catch (error) {
       console.log(error);
@@ -325,9 +311,6 @@ const JobRecruitmentForm = () => {
         if (response.data?.status === 200 || response.data?.status === 201) {
           toast.success(response.data.msg);
           setFormData(initialization);
-          setSelectJobType(null);
-          setSelectMinExperience(null);
-          setSelectCategory(null);
           if (response.data.status === 200) {
             window.history.back();
           }
@@ -396,7 +379,9 @@ const JobRecruitmentForm = () => {
                         Select Category <span className="text-danger">*</span>
                       </label>
                       <Select
-                        value={selectCategory}
+                        value={category?.find(
+                          (cat) => cat?.value == formData?.job_category
+                        )}
                         options={category}
                         onChange={updateCategory}
                       />
@@ -432,10 +417,13 @@ const JobRecruitmentForm = () => {
                       >
                         Job Type <span className="text-danger">*</span>
                       </label>
+
                       <Select
                         options={jobTypes}
+                        value={jobTypes?.find(
+                          (job) => job?.value == formData?.job_type
+                        )}
                         onChange={updateJobType}
-                        value={selectJobType}
                       />
 
                       {errorKey === ".job_type" && (
@@ -468,7 +456,9 @@ const JobRecruitmentForm = () => {
                         <span className="text-danger">*</span>
                       </label>
                       <Select
-                        value={selectMinExperience}
+                        value={minExperienceList?.find(
+                          (ele) => ele.value == formData?.job_experience
+                        )}
                         options={minExperienceList}
                         onChange={updateMinExp}
                       />
@@ -640,17 +630,11 @@ const JobRecruitmentForm = () => {
                       )}
                     </div>
                     <div className="form-group col-md-12">
+
+
                       <div className='col-md-12 px-0'>
-                        {/* JoditEditor component */}
                         <label className='font-weight-semibold'>Description</label>
-                        <JoditEditor
-                          value={formData?.description || ''}
-                          config={config}
-                          onChange={(newContent) => setFormData((prev) => ({
-                            ...prev,
-                            description: newContent
-                          }))}
-                        />
+                        <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
                       </div>
                     </div>
 

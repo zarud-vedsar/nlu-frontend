@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import AOS from "aos";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { NODE_API_URL } from "../../Helper/Constant";
@@ -13,6 +14,12 @@ const NoticeEventPublication = () => {
   const [events, setEvents] = useState([]);
   const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
 
   // API call to fetch notices, events, and publications
   useEffect(() => {
@@ -99,7 +106,7 @@ const NoticeEventPublication = () => {
   return (
     <>
       <section className='public bg-f5'>
-        <div className='container'>
+        <div className='container' data-aos="fade-up" data-aos-delay="50">
           <div className='row'>
             <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
               <h2 className="heading-primary2 m-0">Latest News</h2>
@@ -192,7 +199,7 @@ const NoticeEventPublication = () => {
         </div>
       </section>
       <section className='public bg-white'>
-        <div className='container'>
+        <div className='container' data-aos="fade-up" data-aos-delay="50">
           <div className="row">
             <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
               <h2 className="heading-primary2 m-0">Publications</h2>

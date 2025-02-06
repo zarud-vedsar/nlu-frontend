@@ -9,6 +9,7 @@ import livePng from "../assets/img/livethembnail.jpg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { formatDate } from "../../../site-components/Helper/HelperFunction";
+import validator from 'validator';
 
 const LmsLiveDetails = () => {
   const sid = secureLocalStorage.getItem("studentId");
@@ -145,9 +146,16 @@ const LmsLiveDetails = () => {
                     className="card-img-top"
                   />
                   <div className="card-body pt-3 pb-3">
+                    <div className="d-flex justify-content-between">
                     <h6 className="h6_new font-13">
                       {capitalizeFirstLetter(liveData.title)}
                     </h6>
+                    <Link target="blank" to={liveData.liveUrl}  className="id-live-join-btn">
+                        Join Now  <i className="fas fa-arrow-right"></i>
+                      </Link>
+                      
+                    </div>
+                   
                     <div className="d-flex justify-content-between">
                       <p>Live Date: {formatDate(liveData.liveDate)}</p>
                       <p
@@ -180,15 +188,9 @@ const LmsLiveDetails = () => {
                       <p>End Time: {liveData.endTime}</p>
                     </div>
                     <p>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Dolorem culpa autem commodi minus, consequuntur ipsam!
-                      Architecto, libero accusamus nulla repudiandae quaerat
-                      facere asperiores vero. Nihil consequuntur nobis eos illum
-                      ad.
+                    {liveData?.description ? validator.unescape(liveData?.description) : ""}
                     </p>
-                    <Link target="blank" to={liveData.liveUrl} style={{float:"right"}}>
-                        Join Now  <i className="fas fa-arrow-right"></i>
-                      </Link>
+                   
                   </div>
                 </div>
               </div>
@@ -196,6 +198,18 @@ const LmsLiveDetails = () => {
           </div>
         </div>
       </div>
+      <style jsx>
+        {`
+        .id-live-join-btn{
+            float: right;
+    padding: 5px 10px;
+    background: #8b1709;
+    color: white;
+    border-radius: 5px;
+        }
+         
+        `}
+      </style>
     </>
   );
 };

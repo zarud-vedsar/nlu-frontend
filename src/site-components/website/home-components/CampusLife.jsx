@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
 import { GoArrowUpRight } from "react-icons/go";
 import CampusBg from "../assets/Images/campus-life/cl-1.webp";
 import Hostelbg from "../assets/Images/campus-life/h-life.webp";
@@ -6,11 +7,17 @@ import SportBg from "../assets/Images/campus-life/sport.webp";
 import FacilitiesBg from "../assets/Images/campus-life/facilities.jpg";
 
 const CampusLife = () => {
+    useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease-out-cubic",
+      });
+    }, []);
   return (
     <section className="campus">
       <div className="container">
         <div className="row">
-          <div className="col-lg-4">
+          <div className="col-lg-4" data-aos="fade-right" data-aos-delay="100">
             <div className="campus-life-content-wrapper">
               <h2 className="heading-primary2 mb-0 butler-regular">
                 Campus Life
@@ -36,7 +43,7 @@ const CampusLife = () => {
           </div>
           <div className="col-lg-8">
             <div className="row">
-              <div className="col-lg-6 mb-3">
+              <div className="col-lg-6 mb-3" data-aos="fade-up" data-aos-delay="100">
                 <div className="campus__life--single item_box">
                   <div className="campus__life--single--bg">
                     <img decoding="async" src={Hostelbg} alt="Campus" />
@@ -62,7 +69,7 @@ const CampusLife = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6 mb-3">
+              <div className="col-lg-6 mb-3" data-aos="fade-up" data-aos-delay="100">
                 <div className="campus__life--single item_box">
                   <div className="campus__life--single--bg">
                     <img decoding="async" src={SportBg} alt="Campus" />
@@ -88,7 +95,7 @@ const CampusLife = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6 mb-3">
+              <div className="col-lg-6 mb-3" data-aos="fade-up" data-aos-delay="100">
                 <div className="campus__life--single item_box">
                   <div className="campus__life--single--bg">
                     <img decoding="async" src={FacilitiesBg} alt="Campus" />
@@ -114,7 +121,7 @@ const CampusLife = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-6 mb-3">
+              <div className="col-lg-6 mb-3" data-aos="fade-up" data-aos-delay="100">
                 <div className="campus__life--single item_box">
                   <div className="campus__life--single--bg">
                     <img decoding="async" src={SportBg} alt="Campus" />

@@ -44,7 +44,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
   useEffect(() => {
     fetchList();
 
-    console.log(props?.detail)
     setSendMail(false);
     if (props?.detail) {
       setDetail((prevDetail) => ({
@@ -141,11 +140,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
         toast.error("Exam type is required");
         return setLoading(false);
       }
-
-      if (!detail?.session) {
-        toast.error("Session is required");
-        return setLoading(false);
-      }
     }
     try {
       let formData = {};
@@ -158,6 +152,10 @@ const MyVerticallyCenteredModal = (props = {}) => {
       formData.session = detail?.session;
       formData.exam_type = detail?.exam_type;
       formData.roll_no = detail?.roll_no;
+
+      if (detail?.approved == "1" && !detail?.session) {
+        formData.session = localStorage.getItem("session");
+      }
 
       const response = await axios.post(
         `${NODE_API_URL}/api/course-selection/adminResponse`,
@@ -193,7 +191,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
   };
 
   const handleSubmit = async () => {
-    
     if (detail?.approved == 0) {
       toast.error("Please select application status");
       return;
@@ -306,6 +303,16 @@ const MyVerticallyCenteredModal = (props = {}) => {
                 id="session"
                 onChange={handleSessionChange}
                 options={sessionList}
+                value={
+                  detail?.session
+                    ? sessionList?.find(
+                        (session) => session.value == detail?.session
+                      ) || null
+                    : sessionList?.find(
+                        (session) =>
+                          session.value == localStorage.getItem("session")
+                      ) || null
+                }
               ></Select>
             </div>
           </>
@@ -378,7 +385,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
       <Modal.Footer>
         <div className="mx-auto">
           <Button
-            onClick={props?.close}
+            onClick={()=> { props?.close()}}
             className="btn btn-danger"
             disabled={loading}
           >
@@ -438,7 +445,7 @@ function ViewApplication() {
         `${NODE_API_URL}/api/course-selection/fetchCurrentCourse`,
         formData
       );
-      console.log(response)
+      console.log(response);
       if (response.data?.statusCode === 200) {
         const {
           id,
@@ -457,7 +464,7 @@ function ViewApplication() {
           level,
           roll_no,
           session,
-          exam_type
+          exam_type,
         } = response.data?.data || {};
         setCurrentCourse((prev) => ({
           ...prev,
@@ -465,9 +472,9 @@ function ViewApplication() {
           preview: preview,
           approved: approved,
           level: level,
-          roll_no:roll_no,
-          session:session,
-          exam_type:exam_type,
+          roll_no: roll_no,
+          session: session,
+          exam_type: exam_type,
           coursename: capitalizeFirstLetter(coursename),
           semtitle: capitalizeFirstLetter(semtitle),
           groupName: capitalizeFirstLetter(groupName),
@@ -586,7 +593,7 @@ function ViewApplication() {
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
 
-                  {currentCourse.approved === 0 &&  (
+                  {currentCourse.approved === 0 && (
                     <>
                       <Link
                         className="btn btn-secondary mr-2"
@@ -603,52 +610,45 @@ function ViewApplication() {
                       </button>
                     </>
                   )}
-                  {currentCourse.approved === 0 &&  (
+                  {currentCourse.approved === 0 && (
                     <>
-                      
                       <button className="btn btn-warning mr-2">Pending</button>
                     </>
                   )}
-                  {currentCourse.approved === 1 &&  (
+                  {currentCourse.approved === 1 && (
                     <>
-                      
                       <button className="btn btn-success mr-2">Approved</button>
                     </>
                   )}
-                  {currentCourse.approved === 2 &&  (
+                  {currentCourse.approved === 2 && (
                     <>
-                      
                       <button className="btn btn-danger mr-2">Rejected</button>
                     </>
                   )}
 
-                  
-                  
-                    <button
-                      className="btn btn-dark mr-2"
-                      onClick={handleDownload}
-                    >
-                      <i className="fa-solid fa-print mr-2"></i> Download
-                    </button>
-                  
+                  <button
+                    className="btn btn-dark mr-2"
+                    onClick={handleDownload}
+                  >
+                    <i className="fa-solid fa-print mr-2"></i> Download
+                  </button>
                 </div>
               </div>
             </div>
 
-              <div className="card">
-                <div className="card-body">
-                  <div className="card-title">Previous Semester Detail</div>
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Course</th>
-                        <th scope="col">Semester</th>
-                        <th scope="col"></th>
-                      </tr>
-                    </thead>
-                    {allPreviousRegisterSemester.length > 0 && (
-
+            <div className="card">
+              <div className="card-body">
+                <div className="card-title">Previous Semester Detail</div>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Course</th>
+                      <th scope="col">Semester</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  {allPreviousRegisterSemester.length > 0 && (
                     <tbody>
                       {allPreviousRegisterSemester.map((data, index) => (
                         <tr key={index}>
@@ -666,14 +666,13 @@ function ViewApplication() {
                           </td>
                         </tr>
                       ))}
-                      
                     </tbody>
-                     )}
-                  </table>
-                </div>
+                  )}
+                </table>
               </div>
-           
-            {currentCourse  && (
+            </div>
+
+            {currentCourse && (
               <div className="card mt-2" id="pdiv" ref={divRef}>
                 <div className="card-body">
                   <div className="row header-top">

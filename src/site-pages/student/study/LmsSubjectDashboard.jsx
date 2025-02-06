@@ -165,7 +165,7 @@ function LmsSubjectDashboard() {
     }
 
     // If the event is yet to start, it's pending
-    return "Pending";
+    return "Upcoming";
   };
   return (
     <>
@@ -210,7 +210,7 @@ function LmsSubjectDashboard() {
                 {["topics", "live"].map((category, index) => (
                   <Tab key={index}>{capitalizeFirstLetter(category)}</Tab>
                 ))}
-              </TabList>
+              </TabList> 
 
               <TabPanel>
                 <div className="row">

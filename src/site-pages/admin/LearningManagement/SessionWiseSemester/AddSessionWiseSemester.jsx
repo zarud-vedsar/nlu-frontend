@@ -191,10 +191,11 @@ function AddSessionWiseSemester() {
       const response = await dataFetchingPost(
         `${NODE_API_URL}/api/semester/fetch`,
         {
-          course: course,
+          courseid: course,
           column: "id, semtitle",
         }
       );
+      
       if (response?.statusCode === 200 && response.data.length > 0) {
         toast.success(response?.message);
         setSemesterList(response.data);

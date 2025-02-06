@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import AOS from "aos";
 import axios from "axios";
 import Slider from "react-slick";
 import {
@@ -10,6 +11,12 @@ import { Link } from "react-router-dom";
 const FacultySlider = () => {
   const [facultyList, setFacultyList] = useState([]);
   const sliderRef = useRef(null);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
 
   const capitalizeFirstLetter = (str) => {
     if (!str) return "";
@@ -81,7 +88,7 @@ const FacultySlider = () => {
   return (
     <>
       {facultyList && facultyList.length > 0 && (
-        <section className="section bg-">
+        <section className="section bg-" data-aos="fade-up" data-aos-delay="100">
           <div className="container">
             <div className="row">
               <div className="col-md-12 mb-3 text-center">

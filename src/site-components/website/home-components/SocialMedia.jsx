@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import AOS from "aos";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { BsTwitterX } from "react-icons/bs";
 import facebook from "../assets/Images/facebook.png";
@@ -6,6 +7,12 @@ import instagram from "../assets/Images/instagram.png";
 import youtube from "../assets/Images/youtube.png";
 
 const SocialMedia = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
   useEffect(() => {
     // Load Instagram's embed script dynamically
     const script = document.createElement('script');
@@ -16,7 +23,7 @@ const SocialMedia = () => {
 
   return (
     <>
-      <section className="section">
+      <section className="section" data-aos="fade-up" data-aos-delay="100">
         <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">

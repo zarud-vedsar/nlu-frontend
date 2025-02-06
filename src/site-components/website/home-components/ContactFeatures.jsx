@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from "aos";
 import { Link } from 'react-router-dom';
 import BgImg from '../assets/Images/cf.jpg';
 import cs from '../assets/Images/cs.png';
 import { FaArrowRight } from "react-icons/fa6";
 const ContactFeatures = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
   return (
     <>
       <section className="section-contact-home" style={{
         backgroundImage: `url(${BgImg})`,
         backgroundSize: "cover",
         backgroundPosition: "center"
-      }}>
+      }} data-aos="fade-up" data-aos-delay="100">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-8 col-12 col-sm-12 cf-content p-4">

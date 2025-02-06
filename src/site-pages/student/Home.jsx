@@ -781,6 +781,7 @@ function Home() {
                       value={formData.swhatsapp}
                       column="col-md-4 form-group mb-3"
                       onChange={handleChange} // Handle input change.
+                      required
                     />
                     {/* Guardian Phone No Input Field */}
                     <FormField
@@ -801,7 +802,7 @@ function Home() {
                       bottom={true}
                       borderError={errors.field === "sguardianemail"} // Highlight border if there's an error.
                       errorMessage={errors.field === "sguardianemail" && errors.msg} // Display error message if applicable.
-                      label="Guardian Phone Email"
+                      label="Guardian Email"
                       type="email"
                       name="sguardianemail"
                       id="sguardianemail"

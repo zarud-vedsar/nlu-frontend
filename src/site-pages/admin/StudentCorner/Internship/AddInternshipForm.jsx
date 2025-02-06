@@ -215,7 +215,7 @@ const AddInternshipForm = () => {
   const handleEditorChange = useCallback((newContent) => {
     setFormData((prev) => ({
       ...prev,
-      about_content: newContent,
+      description: newContent,
     }));
   }, []);
 

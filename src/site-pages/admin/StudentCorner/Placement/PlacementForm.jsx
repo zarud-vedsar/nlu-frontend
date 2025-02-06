@@ -1,7 +1,7 @@
 
 
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
@@ -81,7 +81,6 @@ const AddPlacementForm = () => {
       };
       setFormData((prev) => ({ ...prev, ...updatedFormData }));
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -199,13 +198,15 @@ const AddPlacementForm = () => {
             "An error occurred. Please check your connection or try again."
           );
         }
-      } finally {
       }
     }
   };
-
-  const fileInputRef = useRef(null);
-
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      description: newContent,
+    }));
+  }, []);
   return (
     <div className="page-container">
       <div className="main-content">
@@ -450,7 +451,11 @@ const AddPlacementForm = () => {
                     <div className="form-group col-md-12">
                       <div className='col-md-12 px-0'>
                         <label className='font-weight-semibold'>Description</label>
-                        <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
+                        <JoditEditor
+                          value={formData?.description ? validator.unescape(formData.description) : ""}
+                          config={config}
+                          onChange={handleEditorChange}
+                        />
                       </div>
                     </div>
 

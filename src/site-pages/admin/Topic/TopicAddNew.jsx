@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   NODE_API_URL,
   CKEDITOR_URL,
@@ -16,6 +16,7 @@ import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import validator from "validator";
+import JoditEditor from "jodit-react"; // Import Jodit editor
 
 function TopicAddNew() {
   const initialForm = {
@@ -25,6 +26,7 @@ function TopicAddNew() {
     subject: "",
     topic_name: "",
     image: "",
+    description: ""
   };
   const { topicId } = useParams();
   const [formData, setFormData] = useState(initialForm); // Form state
@@ -35,7 +37,10 @@ function TopicAddNew() {
   const [previewimage, setPreviewimage] = useState(null);
 
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
-
+  // Jodit editor configuration
+  const config = {
+    readonly: false, // set to true if you want readonly mode
+  };
   const courseListDropdown = async () => {
     try {
       const response = await axios.get(`${NODE_API_URL}/api/course/dropdown`);
@@ -145,7 +150,6 @@ function TopicAddNew() {
           semesterid: data.semesterid,
           subject: data.subject,
           topic_name: data.topic_name,
-
           description: validator.unescape(data.description || ""),
         }));
         if (data?.image) {
@@ -154,14 +158,6 @@ function TopicAddNew() {
         if (data?.thumbnail) {
           setPreviewimage(data.thumbnail);
         }
-
-        // Set CKEditor content after data is fetched
-        if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
-          window.CKEDITOR.instances["editor1"].setData(
-            validator.unescape(data.description || "") // Ensure content is unescaped properly
-          );
-        }
-
         return response;
       } else {
         toast.error("Data not found.");
@@ -283,36 +279,12 @@ function TopicAddNew() {
       }
     }
   };
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = CKEDITOR_URL;
-    script.async = true;
-    script.onload = () => {
-      // Initialize CKEditor instance
-      window.CKEDITOR.replace("editor1", {
-        versionCheck: false, // Disable security warnings
-      });
-
-      // Update the formData when the editor content changes
-      window.CKEDITOR.instances["editor1"].on("change", () => {
-        const data = window.CKEDITOR.instances["editor1"].getData();
-        setFormData((prevState) => ({
-          ...prevState,
-          description: data, // Update description in formData
-        }));
-      });
-    };
-    document.body.appendChild(script);
-
-    // Cleanup CKEditor instance on component unmount
-    return () => {
-      if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
-        window.CKEDITOR.instances["editor1"].destroy();
-      }
-    };
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      description: newContent,
+    }));
   }, []);
-
   return (
     <>
       <div className="page-container">
@@ -384,12 +356,12 @@ function TopicAddNew() {
                                   item.id === parseInt(formData.courseid)
                               )
                                 ? {
-                                    value: parseInt(formData.courseid),
-                                    label: courseListing.find(
-                                      (item) =>
-                                        item.id === parseInt(formData.courseid)
-                                    ).coursename,
-                                  }
+                                  value: parseInt(formData.courseid),
+                                  label: courseListing.find(
+                                    (item) =>
+                                      item.id === parseInt(formData.courseid)
+                                  ).coursename,
+                                }
                                 : { value: formData.courseid, label: "Select" }
                             }
                           />
@@ -424,18 +396,18 @@ function TopicAddNew() {
                                 (item) => item.id === formData.semesterid
                               )
                                 ? {
-                                    value: formData.semesterid,
-                                    label: capitalizeFirstLetter(
-                                      semesterListing.find(
-                                        (item) =>
-                                          item.id === formData.semesterid
-                                      ).semtitle
-                                    ),
-                                  }
+                                  value: formData.semesterid,
+                                  label: capitalizeFirstLetter(
+                                    semesterListing.find(
+                                      (item) =>
+                                        item.id === formData.semesterid
+                                    ).semtitle
+                                  ),
+                                }
                                 : {
-                                    value: formData.semesterid,
-                                    label: "Select",
-                                  }
+                                  value: formData.semesterid,
+                                  label: "Select",
+                                }
                             }
                           />
                           {error.field === "semesterid" && (
@@ -463,13 +435,13 @@ function TopicAddNew() {
                                 (item) => item.id === formData.subject
                               )
                                 ? {
-                                    value: formData.subject,
-                                    label: capitalizeFirstLetter(
-                                      subjectListing.find(
-                                        (item) => item.id === formData.subject
-                                      ).subject
-                                    ),
-                                  }
+                                  value: formData.subject,
+                                  label: capitalizeFirstLetter(
+                                    subjectListing.find(
+                                      (item) => item.id === formData.subject
+                                    ).subject
+                                  ),
+                                }
                                 : { value: formData.subject, label: "Select" }
                             }
                           />
@@ -522,11 +494,11 @@ function TopicAddNew() {
                           <label className="font-weight-semibold">
                             Description <span className="text-danger">*</span>
                           </label>
-
-                          <textarea id="editor1" name="description">
-                            {formData.description &&
-                              validator.unescape(formData.description)}
-                          </textarea>
+                          <JoditEditor
+                            value={formData?.description ? validator.unescape(formData.description) : ""}
+                            config={config}
+                            onChange={handleEditorChange}
+                          />
                         </div>
 
                         <div className="col-md-12 col-lg-12 col-12">

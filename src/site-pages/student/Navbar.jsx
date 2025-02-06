@@ -206,6 +206,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
   if (approvedStudent) {
     sideBarMenu.push(
       {
+        title: "Dashboard",
+        icon: <AiOutlineDashboard />,
+        url: "dashboard",
+        dropdownMenus: [ ],
+      },
+      {
         title: "Library",
         icon: <AiOutlineAppstore />,
         url: "",

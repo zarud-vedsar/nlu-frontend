@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
@@ -137,6 +137,12 @@ const Mission = () => {
     }
   };
 
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      content: newContent
+    }))
+  }, []);
   return (
     <div className="page-container">
       <div className="main-content">
@@ -206,10 +212,7 @@ const Mission = () => {
                     <JoditEditor
                       value={formData?.content || ''}
                       config={config}
-                      onChange={(newContent) => setFormData((prev) => ({
-                        ...prev,
-                        content: newContent
-                      }))}
+                      onChange={handleEditorChange}
                     />
                   </div>
                 </div>

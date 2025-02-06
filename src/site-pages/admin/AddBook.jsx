@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL, FILE_API_URL } from "../../site-components/Helper/Constant";
+import {
+  PHP_API_URL,
+  FILE_API_URL,
+} from "../../site-components/Helper/Constant";
 import Select from "react-select";
-import { toast, } from "react-toastify";
+import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
@@ -14,7 +17,6 @@ import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
 
 const AddBook = () => {
-
   const { id } = useParams();
   const [previewImage, setPreviewImage] = useState();
   const [errorKey, setErrorKey] = useState();
@@ -115,7 +117,7 @@ const AddBook = () => {
           user_update_id: result[0].id,
           user_updateu_id: result[0]?.uid,
           image: result[0]?.image,
-          des: result[0]?.des ? validator.unescape(result[0]?.des) : '',
+          des: result[0]?.des ? validator.unescape(result[0]?.des) : "",
           qty: result[0]?.qty,
           price: result[0]?.price,
           language: result[0]?.language,
@@ -130,9 +132,7 @@ const AddBook = () => {
           vendor: result[0]?.vendor,
           unlink_image: result[0]?.image,
         });
-        setPreviewImage(
-          `${FILE_API_URL}/books/${result[0].image}`
-        );
+        setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
         const selSubject = subjectList?.find(
           (sub) => sub.value === result[0].subject_id
         );
@@ -170,7 +170,7 @@ const AddBook = () => {
         user_update_id: result[0].id,
         user_updateu_id: result[0]?.uid,
         image: result[0]?.image,
-        des: result[0]?.des ? validator.unescape(result[0]?.des) : '',
+        des: result[0]?.des ? validator.unescape(result[0]?.des) : "",
         qty: result[0]?.qty,
         price: result[0]?.price,
         language: result[0]?.language,
@@ -310,6 +310,13 @@ const AddBook = () => {
   const triggerFileInput = () => {
     fileInputRef.current.click();
   };
+
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      des: newContent,
+    }));
+  }, []);
   return (
     <>
       <div className="page-container ">
@@ -642,16 +649,15 @@ const AddBook = () => {
                         )}
                       </div>
 
-                      <div className='col-md-12 px-0'>
+                      <div className="col-md-12 ">
                         {/* JoditEditor component */}
-                        <label className='font-weight-semibold'>Description</label>
+                        <label className="font-weight-semibold">
+                          Description
+                        </label>
                         <JoditEditor
-                          value={formData?.des || ''}
+                          value={formData?.des || ""}
                           config={config}
-                          onChange={(newContent) => setFormData((prev) => ({
-                            ...prev,
-                            des: newContent
-                          }))}
+                          onChange={handleEditorChange}
                         />
                       </div>
                       <div className="col-md-12 me-auto d-flex justify-content-between align-items-center">

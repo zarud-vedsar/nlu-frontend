@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
 import {
   getDocument,
@@ -14,7 +14,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { capitalizeFirstLetter } from "../../site-components/Helper/HelperFunction";
 import { toast } from "react-toastify";
-
+import { useReactToPrint } from "react-to-print";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 function Preview() {
   const sid = secureLocalStorage.getItem("studentId"); // Retrieving student ID from secure local storage.
   const registrationNo = secureLocalStorage.getItem("registrationNo"); // Retrieving student ID from secure local storage.
@@ -24,7 +26,38 @@ function Preview() {
   const [isSubmit, setIsSubmit] = useState(false);
   const navigate = useNavigate();
   const [agree, setAgree] = useState(false);
+  const [loading, setLoading] = useState(false); // State for managing loader visibility
+  const [totalFiles, setTotalFiles] = useState(0);
+  const [downloaded, setDownloaded] = useState(0);
+  const pdfRef = useRef();
 
+  const handleDownload = async () => {
+    setLoading(true); // Show loader
+    try {
+      const element = pdfRef.current; // Get the referenced div
+      const pdf = new jsPDF("portrait", "mm", "a4");
+
+      // Set the total number of files
+      setDownloaded(0); // Reset downloaded count
+
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true, // Attempt to bypass CORS for images
+        allowTaint: false, // Prevent loading tainted images
+      });
+      const imgData = canvas.toDataURL("image/png");
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      pdf.addImage(imgData, "PNG", 0, 0, pageWidth, pageHeight);
+      // Update downloaded count
+      setDownloaded((prev) => prev + 1);
+      pdf.save("document.pdf");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    } finally {
+      setLoading(false); // Hide loader
+    }
+  };
   const getStudentSelectedCourse = async () => {
     try {
       let formData = {};
@@ -70,7 +103,7 @@ function Preview() {
           subject6: capitalizeFirstLetter(subject6),
         }));
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -127,36 +160,37 @@ function Preview() {
       }
     } catch (error) {
       const statusCode = error.response?.data?.statusCode;
-      const errorField = error.response?.data?.errorField;
-
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
-        if (errorField) errorMsg(errorField, error.response?.data?.message);
         toast.error(error.response.data.message || "A server error occurred.");
-      } else {
-        // toast.error(
-        //   "An error occurred. Please check your connection or try again."
-        // );
       }
     } finally {
       setIsSubmit(false);
     }
   };
+  const contentRef = useRef(null);
+  const reactToPrintFn = useReactToPrint({ contentRef });
   return (
     <>
       <div className="page-container printablediv">
         <div className="main-content">
           <div className="container-fluid">
-            {currentCourse?.preview === 1 && (
-              <div className="row col-12 d-flex">
+            {currentCourse?.preview != 1 && (
+              <div className="row col-12">
                 <button
-                  onClick={() => navigate("/student/profile")}
-                  className="btn btn-dark mr-2"
+                  onClick={handleDownload}
+                  className="btn border-0 btn-primary d-flex justify-content-center align-items-center"
+                  disabled={loading} // Disable button while loading
                 >
-                  <i className="fas fa-arrow-left"></i> Back
+                  <i className="fas fa-download"></i> &nbsp; Download {loading && (
+                    <div className="loader-circle"></div>
+                  )}
                 </button>
+                {/* <button onClick={() => reactToPrintFn()} className="btn btn-primary ml-auto">
+                  <i className="fas fa-print"></i> Print
+                </button> */}
               </div>
             )}
-            <div className="card mt-2" id="pdiv">
+            <div className="card mt-2 pdiv" ref={pdfRef} id="pdiv">
               <div className="card-body">
                 <div className="row header-top">
                   <div className="col-md-6 col-lg-6 d-flex justify-content-start align-items-center">
@@ -203,25 +237,7 @@ function Preview() {
                       {personalDetails.enrollmentNo}
                     </p>
                   </div>
-                  {/* <div className="col-md-12">
-                                        <div className="card">
-                                            <div className="alert alert-danger text-danger" role="alert">
-                                                <i className="fas fa-exclamation-circle font-18" /> Registration
-                                                Rejected.
-                                            </div>
-                                            <div className="col-md-12">
-                                                <p>
-                                                    <strong>Note: </strong> Rejection note goes here.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="alert alert-warning text-warning" role="alert">
-                                            <i className="fas fa-exclamation-circle font-18" /> Pending.
-                                        </div>
-                                        <div className="alert alert-success text-success" role="alert">
-                                            <i className="fas fa-check-circle font-18" /> Registration Approved.
-                                        </div>
-                                    </div> */}
+
                   <div className="col-md-12">
                     <table className="table w-100">
                       <div className="row">
@@ -555,7 +571,7 @@ function Preview() {
                       {/* Previous Semester/Year Details */}
                       {currentCourse?.semtitle &&
                         currentCourse?.semtitle.toLowerCase() !==
-                          "semester 1" && (
+                        "semester 1" && (
                           <>
                             <div className="row mt-3">
                               <div className="col-md-12">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 
@@ -154,6 +154,12 @@ const MessageForm = () => {
     }
   };
 
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      message: newContent
+    }))
+  }, []);
   return (
     <div className="page-container">
       <div className="main-content">
@@ -246,10 +252,7 @@ const MessageForm = () => {
                     <JoditEditor
                       value={formData?.message || ''}
                       config={config}
-                      onChange={(newContent) => setFormData((prev) => ({
-                        ...prev,
-                        message: newContent
-                      }))}
+                      onChange={handleEditorChange}
                     />
                   </div>
                 </div>

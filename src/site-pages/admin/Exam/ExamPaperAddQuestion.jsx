@@ -229,9 +229,9 @@ function AddExam() {
                       <label className="font-weight-semibold">
                         Section {item.title}
                       </label>
-                      {console.log(item)}
+                      
                       <JoditEditor
-                      value={item?.question || ''}
+                      value={item?.question ? validator.unescape(item?.question) : ''}
                       config={config}
 
                       onBlur={(newContent) => {

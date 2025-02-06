@@ -341,6 +341,7 @@ function Home() {
       { key: "scategory", message: "Please select the category." },
       { key: "scaste", message: "Please enter the caste." },
       { key: "ssubcaste", message: "Please enter the sub caste." },
+      { key: "swhatsapp", message: "Please enter the whatsapp no." },
       {
         key: "sguardianphone",
         message: "Please enter the guardian's phone number.",

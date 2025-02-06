@@ -12,12 +12,14 @@ import secureLocalStorage from "react-secure-storage";
 import studentAvatar from "./assets/img/studentAvatar.png";
 import axios from "axios";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
 import Select from "react-select";
 import { Modal, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { studentRecordById } from "../../site-components/student/GetData"; // Importing components and data-fetching functions.
 
 const MyVerticallyCenteredModal = (props = {}) => {
   const [selectedStudent, setSelectedStudent] = useState();
@@ -206,6 +208,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
   if (approvedStudent) {
     sideBarMenu.push(
       {
+        title: "Dashboard",
+        icon: <AiOutlineDashboard />,
+        url: "dashboard",
+        dropdownMenus: [ ],
+      },
+      {
         title: "Library",
         icon: <AiOutlineAppstore />,
         url: "",
@@ -293,13 +301,35 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
     );
   }
 
+  const [studentPersonalDetail, setStudentPersonalDetail] = useState({
+    name:"",
+    pic:"",
+    email:""
+  });
   useEffect(() => {
     getStudentSelectedCourse();
+    getStudentPersonalData();
     if (secureLocalStorage.getItem("sguardianemail")) {
       fetchList();
       setGuardian(true);
     }
   }, []);
+
+  const getStudentPersonalData = async()=>{
+    await studentRecordById(secureLocalStorage.getItem("studentId")).then((res) => {
+      if (res.length > 0) {
+        setStudentPersonalDetail({
+          name:res[0]?.sname,
+          pic:res[0]?.spic,
+          registrationNo:res[0]?.registrationNo,
+          id:res[0]?.id,
+          enrollmentNo:res[0]?.enrollmentNo
+        })
+      }
+    });
+  }
+
+
   const getStudentSelectedCourse = async () => {
     try {
       let formData = {};
@@ -415,7 +445,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
             <li className="dropdown dropdown-animated scale-left">
               <div className="pointer" onClick={() => setShowPopup(!showPopup)}>
                 <div className="avatar avatar-image m-h-10 m-r-15">
-                  <img src={studentAvatar} />
+                  <img src={studentPersonalDetail?.pic? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}` : studentAvatar}/>
                 </div>
               </div>
               {showPopup && (
@@ -423,13 +453,13 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                   <div className="p-h-20 p-b-15 m-b-10 border-bottom">
                     <div className="d-flex">
                       <div className="avatar avatar-lg avatar-image">
-                        <img src={studentAvatar} />
+                        <img src={studentPersonalDetail?.pic? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}` : studentAvatar} />
                       </div>
                       <div className="m-l-10">
                         <p className="m-b-0 text-dark font-weight-semibold">
-                          Marshall Nichols
+                          {studentPersonalDetail?.name || ""}
                         </p>
-                        <p className="m-b-0 opacity-07">UI/UX Designer</p>
+                        <p className="m-b-0 opacity-07">{studentPersonalDetail?.enrollmentNo || ""}</p>
                       </div>
                     </div>
                   </div>

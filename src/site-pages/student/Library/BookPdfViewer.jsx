@@ -9,16 +9,16 @@ import {
 import "../assets/custom.css";
 import "../assets/CustomNavTab.css";
 import { capitalizeAllLetters } from "../../../site-components/Helper/HelperFunction";
-import { Document, Page } from "react-pdf";
-import { pdfjs } from "react-pdf";
+import { Document, Page } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
 import BookImage from "../assets/img/dummy.avif";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/legacy/build/pdf.worker.min.mjs",
-  import.meta.url
+  'pdfjs-dist/legacy/build/pdf.worker.min.mjs',
+  import.meta.url,
 ).toString();
-import "react-pdf/dist/Page/AnnotationLayer.css";
-import "react-pdf/dist/Page/TextLayer.css";
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 function BookPdfViewer() {
   const sid = secureLocalStorage.getItem("studentId"); // Retrieve student ID from secure local storage.
   const location = useLocation();

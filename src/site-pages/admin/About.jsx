@@ -131,12 +131,12 @@ const About = () => {
       setIsSubmit(false);
     }
   };
-  const handleEditorChange = useCallback((newContent) => {
+  const handleEditorChange = (newContent) => {
     setFormData((prev) => ({
       ...prev,
       about_content: newContent,
     }));
-  }, []);
+  };
   return (
     <div className="page-container">
       <div className="main-content">
@@ -205,9 +205,9 @@ const About = () => {
                         {/* JoditEditor component */}
                         <label className='font-weight-semibold'>Description</label>
                         <JoditEditor
-                          value={formData.about_content || ""}
+                          value={formData?.about_content ? validator.unescape(formData.about_content) : ""}
                           config={config}
-                          onChange={handleEditorChange}
+                          onBlur={handleEditorChange}
                         />
                       </div>
                     </div>

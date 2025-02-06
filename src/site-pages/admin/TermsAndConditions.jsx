@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
@@ -7,7 +7,7 @@ import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
 const TermsAndConditions = () => {
-  const [formData, setFormData] = useState('');
+  const [formData, setFormData] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
   // Jodit editor configuration
   const config = {
@@ -31,8 +31,7 @@ const TermsAndConditions = () => {
       if (response.data.status === 200) {
         setFormData(validator.unescape(response.data?.data[0]?.content || ""));
       }
-    } catch (error) {
-    }
+    } catch (error) { }
   };
   useEffect(() => {
     getTermsAndConditionsData();
@@ -60,10 +59,7 @@ const TermsAndConditions = () => {
           },
         }
       );
-      if (
-        response?.data?.status === 200 ||
-        response?.data?.status === 201
-      ) {
+      if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response.data.msg);
       } else {
         toast.error("An error occurred. Please try again.");
@@ -82,6 +78,9 @@ const TermsAndConditions = () => {
     }
   };
 
+  const handleEditorChange = (newContent) => {
+    setFormData(newContent);
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -92,7 +91,9 @@ const TermsAndConditions = () => {
                 <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> CMS
                 </a>
-                <span className="breadcrumb-item active">Terms And Conditions</span>
+                <span className="breadcrumb-item active">
+                  Terms And Conditions
+                </span>
               </nav>
             </div>
           </div>
@@ -117,11 +118,13 @@ const TermsAndConditions = () => {
                     <div className="row">
                       <div className="col-md-12 ">
                         {/* JoditEditor component */}
-                        <label className='font-weight-semibold'>Description</label>
+                        <label className="font-weight-semibold">
+                          Description
+                        </label>
                         <JoditEditor
-                          value={formData || ''}
+                          value={formData || ""}
                           config={config}
-                          onChange={(newContent) => setFormData(newContent)}
+                          onBlur={handleEditorChange}
                         />
                       </div>
                     </div>
@@ -151,6 +154,3 @@ const TermsAndConditions = () => {
 };
 
 export default TermsAndConditions;
-
-
-

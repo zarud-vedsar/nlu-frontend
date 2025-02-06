@@ -7,17 +7,8 @@ Learning Management
 -> Department: In recycle Bin remove all other action except restore .
 =================================================================================
 
-Inventory
-------------
--> Stock History not visible
--> StocK Out History not visible
--> Stock Out History breadcrum Inappropriate
 
 ============================================================
-mail communication
-------------------
--> while listing the sent message, if another message is sent then it do not delivers on mail
-==================================================================
  
  Hostel Management
  -----------------

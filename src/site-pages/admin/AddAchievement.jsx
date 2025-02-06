@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import { Link, useParams } from "react-router-dom";
@@ -191,6 +191,12 @@ function AddAchievement() {
       setIsSubmit(false);
     }
   };
+  const handleEditorChange = (newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      description: newContent
+    }))
+  };
   return (
     <>
       <div className="page-container">
@@ -268,16 +274,14 @@ function AddAchievement() {
                     </div>
 
 
-                    <div className='col-md-12 px-0'>
+                    <div className='col-md-12 '>
                       {/* JoditEditor component */}
                       <label className='font-weight-semibold'>Description</label>
                       <JoditEditor
                         value={formData?.description || ''}
                         config={config}
-                        onChange={(newContent) => setFormData((prev) => ({
-                          ...prev,
-                          description: newContent
-                        }))}
+                        onBlur={handleEditorChange}
+
                       />
                     </div>
                     <div className="col-md-12 col-lg-12 col-12">

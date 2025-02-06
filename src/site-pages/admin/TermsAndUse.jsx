@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
@@ -88,7 +88,9 @@ const TermsAndUse = () => {
       setIsSubmit(false);
     }
   };
-
+  const handleEditorChange = (newContent) => {
+    setFormData(newContent)
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -127,7 +129,7 @@ const TermsAndUse = () => {
                     <JoditEditor
                       value={formData || ''}
                       config={config}
-                      onChange={(newContent) => setFormData(newContent)}
+                      onBlur={handleEditorChange}
                     />
                   </div>
                 </div>

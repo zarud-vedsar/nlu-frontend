@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Select from "react-select";
 import { toast } from "react-toastify";
@@ -195,6 +195,12 @@ function AddPage() {
   const capitalizeFirstLetter = (string) =>
     string.charAt(0).toUpperCase() + string.slice(1);
 
+  const handleEditorChange = (newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      page_content: newContent
+    }))
+  }
   return (
     <div className="page-container">
       <div className="main-content">
@@ -324,10 +330,7 @@ function AddPage() {
                         <JoditEditor
                           value={formData?.page_content || ''}
                           config={config}
-                          onChange={(newContent) => setFormData((prev) => ({
-                            ...prev,
-                            page_content: newContent
-                          }))}
+                          onBlur={handleEditorChange}
                         />
                       </div>
                     </div>

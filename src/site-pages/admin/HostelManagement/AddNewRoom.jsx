@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { dataFetchingPost, goBack } from '../../../site-components/Helper/HelperFunction';
 import { FormField } from '../../../site-components/admin/assets/FormField';
@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import secureLocalStorage from 'react-secure-storage';
 import axios from 'axios';
 import { TagsInput } from "react-tag-input-component";
-
+import JoditEditor from "jodit-react"; // Import Jodit editor
 function AddNewRoom() {
     const { dbId } = useParams();
     const initialData = {
@@ -33,35 +33,10 @@ function AddNewRoom() {
             amenities: data.join(","),
         }));
     };
-    // Load CKEditor 4 dynamically
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = CKEDITOR_URL;
-        script.async = true;
-        script.onload = () => {
-            // Initialize CKEditor instance
-            window.CKEDITOR.replace('editor1', {
-                versionCheck: false, // Disable security warnings
-            });
-
-            // Update the formData when the editor content changes
-            window.CKEDITOR.instances['editor1'].on('change', () => {
-                const data = window.CKEDITOR.instances['editor1'].getData();
-                setFormData((prevState) => ({
-                    ...prevState,
-                    description: data, // Update description in formData
-                }));
-            });
-        };
-        document.body.appendChild(script);
-
-        // Cleanup CKEditor instance on component unmount
-        return () => {
-            if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-                window.CKEDITOR.instances['editor1'].destroy();
-            }
-        };
-    }, []);
+    // Jodit editor configuration
+    const config = {
+        readonly: false, // set to true if you want readonly mode
+    };
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevState) => ({
@@ -104,8 +79,8 @@ function AddNewRoom() {
         }
 
         if (!validator.isNumeric(String(formData.occupied_beds)) || formData.occupied_beds < 0) {
-            toast.error("Occupied Beds is required and should be 0 or greater.");
-            errorMsg("occupied_beds", "Occupied Beds is required and should be 0 or greater.");
+            toast.error("No Of Beds is required and should be 0 or greater.");
+            errorMsg("occupied_beds", "No Of Beds is required and should be 0 or greater.");
             return setIsSubmit(false);
         }
 
@@ -180,17 +155,9 @@ function AddNewRoom() {
                     capacity: data.capacity,
                     occupied_beds: data.occupied_beds,
                     amenities: data.amenities,
-                    description: data.description ? validator.unescape(data.description) : data.description
+                    description: data.description ? validator.unescape(data.description) : ""
                 }));
-
                 setAmenities(data.amenities.split(","))
-                // Set CKEditor content after data is fetched
-                if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-                    window.CKEDITOR.instances['editor1'].setData(
-                        validator.unescape(validator.unescape(data.description)) // Ensure content is unescaped properly
-                    );
-                }
-
                 return response;
             } else {
                 toast.error("Data not found.");
@@ -203,6 +170,12 @@ function AddNewRoom() {
     useEffect(() => {
         if (dbId) fetchDataForupdateBasedOnId(dbId);
     }, [dbId]);
+    const handleEditorChange = (newContent) => {
+        setFormData((prev) => ({
+            ...prev,
+            description: newContent,
+        }));
+    }
     return (
         <>
             <div className="page-container">
@@ -294,11 +267,11 @@ function AddNewRoom() {
                                             column="col-md-4"
                                             required
                                         />
-                                        {/* Occupied beds */}
+                                        {/* No Of Beds */}
                                         <FormField
                                             borderError={error.field === "occupied_beds"}
                                             errorMessage={error.field === "occupied_beds" && error.msg}
-                                            label="Occupied beds"
+                                            label="No Of Beds"
                                             name="occupied_beds"
                                             id="occupied_beds"
                                             value={formData.occupied_beds}
@@ -338,9 +311,13 @@ function AddNewRoom() {
                                     </div>
                                     <div className='col-md-12 px-0'>
                                         <label className='font-weight-semibold'>Description</label>
-                                        <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
+                                        <JoditEditor
+                                            value={formData?.description ? validator.unescape(formData.description) : ""}
+                                            config={config}
+                                            onBlur={handleEditorChange}
+                                        />
                                     </div>
-                                    <div className="col-md-12 col-lg-12 col-12">
+                                    <div className="col-md-12 col-lg-12 col-12 px-0">
                                         <button
                                             disabled={isSubmit}
                                             className="btn btn-dark btn-block d-flex justify-content-center align-items-center"

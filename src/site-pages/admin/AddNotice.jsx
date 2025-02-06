@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   dataFetchingPost,
@@ -8,7 +8,10 @@ import {
 import { FormField } from "../../site-components/admin/assets/FormField";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { NODE_API_URL, CKEDITOR_URL } from "../../site-components/Helper/Constant";
+import {
+  NODE_API_URL,
+  CKEDITOR_URL,
+} from "../../site-components/Helper/Constant";
 import validator from "validator";
 import secureLocalStorage from "react-secure-storage";
 import JoditEditor from "jodit-react"; // Import Jodit editor
@@ -54,7 +57,7 @@ function NoticeList() {
     if (id === "image") {
       if (file.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(file));
-        console.log(file)
+        console.log(file);
         setFormData((formData) => ({ ...formData, image: file }));
       } else {
         toast.error(
@@ -84,7 +87,7 @@ function NoticeList() {
           title: response?.data[0]?.title,
           notice_type: response?.data[0]?.notice_type,
           notice_date: response?.data[0]?.notice_date,
-          description: validator.unescape(response?.data[0]?.description || ''),
+          description: validator.unescape(response?.data[0]?.description || ""),
           pdf_file: validator.unescape(response?.data[0]?.pdf_file),
           image: validator.unescape(response?.data[0]?.image),
         }));
@@ -98,7 +101,6 @@ function NoticeList() {
         toast.error("Data not found.");
       }
     } catch (error) {
-
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -118,7 +120,15 @@ function NoticeList() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-    const { dbId, notice_type, title, notice_date, pdf_file, image, description } = formData;
+    const {
+      dbId,
+      notice_type,
+      title,
+      notice_date,
+      pdf_file,
+      image,
+      description,
+    } = formData;
     if (!notice_type) {
       toast.error("Notice Type is required.");
       return setIsSubmit(false);
@@ -160,11 +170,10 @@ function NoticeList() {
         response.data?.statusCode === 200 ||
         response.data?.statusCode === 201
       ) {
-        console.log(response.data?.statusCode)
+        console.log(response.data?.statusCode);
         if (response.data?.statusCode === 201) {
           setFormData(initialData);
-        }
-        else if (response.data?.statusCode === 200) {
+        } else if (response.data?.statusCode === 200) {
           window.history.back();
         }
         toast.success(response.data.message);
@@ -185,6 +194,12 @@ function NoticeList() {
       setIsSubmit(false);
     }
   };
+  const handleEditorChange = (newContent) => {
+    setFormData((prev) => ({
+      ...prev,
+      description: newContent,
+    }));
+  }
   return (
     <>
       <div className="page-container">
@@ -305,9 +320,7 @@ function NoticeList() {
                       )}
                     </div>
                     <div className="col-md-12 form-group">
-                      <label>
-                        Upload Pdf
-                      </label>
+                      <label>Upload Pdf</label>
                       <input
                         type="file"
                         id="pdf_file"
@@ -327,16 +340,15 @@ function NoticeList() {
                       </div>
                     )}
 
-                    <div className='col-md-12 px-0'>
+                    <div className="col-md-12">
                       {/* JoditEditor component */}
-                      <label className='font-weight-semibold'>Description</label>
+                      <label className="font-weight-semibold">
+                        Description
+                      </label>
                       <JoditEditor
-                        value={formData?.description || ''}
+                        value={formData?.description || ""}
                         config={config}
-                        onChange={(newContent) => setFormData((prev) => ({
-                          ...prev,
-                          description: newContent
-                        }))}
+                        onBlur={handleEditorChange}
                       />
                     </div>
                     <div className="col-md-12 col-lg-12 col-12">

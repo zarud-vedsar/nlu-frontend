@@ -251,3 +251,38 @@ position: relative;
         width: 50%;
     }
 }
+/* student dashboard css start here  */
+.id-dsh-links-img{
+    height: 50px;
+}
+.id-card-wrapper{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #b7c0ce33 !important;
+    border-radius: 7px;
+}
+.id-card-wrapper:hover {
+    transform: scale(1.04); /* Scale the image on hover */
+    transition: transform 0.3s ease-in-out; /* Add transition for hover effect */
+}
+.id-issued-wrapper{
+    background-color: #fff8ef;
+    border-radius: 10px;
+
+}
+.id-issued-wrapper img{
+    border-radius: 10px 10px 0px 0px;
+}
+.id-issued-content{
+    padding: 5px 13px 15px;
+}
+
+.id-issued-content h4, .id-issued-content p{
+    color: #b81365;
+
+}

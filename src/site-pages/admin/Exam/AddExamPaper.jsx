@@ -708,7 +708,7 @@ function AddExam() {
                         Instruction
                       </label>
                       <JoditEditor
-                        value={formData.instruction || ""}
+                        value={formData?.instruction ? validator.unescape(formData.instruction) : ""}
                         config={config}
                         onChange={handleEditorChange}
                       />

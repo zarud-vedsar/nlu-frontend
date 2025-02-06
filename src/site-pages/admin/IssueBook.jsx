@@ -254,7 +254,7 @@ const IssueBook = () => {
                               placement="bottom"
                               overlay={
                                 <Tooltip id="button-tooltip-2">
-                                  View books statue
+                                  View books status
                                 </Tooltip>
                               }
                             >

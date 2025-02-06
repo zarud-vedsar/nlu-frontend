@@ -35,7 +35,32 @@ function ProductList() {
         stockOutDateStart: '',
         stockOutDateEnd: '',
     }
-    const [formData, setFormData] = useState(initialData);
+    const formatDateForMonth = (date) => {
+        return new Intl.DateTimeFormat("en-CA", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        }).format(date);
+      };
+      
+        
+      const getFirstDayOfMonth = () => {
+        const now = new Date();
+        return formatDateForMonth(new Date(now.getFullYear(), now.getMonth(), 1));
+      };
+      
+      const getLastDayOfMonth = () => {
+        const now = new Date();
+        return formatDateForMonth(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+      };
+      
+        const [formData, setFormData] = useState({
+            ...initialData,
+            stockOutDateStart: getFirstDayOfMonth(), // Example: "2025-02-01"
+            stockOutDateEnd: getLastDayOfMonth(), // Example: "2025-02-29"
+          
+        });
+
     const [isSubmit, setIsSubmit] = useState(false);
     // handle Input fields data and stored them in the formData
     const handleChange = (event) => {
@@ -61,6 +86,7 @@ function ProductList() {
 
     useEffect(() => {
         fetchFacultyDropdown();
+        fetchList();
     }, []);
     const fetchproductDropdown = async () => {
         try {
@@ -146,15 +172,15 @@ function ProductList() {
                                     <a href="./" className="breadcrumb-item">
                                         <i className="fas fa-home m-r-5" /> Dashboard
                                     </a>
-                                    <span className="breadcrumb-item">Inventory Management</span>
-                                    <span className="breadcrumb-item active">Stock In History
+                                    <a className="breadcrumb-item">Inventory Management</a>
+                                    <span className="breadcrumb-item active">Stock Out History
                                     </span>
                                 </nav>
                             </div>
                         </div>
                         <div className="card border-0 bg-transparent mb-2">
                             <div className="card-header border-0 bg-transparent d-flex justify-content-between align-items-center px-0">
-                                <h5 className="card-title h6_new">Stock In History</h5>
+                                <h5 className="card-title h6_new">Stock Out History</h5>
                                 <div className="ml-auto">
                                     <button
                                         className="ml-auto btn-md btn border-0 goBack mr-2"
@@ -162,9 +188,9 @@ function ProductList() {
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back
                                     </button>
-                                    <Link to="/admin/inventory/product/add-stock/">
+                                    <Link to="/admin/inventory/product/add-stockout">
                                         <button className="ml-2 btn-md btn border-0 btn-secondary">
-                                            <i className="fas fa-plus"></i> Add New Stock
+                                            <i className="fas fa-plus"></i> Add Stock Out
                                         </button>
                                     </Link>
                                 </div>

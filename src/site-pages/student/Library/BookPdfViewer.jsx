@@ -19,7 +19,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
-import validator from "validator";
 function BookPdfViewer() {
   const sid = secureLocalStorage.getItem("studentId"); // Retrieve student ID from secure local storage.
   const location = useLocation();

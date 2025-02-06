@@ -145,14 +145,14 @@ function TopicAddNew() {
           semesterid: data.semesterid,
           subject: data.subject,
           topic_name: data.topic_name,
-          
+
           description: validator.unescape(data.description || ""),
         }));
-        if(data?.image){
-          setFormData((prev)=>({...prev,image: data.thumbnail,}))
+        if (data?.image) {
+          setFormData((prev) => ({ ...prev, image: data.thumbnail }));
         }
-        if(data?.thumbnail){
-        setPreviewimage(data.thumbnail);
+        if (data?.thumbnail) {
+          setPreviewimage(data.thumbnail);
         }
 
         // Set CKEditor content after data is fetched
@@ -508,7 +508,7 @@ function TopicAddNew() {
                             className="form-control"
                             onChange={handleFileChange}
                           />
-                          { previewimage && (
+                          {previewimage && (
                             <img
                               src={previewimage}
                               alt="Preview"
@@ -519,6 +519,10 @@ function TopicAddNew() {
                         </div>
 
                         <div className="col-md-12 col-lg-12">
+                          <label className="font-weight-semibold">
+                            Description <span className="text-danger">*</span>
+                          </label>
+
                           <textarea id="editor1" name="description">
                             {formData.description &&
                               validator.unescape(formData.description)}

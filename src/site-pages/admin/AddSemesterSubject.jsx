@@ -97,8 +97,9 @@ function SemesterSubjectAdd() {
         try {
             const response = await dataFetchingPost(
                 `${NODE_API_URL}/api/semester-subject/fetch`,
-                { dbId: semesterId, listing: "yes" }
+                { dbId: semesterId }
             );
+        
             if (response?.statusCode === 200 && response.data.length > 0) {
                 toast.success(response.message);
                 const data = response.data[0];

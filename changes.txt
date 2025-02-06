@@ -28,7 +28,5 @@ mail communication
 
 Student Registration
 -------------------
--> Student Registration step 1: Required field Guardian Email not marked with *
--> Student Registration step 1: Disable Course Selection Button for new Registration Until Student saves the personal detail
 -> Student Registration step 1: make Whats app no required field
 

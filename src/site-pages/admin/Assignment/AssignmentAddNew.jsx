@@ -806,8 +806,8 @@ function AssignmentAddNew() {
                             ></iframe>
                           </div>
                         )}
-                        <div className='col-md-12 px-0'>
-                          <label className='font-weight-semibold'>Description</label>
+                        <div className='col-md-12 '>
+                          <label className='font-weight-semibold'>Description <span className="text-danger">*</span></label>
                           <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
                         </div>
 

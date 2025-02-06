@@ -28,7 +28,7 @@ function LmsSubjectDashboard() {
         { id: 'home', label: 'Description' },
         { id: 'pdfs', label: 'Pdfs' },
         { id: 'videos', label: 'Videos' },
-        { id: 'settings', label: 'Settings' },
+        
     ];
 
     const [formData, setFormData] = useState(inititalData);
@@ -155,7 +155,8 @@ function LmsSubjectDashboard() {
     }, [videoId]);
     console.log(videos)
     const getSubject = async (subjectId) => {
-        try {
+        
+        try { 
             const response = await axios.post(`${NODE_API_URL}/api/student/get-subject-name-id`, {
                 subjectId,
             });
@@ -301,15 +302,16 @@ function LmsSubjectDashboard() {
                                     </>
                                 )
                             }
-                            <div className={`col-md-3 ${videoId ? 'hide-topic-div' : ''}`}>
-                                {
-                                    topicList && (
+                            <div className={`col-md-3 p-0 ${videoId ? 'hide-topic-div' : ''}`}>
+                                { 
+                                    topicList && (  
                                         <>
-                                            <img src={topicList.thumbnail ? topicList.thumbnail : TopicPng} className='ms-auto small-w-100 mb-3' style={{ maxHeight: '240px' }} />
-                                            <h2 className='font-15 h6_new'>{topicList?.[0]?.topic_name || "No topic available"}</h2>
+                                        {console.log(topicList[0]?.thumbnail)}
+                                            <img src={topicList[0]?.thumbnail ? topicList[0]?.thumbnail : TopicPng} className='col-12 p-0 mb-2' style={{ maxHeight: '200px' }} />
+                                            <h2 className='font-15 h6_new'>{capitalizeFirstLetter(topicList?.[0]?.topic_name) || "No topic available"}</h2>
                                         </>
-                                    )
-                                }
+                                    ) 
+                                }   
                             </div>
                             <div className='col-md-9'>
                                 <div className="nav-tab-container">

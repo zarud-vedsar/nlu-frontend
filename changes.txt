@@ -3,22 +3,11 @@
 
 Learning Management
 --------------------
--> semester: semester Edit is inappropriate(edits Course)
--> Session : remove the status switch
 -> faculty department: In recycle Bin remove all other action except restore .
 -> Department: In recycle Bin remove all other action except restore .
--> Add session wise semester: all the session are listed in session, only the session that is linked with course is to be listed.
 -> Session wise semester list: by default the selected session data is to be viewed
--> Update Topic: Description Label is missing, Description content is missing 
 =================================================================================
 
-Resource
----------
--> video add: description label is missing
--> Topic Image is not visible on student side
--> Live video not visible on student side
--> Inappropriate Setting tab is visible
-=======================================================================
 Inventory
 ------------
 -> Stock History not visible
@@ -40,19 +29,9 @@ mail communication
  -> Room Addition: Occupied Bed can be set greater then available beds
  
 
-
-
-
-
-
 Student Registration
 -------------------
 -> Student Registration step 1: Required field Guardian Email not marked with *
 -> Student Registration step 1: Disable Course Selection Button for new Registration Until Student saves the personal detail
 -> Student Registration step 1: make Whats app no required field
--> Student Registration step 2: When entering page an error appears
--> Admin Approval: session should be by default be selected by localstorage
 
-Assignment
----------
--> Assignment: Required field Desctiption not marked with *

@@ -3,14 +3,16 @@ import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL ,CKEDITOR_URL } from "../../site-components/Helper/Constant";
+import {
+  PHP_API_URL,
+  CKEDITOR_URL,
+} from "../../site-components/Helper/Constant";
 import Select from "react-select";
-import { toast} from "react-toastify";
+import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import validator from "validator";
 
 import secureLocalStorage from "react-secure-storage";
-
 
 const JobRecruitmentForm = () => {
   const { id } = useParams();
@@ -22,10 +24,7 @@ const JobRecruitmentForm = () => {
   const [category, setCategory] = useState([]);
   const [jobTypes, setJobTypes] = useState([]);
   const [minExperienceList, setMinExperienceList] = useState([]);
-  const [selectJobType, setSelectJobType] = useState("");
-  const [selectMinExperience, setSelectMinExperience] = useState("");
   const [loading, setLoading] = useState();
-  const [selectCategory, setSelectCategory] = useState("");
 
   const initialization = {
     data: "savejobpost",
@@ -48,42 +47,41 @@ const JobRecruitmentForm = () => {
   const [formData, setFormData] = useState(initialization);
 
   useEffect(() => {
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = CKEDITOR_URL;
     script.async = true;
     script.onload = () => {
-        // Initialize CKEditor instance
-        window.CKEDITOR.replace('editor1', {
-            versionCheck: false, // Disable security warnings
-        });
+      // Initialize CKEditor instance
+      window.CKEDITOR.replace("editor1", {
+        versionCheck: false, // Disable security warnings
+      });
 
-        // Update the formData when the editor content changes
-        window.CKEDITOR.instances['editor1'].on('change', () => {
-            const data = window.CKEDITOR.instances['editor1'].getData();
-            setFormData((prevState) => ({
-                ...prevState,
-                description: data, // Update description in formData
-            }));
-        });
+      // Update the formData when the editor content changes
+      window.CKEDITOR.instances["editor1"].on("change", () => {
+        const data = window.CKEDITOR.instances["editor1"].getData();
+        setFormData((prevState) => ({
+          ...prevState,
+          description: data, // Update description in formData
+        }));
+      });
     };
     document.body.appendChild(script);
 
     // Cleanup CKEditor instance on component unmount
     return () => {
-        if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-            window.CKEDITOR.instances['editor1'].destroy();
-        }
+      if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
+        window.CKEDITOR.instances["editor1"].destroy();
+      }
     };
-}, []);
+  }, []);
   const updateCategory = (e) => {
-    setSelectCategory(e);
     setFormData((prevState) => ({
       ...prevState,
       job_category: e.value,
     }));
   };
   const updateJobType = (e) => {
-    setSelectJobType(e);
+    
     setFormData((prevState) => ({
       ...prevState,
       job_type: e.value,
@@ -91,7 +89,7 @@ const JobRecruitmentForm = () => {
   };
 
   const updateMinExp = (e) => {
-    setSelectMinExperience(e);
+    
     setFormData((prevState) => ({
       ...prevState,
       job_experience: e.value,
@@ -249,27 +247,13 @@ const JobRecruitmentForm = () => {
       };
       setFormData((prev) => ({ ...prev, ...updatedFormData }));
 
-      const jobtype = jobTypes?.find((job) => job.value === result[0].job_type);
-      if (jobtype) {
-        setSelectJobType(jobtype);
-      }
-      const cat = category?.find((cat) => cat.value === result[0].category);
-      if (cat) {
-        setSelectCategory(cat);
-      }
-      const minexp = minExperienceList?.find(
-        (minexp) => minexp.value === result[0].job_experience
-      );
-      if (minexp) {
-        setMinExperienceList(minexp);
-      }
-
-      if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-        window.CKEDITOR.instances['editor1'].setData(
-            validator.unescape(validator.unescape(result?.data?.data[0]?.description)) // Ensure content is unescaped properly
+      if (window.CKEDITOR && window.CKEDITOR.instances["editor1"]) {
+        window.CKEDITOR.instances["editor1"].setData(
+          validator.unescape(
+            validator.unescape(result?.data?.data[0]?.description)
+          ) // Ensure content is unescaped properly
         );
-    }
-
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -387,9 +371,6 @@ const JobRecruitmentForm = () => {
         if (response.data?.status === 200 || response.data?.status === 201) {
           toast.success(response.data.msg);
           setFormData(initialization);
-          setSelectJobType(null);
-          setSelectMinExperience(null);
-          setSelectCategory(null);
           if (response.data.status === 200) {
             window.history.back();
           }
@@ -462,7 +443,9 @@ const JobRecruitmentForm = () => {
                         Select Category <span className="text-danger">*</span>
                       </label>
                       <Select
-                        value={selectCategory}
+                        value={category?.find(
+                          (cat) => cat?.value == formData?.job_category
+                        )}
                         options={category}
                         onChange={updateCategory}
                       />
@@ -498,10 +481,13 @@ const JobRecruitmentForm = () => {
                       >
                         Job Type <span className="text-danger">*</span>
                       </label>
+
                       <Select
                         options={jobTypes}
+                        value={jobTypes?.find(
+                          (job) => job?.value == formData?.job_type
+                        )}
                         onChange={updateJobType}
-                        value={selectJobType}
                       />
 
                       {errorKey === ".job_type" && (
@@ -534,7 +520,9 @@ const JobRecruitmentForm = () => {
                         <span className="text-danger">*</span>
                       </label>
                       <Select
-                        value={selectMinExperience}
+                        value={minExperienceList?.find(
+                          (ele) => ele.value == formData?.job_experience
+                        )}
                         options={minExperienceList}
                         onChange={updateMinExp}
                       />
@@ -707,12 +695,15 @@ const JobRecruitmentForm = () => {
                     </div>
 
                     <div className="form-group col-md-12">
-                      
-
-                      <div className='col-md-12 px-0'>
-                                        <label className='font-weight-semibold'>Description</label>
-                                        <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
-                                    </div>
+                      <div className="col-md-12 px-0">
+                        <label className="font-weight-semibold">
+                          Description
+                        </label>
+                        <textarea id="editor1" name="description">
+                          {formData.description &&
+                            validator.unescape(formData.description)}
+                        </textarea>
+                      </div>
                     </div>
 
                     <div className="col-md-12 me-auto d-flex justify-content-between align-items-center">

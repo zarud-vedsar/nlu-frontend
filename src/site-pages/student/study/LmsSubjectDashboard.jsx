@@ -210,7 +210,7 @@ function LmsSubjectDashboard() {
                 {["topics", "live"].map((category, index) => (
                   <Tab key={index}>{capitalizeFirstLetter(category)}</Tab>
                 ))}
-              </TabList>
+              </TabList> 
 
               <TabPanel>
                 <div className="row">

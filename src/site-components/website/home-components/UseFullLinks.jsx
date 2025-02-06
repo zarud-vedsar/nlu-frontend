@@ -1,10 +1,17 @@
 import { React, useState, useEffect } from 'react';
+import AOS from "aos";
 import { FILE_API_URL, PHP_API_URL } from '../../Helper/Constant';
 import axios from 'axios';
 import defaultImage from '../assets/Images/useful-1.png';
 import { slugify } from '../../Helper/HelperFunction';
 const UseFullLinks = () => {
   const [usefulLinks, setUsefullLinks] = useState([]);
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
 
   const getUsefulLink = async () => {
     try {
@@ -24,7 +31,7 @@ const UseFullLinks = () => {
   return (
     <>
       {usefulLinks && usefulLinks.length > 0 && (
-        <section className="usefulllnk">
+        <section className="usefulllnk" data-aos="fade-up" data-aos-delay="100">
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">

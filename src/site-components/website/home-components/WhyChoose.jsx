@@ -14,8 +14,7 @@ const WhyChoose = () => {
 
   return (
     <>
-      <section className="section bg-white"
-      >
+      <section className="section bg-white">
         <div className="container">
           <div className="row">
             <div className='col-md-12 mb-3 text-center'>

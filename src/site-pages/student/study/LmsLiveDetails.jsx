@@ -9,6 +9,7 @@ import livePng from "../assets/img/livethembnail.jpg";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { formatDate } from "../../../site-components/Helper/HelperFunction";
+import validator from 'validator';
 
 const LmsLiveDetails = () => {
   const sid = secureLocalStorage.getItem("studentId");
@@ -187,7 +188,7 @@ const LmsLiveDetails = () => {
                       <p>End Time: {liveData.endTime}</p>
                     </div>
                     <p>
-                    {liveData.description}
+                    {liveData?.description ? validator.unescape(liveData?.description) : ""}
                     </p>
                    
                   </div>

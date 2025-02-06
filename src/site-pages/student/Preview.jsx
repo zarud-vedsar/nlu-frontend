@@ -807,7 +807,7 @@ function Preview() {
                       type="submit"
                       disabled
                     >
-                      Sabmitting &nbsp; <div className="loader-circle"></div>
+                      Submitting &nbsp; <div className="loader-circle"></div>
                     </button>
                   )}
                 </div>

@@ -1,16 +1,14 @@
 
 
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import {
   PHP_API_URL,
-  CKEDITOR_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
-import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
 
 const AntiRagging = () => {
@@ -94,6 +92,9 @@ const AntiRagging = () => {
     }
   };
 
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData(newContent);
+  }, []);
   return (
     <div className="page-container">
       <div className="main-content">
@@ -133,7 +134,7 @@ const AntiRagging = () => {
                     <JoditEditor
                       value={formData || ""}
                       config={config}
-                      onChange={(newContent) => setFormData(newContent)}
+                      onChange={handleEditorChange}
                     />
                   </div>
                 </div>

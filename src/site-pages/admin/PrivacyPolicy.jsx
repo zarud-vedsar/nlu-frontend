@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
@@ -98,6 +98,10 @@ const PrivacyPolicy = () => {
     }
   };
 
+  const handleEditorChange = useCallback((newContent) => {
+    setFormData(newContent)
+  }, []);
+
   return (
     <div className="page-container">
       <div className="main-content">
@@ -134,7 +138,7 @@ const PrivacyPolicy = () => {
                     <JoditEditor
                       value={formData}
                       config={config}
-                      onChange={(newContent) => setFormData(newContent)}
+                      onChange={handleEditorChange}
                     />
                   </div>
                 </div>

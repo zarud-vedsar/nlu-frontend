@@ -14,7 +14,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { capitalizeFirstLetter } from "../../site-components/Helper/HelperFunction";
 import { toast } from "react-toastify";
-import { useReactToPrint } from "react-to-print";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 function Preview() {
@@ -167,14 +166,12 @@ function Preview() {
       setIsSubmit(false);
     }
   };
-  const contentRef = useRef(null);
-  const reactToPrintFn = useReactToPrint({ contentRef });
   return (
     <>
       <div className="page-container printablediv">
         <div className="main-content">
           <div className="container-fluid">
-            {currentCourse?.preview != 1 && (
+            {currentCourse?.preview == 1 && (
               <div className="row col-12">
                 <button
                   onClick={handleDownload}

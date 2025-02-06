@@ -205,7 +205,7 @@ const About = () => {
                         {/* JoditEditor component */}
                         <label className='font-weight-semibold'>Description</label>
                         <JoditEditor
-                          value={formData.about_content || ""}
+                          value={formData?.about_content ? validator.unescape(formData.about_content) : ""}
                           config={config}
                           onChange={handleEditorChange}
                         />

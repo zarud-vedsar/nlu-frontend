@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useRef, useState } from "react";
-import { CKEDITOR_URL, NODE_API_URL } from "../../../../site-components/Helper/Constant";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { NODE_API_URL } from "../../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import { capitalizeFirstLetter, dataFetchingPost, goBack, extractGoogleDriveId } from "../../../../site-components/Helper/HelperFunction";
@@ -9,6 +9,8 @@ import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import { FormField } from "../../../../site-components/admin/assets/FormField";
 import validator from "validator";
+import JoditEditor from "jodit-react"; // Import Jodit editor
+
 function AddResourceVideo() {
     // Initial form state
     const initialForm = {
@@ -33,34 +35,15 @@ function AddResourceVideo() {
     const [topicList, setTopicList] = useState([]);
     const [error, setError] = useState({ field: "", msg: "" }); // Error state
     const { dbId } = useParams();
-    // Load CKEditor 4 dynamically
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = CKEDITOR_URL;
-        script.async = true;
-        script.onload = () => {
-            // Initialize CKEditor instance
-            window.CKEDITOR.replace('editor1', {
-                versionCheck: false, // Disable security warnings
-            });
-
-            // Update the formData when the editor content changes
-            window.CKEDITOR.instances['editor1'].on('change', () => {
-                const data = window.CKEDITOR.instances['editor1'].getData();
-                setFormData((prevState) => ({
-                    ...prevState,
-                    description: data, // Update description in formData
-                }));
-            });
-        };
-        document.body.appendChild(script);
-
-        // Cleanup CKEditor instance on component unmount
-        return () => {
-            if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-                window.CKEDITOR.instances['editor1'].destroy();
-            }
-        };
+    // Jodit editor configuration
+    const config = {
+        readonly: false, // set to true if you want readonly mode
+    };
+    const handleEditorChange = useCallback((newContent) => {
+        setFormData((prev) => ({
+            ...prev,
+            description: newContent,
+        }));
     }, []);
     const fetchTopicBasedOnCSS = async (courseid, semesterid, subjectid) => {
         try {
@@ -210,14 +193,6 @@ function AddResourceVideo() {
                     video_type: data.video_type,
                     description: data.description ? validator.unescape(data.description) : data.description
                 }));
-
-                // Set CKEditor content after data is fetched
-                if (window.CKEDITOR && window.CKEDITOR.instances['editor1']) {
-                    window.CKEDITOR.instances['editor1'].setData(
-                        validator.unescape(data.description || "") // Ensure content is unescaped properly
-                    );
-                }
-
                 setPreviewImage(data.thumbnail)
                 fetchSubjectBasedOnCourseAndSemeter(data.courseid, data.semesterid)
                 return response;
@@ -583,9 +558,13 @@ function AddResourceVideo() {
                                                     column="col-md-12 col-lg-12 col-12 col-sm-12"
                                                 />
                                                 <div className="col-md-12 col-lg-12">
-                                                <label className='font-weight-semibold'>Description</label>
+                                                    <label className='font-weight-semibold'>Description</label>
+                                                    <JoditEditor
+                                                        value={formData?.description ? validator.unescape(formData.description) : ""}
+                                                        config={config}
+                                                        onChange={handleEditorChange}
+                                                    />
 
-                                                    <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
                                                 </div>
                                                 <div className="col-md-12 col-lg-12 col-12">
                                                     <button

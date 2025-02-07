@@ -286,3 +286,29 @@ position: relative;
     color: #b81365;
 
 }
+
+
+/* Month Selector Container */
+
+  /* Form Styling */
+  .month-form {
+    border-radius: 8px;
+  }
+  
+  /* Label Styling */
+  .month-label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  /* Input Styling */
+  .month-input {
+    padding: 5px 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  

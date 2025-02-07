@@ -18,3 +18,9 @@ Learning Management
  
 
 
+Student panel
+-> student dashboard 
+??? if student is logged in then can the parent login in same browser at same time?
+-> add marquee at parent panel
+
+Assignment session wise in all occurances 

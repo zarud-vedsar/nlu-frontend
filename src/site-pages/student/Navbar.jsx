@@ -507,6 +507,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       <div className={`side-nav ${expand ? "expanded" : ""}`}>
         <div className="side-nav-inner">
           <ul className="side-nav-menu scrollable">
+         
             {sideBarMenu.map((option, index) =>
               option.url ? (
                 <li key={index} className="nav-item dropdown cursor">
@@ -555,6 +556,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                 </li>
               )
             )}
+             
           </ul>
         </div>
       </div>

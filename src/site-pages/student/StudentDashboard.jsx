@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import StudyMaterial from "./assets/img/study-material.png";
-import Assignment from "./assets/img/assignment.png";
-import Quiz from "./assets/img/quiz.png";
+
 import "./assets/custom.css";
 import { Link } from "react-router-dom";
 import ProfilePng from "./assets/img/dashboard/avatar.png";
@@ -19,6 +17,10 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+
+// import secureLocalStorage from "react-secure-storage";
+// import axios from "axios";
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -47,6 +49,7 @@ function StudentDashboard() {
   });
 
   useEffect(() => {
+    //getStudentDashboardData()
     setChartData({
       labels: ["subject1", "subject2", "subject3", "subject4", "subject5", "subject6"],
       datasets: [
@@ -86,6 +89,34 @@ function StudentDashboard() {
   const handleMonthChange = (e) => {
     setSelectedMonth(e.target.value);
   };
+
+  // const getStudentDashboardData = async () => {
+  //   try {
+  //     console.log("getAdminDashboardData");
+  //     const bformData = new FormData();
+  //     bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
+  //     bformData.append("login_type", secureLocalStorage.getItem("loginType"));
+  //     bformData.append("session", localStorage.getItem("session"));
+  //     bformData.append("data", "faculty_dashboard");
+
+  //     bformData.append("faculty_id", facultyId);
+
+  //     const response = await axios.post(
+  //       `${PHP_API_URl}/dashboard.php`,
+  //       bformData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+  //     console.log(response)
+      
+  //   } catch (error) {
+  //     console.error("Error fetching admin Dashboard data:", error);
+  //   }
+  // };
+
 
   return (
     <>

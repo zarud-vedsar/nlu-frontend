@@ -139,7 +139,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
   );
 };
 
-const Navbar = ({ toggleExpand, toggleFolded }) => {
+const Navbar = ({ toggleExpand, toggleFolded}) => {
   const [activeSidebarMenu, setActiveSidebarMenu] = useState(null);
   const [activeSubSidebarMenu, setActiveSubSidebarMenu] = useState(null);
   const [expand, setExpand] = useState(false);

@@ -38,7 +38,20 @@ function App() {
               </div>
             }
           ></Route>
-          <Route path="/student/*" element={<StudentRoute />}></Route>
+          <Route
+            path="/student/*"
+            element={
+              <div
+                className={`${expand ? "is-expand" : ""} ${folded ? "is-folded" : ""
+                  }`}
+              >
+                <StudentRoute
+                  toggleExpand={toggleExpand}
+                  toggleFolded={toggleFolded}
+                />
+              </div>
+            }
+          ></Route>
           <Route
             path="/assignment/*"
             element={<StudentAssignmentRoute />}

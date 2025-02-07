@@ -163,7 +163,7 @@ const SEOSetting = () => {
                   <i className="fas fa-home m-r-5" /> Setting
                 </a>
                 <a href="" className="breadcrumb-item">
-                  <i className="fas " /> Company Profile
+                  <i className="fas " /> University Settings
                 </a>
                 <span className="breadcrumb-item active">
                   SEO Setting

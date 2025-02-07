@@ -15,7 +15,6 @@ import {
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
 
-import "../../../node_modules/primeicons/primeicons.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { useNavigate } from "react-router-dom";

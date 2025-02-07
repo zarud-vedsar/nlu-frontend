@@ -20,18 +20,19 @@ import {
 
 import { Spinner } from "react-bootstrap";
 import validator from "validator";
-
+import { Link } from "react-router-dom";
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import StudentImg from "../../site-components/admin/assets/images/dashboard/student-1.png";
 import StudentImg2 from "../../site-components/admin/assets/images/dashboard/student-2.png";
 import CourseImg from "../../site-components/admin/assets/images/dashboard/course.png";
-import RolesImg1 from "../../site-components/admin/assets/images/dashboard/roles-1.png";
+
 import RolesImg2 from "../../site-components/admin/assets/images/dashboard/roles-2.png";
 import FacultyImg from "../../site-components/admin/assets/images/dashboard/faculty.png";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { useNavigate } from "react-router-dom";
 // Register necessary components for Chart.js
 ChartJS.register(
   CategoryScale,
@@ -46,7 +47,7 @@ ChartJS.register(
 const Home = () => {
   //   const [session, setSession] = useState(); // Session data: the fuel for exams.
   const [data, setData] = useState([]);
-
+const navigate = useNavigate();
   // const sessionListDropdown = async () => {
   //     try {
   //       const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
@@ -336,9 +337,11 @@ const Home = () => {
                         <div key={index}>
                           <div className="card">
                             <div className="card-body p-1">
-                              <p className="text-dark m-0">
+                              <Link to={`/notice-details/${item.id}`} target="_blank">
+                              <p className=" m-0">
                                 {capitalizeFirstLetter(validator.unescape(item?.title))}
                               </p>
+                              </Link>
                               <p className="text-danger m-1">
                                 {formatDate(item?.notice_date)}
                               </p>
@@ -353,9 +356,11 @@ const Home = () => {
                         <div key={index}>
                         <div className="card">
                           <div className="card-body p-1">
-                            <p className="text-dark m-0">
+                          <Link to={`/notice-details/${item.id}`} target="_blank">
+                            <p className=" m-0">
                               {capitalizeFirstLetter(validator.unescape(item?.title))}
                             </p>
+                            </Link>
                             <p className="text-danger m-1">
                               {formatDate(item?.notice_date)}
                             </p>
@@ -370,9 +375,11 @@ const Home = () => {
                         <div key={index}>
                         <div className="card">
                           <div className="card-body p-1">
-                            <p className="text-dark m-0">
+                          <Link to={`/notice-details/${item.id}`} target="_blank">
+                            <p className=" m-0">
                               {capitalizeFirstLetter(validator.unescape(item?.title))}
                             </p>
+                            </Link>
                             <p className="text-danger m-1">
                               {formatDate(item?.notice_date)}
                             </p>

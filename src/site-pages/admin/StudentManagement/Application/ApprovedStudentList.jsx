@@ -284,7 +284,7 @@ function ApprovedStudentList() {
                                     student.studentId,
                                     {
                                       value: student.studentId,
-                                      label: `${student.sname} (${student.enrollmentNo})`,
+                                      label: `${student.sname} (${student.registrationNo})`,
                                     },
                                   ])
                                 ).values(),
@@ -375,9 +375,9 @@ function ApprovedStudentList() {
                       />
                       <Column
                         body={(row) =>
-                          capitalizeFirstLetter(row.enrollmentNo)
+                          capitalizeFirstLetter(row.registrationNo)
                         }
-                        header="Enrollment No."
+                        header="Reg. No."
                         sortable
                       />
 

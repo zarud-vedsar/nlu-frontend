@@ -109,17 +109,15 @@ const MyVerticallyCenteredModal = (props = {}) => {
                 (item) => item.stid === parseInt(selectedStudent)
               )
                 ? {
-                    value: parseInt(selectedStudent),
-                    label: `${
-                      studentList.find(
-                        (item) => item.stid == parseInt(selectedStudent)
-                      ).sname
-                    }( ${
-                      studentList.find(
-                        (item) => item.stid == parseInt(selectedStudent)
-                      ).registrationNo
+                  value: parseInt(selectedStudent),
+                  label: `${studentList.find(
+                    (item) => item.stid == parseInt(selectedStudent)
+                  ).sname
+                    }( ${studentList.find(
+                      (item) => item.stid == parseInt(selectedStudent)
+                    ).registrationNo
                     })`,
-                  }
+                }
                 : { value: selectedStudent, label: "Select" }
             }
           ></Select>
@@ -155,13 +153,13 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
 
   const sideBarMenu = [
     ...(!secureLocalStorage.getItem("sguardianemail")
-    ? [
-    {
-      title: "Home",
-      icon: <AiOutlineDashboard />,
-      url: "home",
-      dropdownMenus: [],
-    }]:[]),
+      ? [
+        {
+          title: "Home",
+          icon: <AiOutlineDashboard />,
+          url: "home",
+          dropdownMenus: [],
+        }] : []),
   ];
 
   const fetchList = async () => {
@@ -267,17 +265,17 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         url: "",
         dropdownMenus: [
           ...(!secureLocalStorage.getItem("sguardianemail")
-          ? [
-          { subtitle: "Raise Room Query", url: "raise-query" }]:[]),
+            ? [
+              { subtitle: "Raise Room Query", url: "raise-query" }] : []),
           { subtitle: "Raised Room Queries", url: "raised-room-queries" },
           { subtitle: "Alloted Room History", url: "alloted-room-history" },
           ...(!secureLocalStorage.getItem("sguardianemail")
-          ? [
-          { subtitle: "Raise Complain", url: "raise-complain" }]:[]),
+            ? [
+              { subtitle: "Raise Complain", url: "raise-complain" }] : []),
           { subtitle: "Complain History", url: "complain-history" },
           ...(!secureLocalStorage.getItem("sguardianemail")
-          ? [
-          { subtitle: "New Leave Request", url: "leave-request" }]:[]),
+            ? [
+              { subtitle: "New Leave Request", url: "leave-request" }] : []),
           { subtitle: "Leave Request History", url: "leave-request-list" },
         ],
       },
@@ -305,8 +303,8 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         url: "",
         dropdownMenus: [
           ...(!secureLocalStorage.getItem("sguardianemail")
-          ? [
-          { subtitle: "New Message", url: "new-message" }]:[]),
+            ? [
+              { subtitle: "New Message", url: "new-message" }] : []),
           { subtitle: "Message List", url: "message-list" },
         ],
       }
@@ -363,7 +361,6 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         }
       }
     } catch (error) {
-    } finally {
     }
   };
 
@@ -398,9 +395,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
 
   return (
     <>
-      <div className="header bg-primary border-none shadow-head-sm">
+      <div className="header bg-white border-none shadow-head-sm">
         <div className="logo logo-dark d-flex justify-content-center align-items-center">
-          <Link to="/admin/home">
+          <Link to="/student/">
             <img
               style={{ width: "35%" }}
               src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
@@ -415,7 +412,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           </Link>
         </div>
         <div className="logo logo-white">
-          <Link href="/admin/home">
+          <Link href="/student/">
             <img
               style={{ width: "35%" }}
               src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
@@ -439,7 +436,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
             </li>
             {guardian && (
               <li
-                className="bg-light text-dark d-flex justify-content-center align-items-center "
+                className="bg_light text-dark d-flex justify-content-center align-items-center "
                 style={{
                   padding: "10px 18px",
                   borderRadius: "20px",
@@ -448,7 +445,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                 onClick={() => setModalShow(true)}
               >
                 <>
-                  <i class="fa-solid fa-user-tie text-primary mr-3"></i>
+                  <i className="fa-solid fa-user-tie text-primary mr-3"></i>
                   <div className="">{sessionTitle}</div>
                 </>
               </li>
@@ -507,7 +504,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       <div className={`side-nav ${expand ? "expanded" : ""}`}>
         <div className="side-nav-inner">
           <ul className="side-nav-menu scrollable">
-         
+
             {sideBarMenu.map((option, index) =>
               option.url ? (
                 <li key={index} className="nav-item dropdown cursor">
@@ -519,9 +516,8 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
               ) : (
                 <li
                   key={index}
-                  className={`nav-item dropdown cursor ${
-                    activeSidebarMenu === index ? "open" : ""
-                  }`}
+                  className={`nav-item dropdown cursor ${activeSidebarMenu === index ? "open" : ""
+                    }`}
                   onClick={() =>
                     setActiveSidebarMenu(
                       activeSidebarMenu === index ? null : index
@@ -539,9 +535,8 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                     {option.dropdownMenus.map((subOption, subIndex) => (
                       <li
                         key={subIndex}
-                        className={`${
-                          activeSubSidebarMenu === subIndex ? "active" : ""
-                        }`}
+                        className={`${activeSubSidebarMenu === subIndex ? "active" : ""
+                          }`}
                         onClick={() => setActiveSubSidebarMenu(subIndex)}
                       >
                         <Link
@@ -556,7 +551,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                 </li>
               )
             )}
-             
+
           </ul>
         </div>
       </div>

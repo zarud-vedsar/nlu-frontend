@@ -3,6 +3,7 @@ import axios from "axios";
 import { PHP_API_URL } from "../../../../site-components/Helper/Constant";
 import { useParams, Link } from "react-router-dom";
 import { FaAngleRight, FaRightLong } from "react-icons/fa6";
+import secureLocalStorage from "react-secure-storage"; // Importing secure storage for storing sensitive data.
 
 const InternshipDetail = () => {
   const { id } = useParams();
@@ -129,7 +130,7 @@ const InternshipDetail = () => {
                 <strong>Location:</strong> {jobDetails?.address},{" "}
                 {jobDetails?.city}, {jobDetails?.state}
               </p>
-              {new Date(jobDetails.post_last_date) > new Date() && (
+              {!secureLocalStorage.getItem("sguardianemail") && new Date(jobDetails.post_last_date) > new Date() && (
               <Link to={`/internship/apply/${id}`} className="btn btn-primary border-primary rounded-1 px-5 py-2">
                 Apply Now <FaRightLong />
               </Link>)

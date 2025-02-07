@@ -205,13 +205,22 @@ function QuizSubjectDashboard() {
                               {capitalizeFirstLetter(item.question_type)}
                             </span>
                             <br />
-                            {item.attempt_status !== "Attempted" &&  (
+                            {!secureLocalStorage.getItem("sguardianemail")  && item.attempt_status !== "Attempted" &&  (
                               <Link
                                 target="_blank"
                                 className="btn btn-success mt-2"
                                 to={`/quiz/quiz-subject/paper/${courseId}/${semesterId}/${subjectId}/${item.id}`}
                               >
                                 Attempt
+                              </Link>
+                            )}
+                            {secureLocalStorage.getItem("sguardianemail")  && item.attempt_status !== "Attempted" &&  (
+                              <Link
+                                
+                                className="btn btn-warning mt-2"
+                                
+                              >
+                                Pending
                               </Link>
                             )}
                             {/* {item.attempt_status !== "Attempted" &&  (

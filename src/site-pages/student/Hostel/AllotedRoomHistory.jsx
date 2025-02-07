@@ -147,11 +147,13 @@ function AllotedRoomHistory() {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                  {!secureLocalStorage.getItem("sguardianemail") &&
                   <Link to="/student/raise-query">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-plus"></i> Raise Query For Room
                     </button>
                   </Link>
+}
                 </div>
               </div>
             </div>

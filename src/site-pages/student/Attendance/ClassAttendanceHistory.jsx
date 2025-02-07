@@ -199,6 +199,7 @@ function ClassAttendanceHistory() {
       studentAttendanceMap.forEach((months) => {
         let presentCount = 0;
         let onDutyCount = 0;
+        let absentCount = 0;
         let studentRecord = {
           studentId: months.studentId,
           enrollmentNo: months.enrollmentNo,
@@ -211,12 +212,14 @@ function ClassAttendanceHistory() {
                     year: filters?.year,
                     month: m,
                     day: i + 1,
-                    attendance: "A",
+                    attendance: "N",
                   };
 
-                 
             if (attendanceData.attendance === "P") {
               presentCount++;
+            }
+            if (attendanceData.attendance === "A") {
+              absentCount++;
             }
             if (attendanceData.attendance === "OD") {
               onDutyCount++;
@@ -227,7 +230,8 @@ function ClassAttendanceHistory() {
 
           presentCount: presentCount,
           onDutyCount: onDutyCount,
-          absentCount: daysInMonth[m - 1] - (presentCount + onDutyCount),
+          absentCount: absentCount,
+          totalClass: presentCount + absentCount + onDutyCount,
         };
 
         monthAttendance.students.push(studentRecord);
@@ -334,7 +338,6 @@ function ClassAttendanceHistory() {
                                 <table className="mb-5">
                                   <thead>
                                     <tr>
-                                      <th scope="col">#</th>
                                       {month?.students[0]?.attendance?.map(
                                         (day) => (
                                           <th key={day.dat} scope="col">
@@ -342,16 +345,17 @@ function ClassAttendanceHistory() {
                                           </th>
                                         )
                                       )}
+                                                                            <th scope="col">Class</th>
+
                                       <th scope="col">T-P</th>
-                                      <th scope="col">T-A</th>
                                       <th scope="col">T-OD</th>
+                                      <th scope="col">T-A</th>
+                                      
                                     </tr>
                                   </thead>
                                   <tbody>
                                     {month?.students.map((student, index) => (
                                       <tr key={index}>
-                                        <td>{index + 1}</td>
-
                                         {student?.attendance.map(
                                           (day, index) => (
                                             <td key={index}>
@@ -367,18 +371,24 @@ function ClassAttendanceHistory() {
                                                 </span>
                                               )}
 
-                                              {day.attendance !== "P" &&
-                                                day.attendance !== "OD" && (
-                                                  <span className="badge badge-danger">
-                                                    A
-                                                  </span>
-                                                )}
+                                              {day.attendance === "A" && (
+                                                <span className="badge badge-danger">
+                                                  A
+                                                </span>
+                                              )}
+                                              {day.attendance === "N" && (
+                                                <span className="badge badge-light">
+                                                  N
+                                                </span>
+                                              )}
                                             </td>
                                           )
                                         )}
+                                        <td>{student?.totalClass}</td>
                                         <td>{student?.presentCount}</td>
-                                        <td>{student?.absentCount}</td>
                                         <td>{student?.onDutyCount}</td>
+                                        <td>{student?.absentCount}</td>
+                                       
                                       </tr>
                                     ))}
                                   </tbody>

@@ -66,11 +66,13 @@ function MessageList() {
                                     <button className="btn btn-secondary mr-2" onClick={goBack}>
                                         <i className="fas fa-arrow-left"></i> Go Back
                                     </button>
+                                    {!secureLocalStorage.getItem("sguardianemail") &&
                                     <Link to="/student/new-message">
                                         <button className="btn btn-secondary">
                                             <i className="fas fa-plus"></i> Add New
                                         </button>
                                     </Link>
+}
                                 </div>
                             </div>
                         </div>

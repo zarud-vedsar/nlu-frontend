@@ -106,8 +106,10 @@ const FeedbackList = () => {
                                     >
                                         <i className="fas fa-arrow-left" /> Go Back
                                     </button>
+                                    {!secureLocalStorage.getItem("sguardianemail") &&
                                     <Link to='/student/new-feedback' className="btn btn-dark ml-2">Give Feedback <i className="fas fa-plus"></i></Link>
-                                </div>
+                                    }
+                                    </div>
                             </div>
                         </div>
                         <div className="card">

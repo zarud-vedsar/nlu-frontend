@@ -144,11 +144,13 @@ function MessageList() {
                                     <button className="btn btn-secondary mr-2" onClick={goBack}>
                                         <i className="fas fa-arrow-left"></i> Go Back
                                     </button>
+                                    {!secureLocalStorage.getItem("sguardianemail") &&
                                     <Link to="/admin/cmn-mng-message">
                                         <button className="btn btn-secondary">
                                             <i className="fas fa-plus"></i> Add New
                                         </button>
                                     </Link>
+}
                                 </div>
                             </div>
                         </div>
@@ -232,6 +234,7 @@ function MessageList() {
                                                     }
                                                     <div style={{ marginTop: '80px' }}></div>
                                                 </ScrollToBottom>
+                                                {!secureLocalStorage.getItem("sguardianemail") &&
                                                 <div className="conversation-footer px-2 align-items-center">
                                                     <textarea
                                                         className="chat-input"
@@ -259,6 +262,7 @@ function MessageList() {
                                                         </li>
                                                     </ul>
                                                 </div>
+}
                                             </div>
                                         </div>
                                     </div>

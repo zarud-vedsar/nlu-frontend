@@ -30,7 +30,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
   }, []);
   const fetchList = async () => {
     try {
-
       const bformData = new FormData();
 
       bformData.append("data", "otherchild");
@@ -155,17 +154,18 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
   const navigate = useNavigate();
 
   const sideBarMenu = [
+    ...(!secureLocalStorage.getItem("sguardianemail")
+    ? [
     {
       title: "Home",
       icon: <AiOutlineDashboard />,
       url: "home",
       dropdownMenus: [],
-    },
+    }]:[]),
   ];
 
   const fetchList = async () => {
     try {
-
       const bformData = new FormData();
 
       bformData.append("data", "otherchild");
@@ -211,14 +211,13 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         title: "Dashboard",
         icon: <AiOutlineDashboard />,
         url: "dashboard",
-        dropdownMenus: [ ],
+        dropdownMenus: [],
       },
       {
         title: "Library",
         icon: <AiOutlineAppstore />,
         url: "",
         dropdownMenus: [
-          
           { subtitle: "Issued List", url: "issued-list" },
           { subtitle: "Book Catalogue", url: "book-catalogue" },
         ],
@@ -228,7 +227,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         icon: <AiOutlineAppstore />,
         url: "",
         dropdownMenus: [
-          { subtitle: "Give Feedback", url: "new-feedback" },
+          ...(!secureLocalStorage.getItem("sguardianemail")
+            ? [{ subtitle: "Give Feedback", url: "new-feedback" }]
+            : []),
           { subtitle: "My Feedback", url: "feedback-list" },
         ],
       },
@@ -265,12 +266,18 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         icon: <AiOutlineAppstore />,
         url: "",
         dropdownMenus: [
-          { subtitle: "Raise Room Query", url: "raise-query" },
+          ...(!secureLocalStorage.getItem("sguardianemail")
+          ? [
+          { subtitle: "Raise Room Query", url: "raise-query" }]:[]),
           { subtitle: "Raised Room Queries", url: "raised-room-queries" },
           { subtitle: "Alloted Room History", url: "alloted-room-history" },
-          { subtitle: "Raise Complain", url: "raise-complain" },
+          ...(!secureLocalStorage.getItem("sguardianemail")
+          ? [
+          { subtitle: "Raise Complain", url: "raise-complain" }]:[]),
           { subtitle: "Complain History", url: "complain-history" },
-          { subtitle: "New Leave Request", url: "leave-request" },
+          ...(!secureLocalStorage.getItem("sguardianemail")
+          ? [
+          { subtitle: "New Leave Request", url: "leave-request" }]:[]),
           { subtitle: "Leave Request History", url: "leave-request-list" },
         ],
       },
@@ -280,7 +287,10 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         url: "",
         dropdownMenus: [
           { subtitle: "Hostel Attendance History", url: "attendance-history" },
-          { subtitle: "Class Attendance History", url: "class-attendance-history" },
+          {
+            subtitle: "Class Attendance History",
+            url: "class-attendance-history",
+          },
         ],
       },
       {
@@ -294,7 +304,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         icon: <AiOutlineAppstore />,
         url: "",
         dropdownMenus: [
-          { subtitle: "New Message", url: "new-message" },
+          ...(!secureLocalStorage.getItem("sguardianemail")
+          ? [
+          { subtitle: "New Message", url: "new-message" }]:[]),
           { subtitle: "Message List", url: "message-list" },
         ],
       }
@@ -302,9 +314,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
   }
 
   const [studentPersonalDetail, setStudentPersonalDetail] = useState({
-    name:"",
-    pic:"",
-    email:""
+    name: "",
+    pic: "",
+    email: "",
   });
   useEffect(() => {
     getStudentSelectedCourse();
@@ -315,20 +327,21 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
     }
   }, []);
 
-  const getStudentPersonalData = async()=>{
-    await studentRecordById(secureLocalStorage.getItem("studentId")).then((res) => {
-      if (res.length > 0) {
-        setStudentPersonalDetail({
-          name:res[0]?.sname,
-          pic:res[0]?.spic,
-          registrationNo:res[0]?.registrationNo,
-          id:res[0]?.id,
-          enrollmentNo:res[0]?.enrollmentNo
-        })
+  const getStudentPersonalData = async () => {
+    await studentRecordById(secureLocalStorage.getItem("studentId")).then(
+      (res) => {
+        if (res.length > 0) {
+          setStudentPersonalDetail({
+            name: res[0]?.sname,
+            pic: res[0]?.spic,
+            registrationNo: res[0]?.registrationNo,
+            id: res[0]?.id,
+            enrollmentNo: res[0]?.enrollmentNo,
+          });
+        }
       }
-    });
-  }
-
+    );
+  };
 
   const getStudentSelectedCourse = async () => {
     try {
@@ -445,7 +458,13 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
             <li className="dropdown dropdown-animated scale-left">
               <div className="pointer" onClick={() => setShowPopup(!showPopup)}>
                 <div className="avatar avatar-image m-h-10 m-r-15">
-                  <img src={studentPersonalDetail?.pic? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}` : studentAvatar}/>
+                  <img
+                    src={
+                      studentPersonalDetail?.pic
+                        ? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}`
+                        : studentAvatar
+                    }
+                  />
                 </div>
               </div>
               {showPopup && (
@@ -453,13 +472,21 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                   <div className="p-h-20 p-b-15 m-b-10 border-bottom">
                     <div className="d-flex">
                       <div className="avatar avatar-lg avatar-image">
-                        <img src={studentPersonalDetail?.pic? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}` : studentAvatar} />
+                        <img
+                          src={
+                            studentPersonalDetail?.pic
+                              ? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}`
+                              : studentAvatar
+                          }
+                        />
                       </div>
                       <div className="m-l-10">
                         <p className="m-b-0 text-dark font-weight-semibold">
                           {studentPersonalDetail?.name || ""}
                         </p>
-                        <p className="m-b-0 opacity-07">{studentPersonalDetail?.enrollmentNo || ""}</p>
+                        <p className="m-b-0 opacity-07">
+                          {studentPersonalDetail?.enrollmentNo || ""}
+                        </p>
                       </div>
                     </div>
                   </div>

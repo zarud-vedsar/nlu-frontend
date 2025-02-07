@@ -205,13 +205,22 @@ function AssignmentSubjectDashboard() {
                               {capitalizeFirstLetter(item.question_type)}
                             </span>
                             <br />
-                            {item.attempt_status !== "Attempted" && new Date(item.deadline_date) >= new Date() && (
+                            { !secureLocalStorage.getItem("sguardianemail") && item.attempt_status !== "Attempted" && new Date(item.deadline_date) >= new Date() && (
                               <Link
                                 target="_blank"
                                 className="btn btn-success mt-2"
                                 to={`/assignment/assignment-subject/paper/${courseId}/${semesterId}/${subjectId}/${item.id}`}
                               >
                                 Attempt
+                              </Link>
+                            )}
+                            { secureLocalStorage.getItem("sguardianemail") &&  item.attempt_status !== "Attempted" && new Date(item.deadline_date) >= new Date() && (
+                              <Link
+                               
+                                className="btn btn-warning mt-2"
+                              
+                              >
+                                Pending
                               </Link>
                             )}
                             {item.attempt_status !== "Attempted" && new Date(item.deadline_date) < new Date() && (
@@ -264,13 +273,20 @@ function AssignmentSubjectDashboard() {
 
                             <br />
 
-                            {item.attempt_status !== "Attempted" && (
+                            {!secureLocalStorage.getItem("sguardianemail")  && item.attempt_status !== "Attempted" && (
                               <Link
                                 target="_blank"
                                 className="btn btn-success mt-2"
                                 to={`/assignment/assignment-subject/paper/${courseId}/${semesterId}/${subjectId}/${item.id}`}
                               >
                                 Attempt
+                              </Link>
+                            )}
+                            {secureLocalStorage.getItem("sguardianemail")  && item.attempt_status !== "Attempted" && (
+                              <Link
+                                className="btn btn-warning mt-2"
+                              >
+                                Pending
                               </Link>
                             )}
                             {item.attempt_status === "Attempted" &&

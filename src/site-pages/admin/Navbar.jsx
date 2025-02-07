@@ -619,7 +619,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           url: "video-at-website-home",
           icon: <FaPlayCircle />,
         }, // Play icon for website home video
-        
+
         {
           subtitle: "Banner",
           url: "cms/banner/list",
@@ -781,10 +781,11 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
     setFolded(!folded);
     toggleFolded(!folded);
   }
+  console.log()
 
   return (
     <>
-      <div className="header bg-primary border-none shadow-head-sm">
+      <div className="header bg-white border-none shadow-head-sm">
         <div className="logo logo-dark d-flex justify-content-center align-items-center">
           <Link to="/admin/home">
             <img style={{ width: "35%" }} src={rpnl_logo} alt="Logo" />
@@ -795,6 +796,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
               alt="Logo Folded"
             />
           </Link>
+          <div className="desktop-toggle mr-3" onClick={toggleSidebarFolded}>
+            <RiMenuFold3Fill />
+          </div>
         </div>
         <div className="logo logo-white">
           <Link href="/admin/home">
@@ -809,15 +813,11 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         </div>
         <div className="nav-wrap">
           <ul className="nav-left">
-            <li className="desktop-toggle mr-3" onClick={toggleSidebarFolded}>
-              <RiMenuFold3Fill />
-            </li>
-
             <li className="mobile-toggle mr-3" onClick={toggleSidebar}>
               <RiMenuFold4Fill />
             </li>
             <li
-              className="bg-light text-dark d-flex justify-content-center align-items-center "
+              className="bg_light text-dark d-flex justify-content-center align-items-center "
               style={{
                 padding: "10px 18px",
                 borderRadius: "20px",
@@ -963,13 +963,11 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                   </li>
                 );
               }
-
               return null; // Ensure that something is returned in all cases
             })}
           </ul>
         </div>
       </div>
-
       <MyVerticallyCenteredModal
         show={modalShow}
         submit={() => {

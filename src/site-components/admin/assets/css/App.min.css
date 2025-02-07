@@ -17011,7 +17011,7 @@ iframe {
   border: 0px;
   border-radius: 0;
   padding-top: 0px;
-  background-color: transparent;
+  background-color: #f5f5f582;
   float: none
 }
 
@@ -17073,20 +17073,20 @@ iframe {
 
 .side-nav .side-nav-inner .side-nav-menu>li>a .icon-holder {
   display: inline-block;
-  height: 22px;
-  width: 22px;
-  line-height: 22px;
+  height: 25px;
+  width: 25px;
   text-align: center;
   position: relative;
   left: 0;
-  margin-right: 2px;
-  font-size: 14px;
-  border-radius: 6px;
+  margin-right: 5px;
+  font-size: 16px;
+  border-radius: 5px;
   transition: all 0.3s ease;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
-  -ms-transition: all 0.3s ease
+  -ms-transition: all 0.3s ease;
+  background-color: #F5F5F5 !important;
 }
 
 @media only screen and (min-width: 992px) {
@@ -17300,7 +17300,7 @@ iframe {
   -webkit-transition: all 0.2s ease;
   -moz-transition: all 0.2s ease;
   -o-transition: all 0.2s ease;
-  -ms-transition: all 0.2s ease
+  -ms-transition: all 0.2s ease;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1440px) {
@@ -17317,7 +17317,7 @@ iframe {
 
 .header .logo>a {
   display: block;
-  text-align: center
+  text-align: start;
 }
 
 .header .logo .logo-fold {
@@ -17457,12 +17457,15 @@ iframe {
   .is-folded .header .logo img {
     display: none
   }
-
   .is-folded .header .logo .logo-fold {
-    display: block
+    display: none;
   }
 }
-
+@media only screen and (min-width: 0px) and (max-width: 992px) {
+  .header .logo {
+    display: none !important;
+  }
+}
 .is-folded .nav-left>li.desktop-toggle i:before {
   content: "\e077"
 }
@@ -29357,5 +29360,6 @@ div.is-invalid {
   border-color: #de4436
 }
 .desktop-toggle, .mobile-toggle{
-  color: #fff;
+  color: #585B56;
+  font-size: 20px;
 }

@@ -106,13 +106,13 @@ const SignIn = () => {
         draggable
         pauseOnHover
       />
-      <div className="container-fluid p-h-0 p-v-20 bg full-height d-flex">
+      <div className="container-fluid p-h-0 p-v-20 bg full-height d-flex bg_light">
         <div className="d-flex flex-column justify-content-between w-100">
           <div className="container" style={{ height: "100vh", display: "grid" }}>
             <div className="row align-items-center">
               <div className="col-md-7 col-lg-5 m-h-auto">
-                <div className="card shadow-lg">
-                  <div className="card-body px-3">
+                <div className="card">
+                  <div className="card-body">
                     <div className="d-flex align-items-center justify-content-between m-b-30">
                       <img
                         className="img-fluid rounded-5"
@@ -129,11 +129,8 @@ const SignIn = () => {
                       </div>
                     </div>
                     <form
-                      className="pt-2 px-2"
-                      id="security_login_form"
                       onSubmit={handleSubmit}
                     >
-
                       <div className="form-group">
                         <label
                           className="font-weight-semibold"
@@ -181,12 +178,11 @@ const SignIn = () => {
                         </div>
                         {passwordError && <small className="text-danger">{passwordError}</small>}
                       </div>
-                      <div className="form-group mb-1 px-0">
+                      <div className="form-group mb-0">
                         <button
                           disabled={isSubmit}
                           type="submit"
-                          className="btn btn-dark d-flex justify-content-center align-items-center btn-block submit_btn"
-                          id="signin-btn"
+                          className="btn btn-dark py-2 d-flex justify-content-center align-items-center btn-block"
                         >
                           Sign In{" "}
                           {isSubmit && (

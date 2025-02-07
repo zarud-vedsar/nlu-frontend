@@ -9,49 +9,84 @@ import FeedbackPng from "./assets/img/dashboard/feedback.png";
 import LmsPng from "./assets/img/dashboard/lms.png";
 import TimeTablePng from "./assets/img/dashboard/Study-time.png";
 import IssuedBookImg from "./assets/img/books-issued.jpg";
-import { Pie } from "react-chartjs-2"; // Import Line chart component from react-chartjs-2
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 function StudentDashboard() {
-  // Register necessary components for Chart.js
-  ChartJS.register(ArcElement, Tooltip, Legend);
-  
-  const PieChart = ({ dataValues }) => {
-    // Ensure the data is not null/undefined; if so, default to 0
-  
-    // Define the chart data
-    const data = {
-      labels: [], // Custom labels for tooltip
-  
+  const [chartData, setChartData] = useState({
+    datasets: [],
+  });
+
+  const [chartOptions, setChartOptions] = useState({
+    responsive: true,
+    plugins: {
+      legend: {
+        position: "top",
+      },
+      title: {
+        display: false,
+        text: "Chart Title",
+      },
+    },
+  });
+
+  useEffect(() => {
+    setChartData({
+      labels: ["subject1", "subject2", "subject3", "subject4", "subject5", "subject6"],
       datasets: [
         {
-          data: dataValues,
-          backgroundColor: [
-            "rgb(63, 255, 98)",
-            "rgb(238, 255, 4)",
-            "rgb(255, 12, 4)",
-          ],
-          hoverOffset: 4,
+          label: "Total Days",
+          data: [30, 35, 28, 40, 38, 42],
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgb(255, 99, 132)",
+          borderWidth: 1,
+        },
+        {
+          label: "Total Present",
+          data: [25, 30, 20, 35, 33, 39],
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgb(75, 192, 192)",
+          borderWidth: 1,
+        },
+        {
+          label: "Total Absent",
+          data: [5, 5, 8, 5, 5, 3],
+          backgroundColor: "rgba(255, 159, 64, 0.2)",
+          borderColor: "rgb(255, 159, 64)",
+          borderWidth: 1,
+        },
+        {
+          label: "OD",
+          data: [5, 5, 8, 5, 5, 3],
+          backgroundColor: "#007bff24",
+          borderColor: "#4087f5",
+          borderWidth: 1,
         },
       ],
-    };
-  
-    // Chart options to customize the tooltip
-    const options = {
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: function (tooltipItem) {
-              const labels = ["Present", "On Duty", "Absent"];
-              return `${labels[tooltipItem.dataIndex]}: ${tooltipItem.raw}`;
-            },
-          },
-        },
-      },
-    };
-  
-    return <Pie data={data} options={options} />;
+    });
+  }, []);
+  const [selectedMonth, setSelectedMonth] = useState("");
+
+  const handleMonthChange = (e) => {
+    setSelectedMonth(e.target.value);
   };
+
   return (
     <>
       <div className="page-container">
@@ -66,74 +101,33 @@ function StudentDashboard() {
             </div>
             <div className="row">
               <div className="col-md-6 col-lg-6 col-12 mb-3">
-                              <div className="card ">
-                                <div className="card-body ">
-                                  <div className="card-title">Monthly Attendance</div>
-                                  <div className="row ml-1">
-                                    {" "}
-                                        <div className="col-md-12 p-2">
-                                          <div className="row">
-                                            <div
-                                              className=" col-4 "
-                                              style={{
-                                                backgroundColor: "",
-                                                fontSize: "1em",
-                                                borderRadius: "5px",
-                                              }}
-                                            >
-                                              <p className="m-0 text-dark">
-                                                {/* {capitalizeFirstLetter(data?.subject)} */}
-                                                Subject 
-                                              </p>
-                                              <p className="m-0 text-dark">
-                                                {/* {capitalizeFirstLetter(data?.course)} */}
-                                                Course
-                                              </p>
-                                              <p className="m-0 text-dark">
-                                                {/* {capitalizeFirstLetter(data?.semester)} */}
-                                                Semester
-                                              </p>
-                                            </div>
-                                            <div
-                                              className=" col-4 p-1"
-                                              style={{
-                                                backgroundColor: "",
-                                                fontSize: "1em",
-                                                borderRadius: "5px",
-                                              }}
-                                            >
-                                              <p className="m-0 text-success">
-                                                <label className="">Total Present </label>{" "}
-                                                {/* {data?.present_count || 0} */}0
-                                              </p>
-                
-                                              <p className="m-0 text-warning">
-                                                <label className="">Total OnDuty </label>{" "}
-                                                {/* {data?.total_onduty || 0} */}0
-                                              </p>
-                
-                                              <p className="m-0 text-danger">
-                                                <label className="">Total Absent </label>{" "}
-                                                {/* {data?.total_absent || 0} */}
-                                              </p>
-                                            </div>
-                                            <div className="col-4">
-                                              <PieChart
-                                                dataValues={[
-                                                  // data?.present_count ?? 0,
-                                                  // data?.total_onduty ?? 0,
-                                                  // data?.total_absent ?? 0,
-                                                  3,5,6,
-                                                ]}
-                                              />
-                                            </div>
-                                          </div>
-                                        </div>
-                                      {/* ))} */}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                <div className="card ">
+                  <div className="card-body ">
+                    <div className="d-flex justify-content-between">
+                    <div className="card-title">Monthly Attendance</div>
+                    <div className="" style={{ float: "right" }}>
+                      <form onSubmit={handleMonthChange}>
+                        <label htmlFor="month">Select a month</label>
+                        <br />
+                        <input
+                          type="month"
+                          id="month"
+                          name="month"
+                          value={selectedMonth}
+                          onChange={handleMonthChange}
+                        />
+                      </form>
+                    </div>
+
+                    </div>
+                   
+                    <div className="id-chart-wrapper">
+                      <Bar data={chartData} options={chartOptions} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="col-md-6 col-lg-6 col-12 mb-3">
                 <div className="row">
                   <div className="col-md-6 mb-3">
@@ -192,20 +186,17 @@ function StudentDashboard() {
               <div className="col-md-12 d-flex justify-content-center">
                 <div className="card w-100">
                   <div className="card-body">
-                    <div className="card-title">Upcoming Exams</div>
+                    <div className="card-title">Pending Quiz</div>
                     <div className="d-flex justify-content-center">
                       <div className="table-responsive">
                         <table className="table text-center">
                           <thead>
                             <tr>
-                              <th scope="col">Course</th>
-                              <th scope="col">Semester</th>
                               <th scope="col">Subject</th>
-                              <th scope="col">Paper Code</th>
-                              <th scope="col">Exam Type</th>
-                              <th scope="col">Exam Date</th>
-                              <th scope="col">Start Time</th>
-                              <th scope="col">End Time</th>
+                              <th scope="col">Assignment</th>
+                              <th scope="col">No of Question</th>
+                              <th scope="col">Total Marks</th>
+                              <th scope="col">Deadline Date</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -251,12 +242,11 @@ function StudentDashboard() {
                         <table className="table text-center">
                           <thead>
                             <tr>
-                              <th scope="col">Course</th>
-                              <th scope="col">Semester</th>
                               <th scope="col">Subject</th>
                               <th scope="col">Assignment</th>
-                              <th scope="col">Student</th>
-                              <th scope="col">Evaluate</th>
+                              <th scope="col">No of Question</th>
+                              <th scope="col">Total Marks</th>
+                              <th scope="col">Deadline Date</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -349,7 +339,54 @@ function StudentDashboard() {
                         </div>
                       </div>
                     </div>
-
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-5 d-flex justify-content-center">
+              <div className="card w-100">
+                <div className="card-body">
+                  <div className="card-title">Today (Day) Shedule Class</div>
+                  <div className="d-flex justify-content-center">
+                    <div className="table-responsive">
+                      <table className="table text-center">
+                        <thead>
+                          <tr>
+                            <th scope="col">Suject</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Class Room</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {/* {upcomingExamList?.length > 0 ? (
+                              upcomingExamList.map((data, index) => (
+                                <tr key={index}>
+                                  <td>{capitalizeFirstLetter(data?.course)}</td>
+                                  <td>
+                                    {capitalizeFirstLetter(data?.semester)}
+                                  </td>
+                                  <td>
+                                    {capitalizeFirstLetter(data?.subject)}
+                                  </td>
+                                  <td>
+                                    {capitalizeAllLetters(data?.paperCode)}
+                                  </td>
+                                  <td>
+                                    {capitalizeFirstLetter(data?.examType)}
+                                  </td>
+                                  <td>{data?.exam_date}</td>
+                                  <td>{data?.startTime}</td>
+                                  <td>{data?.endTime}</td>
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td colSpan="8">No upcoming exams available</td>
+                              </tr>
+                            )} */}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>

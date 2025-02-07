@@ -395,7 +395,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
 
   return (
     <>
-      <div className="header bg-primary border-none shadow-head-sm">
+      <div className="header bg-white border-none shadow-head-sm">
         <div className="logo logo-dark d-flex justify-content-center align-items-center">
           <Link to="/student/">
             <img

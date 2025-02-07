@@ -453,10 +453,10 @@ function QuizResponse() {
                       <Column
                         body={(row) =>
                           capitalizeFirstLetter(
-                            row.registrationNo || "Registration No"
+                            row.enrollmentNo || "enrollmentNo"
                           )
                         }
-                        header="Registration No."
+                        header="Enrollment No."
                         sortable
                       />
 

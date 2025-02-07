@@ -350,13 +350,17 @@ const Navbar = ({ toggleExpand, toggleFolded}) => {
         `${NODE_API_URL}/api/course-selection/fetchCurrentCourse`,
         formData
       );
-
+     
+      
       if (response.data?.statusCode === 200) {
         if (
           response?.data?.data?.semtitle !== "semester 1" ||
           (response?.data?.data?.semtitle === "semester 1" &&
             response?.data?.data?.approved === 1)
         ) {
+          console.log(response)
+          secureLocalStorage.setItem("selectedCourseId",response?.data?.data?.id)
+          
           setApprovedStudent(true);
         }
       }

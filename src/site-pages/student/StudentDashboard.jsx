@@ -17,9 +17,13 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-
-// import secureLocalStorage from "react-secure-storage";
-// import axios from "axios";
+import { PHP_API_URL } from "../../site-components/Helper/Constant";
+import secureLocalStorage from "react-secure-storage";
+import axios from "axios";
+import {
+  capitalizeFirstLetter,
+  formatDate,
+} from "../../site-components/Helper/HelperFunction";
 
 ChartJS.register(
   CategoryScale,
@@ -31,6 +35,8 @@ ChartJS.register(
 );
 
 function StudentDashboard() {
+  const selectedCourseId = secureLocalStorage.getItem("selectedCourseId");
+  const [data, setData] = useState();
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -49,81 +55,104 @@ function StudentDashboard() {
   });
 
   useEffect(() => {
-    //getStudentDashboardData()
-    setChartData({
-      labels: [
-        "subject1",
-        "subject2",
-        "subject3",
-        "subject4",
-        "subject5",
-        "subject6",
-      ],
-      datasets: [
-        {
-          label: "Total Days",
-          data: [30, 35, 28, 40, 38, 42],
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgb(255, 99, 132)",
-          borderWidth: 1,
-        },
-        {
-          label: "Total Present",
-          data: [25, 30, 20, 35, 33, 39],
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          borderColor: "rgb(75, 192, 192)",
-          borderWidth: 1,
-        },
-        {
-          label: "Total Absent",
-          data: [5, 5, 8, 5, 5, 3],
-          backgroundColor: "rgba(255, 159, 64, 0.2)",
-          borderColor: "rgb(255, 159, 64)",
-          borderWidth: 1,
-        },
-        {
-          label: "OD",
-          data: [25, 30, 20, 35, 33, 39],
-          backgroundColor: "#007bff24",
-          borderColor: "#4087f5",
-          borderWidth: 1,
-        },
-      ],
-    });
+    if (data?.student_attendance) {
+      let labels = [];
+      let totalClassList = [];
+      let totalPresentList = [];
+      let totalAbsentList = [];
+      let totalOnDutyList = [];
+      data?.student_attendance?.map((attendanceData) => {
+        labels.push(subject[attendanceData?.subjectid]);
+        totalClassList.push(attendanceData?.total_classes_held);
+        totalPresentList.push(attendanceData?.total_present);
+        totalAbsentList.push(attendanceData?.total_ab);
+        totalOnDutyList.push(attendanceData?.total_od);
+      });
+      setChartData({
+        labels: labels,
+        datasets: [
+          {
+            label: "Total Classes",
+            data: totalClassList,
+            backgroundColor: "rgba(35, 211, 255, 0.2)",
+            borderColor: "rgb(99, 182, 255)",
+            borderWidth: 1,
+          },
+          {
+            label: "Total Present",
+            data: totalPresentList,
+            backgroundColor: "rgba(117, 255, 79, 0.2)",
+            borderColor: "rgb(85, 192, 75)",
+            borderWidth: 1,
+          },
+          {
+            label: "Total Absent",
+            data: totalAbsentList,
+            backgroundColor: "rgba(197, 40, 19, 0.2)",
+            borderColor: "rgb(188, 25, 14)",
+            borderWidth: 1,
+          },
+          {
+            label: "Total On Duty",
+            data: totalOnDutyList,
+            backgroundColor: "rgba(242, 255, 64, 0.2)",
+            borderColor: "rgb(255, 252, 64)",
+            borderWidth: 1,
+          },
+        ],
+      });
+    }
+  }, [data]);
+  useEffect(() => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+
+    const formattedDate = `${year}-${month}`;
+    setSelectedMonth(formattedDate);
+    getStudentDashboardData(formattedDate);
   }, []);
   const [selectedMonth, setSelectedMonth] = useState("");
 
   const handleMonthChange = (e) => {
     setSelectedMonth(e.target.value);
+    getStudentDashboardData(e.target.value);
   };
 
-  // const getStudentDashboardData = async () => {
-  //   try {
-  //     console.log("getAdminDashboardData");
-  //     const bformData = new FormData();
-  //     bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
-  //     bformData.append("login_type", secureLocalStorage.getItem("loginType"));
-  //     bformData.append("session", localStorage.getItem("session"));
-  //     bformData.append("data", "faculty_dashboard");
+  const [subject, setSubject] = useState();
+  const getStudentDashboardData = async (month = "2025-2") => {
+    try {
+      const bformData = new FormData();
 
-  //     bformData.append("faculty_id", facultyId);
+      bformData.append("selectedcourseid", selectedCourseId);
+      bformData.append("studentid", secureLocalStorage.getItem("studentId"));
+      bformData.append("month", month);
+      bformData.append("data", "student_dashboard");
 
-  //     const response = await axios.post(
-  //       `${PHP_API_URl}/dashboard.php`,
-  //       bformData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //         },
-  //       }
-  //     );
-  //     console.log(response)
+      const response = await axios.post(
+        `${PHP_API_URL}/dashboard.php`,
+        bformData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (response?.data?.status === 200) {
+        setData(response?.data?.data);
+
+        let subjectMap = {};
+        response?.data?.data?.subjects?.forEach((subject) => {
+          if (!subjectMap[subject?.id]) {
+            subjectMap[subject?.id] = subject?.name;
+          }
+        });
+        setSubject(subjectMap);
+      }
+    } catch (error) {
       
-  //   } catch (error) {
-  //     console.error("Error fetching admin Dashboard data:", error);
-  //   }
-  // };
-
+    }
+  };
 
   return (
     <>
@@ -144,20 +173,22 @@ function StudentDashboard() {
                     <div className="d-flex justify-content-between">
                       <div className="card-title">Monthly Attendance</div>
                       <div className="" style={{ float: "right" }}>
-                          <form onSubmit={handleMonthChange} className="month-form">
-                            <label htmlFor="month" className="month-label">
-                              Select a month
-                            </label>
-                            <input
-                              type="month"
-                              id="month"
-                              name="month"
-                              value={selectedMonth}
-                              onChange={handleMonthChange}
-                              className="month-input"
-                            />
-                            
-                          </form>
+                        <form
+                          onSubmit={handleMonthChange}
+                          className="month-form"
+                        >
+                          <label htmlFor="month" className="month-label">
+                            Select a month
+                          </label>
+                          <input
+                            type="month"
+                            id="month"
+                            name="month"
+                            value={selectedMonth}
+                            onChange={handleMonthChange}
+                            className="month-input"
+                          />
+                        </form>
                       </div>
                     </div>
 
@@ -209,7 +240,7 @@ function StudentDashboard() {
                     </Link>
                   </div>
                   <div className="col-md-6">
-                    <Link to={"/student/new-feedback"}>
+                    <Link to={"/student/feedback-list"}>
                       <div className="id-card-wrapper">
                         <img
                           src={FeedbackPng}
@@ -233,39 +264,47 @@ function StudentDashboard() {
                           <thead>
                             <tr>
                               <th scope="col">Subject</th>
-                              <th scope="col">Assignment</th>
+                              <th scope="col">Quiz</th>
                               <th scope="col">No of Question</th>
                               <th scope="col">Total Marks</th>
-                              <th scope="col">Deadline Date</th>
+                              <th scope="col">Duration</th>
+                              { !secureLocalStorage.getItem("sguardianemail") &&
+
+                              <th scope="col">Attempt</th>
+}
                             </tr>
                           </thead>
                           <tbody>
-                            {/* {upcomingExamList?.length > 0 ? (
-                              upcomingExamList.map((data, index) => (
+                            {data?.pendingQuiz?.length > 0 ? (
+                              data?.pendingQuiz.map((data, index) => (
                                 <tr key={index}>
-                                  <td>{capitalizeFirstLetter(data?.course)}</td>
                                   <td>
-                                    {capitalizeFirstLetter(data?.semester)}
+                                    {capitalizeFirstLetter(
+                                      subject[data?.subjectid]
+                                    )}
                                   </td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.subject)}
-                                  </td>
-                                  <td>
-                                    {capitalizeAllLetters(data?.paperCode)}
-                                  </td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.examType)}
-                                  </td>
-                                  <td>{data?.exam_date}</td>
-                                  <td>{data?.startTime}</td>
-                                  <td>{data?.endTime}</td>
+
+                                  <td>{capitalizeFirstLetter(data?.Quiz)}</td>
+                                  <td>{data?.noOfQuestion}</td>
+                                  <td>{data?.totalMarks}</td>
+                                  <td>{data?.duration} Minutes </td>
+
+                                  {!secureLocalStorage.getItem("sguardianemail") &&
+                                  <td >
+                                    <Link
+                                      to={`/admin/assignment-response-view/${data.id}`}
+                                      className="avatar avatar-icon avatar-md avatar-orange"
+                                    >
+                                      <i className="fas fa-eye"></i>
+                                    </Link>
+                                  </td>}
                                 </tr>
                               ))
                             ) : (
                               <tr>
-                                <td colSpan="8">No upcoming exams available</td>
+                                <td colSpan="8">No pending quiz</td>
                               </tr>
-                            )} */}
+                            )}
                           </tbody>
                         </table>
                       </div>
@@ -287,26 +326,29 @@ function StudentDashboard() {
                               <th scope="col">No of Question</th>
                               <th scope="col">Total Marks</th>
                               <th scope="col">Deadline Date</th>
+                              { !secureLocalStorage.getItem("sguardianemail") &&
+                              <th scope="col">Attempt</th>
+}
                             </tr>
                           </thead>
                           <tbody>
-                            {/* {pendingAssignment?.length > 0 ? (
-                              pendingAssignment.map((data, index) => (
+                            {data?.pendingAssignment?.length > 0 ? (
+                              data?.pendingAssignment.map((data, index) => (
                                 <tr>
-                                  <td>{capitalizeFirstLetter(data?.course)}</td>
                                   <td>
-                                    {capitalizeFirstLetter(data?.semester)}
-                                  </td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.subject)}
+                                    {capitalizeFirstLetter(
+                                      subject[data?.subjectid]
+                                    )}
                                   </td>
                                   <td>
                                     {capitalizeFirstLetter(data?.assignment)}
                                   </td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.student)}
-                                  </td>
-                                  <td className="text-success">
+
+                                  <td>{data?.noOfQuestion}</td>
+                                  <td>{data?.totalMarks}</td>
+                                  <td>{formatDate(data?.deadlineDate)}</td>
+                                  { !secureLocalStorage.getItem("sguardianemail") &&
+                                  <td className="">
                                     <Link
                                       to={`/admin/assignment-response-view/${data.id}`}
                                       className="avatar avatar-icon avatar-md avatar-orange"
@@ -314,13 +356,14 @@ function StudentDashboard() {
                                       <i className="fas fa-eye"></i>
                                     </Link>
                                   </td>
+}
                                 </tr>
                               ))
                             ) : (
                               <tr>
-                                <td colSpan="8">No upcoming exams available</td>
+                                <td colSpan="8">No pending assignment</td>
                               </tr>
-                            )} */}
+                            )}
                           </tbody>
                         </table>
                       </div>
@@ -329,60 +372,40 @@ function StudentDashboard() {
                 </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-lg-12">
-                <div className="card " style={{ padding: "20px" }}>
-                  <div className="row">
-                    <div className="col-lg-12 col-12 mb-3">
-                      <h4>Current Issued Books</h4>
-                    </div>
-
-                    <div className="col-lg-4 col-md-4 col-12 mb-3">
-                      <div className="id-issued-wrapper">
-                        <img
-                          src={IssuedBookImg}
-                          alt="student-img"
-                          className="img-fluid"
-                        />
-                        <div className="id-issued-content">
-                          <h4>Book Name</h4>
-                          <p className="mb-0">Issued Date: 24/08/2003</p>
-                          <p className="mb-0">Return Date: 12/06/2003 </p>
-                        </div>
+            {data?.issued_books && data?.issued_books?.length > 0 && (
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="card " style={{ padding: "20px" }}>
+                    <div className="row">
+                      <div className="col-lg-12 col-12 mb-3">
+                        <h4>Current Issued Books</h4>
                       </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-12 mb-3">
-                      <div className="id-issued-wrapper">
-                        <img
-                          src={IssuedBookImg}
-                          alt="student-img"
-                          className="img-fluid"
-                        />
-                        <div className="id-issued-content">
-                          <h4>Book Name</h4>
-                          <p className="mb-0">Issued Date: 24/08/2003</p>
-                          <p className="mb-0">Return Date: 12/06/2003 </p>
+                      {data?.issued_books?.map((book) => (
+                        <div className="col-lg-4 col-md-4 col-12 mb-3">
+                          <div className="id-issued-wrapper">
+                            <img
+                              src={IssuedBookImg}
+                              alt="student-img"
+                              className="img-fluid"
+                            />
+                            <div className="id-issued-content">
+                              <h4>{capitalizeFirstLetter(book?.bookname)}</h4>
+                              <p className="mb-0">ISBN: {book?.issue_no}</p>
+                              <p className="mb-0">
+                                Issued Date: {book?.issue_date}
+                              </p>
+                              <p className="mb-0">
+                                Return Date: {book?.return_date}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-12 mb-3">
-                      <div className="id-issued-wrapper">
-                        <img
-                          src={IssuedBookImg}
-                          alt="student-img"
-                          className="img-fluid"
-                        />
-                        <div className="id-issued-content">
-                          <h4>Book Name</h4>
-                          <p className="mb-0">Issued Date: 24/08/2003</p>
-                          <p className="mb-0">Return Date: 12/06/2003 </p>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
             <div className="col-md-5 d-flex justify-content-center">
               <div className="card w-100">
                 <div className="card-body">

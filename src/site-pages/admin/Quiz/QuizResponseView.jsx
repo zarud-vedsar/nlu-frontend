@@ -1020,7 +1020,7 @@ const QuizResponseView = () => {
                               {" "}
                               <i className="fa-solid fa-address-card mr-2"></i>{" "}
                               {capitalizeEachLetter(
-                                quizResponse?.registrationNo
+                                quizResponse?.enrollmentNo
                               )}
                             </div>
                             <div className="col-12 mb-1">

@@ -398,9 +398,9 @@ function NewApplication() {
                       />
                       <Column
                         body={(row) =>
-                          capitalizeFirstLetter(row.registrationNo)
+                          capitalizeFirstLetter(row.enrollmentNo)
                         }
-                        header="Reg. No."
+                        header="Enrollment No."
                         sortable
                       />
 

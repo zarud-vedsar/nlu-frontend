@@ -110,17 +110,15 @@ const MyVerticallyCenteredModal = (props = {}) => {
                 (item) => item.stid === parseInt(selectedStudent)
               )
                 ? {
-                    value: parseInt(selectedStudent),
-                    label: `${
-                      studentList.find(
-                        (item) => item.stid == parseInt(selectedStudent)
-                      ).sname
-                    }( ${
-                      studentList.find(
-                        (item) => item.stid == parseInt(selectedStudent)
-                      ).registrationNo
+                  value: parseInt(selectedStudent),
+                  label: `${studentList.find(
+                    (item) => item.stid == parseInt(selectedStudent)
+                  ).sname
+                    }( ${studentList.find(
+                      (item) => item.stid == parseInt(selectedStudent)
+                    ).registrationNo
                     })`,
-                  }
+                }
                 : { value: selectedStudent, label: "Select" }
             }
           ></Select>
@@ -211,14 +209,14 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         title: "Dashboard",
         icon: <AiOutlineDashboard />,
         url: "dashboard",
-        dropdownMenus: [ ],
+        dropdownMenus: [],
       },
       {
         title: "Library",
         icon: <AiOutlineAppstore />,
         url: "",
         dropdownMenus: [
-          
+
           { subtitle: "Issued List", url: "issued-list" },
           { subtitle: "Book Catalogue", url: "book-catalogue" },
         ],
@@ -302,9 +300,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
   }
 
   const [studentPersonalDetail, setStudentPersonalDetail] = useState({
-    name:"",
-    pic:"",
-    email:""
+    name: "",
+    pic: "",
+    email: ""
   });
   useEffect(() => {
     getStudentSelectedCourse();
@@ -315,15 +313,15 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
     }
   }, []);
 
-  const getStudentPersonalData = async()=>{
+  const getStudentPersonalData = async () => {
     await studentRecordById(secureLocalStorage.getItem("studentId")).then((res) => {
       if (res.length > 0) {
         setStudentPersonalDetail({
-          name:res[0]?.sname,
-          pic:res[0]?.spic,
-          registrationNo:res[0]?.registrationNo,
-          id:res[0]?.id,
-          enrollmentNo:res[0]?.enrollmentNo
+          name: res[0]?.sname,
+          pic: res[0]?.spic,
+          registrationNo: res[0]?.registrationNo,
+          id: res[0]?.id,
+          enrollmentNo: res[0]?.enrollmentNo
         })
       }
     });
@@ -350,7 +348,6 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         }
       }
     } catch (error) {
-    } finally {
     }
   };
 
@@ -387,7 +384,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
     <>
       <div className="header bg-primary border-none shadow-head-sm">
         <div className="logo logo-dark d-flex justify-content-center align-items-center">
-          <Link to="/admin/home">
+          <Link to="/student/">
             <img
               style={{ width: "35%" }}
               src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
@@ -402,7 +399,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           </Link>
         </div>
         <div className="logo logo-white">
-          <Link href="/admin/home">
+          <Link href="/student/">
             <img
               style={{ width: "35%" }}
               src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
@@ -426,7 +423,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
             </li>
             {guardian && (
               <li
-                className="bg-light text-dark d-flex justify-content-center align-items-center "
+                className="bg_light text-dark d-flex justify-content-center align-items-center "
                 style={{
                   padding: "10px 18px",
                   borderRadius: "20px",
@@ -435,7 +432,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                 onClick={() => setModalShow(true)}
               >
                 <>
-                  <i class="fa-solid fa-user-tie text-primary mr-3"></i>
+                  <i className="fa-solid fa-user-tie text-primary mr-3"></i>
                   <div className="">{sessionTitle}</div>
                 </>
               </li>
@@ -445,7 +442,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
             <li className="dropdown dropdown-animated scale-left">
               <div className="pointer" onClick={() => setShowPopup(!showPopup)}>
                 <div className="avatar avatar-image m-h-10 m-r-15">
-                  <img src={studentPersonalDetail?.pic? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}` : studentAvatar}/>
+                  <img src={studentPersonalDetail?.pic ? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}` : studentAvatar} />
                 </div>
               </div>
               {showPopup && (
@@ -453,7 +450,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                   <div className="p-h-20 p-b-15 m-b-10 border-bottom">
                     <div className="d-flex">
                       <div className="avatar avatar-lg avatar-image">
-                        <img src={studentPersonalDetail?.pic? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}` : studentAvatar} />
+                        <img src={studentPersonalDetail?.pic ? `${FILE_API_URL}/student/${studentPersonalDetail.id}${studentPersonalDetail.registrationNo}/${studentPersonalDetail.pic}` : studentAvatar} />
                       </div>
                       <div className="m-l-10">
                         <p className="m-b-0 text-dark font-weight-semibold">
@@ -491,9 +488,8 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
               ) : (
                 <li
                   key={index}
-                  className={`nav-item dropdown cursor ${
-                    activeSidebarMenu === index ? "open" : ""
-                  }`}
+                  className={`nav-item dropdown cursor ${activeSidebarMenu === index ? "open" : ""
+                    }`}
                   onClick={() =>
                     setActiveSidebarMenu(
                       activeSidebarMenu === index ? null : index
@@ -511,9 +507,8 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                     {option.dropdownMenus.map((subOption, subIndex) => (
                       <li
                         key={subIndex}
-                        className={`${
-                          activeSubSidebarMenu === subIndex ? "active" : ""
-                        }`}
+                        className={`${activeSubSidebarMenu === subIndex ? "active" : ""
+                          }`}
                         onClick={() => setActiveSubSidebarMenu(subIndex)}
                       >
                         <Link

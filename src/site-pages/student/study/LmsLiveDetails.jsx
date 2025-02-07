@@ -150,9 +150,11 @@ const LmsLiveDetails = () => {
                     <h6 className="h6_new font-13">
                       {capitalizeFirstLetter(liveData.title)}
                     </h6>
+                    {!secureLocalStorage.getItem("sguardianemail") &&
                     <Link target="blank" to={liveData.liveUrl}  className="id-live-join-btn">
                         Join Now  <i className="fas fa-arrow-right"></i>
-                      </Link>
+                      </Link> }
+                    
                       
                     </div>
                    

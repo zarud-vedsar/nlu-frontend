@@ -281,6 +281,7 @@ function AttendanceHIstory() {
       studentAttendanceMap.forEach((months) => {
         let presentCount = 0;
         let onDutyCount = 0;
+        let absentCount = 0;
         let studentRecord = {
           studentId: months.studentId,
           enrollmentNo: months.enrollmentNo,
@@ -289,10 +290,13 @@ function AttendanceHIstory() {
             const attendanceData =
               months[m] && months[m][i]
                 ? months[m][i]
-                : { year: filters?.year, month: m, day: i + 1, attendance: "A" };
+                : { year: filters?.year, month: m, day: i + 1, attendance: "N" };
 
             if (attendanceData.attendance === "P") {
               presentCount++;
+            }
+            if (attendanceData.attendance === "A") {
+              absentCount++;
             }
             if (attendanceData.attendance === "OD") {
               onDutyCount++;
@@ -303,7 +307,8 @@ function AttendanceHIstory() {
 
           presentCount: presentCount,
           onDutyCount: onDutyCount,
-          absentCount: daysInMonth[m - 1] - (presentCount + onDutyCount),
+          absentCount: absentCount,
+          totalClass: presentCount + absentCount + onDutyCount,
         };
 
         monthAttendance.students.push(studentRecord);
@@ -447,9 +452,10 @@ function AttendanceHIstory() {
                                       </th>
                                     )
                                   )}
+                                  <th scope="col">Class</th>
                                   <th scope="col">T-P</th>
-                                  <th scope="col">T-A</th>
                                   <th scope="col">T-OD</th>
+                                  <th scope="col">T-A</th>
 
                                 </tr>
                               </thead>
@@ -477,19 +483,24 @@ function AttendanceHIstory() {
                                           </span>
                                         )}
 
-                                        {(day.attendance !== "P" &&
-                                          day.attendance !== "OD")
-                                          &&
-                                          <span className="badge badge-danger">
-                                            A
-                                          </span>
-                                        }
+{day.attendance === "A" && (
+                                                <span className="badge badge-danger">
+                                                  A
+                                                </span>
+                                              )}
+                                              {day.attendance === "N" && (
+                                                <span className="badge badge-light">
+                                                  N
+                                                </span>
+                                              )}
                                       </td>
 
                                     ))}
+                                    <td>{student?.totalClass}</td>
                                     <td>{student?.presentCount}</td>
-                                    <td>{student?.absentCount}</td>
                                     <td>{student?.onDutyCount}</td>
+
+                                    <td>{student?.absentCount}</td>
                                   </tr>
                                 ))}
                               </tbody>

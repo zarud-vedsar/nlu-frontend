@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NODE_API_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import {  goBack,
-} from "../../../site-components/Helper/HelperFunction";
+import { goBack } from "../../../site-components/Helper/HelperFunction";
 
 import "../../../../node_modules/primeicons/primeicons.css";
 import axios from "axios";
@@ -127,6 +126,7 @@ function AttendanceHistory() {
       };
       studentAttendanceMap.forEach((months) => {
         let presentCount = 0;
+        let absentCount = 0;
 
         let studentRecord = {
           studentId: months.studentId,
@@ -136,22 +136,26 @@ function AttendanceHistory() {
             const attendanceData =
               months[m] && months[m][i]
                 ? months[m][i]
-                : { year: filters?.year, month: m, day: i + 1, present: 0 };
+                : { year: filters?.year, month: m, day: i + 1, present: 2 };
 
-            if (attendanceData.present) {
+            if (attendanceData.present == 1) {
               presentCount++;
+            }
+            if (attendanceData.present == 0) {
+              absentCount++;
             }
 
             return attendanceData;
           }),
           presentCount: presentCount,
-          absentCount: daysInMonth[m - 1] - presentCount,
+          absentCount: absentCount,
         };
 
         monthAttendance.students.push(studentRecord);
       });
 
       finalAttendance.push(monthAttendance);
+      console.log(finalAttendance);
     }
     setAttendanceHistory(finalAttendance);
   }
@@ -229,8 +233,6 @@ function AttendanceHistory() {
                                 <table className="mb-5">
                                   <thead>
                                     <tr>
-                                      <th scope="col">#</th>
-                                      <th scope="col">Info</th>
                                       {month?.students[0]?.attendance?.map(
                                         (day) => (
                                           <th key={day.dat} scope="col">
@@ -245,28 +247,27 @@ function AttendanceHistory() {
                                   <tbody>
                                     {month?.students.map((student, index) => (
                                       <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>
-                                          {student.sname} <br />
-                                          {student.enrollmentNo}
-                                        </td>
                                         {student?.attendance.map(
                                           (day, index) => (
                                             <td key={index}>
-                                              {day ? (
-                                                day.present ? (
-                                                  <span className="badge badge-success">
-                                                    P
-                                                  </span>
-                                                ) : (
-                                                  <span className="badge badge-danger">
-                                                    A
-                                                  </span>
-                                                )
-                                              ) : (
-                                                <span className="badge badge-danger">
-                                                  A
-                                                </span>
+                                              {day && (
+                                                <>
+                                                  {day?.present == 1 && (
+                                                    <span className="badge badge-success">
+                                                      P
+                                                    </span>
+                                                  )}
+                                                  {day?.present == 0 && (
+                                                    <span className="badge badge-danger">
+                                                      A
+                                                    </span>
+                                                  )}
+                                                  {day?.present == 2 && (
+                                                    <span className="badge badge-light">
+                                                      N
+                                                    </span>
+                                                  )}
+                                                </>
                                               )}
                                             </td>
                                           )

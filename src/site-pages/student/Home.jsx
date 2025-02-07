@@ -10,8 +10,13 @@ import {
   FILE_API_URL,
   NODE_API_URL,
 } from "../../site-components/Helper/Constant";
-import { capitalizeFirstLetter, indianStates } from "../../site-components/Helper/HelperFunction";
+import {
+  capitalizeFirstLetter,
+  indianStates,
+} from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
+import { FontSize } from "ckeditor5";
+import { useNavigate } from "react-router-dom";
 function Home() {
   // Initial form data structure
   const initialData = {
@@ -39,8 +44,19 @@ function Home() {
     aadhaarfront: "",
     aadhaarback: "",
     sguardianphone: "",
-    sguardianemail:""
+    sguardianemail: "",
   };
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    {
+      /* Header Section */
+    }
+    if (secureLocalStorage.getItem("sguardianemail")) {
+      navigate("/student/dashboard");
+    }
+  });
 
   // State declarations
   const [student, setstudent] = useState([]); // For storing student details.
@@ -55,8 +71,9 @@ function Home() {
   const [checkPinCode, setCheckPinCode] = useState(false);
   const [showCourseLink, setShowCourseLink] = useState(false);
   const [lastResponse, setLastResponse] = useState();
-  const [currentCourse,setCurrentCourse] = useState();
-  const [notAllowedToEditInformation , setNotAllowedToEditInformation] = useState(false)
+  const [currentCourse, setCurrentCourse] = useState();
+  const [notAllowedToEditInformation, setNotAllowedToEditInformation] =
+    useState(false);
 
   const getStudentSelectedCourse = async () => {
     try {
@@ -68,31 +85,28 @@ function Home() {
         formData
       );
 
-      console.log(response)
+      console.log(response);
       if (response.data?.statusCode === 200) {
-        const {
-          semtitle,approved,preview
-        } = response.data?.data || {};
+        const { semtitle, approved, preview } = response.data?.data || {};
 
         console.log(response);
-        
+
         if (
-          semtitle.toLowerCase() !== "semester 1" || 
-          (semtitle.toLowerCase() === "semester 1" && approved === 1) || (semtitle.toLowerCase() === "semester 1" && preview === 1)
+          semtitle.toLowerCase() !== "semester 1" ||
+          (semtitle.toLowerCase() === "semester 1" && approved === 1) ||
+          (semtitle.toLowerCase() === "semester 1" && preview === 1)
         ) {
           setNotAllowedToEditInformation(true);
         }
         setCurrentCourse((prev) => ({
           ...prev,
-          preview:preview,
+          preview: preview,
           approved: approved,
-          
         }));
       }
     } catch (error) {}
   };
 
- 
   // Function to handle and set error messages
   const errorMsg = (field, value) => {
     setErrors((prev) => ({ ...prev, field: field, msg: value }));
@@ -173,7 +187,7 @@ function Home() {
   };
   // Function to handle changes in form inputs
   const handleChange = (e) => {
-    if(notAllowedToEditInformation){
+    if (notAllowedToEditInformation) {
       toast.error("Not allowed to updated information");
       return;
     }
@@ -210,7 +224,7 @@ function Home() {
 
   // Function to handle file input changes and previews
   const handleFileChange = (e) => {
-    if(notAllowedToEditInformation){
+    if (notAllowedToEditInformation) {
       toast.error("Not allowed to updated information");
       return;
     }
@@ -257,7 +271,7 @@ function Home() {
   // useEffect to fetch student data if student ID exists
   useEffect(() => {
     if (sid) {
-      getStudentSelectedCourse()
+      getStudentSelectedCourse();
       studentRecordById(sid).then((res) => {
         if (res.length > 0) {
           setstudent(res[0]); // Set fetched student data in state.
@@ -265,7 +279,7 @@ function Home() {
             ...formData,
             sname: res[0].sname,
             semail: res[0].semail,
-            sguardianemail : res[0].sguardianemail,
+            sguardianemail: res[0].sguardianemail,
             sphone: res[0].sphone,
             salterphone: res[0].salterphone,
             sdob: res[0].sdob,
@@ -323,7 +337,7 @@ function Home() {
   }, [sid]); // Dependency array ensures effect runs when sid changes.
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(notAllowedToEditInformation){
+    if (notAllowedToEditInformation) {
       toast.error("Not allowed to updated information");
       return;
     }
@@ -445,7 +459,7 @@ function Home() {
   };
 
   // Component's render output
-  return ( 
+  return (
     <>
       <div className="page-container">
         <div className="main-content">
@@ -466,15 +480,16 @@ function Home() {
                         style={{ cursor: "pointer" }}
                       ></i>
                     </div>
-                    <div className="card-body">{capitalizeFirstLetter(lastResponse?.message)}</div>
+                    <div className="card-body">
+                      {capitalizeFirstLetter(lastResponse?.message)}
+                    </div>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Header Section */}
             <div className="row mt-2">
-              <div className="col-md-12">
+              <div className="col-md-12 ">
                 <h6 className="h6_new">
                   Enrollment No: {student.enrollmentNo}
                 </h6>
@@ -492,17 +507,26 @@ function Home() {
                       <Link to="/student/profile" className="btn btn-info">
                         My Profile <i className="fas fa-eye"></i>
                       </Link>
-                      <Link to={`/student/previous-registration-list`} className="btn btn-info ml-2">
+                      <Link
+                        to={`/student/previous-registration-list`}
+                        className="btn btn-info ml-2"
+                      >
                         All Previous Registration <i className="fas fa-eye"></i>
                       </Link>
-                      {((currentCourse && !(currentCourse?.preview ==1 && currentCourse?.approved ==0)) || (!currentCourse)) &&
-                                            <Link
-                        to="/student/course-selection"
-                        className="btn btn-secondary ml-2"
-                      >
-                        Course Selection <i className="fas fa-arrow-right"></i>
-                      </Link>
-}
+                      {((currentCourse &&
+                        !(
+                          currentCourse?.preview == 1 &&
+                          currentCourse?.approved == 0
+                        )) ||
+                        !currentCourse) && (
+                        <Link
+                          to="/student/course-selection"
+                          className="btn btn-secondary ml-2"
+                        >
+                          Course Selection{" "}
+                          <i className="fas fa-arrow-right"></i>
+                        </Link>
+                      )}
                     </>
                   )}
                 </div>
@@ -565,7 +589,6 @@ function Home() {
                         className="form-control"
                         onChange={handleFileChange}
                         disabled={notAllowedToEditInformation}
-
                       />
                       <div className="text-danger">
                         {errors.field === "ssign" && errors.msg}
@@ -647,7 +670,6 @@ function Home() {
                       required={true}
                       value={formData.sdob}
                       column="col-md-4 form-group mb-3"
-                      
                       onChange={handleChange} // Handle input change.
                     />
                     {/* Father's Name Input Field */}
@@ -799,10 +821,12 @@ function Home() {
                       column="col-md-4 form-group mb-3"
                       onChange={handleChange} // Handle input change.
                     />
-                     <FormField
+                    <FormField
                       bottom={true}
                       borderError={errors.field === "sguardianemail"} // Highlight border if there's an error.
-                      errorMessage={errors.field === "sguardianemail" && errors.msg} // Display error message if applicable.
+                      errorMessage={
+                        errors.field === "sguardianemail" && errors.msg
+                      } // Display error message if applicable.
                       label="Guardian Email"
                       type="email"
                       name="sguardianemail"
@@ -836,7 +860,6 @@ function Home() {
                       required={true}
                       value={formData.saadhaar}
                       column="col-md-4 form-group mb-3"
-
                       onChange={handleChange} // Handle input change.
                     />
                     {/* Aadhaar Front Image Upload */}
@@ -854,9 +877,7 @@ function Home() {
                         accept=".png, .jpg, .jpeg, .webp"
                         className="form-control"
                         disabled={notAllowedToEditInformation}
-
                         onChange={handleFileChange}
-                        
                       />
                       <span className="text-danger">
                         {errors.field === "aadhaarfront" && errors.msg}
@@ -884,7 +905,6 @@ function Home() {
                         accept=".png, .jpg, .jpeg, .webp"
                         className="form-control"
                         disabled={notAllowedToEditInformation}
-
                         onChange={handleFileChange}
                       />
                       <span className="text-danger">
@@ -986,6 +1006,7 @@ function Home() {
                       column="col-md-4 form-group mb-3"
                       onChange={handleChange} // Handle input change.
                     />
+
                     <div className="col-md-12 col-lg-12 col-12 d-flex">
                       <button
                         disabled={isSubmit || notAllowedToEditInformation}
@@ -999,7 +1020,14 @@ function Home() {
                           </>
                         )}
                       </button>
-                      {  (( showCourseLink && currentCourse && !(currentCourse?.preview ==1 && currentCourse?.approved ==0)) || (!currentCourse && showCourseLink)) && (
+
+                      {((showCourseLink &&
+                        currentCourse &&
+                        !(
+                          currentCourse?.preview == 1 &&
+                          currentCourse?.approved == 0
+                        )) ||
+                        (!currentCourse && showCourseLink)) && (
                         <Link
                           to="/student/course-selection"
                           className="btn btn-secondary ml-2"

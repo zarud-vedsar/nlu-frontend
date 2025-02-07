@@ -51,7 +51,14 @@ function StudentDashboard() {
   useEffect(() => {
     //getStudentDashboardData()
     setChartData({
-      labels: ["subject1", "subject2", "subject3", "subject4", "subject5", "subject6"],
+      labels: [
+        "subject1",
+        "subject2",
+        "subject3",
+        "subject4",
+        "subject5",
+        "subject6",
+      ],
       datasets: [
         {
           label: "Total Days",
@@ -76,7 +83,7 @@ function StudentDashboard() {
         },
         {
           label: "OD",
-          data: [5, 5, 8, 5, 5, 3],
+          data: [25, 30, 20, 35, 33, 39],
           backgroundColor: "#007bff24",
           borderColor: "#4087f5",
           borderWidth: 1,
@@ -135,23 +142,25 @@ function StudentDashboard() {
                 <div className="card ">
                   <div className="card-body ">
                     <div className="d-flex justify-content-between">
-                    <div className="card-title">Monthly Attendance</div>
-                    <div className="" style={{ float: "right" }}>
-                      <form onSubmit={handleMonthChange}>
-                        <label htmlFor="month">Select a month</label>
-                        <br />
-                        <input
-                          type="month"
-                          id="month"
-                          name="month"
-                          value={selectedMonth}
-                          onChange={handleMonthChange}
-                        />
-                      </form>
+                      <div className="card-title">Monthly Attendance</div>
+                      <div className="" style={{ float: "right" }}>
+                          <form onSubmit={handleMonthChange} className="month-form">
+                            <label htmlFor="month" className="month-label">
+                              Select a month
+                            </label>
+                            <input
+                              type="month"
+                              id="month"
+                              name="month"
+                              value={selectedMonth}
+                              onChange={handleMonthChange}
+                              className="month-input"
+                            />
+                            
+                          </form>
+                      </div>
                     </div>
 
-                    </div>
-                   
                     <div className="id-chart-wrapper">
                       <Bar data={chartData} options={chartOptions} />
                     </div>

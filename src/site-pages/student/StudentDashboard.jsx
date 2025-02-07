@@ -7,6 +7,10 @@ import FeedbackPng from "./assets/img/dashboard/feedback.png";
 import LmsPng from "./assets/img/dashboard/lms.png";
 import TimeTablePng from "./assets/img/dashboard/Study-time.png";
 import IssuedBookImg from "./assets/img/books-issued.jpg";
+import InternshipImg from "./assets/img/internshiplink.png";
+import WebsitesImg from "./assets/img/web.png";
+import IntroBannerImg from "./assets/img/intro.png";
+import TeacherImg from './assets/img/teacher.webp';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -167,7 +171,23 @@ function StudentDashboard() {
               </nav>
             </div>
             <div className="row">
-              <div className="col-md-6 col-lg-6 col-12 mb-3">
+              <div className="col-md-12 d-flex justify-content-center">
+                <div className="card w-100" style={{ background: "#4269c4" }}>
+                  <div className="card-body">
+                    <div className="id-dsh-text">
+                      <h4>Good Morning Mr. Rajan Sir</h4>
+                      <p>Have a Good day at work</p>
+                      <div className="mt-3 id-dsh-text">
+                        <p>
+                          Notice: There is a staff meeting at 9AM today, Dont
+                          forget to Attend!!
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-md-7 col-lg-7 col-12 mb-3">
                 <div className="card ">
                   <div className="card-body ">
                     <div className="d-flex justify-content-between">
@@ -199,7 +219,7 @@ function StudentDashboard() {
                 </div>
               </div>
 
-              <div className="col-md-6 col-lg-6 col-12 mb-3">
+              <div className="col-md-5 col-lg-5 col-12 mb-3">
                 <div className="row">
                   <div className="col-md-6 mb-3">
                     <Link to={"/student/profile"}>
@@ -248,6 +268,30 @@ function StudentDashboard() {
                           className="id-dsh-links-img"
                         />
                         <h4 className="mb-0">Feedback</h4>
+                      </div>
+                    </Link>
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <Link to={"/"}>
+                      <div className="id-card-wrapper">
+                        <img
+                          src={WebsitesImg}
+                          alt="profile"
+                          className="id-dsh-links-img"
+                        />
+                        <h4 className="mb-0">Website</h4>
+                      </div>
+                    </Link>
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <Link to={"/student/internship"}>
+                      <div className="id-card-wrapper">
+                        <img
+                          src={InternshipImg}
+                          alt="profile"
+                          className="id-dsh-links-img"
+                        />
+                        <h4 className="mb-0">Internship</h4>
                       </div>
                     </Link>
                   </div>
@@ -409,46 +453,77 @@ function StudentDashboard() {
             <div className="col-md-5 d-flex justify-content-center">
               <div className="card w-100">
                 <div className="card-body">
-                  <div className="card-title">Today (Day) Shedule Class</div>
-                  <div className="d-flex justify-content-center">
-                    <div className="table-responsive">
-                      <table className="table text-center">
-                        <thead>
-                          <tr>
-                            <th scope="col">Suject</th>
-                            <th scope="col">Time</th>
-                            <th scope="col">Class Room</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {/* {upcomingExamList?.length > 0 ? (
-                              upcomingExamList.map((data, index) => (
-                                <tr key={index}>
-                                  <td>{capitalizeFirstLetter(data?.course)}</td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.semester)}
-                                  </td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.subject)}
-                                  </td>
-                                  <td>
-                                    {capitalizeAllLetters(data?.paperCode)}
-                                  </td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.examType)}
-                                  </td>
-                                  <td>{data?.exam_date}</td>
-                                  <td>{data?.startTime}</td>
-                                  <td>{data?.endTime}</td>
-                                </tr>
-                              ))
-                            ) : (
-                              <tr>
-                                <td colSpan="8">No upcoming exams available</td>
-                              </tr>
-                            )} */}
-                        </tbody>
-                      </table>
+                  <div className="card mb-3 id-card">
+                    <div className="d-flex align-items-center justify-content-between p-3 pb-1">
+                      <div className="d-flex align-items-center flex-wrap mb-2">
+                        <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
+                          <img
+                            src={TeacherImg}
+                            alt="Profile"
+                          />
+                        </span>
+                        <div>
+                          <h6 className="mb-1 text-decoration-line-through">
+                            English
+                          </h6>
+                          <span>
+                          <i class="fa-regular fa-clock mr-2"></i>
+                            09:00 - 09:45 AM
+                          </span>
+                        </div>
+                      </div>
+                      <span className="badge badge-soft-success shadow-none mb-2">
+                        <i className="ti ti-circle-filled fs-8 me-1" />
+                        Class Room: <span className="id-class-room-no">6</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div className="card mb-3 id-card">
+                    <div className="d-flex align-items-center justify-content-between flex-wrap p-3 pb-1">
+                      <div className="d-flex align-items-center flex-wrap mb-2">
+                        <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
+                          <img
+                            src={TeacherImg}
+                            alt="Profile"
+                          />
+                        </span>
+                        <div>
+                          <h6 className="mb-1 text-decoration-line-through">
+                            Chemistry
+                          </h6>
+                          <span>
+                          <i class="fa-regular fa-clock mr-2"></i>
+                            10:45 - 11:30 AM
+                          </span>
+                        </div>
+                      </div>
+                      <span className="badge badge-soft-success shadow-none mb-2">
+                        <i className="ti ti-circle-filled fs-8 me-1" />
+                        Class Room: <span className="id-class-room-no">6</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div className="card mb-0 id-card">
+                    <div className="d-flex align-items-center justify-content-between flex-wrap p-3 pb-1">
+                      <div className="d-flex align-items-center flex-wrap mb-2">
+                        <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
+                          <img
+                            src={TeacherImg}
+                            alt="Profile"
+                          />
+                        </span>
+                        <div>
+                          <h6 className="mb-1">Physics</h6>
+                          <span>
+                          <i class="fa-regular fa-clock mr-2"></i>
+                            11:30 - 12:15 AM
+                          </span>
+                        </div>
+                      </div>
+                      <span className="badge badge-soft-success shadow-none mb-2">
+                        <i className="ti ti-circle-filled fs-8 me-1" />
+                        Class Room: <span className="id-class-room-no">6</span>
+                      </span>
                     </div>
                   </div>
                 </div>

@@ -222,6 +222,7 @@ function AttendanceHIstory() {
       };
       studentAttendanceMap.forEach((months) => {
         let presentCount = 0;
+        let absentCount = 0;
 
         let studentRecord = {
           studentId: months.studentId,
@@ -231,16 +232,19 @@ function AttendanceHIstory() {
             const attendanceData =
               months[m] && months[m][i]
                 ? months[m][i]
-                : { year: filters?.year, month: m, day: i + 1, present: 0 };
+                : { year: filters?.year, month: m, day: i + 1, present: 2 };
 
-            if (attendanceData.present) {
-              presentCount++;
-            }
+                if (attendanceData.present == 1) {
+                  presentCount++;
+                }
+                if (attendanceData.present == 0) {
+                  absentCount++;
+                }
 
             return attendanceData;
           }),
           presentCount: presentCount,
-          absentCount: daysInMonth[m - 1] - presentCount,
+          absentCount: absentCount,
         };
 
         monthAttendance.students.push(studentRecord);
@@ -380,21 +384,25 @@ function AttendanceHIstory() {
                                     </td>
                                     {student?.attendance.map((day, index) => (
                                       <td key={index}>
-                                        {day ? (
-                                          day.present ? (
-                                            <span className="badge badge-success">
-                                              P
-                                            </span>
-                                          ) : (
-                                            <span className="badge badge-danger">
-                                              A
-                                            </span>
-                                          )
-                                        ) : (
-                                          <span className="badge badge-danger">
-                                            A
-                                          </span>
-                                        )}
+                                        {day && (
+                                                <>
+                                                  {day?.present == 1 && (
+                                                    <span className="badge badge-success">
+                                                      P
+                                                    </span>
+                                                  )}
+                                                  {day?.present == 0 && (
+                                                    <span className="badge badge-danger">
+                                                      A
+                                                    </span>
+                                                  )}
+                                                  {day?.present == 2 && (
+                                                    <span className="badge badge-light">
+                                                      N
+                                                    </span>
+                                                  )}
+                                                </>
+                                              )}
                                       </td>
                                     ))}
                                     <td>{student?.presentCount}</td>

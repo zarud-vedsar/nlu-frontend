@@ -104,8 +104,8 @@ const IssueBookAdd = () => {
       console.log(booklist);
 
       if (!issue.student_id) {
-        setErrorMessage("Please enter student ID");
-        toast.error("Please enter student ID");
+        setErrorMessage("Please select student");
+        toast.error("Please select student");
         setErrorKey(".student_id");
 
         isValid = false;
@@ -501,7 +501,7 @@ const IssueBookAdd = () => {
                         htmlFor="student_id"
                       >
 
-                        Student ID <span className="text-danger">*</span>
+                        Select Student  <span className="text-danger">*</span>
                       </label>
                       <Select
                         options={

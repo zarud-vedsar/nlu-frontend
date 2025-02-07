@@ -212,11 +212,13 @@ function LeaveRequestList() {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                  {!secureLocalStorage.getItem("sguardianemail") &&
                   <Link to="/student/leave-request">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-plus"></i> New Leave Request
                     </button>
                   </Link>
+}
                 </div>
               </div>
             </div>

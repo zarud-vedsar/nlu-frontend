@@ -176,6 +176,7 @@ const Internshiplist = () => {
                         </div>
                         <Link
                           to={`/internship/${data?.id}`}
+                          target="_blank"
                           className="btn btn-primary border-primary rounded-1 px-5 py-2"
                         >
                           View More &nbsp; <FaArrowRightLong />

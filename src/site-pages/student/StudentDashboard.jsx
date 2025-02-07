@@ -9,8 +9,8 @@ import TimeTablePng from "./assets/img/dashboard/Study-time.png";
 import IssuedBookImg from "./assets/img/books-issued.jpg";
 import InternshipImg from "./assets/img/internshiplink.png";
 import WebsitesImg from "./assets/img/web.png";
-import IntroBannerImg from "./assets/img/intro.png";
-import TeacherImg from './assets/img/teacher.webp';
+import IntroBannerImg from "./assets/img/intro-3.png";
+import TeacherImg from "./assets/img/teacher.webp";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -122,12 +122,11 @@ function StudentDashboard() {
   //       }
   //     );
   //     console.log(response)
-      
+
   //   } catch (error) {
   //     console.error("Error fetching admin Dashboard data:", error);
   //   }
   // };
-
 
   return (
     <>
@@ -143,8 +142,8 @@ function StudentDashboard() {
             </div>
             <div className="row">
               <div className="col-md-12 d-flex justify-content-center">
-                <div className="card w-100" style={{ background: "#4269c4" }}>
-                  <div className="card-body">
+                <div className="card w-100" style={{ background: "#1065cd" }}>
+                  <div className="card-body id-dsh-banner-relative">
                     <div className="id-dsh-text">
                       <h4>Good Morning Mr. Rajan Sir</h4>
                       <p>Have a Good day at work</p>
@@ -155,11 +154,16 @@ function StudentDashboard() {
                         </p>
                       </div>
                     </div>
+                    <img
+                      src={IntroBannerImg}
+                      alt=""
+                      className="id-dsh-banner-img-fix img-fluid"
+                    />
                   </div>
                 </div>
               </div>
               <div className="col-md-7 col-lg-7 col-12 mb-3">
-                <div className="card ">
+                <div className="card id-card">
                   <div className="card-body ">
                     <div className="d-flex justify-content-between">
                       <div className="card-title">Monthly Attendance</div>
@@ -191,80 +195,87 @@ function StudentDashboard() {
               </div>
 
               <div className="col-md-5 col-lg-5 col-12 mb-3">
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <Link to={"/student/profile"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={ProfilePng}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Profile</h4>
-                      </div>
-                    </Link>
+                <div className="card id-card">
+                  <div className="d-flex justify-content-between card-header">
+                    <h4 className="card-title">Quick Links</h4>
                   </div>
+                  <div className="card-body ">
+                    <div className="row">
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/student/profile"}>
+                          <div className="id-card-wrapper id-dsh-profile">
+                            <img
+                              src={ProfilePng}
+                              alt="profile"
+                              className="id-dsh-links-img"
+                            />
+                            <p className="mb-0 id-text-dark">Profile</p>
+                          </div>
+                        </Link>
+                      </div>
 
-                  <div className="col-md-6 mb-3">
-                    <Link to={"/student/time-table"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={TimeTablePng}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Time Table</h4>
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/student/time-table"}>
+                          <div className="id-card-wrapper id-dsh-table">
+                            <img
+                              src={TimeTablePng}
+                              alt="profile"
+                              className="id-dsh-links-img"
+                            />
+                            <p className="mb-0 id-text-dark">Time Table</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
 
-                  <div className="col-md-6">
-                    <Link to={"/student/lms"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={LmsPng}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">LMS</h4>
+                      <div className="col-md-6">
+                        <Link to={"/student/lms"}>
+                          <div className="id-card-wrapper id-dsh-lms">
+                            <img
+                              src={LmsPng}
+                              alt="profile"
+                              className="id-dsh-links-img id-dsh-lms-img"
+                            />
+                            <p className="mb-0 id-text-dark">LMS</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <Link to={"/student/new-feedback"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={FeedbackPng}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Feedback</h4>
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/student/new-feedback"}>
+                          <div className="id-card-wrapper id-dsh-feedback">
+                            <img
+                              src={FeedbackPng}
+                              alt="profile"
+                              className="id-dsh-links-img id-dsh-feedback-img"
+                            />
+                            <p className="mb-0 id-text-dark">Feedback</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <Link to={"/"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={WebsitesImg}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Website</h4>
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/"}>
+                          <div className="id-card-wrapper id-dsh-website">
+                            <img
+                              src={WebsitesImg}
+                              alt="profile"
+                              className="id-dsh-links-img"
+                            />
+                            <p className="mb-0 id-text-dark">Website</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <Link to={"/student/internship"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={InternshipImg}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Internship</h4>
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/student/internship"}>
+                          <div className="id-card-wrapper id-dsh-internship">
+                            <img
+                              src={InternshipImg}
+                              alt="profile"
+                              className="id-dsh-links-img"
+                            />
+                             <p className="mb-0 id-text-dark">Internship</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -377,14 +388,14 @@ function StudentDashboard() {
             </div>
             <div className="row">
               <div className="col-lg-12">
-                <div className="card " style={{ padding: "20px" }}>
+                <div className="card id-card">
+                  <div className="card-header">
+                      <h4 className="card-title">Current Issued Books</h4>
+                  </div>
+                  <div className="card-body">
                   <div className="row">
-                    <div className="col-lg-12 col-12 mb-3">
-                      <h4>Current Issued Books</h4>
-                    </div>
-
                     <div className="col-lg-4 col-md-4 col-12 mb-3">
-                      <div className="id-issued-wrapper">
+                      <div className="id-issued-wrapper d-flex">
                         <img
                           src={IssuedBookImg}
                           alt="student-img"
@@ -398,7 +409,7 @@ function StudentDashboard() {
                       </div>
                     </div>
                     <div className="col-lg-4 col-md-4 col-12 mb-3">
-                      <div className="id-issued-wrapper">
+                      <div className="id-issued-wrapper d-flex">
                         <img
                           src={IssuedBookImg}
                           alt="student-img"
@@ -412,7 +423,7 @@ function StudentDashboard() {
                       </div>
                     </div>
                     <div className="col-lg-4 col-md-4 col-12 mb-3">
-                      <div className="id-issued-wrapper">
+                      <div className="id-issued-wrapper d-flex">
                         <img
                           src={IssuedBookImg}
                           alt="student-img"
@@ -426,6 +437,9 @@ function StudentDashboard() {
                       </div>
                     </div>
                   </div>
+                  </div>
+
+                 
                 </div>
               </div>
             </div>
@@ -439,17 +453,14 @@ function StudentDashboard() {
                     <div className="d-flex align-items-center justify-content-between p-3 pb-1">
                       <div className="d-flex align-items-center flex-wrap mb-2">
                         <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                          <img
-                            src={TeacherImg}
-                            alt="Profile"
-                          />
+                          <img src={TeacherImg} alt="Profile" />
                         </span>
                         <div>
                           <h6 className="mb-1 text-decoration-line-through">
                             English
                           </h6>
                           <span>
-                          <i class="fa-regular fa-clock mr-2"></i>
+                            <i class="fa-regular fa-clock mr-2"></i>
                             09:00 - 09:45 AM
                           </span>
                         </div>
@@ -464,17 +475,14 @@ function StudentDashboard() {
                     <div className="d-flex align-items-center justify-content-between flex-wrap p-3 pb-1">
                       <div className="d-flex align-items-center flex-wrap mb-2">
                         <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                          <img
-                            src={TeacherImg}
-                            alt="Profile"
-                          />
+                          <img src={TeacherImg} alt="Profile" />
                         </span>
                         <div>
                           <h6 className="mb-1 text-decoration-line-through">
                             Chemistry
                           </h6>
                           <span>
-                          <i class="fa-regular fa-clock mr-2"></i>
+                            <i class="fa-regular fa-clock mr-2"></i>
                             10:45 - 11:30 AM
                           </span>
                         </div>
@@ -489,15 +497,12 @@ function StudentDashboard() {
                     <div className="d-flex align-items-center justify-content-between flex-wrap p-3 pb-1">
                       <div className="d-flex align-items-center flex-wrap mb-2">
                         <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                          <img
-                            src={TeacherImg}
-                            alt="Profile"
-                          />
+                          <img src={TeacherImg} alt="Profile" />
                         </span>
                         <div>
                           <h6 className="mb-1">Physics</h6>
                           <span>
-                          <i class="fa-regular fa-clock mr-2"></i>
+                            <i class="fa-regular fa-clock mr-2"></i>
                             11:30 - 12:15 AM
                           </span>
                         </div>

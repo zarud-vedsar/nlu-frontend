@@ -175,7 +175,7 @@ function StudentDashboard() {
                 <div className="card w-100" style={{ background: "#4269c4" }}>
                   <div className="card-body">
                     <div className="id-dsh-text">
-                      <h4>Good Morning Mr. Rajan Sir</h4>
+                      <h4>Good Morning {secureLocalStorage.getItem("sname")}</h4>
                       <p>Have a Good day at work</p>
                       <div className="mt-3 id-dsh-text">
                         <p>
@@ -450,10 +450,11 @@ function StudentDashboard() {
                 </div>
               </div>
             )}
+            {data?.timetable && data?.timetable?.length > 0 && 
             <div className="col-md-5 d-flex justify-content-center">
               <div className="card w-100">
                 <div className="card-body">
-                {data?.timetable && data?.timetable?.length > 0 && 
+                {
                  data?.timetable?.map((classItem)=>(
 
                  <div className="card mb-3 id-card">
@@ -488,6 +489,7 @@ function StudentDashboard() {
                 </div>
               </div>
             </div>
+}
           </div>
         </div>
       </div>

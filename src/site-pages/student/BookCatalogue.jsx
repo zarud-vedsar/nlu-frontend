@@ -133,16 +133,18 @@ const BookCatalogue = () => {
       <div className="page-container">
         <div className="main-content">
         <div className="container-fluid">
-        <div className="page-header mb-0">
-              <div className="header-sub-title">
-                <nav className="breadcrumb breadcrumb-dash">
-                  <a href="" className="breadcrumb-item">
-                     Library
-                  </a>
-                  <span className="breadcrumb-item">Book Catalogue</span>
-                </nav>
-              </div>
-            </div>
+
+        <div className=" mb-3 mt-0">
+            <nav className="breadcrumb">
+              <a href="/" className="breadcrumb-item">
+                Library
+              </a>
+
+              <span className="breadcrumb-item active">Book Catalogue</span>
+            </nav>
+          </div>
+
+       
             <div className="card border-0 bg-transparent mb-2">
               <div className="card-header border-0 bg-transparent py-1 d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">

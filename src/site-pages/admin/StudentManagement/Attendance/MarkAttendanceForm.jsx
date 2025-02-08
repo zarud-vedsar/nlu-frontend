@@ -373,16 +373,16 @@ function MarkAttendanceForm() {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Dashboard
+                    <i className="fas fa-home m-r-5" /> Attendance Management
                   </a>
-                  <a className="breadcrumb-item">Student Management</a>
-                  <span className="breadcrumb-item">Mark Attendance</span>
+                  
+                  <span className="breadcrumb-item">Mark Class Attendance</span>
                 </nav>
               </div>
             </div>
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new">Mark Attendance</h5>
+                <h5 className="card-title h6_new">Mark Class Attendance</h5>
                 <div className="ml-auto">
                   <button
                     className="ml-auto btn-md btn border-0 btn-light mr-2"

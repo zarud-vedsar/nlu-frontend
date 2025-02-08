@@ -268,7 +268,7 @@ function ResourcePdfList() {
                     <i className="fas fa-home m-r-5" /> Dashboard
                   </a>
                   <span className="breadcrumb-item">Resource</span>
-                  <span className="breadcrumb-item">Pdf</span>
+                  
                   <span className="breadcrumb-item active">Pdf List</span>
                 </nav>
               </div>

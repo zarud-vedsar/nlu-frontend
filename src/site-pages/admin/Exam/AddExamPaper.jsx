@@ -374,11 +374,10 @@ function AddExam() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <Link to="/admin/" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                    Announcement
+                    Exam Management
                   </Link>
-                  <span className="breadcrumb-item">Exam Management</span>
                   <span className="breadcrumb-item active">
-                    {dbId ? "Update Exam Details" : "Add New Exam"}
+                    {dbId ? "Update Exam Paper" : "Add Exam Paper"}
                   </span>
                 </nav>
               </div>
@@ -387,7 +386,7 @@ function AddExam() {
             <div className="card border-0 bg-transparent mb-0">
               <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
                 <h5 className="card-title h6_new font-16">
-                  {dbId ? "Update Exam Details" : "Add New Exam"}
+                  {dbId ? "Update Exam Paper" : "Add Exam Paper"}
                 </h5>
                 {/* The almighty 'Go Back' button */}
                 <button className="btn goback" onClick={goBack}>

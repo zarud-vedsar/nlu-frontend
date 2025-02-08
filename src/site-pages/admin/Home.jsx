@@ -198,9 +198,9 @@ const navigate = useNavigate();
           <div className="page-header mb-3">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="./" className="breadcrumb-item">
+                <Link to="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
-                </a>
+                </Link>
                 <span className="breadcrumb-item active">Home</span>
               </nav>
             </div>

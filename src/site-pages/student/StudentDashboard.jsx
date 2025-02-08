@@ -175,7 +175,7 @@ function StudentDashboard() {
                 <div className="card w-100" style={{ background: "#4269c4" }}>
                   <div className="card-body">
                     <div className="id-dsh-text">
-                      <h4>Good Morning {secureLocalStorage.getItem("sname")}</h4>
+                      <h4>Good Morning, {secureLocalStorage.getItem("sname")}</h4>
                       <p>Have a Good day at work</p>
                       <div className="mt-3 id-dsh-text">
                         <p>
@@ -336,7 +336,7 @@ function StudentDashboard() {
                                   {!secureLocalStorage.getItem("sguardianemail") &&
                                   <td >
                                     <Link
-                                      to={`/admin/assignment-response-view/${data.id}`}
+                                      to={`/quiz/quiz-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
                                       className="avatar avatar-icon avatar-md avatar-orange"
                                     >
                                       <i className="fas fa-eye"></i>
@@ -394,7 +394,7 @@ function StudentDashboard() {
                                   { !secureLocalStorage.getItem("sguardianemail") &&
                                   <td className="">
                                     <Link
-                                      to={`/admin/assignment-response-view/${data.id}`}
+                                      to={`/assignment/assignment-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
                                       className="avatar avatar-icon avatar-md avatar-orange"
                                     >
                                       <i className="fas fa-eye"></i>

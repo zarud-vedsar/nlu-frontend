@@ -281,11 +281,11 @@ function MarkAttendanceForm() {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Dashboard
+                    <i className="fas fa-home m-r-5" /> Attendance Management
                   </a>
-                  <span className="breadcrumb-item">Hostel Management</span>
+                  
                   <span className="breadcrumb-item active">
-                    {dbId ? "Update Data" : "Mark Attendance"}
+                    {dbId ? "Update Data" : "Mark Hostel Attendance"}
                   </span>
                 </nav>
               </div>
@@ -293,7 +293,7 @@ function MarkAttendanceForm() {
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">
-                  {dbId ? "Update Data" : "Mark Attendance"}
+                  {dbId ? "Update Data" : "Mark Hostel Attendance"}
                 </h5>
                 <div className="ml-auto">
                   <button

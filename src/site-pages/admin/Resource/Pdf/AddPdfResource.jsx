@@ -263,8 +263,8 @@ function AddNewResourcePdf() {
                                     <a href="./" className="breadcrumb-item">
                                         <i className="fas fa-home m-r-5" /> Dashboard
                                     </a>
-                                    <span className="breadcrumb-item">Resource</span>
-                                    <span className="breadcrumb-item">Pdf</span>
+                                    <span className="breadcrumb-item">Resources</span>
+                                    
                                     <span className="breadcrumb-item active">{dbId ? 'Update Pdf' : 'Add New Pdf'}</span>
                                 </nav>
                             </div>

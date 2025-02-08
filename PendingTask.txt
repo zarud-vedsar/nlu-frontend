@@ -1,13 +1,31 @@
------------------- Admin Panel ----------------------- 
-1. Menu
-2. Text editor
-3. Save detail of student when visitor in or out
-4. Add student drop down in filter of visitor history
+-------issue list------
+1. Validation of vacancy in hostel in room assignment 
+2. Search bar in marks upload not working
+3. save button mark class attendace should be in right side
+4. examination type in admin card written in small letter
 
------------------- Student Panel---------------------
-Custom PDF Viewer
-Student Semester completion
+5. attendance summary should be separated from attendance in chat 
+6. hostel mark attendace should be same as class mark attendance
+7. add label and export attendance history
+8. class should not editable after 24hr , if they what to edit they required permission
 
------------------- Website Panel --------------------
-Update get data api link
+9. leave request history rending room id at student panel (backend)
+10. alloted room history in admin not rendering proper student detail  (backend)
+11. raised queries in admin not || (backend)
+12. room complained listing in admin not || (backend)
+13. leave request listing in admin not || (backend)
+14. enrollment number render instead registration no in academic student list and new application addmission list
 
+--------------- 8 February ----------------
+0. student dashboard 
+0. add marquee at parent panel
+1. Save detail of student when visitor in or out
+2. Add student drop down in filter of visitor history
+3. Update vacant date form for hostel room
+4. Log system for super admin  - frontend 
+5. Mark sheet generation system 
+6. Subject wise marks listing system
+7. Implementation of role and permission at the end of project
+8. Implementation of session in Assignment and quiz
+9. Admin card individual download system
+10. semester name must be in roman number 

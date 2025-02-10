@@ -60,14 +60,12 @@ Learning Management
 11. raised queries in admin not || (backend)
 12. room complained listing in admin not || (backend)
 13. leave request listing in admin not || (backend)
-14. enrollment number render instead registration no in academic student list and new application addmission list
 
 --------------- 8 February  Pending task ----------------
 0. student dashboard 
 0. add marquee at parent panel
 1. Save detail of student when visitor in or out
 2. Add student drop down in filter of visitor history
-4. Log system for super admin  - frontend 
 5. Mark sheet generation system 
 6. Subject wise marks listing system
 7. Implementation of role and permission at the end of project

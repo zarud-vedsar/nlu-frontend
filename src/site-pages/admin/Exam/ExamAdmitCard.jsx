@@ -191,6 +191,7 @@ function AddExam() {
       bformData.append("exam_type", admitForm.exam_type);
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
+     // bformData.append("studentid", 3);
 
       const res = await axios.post(`${PHP_API_URL}/admitcard.php`, bformData, {
         headers: {

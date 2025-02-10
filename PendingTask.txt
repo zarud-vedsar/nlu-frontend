@@ -72,3 +72,4 @@ Learning Management
 8. Implementation of session in Assignment and quiz
 9. Admin card individual download system
 10. semester name must be in roman number 
+11. Excel sheet in attendance chart and exam marks

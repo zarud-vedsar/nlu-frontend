@@ -211,6 +211,7 @@ components.StockInList = lazy(() => import("../site-pages/admin/Inventory/StockI
 components.StockOutAdd = lazy(() => import("../site-pages/admin/Inventory/StockOutAdd.jsx"));
 components.StockOutList = lazy(() => import("../site-pages/admin/Inventory/StockOutList.jsx"));
 components.AddExamPaper = lazy(() => import("../site-pages/admin/Exam/AddExamPaper.jsx"));
+components.ViewSubjectMarks = lazy(() => import("../site-pages/admin/Exam/ViewSubjectMarks.jsx"));
 components.ExamPaperList = lazy(() => import("../site-pages/admin/Exam/ExamPaperList.jsx"));
 components.ExamPaperAddQuestion = lazy(() => import("../site-pages/admin/Exam/ExamPaperAddQuestion.jsx"));
 components.ExamAdmitCard = lazy(() => import("../site-pages/admin/Exam/ExamAdmitCard.jsx"));
@@ -2004,6 +2005,10 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             <Route
               path="/exam-paper/add-update/:dbId?"
               element={<ProtectedRoute element={<components.AddExamPaper />} />}
+            />
+             <Route
+              path="/exam-paper/view-marks/:dbId?"
+              element={<ProtectedRoute element={<components.ViewSubjectMarks />} />}
             />
             <Route
               path="/exam-paper/list"

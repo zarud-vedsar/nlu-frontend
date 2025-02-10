@@ -180,6 +180,7 @@ function SubjectsAssignedFaculty() {
       // Assuming response.data.data contains the faculty data
       setFacultyListing(response.data.data);
     } catch (error) {
+      setFacultyListing([])
       console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);

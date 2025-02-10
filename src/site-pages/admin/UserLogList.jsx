@@ -1,20 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from "react";
-import {
-  FILE_API_URL,
-  NODE_API_URL,
-  PHP_API_URL,
-} from "../../site-components/Helper/Constant";
+import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import {
   capitalizeFirstLetter,
-  dataFetchingPost,
-  formatDate,
   goBack,
   capitalizeEachLetter,
 } from "../../site-components/Helper/HelperFunction";
 import "../../../node_modules/primeicons/primeicons.css";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
 import { DataTable } from "primereact/datatable";
@@ -24,91 +17,91 @@ import { FormField } from "../../site-components/admin/assets/FormField";
 
 function UserLogList() {
   const [showFilter, setShowFilter] = useState(true);
-  const [applicationList, setApplicationListing] = useState([]);
-  const [courseListing, setCourseListing] = useState([]); // Form submission state
-  const [semesterListing, setSemesterListing] = useState([]); // on course and year selection
+  const [logList, setLogList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  const [facultyListing, setFacultyListing] = useState([]);
+  const formatDateForMonth = (date) => {
+    return new Intl.DateTimeFormat("en-CA", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(date);
+  };
+
+  const getFirstDayOfMonth = () => {
+    const now = new Date();
+    return formatDateForMonth(new Date(now.getFullYear(), now.getMonth(), 1));
+  };
+
+  const getLastDayOfMonth = () => {
+    const now = new Date();
+    return formatDateForMonth(
+      new Date(now.getFullYear(), now.getMonth() + 1, 0)
+    );
+  };
 
   const initialData = {
-    courseid: null,
-    semesterid: null,
-    studentId: null,
-    session: localStorage.getItem("session"),
+    log_type: "",
+    userid: "",
+    start_date: getFirstDayOfMonth(),
+    end_date: getLastDayOfMonth(),
   };
 
   const [formData, setFormData] = useState(initialData);
 
-  const courseListDropdown = async () => {
-    try {
-      const response = await axios.get(`${NODE_API_URL}/api/course/dropdown`);
-      if (response.data?.statusCode === 200 && response.data.data.length > 0) {
-        setCourseListing(response.data.data);
-      } else {
-        toast.error("Course not found.");
-        setCourseListing([]);
-      }
-    } catch (error) {
-      setCourseListing([]);
-    }
-  };
   useEffect(() => {
-    courseListDropdown();
+    loadFacultyData();
     handleSubmit();
-    sessionListDropdown();
   }, []);
 
-  const fetchSemesterBasedOnCourseAndYear = async (courseid) => {
-    if (
-      !courseid ||
-      !Number.isInteger(parseInt(courseid, 10)) ||
-      parseInt(courseid, 10) <= 0
-    )
-      return toast.error("Invalid course ID.");
+  const loadFacultyData = async () => {
+    setIsFetching(true);
     try {
-      const response = await dataFetchingPost(
-        `${NODE_API_URL}/api/semester/fetch`,
+      const bformData = new FormData();
+      bformData.append("data", "load_userPage");
+      const response = await axios.post(
+        `${PHP_API_URL}/faculty.php`,
+        bformData,
         {
-          courseid: courseid,
-          column: "id, semtitle",
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
-      if (response?.statusCode === 200 && response.data.length > 0) {
-        setSemesterListing(response.data);
-      } else {
-        toast.error("Semester not found.");
-        setSemesterListing([]);
-      }
+     
+      setFacultyListing(response.data.data);
     } catch (error) {
-      setSemesterListing([]);
-      const statusCode = error.response?.data?.statusCode;
-      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
-        toast.error(error.response.message || "A server error occurred.");
-      } else {
-        toast.error(
-          "An error occurred. Please check your connection or try again."
-        );
-      }
+      setFacultyListing([]);
+      console.error("Error fetching faculty data:", error);
+    } finally {
+      setIsFetching(false);
     }
   };
 
   const handleSubmit = async (e = false) => {
     if (e) e.preventDefault();
-    setApplicationListing([]);
+    setLogList([]);
     setIsFetching(true);
     try {
       const bformData = new FormData();
       bformData.append("data", "load_log");
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
+
+      Object.entries(formData).forEach(([key, value]) => {
+        bformData.append(key, value);
+      });
+
       const response = await axios.post(`${PHP_API_URL}/log.php`, bformData);
-      console.log(response);
+      
       if (response.data?.status === 200 && response.data.data.length > 0) {
-        setApplicationListing(response?.data?.data);
+        toast.success(response?.data?.msg);
+        setLogList(response?.data?.data);
       } else {
-        setApplicationListing([]);
+        setLogList([]);
       }
     } catch (error) {
-      setApplicationListing([]);
+      setLogList([]);
     } finally {
       setIsFetching(false);
     }
@@ -116,24 +109,7 @@ function UserLogList() {
 
   const resetFilter = () => {
     setFormData(initialData);
-    setSemesterListing([]);
     handleSubmit();
-  };
-
-  const [session, setSession] = useState([]);
-  // Fetch and set the session list for the dropdown
-  const sessionListDropdown = async () => {
-    try {
-      const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
-        status: 1,
-        column: "id, dtitle",
-      });
-      data?.statusCode === 200 && data.data.length
-        ? setSession(data.data) // Populate session list
-        : (toast.error("Session not found."), setSession([])); // Error handling
-    } catch {
-      setSession([]); // Clear list on failure
-    }
   };
 
   return (
@@ -187,53 +163,36 @@ function UserLogList() {
                       </label>
 
                       <Select
-                        options={
-                          applicationList
-                            ? [
-                                ...new Map(
-                                  applicationList.map((student) => [
-                                    student.studentId,
-                                    {
-                                      value: student.studentId,
-                                      label: `${student.sname} (${student.registrationNo})`,
-                                    },
-                                  ])
-                                ).values(),
-                              ]
-                            : []
-                        }
-                        onChange={(e) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            studentId: e.value,
-                          }))
-                        }
+                        options={facultyListing.map((faculty) => ({
+                          value: faculty.id, // Use faculty id as the value
+                          label: `${faculty.first_name} ${faculty.last_name}`, // Assuming faculty has first_name and last_name fields
+                        }))}
+                        onChange={(selectedOption) => {
+                          setFormData({
+                            ...formData,
+                            userid: selectedOption.value, // Save selected faculty id
+                          });
+                        }}
                         value={
-                          formData.studentId
+                          facultyListing.find(
+                            (faculty) => faculty.id === formData.userid
+                          )
                             ? {
-                                value: formData.studentId,
-                                label:
-                                  applicationList &&
-                                  applicationList.find(
-                                    (student) =>
-                                      student.studentId === formData.studentId
-                                  )
-                                    ? `${
-                                        applicationList.find(
-                                          (student) =>
-                                            student.studentId ===
-                                            formData.studentId
-                                        ).sname
-                                      } (${
-                                        applicationList.find(
-                                          (student) =>
-                                            student.studentId ===
-                                            formData.studentId
-                                        ).enrollmentNo
-                                      })`
-                                    : "Select",
+                                value: formData.userid,
+                                label: `${
+                                  facultyListing.find(
+                                    (faculty) => faculty.id === formData.userid
+                                  ).first_name
+                                } ${
+                                  facultyListing.find(
+                                    (faculty) => faculty.id === formData.userid
+                                  ).last_name
+                                }`,
                               }
-                            : { value: "", label: "Select" }
+                            : {
+                                value: formData.userid,
+                                label: "Select",
+                              }
                         }
                       />
                     </div>
@@ -252,44 +211,18 @@ function UserLogList() {
                           value: log,
                           label: capitalizeEachLetter(log),
                         }))}
-                        onChange={(e) =>
+                        onChange={(e) => {
+                          
                           setFormData((prev) => ({
                             ...prev,
-                            log: e.value,
-                          }))
-                        }
+                            log_type: e.value,
+                          }));
+                        }}
                         value={
-                          formData.log
+                          formData.log_type
                             ? {
-                                value: formData.log,
-                                label:
-                                  
-                                  [
-                                    "login",
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "status",
-                                    "failed",
-                                  ].find(
-                                    (log) =>
-                                      log === formData.log
-                                  ).log
-                                    ? `${
-                                        [
-                                            "login",
-                                            "create",
-                                            "update",
-                                            "delete",
-                                            "status",
-                                            "failed",
-                                          ].find(
-                                          (log) =>
-                                            log ===
-                                            formData.log
-                                        ).log
-                                      }`
-                                    : "Select",
+                                value: formData.log_type,
+                                label: capitalizeEachLetter(formData.log_type),
                               }
                             : { value: "", label: "Select" }
                         }
@@ -303,7 +236,12 @@ function UserLogList() {
                       type="date"
                       value={formData.start_date}
                       column="col-md-2 col-lg-2"
-                      disabled={true}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          start_date: e.target.value,
+                        }))
+                      }
                     />
                     <FormField
                       label="To Date"
@@ -312,7 +250,12 @@ function UserLogList() {
                       type="date"
                       value={formData.end_date}
                       column="col-md-2 col-lg-2"
-                      disabled={true}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          end_date: e.target.value,
+                        }))
+                      }
                     />
 
                     <div className="col-12 d-flex  mt-2">
@@ -344,13 +287,13 @@ function UserLogList() {
                 {/* Search Box */}
 
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
-                  {applicationList.length > 0 ? (
+                  {logList.length > 0 ? (
                     <DataTable
-                      value={applicationList}
+                      value={logList}
                       removableSort
                       paginator
-                      rows={10}
-                      rowsPerPageOptions={[10, 25, 50]}
+                      rows={50}
+                      rowsPerPageOptions={[50, 100, 200]}
                       emptyMessage="No records found"
                       className="p-datatable-custom"
                       tableStyle={{ minWidth: "50rem" }}

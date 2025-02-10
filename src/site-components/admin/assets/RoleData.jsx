@@ -12,6 +12,11 @@ export const RoleData = [
         value: "Faculty",
         crud: ["list", "others dashboard"], // CRUD operations
       },
+      {
+        label: "User Log",
+        value: "User Log",
+        crud: ["list", "others dashboard"], // CRUD operations
+      },
     ],
   },
   {

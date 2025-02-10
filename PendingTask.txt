@@ -1,13 +1,77 @@
------------------- Admin Panel ----------------------- 
-1. Menu
-2. Text editor
-3. Save detail of student when visitor in or out
-4. Add student drop down in filter of visitor history
 
------------------- Student Panel---------------------
-Custom PDF Viewer
-Student Semester completion
+Learning Management
+--------------------
+-> faculty department: In recycle Bin remove all other action except restore .
+-> Department: In recycle Bin remove all other action except restore .
+=================================================================================
 
------------------- Website Panel --------------------
-Update get data api link
 
+============================================================
+ 
+ Hostel Management
+ -----------------
+ -> Hostle room addition: occupied bed is unable to set to 0
+ -> Room Update : Unable to update room detail
+ -> Room Addition: Occupied Bed can be set greater then available beds
+ 
+
+--------8 February --------
+1. 3 paper addition in each created exam 
+2. In all the process flow the next step is to be redirect on success
+3. Marks upload should be single time and can be edited within 24hr after that edit is required and history will be created for the edit for proper reasoning 
+4. Remove Class cancel from dropdown in class attendance 
+5. Generate attendance marks button should be there only while uploading end semeter marks in exam paper instead of generate attendance
+6. Remove from sidebar faculty department
+7. Sidebar Option Rearrange
+8. Auto calculation of maximum mark in end term and mid term both at the time of marks uploading
+9. On paper creation exam duation shoud be auto calculated and its input should be  disabled 
+10. change title of section to section title 
+
+
+---------Create exam cell Module ------------
+2. exam duration setting (fixed from date and to date) for creating exam paper with session , exam type, course , semeter 
+3. exam paper list --> exam paper listing of final submitting, features ---> view exam paper, approved/reject exam paper (in case of reject faculty and modator can edit exam paper and also metion remark for rejecting and send notification on mail),  
+4. in case of rejection of exam paper faculty can review and resubmit exam paper
+5. notification system for modator to notify faculty to submit exam paper if not submitted yet
+6. mark freezing system --> 
+
+
+
+------------Exam Module ----------
+1. auto redirecting add question page after save exam paper
+2. add go back button in exam paper form and add question form
+3. faculty only allowed to see exam paper 
+4. submit exam paper to exam cell (button), remove all action button from exam paper
+
+
+-------issue list------
+1. Validation of vacancy in hostel in room assignment 
+2. Search bar in marks upload not working
+3. save button mark class attendace should be in right side
+4. examination type in admin card written in small letter
+
+5. attendance summary should be separated from attendance in chat 
+6. hostel mark attendace should be same as class mark attendance
+7. add label and export attendance history
+8. class should not editable after 24hr , if they what to edit they required permission
+
+9. leave request history rending room id at student panel (backend)
+10. alloted room history in admin not rendering proper student detail  (backend)
+11. raised queries in admin not || (backend)
+12. room complained listing in admin not || (backend)
+13. leave request listing in admin not || (backend)
+14. enrollment number render instead registration no in academic student list and new application addmission list
+
+--------------- 8 February  Pending task ----------------
+0. student dashboard 
+0. add marquee at parent panel
+1. Save detail of student when visitor in or out
+2. Add student drop down in filter of visitor history
+3. Update vacant date form for hostel room
+4. Log system for super admin  - frontend 
+5. Mark sheet generation system 
+6. Subject wise marks listing system
+7. Implementation of role and permission at the end of project
+8. Implementation of session in Assignment and quiz
+9. Admin card individual download system
+10. semester name must be in roman number 

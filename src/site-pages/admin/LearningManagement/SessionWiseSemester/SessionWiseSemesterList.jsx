@@ -124,11 +124,11 @@ function SessionWiseSemesterList() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                    Dashboard
+                    Learning Management
                   </a>
-                  <a className="breadcrumb-item">Learning Management</a>
+                  
                   <span className="breadcrumb-item active">
-                    Session Wise Semester List
+                    Session Wise Semester Class
                   </span>
                 </nav>
               </div>
@@ -136,7 +136,7 @@ function SessionWiseSemesterList() {
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">
-                  Session Wise Semester List
+                  Session Wise Semester Class List
                 </h5>
                 <div className="ml-auto">
                   <button

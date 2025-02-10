@@ -198,11 +198,11 @@ function AddExam() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <Link to="/admin/" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                    Dashboard
+                    Attendance Management
                   </Link>
-                  <span className="breadcrumb-item">Attendance Management</span>
+                  
                   <span className="breadcrumb-item active">
-                    Compiled Attendance
+                    Compile Class Attendance
                   </span>
                 </nav>
               </div>
@@ -211,7 +211,7 @@ function AddExam() {
             <div className="card border-0 bg-transparent mb-0">
               <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
                 <h5 className="card-title h6_new font-16">
-                  Compiled Attendance
+                  Compile Class Attendance
                 </h5>
                 <div className="ml-auto">
                   {/* The almighty 'Go Back' button */}

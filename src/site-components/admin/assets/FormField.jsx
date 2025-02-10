@@ -19,6 +19,7 @@ const FormField = ({
   onChange,
   required = false,
   readOnly = false,
+  disabled=false,
   list = false,
 }) => {
   // Conditional style for input field
@@ -47,6 +48,7 @@ const FormField = ({
         placeholder={placeholder}
         {...customAttributes}
         onChange={onChange}
+        disabled={disabled}
       />
       {errorMessage &&
         <span className="mt-2 text-danger">

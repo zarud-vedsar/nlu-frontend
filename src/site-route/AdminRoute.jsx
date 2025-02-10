@@ -158,6 +158,7 @@ const components = {
 
 
   AllotRoomToStudent: lazyLoadHostelManagement("AllotRoomToStudent"),
+  UpdateVacateDate: lazyLoadHostelManagement("UpdateVacateDate"),
   AllotedRoomHistory: lazyLoadHostelManagement("AllotedRoomHistory"),
   RaisedRoomQueries: lazyLoadHostelManagement("RaisedRoomQueries"),
   RaisedRoomComplain: lazyLoadHostelManagement("RaisedRoomComplain"),
@@ -1784,6 +1785,12 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
               path="/update-allot-room/:id"
               element={
                 <ProtectedRoute element={<components.AllotRoomToStudent />} />
+              }
+            />
+            <Route
+              path="/update-vacate-date/:id"
+              element={
+                <ProtectedRoute element={<components.UpdateVacateDate />} />
               }
             />
             <Route

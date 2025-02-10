@@ -362,9 +362,9 @@ function ViewCompiledAttendance() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <Link to="/admin/" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                    Dashboard
+                    Attendance Management
                   </Link>
-                  <span className="breadcrumb-item">Attendance Management</span>
+                  
                   <span className="breadcrumb-item active">
                     View Compiled Attendance
                   </span>

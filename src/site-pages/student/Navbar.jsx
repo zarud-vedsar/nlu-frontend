@@ -329,6 +329,8 @@ const Navbar = ({ toggleExpand, toggleFolded}) => {
     await studentRecordById(secureLocalStorage.getItem("studentId")).then(
       (res) => {
         if (res.length > 0) {
+         
+          secureLocalStorage.setItem("sname",res[0]?.sname);
           setStudentPersonalDetail({
             name: res[0]?.sname,
             pic: res[0]?.spic,

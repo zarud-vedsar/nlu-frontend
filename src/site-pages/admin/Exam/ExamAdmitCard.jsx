@@ -270,10 +270,9 @@ function AddExam() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <Link to="/admin/" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                    Dashboard
+                    Exam Management
                   </Link>
-                  <span className="breadcrumb-item">Exam Management</span>
-                  <span className="breadcrumb-item">Exam List</span>
+                  
                   <span className="breadcrumb-item active">Admit Card</span>
                 </nav>
               </div>

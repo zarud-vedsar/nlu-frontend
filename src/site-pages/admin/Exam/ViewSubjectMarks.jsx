@@ -169,8 +169,8 @@ const exportExcel = async() => {
                 <div className="col-md-12">
                   <div className="card border-0">
                     <div className="card-header p-0 border-0 bg-transparent px-2">
-                      <h5 className="card-title h6_new">
-                        Student List (Mid Terms Marks)
+                      <h5 className="card-title h6_new ">
+                        Student List (Mid Term Marks)
                       </h5>
                     </div>
                     <div className="card-body px-2">
@@ -186,6 +186,7 @@ const exportExcel = async() => {
                           className="p-datatable-custom"
                           tableStyle={{ minWidth: "50rem" }}
                           sortMode="multiple"
+                          filters={{ global: { value: globalFilter, matchMode: "contains" } }} 
                         >
                           <Column
                             header="Student Name"
@@ -207,11 +208,13 @@ const exportExcel = async() => {
                                 </div>
                               </div>
                             )}
+                            filterField="sname"
                           />
                           <Column
                             header="Roll no"
                             sortable
                             body={(rowData) => rowData.roll_no}
+                             filterField="roll_no"
                           />
                           <Column
                             header="MT Max Marks"
@@ -219,6 +222,7 @@ const exportExcel = async() => {
                             body={(rowData) => (
                               marksData[rowData.stid]?.max_mid || ""
                             )}
+                            filterField="max_mid"
                           />
                           <Column
                             header="MT Obtained  Marks"
@@ -226,6 +230,7 @@ const exportExcel = async() => {
                             body={(rowData) => (
                               marksData[rowData.stid]?.mid_term || ""
                             )}
+                            filterField="mid_term"
                           />
                           
                         </DataTable>
@@ -256,7 +261,7 @@ const exportExcel = async() => {
                   <div className="card border-0">
                     <div className="card-header p-0 border-0 bg-transparent px-2">
                       <h5 className="card-title h6_new">
-                        Student List (End Terms Marks )
+                        Student List (End Term Marks )
                       </h5>
                     </div>
                     <DataTable
@@ -270,6 +275,7 @@ const exportExcel = async() => {
                       <Column
                         header="Student Name"
                         sortable
+                        filterField="sname"
                         body={(rowData) => (
                           <div className="rsd_container">
                             <div className="rsd_profile_img">
@@ -292,58 +298,69 @@ const exportExcel = async() => {
                         header="Roll No"
                         sortable
                         body={(rowData) => rowData.roll_no}
+                        filterField="roll_no"
                       />
                       
                       <Column
                         header="Mid Max"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.max_mid || ""}
+                        filterField="max_mid"
                       />
                       <Column
                         header="Mid Obt"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.mid_term || ""}
+                        filterField="mid_term"
                       />
                       <Column
                         header="Proj Max"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.max_p || ""}
+                        filterField="max_p"
                       />
                       
                       <Column
                         header="Proj Writ"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.p_written || ""}
+                        filterField="p_written"
                       />
                       <Column
                         header="PPT"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.p_ppt || ""}
+                        filterField="p_ppt"
                       />
                       <Column
                         header="Viva"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.p_viva || ""}
+                        filterField="p_viva"
                       />
                       <Column
                         header="Attnd"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.attendance || ""}
+                        filterField="attendance"
                       />
                       <Column
                         header="End Max:"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.max_end || ""}
+                        filterField="max_end"
                       />
                       <Column
                         header="End Obt:"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.end_term || ""}
+                        filterField="end_term"
                       />
                       <Column
                         header="Total Obt"
                         sortable
                         body={(rowData) => marksData[rowData.stid]?.grand_total || ""}
+                        filterField="grand_total"
                       />
                     </DataTable>
                   </div>

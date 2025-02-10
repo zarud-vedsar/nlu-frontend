@@ -222,6 +222,7 @@ components.SubjectReport = lazy(() => import("../site-pages/admin/Reports/Studen
 components.InventoryReport = lazy(() => import("../site-pages/admin/Reports/Student/InventoryReport.jsx"));
 components.LibraryReport = lazy(() => import("../site-pages/admin/Reports/Student/LibraryReport.jsx"));
 components.AdminDashboard = lazy(() => import("../site-pages/admin/AdminDashboard.jsx"));
+components.UserLogList = lazy(() => import("../site-pages/admin/UserLogList.jsx"));
 components.FacultyDashboard = lazy(() => import("../site-pages/admin/FacultyDashboard.jsx"));
 components.ViewCompiledAttendance = lazy(() => import("../site-pages/admin/Attendance/ViewCompiledAttendance.jsx"));
 
@@ -258,6 +259,10 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             <Route
               path="/admin-dashboard"
               element={<ProtectedRoute element={<components.AdminDashboard />} />}
+            />
+            <Route
+              path="/user-log"
+              element={<ProtectedRoute element={<components.UserLogList />} />}
             />
             <Route
               path="/faculty-dashboard"

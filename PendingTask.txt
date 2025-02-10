@@ -67,7 +67,6 @@ Learning Management
 0. add marquee at parent panel
 1. Save detail of student when visitor in or out
 2. Add student drop down in filter of visitor history
-3. Update vacant date form for hostel room
 4. Log system for super admin  - frontend 
 5. Mark sheet generation system 
 6. Subject wise marks listing system

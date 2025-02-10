@@ -369,6 +369,22 @@ function AllotedRoomHistory() {
                       header="Created At"
                       sortable
                     />
+                    
+                    <Column
+                      header="Vacate"
+                      body={(rowData) => (
+                        <div className="d-flex">
+                        {rowData?.vacate_date? formatDate(rowData?.vacate_date):
+                       
+                          <Link
+                            to={`/admin/update-vacate-date/${rowData.id}`}
+                            className="avatar avatar-icon avatar-md avatar-orange"
+                          >
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                          </Link>
+                        } </div>
+                      )}
+                    />
                     <Column
                       header="Action"
                       body={(rowData) => (
@@ -382,6 +398,7 @@ function AllotedRoomHistory() {
                         </div>
                       )}
                     />
+                    
                   </DataTable>
                 </div>
               </div>

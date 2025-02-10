@@ -11,10 +11,10 @@ import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import Select from "react-select";
 import { capitalizeFirstLetter } from "../../../site-components/Helper/HelperFunction";
-function AllotRoomToStudent() {
+function UpdateVacateDate() {
   const { id: dbId } = useParams();
   const initialData = {
-    dbId: "",
+    roomAllotedId: dbId,
     block: "",
     roomNo: "",
     courseid: "",
@@ -48,47 +48,35 @@ function AllotRoomToStudent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-    
-    if (!formData.block) {
-      errorMsg("block", "Block is required.");
-      toast.error("Block is required.");
-      return setIsSubmit(false);
-    }
-    if (!formData.roomNo) {
-      errorMsg("roomNo", "Room No is required.");
-      toast.error("Room No is required.");
-      return setIsSubmit(false);
-    }
-
-    if (!formData.courseid) {
-      errorMsg("courseid", "Course is required.");
-      toast.error("Course is required.");
-      return setIsSubmit(false);
-    }
-
-    if (!formData.semesterid) {
-      errorMsg("semesterid", "Semester is required.");
-      toast.error("Semester is required.");
-      return setIsSubmit(false);
-    }
-    if (!formData.studentId) {
-      errorMsg("studentId", "Student ID is required.");
-      toast.error("Student ID is required.");
-      return setIsSubmit(false);
-    }
+    console.log(formData);
+   
 
     if (!formData.allotDate) {
-      errorMsg("allotDate", "Visit In Date is required.");
-      toast.error("Visit In Date is required.");
+      errorMsg("allotDate", "Allot date is required.");
+      toast.error("Allot date is required.");
       return setIsSubmit(false);
     }
+    if (!formData.vacateDate) {
+      errorMsg("vacateDate", "Vacate Date is required.");
+      toast.error("Vacate Date is required.");
+      return setIsSubmit(false);
+    }
+    let allotDate = new Date(formData?.allotDate);
+    let vacateDate = new Date(formData?.vacateDate);
+    if (allotDate>vacateDate) {
+      errorMsg("vacateDate", "Vacate Date must be valid.");
+      toast.error("Vacate Date must be valid.");
+      return setIsSubmit(false);
+    }
+
 
     try {
       formData.loguserid = secureLocalStorage.getItem("login_id");
       formData.login_type = secureLocalStorage.getItem("loginType");
+      
       // submit to the API here
       const response = await axios.post(
-        `${NODE_API_URL}/api/hostel-management/admin/room-assigned`,
+        `${NODE_API_URL}/api/hostel-management/admin/room-update-vacate-date`,
         formData
       );
       if (
@@ -117,7 +105,7 @@ function AllotRoomToStudent() {
     }
   };
   const fetchDataForupdateBasedOnId = async (dbId) => {
-    
+    console.log(dbId);
     if (!dbId || parseInt(dbId, 10) <= 0) {
       toast.error("Invalid ID.");
       return;
@@ -129,7 +117,7 @@ function AllotRoomToStudent() {
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
         const data = response.data[0];
-        
+        console.log(data);
         setFormData((prev) => ({
           ...prev,
           dbId: data.id,
@@ -139,7 +127,6 @@ function AllotRoomToStudent() {
           studentId: data.studentId,
           courseid: data.courseid,
           semesterid: data.semesterid,
-          vacate_date: data?.vacate_date || null
         }));
         if (data.block) {
           fetchRoomNoBasedOnBlock(data.block);
@@ -252,7 +239,7 @@ function AllotRoomToStudent() {
       const response = await axios.get(
         `${NODE_API_URL}/api/student-detail/get-student`
       );
-     
+      console.log(response);
       if (
         response?.data?.statusCode === 200 &&
         response?.data?.data.length > 0
@@ -263,7 +250,7 @@ function AllotRoomToStudent() {
         setStudentListing([]);
       }
     } catch (error) {
-      
+      console.log(error);
       setStudentListing([]);
     }
   };
@@ -277,12 +264,12 @@ function AllotRoomToStudent() {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Dashboard
+                    <i className="fas fa-home m-r-5" /> Hostel Management
                   </a>
-                  <span className="breadcrumb-item">Hostel Management</span>
-                  <span className="breadcrumb-item">Allot Room</span>
+                  
+                  
                   <span className="breadcrumb-item active">
-                    {dbId ? "Update Data" : "New Allot Room"}
+                    {"Update Vacate Date"}
                   </span>
                 </nav>
               </div>
@@ -290,7 +277,7 @@ function AllotRoomToStudent() {
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">
-                  {dbId ? "Update Data" : "New Allot Room"}
+                  { "Update Vacate Date"}
                 </h5>
                 <div className="ml-auto">
                   <button
@@ -314,17 +301,12 @@ function AllotRoomToStudent() {
                     <div className="col-md-4 col-lg-4 form-group">
                       <label className="font-weight-semibold">Block</label>
                       <Select
+                      disabled={true} 
                         options={block.map((item) => ({
                           value: item.block,
                           label: item.block,
                         }))}
-                        onChange={(selectedOption) => {
-                          setFormData({
-                            ...formData,
-                            block: selectedOption.value,
-                          });
-                          fetchRoomNoBasedOnBlock(selectedOption.value);
-                        }}
+                       
                         value={
                           block.find((item) => item.block === formData.block)
                             ? {
@@ -335,11 +317,10 @@ function AllotRoomToStudent() {
                               }
                             : { value: formData.block, label: "Select" }
                         }
+                        isDisabled={true}
                       />
 
-                      {error.field === "block" && (
-                        <span className="text-danger">{error.msg}</span>
-                      )}
+                      
                     </div>
                     <div className="col-md-4 col-lg-4 form-group">
                       <label className="font-weight-semibold">Room No</label>
@@ -348,12 +329,7 @@ function AllotRoomToStudent() {
                           value: item.roomNo,
                           label: item.roomNo,
                         }))}
-                        onChange={(selectedOption) => {
-                          setFormData({
-                            ...formData,
-                            roomNo: selectedOption.value,
-                          });
-                        }}
+                        
                         value={
                           blockRoomNo.find(
                             (item) => item.roomNo === formData.roomNo
@@ -366,15 +342,14 @@ function AllotRoomToStudent() {
                               }
                             : { value: formData.roomNo, label: "Select" }
                         }
+                        isDisabled={true}
                       />
 
-                      {error.field === "roomNo" && (
-                        <span className="text-danger">{error.msg}</span>
-                      )}
+                      
                     </div>
                     <div className="col-md-4 col-12 form-group">
                       <label className="font-weight-semibold">
-                        Course <span className="text-danger">*</span>
+                        Course
                       </label>
                       <Select
                         options={courseListing.map((item) => ({
@@ -382,16 +357,7 @@ function AllotRoomToStudent() {
                           label: item.coursename,
                           year: item.duration,
                         }))}
-                        onChange={(selectedOption) => {
-                          setFormData({
-                            ...formData,
-                            courseid: selectedOption.value,
-                          });
-                          const year = selectedOption.year
-                            ? selectedOption.year.split(",")
-                            : [];
-                          fetchSemesterBasedOnCourse(selectedOption.value);
-                        }}
+                        
                         value={
                           courseListing.find(
                             (item) => item.id === parseInt(formData.courseid)
@@ -405,28 +371,22 @@ function AllotRoomToStudent() {
                               }
                             : { value: formData.courseid, label: "Select" }
                         }
+                        isDisabled={true}
                       />
 
-                      {error.field === "courseid" && (
-                        <span className="text-danger">{error.msg}</span>
-                      )}
+                
                     </div>
 
                     <div className="col-md-4 col-12 form-group">
                       <label className="font-weight-semibold">
-                        Semester <span className="text-danger">*</span>
+                        Semester 
                       </label>
                       <Select
                         options={semesterListing.map((item) => ({
                           value: item.id,
                           label: capitalizeFirstLetter(item.semtitle),
                         }))}
-                        onChange={(selectedOption) => {
-                          setFormData({
-                            ...formData,
-                            semesterid: selectedOption.value,
-                          });
-                        }}
+                        
                         value={
                           semesterListing.find(
                             (item) => item.id === formData.semesterid
@@ -444,15 +404,14 @@ function AllotRoomToStudent() {
                                 label: "Select",
                               }
                         }
+                        isDisabled={true}
                       />
-                      {error.field === "semesterid" && (
-                        <span className="text-danger">{error.msg}</span>
-                      )}
+                     
                     </div>
 
                     <div className="col-md-4 col-12 form-group">
                       <label className="font-weight-semibold">
-                        Select Student <span className="text-danger">*</span>
+                        Select Student 
                       </label>
                       <Select
                         options={
@@ -461,12 +420,7 @@ function AllotRoomToStudent() {
                             label: `${student.sname} (${student.enrollmentNo})`,
                           })) || []
                         }
-                        onChange={(selectedOption) => {
-                          setFormData({
-                            ...formData,
-                            studentId: selectedOption.value,
-                          });
-                        }}
+                        
                         value={
                           formData.studentId
                             ? {
@@ -479,26 +433,38 @@ function AllotRoomToStudent() {
                               }
                             : { value: "", label: "Select" }
                         }
+                        isDisabled={true}
                       />
-                       {error.field === "studentId" && (
-                        <span className="text-danger">{error.msg}</span>
-                      )}
+                       
                     </div>
 
                     {/* Visit Date */}
                     <FormField
-                      borderError={error.field === "allotDate"}
-                      errorMessage={error.field === "allotDate" && error.msg}
+                      
                       label="Allot Date"
                       name="allotDate"
                       id="allotDate"
                       type="date"
                       value={formData.allotDate}
+                      
+                      column="col-md-4 col-lg-4"
+                      disabled={true}
+                      
+                    />
+                    <FormField
+                      borderError={error.field === "vacateDate"}
+                      errorMessage={error.field === "vacateDate" && error.msg}
+                      label="Vacate Date"
+                      name="vacateDate"
+                      id="vacateDate"
+                      type="date"
+                      value={formData.vacateDate}
                       onChange={handleChange}
                       column="col-md-4 col-lg-4"
                       required
+                      
                     />
-  { !formData?.vacate_date &&
+
                     <div className="col-md-12 col-lg-12 col-12">
                       <button
                         disabled={isSubmit}
@@ -513,7 +479,6 @@ function AllotRoomToStudent() {
                         )}
                       </button>
                     </div>
-}
                   </div>
                 </form>
               </div>
@@ -525,4 +490,4 @@ function AllotRoomToStudent() {
   );
 }
 
-export default AllotRoomToStudent;
+export default UpdateVacateDate;

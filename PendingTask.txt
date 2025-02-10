@@ -1,3 +1,49 @@
+
+Learning Management
+--------------------
+-> faculty department: In recycle Bin remove all other action except restore .
+-> Department: In recycle Bin remove all other action except restore .
+=================================================================================
+
+
+============================================================
+ 
+ Hostel Management
+ -----------------
+ -> Hostle room addition: occupied bed is unable to set to 0
+ -> Room Update : Unable to update room detail
+ -> Room Addition: Occupied Bed can be set greater then available beds
+ 
+
+--------8 February --------
+1. 3 paper addition in each created exam 
+2. In all the process flow the next step is to be redirect on success
+3. Marks upload should be single time and can be edited within 24hr after that edit is required and history will be created for the edit for proper reasoning 
+4. Remove Class cancel from dropdown in class attendance 
+5. Generate attendance marks button should be there only while uploading end semeter marks in exam paper instead of generate attendance
+6. Remove from sidebar faculty department
+7. Sidebar Option Rearrange
+8. Auto calculation of maximum mark in end term and mid term both at the time of marks uploading
+9. On paper creation exam duation shoud be auto calculated and its input should be  disabled 
+10. change title of section to section title 
+
+
+---------Create exam cell Module ------------
+2. exam duration setting (fixed from date and to date) for creating exam paper with session , exam type, course , semeter 
+3. exam paper list --> exam paper listing of final submitting, features ---> view exam paper, approved/reject exam paper (in case of reject faculty and modator can edit exam paper and also metion remark for rejecting and send notification on mail),  
+4. in case of rejection of exam paper faculty can review and resubmit exam paper
+5. notification system for modator to notify faculty to submit exam paper if not submitted yet
+6. mark freezing system --> 
+
+
+
+------------Exam Module ----------
+1. auto redirecting add question page after save exam paper
+2. add go back button in exam paper form and add question form
+3. faculty only allowed to see exam paper 
+4. submit exam paper to exam cell (button), remove all action button from exam paper
+
+
 -------issue list------
 1. Validation of vacancy in hostel in room assignment 
 2. Search bar in marks upload not working
@@ -16,7 +62,7 @@
 13. leave request listing in admin not || (backend)
 14. enrollment number render instead registration no in academic student list and new application addmission list
 
---------------- 8 February ----------------
+--------------- 8 February  Pending task ----------------
 0. student dashboard 
 0. add marquee at parent panel
 1. Save detail of student when visitor in or out

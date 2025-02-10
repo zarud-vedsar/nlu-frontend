@@ -100,6 +100,7 @@ function AddExam() {
     }));
   };
     const handleUploadFinal = async (stid) => {
+      
       const studentMarks = marksData[stid];
       if (!studentMarks) {
         toast.error("No data to upload.");
@@ -138,7 +139,11 @@ function AddExam() {
           { headers: { "Content-Type": "multipart/form-data" } }
         );
         if (response.data?.status === 200 || response.data?.status === 201) {
+          console.log(response)
           toast.success("Marks updated successfully!");
+          let tempMarksData = marksData;
+          tempMarksData[stid].marksid = response?.data?.data?.id;
+          setMarksData(tempMarksData);
         } else {
           toast.error(response.data?.msg || "Failed to update marks.");
         }
@@ -173,10 +178,14 @@ function AddExam() {
       );
       if (response.data?.status === 200 || response.data?.status === 201) {
         toast.success("Marks updated successfully!");
+        let tempMarksData =marksData;
+          tempMarksData[stid].marksid = response?.data?.data?.id;
+          setMarksData(tempMarksData);
       } else {
         toast.error(response.data?.msg || "Failed to update marks.");
       }
     } catch (error) {
+      console.log(error)
       toast.error("Error uploading marks.");
     }
   };

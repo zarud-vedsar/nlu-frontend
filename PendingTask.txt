@@ -67,9 +67,9 @@ Learning Management
 1. Save detail of student when visitor in or out
 2. Add student drop down in filter of visitor history
 5. Mark sheet generation system 
-6. Subject wise marks listing system
+6. Subject wise marks listing system---backend done
 7. Implementation of role and permission at the end of project
-8. Implementation of session in Assignment and quiz
-9. Admin card individual download system
+8. Implementation of session in Assignment and quiz  
+9. Admin card individual download system --backend done
 10. semester name must be in roman number 
 11. Excel sheet in attendance chart and exam marks

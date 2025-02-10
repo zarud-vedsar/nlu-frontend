@@ -70,8 +70,8 @@ Learning Management
 3. Update vacant date form for hostel room
 4. Log system for super admin  - frontend 
 5. Mark sheet generation system 
-6. Subject wise marks listing system
+6. Subject wise marks listing system---backend done
 7. Implementation of role and permission at the end of project
-8. Implementation of session in Assignment and quiz
-9. Admin card individual download system
+8. Implementation of session in Assignment and quiz  
+9. Admin card individual download system --backend done
 10. semester name must be in roman number 

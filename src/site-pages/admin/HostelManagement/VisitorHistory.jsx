@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { NODE_API_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import {
+  dataFetchingGet,
   formatDate,
-  goBack,
+  goBack
 } from "../../../site-components/Helper/HelperFunction";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
@@ -12,7 +13,7 @@ import "../../../../node_modules/primeicons/primeicons.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import validator from "validator";
-import { Modal, Button, Form, Col, Row } from "react-bootstrap";
+import { Modal, Button, Form, Row } from "react-bootstrap";
 import Select from "react-select";
 import { FaFilter } from "react-icons/fa";
 import { FormField } from "../../../site-components/admin/assets/FormField";
@@ -21,14 +22,8 @@ import { dataFetchingPost } from "../../../site-components/Helper/HelperFunction
 function VisitorHistory() {
   const navigate = useNavigate();
   const [visitorHistory, setVisitorHistory] = useState([]);
-  const initialData = {
-    deleteStatus: 0,
-    status: 1,
-  };
-  const [formData, setFormData] = useState(initialData);
   const [globalFilter, setGlobalFilter] = useState(""); // State for the search box
   const [isFetching, setIsFetching] = useState(false);
-
   //for filter
   const [block, setBlock] = useState([]);
   const [blockRoomNo, setBlockRoomNo] = useState([]);
@@ -53,13 +48,31 @@ function VisitorHistory() {
     vehicle_no: "",
     StudentId: "",
   };
-
+  const [studentList, setStudentList] = useState([]);
   const [filters, setFilters] = useState(initializeFilter);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const fetchStudent = async (block, roomNo) => {
+    try {
+      const response = await dataFetchingGet(`${NODE_API_URL}/api/hostel-management/student-list/${block}/${roomNo}`);
+      if (response?.statusCode === 200 && response.data.length > 0) {
+        setStudentList(response.data);
+        return null;
+      } else {
+        toast.error("Data not found.");
+        return [];
+      }
+    } catch (error) {
+      return [];
+    }
+  }
+  useEffect(() => {
+    if (filters.blockId && filters.roomNo) {
+      fetchStudent(filters.blockId, filters.roomNo);
+    }
+  }, [filters.blockId, filters.roomNo]);
   const resetFilters = () => {
     setFilters(initializeFilter);
     handleSubmit();
@@ -113,7 +126,7 @@ function VisitorHistory() {
       parseInt(dbId, 10) <= 0
     )
       return toast.error("Invalid ID.");
-    navigate(`/admin/add-hostel-room/${dbId}`, { replace: false });
+    navigate(`/admin/visitor-entry/${dbId}`, { replace: false });
   };
   const handleSubmit = async (applyFilter = false, e = false) => {
     if (e) e.preventDefault();
@@ -404,6 +417,36 @@ function VisitorHistory() {
                         ).roomNo,
                       }
                       : { value: filters.roomNo, label: "Select" }
+                  }
+                />
+              </div>
+              <div className="col-12 form-group">
+                <label className="font-weight-semibold">
+                  Students
+                </label>
+                <Select
+                  options={[
+                    { value: "", label: "Select" }, // Default reset option
+                    ...studentList.map((item) => ({
+                      value: item.id,
+                      label: `${item.sname} (${item.sphone})`,
+                    })),
+                  ]}
+                  onChange={(selectedOption) => {
+                    setFilters({
+                      ...filters,
+                      StudentId: selectedOption.value,
+                    });
+                  }}
+                  value={
+                    studentList.find((item) => item.id === filters.StudentId)
+                      ? {
+                        value: filters.StudentId,
+                        label: studentList.find(
+                          (item) => item.id === filters.StudentId
+                        ).sname,
+                      }
+                      : { value: "", label: "Select" }
                   }
                 />
               </div>

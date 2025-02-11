@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { dataFetchingPost, goBack } from '../../../site-components/Helper/HelperFunction';
+import { dataFetchingGet, dataFetchingPost, goBack } from '../../../site-components/Helper/HelperFunction';
 import { FormField, TextareaField } from '../../../site-components/admin/assets/FormField';
 import { NODE_API_URL } from '../../../site-components/Helper/Constant';
 import validator from 'validator';
@@ -30,6 +30,7 @@ function AddNewRoom() {
     const [isSubmit, setIsSubmit] = useState(false); // Form submission state
     const [block, setBlock] = useState([]);
     const [blockRoomNo, setBlockRoomNo] = useState([]);
+    const [studentList, setStudentList] = useState([]);
     const errorMsg = (field, msg) => {
         setError((prev) => ({
             ...prev,
@@ -37,6 +38,25 @@ function AddNewRoom() {
             msg: msg,
         }));
     };
+    const fetchStudent = async (block, roomNo) => {
+        try {
+            const response = await dataFetchingGet(`${NODE_API_URL}/api/hostel-management/student-list/${block}/${roomNo}`);
+            if (response?.statusCode === 200 && response.data.length > 0) {
+                setStudentList(response.data);
+                return null;
+            } else {
+                toast.error("Data not found.");
+                return [];
+            }
+        } catch (error) {
+            return [];
+        }
+    }
+    useEffect(() => {
+        if (formData.blockId && formData.roomNo) {
+            fetchStudent(formData.blockId, formData.roomNo);
+        }
+    }, [formData.blockId, formData.roomNo]);
     const handleChange = (e) => {
         let { name, value } = e.target;
         if (name === 'vehicle_no' && value != '') {
@@ -145,7 +165,7 @@ function AddNewRoom() {
                     time_in: data.time_in,
                     time_out: data.time_out,
                     vehicle_no: data.vehicle_no,
-                    StudentId: data.student_id,
+                    StudentId: data.StudentId,
                 }));
                 if (data.blockId) {
                     fetchRoomNoBasedOnBlock(data.blockId);
@@ -438,10 +458,39 @@ function AddNewRoom() {
                                                         : { value: formData.roomNo, label: "Select" }
                                                 }
                                             />
-
                                             {error.field === "roomNo" && (
                                                 <span className="text-danger">{error.msg}</span>
                                             )}
+                                        </div>
+                                        <div className="col-md-4 col-lg-4 form-group">
+                                            <label className="font-weight-semibold">
+                                                Student <span className="text-danger">(if visitor meetup with student)</span>
+                                            </label>
+                                            <Select
+                                                options={[
+                                                    { value: "", label: "Select" }, // Default reset option
+                                                    ...studentList.map((item) => ({
+                                                        value: item.id,
+                                                        label: `${item.sname} (${item.sphone})`,
+                                                    })),
+                                                ]}
+                                                onChange={(selectedOption) => {
+                                                    setFormData({
+                                                        ...formData,
+                                                        StudentId: selectedOption.value,
+                                                    });
+                                                }}
+                                                value={
+                                                    studentList.find((item) => item.id === formData.StudentId)
+                                                        ? {
+                                                            value: formData.StudentId,
+                                                            label: studentList.find(
+                                                                (item) => item.id === formData.StudentId
+                                                            ).sname,
+                                                        }
+                                                        : { value: "", label: "Select" }
+                                                }
+                                            />
                                         </div>
                                         <div className="col-md-12 col-lg-12 col-12">
                                             <button

@@ -16827,18 +16827,18 @@ iframe {
 }
 
 .side-nav::-webkit-scrollbar-thumb {
-  background-color: grey;
+  background-color: #0146DE;
   border-radius: 5px;
 }
 
 .side-nav::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: #0146DE;
 }
 
 /* For Firefox */
 .side-nav {
   scrollbar-width: thin;
-  scrollbar-color: #CAD2C5 #f1f1f1;
+  scrollbar-color: #0146DE #f1f1f1;
 }
 
 @media print {
@@ -17086,7 +17086,7 @@ iframe {
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
-  background-color: #F5F5F5 !important;
+  background-color: #F5F5F5;
 }
 
 @media only screen and (min-width: 992px) {

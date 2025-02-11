@@ -145,9 +145,9 @@ const DetailFaculty = () => {
               </div>
               <div className="information" style={{ marginTop: "20px" }}>
                 {facultyData?.first_name && (
-                  <p style={{ fontSize: "30px" }}>{`${capitalizeFirstLetter(
+                  <p style={{ fontSize: "30px" }}>{`${
                     facultyData.first_name
-                  )} ${facultyData.middle_name} ${facultyData.last_name}`}</p>
+                  } ${facultyData.middle_name} ${facultyData.last_name}`}</p>
                 )}
                 {facultyData.designationid && (
                   <p style={{ marginTop: "5px", fontSize: "20px" }}>

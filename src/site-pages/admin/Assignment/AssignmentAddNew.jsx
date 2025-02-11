@@ -368,9 +368,8 @@ function AssignmentAddNew() {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Dashboard
+                    <i className="fas fa-home m-r-5" /> Exam Managemnt
                   </a>
-                  <span className="breadcrumb-item">Assignment And Quiz</span>
                   <span className="breadcrumb-item">Assignment</span>
                   <span className="breadcrumb-item active">
                     {assignmentId ? "Update Assignment" : "Add New Assignment"}

@@ -548,16 +548,15 @@ function ExamList() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <Link to="/admin/" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                    Dashboard
+                    Exam Management
                   </Link>
-                  <span className="breadcrumb-item">Exam Management</span>
-                  <span className="breadcrumb-item active">Exam List</span>
+                  <span className="breadcrumb-item active">Exam Paper List</span>
                 </nav>
               </div>
             </div>
             <div className="card border-0 bg-transparent mb-0">
               <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
-                <h5 className="card-title h6_new font-16">Exam List</h5>
+                <h5 className="card-title h6_new font-16">Exam Paper List</h5>
                 <div className="ml-auto">
                   <button className="btn goback" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
@@ -566,7 +565,7 @@ function ExamList() {
                     hasPermission("Add Exam Paper", "create") && (
                       <Link to={"/admin/exam-paper/add-update"}>
                         <button className="btn btn-primary ml-2">
-                          <i className="fas fa-plus"></i> Add new
+                          <i className="fas fa-plus"></i> Add New
                         </button>
                       </Link>
                     )

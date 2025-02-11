@@ -21,7 +21,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { PHP_API_URL } from "../../site-components/Helper/Constant";
+import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import {
@@ -175,7 +175,7 @@ function StudentDashboard() {
                 <div className="card w-100" style={{ background: "#4269c4" }}>
                   <div className="card-body">
                     <div className="id-dsh-text">
-                      <h4>Good Morning Mr. Rajan Sir</h4>
+                      <h4>Good Morning, {secureLocalStorage.getItem("sname")}</h4>
                       <p>Have a Good day at work</p>
                       <div className="mt-3 id-dsh-text">
                         <p>
@@ -336,7 +336,7 @@ function StudentDashboard() {
                                   {!secureLocalStorage.getItem("sguardianemail") &&
                                   <td >
                                     <Link
-                                      to={`/admin/assignment-response-view/${data.id}`}
+                                      to={`/quiz/quiz-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
                                       className="avatar avatar-icon avatar-md avatar-orange"
                                     >
                                       <i className="fas fa-eye"></i>
@@ -394,7 +394,7 @@ function StudentDashboard() {
                                   { !secureLocalStorage.getItem("sguardianemail") &&
                                   <td className="">
                                     <Link
-                                      to={`/admin/assignment-response-view/${data.id}`}
+                                      to={`/assignment/assignment-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
                                       className="avatar avatar-icon avatar-md avatar-orange"
                                     >
                                       <i className="fas fa-eye"></i>
@@ -428,7 +428,7 @@ function StudentDashboard() {
                         <div className="col-lg-4 col-md-4 col-12 mb-3">
                           <div className="id-issued-wrapper">
                             <img
-                              src={IssuedBookImg}
+                              src={book?.image ? `${FILE_API_URL}/books/${book.image}` : IssuedBookImg}
                               alt="student-img"
                               className="img-fluid"
                             />
@@ -450,10 +450,14 @@ function StudentDashboard() {
                 </div>
               </div>
             )}
+            {data?.timetable && data?.timetable?.length > 0 && 
             <div className="col-md-5 d-flex justify-content-center">
               <div className="card w-100">
                 <div className="card-body">
-                  <div className="card mb-3 id-card">
+                {
+                 data?.timetable?.map((classItem)=>(
+
+                 <div className="card mb-3 id-card">
                     <div className="d-flex align-items-center justify-content-between p-3 pb-1">
                       <div className="d-flex align-items-center flex-wrap mb-2">
                         <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
@@ -464,11 +468,11 @@ function StudentDashboard() {
                         </span>
                         <div>
                           <h6 className="mb-1 text-decoration-line-through">
-                            English
+                            {subject[classItem?.subjectid]}
                           </h6>
                           <span>
                           <i class="fa-regular fa-clock mr-2"></i>
-                            09:00 - 09:45 AM
+                            {classItem?.time}
                           </span>
                         </div>
                       </div>
@@ -478,57 +482,14 @@ function StudentDashboard() {
                       </span>
                     </div>
                   </div>
-                  <div className="card mb-3 id-card">
-                    <div className="d-flex align-items-center justify-content-between flex-wrap p-3 pb-1">
-                      <div className="d-flex align-items-center flex-wrap mb-2">
-                        <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                          <img
-                            src={TeacherImg}
-                            alt="Profile"
-                          />
-                        </span>
-                        <div>
-                          <h6 className="mb-1 text-decoration-line-through">
-                            Chemistry
-                          </h6>
-                          <span>
-                          <i class="fa-regular fa-clock mr-2"></i>
-                            10:45 - 11:30 AM
-                          </span>
-                        </div>
-                      </div>
-                      <span className="badge badge-soft-success shadow-none mb-2">
-                        <i className="ti ti-circle-filled fs-8 me-1" />
-                        Class Room: <span className="id-class-room-no">6</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="card mb-0 id-card">
-                    <div className="d-flex align-items-center justify-content-between flex-wrap p-3 pb-1">
-                      <div className="d-flex align-items-center flex-wrap mb-2">
-                        <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                          <img
-                            src={TeacherImg}
-                            alt="Profile"
-                          />
-                        </span>
-                        <div>
-                          <h6 className="mb-1">Physics</h6>
-                          <span>
-                          <i class="fa-regular fa-clock mr-2"></i>
-                            11:30 - 12:15 AM
-                          </span>
-                        </div>
-                      </div>
-                      <span className="badge badge-soft-success shadow-none mb-2">
-                        <i className="ti ti-circle-filled fs-8 me-1" />
-                        Class Room: <span className="id-class-room-no">6</span>
-                      </span>
-                    </div>
-                  </div>
+                  )
+                )
+                   }
+                  
                 </div>
               </div>
             </div>
+}
           </div>
         </div>
       </div>

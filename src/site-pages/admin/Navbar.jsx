@@ -297,6 +297,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         {
           subtitle: "View Compile Attendance",
           url: "attendance-management/view-compile-attendance",
+          icon: <FaHistory />,
         },
       ],
     },

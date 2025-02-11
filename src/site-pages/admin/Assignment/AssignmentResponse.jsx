@@ -198,48 +198,7 @@ function AssignmentResponse() {
     setSemesterListing([]);
     setAssignmentResponseList([]);
   };
-  const exportExcelFile = async () => {
-    setIsFetching(true);
-    try {
-      const bformData = new FormData();
-      bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
-      bformData.append("login_type", secureLocalStorage.getItem("loginType"));
-      bformData.append("data", "student_by_course_sem");
-      bformData.append("courseid", formData?.courseid);
-      bformData.append("semesterid", formData?.semesterid);
-
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
-
-      const response = await axios.post(
-        `${PHP_API_URL}/report.php`,
-        bformData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(response);
-      if (response.data?.status === 200 || response.data?.status === 201) {
-        toast.success(response.data.msg);
-      } else {
-        toast.error("An error occurred. Please try again.");
-      }
-    } catch (error) {
-      const status = error.response?.data?.status;
-      if (status === 400 || status === 401 || status === 500) {
-        toast.error(error.response.data.msg || "A server error occurred.");
-      } else {
-        toast.error(
-          "An error occurred. Please check your connection or try again."
-        );
-      }
-    } finally {
-      setIsFetching(false);
-    }
-  };
+  
 
   return (
     <>
@@ -250,9 +209,8 @@ function AssignmentResponse() {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Dashboard
+                    <i className="fas fa-home m-r-5" /> Exam Management
                   </a>
-                  <span className="breadcrumb-item">Assignment And Quiz</span>
                   <span className="breadcrumb-item active">
                     Assignment Response
                   </span>
@@ -270,12 +228,7 @@ function AssignmentResponse() {
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
                 </div>
-                <button
-                  className="btn btn-secondary "
-                  onClick={exportExcelFile}
-                >
-                  Export
-                </button>
+               
               </div>
             </div>
             <div className="card">

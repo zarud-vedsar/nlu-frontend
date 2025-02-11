@@ -249,18 +249,18 @@ function UpdateAttendance() {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Dashboard
+                    <i className="fas fa-home m-r-5" /> Attendance Management
                   </a>
-                  <a className="breadcrumb-item">Hostel Management</a>
+                  
                   <span className="breadcrumb-item active">
-                    Update Attendance
+                    Update Hostel Attendance
                   </span>
                 </nav>
               </div>
             </div>
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new">Update Attendance </h5>
+                <h5 className="card-title h6_new">Update Hostel Attendance </h5>
                 <div className="ml-auto">
                   <button
                     className="ml-auto btn-md btn border-0 goBack mr-2"

@@ -257,11 +257,17 @@ function AddSessionWiseSemester() {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Dashboard
+                    <i className="fas fa-home m-r-5" /> Learning Management
                   </a>
-                  <a className="breadcrumb-item">Learning Management</a>
+                  
+                  <a href="./" className="breadcrumb-item">
+                    Session Wise Semester Class
+                  </a>
+                  
                   <span className="breadcrumb-item active">
-                    Add Session Wise Semester
+                  {id
+                        ? "Update Session Wise Semester Class"
+                        : "Add Session Wise Semester Class"}
                   </span>
                 </nav>
               </div>
@@ -272,8 +278,8 @@ function AddSessionWiseSemester() {
                   <div className="card-header border-0 bg-transparent py-1 d-flex justify-content-between align-items-center px-0">
                     <h5 className="card-title h6_new">
                       {id
-                        ? "Update Session Wise Semester"
-                        : "Add Session Wise Semester"}
+                        ? "Update Session Wise Semester Class"
+                        : "Add Session Wise Semester Class"}
                     </h5>
                     <div className="ml-auto">
                       <button

@@ -30,6 +30,7 @@ function AssignmentAddNew() {
     description: "",
     pdf_file: "",
     question_type: "",
+    session: localStorage.getItem("session")
   };
   const { assignmentId } = useParams();
   const [formData, setFormData] = useState(initialForm); // Form state
@@ -44,6 +45,23 @@ function AssignmentAddNew() {
   */
   const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate(); // Initialize useNavigate
+
+  const [session,setSession] = useState([]);
+  const sessionListDropdown = async () => {
+    try {
+      const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
+        status: 1,
+        column: "id, dtitle",
+      });
+      data?.statusCode === 200 && data.data.length
+        ? setSession(data.data) // Populate session list
+        : (toast.error("Session not found."), setSession([])); // Error handling
+    } catch {
+      setSession([]); // Clear list on failure
+    }
+  };
+
+
   useEffect(() => {
     if (RolePermission && RolePermission.length > 0) {
 
@@ -77,6 +95,7 @@ function AssignmentAddNew() {
   };
   useEffect(() => {
     courseListDropdown();
+    sessionListDropdown();
   }, []);
 
   const fetchSemesterBasedOnCourse = async (courseid) => {
@@ -178,6 +197,7 @@ function AssignmentAddNew() {
           question_type: data?.question_type,
           pdf_file: data.pdf_file ? validator.unescape(data.pdf_file) : "",
           description: validator.unescape(data.description || " "),
+          session:data?.session
         }));
         if (data.pdf_file) setPreviewPdf(validator.unescape(data.pdf_file));
         return response;
@@ -407,6 +427,32 @@ function AssignmentAddNew() {
                   <div className="card-body">
                     <form onSubmit={handleSubmit}>
                       <div className="row">
+                      <div className="col-md-4 col-12 form-group">
+                          <label className="font-weight-semibold">
+                            Session 
+                          </label>
+                          <Select
+                            options={session?.map(({ id, dtitle }) => ({
+                              value: id,
+                              label: dtitle,
+                            }))}
+                            onChange={({ value }) => {
+                              setFormData({ ...formData, session: value });
+                            }}
+                            value={
+                              session.find(
+                                ({ id }) => id === +formData.session
+                              )
+                                ? {
+                                    value: +formData.session,
+                                    label: session.find(
+                                      ({ id }) => id === +formData.session
+                                    ).dtitle,
+                                  }
+                                : { value: formData.session, label: "Select" }
+                            }
+                          />
+                        </div>
                         <div className="col-md-4 col-12 form-group">
                           <label
                             className="font-weight-semibold"

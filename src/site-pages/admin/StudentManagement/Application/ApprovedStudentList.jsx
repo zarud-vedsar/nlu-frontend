@@ -96,7 +96,7 @@ function ApprovedStudentList() {
           ...formData,
         }
       );
-      console.log(response);
+      
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
         setApplicationListing(response?.data?.data);
       } else {
@@ -284,7 +284,7 @@ function ApprovedStudentList() {
                                     student.studentId,
                                     {
                                       value: student.studentId,
-                                      label: `${student.sname} (${student.registrationNo})`,
+                                      label: `${student.sname} (${student.enrollmentNo})`,
                                     },
                                   ])
                                 ).values(),
@@ -375,9 +375,9 @@ function ApprovedStudentList() {
                       />
                       <Column
                         body={(row) =>
-                          capitalizeFirstLetter(row.registrationNo)
+                          capitalizeFirstLetter(row.enrollmentNo)
                         }
-                        header="Reg. No."
+                        header="Enrollment No."
                         sortable
                       />
 
@@ -389,9 +389,9 @@ function ApprovedStudentList() {
                     "
                           >
                             <div className="info-image mr-4">
-                              {rowData.avtar ? (
+                              {rowData.spic ? (
                                 <img
-                                  src={`${FILE_API_URL}/student/${rowData.registrationNo}/${rowData.spic}`}
+                                  src={`${FILE_API_URL}/student/${rowData.studentId}${rowData.registrationNo}/${rowData.spic}`}
                                   alt=""
                                   style={{
                                     width: "40px",

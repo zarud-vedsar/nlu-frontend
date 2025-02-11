@@ -380,6 +380,61 @@ function ExamList() {
       Swal.fire(errorMessage);
     }
   }
+
+  const viewMarks = async (dbId, examType) => {
+    if (!dbId || parseInt(dbId, 10) < 1) {
+      toast.error("Invalid exam id");
+      return false;
+    }
+    if (!examType || (examType && !['end-term', 'mid-term'].includes(examType))) {
+      toast.error("Invalid exam type");
+      return false;
+    }
+    try {
+      const { value: password } = await Swal.fire({
+        title: "Enter Password to upload marks of student",
+        input: "password", // Updated input type to "password"
+        inputLabel: "Password",
+        inputPlaceholder: "Enter your password",
+        showCancelButton: true, // Optionally allow the user to cancel the action
+      });
+
+      if (password) {
+        const { data } = await axios.post(
+          `${NODE_API_URL}/api/exam/paper/checkpass`,
+          {
+            dbId,
+            password,
+            loguserid: secureLocalStorage.getItem("login_id"),
+            login_type: secureLocalStorage.getItem("loginType"),
+          }
+        );
+        // Handle success or failure
+        if ([200].includes(data?.statusCode)) {
+          toast.success(data.message);
+          setTimeout(() => {
+            // Navigate and pass the dbId as part of the state
+            navigate(`/admin/exam-paper/view-marks`, {
+              replace: false,
+              state: { dbId, examType },
+            });
+          }, 300);
+        } else {
+          toast.error("An error occurred. Please try again.");
+        }
+      } else {
+        Swal.fire("Password is required to proceed.");
+      }
+    } catch (error) {
+      // Handle different error types
+      const errorMessage =
+        error?.response?.data?.message || "A server error occurred.";
+      toast.error(errorMessage);
+      Swal.fire(errorMessage);
+    }
+  }
+
+  
   const addQuestion = async (dbId) => {
     if (!dbId || parseInt(dbId, 10) < 1) {
       toast.error("Invalid exam id");
@@ -793,6 +848,28 @@ function ExamList() {
                               </OverlayTrigger>
                             )
                           }
+
+{
+                            hasPermission("Exam Paper List", "marks upload") && (
+                              <OverlayTrigger
+                                placement="top"
+                                overlay={
+                                  <Tooltip id="button-tooltip-2">
+                                    <i className="fas fa-upload"></i> View Marks
+                                  </Tooltip>
+                                }
+                              >
+                                <button
+                                  onClick={() => viewMarks(rowData.id, rowData.examType)}
+                                  className="btn btn-sm ml-1 btn-warning"  // Updated button color
+                                >
+                                  <i class="fa-regular fa-rectangle-list"></i>  {/* Icon for the button */}
+                                </button>
+                              </OverlayTrigger>
+                            )
+                          }
+
+                         
                           {isBeforeEndDate(rowData.examDate) && hasPermission("Exam Paper List", "delete") && (
                             <OverlayTrigger
                               placement="top"

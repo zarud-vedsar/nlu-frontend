@@ -287,6 +287,7 @@ const generateAttendance = async() => {
                           className="p-datatable-custom"
                           tableStyle={{ minWidth: "50rem" }}
                           sortMode="multiple"
+                          filters={{ global: { value: globalFilter, matchMode: "contains" } }}
                         >
                           <Column
                             header="Student Name"
@@ -308,11 +309,13 @@ const generateAttendance = async() => {
                                 </div>
                               </div>
                             )}
+                            filterField="sname"
                           />
                           <Column
                             header="Roll no"
                             sortable
                             body={(rowData) => rowData.roll_no}
+                            filterField="roll_no"
                           />
                           <Column
                             header="MT Max Marks"
@@ -412,6 +415,7 @@ const generateAttendance = async() => {
                       className="p-datatable-custom"
                       tableStyle={{ minWidth: "50rem" }}
                       sortMode="multiple"
+                      filters={{ global: { value: globalFilter, matchMode: "contains" } }}
                     >
                       <Column
                         header="Student Name"
@@ -433,11 +437,13 @@ const generateAttendance = async() => {
                             </div>
                           </div>
                         )}
+                        filterField="sname"
                       />
                       <Column
                         header="Roll No"
                         sortable
                         body={(rowData) => rowData.roll_no}
+                        filterField="roll_no"
                       />
                       <Column
                         header="Marks"

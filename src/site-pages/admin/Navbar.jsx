@@ -222,7 +222,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           subtitle: "Faculty",
           url: "faculty-dashboard",
           icon: <FaChalkboardTeacher />,
-        }, // Teaching-related icon
+        }, 
+        {
+          subtitle: "User Log",
+          url: "user-log",
+          icon: <FaChalkboardTeacher />,
+        }, 
       ],
     },
     {

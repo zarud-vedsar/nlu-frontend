@@ -34,7 +34,8 @@ const NoticeEventPublication = () => {
 
         console.log(noticeResponse)
         if (noticeResponse.data?.statusCode === 200) {
-          setNotices(noticeResponse.data.data);
+          console.log("notice",noticeResponse.data.data)
+          setEvents(noticeResponse.data.data);
         }
 
         // Fetch events
@@ -43,8 +44,8 @@ const NoticeEventPublication = () => {
           { notice_type: "event", limit: 3 }
         );
         if (eventResponse.data?.statusCode === 200) {
-          console.log(eventResponse.data.data);
-          setEvents(eventResponse.data.data);
+          console.log("event",eventResponse.data.data)
+          setNotices(eventResponse.data.data);
         }
 
         // Fetch publications
@@ -109,8 +110,8 @@ const NoticeEventPublication = () => {
         <div className='container' data-aos="fade-up" data-aos-delay="50">
           <div className='row'>
             <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
-              <h2 className="heading-primary2 m-0">Latest News</h2>
-              <Link to="/view-all/notice" className="text-primary custom-link gorditas-regular">View all news &nbsp; <FaArrowRightLong /></Link>
+              <h2 className="heading-primary2 m-0">Upcoming Events</h2>
+              <Link to="/view-all/event"  className="text-primary custom-link gorditas-regular">More events &nbsp; <FaArrowRightLong /></Link>
             </div>
             <div className="col-md-8 col-lg-8 col-12 col-sm-12">
               <div className="row">
@@ -151,8 +152,8 @@ const NoticeEventPublication = () => {
                 <div className="card-body pb-0">
                   <div className="rightconten">
                     <div className='d-flex justify-content-between align-items-center'>
-                      <h2 className="heading-primary2a">Upcoming Events</h2>
-                      <Link to="/view-all/event" className="text-primary custom-link gorditas-regular">More Events &nbsp; <FaArrowRightLong /></Link>
+                      <h2 className="heading-primary2a">Latest News</h2>
+                      <Link to="/view-all/notice" className="text-primary custom-link gorditas-regular">View all News &nbsp; <FaArrowRightLong /></Link>
                     </div>
                     <div className="eventdiv">
                       {events && events.length > 0 && events.map((event, index) => (
@@ -184,7 +185,7 @@ const NoticeEventPublication = () => {
                       {
                         events && events.length > 0 && (
                           <div className="box-footer">
-                            <Link to="/view-all/event" className="btn-view-more">
+                            <Link to="/view-all/notice" className="btn-view-more">
                               <FaAnglesDown />
                             </Link>
                           </div>
@@ -203,7 +204,7 @@ const NoticeEventPublication = () => {
           <div className="row">
             <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
               <h2 className="heading-primary2 m-0">Publications</h2>
-              <Link to="/view-all/event" className="text-primary custom-link gorditas-regular">More Publications &nbsp; <FaArrowRightLong /></Link>
+              <Link to="/view-all/notice" className="text-primary custom-link gorditas-regular">More Publications &nbsp; <FaArrowRightLong /></Link>
             </div>
           </div>
           <div className="w-100">

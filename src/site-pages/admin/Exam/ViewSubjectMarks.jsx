@@ -93,25 +93,83 @@ function ViewSubjectMarks() {
     }
   };
 
-const exportExcel = async() => {
-    if (!dbId || dbId < 1) {
-      toast.error("Invalid database ID.");
-      return;
-    }
-    setLoader(true);
-      const formData = new FormData();
-      formData.append("data", "generate_attendance_marks");
-      formData.append("paper_id", dbId);
-      formData.append("loguserid", secureLocalStorage.getItem("login_id"));
-      formData.append("login_type", secureLocalStorage.getItem("loginType"));
+
+ const exportExcel = async (term) => {
+  
+
+  try {
+    // Create a new form element
+    const form = document.createElement("form");
+    form.action = `${PHP_API_URL}/exam_marks.php`;
+    form.method = "POST";
+    form.target = "hidden_iframe"; // Target the hidden iframe for submission
+
+    // Append hidden input fields to the form
+    const formDataEntries = [
+      { name: "loguserid", value: secureLocalStorage.getItem("login_id") },
+      { name: "login_type", value: secureLocalStorage.getItem("loginType") },
+      { name: "data", value: term},
+      { name: "paper_id", value: dbId },
+    ];
+
+    formDataEntries.forEach((entry) => {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = entry.name;
+      input.value = entry.value;
+      form.appendChild(input);
+    });
+
+    // Create a hidden iframe
+    const iframe = document.createElement("iframe");
+    iframe.name = "hidden_iframe"; // The iframe name must match the form's target
+    iframe.style.display = "none"; // Hide the iframe from view
+    document.body.appendChild(iframe);
+
+    // Handle the iframe's onload event
+    iframe.onload = function () {
       try {
+        // Parse the iframe response (assuming the response is JSON)
+        const iframeContent = iframe.contentWindow.document.body.innerText; // Get iframe body content
+        const responseData = JSON.parse(iframeContent); // Parse JSON response
         
+
+        // Handle different statuses based on responseData
+        if (
+          responseData?.statusCode === 200 ||
+          responseData?.statusCode === 201
+        ) {
+          toast.success(responseData.msg); // Success message
+          if (responseData.statusCode === 201) {
+           
+          }
+        } else if (responseData?.statusCode === 400) {
+          toast.error("Student not found");
+        } else if (responseData?.statusCode === 500) {
+          toast.error("Internal server error. Please try again.");
+        } else {
+          toast.error("An unexpected error occurred. Please try again.");
+        }
       } catch (error) {
-        toast.error("An error occurred.");
-      }finally{
-        setLoader(false);
+        console.error("Error parsing iframe response:", error);
+        toast.error("An error occurred while processing the response.");
+      } finally {
+        // Clean up the iframe after processing
+        document.body.removeChild(iframe);
       }
-}
+    };
+
+    // Append the form to the body
+    document.body.appendChild(form);
+
+    // Submit the form to the hidden iframe (no page reload)
+    form.submit();
+  } catch (error) {
+    
+    console.error("Error submitting form:", error);
+    toast.error("An error occurred while submitting the form.");
+  } 
+};
   return (
     <div className="page-container">
       <div className="main-content">
@@ -137,12 +195,21 @@ const exportExcel = async() => {
                 <button className="btn goback" onClick={goBack}>
                   <i className="fas fa-arrow-left"></i> Go Back
                 </button>
-                {examType === "end-term" && (
+                {examType === "end-term" &&  studentList && studentList.length > 0 && (
                   <button
                     className="btn btn-primary ml-2"
-                    onClick={exportExcel}
+                    onClick={()=>exportExcel("export_end_term_marks")}
                   >
-                    <i className="fas fa-sync-alt mr-2"></i> Export Marks
+                    <i class="fa-solid fa-file-export"></i> Export Marks
+                    {loader && <div className="loader-circle"></div>}
+                  </button>
+                )}
+                {examType === "mid-term" &&  studentList && studentList.length > 0 &&  (
+                  <button
+                    className="btn btn-primary ml-2"
+                    onClick={()=>exportExcel("export_mid_term_marks")}
+                  >
+                    <i class="fa-solid fa-file-export"></i> Export Marks
                     {loader && <div className="loader-circle"></div>}
                   </button>
                 )}

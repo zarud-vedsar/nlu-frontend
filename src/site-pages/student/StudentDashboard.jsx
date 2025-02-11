@@ -136,6 +136,7 @@ function StudentDashboard() {
   };
 
   const [subject, setSubject] = useState();
+  const [teacher, setTeacher] = useState();
   const getStudentDashboardData = async (month = "2025-2") => {
     try {
       const bformData = new FormData();
@@ -158,11 +159,18 @@ function StudentDashboard() {
         setData(response?.data?.data);
 
         let subjectMap = {};
+        let teacherMap = {};
         response?.data?.data?.subjects?.forEach((subject) => {
           if (!subjectMap[subject?.id]) {
             subjectMap[subject?.id] = subject?.name;
           }
         });
+        response?.data?.data?.teachers?.forEach((teacher) => {
+          if (!teacherMap[teacher?.subid]) {
+            teacherMap[teacher?.subid] = teacher;
+          }
+        });
+        setTeacher(teacherMap);
         setSubject(subjectMap);
       }
     } catch (error) {}
@@ -493,11 +501,42 @@ function StudentDashboard() {
                         <div className="d-flex align-items-center justify-content-between p-3 pb-1">
                           <div className="d-flex align-items-center flex-wrap mb-2">
                             <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                              <img src={TeacherImg} alt="Profile" />
+                              {/* <img src={TeacherImg} alt="Profile" /> */}
+                             
+                              {teacher[classItem?.subjectid].avtar ? (
+                                                            <img
+                              
+                                                              src={`${FILE_API_URL}/user/${teacher[classItem?.subjectid].uid}/${teacher[classItem?.subjectid].avtar}`}
+                                                              alt=""
+                                                              style={{
+                                                                width: "40px",
+                                                                height: "40px",
+                                                                backgroundColor: "#e6fff3",
+                                                                fontSize: "20px",
+                                                                color: "#00a158",
+                                                              }}
+                                                              className="rounded-circle d-flex justify-content-center align-items-center"
+                                                            />
+                                                          ) : (
+                                                            <div
+                                                              style={{
+                                                                width: "40px",
+                                                                height: "40px",
+                                                                backgroundColor: "#e6fff3",
+                                                                fontSize: "20px",
+                                                                color: "#00a158",
+                                                              }}
+                                                              className="rounded-circle d-flex justify-content-center align-items-center"
+                                                            >
+                                                              {teacher[classItem?.subjectid]?.teachername[0]}
+                                                            </div>
+                                                          )}
                             </span>
                             <div>
                               <h6 className="mb-1 text-decoration-line-through">
-                                {subject[classItem?.subjectid]}
+                                {subject[classItem?.subjectid]} <br />
+                                
+                                {teacher[classItem?.subjectid]?.teachername} 
                               </h6>
                               <span>
                                 <i class="fa-regular fa-clock mr-2"></i>
@@ -508,7 +547,7 @@ function StudentDashboard() {
                           <span className="badge badge-soft-success shadow-none mb-2">
                             <i className="ti ti-circle-filled fs-8 me-1" />
                             Class Room:{" "}
-                            <span className="id-class-room-no">6</span>
+                            <span className="id-class-room-no">{classItem?.classroom}</span>
                           </span>
                         </div>
                       </div>

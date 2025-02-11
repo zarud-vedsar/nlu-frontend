@@ -363,7 +363,7 @@ function AddNewRoom() {
                                             value={formData.time_out}
                                             onChange={handleChange}
                                             column="col-md-3 col-lg-3"
-                                            required
+                                            
                                         />
                                         {/* Visit Out Date */}
                                         <FormField
@@ -376,7 +376,7 @@ function AddNewRoom() {
                                             value={formData.visit_out_date}
                                             onChange={handleChange}
                                             column="col-md-3 col-lg-3"
-                                            required
+                                            
                                         />
                                         {/* Vehicle No */}
                                         <FormField

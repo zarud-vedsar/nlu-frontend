@@ -47,6 +47,10 @@ function VisitorHistory() {
     visit_out_date: "",
     vehicle_no: "",
     StudentId: "",
+    visit_in_date_start:"",
+    visit_in_date_end:"",
+    visit_out_date_start:"",
+    visit_out_date_end:"",
   };
   const [studentList, setStudentList] = useState([]);
   const [filters, setFilters] = useState(initializeFilter);
@@ -80,7 +84,7 @@ function VisitorHistory() {
   };
 
   const applyFilters = () => {
-    console.log(filters);
+    
     handleSubmit(true, false);
   };
 
@@ -107,7 +111,6 @@ function VisitorHistory() {
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
         setBlock(response.data);
-        console.log(response.data, "MAD");
 
         return null;
       } else {
@@ -134,7 +137,7 @@ function VisitorHistory() {
     if (applyFilter) {
       bformData = filters;
     }
-    console.log(bformData);
+    
     setIsFetching(true);
     try {
       const response = await axios.post(
@@ -143,9 +146,9 @@ function VisitorHistory() {
           ...bformData,
         }
       );
-      console.log(response);
+      
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
-        console.log(response.data.data);
+        
 
         setVisitorHistory(response.data.data);
       } else {
@@ -339,7 +342,7 @@ function VisitorHistory() {
 
               {/* Visit Date */}
               <FormField
-                label="Visit Date From"
+                label="Visit In Date"
                 name="visit_in_date"
                 id="visit_in_date"
                 type="date"
@@ -349,11 +352,49 @@ function VisitorHistory() {
               />
               {/* Visit Out Date */}
               <FormField
-                label="Visit Date To"
+                label="Visit Out Date"
                 name="visit_out_date"
                 id="visit_out_date"
                 type="date"
                 value={filters.visit_out_date}
+                onChange={handleChange}
+                column="col-md-6"
+              />
+              <FormField
+                label="Visit In Date From"
+                name="visit_in_date_start"
+                id="visit_in_date_start"
+                type="date"
+                value={filters.visit_in_date_start}
+                onChange={handleChange}
+                column="col-md-6"
+              />
+              {/* Visit Out Date */}
+              <FormField
+                label="Visit In Date To"
+                name="visit_in_date_end"
+                id="visit_in_date_end"
+                type="date"
+                value={filters.visit_in_date_end}
+                onChange={handleChange}
+                column="col-md-6"
+              />
+              <FormField
+                label="Visit Out Date From"
+                name="visit_out_date_start"
+                id="visit_out_date_start"
+                type="date"
+                value={filters.visit_out_date_start}
+                onChange={handleChange}
+                column="col-md-6"
+              />
+              {/* Visit Out Date */}
+              <FormField
+                label="Visit Out Date To"
+                name="visit_out_date_end"
+                id="visit_out_date_end"
+                type="date"
+                value={filters.visit_out_date_end}
                 onChange={handleChange}
                 column="col-md-6"
               />
@@ -471,6 +512,7 @@ function VisitorHistory() {
             right: 0;
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
+            height:fit-content;
           }
 
           .modal-right.show .modal-dialog {

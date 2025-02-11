@@ -855,7 +855,7 @@ function ExamList() {
                                 placement="top"
                                 overlay={
                                   <Tooltip id="button-tooltip-2">
-                                    <i className="fas fa-upload"></i> View Marks
+                                     View Marks
                                   </Tooltip>
                                 }
                               >

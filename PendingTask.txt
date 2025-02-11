@@ -29,7 +29,6 @@
 
 -------issue list------
 1. Validation of vacancy in hostel in room assignment 
-2. Search bar in marks upload not working
 3. save button mark class attendace should be in right side
 4. examination type in admin card written in small letter
 

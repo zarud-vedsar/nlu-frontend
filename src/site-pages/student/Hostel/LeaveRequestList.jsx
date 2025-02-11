@@ -268,8 +268,13 @@ function LeaveRequestList() {
                       sortable
                     />
                     <Column
-                      body={(row) => row?.roomAllotedId}
-                      header="Room ID"
+                      body={(row) => row?.block}
+                      header="Block"
+                      sortable
+                    />
+                    <Column
+                      body={(row) => row?.roomNo}
+                      header="Room No"
                       sortable
                     />
                     <Column

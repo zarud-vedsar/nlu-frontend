@@ -1,20 +1,3 @@
-
-Learning Management
---------------------
--> faculty department: In recycle Bin remove all other action except restore .
--> Department: In recycle Bin remove all other action except restore .
-=================================================================================
-
-
-============================================================
- 
- Hostel Management
- -----------------
- -> Hostle room addition: occupied bed is unable to set to 0
- -> Room Update : Unable to update room detail
- -> Room Addition: Occupied Bed can be set greater then available beds
- 
-
 --------8 February --------
 1. 3 paper addition in each created exam 
 2. In all the process flow the next step is to be redirect on success

@@ -43,7 +43,6 @@
 --------------- 8 February  Pending task ----------------
 0. student dashboard 
 0. add marquee at parent panel
-2. Add student drop down in filter of visitor history
 5. Mark sheet generation system 
 7. Implementation of role and permission at the end of project
 8. Implementation of session in Assignment and quiz  

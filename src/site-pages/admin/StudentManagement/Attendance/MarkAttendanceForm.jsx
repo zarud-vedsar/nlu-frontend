@@ -688,25 +688,11 @@ function MarkAttendanceForm() {
                           )}
                         </tbody>
                       </table>
-                      <div className="row">
+                      <div className="row ">
                         {studentListWithAttendance.length > 0 && (
-                          <div className="d-flex">
-                            {!isSubmit ? (
-                              <button
-                                className="btn btn-secondary d-flex justify-content-center align-items-center mr-2"
-                                onClick={handleSubmit}
-                              >
-                                Save
-                              </button>
-                            ) : (
-                              <button
-                                className="btn btn-secondary d-flex justify-content-center align-items-center mr-2"
-                                disabled
-                              >
-                                Saving &nbsp;
-                                <div className="loader-circle"></div>
-                              </button>
-                            )}
+                          <div className="col-12 d-flex justify-content-between">
+                          <div >
+                            
 
                             <button
                               className="btn btn-success mr-2"
@@ -735,6 +721,23 @@ function MarkAttendanceForm() {
                               Mark Class Cancel
                             </button>
                           </div>
+                          <div>{!isSubmit ? (
+                            <button
+                              className="btn btn-secondary d-flex justify-content-center align-items-center mr-2"
+                              onClick={handleSubmit}
+                            >
+                              Save
+                            </button>
+                          ) : (
+                            <button
+                              className="btn btn-secondary d-flex justify-content-center align-items-center mr-2"
+                              disabled
+                            >
+                              Saving &nbsp;
+                              <div className="loader-circle"></div>
+                            </button>
+                          )} </div>
+                         </div>
                         )}
                       </div>
                     </div>

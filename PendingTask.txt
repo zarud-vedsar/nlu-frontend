@@ -19,10 +19,8 @@
 
 -------issue list------
 1. Validation of vacancy in hostel in room assignment 
-3. save button mark class attendace should be in right side
 4. examination type in admin card written in small letter
-
-5. attendance summary should be separated from attendance in chat 
+5. attendance summary should be separated from attendance in chart 
 6. hostel mark attendace should be same as class mark attendance
 7. add label and export attendance history
 8. class should not editable after 24hr , if they what to edit they required permission

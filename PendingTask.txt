@@ -10,17 +10,7 @@
 9. On paper creation exam duation shoud be auto calculated and its input should be  disabled 
 10. change title of section to section title 
 
-
----------Create exam cell Module ------------
-2. exam duration setting (fixed from date and to date) for creating exam paper with session , exam type, course , semeter 
-3. exam paper list --> exam paper listing of final submitting, features ---> view exam paper, approved/reject exam paper (in case of reject faculty and modator can edit exam paper and also metion remark for rejecting and send notification on mail),  
-4. in case of rejection of exam paper faculty can review and resubmit exam paper
-5. notification system for modator to notify faculty to submit exam paper if not submitted yet
-6. mark freezing system --> 
-
-
-
-------------Exam Module ----------
+------------Testing Changes Exam Module ----------
 1. auto redirecting add question page after save exam paper
 2. add go back button in exam paper form and add question form
 3. faculty only allowed to see exam paper 
@@ -39,10 +29,43 @@
 --------------- 8 February  Pending task ----------------
 0. student dashboard 
 0. add marquee at parent panel
-2. Add student drop down in filter of visitor history
 5. Mark sheet generation system 
 7. Implementation of role and permission at the end of project
 8. Implementation of session in Assignment and quiz  
 9. Admin card individual download system --backend done
 10. semester name must be in roman number 
 11. Excel sheet in attendance chart and exam marks
+----------------------------------------------------------------------
+                            Add On
+----------------------------------------------------------------------
+
+---------Create exam cell Module ------------
+2. exam duration setting (fixed from date and to date) for creating exam paper with session , exam type, course , semeter 
+3. exam paper list --> exam paper listing of final submitting, features ---> view exam paper, approved/reject exam paper (in case of reject faculty and modator can edit exam paper and also metion remark for rejecting and send notification on mail),  
+4. in case of rejection of exam paper faculty can review and resubmit exam paper
+5. notification system for modator to notify faculty to submit exam paper if not submitted yet
+6. mark freezing system --> 
+
+11-02-2025
+------------------------
+1.  Student fee payment and management system
+2.  Remote Access To library content, termed as E-library (Content will be totally seperated form the listed books)
+3.  Timetable have two type of class:- tutorial and Normal lecture
+4.  First Break in the Timetable is optional.
+5.  Two Type of hostel: Boys and Girls hostel
+6.  Warden assignment Hostel Wise.
+7.  Substitute System in Class Timetable.This Gave need of taking multiple attendace of same class on same day.
+
+
+changes 
+-------------
+1.  OPAC System in Library (Assigning the books the location of shelf Where it is kept).
+    The location of shelf is marked by  ->Block
+                                        ->section
+                                        ->Row
+2.  Disable the functiobality as if Enter button is clicked the next row is added for book listing.
+3.  In student Portal the term Job is to be replaced by Placement.
+4.  At the time of Book addition teh loader is to be displayed.
+5.  Addition of new Hostel Leave type: Internship Leave.
+6.  Addition of "Leaving time" and "Return time" in Hostel Leave Request
+7.  Disable Faculty Feedback system on student Portal.

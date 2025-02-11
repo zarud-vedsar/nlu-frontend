@@ -10,7 +10,7 @@ import IssuedBookImg from "./assets/img/books-issued.jpg";
 import InternshipImg from "./assets/img/internshiplink.png";
 import WebsitesImg from "./assets/img/web.png";
 import IntroBannerImg from "./assets/img/intro.png";
-import TeacherImg from './assets/img/teacher.webp';
+import TeacherImg from "./assets/img/teacher.webp";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -21,7 +21,10 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
+import {
+  FILE_API_URL,
+  PHP_API_URL,
+} from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import {
@@ -44,6 +47,15 @@ function StudentDashboard() {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
+  const dayNames = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
   const [chartOptions, setChartOptions] = useState({
     responsive: true,
@@ -153,9 +165,7 @@ function StudentDashboard() {
         });
         setSubject(subjectMap);
       }
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   };
 
   return (
@@ -175,8 +185,24 @@ function StudentDashboard() {
                 <div className="card w-100" style={{ background: "#4269c4" }}>
                   <div className="card-body">
                     <div className="id-dsh-text">
-                      <h4>Good Morning, {secureLocalStorage.getItem("sname")}</h4>
-                      <p>Have a Good day at work</p>
+                      <h4>
+                        Good Morning, {secureLocalStorage.getItem("sname")}
+                      </h4>
+                      <p>
+                        {(() => {
+                          const date = new Date();
+                          const options = {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          };
+                          const formattedDate = date.toLocaleDateString(
+                            "en-GB",
+                            options
+                          );
+                          return formattedDate;
+                        })()}
+                      </p>
                       <div className="mt-3 id-dsh-text">
                         <p>
                           Notice: There is a staff meeting at 9AM today, Dont
@@ -312,10 +338,9 @@ function StudentDashboard() {
                               <th scope="col">No of Question</th>
                               <th scope="col">Total Marks</th>
                               <th scope="col">Duration</th>
-                              { !secureLocalStorage.getItem("sguardianemail") &&
-
-                              <th scope="col">Attempt</th>
-}
+                              {!secureLocalStorage.getItem(
+                                "sguardianemail"
+                              ) && <th scope="col">Attempt</th>}
                             </tr>
                           </thead>
                           <tbody>
@@ -333,15 +358,18 @@ function StudentDashboard() {
                                   <td>{data?.totalMarks}</td>
                                   <td>{data?.duration} Minutes </td>
 
-                                  {!secureLocalStorage.getItem("sguardianemail") &&
-                                  <td >
-                                    <Link
-                                      to={`/quiz/quiz-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
-                                      className="avatar avatar-icon avatar-md avatar-orange"
-                                    >
-                                      <i className="fas fa-eye"></i>
-                                    </Link>
-                                  </td>}
+                                  {!secureLocalStorage.getItem(
+                                    "sguardianemail"
+                                  ) && (
+                                    <td>
+                                      <Link
+                                        to={`/quiz/quiz-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
+                                        className="avatar avatar-icon avatar-md avatar-orange"
+                                      >
+                                        <i className="fas fa-eye"></i>
+                                      </Link>
+                                    </td>
+                                  )}
                                 </tr>
                               ))
                             ) : (
@@ -370,9 +398,9 @@ function StudentDashboard() {
                               <th scope="col">No of Question</th>
                               <th scope="col">Total Marks</th>
                               <th scope="col">Deadline Date</th>
-                              { !secureLocalStorage.getItem("sguardianemail") &&
-                              <th scope="col">Attempt</th>
-}
+                              {!secureLocalStorage.getItem(
+                                "sguardianemail"
+                              ) && <th scope="col">Attempt</th>}
                             </tr>
                           </thead>
                           <tbody>
@@ -391,16 +419,18 @@ function StudentDashboard() {
                                   <td>{data?.noOfQuestion}</td>
                                   <td>{data?.totalMarks}</td>
                                   <td>{formatDate(data?.deadlineDate)}</td>
-                                  { !secureLocalStorage.getItem("sguardianemail") &&
-                                  <td className="">
-                                    <Link
-                                      to={`/assignment/assignment-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
-                                      className="avatar avatar-icon avatar-md avatar-orange"
-                                    >
-                                      <i className="fas fa-eye"></i>
-                                    </Link>
-                                  </td>
-}
+                                  {!secureLocalStorage.getItem(
+                                    "sguardianemail"
+                                  ) && (
+                                    <td className="">
+                                      <Link
+                                        to={`/assignment/assignment-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
+                                        className="avatar avatar-icon avatar-md avatar-orange"
+                                      >
+                                        <i className="fas fa-eye"></i>
+                                      </Link>
+                                    </td>
+                                  )}
                                 </tr>
                               ))
                             ) : (
@@ -428,7 +458,11 @@ function StudentDashboard() {
                         <div className="col-lg-4 col-md-4 col-12 mb-3">
                           <div className="id-issued-wrapper">
                             <img
-                              src={book?.image ? `${FILE_API_URL}/books/${book.image}` : IssuedBookImg}
+                              src={
+                                book?.image
+                                  ? `${FILE_API_URL}/books/${book.image}`
+                                  : IssuedBookImg
+                              }
                               alt="student-img"
                               className="img-fluid"
                             />
@@ -450,46 +484,39 @@ function StudentDashboard() {
                 </div>
               </div>
             )}
-            {data?.timetable && data?.timetable?.length > 0 && 
-            <div className="col-md-5 d-flex justify-content-center">
-              <div className="card w-100">
-                <div className="card-body">
-                {
-                 data?.timetable?.map((classItem)=>(
-
-                 <div className="card mb-3 id-card">
-                    <div className="d-flex align-items-center justify-content-between p-3 pb-1">
-                      <div className="d-flex align-items-center flex-wrap mb-2">
-                        <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                          <img
-                            src={TeacherImg}
-                            alt="Profile"
-                          />
-                        </span>
-                        <div>
-                          <h6 className="mb-1 text-decoration-line-through">
-                            {subject[classItem?.subjectid]}
-                          </h6>
-                          <span>
-                          <i class="fa-regular fa-clock mr-2"></i>
-                            {classItem?.time}
+            {data?.timetable && data?.timetable?.length > 0 && (
+              <div className="col-md-5 d-flex justify-content-center">
+                <div className="card w-100">
+                  <div className="card-body">
+                    {data?.timetable?.map((classItem) => (
+                      <div className="card mb-3 id-card">
+                        <div className="d-flex align-items-center justify-content-between p-3 pb-1">
+                          <div className="d-flex align-items-center flex-wrap mb-2">
+                            <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
+                              <img src={TeacherImg} alt="Profile" />
+                            </span>
+                            <div>
+                              <h6 className="mb-1 text-decoration-line-through">
+                                {subject[classItem?.subjectid]}
+                              </h6>
+                              <span>
+                                <i class="fa-regular fa-clock mr-2"></i>
+                                {classItem?.time}
+                              </span>
+                            </div>
+                          </div>
+                          <span className="badge badge-soft-success shadow-none mb-2">
+                            <i className="ti ti-circle-filled fs-8 me-1" />
+                            Class Room:{" "}
+                            <span className="id-class-room-no">6</span>
                           </span>
                         </div>
                       </div>
-                      <span className="badge badge-soft-success shadow-none mb-2">
-                        <i className="ti ti-circle-filled fs-8 me-1" />
-                        Class Room: <span className="id-class-room-no">6</span>
-                      </span>
-                    </div>
+                    ))}
                   </div>
-                  )
-                )
-                   }
-                  
                 </div>
               </div>
-            </div>
-}
+            )}
           </div>
         </div>
       </div>

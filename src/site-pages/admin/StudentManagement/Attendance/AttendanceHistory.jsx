@@ -452,13 +452,11 @@ function AttendanceHIstory() {
                                       </th>
                                     )
                                   )}
-                                  {month?.students[0]?.attendance?.map(
-                                    (day) => (
-                                      <th key={day.dat} scope="col">
-                                        {day.day}
-                                      </th>
-                                    )
-                                  )}
+                               {/* {[...Array(31 - (month?.students[0]?.attendance?.length || 0))].map((_, index) => (
+  <th key={index} scope="col">
+    {index + 1} 
+  </th>
+))} */}
 
                                   <th scope="col" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>Class</th>
                                   <th scope="col"  style={{backgroundColor:"rgb(231 227 227)"}}>T-P</th>

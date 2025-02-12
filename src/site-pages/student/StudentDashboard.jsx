@@ -71,62 +71,47 @@ function StudentDashboard() {
   });
 
   useEffect(() => {
-    if (data?.student_attendance) {
-      let labels = [];
-      let totalClassList = [];
-      let totalPresentList = [];
-      let totalAbsentList = [];
-      let totalOnDutyList = [];
-      data?.student_attendance?.map((attendanceData) => {
-        labels.push(subject[attendanceData?.subjectid]);
-        totalClassList.push(attendanceData?.total_classes_held);
-        totalPresentList.push(attendanceData?.total_present);
-        totalAbsentList.push(attendanceData?.total_ab);
-        totalOnDutyList.push(attendanceData?.total_od);
-      });
-      setChartData({
-        labels: labels,
-        datasets: [
-          {
-            label: "Total Classes",
-            data: totalClassList,
-            backgroundColor: "rgba(35, 211, 255, 0.2)",
-            borderColor: "rgb(99, 182, 255)",
-            borderWidth: 1,
-          },
-          {
-            label: "Total Present",
-            data: totalPresentList,
-            backgroundColor: "rgba(117, 255, 79, 0.2)",
-            borderColor: "rgb(85, 192, 75)",
-            borderWidth: 1,
-          },
-          {
-            label: "Total Absent",
-            data: totalAbsentList,
-            backgroundColor: "rgba(197, 40, 19, 0.2)",
-            borderColor: "rgb(188, 25, 14)",
-            borderWidth: 1,
-          },
-          {
-            label: "Total On Duty",
-            data: totalOnDutyList,
-            backgroundColor: "rgba(242, 255, 64, 0.2)",
-            borderColor: "rgb(255, 252, 64)",
-            borderWidth: 1,
-          },
-        ],
-      });
-    }
-  }, [data]);
-  useEffect(() => {
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-
-    const formattedDate = `${year}-${month}`;
-    setSelectedMonth(formattedDate);
-    getStudentDashboardData(formattedDate);
+    //getStudentDashboardData()
+    setChartData({
+      labels: [
+        "subject1",
+        "subject2",
+        "subject3",
+        "subject4",
+        "subject5",
+        "subject6",
+      ],
+      datasets: [
+        {
+          label: "Total Days",
+          data: [30, 35, 28, 40, 38, 42],
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgb(255, 99, 132)",
+          borderWidth: 1,
+        },
+        {
+          label: "Total Present",
+          data: [25, 30, 20, 35, 33, 39],
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgb(75, 192, 192)",
+          borderWidth: 1,
+        },
+        {
+          label: "Total Absent",
+          data: [5, 5, 8, 5, 5, 3],
+          backgroundColor: "rgba(255, 159, 64, 0.2)",
+          borderColor: "rgb(255, 159, 64)",
+          borderWidth: 1,
+        },
+        {
+          label: "OD",
+          data: [25, 30, 20, 35, 33, 39],
+          backgroundColor: "#007bff24",
+          borderColor: "#4087f5",
+          borderWidth: 1,
+        },
+      ],
+    });
   }, []);
   const [selectedMonth, setSelectedMonth] = useState("");
 
@@ -146,35 +131,23 @@ function StudentDashboard() {
       bformData.append("month", month);
       bformData.append("data", "student_dashboard");
 
-      const response = await axios.post(
-        `${PHP_API_URL}/dashboard.php`,
-        bformData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      if (response?.data?.status === 200) {
-        setData(response?.data?.data);
+  //     bformData.append("faculty_id", facultyId);
 
-        let subjectMap = {};
-        let teacherMap = {};
-        response?.data?.data?.subjects?.forEach((subject) => {
-          if (!subjectMap[subject?.id]) {
-            subjectMap[subject?.id] = subject?.name;
-          }
-        });
-        response?.data?.data?.teachers?.forEach((teacher) => {
-          if (!teacherMap[teacher?.subid]) {
-            teacherMap[teacher?.subid] = teacher;
-          }
-        });
-        setTeacher(teacherMap);
-        setSubject(subjectMap);
-      }
-    } catch (error) {}
-  };
+  //     const response = await axios.post(
+  //       `${PHP_API_URl}/dashboard.php`,
+  //       bformData,
+  //       {
+  //         headers: {
+  //           "Content-Type": "multipart/form-data",
+  //         },
+  //       }
+  //     );
+  //     console.log(response)
+
+  //   } catch (error) {
+  //     console.error("Error fetching admin Dashboard data:", error);
+  //   }
+  // };
 
   return (
     <>
@@ -190,8 +163,8 @@ function StudentDashboard() {
             </div>
             <div className="row">
               <div className="col-md-12 d-flex justify-content-center">
-                <div className="card w-100" style={{ background: "#4269c4" }}>
-                  <div className="card-body">
+                <div className="card w-100" style={{ background: "#1065cd" }}>
+                  <div className="card-body id-dsh-banner-relative">
                     <div className="id-dsh-text">
                       <h4>
                         Good Morning, {secureLocalStorage.getItem("sname")}
@@ -218,11 +191,16 @@ function StudentDashboard() {
                         </p>
                       </div>
                     </div>
+                    <img
+                      src={IntroBannerImg}
+                      alt=""
+                      className="id-dsh-banner-img-fix img-fluid"
+                    />
                   </div>
                 </div>
               </div>
               <div className="col-md-7 col-lg-7 col-12 mb-3">
-                <div className="card ">
+                <div className="card id-card">
                   <div className="card-body ">
                     <div className="d-flex justify-content-between">
                       <div className="card-title">Monthly Attendance</div>
@@ -254,80 +232,87 @@ function StudentDashboard() {
               </div>
 
               <div className="col-md-5 col-lg-5 col-12 mb-3">
-                <div className="row">
-                  <div className="col-md-6 mb-3">
-                    <Link to={"/student/profile"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={ProfilePng}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Profile</h4>
-                      </div>
-                    </Link>
+                <div className="card id-card">
+                  <div className="d-flex justify-content-between card-header">
+                    <h4 className="card-title">Quick Links</h4>
                   </div>
+                  <div className="card-body ">
+                    <div className="row">
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/student/profile"}>
+                          <div className="id-card-wrapper id-dsh-profile">
+                            <img
+                              src={ProfilePng}
+                              alt="profile"
+                              className="id-dsh-links-img"
+                            />
+                            <p className="mb-0 id-text-dark">Profile</p>
+                          </div>
+                        </Link>
+                      </div>
 
-                  <div className="col-md-6 mb-3">
-                    <Link to={"/student/time-table"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={TimeTablePng}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Time Table</h4>
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/student/time-table"}>
+                          <div className="id-card-wrapper id-dsh-table">
+                            <img
+                              src={TimeTablePng}
+                              alt="profile"
+                              className="id-dsh-links-img"
+                            />
+                            <p className="mb-0 id-text-dark">Time Table</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
 
-                  <div className="col-md-6">
-                    <Link to={"/student/lms"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={LmsPng}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">LMS</h4>
+                      <div className="col-md-6">
+                        <Link to={"/student/lms"}>
+                          <div className="id-card-wrapper id-dsh-lms">
+                            <img
+                              src={LmsPng}
+                              alt="profile"
+                              className="id-dsh-links-img id-dsh-lms-img"
+                            />
+                            <p className="mb-0 id-text-dark">LMS</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
-                  <div className="col-md-6">
-                    <Link to={"/student/feedback-list"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={FeedbackPng}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Feedback</h4>
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/student/new-feedback"}>
+                          <div className="id-card-wrapper id-dsh-feedback">
+                            <img
+                              src={FeedbackPng}
+                              alt="profile"
+                              className="id-dsh-links-img id-dsh-feedback-img"
+                            />
+                            <p className="mb-0 id-text-dark">Feedback</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <Link to={"/"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={WebsitesImg}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Website</h4>
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/"}>
+                          <div className="id-card-wrapper id-dsh-website">
+                            <img
+                              src={WebsitesImg}
+                              alt="profile"
+                              className="id-dsh-links-img"
+                            />
+                            <p className="mb-0 id-text-dark">Website</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
-                  </div>
-                  <div className="col-md-6 mb-3">
-                    <Link to={"/student/internship"}>
-                      <div className="id-card-wrapper">
-                        <img
-                          src={InternshipImg}
-                          alt="profile"
-                          className="id-dsh-links-img"
-                        />
-                        <h4 className="mb-0">Internship</h4>
+                      <div className="col-md-6 mb-3">
+                        <Link to={"/student/internship"}>
+                          <div className="id-card-wrapper id-dsh-internship">
+                            <img
+                              src={InternshipImg}
+                              alt="profile"
+                              className="id-dsh-links-img"
+                            />
+                             <p className="mb-0 id-text-dark">Internship</p>
+                          </div>
+                        </Link>
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -342,7 +327,7 @@ function StudentDashboard() {
                           <thead>
                             <tr>
                               <th scope="col">Subject</th>
-                              <th scope="col">Quiz</th>
+                              <th scope="col">Assignment</th>
                               <th scope="col">No of Question</th>
                               <th scope="col">Total Marks</th>
                               <th scope="col">Duration</th>
@@ -352,13 +337,12 @@ function StudentDashboard() {
                             </tr>
                           </thead>
                           <tbody>
-                            {data?.pendingQuiz?.length > 0 ? (
-                              data?.pendingQuiz.map((data, index) => (
+                            {/* {upcomingExamList?.length > 0 ? (
+                              upcomingExamList.map((data, index) => (
                                 <tr key={index}>
+                                  <td>{capitalizeFirstLetter(data?.course)}</td>
                                   <td>
-                                    {capitalizeFirstLetter(
-                                      subject[data?.subjectid]
-                                    )}
+                                    {capitalizeFirstLetter(data?.semester)}
                                   </td>
 
                                   <td>{capitalizeFirstLetter(data?.Quiz)}</td>
@@ -382,9 +366,9 @@ function StudentDashboard() {
                               ))
                             ) : (
                               <tr>
-                                <td colSpan="8">No pending quiz</td>
+                                <td colSpan="8">No upcoming exams available</td>
                               </tr>
-                            )}
+                            )} */}
                           </tbody>
                         </table>
                       </div>
@@ -412,13 +396,15 @@ function StudentDashboard() {
                             </tr>
                           </thead>
                           <tbody>
-                            {data?.pendingAssignment?.length > 0 ? (
-                              data?.pendingAssignment.map((data, index) => (
+                            {/* {pendingAssignment?.length > 0 ? (
+                              pendingAssignment.map((data, index) => (
                                 <tr>
+                                  <td>{capitalizeFirstLetter(data?.course)}</td>
                                   <td>
-                                    {capitalizeFirstLetter(
-                                      subject[data?.subjectid]
-                                    )}
+                                    {capitalizeFirstLetter(data?.semester)}
+                                  </td>
+                                  <td>
+                                    {capitalizeFirstLetter(data?.subject)}
                                   </td>
                                   <td>
                                     {capitalizeFirstLetter(data?.assignment)}
@@ -443,9 +429,9 @@ function StudentDashboard() {
                               ))
                             ) : (
                               <tr>
-                                <td colSpan="8">No pending assignment</td>
+                                <td colSpan="8">No upcoming exams available</td>
                               </tr>
-                            )}
+                            )} */}
                           </tbody>
                         </table>
                       </div>
@@ -454,13 +440,26 @@ function StudentDashboard() {
                 </div>
               </div>
             </div>
-            {data?.issued_books && data?.issued_books?.length > 0 && (
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="card " style={{ padding: "20px" }}>
-                    <div className="row">
-                      <div className="col-lg-12 col-12 mb-3">
-                        <h4>Current Issued Books</h4>
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="card">
+                  <div className="card-header">
+                      <h4>Current Issued Books</h4>
+                  </div>
+                  <div className="card-body">
+                  <div className="row">
+                    <div className="col-lg-4 col-md-4 col-12 mb-3">
+                      <div className="id-issued-wrapper d-flex">
+                        <img
+                          src={IssuedBookImg}
+                          alt="student-img"
+                          className="img-fluid"
+                        />
+                        <div className="id-issued-content">
+                          <h4>Book Name</h4>
+                          <p className="mb-0">Issued Date: 24/08/2003</p>
+                          <p className="mb-0">Return Date: 12/06/2003 </p>
+                        </div>
                       </div>
                       {data?.issued_books?.map((book) => (
                         <div className="col-lg-4 col-md-4 col-12 mb-3">
@@ -486,9 +485,25 @@ function StudentDashboard() {
                             </div>
                           </div>
                         </div>
-                      ))}
+                      </div>
+                    <div className="col-lg-4 col-md-4 col-12 mb-3">
+                      <div className="id-issued-wrapper d-flex">
+                        <img
+                          src={IssuedBookImg}
+                          alt="student-img"
+                          className="img-fluid"
+                        />
+                        <div className="id-issued-content">
+                          <h4>Book Name</h4>
+                          <p className="mb-0">Issued Date: 24/08/2003</p>
+                          <p className="mb-0">Return Date: 12/06/2003 </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  </div>
+
+                 
                 </div>
               </div>
             )}

@@ -263,7 +263,6 @@ position: relative;
     align-items: center;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px #b7c0ce33 !important;
     border-radius: 7px;
 }
 .id-card-wrapper:hover {
@@ -272,11 +271,13 @@ position: relative;
 }
 .id-issued-wrapper{
     background-color: #fff8ef;
-    border-radius: 10px;
+    padding: 10px;
 
 }
 .id-issued-wrapper img{
-    border-radius: 10px 10px 0px 0px;
+    border-radius: 2px;
+    height: 100px;
+    width: 100px;
 }
 .id-issued-content{
     padding: 5px 13px 15px;
@@ -297,19 +298,19 @@ position: relative;
   
   /* Label Styling */
   .month-label {
-    font-size: 1rem;
+    font-size: 14px;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     display: block;
   }
   
   /* Input Styling */
   .month-input {
-    padding: 5px 10px;
-    font-size: 1rem;
+    padding: 3px 8px;
+    font-size: 11px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   .id-dsh-text h4, .id-dsh-text p {
     color: white;
@@ -349,4 +350,48 @@ position: relative;
     padding: 0px 5px;
     border-radius: 2px;
     color: white;
+}
+
+.id-dsh-profile{
+    background-color: #5eeddf4a;
+}
+.id-dsh-table{
+    background-color: #4269c447;
+}
+.id-dsh-lms{
+    background-color: #0000001f;
+}
+.id-dsh-feedback{
+    background-color: #31afdc24;
+}
+.id-dsh-website{
+    background-color: #00d9ab40;
+}
+.id-dsh-internship{
+    background-color: #0362d926;
+}
+
+.id-dsh-banner-relative{
+    position: relative;
+}
+.id-dsh-banner-img-fix{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 167px;
+}
+.id-text-dark{
+    font-size: 14px;
+    font-weight: 700;
+    color: #464444;
+}
+.id-dsh-feedback-img{
+    background: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.id-dsh-lms-img{
+    background: #f1f2f3;
+    padding: 5px 10px;
+    border-radius: 10px;
 }

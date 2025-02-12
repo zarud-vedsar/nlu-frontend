@@ -280,8 +280,8 @@ function AddQuiz() {
     }));
   };
   // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (step) => {
+    
     setIsSubmit(true);
     errorMsg("", "");
     if (!formData.courseid) {
@@ -361,6 +361,10 @@ function AddQuiz() {
 
         if (response?.data?.statusCode === 201) {
           setFormData({ ...formData, quiz_title: "" });
+
+          if(step==="next"){
+            navigate(`/admin/quiz/add-question/${response?.data?.data?.dbId}`)
+          }
         }
       } else {
         toast.error("An error occurred. Please try again.");
@@ -436,7 +440,7 @@ function AddQuiz() {
               <div className="col-md-12 mx-auto">
                 <div className="card">
                   <div className="card-body">
-                    <form onSubmit={handleSubmit}>
+                    <div >
                       <div className="row">
                       <div className="col-md-4 col-12 form-group">
                           <label className="font-weight-semibold">
@@ -762,12 +766,24 @@ function AddQuiz() {
 
                         <div className="col-md-12 col-lg-12 col-12">
                           {!isSubmit ? (
+                            <div className="d-flex">
                             <button
-                              className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
-                              type="submit"
+                              className="btn btn-success mr-2"
+                              onClick={()=>{handleSubmit("save")}}
                             >
-                              Save{" "}
+                              {quizId? "Update" : "Save"}
+                              
                             </button>
+                            {!quizId &&
+                            <button
+                            className="btn btn-secondary  "
+                            
+                            onClick={()=>handleSubmit("next")}
+                          >
+                            Save And Next{" "}
+                          </button>
+}
+                          </div>
                           ) : (
                             <button
                               className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
@@ -780,7 +796,7 @@ function AddQuiz() {
                           )}
                         </div>
                       </div>
-                    </form>
+                    </div>
                   </div>
                 </div>
               </div>

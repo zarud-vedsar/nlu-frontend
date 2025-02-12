@@ -73,4 +73,3 @@ changes
                                         ->Row
 5.  Addition of new Hostel Leave type: Internship Leave.
 6.  Addition of "Leaving time" and "Return time" in Hostel Leave Request
-7.  Disable Faculty Feedback system on student Portal.

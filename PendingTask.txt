@@ -71,9 +71,6 @@ changes
     The location of shelf is marked by  ->Block
                                         ->section
                                         ->Row
-2.  Disable the functiobality as if Enter button is clicked the next row is added for book listing.
-
-4.  At the time of Book addition teh loader is to be displayed.
 5.  Addition of new Hostel Leave type: Internship Leave.
 6.  Addition of "Leaving time" and "Return time" in Hostel Leave Request
 7.  Disable Faculty Feedback system on student Portal.

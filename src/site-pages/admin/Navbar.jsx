@@ -222,12 +222,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           subtitle: "Faculty",
           url: "faculty-dashboard",
           icon: <FaChalkboardTeacher />,
-        }, 
+        },
         {
           subtitle: "User Log",
           url: "user-log",
           icon: <FaChalkboardTeacher />,
-        }, 
+        },
       ],
     },
     {
@@ -657,13 +657,14 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       icon: <AiOutlineRead />, // Icon for library/books
       url: "",
       dropdownMenus: [
-        { subtitle: "Book", url: "book", icon: <FaBookReader /> }, // Book reader icon for books
-        { subtitle: "Issue Book", url: "issue-book", icon: <FaBookReader /> }, // Book reader for issuing books
+        { subtitle: "Books", url: "book", icon: <FaBookReader /> }, // Book reader icon for books
+        { subtitle: "Issue New Book", url: "issue-book-add", icon: <FaBookReader /> }, // Book reader for issuing books
+        { subtitle: "Issued Book List", url: "issue-book", icon: <FaBookReader /> }, // Clearer distinction for issued books
         {
-          subtitle: "Library Setting",
+          subtitle: "Library Settings",
           url: "library-setting",
           icon: <FaCogs />,
-        }, // Gear icon for library settings
+        }, // Plural for consistency
       ],
     },
     {

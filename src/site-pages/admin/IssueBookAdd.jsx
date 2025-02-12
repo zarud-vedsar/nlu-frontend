@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL,NODE_API_URL } from "../../site-components/Helper/Constant";
+import { PHP_API_URL, NODE_API_URL } from "../../site-components/Helper/Constant";
 import { toast, ToastContainer } from "react-toastify";
 import Select from "react-select";
 
@@ -12,8 +12,8 @@ const IssueBookAdd = () => {
   const [errorKey, setErrorKey] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const [isSubmit, setIsSubmit] = useState(false);
-  const [studentListing , setStudentListing] = useState([]);
-
+  const [studentListing, setStudentListing] = useState([]);
+  const [FetchBook, setFetchBook] = useState(false);
   const convertToStructuredArray = (finalbooks) => {
     const result = {};
 
@@ -143,7 +143,6 @@ const IssueBookAdd = () => {
         bformData.append("data", "add_book_issue");
         bformData.append("duration", librarySetting?.issue_duration);
 
-        console.log(issueBookList);
         const resArray = convertToStructuredArray(issueBookList);
         console.log(resArray);
 
@@ -172,7 +171,6 @@ const IssueBookAdd = () => {
             },
           }
         );
-        console.log(response);
         if (response.data?.status === 200 || response.data?.status === 201) {
           toast.success(response.data.msg);
           setIssue(studentDataInit);
@@ -186,9 +184,7 @@ const IssueBookAdd = () => {
         }
       }
     } catch (error) {
-      console.error("Error:", error);
       const status = error.response?.data?.status;
-
       if (status === 500) {
         toast.error(error.response.data.msg || "A server error occurred.");
       } else if (status == 400) {
@@ -199,7 +195,6 @@ const IssueBookAdd = () => {
         );
       }
     } finally {
-      console.log("false");
       setIsSubmit(false);
     }
   };
@@ -218,7 +213,6 @@ const IssueBookAdd = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.status === 200) {
         setLibrarySetting(response.data?.data[0]);
       }
@@ -251,7 +245,6 @@ const IssueBookAdd = () => {
           },
         }
       );
-      console.log("getnotissuablebooks", response);
       if (response.data.status === 200) {
         setNotissuablebooks(response.data.data);
       }
@@ -284,7 +277,6 @@ const IssueBookAdd = () => {
           },
         }
       );
-      console.log("getStdBookIssueCount", response);
       if (response.data.status === 200) {
         setStdBookIssueCount(response.data?.data?.issuedBookCount);
       }
@@ -311,7 +303,6 @@ const IssueBookAdd = () => {
     }
     setIssueBookList([...issueBookList, initialization]);
   };
-
   const removeField = (index) => {
     const values = [...issueBookList];
     values.splice(index, 1);
@@ -372,7 +363,6 @@ const IssueBookAdd = () => {
         }
       );
 
-      console.log(response);
       if (response.data.status === 200) {
         let issue_no = response.data?.data?.issue_no;
         setIssue((prevState) => ({
@@ -420,19 +410,14 @@ const IssueBookAdd = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      const result = res.data.data;
-
       if (res?.data?.status == 200) {
         if (res?.data?.data[0]?.stock < 1) {
           toast.error("Book stock not available");
           return data;
         }
-
         return res?.data?.data[0];
       }
     } catch (error) {
-      console.log(error);
-
       return data;
     } finally {
     }
@@ -447,11 +432,9 @@ const IssueBookAdd = () => {
               <a href="/" className="breadcrumb-item">
                 Library
               </a>
-
               <span className="breadcrumb-item active">Add Issue Book</span>
             </nav>
           </div>
-
           <div className="card bg-transparent mb-2">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
               <h2 className="card-title col-12 col-md-auto">
@@ -471,7 +454,6 @@ const IssueBookAdd = () => {
               </div>
             </div>
           </div>
-
           <div className="card">
             <div className="">
               <form>
@@ -520,22 +502,22 @@ const IssueBookAdd = () => {
                         value={
                           issue.student_id
                             ? {
-                                value: issue.student_id,
-                                label:
-                                 `${ studentListing?.find(
-                                    (student) =>
-                                      student.id === issue.student_id
-                                  )?.sname }
-                                  (${studentListing?.find(
-                                    (student) =>
-                                      student.id === issue.student_id
-                                  )?.enrollmentNo}) `
-                                  || "Select",
-                              }
+                              value: issue.student_id,
+                              label: studentListing?.find(
+                                (student) => student.id === issue.student_id
+                              )
+                                ? `${studentListing.find(
+                                  (student) => student.id === issue.student_id
+                                )?.sname} (${studentListing.find(
+                                  (student) => student.id === issue.student_id
+                                )?.enrollmentNo})`
+                                : "Select",
+                            }
                             : { value: "", label: "Select" }
                         }
+
                       />
-                      
+
                       {errorKey === ".student_id" && (
                         <span className="text-danger">{errorMessage}</span>
                       )}
@@ -597,18 +579,32 @@ const IssueBookAdd = () => {
                         >
                           ISBN <span className="text-danger">*</span>
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="isbn_no"
-                          value={formData.isbn_no}
-                          onChange={(event) => handleInputChange(index, event)}
-                          onBlur={async () =>
-                            await handleBlur(formData.isbn_no).then((res) => {
-                              autoFillBookDetail(index, res);
-                            })
+                        <div className="d-flex justify-content-between align-items-center">
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="isbn_no"
+                            value={formData.isbn_no}
+                            onChange={(event) => handleInputChange(index, event)}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                e.preventDefault(); // Prevent Enter key inside the form
+                              }
+                            }}
+                            onBlur={async () => {
+                              setFetchBook(true);
+                              await handleBlur(formData.isbn_no).then((res) => {
+                                autoFillBookDetail(index, res);
+                              });
+                              setFetchBook(false);
+                            }}
+                          />
+                          {
+                            FetchBook && (
+                              <div className="loader-circle"></div>
+                            )
                           }
-                        />
+                        </div>
                         {errorKey === ".isbn_no" && (
                           <span className="text-danger">{errorMessage}</span>
                         )}
@@ -622,6 +618,11 @@ const IssueBookAdd = () => {
                           Book Name
                         </label>
                         <input
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault(); // Prevent Enter key inside the form
+                            }
+                          }}
                           type="text"
                           className="form-control"
                           name="books_name"
@@ -645,6 +646,11 @@ const IssueBookAdd = () => {
                           name="author"
                           value={formData.author}
                           disabled
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault(); // Prevent Enter key inside the form
+                            }
+                          }}
                         />
                         {errorKey === ".author" && (
                           <span className="text-danger">{errorMessage}</span>
@@ -663,6 +669,11 @@ const IssueBookAdd = () => {
                           name="publisher"
                           value={formData.publisher}
                           disabled
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault(); // Prevent Enter key inside the form
+                            }
+                          }}
                         />
                         {errorKey === ".publisher" && (
                           <span className="text-danger">{errorMessage}</span>
@@ -681,6 +692,11 @@ const IssueBookAdd = () => {
                           name="language"
                           value={formData.language}
                           disabled
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault(); // Prevent Enter key inside the form
+                            }
+                          }}
                         />
                         {errorKey === ".language" && (
                           <span className="text-danger">{errorMessage}</span>
@@ -696,6 +712,11 @@ const IssueBookAdd = () => {
                           name="price"
                           value={formData.price}
                           disabled
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault(); // Prevent Enter key inside the form
+                            }
+                          }}
                         />
                         {errorKey === ".price" && (
                           <span className="text-danger">{errorMessage}</span>
@@ -712,11 +733,12 @@ const IssueBookAdd = () => {
                     </div>
                   ))}
 
-                  <div className="row ">
+                  <div className="row">
                     <div className="col-md-2 mb-2 me-auto d-flex justify-content-between align-items-center">
                       <button
                         className="btn btn-primary btn-block"
                         onClick={addMoreField}
+                        type="button"
                         disabled={!isStudentId}
                       >
                         + Add More

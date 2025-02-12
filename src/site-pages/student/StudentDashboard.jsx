@@ -13,7 +13,7 @@ import IntroBannerImg from "./assets/img/intro-3.png";
 import TeacherImg from "./assets/img/teacher.webp";
 import MorningImg from './assets/img/gm-1.webp';
 import AfternoonImg from './assets/img/an-1.jpeg';
-import EveningImg from './assets/img/evening.jpg';
+import EveningImg from './assets/img/even.jpeg';
 import NightImg from './assets/img/gn.jpg';
 import {
   Chart as ChartJS,

@@ -340,7 +340,7 @@ function AddExam() {
         if (data?.statusCode === 201) {
           setFormData(initialFormData);
           setSections(sections);
-          console.log(data)
+          
           if(step==="next"){
           setTimeout(() => {
             navigate(`/admin/exam-paper/add-question`, {

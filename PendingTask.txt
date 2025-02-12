@@ -1,7 +1,6 @@
 Dilsad ------
 0. student dashboard 
 0. add marquee at parent panel
-3.  In student Portal the term Job is to be replaced by Placement. 
 4. go back and listing button in every page (2. add go back button in exam paper form and add question form)
 
 

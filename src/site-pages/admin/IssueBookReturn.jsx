@@ -363,7 +363,7 @@ const IssueBookReturn = () => {
           {!loading && (
             <div className="card">
               <div className="">
-                <form>
+                <div>
                   <div className="modal-body">
                     <div className="row mb-3  border-bottom ">
                       <div className="form-group col-md-2">
@@ -690,7 +690,7 @@ const IssueBookReturn = () => {
                       </div>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           )}

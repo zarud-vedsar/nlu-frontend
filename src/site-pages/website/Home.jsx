@@ -41,10 +41,11 @@ function Home() {
       <Achivement />
       <Facilities />
       <Gallery />
-      <UseFullLinks />
       <SocialMedia />
       <ContactIcon />
       <UserTestimonials/>
+      <UseFullLinks />
+
     </>
   );
 }

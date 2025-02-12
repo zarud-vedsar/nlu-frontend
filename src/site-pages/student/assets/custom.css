@@ -535,7 +535,7 @@ position: relative;
     position: absolute;
     right: 0;
     top: 0;
-    height: 167px;
+    height: 119px;
 }
 .id-text-dark{
     font-size: 14px;
@@ -552,3 +552,65 @@ position: relative;
     padding: 5px 10px;
     border-radius: 10px;
 }
+
+.id-notice-link-wrap{
+    border-bottom: 1px solid rgb(197, 196, 196);
+    padding: 10px 20px;
+}
+.id-notice-main-card{
+    border: 1px solid rgb(31 44 75);
+
+}
+.id-notice-card-header{
+    background-color: rgb(31 44 75);
+    border-radius: 6px 6px 0 0 !important;
+}
+.id-notice-card-header h4, .id-notice-card-header .id-notice-link{
+    color: white;
+}
+
+.id-notice-link{
+    background: #f3f0f036;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.id-notice-link-wrap:last-child {
+  border-bottom: none; /* Remove the border from the last item */
+}
+
+.id-parent-panel-position-fixed{
+    position: fixed;
+    top: 80px;
+    right: 0px;
+    z-index: 1000;
+    background-color: #8f0f50;
+    padding: 3px 8px;
+    color: white;
+}
+
+
+.id-notice-marquee {
+    height: 250px; /* Adjust based on your design */
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .id-notice-marquee .id-notice-link-wrap {
+    animation: scrollNotice 7s linear infinite;
+
+  }
+  
+  @keyframes scrollNotice {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+  
+  .id-notice-card:hover .id-notice-marquee .id-notice-link-wrap {
+    animation-play-state: paused;
+  }
+  

@@ -571,6 +571,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           }, 500);
         }}
       />
+       <p className="id-parent-panel-position-fixed">Parent Panel</p>
     </>
   );
 };

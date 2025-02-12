@@ -1,5 +1,5 @@
 // Import the usual suspects (like a hacker assembling a team for a heist)
-import React, { useCallback, useEffect, useState } from 'react'; // React is life; state is chaos.
+import React, { useCallback, useEffect, useMemo, useState } from 'react'; // React is life; state is chaos.
 import { Link, useLocation, useNavigate } from 'react-router-dom'; // For navigating the matrix.
 import { capitalizeFirstLetter, dataFetchingPost, goBack } from '../../../site-components/Helper/HelperFunction'; // Escape hatch in case things go south.
 import { FormField } from '../../../site-components/admin/assets/FormField'; // The sacred field for all inputs.
@@ -371,6 +371,15 @@ function AddExam() {
       instruction: newContent,
     }));
   }
+
+  
+  const TotalTimeDuration = useMemo(
+    ()=>{
+      console.log(formData?.startTime,formData?.endTime)
+    },
+    [formData?.startTime, formData?.endTime]
+  );
+
   return (
     <>
       {/* HTML Skeleton of Doom */}
@@ -656,7 +665,7 @@ function AddExam() {
                           style={{ width: "99.8%" }}
                         >
                           <FormField
-                            label="Title"
+                            label="Section Title"
                             name="title" // Remove index here
                             id={`title-${index}`} // Keep unique IDs for accessibility
                             required={true}

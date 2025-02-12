@@ -485,7 +485,7 @@ function AddExam() {
                             </p>
                             <p className="id-padd-p">
                               <span className="id-text-bold">Examination Type</span>:
-                              <span className="id-text-light">{item?.exam_type}</span>
+                              <span className="id-text-light">{capitalizeFirstLetter(item?.exam_type)}</span>
                             </p>
                             <p className="id-padd-p">
                               <span className="id-text-bold">Status (Eligible/Debarred)</span>:

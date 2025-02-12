@@ -243,7 +243,7 @@ const generateAttendance = async() => {
                     className="btn btn-primary ml-2"
                     onClick={generateAttendance}
                   >
-                    <i className="fas fa-sync-alt mr-2"></i> Generate Attendance
+                    <i className="fas fa-sync-alt mr-2"></i> Generate Attendance Marks
                     {loader && <div className="loader-circle"></div>}
                   </button>
                 )}

@@ -6,17 +6,13 @@ Dilsad ------
 
 
 
-Today --------
-5. Generate attendance marks button should be there only while uploading end semeter marks in exam paper instead of generate attendance
-6. Remove from sidebar faculty department
+Today -------- 4 issue done
 8. Auto calculation of maximum mark in end term and mid term both at the time of marks uploading
-9. On paper creation exam duation shoud be auto calculated and its input should be  disabled 
-10. change title of section to section title 
-4. examination type in admin card written in small letter
+9. On paper creation exam duation shoud be auto calculated and its input should be  disabled  
 5. attendance summary should be separated from attendance in chart 
-11. Excel sheet in attendance chart and exam marks
-6. hostel mark attendace should be same as class mark attendance
+11. Excel sheet in attendance chart 
 9. Admin card individual download system --backend done
+6. hostel mark attendace should be same as class mark attendance
 
 --------8 February --------
 1. 3 paper addition in each created exam 

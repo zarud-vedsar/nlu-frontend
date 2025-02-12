@@ -4688,7 +4688,7 @@ span.c-text {
 }
 
 .page-mine-header.is-sticky {
-	justify-content: center;
+	justify-content: space-around;
 }
 
 .heading-primary2a {

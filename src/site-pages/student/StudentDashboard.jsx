@@ -9,7 +9,7 @@ import TimeTablePng from "./assets/img/dashboard/Study-time.png";
 import IssuedBookImg from "./assets/img/books-issued.jpg";
 import InternshipImg from "./assets/img/internshiplink.png";
 import WebsitesImg from "./assets/img/web.png";
-import IntroBannerImg from "./assets/img/intro-3.png";
+import IntroBannerImg from "./assets/img/intro.png";
 import TeacherImg from "./assets/img/teacher.webp";
 import {
   Chart as ChartJS,
@@ -21,9 +21,16 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-
-// import secureLocalStorage from "react-secure-storage";
-// import axios from "axios";
+import {
+  FILE_API_URL,
+  PHP_API_URL,
+} from "../../site-components/Helper/Constant";
+import secureLocalStorage from "react-secure-storage";
+import axios from "axios";
+import {
+  capitalizeFirstLetter,
+  formatDate,
+} from "../../site-components/Helper/HelperFunction";
 
 ChartJS.register(
   CategoryScale,
@@ -40,6 +47,15 @@ function StudentDashboard() {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
+  const dayNames = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
   const [chartOptions, setChartOptions] = useState({
     responsive: true,
@@ -101,16 +117,19 @@ function StudentDashboard() {
 
   const handleMonthChange = (e) => {
     setSelectedMonth(e.target.value);
+    getStudentDashboardData(e.target.value);
   };
 
-  // const getStudentDashboardData = async () => {
-  //   try {
-  //     console.log("getAdminDashboardData");
-  //     const bformData = new FormData();
-  //     bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
-  //     bformData.append("login_type", secureLocalStorage.getItem("loginType"));
-  //     bformData.append("session", localStorage.getItem("session"));
-  //     bformData.append("data", "faculty_dashboard");
+  const [subject, setSubject] = useState();
+  const [teacher, setTeacher] = useState();
+  const getStudentDashboardData = async (month = "2025-2") => {
+    try {
+      const bformData = new FormData();
+
+      bformData.append("selectedcourseid", selectedCourseId);
+      bformData.append("studentid", secureLocalStorage.getItem("studentId"));
+      bformData.append("month", month);
+      bformData.append("data", "student_dashboard");
 
   //     bformData.append("faculty_id", facultyId);
 
@@ -147,8 +166,24 @@ function StudentDashboard() {
                 <div className="card w-100" style={{ background: "#1065cd" }}>
                   <div className="card-body id-dsh-banner-relative">
                     <div className="id-dsh-text">
-                      <h4>Good Morning Mr. Rajan Sir</h4>
-                      <p>Have a Good day at work</p>
+                      <h4>
+                        Good Morning, {secureLocalStorage.getItem("sname")}
+                      </h4>
+                      <p>
+                        {(() => {
+                          const date = new Date();
+                          const options = {
+                            day: "numeric",
+                            month: "long",
+                            year: "numeric",
+                          };
+                          const formattedDate = date.toLocaleDateString(
+                            "en-GB",
+                            options
+                          );
+                          return formattedDate;
+                        })()}
+                      </p>
                       <div className="mt-3 id-dsh-text">
                         <p>
                           Notice: There is a staff meeting at 9AM today, Dont
@@ -295,7 +330,10 @@ function StudentDashboard() {
                               <th scope="col">Assignment</th>
                               <th scope="col">No of Question</th>
                               <th scope="col">Total Marks</th>
-                              <th scope="col">Deadline Date</th>
+                              <th scope="col">Duration</th>
+                              {!secureLocalStorage.getItem(
+                                "sguardianemail"
+                              ) && <th scope="col">Attempt</th>}
                             </tr>
                           </thead>
                           <tbody>
@@ -306,18 +344,24 @@ function StudentDashboard() {
                                   <td>
                                     {capitalizeFirstLetter(data?.semester)}
                                   </td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.subject)}
-                                  </td>
-                                  <td>
-                                    {capitalizeAllLetters(data?.paperCode)}
-                                  </td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.examType)}
-                                  </td>
-                                  <td>{data?.exam_date}</td>
-                                  <td>{data?.startTime}</td>
-                                  <td>{data?.endTime}</td>
+
+                                  <td>{capitalizeFirstLetter(data?.Quiz)}</td>
+                                  <td>{data?.noOfQuestion}</td>
+                                  <td>{data?.totalMarks}</td>
+                                  <td>{data?.duration} Minutes </td>
+
+                                  {!secureLocalStorage.getItem(
+                                    "sguardianemail"
+                                  ) && (
+                                    <td>
+                                      <Link
+                                        to={`/quiz/quiz-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
+                                        className="avatar avatar-icon avatar-md avatar-orange"
+                                      >
+                                        <i className="fas fa-eye"></i>
+                                      </Link>
+                                    </td>
+                                  )}
                                 </tr>
                               ))
                             ) : (
@@ -346,6 +390,9 @@ function StudentDashboard() {
                               <th scope="col">No of Question</th>
                               <th scope="col">Total Marks</th>
                               <th scope="col">Deadline Date</th>
+                              {!secureLocalStorage.getItem(
+                                "sguardianemail"
+                              ) && <th scope="col">Attempt</th>}
                             </tr>
                           </thead>
                           <tbody>
@@ -362,17 +409,22 @@ function StudentDashboard() {
                                   <td>
                                     {capitalizeFirstLetter(data?.assignment)}
                                   </td>
-                                  <td>
-                                    {capitalizeFirstLetter(data?.student)}
-                                  </td>
-                                  <td className="text-success">
-                                    <Link
-                                      to={`/admin/assignment-response-view/${data.id}`}
-                                      className="avatar avatar-icon avatar-md avatar-orange"
-                                    >
-                                      <i className="fas fa-eye"></i>
-                                    </Link>
-                                  </td>
+
+                                  <td>{data?.noOfQuestion}</td>
+                                  <td>{data?.totalMarks}</td>
+                                  <td>{formatDate(data?.deadlineDate)}</td>
+                                  {!secureLocalStorage.getItem(
+                                    "sguardianemail"
+                                  ) && (
+                                    <td className="">
+                                      <Link
+                                        to={`/assignment/assignment-subject/paper/${data.courseid}/${data.semesterid}/${data.subjectid}/${data.quizid}`}
+                                        className="avatar avatar-icon avatar-md avatar-orange"
+                                      >
+                                        <i className="fas fa-eye"></i>
+                                      </Link>
+                                    </td>
+                                  )}
                                 </tr>
                               ))
                             ) : (
@@ -409,21 +461,31 @@ function StudentDashboard() {
                           <p className="mb-0">Return Date: 12/06/2003 </p>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-lg-4 col-md-4 col-12 mb-3">
-                      <div className="id-issued-wrapper d-flex">
-                        <img
-                          src={IssuedBookImg}
-                          alt="student-img"
-                          className="img-fluid"
-                        />
-                        <div className="id-issued-content">
-                          <h4>Book Name</h4>
-                          <p className="mb-0">Issued Date: 24/08/2003</p>
-                          <p className="mb-0">Return Date: /06/2003 </p>
+                      {data?.issued_books?.map((book) => (
+                        <div className="col-lg-4 col-md-4 col-12 mb-3">
+                          <div className="id-issued-wrapper">
+                            <img
+                              src={
+                                book?.image
+                                  ? `${FILE_API_URL}/books/${book.image}`
+                                  : IssuedBookImg
+                              }
+                              alt="student-img"
+                              className="img-fluid"
+                            />
+                            <div className="id-issued-content">
+                              <h4>{capitalizeFirstLetter(book?.bookname)}</h4>
+                              <p className="mb-0">ISBN: {book?.issue_no}</p>
+                              <p className="mb-0">
+                                Issued Date: {book?.issue_date}
+                              </p>
+                              <p className="mb-0">
+                                Return Date: {book?.return_date}
+                              </p>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     <div className="col-lg-4 col-md-4 col-12 mb-3">
                       <div className="id-issued-wrapper d-flex">
                         <img
@@ -444,80 +506,71 @@ function StudentDashboard() {
                  
                 </div>
               </div>
-            </div>
-            <div className="col-md-5 col-lg-5 px-0">
-              <div className="card flex-fill id-card">
-                <div className="card-header d-flex align-items-center justify-content-between">
-                  <h4 className="card-title">Today’s Class</h4>
-                </div>
-                <div className="card-body">
-                  <div className="card mb-3 id-card">
-                    <div className="d-flex align-items-center justify-content-between p-3 pb-1">
-                      <div className="d-flex align-items-center flex-wrap mb-2">
-                        <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                          <img src={TeacherImg} alt="Profile" />
-                        </span>
-                        <div>
-                          <h6 className="mb-1 text-decoration-line-through">
-                            English
-                          </h6>
-                          <span>
-                            <i class="fa-regular fa-clock mr-2"></i>
-                            09:00 - 09:45 AM
+            )}
+            {data?.timetable && data?.timetable?.length > 0 && (
+              <div className="col-md-5 d-flex justify-content-center">
+                <div className="card w-100">
+                  <div className="card-body">
+                    {data?.timetable?.map((classItem) => (
+                      <div className="card mb-3 id-card">
+                        <div className="d-flex align-items-center justify-content-between p-3 pb-1">
+                          <div className="d-flex align-items-center flex-wrap mb-2">
+                            <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
+                              {/* <img src={TeacherImg} alt="Profile" /> */}
+                             
+                              {teacher[classItem?.subjectid].avtar ? (
+                                                            <img
+                              
+                                                              src={`${FILE_API_URL}/user/${teacher[classItem?.subjectid].uid}/${teacher[classItem?.subjectid].avtar}`}
+                                                              alt=""
+                                                              style={{
+                                                                width: "40px",
+                                                                height: "40px",
+                                                                backgroundColor: "#e6fff3",
+                                                                fontSize: "20px",
+                                                                color: "#00a158",
+                                                              }}
+                                                              className="rounded-circle d-flex justify-content-center align-items-center"
+                                                            />
+                                                          ) : (
+                                                            <div
+                                                              style={{
+                                                                width: "40px",
+                                                                height: "40px",
+                                                                backgroundColor: "#e6fff3",
+                                                                fontSize: "20px",
+                                                                color: "#00a158",
+                                                              }}
+                                                              className="rounded-circle d-flex justify-content-center align-items-center"
+                                                            >
+                                                              {teacher[classItem?.subjectid]?.teachername[0]}
+                                                            </div>
+                                                          )}
+                            </span>
+                            <div>
+                              <h6 className="mb-1 text-decoration-line-through">
+                                {subject[classItem?.subjectid]} <br />
+                                
+                                {teacher[classItem?.subjectid]?.teachername} 
+                              </h6>
+                              <span>
+                                <i class="fa-regular fa-clock mr-2"></i>
+                                {classItem?.time}
+                              </span>
+                            </div>
+                          </div>
+                          <span className="badge badge-soft-success shadow-none mb-2">
+                            <i className="ti ti-circle-filled fs-8 me-1" />
+                            Class Room:{" "}
+                            <span className="id-class-room-no">{classItem?.classroom}</span>
                           </span>
                         </div>
                       </div>
-                      <span className="badge badge-soft-success shadow-none mb-2">
-                        <i className="ti ti-circle-filled fs-8 me-1" />
-                        Class Room: <span className="id-class-room-no">6</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="card mb-3 id-card">
-                    <div className="d-flex align-items-center justify-content-between flex-wrap p-3 pb-1">
-                      <div className="d-flex align-items-center flex-wrap mb-2">
-                        <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                          <img src={TeacherImg} alt="Profile" />
-                        </span>
-                        <div>
-                          <h6 className="mb-1 text-decoration-line-through">
-                            Chemistry
-                          </h6>
-                          <span>
-                            <i class="fa-regular fa-clock mr-2"></i>
-                            10:45 - 11:30 AM
-                          </span>
-                        </div>
-                      </div>
-                      <span className="badge badge-soft-success shadow-none mb-2">
-                        <i className="ti ti-circle-filled fs-8 me-1" />
-                        Class Room: <span className="id-class-room-no">6</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div className="card mb-0 id-card">
-                    <div className="d-flex align-items-center justify-content-between flex-wrap p-3 pb-1">
-                      <div className="d-flex align-items-center flex-wrap mb-2">
-                        <span className="avatar avatar-lg flex-shrink-0 rounded mr-3">
-                          <img src={TeacherImg} alt="Profile" />
-                        </span>
-                        <div>
-                          <h6 className="mb-1">Physics</h6>
-                          <span>
-                            <i class="fa-regular fa-clock mr-2"></i>
-                            11:30 - 12:15 AM
-                          </span>
-                        </div>
-                      </div>
-                      <span className="badge badge-soft-success shadow-none mb-2">
-                        <i className="ti ti-circle-filled fs-8 me-1" />
-                        Class Room: <span className="id-class-room-no">6</span>
-                      </span>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

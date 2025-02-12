@@ -37,6 +37,7 @@ function QuizList() {
     semesterid: null,
     subject: null,
     quizid: null,
+    session: localStorage.getItem("session"),
   });
   const [show, setShow] = useState(false);
   const [filterStatus, setFilterStatus] = useState();
@@ -71,6 +72,7 @@ function QuizList() {
       semesterid: null,
       subject: null,
       quizid: null,
+      
     });
     fetchQuizListing({});
     setFilterStatus(null);
@@ -79,6 +81,20 @@ function QuizList() {
 
   const applyFilters = () => {
     fetchQuizListing(filters);
+  };
+  const [session,setSession] = useState([]);
+  const sessionListDropdown = async () => {
+    try {
+      const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
+        status: 1,
+        column: "id, dtitle",
+      });
+      data?.statusCode === 200 && data.data.length
+        ? setSession(data.data) // Populate session list
+        : (toast.error("Session not found."), setSession([])); // Error handling
+    } catch {
+      setSession([]); // Clear list on failure
+    }
   };
 
   const courseListDropdown = async () => {
@@ -97,6 +113,7 @@ function QuizList() {
 
   useEffect(() => {
     courseListDropdown();
+    sessionListDropdown();
   }, []);
 
   const fetchSemesterBasedOnCourse = async (courseid) => {
@@ -208,7 +225,7 @@ function QuizList() {
 
   const fetchQuizListing = async (filters = {}, deleteStatus = 0) => {
     setIsFetching(true);
-    const { status, courseid, semesterid, subject, quizid } = filters;
+    const { status, courseid, semesterid, subject, quizid, session } = filters;
     try {
       const response = await dataFetchingPost(
         `${NODE_API_URL}/api/quiz/fetch`,
@@ -219,6 +236,7 @@ function QuizList() {
           subject,
           quizid,
           deleteStatus,
+          session,
           listing: "yes",
         }
       );
@@ -353,18 +371,16 @@ function QuizList() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                    Dashboard
+                    Exam Management
                   </a>
-                  <span className="breadcrumb-item">Assignment And Quiz</span>
-                  <span className="breadcrumb-item active">
-                    Quiz List
-                  </span>
+                  <span className="breadcrumb-item">Quiz</span>
+                 
                 </nav>
               </div>
             </div>
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new">Quiz List</h5>
+                <h5 className="card-title h6_new">Quiz </h5>
                 <div className="ml-auto">
                   <button
                     className="ml-auto btn-md btn border-0 btn-light mr-2"
@@ -588,6 +604,32 @@ function QuizList() {
         <Modal.Body>
           <Form id="filteruserlist">
             <Row>
+            <div className="col-md-12 col-12 form-group">
+                          <label className="font-weight-semibold">
+                            Session 
+                          </label>
+                          <Select
+                            options={session?.map(({ id, dtitle }) => ({
+                              value: id,
+                              label: dtitle,
+                            }))}
+                            onChange={({ value }) => {
+                              setFilters({ ...filters, session: value });
+                            }}
+                            value={
+                              session.find(
+                                ({ id }) => id === +filters.session
+                              )
+                                ? {
+                                    value: +filters.session,
+                                    label: session.find(
+                                      ({ id }) => id === +filters.session
+                                    ).dtitle,
+                                  }
+                                : { value: filters.session, label: "Select" }
+                            }
+                          />
+                        </div>
               <Col md={12} className="mb-3">
                 <Form.Group controlId="status">
                   <Form.Label>Course</Form.Label>

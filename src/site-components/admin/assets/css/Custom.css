@@ -70,7 +70,7 @@ input::-webkit-inner-spin-button {
   border: 1px solid #ffffff2e !important;
   margin: 5px auto !important;
   border-radius: 5px !important;
-  background: rgb(255 255 255 / 2%) !important;
+  background: rgb(255 255 255 / 2%);
 }
 .bubble-shadow {
   position: relative;
@@ -450,6 +450,14 @@ i {
     color: #F2F2F2 !important;
     background-color: #0146DE !important;
   }
+    .mactive > a {
+      color: #F2F2F2 !important;
+    }
+        .mactive > a .icon-holder{
+      color: #fff !important;
+      background-color: #5a9bff !important;
+    }
+
 .side-nav
   .side-nav-inner
   .side-nav-menu

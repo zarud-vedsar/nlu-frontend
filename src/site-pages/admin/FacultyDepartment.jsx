@@ -208,9 +208,9 @@ function FacultyDepartment() {
                                 <nav className="breadcrumb breadcrumb-dash">
                                     <a href="./" className="breadcrumb-item">
                                         <i className="fas fa-home m-r-5" />
-                                        Dashboard
+                                        Learning Management
                                     </a>
-                                    <span className="breadcrumb-item">Academic</span>
+                                    
                                     <span className="breadcrumb-item active">Faculty Department</span>
                                 </nav>
                             </div>

@@ -11,6 +11,7 @@ import FacultyImg from "../../site-components/admin/assets/images/dashboard/facu
 import EventImg from "../../site-components/admin/assets/images/dashboard/event.png";
 import NoticeImg from "../../site-components/admin/assets/images/dashboard/notice.png";
 import PublicationImg from "../../site-components/admin/assets/images/dashboard/publication.png";
+import { Link } from "react-router-dom";
 
 
 const AdminDashboard = () => {
@@ -67,10 +68,10 @@ const AdminDashboard = () => {
           <div className="page-header mb-3">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="./" className="breadcrumb-item">
+                <Link to="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
-                </a>
-                <span className="breadcrumb-item active">Admin Dashboard</span>
+                </Link>
+                <span className="breadcrumb-item active">Admin</span>
               </nav>
             </div>
           </div>

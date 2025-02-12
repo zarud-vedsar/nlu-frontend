@@ -1,13 +1,71 @@
------------------- Admin Panel ----------------------- 
-1. Menu
-2. Text editor
-3. Save detail of student when visitor in or out
-4. Add student drop down in filter of visitor history
+--------8 February --------
+1. 3 paper addition in each created exam 
+2. In all the process flow the next step is to be redirect on success
+3. Marks upload should be single time and can be edited within 24hr after that edit is required and history will be created for the edit for proper reasoning 
+4. Remove Class cancel from dropdown in class attendance 
+5. Generate attendance marks button should be there only while uploading end semeter marks in exam paper instead of generate attendance
+6. Remove from sidebar faculty department
+7. Sidebar Option Rearrange
+8. Auto calculation of maximum mark in end term and mid term both at the time of marks uploading
+9. On paper creation exam duation shoud be auto calculated and its input should be  disabled 
+10. change title of section to section title 
 
------------------- Student Panel---------------------
-Custom PDF Viewer
-Student Semester completion
+------------Testing Changes Exam Module ----------
+1. auto redirecting add question page after save exam paper
+2. add go back button in exam paper form and add question form
+3. faculty only allowed to see exam paper 
+4. submit exam paper to exam cell (button), remove all action button from exam paper
 
------------------- Website Panel --------------------
-Update get data api link
 
+-------issue list------
+1. Validation of vacancy in hostel in room assignment 
+4. examination type in admin card written in small letter
+5. attendance summary should be separated from attendance in chart 
+6. hostel mark attendace should be same as class mark attendance
+7. add label and export attendance history
+8. class should not editable after 24hr , if they what to edit they required permission
+
+
+--------------- 8 February  Pending task ----------------
+0. student dashboard 
+0. add marquee at parent panel
+5. Mark sheet generation system 
+7. Implementation of role and permission at the end of project
+8. Implementation of session in Assignment and quiz  
+9. Admin card individual download system --backend done
+10. semester name must be in roman number 
+11. Excel sheet in attendance chart and exam marks
+----------------------------------------------------------------------
+                            Add On
+----------------------------------------------------------------------
+
+---------Create exam cell Module ------------
+2. exam duration setting (fixed from date and to date) for creating exam paper with session , exam type, course , semeter 
+3. exam paper list --> exam paper listing of final submitting, features ---> view exam paper, approved/reject exam paper (in case of reject faculty and modator can edit exam paper and also metion remark for rejecting and send notification on mail),  
+4. in case of rejection of exam paper faculty can review and resubmit exam paper
+5. notification system for modator to notify faculty to submit exam paper if not submitted yet
+6. mark freezing system --> 
+
+11-02-2025
+------------------------
+1.  Student fee payment and management system
+2.  Remote Access To library content, termed as E-library (Content will be totally seperated form the listed books)
+3.  Timetable have two type of class:- tutorial and Normal lecture
+4.  First Break in the Timetable is optional.
+5.  Two Type of hostel: Boys and Girls hostel
+6.  Warden assignment Hostel Wise.
+7.  Substitute System in Class Timetable.This Gave need of taking multiple attendace of same class on same day.
+
+
+changes 
+-------------
+1.  OPAC System in Library (Assigning the books the location of shelf Where it is kept).
+    The location of shelf is marked by  ->Block
+                                        ->section
+                                        ->Row
+2.  Disable the functiobality as if Enter button is clicked the next row is added for book listing.
+3.  In student Portal the term Job is to be replaced by Placement.
+4.  At the time of Book addition teh loader is to be displayed.
+5.  Addition of new Hostel Leave type: Internship Leave.
+6.  Addition of "Leaving time" and "Return time" in Hostel Leave Request
+7.  Disable Faculty Feedback system on student Portal.

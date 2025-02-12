@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import {
   NODE_API_URL,
-  CKEDITOR_URL,
 } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
@@ -30,6 +29,7 @@ function AddQuiz() {
     total_marks: "",
     marks_per_question: "",
     question_type: "",
+    session: localStorage.getItem("session")
   };
   const { quizId } = useParams();
   const [formData, setFormData] = useState(initialForm); // Form state
@@ -45,6 +45,21 @@ function AddQuiz() {
   */
   const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate(); // Initialize useNavigate
+
+  const [session,setSession] = useState([]);
+  const sessionListDropdown = async () => {
+    try {
+      const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
+        status: 1,
+        column: "id, dtitle",
+      });
+      data?.statusCode === 200 && data.data.length
+        ? setSession(data.data) // Populate session list
+        : (toast.error("Session not found."), setSession([])); // Error handling
+    } catch {
+      setSession([]); // Clear list on failure
+    }
+  };
   useEffect(() => {
     if (RolePermission && RolePermission.length > 0) {
 
@@ -114,6 +129,7 @@ function AddQuiz() {
 
   useEffect(() => {
     courseListDropdown();
+    sessionListDropdown();
   }, []);
 
   const fetchSemesterBasedOnCourse = async (courseid) => {
@@ -213,6 +229,7 @@ function AddQuiz() {
           minus_mark: data.minus_mark,
           marks_per_question: data.marks_per_question,
           question_type: data?.question_type,
+          session:data?.session
         }));
 
         return response;
@@ -386,9 +403,8 @@ function AddQuiz() {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Dashboard
+                    <i className="fas fa-home m-r-5" /> Exam Management
                   </a>
-                  <span className="breadcrumb-item">Assignment And Quiz</span>
                   <span className="breadcrumb-item">Quiz</span>
                   <span className="breadcrumb-item active">
                     {quizId ? "Update Quiz" : "Add New Quiz"}
@@ -422,6 +438,32 @@ function AddQuiz() {
                   <div className="card-body">
                     <form onSubmit={handleSubmit}>
                       <div className="row">
+                      <div className="col-md-4 col-12 form-group">
+                          <label className="font-weight-semibold">
+                            Session 
+                          </label>
+                          <Select
+                            options={session?.map(({ id, dtitle }) => ({
+                              value: id,
+                              label: dtitle,
+                            }))}
+                            onChange={({ value }) => {
+                              setFormData({ ...formData, session: value });
+                            }}
+                            value={
+                              session.find(
+                                ({ id }) => id === +formData.session
+                              )
+                                ? {
+                                    value: +formData.session,
+                                    label: session.find(
+                                      ({ id }) => id === +formData.session
+                                    ).dtitle,
+                                  }
+                                : { value: formData.session, label: "Select" }
+                            }
+                          />
+                        </div>
                         <div className="col-md-4 col-12 form-group">
                           <label
                             className="font-weight-semibold"

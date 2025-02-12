@@ -73,7 +73,7 @@ import {
 import { GoProject } from "react-icons/go";
 import { IoIosSettings } from "react-icons/io";
 import { RiMenuFold4Fill } from "react-icons/ri";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { PiChalkboardTeacher } from "react-icons/pi";
 import secureLocalStorage from "react-secure-storage";
 import { memo } from "react";
@@ -176,6 +176,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
   const [folded, setFolded] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const [modalShow, setModalShow] = useState(false);
   const [sessionTitle, setSessionTitle] = useState("");
   const [facultyDataList, setFacultyDataList] = useState([]);
@@ -221,7 +222,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           subtitle: "Faculty",
           url: "faculty-dashboard",
           icon: <FaChalkboardTeacher />,
-        }, // Teaching-related icon
+        }, 
+        {
+          subtitle: "User Log",
+          url: "user-log",
+          icon: <FaChalkboardTeacher />,
+        }, 
       ],
     },
     {
@@ -296,6 +302,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         {
           subtitle: "View Compile Attendance",
           url: "attendance-management/view-compile-attendance",
+          icon: <FaHistory />,
         },
       ],
     },
@@ -776,13 +783,10 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
     navigate("/admin/");
     window.location.reload(); // This will force a page reload
   };
-
   function toggleSidebarFolded() {
     setFolded(!folded);
     toggleFolded(!folded);
   }
-  console.log()
-
   return (
     <>
       <div className="header bg-white border-none shadow-head-sm">
@@ -861,10 +865,6 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                       </div>
                     </div>
                   </div>
-                  {/* <Link className="dropdown-item d-block p-h-15 p-v-10">
-                    <AiOutlineAppstore />
-                    <span className="m-l-10">My Profile</span>
-                  </Link> */}
                   <a
                     className="dropdown-item d-block p-h-15 p-v-10"
                     onClick={logOut}
@@ -884,6 +884,8 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         <div className="side-nav-inner">
           <ul className="side-nav-menu scrollable">
             {sideBarMenu.map((option, index) => {
+              const url = location?.pathname?.split('/admin/');
+              let activeClass = Array.isArray(url) && url.length > 1 ? url[1] : false;
               let showMenu = true;
               if (RolePermission && RolePermission.length > 0) {
                 let resp = RolePermission.map((rData) => Object.keys(rData)[0]);
@@ -892,7 +894,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
               }
               if (option.url && (showMenu || loginType === 'superadmin')) {
                 return (
-                  <li key={index} className="nav-item dropdown cursor">
+                  <li key={index} className={`nav-item dropdown cursor ${activeClass == option.url ? 'mactive' : ''}`}>
                     <Link to={`/admin/${option.url}`}>
                       <span className="icon-holder">{option.icon}</span>
                       <span className="title font-14">{option.title}</span>
@@ -900,13 +902,13 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                   </li>
                 );
               }
-
+              let addClass = option.dropdownMenus.some((item) => activeClass == item.url);
               // If the menu has dropdown items and should be shown
               if (!option.url && (showMenu || loginType === "superadmin")) {
                 return (
                   <li
                     key={index}
-                    className={`nav-item dropdown cursor ${activeSidebarMenu === index ? "open" : ""
+                    className={`nav-item dropdown cursor ${(activeSidebarMenu === index) || addClass ? "open" : ""
                       }`}
                     onClick={() =>
                       setActiveSidebarMenu(

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NODE_API_URL } from "../../../site-components/Helper/Constant";
+import { FILE_API_URL, NODE_API_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import {
   formatDate,
@@ -323,6 +323,56 @@ function AllotedRoomHistory() {
                       sortable
                     />
 
+<Column
+                        header="Student"
+                        body={(rowData) => (
+                          <div
+                            className="info-column d-flex align-items-center
+                    "
+                          >
+                            <div className="info-image mr-4">
+                              {rowData.spic ? (
+                                <img
+                                  src={`${FILE_API_URL}/student/${rowData.studentId}${rowData.registrationNo}/${rowData.spic}`}
+                                  alt=""
+                                  style={{
+                                    width: "40px",
+                                    height: "40px",
+                                    backgroundColor: "#e6fff3",
+                                    fontSize: "20px",
+                                    color: "#00a158",
+                                  }}
+                                  className="rounded-circle d-flex justify-content-center align-items-center"
+                                />
+                              ) : (
+                                <div
+                                  style={{
+                                    width: "40px",
+                                    height: "40px",
+                                    backgroundColor: "#e6fff3",
+                                    fontSize: "20px",
+                                    color: "#00a158",
+                                  }}
+                                  className="rounded-circle d-flex justify-content-center align-items-center"
+                                >
+                                  {rowData?.sname[0]}
+                                </div>
+                              )}
+                            </div>
+                            <div>
+                              <div className="info-name">
+                                <span>{`${rowData.sname}`}</span>
+                              </div>
+
+                              <div className="info-email">
+                                <span>Enroll : {rowData.enrollmentNo}</span>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        )}
+                        sortable
+                      />
                     <Column field="block" header="Block" sortable />
                     <Column field="roomNo" header="Room No" sortable />
 
@@ -352,11 +402,7 @@ function AllotedRoomHistory() {
                       header="Semester"
                       sortable
                     />
-                    <Column
-                      body={(row) => row.studentId}
-                      header="Student ID"
-                      sortable
-                    />
+                     
                     <Column
                       body={(row) => formatDate(row.allotDate)}
                       header="Alloted Date"
@@ -368,6 +414,22 @@ function AllotedRoomHistory() {
                       body={(row) => formatDate(row.created_at)}
                       header="Created At"
                       sortable
+                    />
+                    
+                    <Column
+                      header="Vacate"
+                      body={(rowData) => (
+                        <div className="d-flex">
+                        {rowData?.vacate_date? formatDate(rowData?.vacate_date):
+                       
+                          <Link
+                            to={`/admin/update-vacate-date/${rowData.id}`}
+                            className="avatar avatar-icon avatar-md avatar-orange"
+                          >
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                          </Link>
+                        } </div>
+                      )}
                     />
                     <Column
                       header="Action"
@@ -382,6 +444,7 @@ function AllotedRoomHistory() {
                         </div>
                       )}
                     />
+                    
                   </DataTable>
                 </div>
               </div>

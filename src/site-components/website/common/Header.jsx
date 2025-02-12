@@ -84,18 +84,55 @@ function Header() {
               </div>
               <div className="logotext">
                 <Link to='/'>
-                  <h2 className="header-heading2 mb-1">
+                  <h2 className="header-heading2">
                     {/* डॉ राजेन्द्र प्रसाद */}
                     Dr. Rajendra Prasad
                   </h2>
                   <h3 className="header-heading3">
                     {/* राष्ट्रीय विधि विश्वविद्यालय प्रयागराज */}
-                    National Law University Prayagraj
+                    National Law University
                   </h3>
+                  <h4 className='hd4'>Prayagraj </h4>
                 </Link>
               </div>
             </div>
             <header className="page-mine-header">
+              <div className="logosec">
+                <div className='mmllg'>
+                  <div className="page-header-logo" >
+                    <Link to='/'>
+                      <img
+                        className="page-header-logo-img sm-mt-2"
+                        src={rpnl_logo}
+                        alt="RPNL Logo"
+                      />
+                    </Link>
+                  </div>
+                  <div className="logotext">
+                    <Link to='/'>
+                      <h2 className="header-heading2">
+                        डॉ राजेन्द्र प्रसाद
+                        {/* Dr. Rajendra Prasad */}
+                      </h2>
+                      <h3 className="header-heading3">
+                        राष्ट्रीय विधि विश्वविद्यालय
+                        {/* National Law University  */}
+                      </h3>
+                      <h4 className='hd4'>
+                        {/* Prayagraj  */}
+                        प्रयागराज
+                      </h4>
+                    </Link>
+                  </div>
+                </div>
+                <div
+                  className="hamb mini"
+                  onClick={toggleMenu}
+                >
+                  <RxHamburgerMenu />
+                </div>
+              </div>
+
               <nav
                 className={`page-mine-header__bottom`}>
                 <ul className={`${menuVisible ? 'navigation--visible' : 'navigation'}`}>

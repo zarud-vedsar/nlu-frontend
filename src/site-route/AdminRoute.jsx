@@ -158,6 +158,7 @@ const components = {
 
 
   AllotRoomToStudent: lazyLoadHostelManagement("AllotRoomToStudent"),
+  UpdateVacateDate: lazyLoadHostelManagement("UpdateVacateDate"),
   AllotedRoomHistory: lazyLoadHostelManagement("AllotedRoomHistory"),
   RaisedRoomQueries: lazyLoadHostelManagement("RaisedRoomQueries"),
   RaisedRoomComplain: lazyLoadHostelManagement("RaisedRoomComplain"),
@@ -210,6 +211,7 @@ components.StockInList = lazy(() => import("../site-pages/admin/Inventory/StockI
 components.StockOutAdd = lazy(() => import("../site-pages/admin/Inventory/StockOutAdd.jsx"));
 components.StockOutList = lazy(() => import("../site-pages/admin/Inventory/StockOutList.jsx"));
 components.AddExamPaper = lazy(() => import("../site-pages/admin/Exam/AddExamPaper.jsx"));
+components.ViewSubjectMarks = lazy(() => import("../site-pages/admin/Exam/ViewSubjectMarks.jsx"));
 components.ExamPaperList = lazy(() => import("../site-pages/admin/Exam/ExamPaperList.jsx"));
 components.ExamPaperAddQuestion = lazy(() => import("../site-pages/admin/Exam/ExamPaperAddQuestion.jsx"));
 components.ExamAdmitCard = lazy(() => import("../site-pages/admin/Exam/ExamAdmitCard.jsx"));
@@ -221,6 +223,7 @@ components.SubjectReport = lazy(() => import("../site-pages/admin/Reports/Studen
 components.InventoryReport = lazy(() => import("../site-pages/admin/Reports/Student/InventoryReport.jsx"));
 components.LibraryReport = lazy(() => import("../site-pages/admin/Reports/Student/LibraryReport.jsx"));
 components.AdminDashboard = lazy(() => import("../site-pages/admin/AdminDashboard.jsx"));
+components.UserLogList = lazy(() => import("../site-pages/admin/UserLogList.jsx"));
 components.FacultyDashboard = lazy(() => import("../site-pages/admin/FacultyDashboard.jsx"));
 components.ViewCompiledAttendance = lazy(() => import("../site-pages/admin/Attendance/ViewCompiledAttendance.jsx"));
 
@@ -257,6 +260,10 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             <Route
               path="/admin-dashboard"
               element={<ProtectedRoute element={<components.AdminDashboard />} />}
+            />
+            <Route
+              path="/user-log"
+              element={<ProtectedRoute element={<components.UserLogList />} />}
             />
             <Route
               path="/faculty-dashboard"
@@ -1787,6 +1794,12 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
               }
             />
             <Route
+              path="/update-vacate-date/:id"
+              element={
+                <ProtectedRoute element={<components.UpdateVacateDate />} />
+              }
+            />
+            <Route
               path="/alloted-room-history"
               element={
                 <ProtectedRoute element={<components.AllotedRoomHistory />} />
@@ -1992,6 +2005,10 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             <Route
               path="/exam-paper/add-update/:dbId?"
               element={<ProtectedRoute element={<components.AddExamPaper />} />}
+            />
+             <Route
+              path="/exam-paper/view-marks/:dbId?"
+              element={<ProtectedRoute element={<components.ViewSubjectMarks />} />}
             />
             <Route
               path="/exam-paper/list"

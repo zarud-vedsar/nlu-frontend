@@ -130,7 +130,7 @@ function MessageList() {
                 {/* Search Box */}
                 <div className="row mb-3">
                   <div className="col-md-11 col-lg-11 col-10 col-sm-10 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
-                    <i className="pi pi-search" />
+                  <div className='search-icon'><i className="pi pi-search" /></div>
                     <InputText
                       type="search"
                       value={globalFilter}

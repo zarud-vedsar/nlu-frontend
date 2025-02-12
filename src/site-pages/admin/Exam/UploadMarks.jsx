@@ -100,6 +100,7 @@ function AddExam() {
     }));
   };
     const handleUploadFinal = async (stid) => {
+      
       const studentMarks = marksData[stid];
       if (!studentMarks) {
         toast.error("No data to upload.");
@@ -138,7 +139,11 @@ function AddExam() {
           { headers: { "Content-Type": "multipart/form-data" } }
         );
         if (response.data?.status === 200 || response.data?.status === 201) {
+          console.log(response)
           toast.success("Marks updated successfully!");
+          let tempMarksData = marksData;
+          tempMarksData[stid].marksid = response?.data?.data?.id;
+          setMarksData(tempMarksData);
         } else {
           toast.error(response.data?.msg || "Failed to update marks.");
         }
@@ -173,10 +178,14 @@ function AddExam() {
       );
       if (response.data?.status === 200 || response.data?.status === 201) {
         toast.success("Marks updated successfully!");
+        let tempMarksData =marksData;
+          tempMarksData[stid].marksid = response?.data?.data?.id;
+          setMarksData(tempMarksData);
       } else {
         toast.error(response.data?.msg || "Failed to update marks.");
       }
     } catch (error) {
+      console.log(error)
       toast.error("Error uploading marks.");
     }
   };
@@ -278,6 +287,7 @@ const generateAttendance = async() => {
                           className="p-datatable-custom"
                           tableStyle={{ minWidth: "50rem" }}
                           sortMode="multiple"
+                          filters={{ global: { value: globalFilter, matchMode: "contains" } }}
                         >
                           <Column
                             header="Student Name"
@@ -299,11 +309,13 @@ const generateAttendance = async() => {
                                 </div>
                               </div>
                             )}
+                            filterField="sname"
                           />
                           <Column
                             header="Roll no"
                             sortable
                             body={(rowData) => rowData.roll_no}
+                            filterField="roll_no"
                           />
                           <Column
                             header="MT Max Marks"
@@ -403,6 +415,7 @@ const generateAttendance = async() => {
                       className="p-datatable-custom"
                       tableStyle={{ minWidth: "50rem" }}
                       sortMode="multiple"
+                      filters={{ global: { value: globalFilter, matchMode: "contains" } }}
                     >
                       <Column
                         header="Student Name"
@@ -424,11 +437,13 @@ const generateAttendance = async() => {
                             </div>
                           </div>
                         )}
+                        filterField="sname"
                       />
                       <Column
                         header="Roll No"
                         sortable
                         body={(rowData) => rowData.roll_no}
+                        filterField="roll_no"
                       />
                       <Column
                         header="Marks"

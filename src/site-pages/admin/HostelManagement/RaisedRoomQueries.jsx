@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NODE_API_URL } from "../../../site-components/Helper/Constant";
+import { FILE_API_URL, NODE_API_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import {
   formatDate,
@@ -371,6 +371,56 @@ const getLastDayOfMonth = () => {
                       sortable
                     />
                     <Column
+                                            header="Student"
+                                            body={(rowData) => (
+                                              <div
+                                                className="info-column d-flex align-items-center
+                                        "
+                                              >
+                                                <div className="info-image mr-4">
+                                                  {rowData.spic ? (
+                                                    <img
+                                                      src={`${FILE_API_URL}/student/${rowData.studentId}${rowData.registrationNo}/${rowData.spic}`}
+                                                      alt=""
+                                                      style={{
+                                                        width: "40px",
+                                                        height: "40px",
+                                                        backgroundColor: "#e6fff3",
+                                                        fontSize: "20px",
+                                                        color: "#00a158",
+                                                      }}
+                                                      className="rounded-circle d-flex justify-content-center align-items-center"
+                                                    />
+                                                  ) : (
+                                                    <div
+                                                      style={{
+                                                        width: "40px",
+                                                        height: "40px",
+                                                        backgroundColor: "#e6fff3",
+                                                        fontSize: "20px",
+                                                        color: "#00a158",
+                                                      }}
+                                                      className="rounded-circle d-flex justify-content-center align-items-center"
+                                                    >
+                                                      {rowData?.sname[0]}
+                                                    </div>
+                                                  )}
+                                                </div>
+                                                <div>
+                                                  <div className="info-name">
+                                                    <span>{`${rowData.sname}`}</span>
+                                                  </div>
+                    
+                                                  <div className="info-email">
+                                                    <span>Enroll : {rowData.enrollmentNo}</span>
+                                                  </div>
+                                                  
+                                                </div>
+                                              </div>
+                                            )}
+                                            sortable
+                                          />
+                    <Column
                       body={(row) =>
                         courseListing?.find(
                           (item) => item.id === parseInt(row?.courseid)
@@ -405,7 +455,8 @@ const getLastDayOfMonth = () => {
                       header="Query Date"
                       sortable
                     />
-                    <Column field="studentId" header="Student ID" sortable />
+                    
+                    
                     <Column
                       field="message"
                       body={(row, { rowIndex }) => (

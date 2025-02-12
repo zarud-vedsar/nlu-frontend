@@ -98,7 +98,7 @@ function NewApplication() {
           listing: "Yes",
         }
       );
-      console.log(response);
+     
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
         let tempApplicationList = [];
         response.data.data.forEach((data) => {
@@ -398,9 +398,9 @@ function NewApplication() {
                       />
                       <Column
                         body={(row) =>
-                          capitalizeFirstLetter(row.registrationNo)
+                          capitalizeFirstLetter(row.enrollmentNo)
                         }
-                        header="Reg. No."
+                        header="Enrollment No."
                         sortable
                       />
 
@@ -412,9 +412,9 @@ function NewApplication() {
                     "
                           >
                             <div className="info-image mr-4">
-                              {rowData.avtar ? (
+                              {rowData.spic ? (
                                 <img
-                                  src={`${FILE_API_URL}/student/${rowData.registrationNo}/${rowData.spic}`}
+                                  src={`${FILE_API_URL}/student/${rowData?.studentId}${rowData?.registrationNo}/${rowData?.spic}`}
                                   alt=""
                                   style={{
                                     width: "40px",

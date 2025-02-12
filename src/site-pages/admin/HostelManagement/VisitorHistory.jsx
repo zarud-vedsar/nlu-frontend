@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { NODE_API_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import {
+  dataFetchingGet,
   formatDate,
-  goBack,
+  goBack
 } from "../../../site-components/Helper/HelperFunction";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
@@ -12,7 +13,7 @@ import "../../../../node_modules/primeicons/primeicons.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import validator from "validator";
-import { Modal, Button, Form, Col, Row } from "react-bootstrap";
+import { Modal, Button, Form, Row } from "react-bootstrap";
 import Select from "react-select";
 import { FaFilter } from "react-icons/fa";
 import { FormField } from "../../../site-components/admin/assets/FormField";
@@ -21,14 +22,8 @@ import { dataFetchingPost } from "../../../site-components/Helper/HelperFunction
 function VisitorHistory() {
   const navigate = useNavigate();
   const [visitorHistory, setVisitorHistory] = useState([]);
-  const initialData = {
-    deleteStatus: 0,
-    status: 1,
-  };
-  const [formData, setFormData] = useState(initialData);
   const [globalFilter, setGlobalFilter] = useState(""); // State for the search box
   const [isFetching, setIsFetching] = useState(false);
-
   //for filter
   const [block, setBlock] = useState([]);
   const [blockRoomNo, setBlockRoomNo] = useState([]);
@@ -52,14 +47,36 @@ function VisitorHistory() {
     visit_out_date: "",
     vehicle_no: "",
     StudentId: "",
+    visit_in_date_start:"",
+    visit_in_date_end:"",
+    visit_out_date_start:"",
+    visit_out_date_end:"",
   };
-
+  const [studentList, setStudentList] = useState([]);
   const [filters, setFilters] = useState(initializeFilter);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const fetchStudent = async (block, roomNo) => {
+    try {
+      const response = await dataFetchingGet(`${NODE_API_URL}/api/hostel-management/student-list/${block}/${roomNo}`);
+      if (response?.statusCode === 200 && response.data.length > 0) {
+        setStudentList(response.data);
+        return null;
+      } else {
+        toast.error("Data not found.");
+        return [];
+      }
+    } catch (error) {
+      return [];
+    }
+  }
+  useEffect(() => {
+    if (filters.blockId && filters.roomNo) {
+      fetchStudent(filters.blockId, filters.roomNo);
+    }
+  }, [filters.blockId, filters.roomNo]);
   const resetFilters = () => {
     setFilters(initializeFilter);
     handleSubmit();
@@ -67,7 +84,7 @@ function VisitorHistory() {
   };
 
   const applyFilters = () => {
-    console.log(filters);
+    
     handleSubmit(true, false);
   };
 
@@ -94,7 +111,6 @@ function VisitorHistory() {
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
         setBlock(response.data);
-        console.log(response.data, "MAD");
 
         return null;
       } else {
@@ -113,7 +129,7 @@ function VisitorHistory() {
       parseInt(dbId, 10) <= 0
     )
       return toast.error("Invalid ID.");
-    navigate(`/admin/add-hostel-room/${dbId}`, { replace: false });
+    navigate(`/admin/visitor-entry/${dbId}`, { replace: false });
   };
   const handleSubmit = async (applyFilter = false, e = false) => {
     if (e) e.preventDefault();
@@ -121,7 +137,7 @@ function VisitorHistory() {
     if (applyFilter) {
       bformData = filters;
     }
-    console.log(bformData);
+    
     setIsFetching(true);
     try {
       const response = await axios.post(
@@ -130,9 +146,9 @@ function VisitorHistory() {
           ...bformData,
         }
       );
-      console.log(response);
+      
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
-        console.log(response.data.data);
+        
 
         setVisitorHistory(response.data.data);
       } else {
@@ -326,7 +342,7 @@ function VisitorHistory() {
 
               {/* Visit Date */}
               <FormField
-                label="Visit Date From"
+                label="Visit In Date"
                 name="visit_in_date"
                 id="visit_in_date"
                 type="date"
@@ -336,11 +352,49 @@ function VisitorHistory() {
               />
               {/* Visit Out Date */}
               <FormField
-                label="Visit Date To"
+                label="Visit Out Date"
                 name="visit_out_date"
                 id="visit_out_date"
                 type="date"
                 value={filters.visit_out_date}
+                onChange={handleChange}
+                column="col-md-6"
+              />
+              <FormField
+                label="Visit In Date From"
+                name="visit_in_date_start"
+                id="visit_in_date_start"
+                type="date"
+                value={filters.visit_in_date_start}
+                onChange={handleChange}
+                column="col-md-6"
+              />
+              {/* Visit Out Date */}
+              <FormField
+                label="Visit In Date To"
+                name="visit_in_date_end"
+                id="visit_in_date_end"
+                type="date"
+                value={filters.visit_in_date_end}
+                onChange={handleChange}
+                column="col-md-6"
+              />
+              <FormField
+                label="Visit Out Date From"
+                name="visit_out_date_start"
+                id="visit_out_date_start"
+                type="date"
+                value={filters.visit_out_date_start}
+                onChange={handleChange}
+                column="col-md-6"
+              />
+              {/* Visit Out Date */}
+              <FormField
+                label="Visit Out Date To"
+                name="visit_out_date_end"
+                id="visit_out_date_end"
+                type="date"
+                value={filters.visit_out_date_end}
                 onChange={handleChange}
                 column="col-md-6"
               />
@@ -407,6 +461,36 @@ function VisitorHistory() {
                   }
                 />
               </div>
+              <div className="col-12 form-group">
+                <label className="font-weight-semibold">
+                  Students
+                </label>
+                <Select
+                  options={[
+                    { value: "", label: "Select" }, // Default reset option
+                    ...studentList.map((item) => ({
+                      value: item.id,
+                      label: `${item.sname} (${item.sphone})`,
+                    })),
+                  ]}
+                  onChange={(selectedOption) => {
+                    setFilters({
+                      ...filters,
+                      StudentId: selectedOption.value,
+                    });
+                  }}
+                  value={
+                    studentList.find((item) => item.id === filters.StudentId)
+                      ? {
+                        value: filters.StudentId,
+                        label: studentList.find(
+                          (item) => item.id === filters.StudentId
+                        ).sname,
+                      }
+                      : { value: "", label: "Select" }
+                  }
+                />
+              </div>
             </Row>
           </Form>
         </Modal.Body>
@@ -428,6 +512,7 @@ function VisitorHistory() {
             right: 0;
             transform: translateX(100%);
             transition: transform 0.3s ease-in-out;
+            height:fit-content;
           }
 
           .modal-right.show .modal-dialog {

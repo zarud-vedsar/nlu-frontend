@@ -187,11 +187,11 @@ function SemesterAdd() {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Dashboard
+                    <i className="fas fa-home m-r-5" /> Learning Management
                   </a>
-                  <span className="breadcrumb-item">Academic</span>
-                  <span className="breadcrumb-item">Course</span>
-                  <span className="breadcrumb-item active">Add Course</span>
+                  
+                  <a className="breadcrumb-item">Semester</a>
+                  <span className="breadcrumb-item active">{semesterId ? "Update Semester" : "Add Semester"}</span>
                 </nav>
               </div>
             </div>

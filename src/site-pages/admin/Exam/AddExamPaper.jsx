@@ -1,5 +1,5 @@
 // Import the usual suspects (like a hacker assembling a team for a heist)
-import React, { useCallback, useEffect, useState } from 'react'; // React is life; state is chaos.
+import React, { useCallback, useEffect, useMemo, useState } from 'react'; // React is life; state is chaos.
 import { Link, useLocation, useNavigate } from 'react-router-dom'; // For navigating the matrix.
 import { capitalizeFirstLetter, dataFetchingPost, goBack } from '../../../site-components/Helper/HelperFunction'; // Escape hatch in case things go south.
 import { FormField } from '../../../site-components/admin/assets/FormField'; // The sacred field for all inputs.
@@ -340,7 +340,7 @@ function AddExam() {
         if (data?.statusCode === 201) {
           setFormData(initialFormData);
           setSections(sections);
-          console.log(data)
+          
           if(step==="next"){
           setTimeout(() => {
             navigate(`/admin/exam-paper/add-question`, {
@@ -371,6 +371,25 @@ function AddExam() {
       instruction: newContent,
     }));
   }
+
+  
+  const TotalTimeDuration = useMemo(() => {
+    if (!formData?.startTime || !formData?.endTime) return "00:00";
+  
+    const [startHours, startMinutes] = formData.startTime.split(":").map(Number);
+    const [endHours, endMinutes] = formData.endTime.split(":").map(Number);
+  
+    let totalMinutes = (endHours * 60 + endMinutes) - (startHours * 60 + startMinutes);
+  
+    if (totalMinutes < 0) totalMinutes += 24 * 60; // Handle overnight time calculation
+  
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    setFormData((prev)=>({...prev,timeDuration:`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`}));
+   
+  }, [formData?.startTime, formData?.endTime]);
+  
+
   return (
     <>
       {/* HTML Skeleton of Doom */}
@@ -581,6 +600,7 @@ function AddExam() {
                       name="startTime"
                       id="startTime"
                       type="time"
+                      required={true}
                       value={formData.startTime}
                       column="col-md-3 col-12 form-group"
                       onChange={handleInputChange}
@@ -595,6 +615,7 @@ function AddExam() {
                       value={formData.endTime}
                       column="col-md-3 col-12 form-group"
                       onChange={handleInputChange}
+                      required={true}
                     />
                     <FormField
                       borderError={error.field === "venue"}
@@ -613,10 +634,10 @@ function AddExam() {
                       label="Time Duration"
                       name="timeDuration"
                       id="timeDuration"
-                      required={true}
+                      
                       value={formData.timeDuration}
                       column="col-md-4 col-12 form-group"
-                      onChange={handleInputChange}
+                      readOnly
                       placeholder="03 hours"
                     />
                     <FormField
@@ -656,7 +677,7 @@ function AddExam() {
                           style={{ width: "99.8%" }}
                         >
                           <FormField
-                            label="Title"
+                            label="Section Title"
                             name="title" // Remove index here
                             id={`title-${index}`} // Keep unique IDs for accessibility
                             required={true}

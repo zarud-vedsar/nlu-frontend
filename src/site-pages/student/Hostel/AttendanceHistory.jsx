@@ -240,8 +240,8 @@ function AttendanceHistory() {
                                           </th>
                                         )
                                       )}
-                                      <th scope="col">T-P</th>
-                                      <th scope="col">T-A</th>
+                                      <th scope="col"  style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>T-P</th>
+                                      <th scope="col" style={{backgroundColor:"rgb(231 227 227)" , paddingRight:"10px"}}>T-A</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -272,8 +272,8 @@ function AttendanceHistory() {
                                             </td>
                                           )
                                         )}
-                                        <td>{student?.presentCount}</td>
-                                        <td>{student?.absentCount}</td>
+                                        <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>{student?.presentCount}</td>
+                                        <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" , paddingRight:"10px"}}>{student?.absentCount}</td>
                                       </tr>
                                     ))}
                                   </tbody>

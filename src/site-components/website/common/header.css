@@ -98,7 +98,7 @@
     position: relative;
     /* Ensure the item has a reference point for the dropdown */
     background: transparent;
-    padding: 11px 3px 6px 3px;
+    padding: 9px 3px 6px 3px;
     font-size: 15px;
     font-weight: 700;
     display: block;
@@ -154,7 +154,7 @@
     position: absolute;
     top: 100%;
     left: 0;
-    min-width: 160px;
+    min-width: 180px;
     border: 1px solid #ededed;
     background-color: #fff;
     -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
@@ -167,10 +167,11 @@
 .navigation__item_dropdown-content .navigation__item_drop_link {
     font-size: 13px;
     color: #7e7e7e;
-    padding: 5px 12px;
+    padding: 7px 20px;
     text-decoration: none;
     display: block;
     background-color: transparent;
+    border-bottom: 1px solid #cccccc9a;
 }
 
 .navigation__item_dropdown-content .navigation__item_drop_link:hover {

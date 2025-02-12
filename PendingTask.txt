@@ -60,16 +60,11 @@ Today -------- 4 issue done
 6.  Warden assignment Hostel Wise.
 7.  Substitute System in Class Timetable.This Gave need of taking multiple attendace of same class on same day.
 
-
 changes 
 -------------
 1.  OPAC System in Library (Assigning the books the location of shelf Where it is kept).
     The location of shelf is marked by  ->Block
                                         ->section
                                         ->Row
-2.  Disable the functiobality as if Enter button is clicked the next row is added for book listing.
-
-4.  At the time of Book addition teh loader is to be displayed.
 5.  Addition of new Hostel Leave type: Internship Leave.
 6.  Addition of "Leaving time" and "Return time" in Hostel Leave Request
-7.  Disable Faculty Feedback system on student Portal.

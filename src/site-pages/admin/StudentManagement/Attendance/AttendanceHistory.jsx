@@ -452,10 +452,10 @@ function AttendanceHIstory() {
                                       </th>
                                     )
                                   )}
-                                  <th scope="col">Class</th>
-                                  <th scope="col">T-P</th>
-                                  <th scope="col">T-OD</th>
-                                  <th scope="col">T-A</th>
+                                  <th scope="col" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>Class</th>
+                                  <th scope="col"  style={{backgroundColor:"rgb(231 227 227)"}}>T-P</th>
+                                  <th scope="col"  style={{backgroundColor:"rgb(231 227 227)"}}>T-OD</th>
+                                  <th scope="col"  style={{backgroundColor:"rgb(231 227 227)",paddingRight:"10px"}}>T-A</th>
 
                                 </tr>
                               </thead>
@@ -496,11 +496,11 @@ function AttendanceHIstory() {
                                       </td>
 
                                     ))}
-                                    <td>{student?.totalClass}</td>
-                                    <td>{student?.presentCount}</td>
-                                    <td>{student?.onDutyCount}</td>
+                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}} >{student?.totalClass}</td>
+                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" }} >{student?.presentCount}</td>
+                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" }}>{student?.onDutyCount}</td>
 
-                                    <td>{student?.absentCount}</td>
+                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)",paddingRight:"10px" }}>{student?.absentCount}</td>
                                   </tr>
                                 ))}
                               </tbody>

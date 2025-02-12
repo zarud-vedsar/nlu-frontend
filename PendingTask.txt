@@ -1,18 +1,17 @@
 Dilsad ------
 0. student dashboard 
 0. add marquee at parent panel
-3.  In student Portal the term Job is to be replaced by Placement. 
 4. go back and listing button in every page (2. add go back button in exam paper form and add question form)
 
 
 
 Today -------- 4 issue done
-8. Auto calculation of maximum mark in end term and mid term both at the time of marks uploading
-9. On paper creation exam duation shoud be auto calculated and its input should be  disabled  
 5. attendance summary should be separated from attendance in chart 
-11. Excel sheet in attendance chart 
 9. Admin card individual download system --backend done
+8. Auto calculation of maximum mark in end term and mid term both at the time of marks uploading
+11. Excel sheet in attendance chart 
 6. hostel mark attendace should be same as class mark attendance
+10. session wise student fetching dropdown
 
 --------8 February --------
 1. 3 paper addition in each created exam 

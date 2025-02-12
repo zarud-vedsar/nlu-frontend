@@ -623,6 +623,7 @@ function MarkAttendanceForm() {
                             <th>Name</th>
                             <th>Attendance Date</th>
                             <th>Attendance</th>
+                            <th>Status</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -676,6 +677,13 @@ function MarkAttendanceForm() {
                                     ]}
                                     placeholder="Select Status"
                                   />
+                                </td>
+                                <td>
+                                  {row?.attendance ==="P" && <div className="badge badge-success">Present</div>}
+                                  {row?.attendance ==="A" && <div className="badge badge-danger">Absent</div>}
+                                  {row?.attendance ==="OD" && <div className="badge badge-success">Warning</div>}
+                                  {row?.attendance ==="CC" && <div className="badge badge-secondary">Class Cancel</div>}
+                                  {row?.attendance ==="CC" && <div className="badge badge-secondary">Class Cancel</div>}
                                 </td>
                               </tr>
                             ))

@@ -5,12 +5,14 @@ Dilsad ------
 
 
 
-Today -------- 4 issue done
-5. attendance summary should be separated from attendance in chart 
+Today -------- 4 issue done 
+
 9. Admin card individual download system --backend done
 8. Auto calculation of maximum mark in end term and mid term both at the time of marks uploading
+
 11. Excel sheet in attendance chart 
 6. hostel mark attendace should be same as class mark attendance
+
 10. session wise student fetching dropdown
 
 --------8 February --------

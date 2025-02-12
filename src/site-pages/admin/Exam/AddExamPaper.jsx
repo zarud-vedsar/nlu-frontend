@@ -600,6 +600,7 @@ function AddExam() {
                       name="startTime"
                       id="startTime"
                       type="time"
+                      required={true}
                       value={formData.startTime}
                       column="col-md-3 col-12 form-group"
                       onChange={handleInputChange}
@@ -614,6 +615,7 @@ function AddExam() {
                       value={formData.endTime}
                       column="col-md-3 col-12 form-group"
                       onChange={handleInputChange}
+                      required={true}
                     />
                     <FormField
                       borderError={error.field === "venue"}
@@ -632,10 +634,10 @@ function AddExam() {
                       label="Time Duration"
                       name="timeDuration"
                       id="timeDuration"
-                      required={true}
+                      
                       value={formData.timeDuration}
                       column="col-md-4 col-12 form-group"
-                      onChange={handleInputChange}
+                      readOnly
                       placeholder="03 hours"
                     />
                     <FormField

@@ -284,7 +284,7 @@ function ApprovedStudentList() {
                                     student.studentId,
                                     {
                                       value: student.studentId,
-                                      label: `${student.sname} (${student.enrollmentNo})`,
+                                      label: `${student.sname} (${student.registrationNo})`,
                                     },
                                   ])
                                 ).values(),

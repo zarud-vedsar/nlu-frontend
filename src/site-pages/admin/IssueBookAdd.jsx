@@ -507,7 +507,7 @@ const IssueBookAdd = () => {
                         options={
                           studentListing?.map((student) => ({
                             value: student.id,
-                            label: `${student.sname} (${student.registrationNo})`,
+                            label: `${student.sname} (${student.enrollmentNo})`,
                           })) || []
                         }
                         onChange={(selectedOption) => {
@@ -529,7 +529,7 @@ const IssueBookAdd = () => {
                                   (${studentListing?.find(
                                     (student) =>
                                       student.id === issue.student_id
-                                  )?.registrationNo}) `
+                                  )?.enrollmentNo}) `
                                   || "Select",
                               }
                             : { value: "", label: "Select" }

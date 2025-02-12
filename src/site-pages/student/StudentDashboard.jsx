@@ -35,6 +35,8 @@ ChartJS.register(
 );
 
 function StudentDashboard() {
+  const selectedCourseId = secureLocalStorage.getItem("selectedCourseId");
+  const [data, setData] = useState();
   const [chartData, setChartData] = useState({
     datasets: [],
   });
@@ -388,9 +390,9 @@ function StudentDashboard() {
             </div>
             <div className="row">
               <div className="col-lg-12">
-                <div className="card id-card">
+                <div className="card">
                   <div className="card-header">
-                      <h4 className="card-title">Current Issued Books</h4>
+                      <h4>Current Issued Books</h4>
                   </div>
                   <div className="card-body">
                   <div className="row">
@@ -418,7 +420,7 @@ function StudentDashboard() {
                         <div className="id-issued-content">
                           <h4>Book Name</h4>
                           <p className="mb-0">Issued Date: 24/08/2003</p>
-                          <p className="mb-0">Return Date: 12/06/2003 </p>
+                          <p className="mb-0">Return Date: /06/2003 </p>
                         </div>
                       </div>
                     </div>

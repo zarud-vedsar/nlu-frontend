@@ -452,6 +452,14 @@ function AttendanceHIstory() {
                                       </th>
                                     )
                                   )}
+                                  {month?.students[0]?.attendance?.map(
+                                    (day) => (
+                                      <th key={day.dat} scope="col">
+                                        {day.day}
+                                      </th>
+                                    )
+                                  )}
+
                                   <th scope="col" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>Class</th>
                                   <th scope="col"  style={{backgroundColor:"rgb(231 227 227)"}}>T-P</th>
                                   <th scope="col"  style={{backgroundColor:"rgb(231 227 227)"}}>T-OD</th>
@@ -639,29 +647,6 @@ function AttendanceHIstory() {
                   />
                 </Form.Group>
               </Col>
-              <div className="col-md-12 form-group">
-                <label className="font-weight-semibold">Select Student</label>
-                <Select
-                  options={studentListing?.map((student) => ({
-                    value: student?.id,
-                    label: `${student?.sname} (${student?.enrollmentNo})`,
-                  }))}
-                  onChange={(selectedOption) => {
-                    setFilters({
-                      ...filters,
-                      studentId: selectedOption.value,
-                    });
-                  }}
-                  value={
-                    selectedStudent
-                      ? {
-                        value: selectedStudent.id,
-                        label: `${selectedStudent.sname} (${selectedStudent.enrollmentNo})`,
-                      }
-                      : { value: "", label: "Select" }
-                  }
-                />
-              </div>
               <div className="col-md-12 col-12 form-group">
                 <label className="font-weight-semibold" htmlFor="subject_id">
                   Subject
@@ -697,6 +682,30 @@ function AttendanceHIstory() {
                   }
                 />
               </div>
+              <div className="col-md-12 form-group">
+                <label className="font-weight-semibold">Select Student</label>
+                <Select
+                  options={studentListing?.map((student) => ({
+                    value: student?.id,
+                    label: `${student?.sname} (${student?.enrollmentNo})`,
+                  }))}
+                  onChange={(selectedOption) => {
+                    setFilters({
+                      ...filters,
+                      studentId: selectedOption.value,
+                    });
+                  }}
+                  value={
+                    selectedStudent
+                      ? {
+                        value: selectedStudent.id,
+                        label: `${selectedStudent.sname} (${selectedStudent.enrollmentNo})`,
+                      }
+                      : { value: "", label: "Select" }
+                  }
+                />
+              </div>
+              
               <div className="col-md-12  form-group">
                 <label className="font-weight-semibold">Select Year</label>
                 <Select

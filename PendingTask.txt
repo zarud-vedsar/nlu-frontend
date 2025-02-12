@@ -66,7 +66,6 @@ Today --------
 6.  Warden assignment Hostel Wise.
 7.  Substitute System in Class Timetable.This Gave need of taking multiple attendace of same class on same day.
 
-
 changes 
 -------------
 1.  OPAC System in Library (Assigning the books the location of shelf Where it is kept).

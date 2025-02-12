@@ -137,7 +137,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
   );
 };
 
-const Navbar = ({ toggleExpand, toggleFolded}) => {
+const Navbar = ({ toggleExpand, toggleFolded }) => {
   const [activeSidebarMenu, setActiveSidebarMenu] = useState(null);
   const [activeSubSidebarMenu, setActiveSubSidebarMenu] = useState(null);
   const [expand, setExpand] = useState(false);
@@ -220,17 +220,17 @@ const Navbar = ({ toggleExpand, toggleFolded}) => {
           { subtitle: "Book Catalogue", url: "book-catalogue" },
         ],
       },
-      {
-        title: "Feedback",
-        icon: <AiOutlineAppstore />,
-        url: "",
-        dropdownMenus: [
-          ...(!secureLocalStorage.getItem("sguardianemail")
-            ? [{ subtitle: "Give Feedback", url: "new-feedback" }]
-            : []),
-          { subtitle: "My Feedback", url: "feedback-list" },
-        ],
-      },
+      // {
+      //   title: "Feedback",
+      //   icon: <AiOutlineAppstore />,
+      //   url: "",
+      //   dropdownMenus: [
+      //     ...(!secureLocalStorage.getItem("sguardianemail")
+      //       ? [{ subtitle: "Give Feedback", url: "new-feedback" }]
+      //       : []),
+      //     { subtitle: "My Feedback", url: "feedback-list" },
+      //   ],
+      // },
 
       {
         title: "Learning Management System",
@@ -251,12 +251,12 @@ const Navbar = ({ toggleExpand, toggleFolded}) => {
         ],
       },
       {
-        title: "Job",
+        title: "Placement",
         icon: <AiOutlineAppstore />,
         url: "",
         dropdownMenus: [
-          { subtitle: "Job List", url: "joblist" },
-          { subtitle: "Job Applied History", url: "job-applied-history" },
+          { subtitle: "Placement List", url: "joblist" },
+          { subtitle: "Placement Applied History", url: "job-applied-history" },
         ],
       },
       {
@@ -329,8 +329,8 @@ const Navbar = ({ toggleExpand, toggleFolded}) => {
     await studentRecordById(secureLocalStorage.getItem("studentId")).then(
       (res) => {
         if (res.length > 0) {
-         
-          secureLocalStorage.setItem("sname",res[0]?.sname);
+
+          secureLocalStorage.setItem("sname", res[0]?.sname);
           setStudentPersonalDetail({
             name: res[0]?.sname,
             pic: res[0]?.spic,
@@ -352,8 +352,8 @@ const Navbar = ({ toggleExpand, toggleFolded}) => {
         `${NODE_API_URL}/api/course-selection/fetchCurrentCourse`,
         formData
       );
-     
-      
+
+
       if (response.data?.statusCode === 200) {
         if (
           response?.data?.data?.semtitle !== "semester 1" ||
@@ -361,8 +361,8 @@ const Navbar = ({ toggleExpand, toggleFolded}) => {
             response?.data?.data?.approved === 1)
         ) {
           console.log(response)
-          secureLocalStorage.setItem("selectedCourseId",response?.data?.data?.id)
-          
+          secureLocalStorage.setItem("selectedCourseId", response?.data?.data?.id)
+
           setApprovedStudent(true);
         }
       }

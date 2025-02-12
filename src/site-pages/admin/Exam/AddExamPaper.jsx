@@ -7,7 +7,7 @@ import {
   NODE_API_URL,
   CKEDITOR_URL,
 } from "../../../site-components/Helper/Constant"; // The secret base URL we talk to.
-import validator from 'validator'; // Validating like a pro, no shady inputs allowed.
+import validator, { isISBN } from 'validator'; // Validating like a pro, no shady inputs allowed.
 import { toast } from 'react-toastify'; // Toasts: because why suffer in silence when you can pop a notification?
 import secureLocalStorage from 'react-secure-storage'; // Encryption? Check. Security? Double-check.
 import axios from 'axios'; // Axios is like the courier for your HTTP requests.
@@ -291,8 +291,8 @@ function AddExam() {
       handleUpdate(dbId);
     }
   }, [dbId]);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (step) => {
+    
     setIsSubmit(true);
     // Define all required fields and their corresponding error messages
     const requiredFields = [
@@ -340,6 +340,15 @@ function AddExam() {
         if (data?.statusCode === 201) {
           setFormData(initialFormData);
           setSections(sections);
+          console.log(data)
+          if(step==="next"){
+          setTimeout(() => {
+            navigate(`/admin/exam-paper/add-question`, {
+              replace: false,
+              state: { dbId: data?.data?.dbId },
+            });
+          }, 300);
+        }
         }
         toast.success(data.message);
       } else {
@@ -396,7 +405,7 @@ function AddExam() {
             </div>
             <div className="card border-0">
               <div className="card-body px-3">
-                <form onSubmit={handleSubmit}>
+                <form >
                   <div className="row">
                     <div className="col-md-3 col-12 form-group">
                       <label className="font-weight-semibold">
@@ -712,18 +721,29 @@ function AddExam() {
                         onBlur={handleEditorChange}
                       />
                     </div>
-                    <div className="col-md-12 col-12">
+                    <div className="col-md-12 col-12 mt-2 d-flex">
                       <button
-                        className="btn btn-dark d-flex justify-content-center align-items-center"
+                        className="btn btn-success d-flex justify-content-center align-items-center mr-2"
                         type="submit"
+                        onClick={(e)=>{e.preventDefault();handleSubmit("save")}}
                       >
-                        Save{" "}
+                        {dbId ? "Update" : "Save"}
+                        {" "}
                         {isSubmit && (
                           <>
                             &nbsp;<div className="loader-circle"></div>
                           </>
                         )}
+                        
+
                       </button>
+                      {!isSubmit && !dbId &&
+                        <button
+                        className="btn btn-secondary d-flex justify-content-center align-items-center"
+                        type="submit"
+                        onClick={(e)=>{e.preventDefault();handleSubmit("next")}}
+                      > Save And Next</button>
+                        }
                     </div>
                   </div>
                 </form>

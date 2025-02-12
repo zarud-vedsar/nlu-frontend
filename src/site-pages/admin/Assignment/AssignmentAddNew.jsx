@@ -260,8 +260,8 @@ function AssignmentAddNew() {
     }));
   };
   // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (step) => {
+   
     setIsSubmit(true);
     errorMsg("", "");
     if (!formData.courseid) {
@@ -342,6 +342,10 @@ function AssignmentAddNew() {
 
         if (response?.data?.statusCode === 201) {
           setFormData({ ...formData, assignment_title: "" });
+          
+          if(step==="next"){
+            navigate(`/admin/assignment/add-question/${response?.data?.data?.dbId}`)
+          }
         }
       } else {
         toast.error("An error occurred. Please try again.");
@@ -425,7 +429,7 @@ function AssignmentAddNew() {
               <div className="col-md-12 mx-auto">
                 <div className="card">
                   <div className="card-body">
-                    <form onSubmit={handleSubmit}>
+                    <form >
                       <div className="row">
                       <div className="col-md-4 col-12 form-group">
                           <label className="font-weight-semibold">
@@ -763,7 +767,7 @@ function AssignmentAddNew() {
                             ></iframe>
                           </div>
                         )}
-                        <div className='col-md-12 px-0'>
+                        <div className='col-md-12 mb-2'>
                           <label className='font-weight-semibold'>Description</label>
                           <JoditEditor
                             value={formData?.description || ''}
@@ -773,12 +777,25 @@ function AssignmentAddNew() {
                         </div>
                         <div className="col-md-12 col-lg-12 col-12">
                           {!isSubmit ? (
+                            <div className="d-flex ">
                             <button
-                              className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
-                              type="submit"
+                              className="btn btn-success mr-2 "
+                              
+                              onClick={(e)=>{e.preventDefault();handleSubmit("save")}}
                             >
-                              Save{" "}
+                              {assignmentId ? "Update":"Save"}
+                              
                             </button>
+                            {!assignmentId && 
+                            <button
+                              className="btn btn-secondary  "
+                              
+                              onClick={(e)=>{e.preventDefault();handleSubmit("next")}}
+                            >
+                              Save And Next{" "}
+                            </button>
+}
+                            </div>
                           ) : (
                             <button
                               className="btn btn-dark btn-block d-flex justify-content-center align-items-center"

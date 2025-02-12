@@ -19,6 +19,7 @@ import Achivement from "../../site-components/website/home-components/Achivement
 import ContactIcon from "../../site-components/website/home-components/ContactIcon";
 import PopupNotice from "../../site-components/website/home-components/PopupNotice";
 import Facilities from "../../site-components/website/home-components/Facilities";
+import UserTestimonials from "./UserTestimoinals";
 
 function Home() {
   return (
@@ -43,6 +44,7 @@ function Home() {
       <UseFullLinks />
       <SocialMedia />
       <ContactIcon />
+      <UserTestimonials/>
     </>
   );
 }

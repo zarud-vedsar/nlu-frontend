@@ -312,11 +312,11 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       url: "",
       dropdownMenus: [
         { subtitle: "Session", url: "session", icon: <MdClass /> }, // Class icon for session management
-        {
-          subtitle: "Faculty Department",
-          url: "department-faculty",
-          icon: <FaBuilding />,
-        }, // Building icon for faculty departments
+        // {
+        //   subtitle: "Faculty Department",
+        //   url: "department-faculty",
+        //   icon: <FaBuilding />,
+        // }, 
         { subtitle: "Department", url: "department", icon: <FaBuilding /> }, // Building for departments
         {
           subtitle: "Designation",

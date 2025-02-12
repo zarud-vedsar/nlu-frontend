@@ -69,7 +69,7 @@ function AssignmentSubjectDashboard() {
       bformData.append("semesterid", formData?.semesterId);
       bformData.append("student_id", sid);
       bformData.append("subject", formData?.subjectId);
-
+      bformData.append("selectedcourse",secureLocalStorage.getItem("selectedCourseId"));
       
 
       const response = await axios.post(

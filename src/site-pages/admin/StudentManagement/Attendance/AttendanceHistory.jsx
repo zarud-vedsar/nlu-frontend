@@ -452,10 +452,16 @@ function AttendanceHIstory() {
                                       </th>
                                     )
                                   )}
-                                  <th scope="col">Class</th>
-                                  <th scope="col">T-P</th>
-                                  <th scope="col">T-OD</th>
-                                  <th scope="col">T-A</th>
+                               {/* {[...Array(31 - (month?.students[0]?.attendance?.length || 0))].map((_, index) => (
+  <th key={index} scope="col">
+    {index + 1} 
+  </th>
+))} */}
+
+                                  <th scope="col" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>Class</th>
+                                  <th scope="col"  style={{backgroundColor:"rgb(231 227 227)"}}>T-P</th>
+                                  <th scope="col"  style={{backgroundColor:"rgb(231 227 227)"}}>T-OD</th>
+                                  <th scope="col"  style={{backgroundColor:"rgb(231 227 227)",paddingRight:"10px"}}>T-A</th>
 
                                 </tr>
                               </thead>
@@ -496,11 +502,11 @@ function AttendanceHIstory() {
                                       </td>
 
                                     ))}
-                                    <td>{student?.totalClass}</td>
-                                    <td>{student?.presentCount}</td>
-                                    <td>{student?.onDutyCount}</td>
+                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}} >{student?.totalClass}</td>
+                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" }} >{student?.presentCount}</td>
+                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" }}>{student?.onDutyCount}</td>
 
-                                    <td>{student?.absentCount}</td>
+                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)",paddingRight:"10px" }}>{student?.absentCount}</td>
                                   </tr>
                                 ))}
                               </tbody>
@@ -639,29 +645,6 @@ function AttendanceHIstory() {
                   />
                 </Form.Group>
               </Col>
-              <div className="col-md-12 form-group">
-                <label className="font-weight-semibold">Select Student</label>
-                <Select
-                  options={studentListing?.map((student) => ({
-                    value: student?.id,
-                    label: `${student?.sname} (${student?.enrollmentNo})`,
-                  }))}
-                  onChange={(selectedOption) => {
-                    setFilters({
-                      ...filters,
-                      studentId: selectedOption.value,
-                    });
-                  }}
-                  value={
-                    selectedStudent
-                      ? {
-                        value: selectedStudent.id,
-                        label: `${selectedStudent.sname} (${selectedStudent.enrollmentNo})`,
-                      }
-                      : { value: "", label: "Select" }
-                  }
-                />
-              </div>
               <div className="col-md-12 col-12 form-group">
                 <label className="font-weight-semibold" htmlFor="subject_id">
                   Subject
@@ -697,6 +680,30 @@ function AttendanceHIstory() {
                   }
                 />
               </div>
+              <div className="col-md-12 form-group">
+                <label className="font-weight-semibold">Select Student</label>
+                <Select
+                  options={studentListing?.map((student) => ({
+                    value: student?.id,
+                    label: `${student?.sname} (${student?.enrollmentNo})`,
+                  }))}
+                  onChange={(selectedOption) => {
+                    setFilters({
+                      ...filters,
+                      studentId: selectedOption.value,
+                    });
+                  }}
+                  value={
+                    selectedStudent
+                      ? {
+                        value: selectedStudent.id,
+                        label: `${selectedStudent.sname} (${selectedStudent.enrollmentNo})`,
+                      }
+                      : { value: "", label: "Select" }
+                  }
+                />
+              </div>
+              
               <div className="col-md-12  form-group">
                 <label className="font-weight-semibold">Select Year</label>
                 <Select

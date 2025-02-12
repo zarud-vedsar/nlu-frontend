@@ -1,23 +1,31 @@
 // Import the usual suspects (like a hacker assembling a team for a heist)
 import React, { useEffect, useState } from "react"; // React is life; state is chaos.
 import { Link, useNavigate } from "react-router-dom"; // For navigating the matrix.
-import { capitalizeAllLetters, capitalizeFirstLetter, dataFetchingPost, formatDate, goBack } from "../../../site-components/Helper/HelperFunction"; // Escape hatch in case things go south.
+import {
+  capitalizeAllLetters,
+  capitalizeFirstLetter,
+  dataFetchingPost,
+  formatDate,
+  goBack,
+} from "../../../site-components/Helper/HelperFunction"; // Escape hatch in case things go south.
 import {
   NODE_API_URL,
   PHP_API_URL,
-  FILE_API_URL
+  FILE_API_URL,
 } from "../../../site-components/Helper/Constant"; // The secret base URL we talk to.
 import rpnl_logo from "../../../site-components/website/assets/Images/rpnl_logo.png";
 
 import { toast } from "react-toastify"; // Toasts: because why suffer in silence when you can pop a notification?
 import secureLocalStorage from "react-secure-storage"; // Encryption? Check. Security? Double-check.
 import axios from "axios"; // Axios is like the courier for your HTTP requests.
-import Select from 'react-select'; // React Select
+import Select from "react-select"; // React Select
 import { FormField } from "../../../site-components/admin/assets/FormField";
-import './admit.css';
+import "./admit.css";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import useRolePermission from "../../../site-components/admin/useRolePermission";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/Column";
 function AddExam() {
   const [session, setSession] = useState([]); // Session data: the fuel for exams.
   const [courseList, setCourseList] = useState([]); // Courses: pick your poison.
@@ -28,7 +36,7 @@ function AddExam() {
     course_id: "",
     semester_id: "",
     exam_type: "",
-    title: '',
+    title: "",
   });
   const [admitData, setAdmitData] = useState([]);
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
@@ -37,8 +45,8 @@ function AddExam() {
    */
 
   /**
-* ROLE & PERMISSION
-*/
+   * ROLE & PERMISSION
+   */
   const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate(); // Initialize useNavigate
   useEffect(() => {
@@ -110,16 +118,23 @@ function AddExam() {
       );
     }
   };
-  const fetchAdmitCardTitle = async (session, course_id, semester_id, exam_type) => {
-
+  const fetchAdmitCardTitle = async (
+    session,
+    course_id,
+    semester_id,
+    exam_type
+  ) => {
     if (session && course_id && semester_id && exam_type) {
       try {
-        const response = await axios.post(`${NODE_API_URL}/api/exam/admit/fetch-title`, {
-          session,
-          course_id,
-          semester_id,
-          exam_type,
-        });
+        const response = await axios.post(
+          `${NODE_API_URL}/api/exam/admit/fetch-title`,
+          {
+            session,
+            course_id,
+            semester_id,
+            exam_type,
+          }
+        );
         console.log(response);
 
         if (response?.data?.statusCode === 200 && response.data.data?.length) {
@@ -129,7 +144,9 @@ function AddExam() {
             title,
           }));
         } else {
-          console.error("Failed to fetch admit card title: Invalid response or empty data");
+          console.error(
+            "Failed to fetch admit card title: Invalid response or empty data"
+          );
         }
       } catch (error) {
         console.error("Error fetching admit card title:", error);
@@ -146,7 +163,12 @@ function AddExam() {
       admitForm.exam_type,
       setAdmitForm
     );
-  }, [admitForm.session, admitForm.course_id, admitForm.semester_id, admitForm.exam_type]);
+  }, [
+    admitForm.session,
+    admitForm.course_id,
+    admitForm.semester_id,
+    admitForm.exam_type,
+  ]);
   const fetchAdmitCard = async () => {
     if (!admitForm.session) {
       toast.error("Session is required");
@@ -210,6 +232,7 @@ function AddExam() {
   const [loading, setLoading] = useState(false); // State for managing loader visibility
   const [totalFiles, setTotalFiles] = useState(0);
   const [downloaded, setDownloaded] = useState(0);
+  const [viewSelectedIndex, setViewSelectedIndex] = useState(0);
 
   const handleDownload = async () => {
     setLoading(true); // Show loader
@@ -251,12 +274,11 @@ function AddExam() {
   };
   function convertTo12Hour(time) {
     // Assume time is in "HH:MM" format
-    const [hours, minutes] = time.split(':').map(Number);
-    const period = hours >= 12 ? 'PM' : 'AM';
+    const [hours, minutes] = time.split(":").map(Number);
+    const period = hours >= 12 ? "PM" : "AM";
     const adjustedHours = hours % 12 || 12; // Convert 0 to 12 for midnight
-    return `${adjustedHours}:${minutes.toString().padStart(2, '0')} ${period}`;
+    return `${adjustedHours}:${minutes.toString().padStart(2, "0")} ${period}`;
   }
-
 
   return (
     <>
@@ -272,7 +294,7 @@ function AddExam() {
                     <i className="fas fa-home m-r-5" />
                     Exam Management
                   </Link>
-                  
+
                   <span className="breadcrumb-item active">Admit Card</span>
                 </nav>
               </div>
@@ -289,98 +311,102 @@ function AddExam() {
             </div>
             <div className="card">
               <div className="card-body">
-                {
-                  hasPermission("Admit Card", "create") && (
-                    <>
-                      <div className="row">
-                        <div className="col-md-3 col-12 form-group">
-                          <label className="font-weight-semibold">
-                            Session <span className="text-danger">*</span>
-                          </label>
-                          <Select
-                            options={session.map(({ id, dtitle }) => ({
-                              value: id,
-                              label: dtitle,
-                            }))}
-                            onChange={({ value }) => {
-                              setAdmitForm({ ...admitForm, session: value });
-                              fetchSemesterBasedOnCourse(value);
-                            }}
-                            value={
-                              session.find(({ id }) => id === +admitForm.session)
-                                ? {
+                {hasPermission("Admit Card", "create") && (
+                  <>
+                    <div className="row">
+                      <div className="col-md-3 col-12 form-group">
+                        <label className="font-weight-semibold">
+                          Session <span className="text-danger">*</span>
+                        </label>
+                        <Select
+                          options={session.map(({ id, dtitle }) => ({
+                            value: id,
+                            label: dtitle,
+                          }))}
+                          onChange={({ value }) => {
+                            setAdmitForm({ ...admitForm, session: value });
+                            fetchSemesterBasedOnCourse(value);
+                          }}
+                          value={
+                            session.find(({ id }) => id === +admitForm.session)
+                              ? {
                                   value: +admitForm.session,
                                   label: session.find(
                                     ({ id }) => id === +admitForm.session
                                   ).dtitle,
                                 }
-                                : { value: admitForm.session, label: "Select" }
-                            }
-                          />
-                        </div>
-                        <div className="col-md-3 col-12 form-group">
-                          <label htmlFor="examType" className="font-weight-semibold">
-                            Exam Type <span className="text-danger">*</span>
-                          </label>
-                          <select
-                            className="form-control"
-                            value={admitForm.exam_type}
-                            name="examType"
-                            id="examType"
-                            onChange={(e) => {
-                              setAdmitForm({
-                                ...admitForm,
-                                exam_type: e.target.value,
-                              });
-                            }}
-                          >
-                            <option value="">Select</option>
-                            {/* <option value="mid-term">Mid Term</option> */}
-                            <option value="end-term">End Term</option>
-                          </select>
-                        </div>
-                        <div className="col-md-3 col-12 form-group">
-                          <label className="font-weight-semibold">
-                            Course <span className="text-danger">*</span>
-                          </label>
-                          <Select
-                            options={courseList.map(({ id, coursename }) => ({
-                              value: id,
-                              label: coursename,
-                            }))}
-                            onChange={({ value }) => {
-                              setAdmitForm({ ...admitForm, course_id: value });
-                              fetchSemesterBasedOnCourse(value);
-                            }}
-                            value={
-                              courseList.find(({ id }) => id === +admitForm.course_id)
-                                ? {
+                              : { value: admitForm.session, label: "Select" }
+                          }
+                        />
+                      </div>
+                      <div className="col-md-3 col-12 form-group">
+                        <label
+                          htmlFor="examType"
+                          className="font-weight-semibold"
+                        >
+                          Exam Type <span className="text-danger">*</span>
+                        </label>
+                        <select
+                          className="form-control"
+                          value={admitForm.exam_type}
+                          name="examType"
+                          id="examType"
+                          onChange={(e) => {
+                            setAdmitForm({
+                              ...admitForm,
+                              exam_type: e.target.value,
+                            });
+                          }}
+                        >
+                          <option value="">Select</option>
+                          {/* <option value="mid-term">Mid Term</option> */}
+                          <option value="end-term">End Term</option>
+                        </select>
+                      </div>
+                      <div className="col-md-3 col-12 form-group">
+                        <label className="font-weight-semibold">
+                          Course <span className="text-danger">*</span>
+                        </label>
+                        <Select
+                          options={courseList.map(({ id, coursename }) => ({
+                            value: id,
+                            label: coursename,
+                          }))}
+                          onChange={({ value }) => {
+                            setAdmitForm({ ...admitForm, course_id: value });
+                            fetchSemesterBasedOnCourse(value);
+                          }}
+                          value={
+                            courseList.find(
+                              ({ id }) => id === +admitForm.course_id
+                            )
+                              ? {
                                   value: +admitForm.course_id,
                                   label: courseList.find(
                                     ({ id }) => id === +admitForm.course_id
                                   ).coursename,
                                 }
-                                : { value: admitForm.course_id, label: "Select" }
-                            }
-                          />
-                        </div>
-                        <div className="col-md-3 col-12 form-group">
-                          <label className="font-weight-semibold">
-                            Semester <span className="text-danger">*</span>
-                          </label>
-                          <Select
-                            options={semesterList.map(({ id, semtitle }) => ({
-                              value: id,
-                              label: capitalizeFirstLetter(semtitle),
-                            }))}
-                            onChange={({ value }) => {
-                              setAdmitForm({ ...admitForm, semester_id: value });
-                            }}
-                            value={
-                              semesterList.find(
-                                ({ id }) => id === admitForm.semester_id
-                              )
-                                ? {
+                              : { value: admitForm.course_id, label: "Select" }
+                          }
+                        />
+                      </div>
+                      <div className="col-md-3 col-12 form-group">
+                        <label className="font-weight-semibold">
+                          Semester <span className="text-danger">*</span>
+                        </label>
+                        <Select
+                          options={semesterList.map(({ id, semtitle }) => ({
+                            value: id,
+                            label: capitalizeFirstLetter(semtitle),
+                          }))}
+                          onChange={({ value }) => {
+                            setAdmitForm({ ...admitForm, semester_id: value });
+                          }}
+                          value={
+                            semesterList.find(
+                              ({ id }) => id === admitForm.semester_id
+                            )
+                              ? {
                                   value: admitForm.semester_id,
                                   label: capitalizeFirstLetter(
                                     semesterList.find(
@@ -388,72 +414,222 @@ function AddExam() {
                                     ).semtitle
                                   ),
                                 }
-                                : { value: admitForm.semester_id, label: "Select" }
-                            }
-                          />
-                        </div>
-                        <FormField
-                          label="Exam Title"
-                          name="paperCode"
-                          id="paperCode"
-                          required={true}
-                          value={admitForm.title}
-                          column="col-md-12 col-12 form-group"
-                          onChange={(e) => {
-                            setAdmitForm((prev) => ({
-                              ...prev,
-                              title: e.target.value,
-                            }));
-                          }}
-                          placeholder="END-TERM EXAMINATION NOVEMBER-DECEMBER, 2024"
+                              : {
+                                  value: admitForm.semester_id,
+                                  label: "Select",
+                                }
+                          }
                         />
-                        <div className="col-md-12">
-                          <p>Example: END-TERM EXAMINATION NOVEMBER-DECEMBER, 2024</p>
-                        </div>
-                        <div className="col-md-12 col-12">
-                          <button
-                            onClick={fetchAdmitCard}
-                            className="btn btn-dark d-flex justify-content-center align-items-center"
-                            type="submit"
-                          >
-                            Submit{" "}
-                            {isSubmit && (
-                              <>
-                                &nbsp;<div className="loader-circle"></div>
-                              </>
-                            )}
-                          </button>
-                        </div>
                       </div>
-                    </>
-                  )}
+                      <FormField
+                        label="Exam Title"
+                        name="paperCode"
+                        id="paperCode"
+                        required={true}
+                        value={admitForm.title}
+                        column="col-md-12 col-12 form-group"
+                        onChange={(e) => {
+                          setAdmitForm((prev) => ({
+                            ...prev,
+                            title: e.target.value,
+                          }));
+                        }}
+                        placeholder="END-TERM EXAMINATION NOVEMBER-DECEMBER, 2024"
+                      />
+                      <div className="col-md-12">
+                        <p>
+                          Example: END-TERM EXAMINATION NOVEMBER-DECEMBER, 2024
+                        </p>
+                      </div>
+                      <div className="col-md-12 col-12">
+                        <button
+                          onClick={fetchAdmitCard}
+                          className="btn btn-dark d-flex justify-content-center align-items-center"
+                          type="submit"
+                        >
+                          Submit{" "}
+                          {isSubmit && (
+                            <>
+                              &nbsp;<div className="loader-circle"></div>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
             <div className="row">
-              <div className="col-md-12">
-                {
-                  hasPermission("Admit Card", "download") && (
-                    <button
-                      onClick={handleDownload}
-                      className="btn border-0 btn-primary d-flex justify-content-center align-items-center"
-                      disabled={loading} // Disable button while loading
-                    >
-                      <i className="fas fa-download"></i> &nbsp; Download {loading && (
-                        <div className="loader-circle"></div>
-                      )}
-                    </button>
-                  )
-                }
+              {/* <div className="col-md-12">
+                {hasPermission("Admit Card", "download") && (
+                  <button
+                    onClick={handleDownload}
+                    className="btn border-0 btn-primary d-flex justify-content-center align-items-center"
+                    disabled={loading} // Disable button while loading
+                  >
+                    <i className="fas fa-download"></i> &nbsp; Download{" "}
+                    {loading && <div className="loader-circle"></div>}
+                  </button>
+                )}
                 <div className="mt-3">Total Files: {totalFiles}</div>
                 <div className="mt-3">Total Downloaded: {downloaded}</div>
-              </div>
+              </div> */}
               <div className="col-md-12">
-                {
-                  admitData && admitData.length > 0 && admitData.map((item, index) => (
-                    <div className="container-main" key={index} data-jsx-template={index}>
+                <div className="card">
+                  <div className="card-body">
+                    {/* Search Box */}
+
+                    <div
+                      className={`table-responsive ${
+                        admitData.length < 0 ? "form" : ""
+                      }`}
+                    >
+                      {admitData.length > 0 ? (
+                        <DataTable
+                          value={admitData}
+                          removableSort
+                          paginator
+                          rows={10}
+                          rowsPerPageOptions={[10, 25, 50]}
+                          emptyMessage="No records found"
+                          className="p-datatable-custom"
+                          tableStyle={{ minWidth: "50rem" }}
+                          sortMode="multiple"
+                        >
+                          <Column
+                            body={(row, { rowIndex }) => rowIndex + 1}
+                            header="#"
+                            sortable
+                          />
+                          <Column
+                            header="Student"
+                            body={(rowData) => (
+                              <div
+                                className="info-column d-flex align-items-center
+                                                        "
+                              >
+                                <div className="info-image mr-4">
+                                  {rowData.pic ? (
+                                    <img
+                                      src={`${FILE_API_URL}/${rowData?.pic}`}
+                                      alt=""
+                                      style={{
+                                        width: "40px",
+                                        height: "40px",
+                                        backgroundColor: "#e6fff3",
+                                        fontSize: "20px",
+                                        color: "#00a158",
+                                      }}
+                                      className="rounded-circle d-flex justify-content-center align-items-center"
+                                    />
+                                  ) : (
+                                    <div
+                                      style={{
+                                        width: "40px",
+                                        height: "40px",
+                                        backgroundColor: "#e6fff3",
+                                        fontSize: "20px",
+                                        color: "#00a158",
+                                      }}
+                                      className="rounded-circle d-flex justify-content-center align-items-center"
+                                    >
+                                      {rowData?.candidate_name[0]}
+                                    </div>
+                                  )}
+                                </div>
+                                <div>
+                                  <div className="info-name">
+                                    <span>{`${rowData.candidate_name}`}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            sortable
+                          />
+                          <Column
+                            body={(row) => row.roll_no}
+                            header="Roll No"
+                            sortable
+                          />
+                          <Column
+                            body={(row) =>
+                              capitalizeFirstLetter(row?.exam_type)
+                            }
+                            header="Examination Type"
+                            sortable
+                          />
+
+                          <Column
+                            body={(row) => row.status}
+                            header="Status"
+                            sortable
+                          />
+                          {console.log(viewSelectedIndex)}
+                          <Column
+                            header="Action"
+                            body={(rowData,{rowIndex}) => (
+                              <div className="d-flex justify-content-center">
+                                <i className={`fas fa-eye ${viewSelectedIndex==rowIndex?'text-primary':'text-warning'}`} onClick={()=>setViewSelectedIndex(rowIndex)}>
+
+                                </i>
+                                
+                              </div>
+                            )}
+                          />
+                        </DataTable>
+                      ) : (
+                        <>
+                          <div className="col-md-12 alert alert-danger">
+                            Data not available
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {admitData && admitData.length>0 && 
+              <div className="col-md-12">
+              <div
+                      className="card"
+                      
+                      
+                    >
+                      <div className="card-body">
+                {hasPermission("Admit Card", "download") && (
+                  <button
+                    onClick={handleDownload}
+                    className="btn border-0 btn-primary d-flex justify-content-center align-items-center"
+                    disabled={loading} // Disable button while loading
+                  >
+                    <i className="fas fa-download"></i> &nbsp; Download{" "}
+                    {loading && <div className="loader-circle"></div>}
+                  </button>
+                )}
+               
+              </div>
+              </div>
+              </div> }
+              <div className="col-md-12">
+                {admitData &&
+                  admitData.length > 0 &&
+
+                 
+                    <div
+                      className="container-main"
+                      
+                      data-jsx-template={viewSelectedIndex}
+                    >
                       <div className="inner-container">
                         <div className="id-header-wrapper">
-                          <div><img src={rpnl_logo} alt="" className="id-header-img" /></div>
+                          <div>
+                            <img
+                              src={rpnl_logo}
+                              alt=""
+                              className="id-header-img"
+                            />
+                          </div>
                           <div className="id-header-content">
                             <h4>Dr. Rajendra Prasad</h4>
                             <h3>National Law University, Prayagraj</h3>
@@ -469,37 +645,62 @@ function AddExam() {
                           <div className="id-personal-details">
                             <p className="id-padd-p">
                               <span className="id-text-bold">Roll No.</span>:
-                              <span className="id-text-light">{item?.roll_no}</span>
+                              <span className="id-text-light">
+                                { admitData[viewSelectedIndex]?.roll_no}
+                              </span>
                             </p>
                             <p className="id-padd-p">
-                              <span className="id-text-bold">Candidate Name</span>:{" "}
-                              <span className="id-text-light">{item?.candidate_name}</span>
+                              <span className="id-text-bold">
+                                Candidate Name
+                              </span>
+                              :{" "}
+                              <span className="id-text-light">
+                                { admitData[viewSelectedIndex]?.candidate_name}
+                              </span>
                             </p>
                             <p className="id-padd-p">
                               <span className="id-text-bold">Semester</span>:
-                              <span className="id-text-light">{item?.semester}</span>
+                              <span className="id-text-light">
+                                { admitData[viewSelectedIndex]?.semester}
+                              </span>
                             </p>
                             <p className="id-padd-p">
                               <span className="id-text-bold">Program</span>:
-                              <span className="id-text-light">{item?.program}</span>
+                              <span className="id-text-light">
+                                { admitData[viewSelectedIndex]?.program}
+                              </span>
                             </p>
                             <p className="id-padd-p">
-                              <span className="id-text-bold">Examination Type</span>:
-                              <span className="id-text-light">{item?.exam_type}</span>
+                              <span className="id-text-bold">
+                                Examination Type
+                              </span>
+                              :
+                              <span className="id-text-light">
+                                {capitalizeFirstLetter( admitData[viewSelectedIndex]?.exam_type)}
+                              </span>
                             </p>
                             <p className="id-padd-p">
-                              <span className="id-text-bold">Status (Eligible/Debarred)</span>:
-                              <span className="id-text-light">{item?.status ? capitalizeAllLetters(item?.status) : item?.status}</span>
+                              <span className="id-text-bold">
+                                Status (Eligible/Debarred)
+                              </span>
+                              :
+                              <span className="id-text-light">
+                                { admitData[viewSelectedIndex]?.status
+                                  ? capitalizeAllLetters( admitData[viewSelectedIndex]?.status)
+                                  :  admitData[viewSelectedIndex]?.status}
+                              </span>
                             </p>
                           </div>
                           <div className="id-candidate-photo-wrapper">
                             <div className="id-candidate-photo">
-                              <img src={`${FILE_API_URL}/${item?.pic}`} />
+                              <img src={`${FILE_API_URL}/${ admitData[viewSelectedIndex]?.pic}`} />
                             </div>
                             <div className="id-candidate-sign">
-                              <img src={`${FILE_API_URL}/${item?.sign}`} />
+                              <img src={`${FILE_API_URL}/${ admitData[viewSelectedIndex]?.sign}`} />
                             </div>
-                            <span className="id-cendidate-sign-text">(Candidate's Signature)</span>
+                            <span className="id-cendidate-sign-text">
+                              (Candidate's Signature)
+                            </span>
                           </div>
                         </div>
                         <div className="details">
@@ -512,24 +713,34 @@ function AddExam() {
                                 <th>Subject</th>
                                 <th>Venue</th>
                               </tr>
-                              {
-                                item?.papers.map((paper, index) => (
-                                  <tr key={index}>
-                                    <td>
-                                      {paper.examDate
-                                        ? `${formatDate(paper.examDate)}, ${new Date(paper.examDate).toLocaleDateString('en-US', { weekday: 'long' })}`
-                                        : paper.examDate}
-                                    </td>
+                              { admitData[viewSelectedIndex]?.papers.map((paper, index) => (
+                                <tr key={index}>
+                                  <td>
+                                    {paper.examDate
+                                      ? `${formatDate(
+                                          paper.examDate
+                                        )}, ${new Date(
+                                          paper.examDate
+                                        ).toLocaleDateString("en-US", {
+                                          weekday: "long",
+                                        })}`
+                                      : paper.examDate}
+                                  </td>
 
-                                    <td>
-                                      {paper.startTime ? convertTo12Hour(paper.startTime) : ""} - {paper.endTime ? convertTo12Hour(paper.endTime) : ""}
-                                    </td>
-                                    <td>{paper.paperCode}</td>
-                                    <td>{paper.subject}</td>
-                                    <td>{paper.venue}</td>
-                                  </tr>
-                                ))
-                              }
+                                  <td>
+                                    {paper.startTime
+                                      ? convertTo12Hour(paper.startTime)
+                                      : ""}{" "}
+                                    -{" "}
+                                    {paper.endTime
+                                      ? convertTo12Hour(paper.endTime)
+                                      : ""}
+                                  </td>
+                                  <td>{paper.paperCode}</td>
+                                  <td>{paper.subject}</td>
+                                  <td>{paper.venue}</td>
+                                </tr>
+                              ))}
                             </tbody>
                           </table>
                         </div>
@@ -537,45 +748,51 @@ function AddExam() {
                           <h3>Important Instructions:</h3>
                           <ul>
                             <li>
-                              It is mandatory for the candidates to carry their admit card during
-                              the course of the examination.
+                              It is mandatory for the candidates to carry their
+                              admit card during the course of the examination.
                             </li>
                             <li>
-                              Candidates need to put their signature in the space provided below the
-                              photograph.
+                              Candidates need to put their signature in the
+                              space provided below the photograph.
                             </li>
                             <li>
-                              Each candidate shall show his or her 'Admit Card' to the
-                              Superintendent of Examination at the time of examination and is
-                              required to produce the same to the invigilator during the course of
-                              the examination.
+                              Each candidate shall show his or her 'Admit Card'
+                              to the Superintendent of Examination at the time
+                              of examination and is required to produce the same
+                              to the invigilator during the course of the
+                              examination.
                             </li>
                             <li>
-                              The candidates are directed to occupy their respective seats 30
-                              minutes before the commencement of the examination.
+                              The candidates are directed to occupy their
+                              respective seats 30 minutes before the
+                              commencement of the examination.
                             </li>
                             <li>
-                              Candidates shall not be allowed 30 minutes after the commencement of
-                              the examination.
+                              Candidates shall not be allowed 30 minutes after
+                              the commencement of the examination.
                             </li>
                             <li>
-                              Candidates are not allowed to take with them any unauthorized
-                              material, including mobile phones, smartwatches, pen drives, books,
-                              notes, Bluetooth devices, etc., to the examination center.
+                              Candidates are not allowed to take with them any
+                              unauthorized material, including mobile phones,
+                              smartwatches, pen drives, books, notes, Bluetooth
+                              devices, etc., to the examination center.
                             </li>
                             <li>
-                              The Superintendent of Examination, the invigilator, and the
-                              Examination team can do the physical search of the candidates at any
-                              time during the course of the examination to ensure that they do not
-                              have any unauthorized material in their possession.
+                              The Superintendent of Examination, the
+                              invigilator, and the Examination team can do the
+                              physical search of the candidates at any time
+                              during the course of the examination to ensure
+                              that they do not have any unauthorized material in
+                              their possession.
                             </li>
                           </ul>
-                          <p className="id-dean-examination">Dean Examination</p>
+                          <p className="id-dean-examination">
+                            Dean Examination
+                          </p>
                         </div>
                       </div>
                     </div>
-                  ))
-                }
+                  }
               </div>
             </div>
           </div>

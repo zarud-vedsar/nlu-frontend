@@ -38,8 +38,8 @@ function MarkAttendanceForm() {
     []
   );
   /**
-* ROLE & PERMISSION
-*/
+   * ROLE & PERMISSION
+   */
   const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate(); // Initialize useNavigate
   useEffect(() => {
@@ -154,7 +154,7 @@ function MarkAttendanceForm() {
       }
     }
   };
-  
+
   const errorMsg = (field, msg) => {
     setError((prev) => ({
       ...prev,
@@ -164,7 +164,7 @@ function MarkAttendanceForm() {
   };
   // Handle form submission
   const loadAttendanceList = async (e) => {
-    e.preventDefault();
+   if(e) e.preventDefault();
     setIsFetching(true);
     errorMsg("", "");
 
@@ -227,7 +227,12 @@ function MarkAttendanceForm() {
       const status = error.response?.data?.status;
       const errorField = error.response?.data?.errorField;
 
-      if (status === 400 || status === 404 || status === 500 || status === 403) {
+      if (
+        status === 400 ||
+        status === 404 ||
+        status === 500 ||
+        status === 403
+      ) {
         if (errorField) errorMsg(errorField, error.response?.data?.msg);
         toast.error(error.response.data.msg || "A server error occurred.");
       } else {
@@ -355,7 +360,6 @@ function MarkAttendanceForm() {
   //   }
   // }, [assignmentId]);
 
- 
   const markAll = (value) => {
     const updatedAttendanceList = studentListWithAttendance.map((student) => ({
       ...student,
@@ -375,7 +379,7 @@ function MarkAttendanceForm() {
                   <a href="./" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" /> Attendance Management
                   </a>
-                  
+
                   <span className="breadcrumb-item">Mark Class Attendance</span>
                 </nav>
               </div>
@@ -419,11 +423,11 @@ function MarkAttendanceForm() {
                             value={
                               session.find(({ id }) => id === +formData.session)
                                 ? {
-                                  value: +formData.session,
-                                  label: session.find(
-                                    ({ id }) => id === +formData.session
-                                  ).dtitle,
-                                }
+                                    value: +formData.session,
+                                    label: session.find(
+                                      ({ id }) => id === +formData.session
+                                    ).dtitle,
+                                  }
                                 : { value: formData.session, label: "Select" }
                             }
                           />
@@ -455,12 +459,12 @@ function MarkAttendanceForm() {
                                   item.id === parseInt(formData.course_id)
                               )
                                 ? {
-                                  value: parseInt(formData.course_id),
-                                  label: courseListing.find(
-                                    (item) =>
-                                      item.id === parseInt(formData.course_id)
-                                  ).coursename,
-                                }
+                                    value: parseInt(formData.course_id),
+                                    label: courseListing.find(
+                                      (item) =>
+                                        item.id === parseInt(formData.course_id)
+                                    ).coursename,
+                                  }
                                 : { value: formData.course_id, label: "Select" }
                             }
                           />
@@ -499,18 +503,18 @@ function MarkAttendanceForm() {
                                 (item) => item.id === formData.semester_id
                               )
                                 ? {
-                                  value: formData.semester_id,
-                                  label: capitalizeFirstLetter(
-                                    semesterListing.find(
-                                      (item) =>
-                                        item.id === formData.semester_id
-                                    ).semtitle
-                                  ),
-                                }
+                                    value: formData.semester_id,
+                                    label: capitalizeFirstLetter(
+                                      semesterListing.find(
+                                        (item) =>
+                                          item.id === formData.semester_id
+                                      ).semtitle
+                                    ),
+                                  }
                                 : {
-                                  value: formData.semester_id,
-                                  label: "Select",
-                                }
+                                    value: formData.semester_id,
+                                    label: "Select",
+                                  }
                             }
                           />
                           {error.field === "semester_id" && (
@@ -542,18 +546,18 @@ function MarkAttendanceForm() {
                                 (item) => item.id === formData.subject_id
                               )
                                 ? {
-                                  value: formData.subject_id,
-                                  label: capitalizeFirstLetter(
-                                    subjectListing.find(
-                                      (item) =>
-                                        item.id === formData.subject_id
-                                    ).subject
-                                  ),
-                                }
+                                    value: formData.subject_id,
+                                    label: capitalizeFirstLetter(
+                                      subjectListing.find(
+                                        (item) =>
+                                          item.id === formData.subject_id
+                                      ).subject
+                                    ),
+                                  }
                                 : {
-                                  value: formData.subject_id,
-                                  label: "Select",
-                                }
+                                    value: formData.subject_id,
+                                    label: "Select",
+                                  }
                             }
                           />
                           {error.field === "subject_id" && (
@@ -573,8 +577,8 @@ function MarkAttendanceForm() {
                             value={
                               formData.date
                                 ? new Date(formData.date)
-                                  .toISOString()
-                                  .split("T")[0]
+                                    .toISOString()
+                                    .split("T")[0]
                                 : ""
                             }
                             onChange={(e) => {
@@ -638,6 +642,7 @@ function MarkAttendanceForm() {
                                 <td>{formatDate(filter.date)}</td>
                                 <td>
                                   <Select
+                                  isDisabled={row.attendance==="CC"}
                                     value={
                                       [
                                         { value: "P", label: "Present" },
@@ -657,12 +662,12 @@ function MarkAttendanceForm() {
                                           (student) =>
                                             student.id === row.id
                                               ? {
-                                                ...student,
-                                                attendance:
-                                                  selectedOption.value,
-                                                sessionsemester:
-                                                  row.sessionsemester,
-                                              }
+                                                  ...student,
+                                                  attendance:
+                                                    selectedOption.value,
+                                                  sessionsemester:
+                                                    row.sessionsemester,
+                                                }
                                               : student
                                         );
                                       setStudentListWithAttendance(
@@ -673,17 +678,33 @@ function MarkAttendanceForm() {
                                       { value: "P", label: "Present" },
                                       { value: "A", label: "Absent" },
                                       { value: "OD", label: "On Duty" },
-                                      { value: "CC", label: "Class Cancel" },
+                                      
                                     ]}
                                     placeholder="Select Status"
                                   />
                                 </td>
                                 <td>
-                                  {row?.attendance ==="P" && <div className="badge badge-success">Present</div>}
-                                  {row?.attendance ==="A" && <div className="badge badge-danger">Absent</div>}
-                                  {row?.attendance ==="OD" && <div className="badge badge-success">Warning</div>}
-                                  {row?.attendance ==="CC" && <div className="badge badge-secondary">Class Cancel</div>}
-                                  {row?.attendance ==="CC" && <div className="badge badge-secondary">Class Cancel</div>}
+                                  {row?.attendance === "P" ? (
+                                    <div className="badge badge-success">
+                                      Present
+                                    </div>
+                                  ) : row?.attendance === "A" ? (
+                                    <div className="badge badge-danger">
+                                      Absent
+                                    </div>
+                                  ) : row?.attendance === "OD" ? (
+                                    <div className="badge badge-warning">
+                                      Warning
+                                    </div>
+                                  ) : row?.attendance === "CC" ? (
+                                    <div className="badge badge-secondary">
+                                      Class Cancel
+                                    </div>
+                                  ) : (
+                                    <div className="badge badge-light">
+                                      Not Marked
+                                    </div>
+                                  )}
                                 </td>
                               </tr>
                             ))
@@ -699,53 +720,70 @@ function MarkAttendanceForm() {
                       <div className="row ">
                         {studentListWithAttendance.length > 0 && (
                           <div className="col-12 d-flex justify-content-between">
-                          <div >
-                            
+                            <div>
+                              <button
+                                className="btn btn-success mr-2"
+                                onClick={() => markAll("P")}
+                              >
+                                Mark All Present
+                              </button>
 
-                            <button
-                              className="btn btn-success mr-2"
-                              onClick={() => markAll("P")}
-                            >
-                              Mark All Present
-                            </button>
+                              <button
+                                className="btn btn-danger mr-2"
+                                onClick={() => markAll("A")}
+                              >
+                                Mark All Absent
+                              </button>
 
+                              <button
+                                className="btn btn-warning mr-2"
+                                onClick={() => markAll("OD")}
+                              >
+                                Mark All On Duty
+                              </button>
+                              <button
+                                className="btn btn-secondary mr-2"
+                                onClick={() => markAll("CC")}
+                              >
+                                Mark Class Cancel
+                              </button>
+                            </div>
+                            <div className="d-flex">
+                            {!isFetching ? (
                             <button
-                              className="btn btn-danger mr-2"
-                              onClick={() => markAll("A")}
+                              className="btn btn-primary   mr-2"
+                              onClick={loadAttendanceList}
                             >
-                              Mark All Absent
-                            </button>
-
-                            <button
-                              className="btn btn-warning mr-2"
-                              onClick={() => markAll("OD")}
-                            >
-                              Mark All On Duty
-                            </button>
-                            <button
-                              className="btn btn-light mr-2"
-                              onClick={() => markAll("CC")}
-                            >
-                              Mark Class Cancel
-                            </button>
-                          </div>
-                          <div>{!isSubmit ? (
-                            <button
-                              className="btn btn-secondary d-flex justify-content-center align-items-center mr-2"
-                              onClick={handleSubmit}
-                            >
-                              Save
+                              Reset{" "}
                             </button>
                           ) : (
                             <button
-                              className="btn btn-secondary d-flex justify-content-center align-items-center mr-2"
+                              className="btn btn-dark  "
+                              type="submit"
                               disabled
                             >
-                              Saving &nbsp;
+                              Loading &nbsp;{" "}
                               <div className="loader-circle"></div>
                             </button>
-                          )} </div>
-                         </div>
+                          )}
+                              {!isSubmit ? (
+                                <button
+                                  className="btn btn-secondary d-flex justify-content-center align-items-center mr-2"
+                                  onClick={handleSubmit}
+                                >
+                                  Save
+                                </button>
+                              ) : (
+                                <button
+                                  className="btn btn-secondary d-flex justify-content-center align-items-center mr-2"
+                                  disabled
+                                >
+                                  Saving &nbsp;
+                                  <div className="loader-circle"></div>
+                                </button>
+                              )}{" "}
+                            </div>
+                          </div>
                         )}
                       </div>
                     </div>

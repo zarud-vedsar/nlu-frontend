@@ -5159,10 +5159,7 @@ table.table.tblpad-10>tbody>tr>td {
 	padding: 60px 0px 80px;
 }
 
-.letestnncard {
-	width: 95%;
-	min-height: 289px;
-}
+
 .about-text-container h5 {
 	margin-bottom: 10px;
 	margin-top: 15px;
@@ -5174,6 +5171,13 @@ table.table.tblpad-10>tbody>tr>td {
 .about-text-container ul li {
 	list-style-type: disc;
   }
+
+
+  .letestnncard {
+	width: 100%;
+}
+
+
 @media (max-width:768px) {
 	.title-img-bx {
 		justify-content: center;

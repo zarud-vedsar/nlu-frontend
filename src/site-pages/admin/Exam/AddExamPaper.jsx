@@ -373,12 +373,22 @@ function AddExam() {
   }
 
   
-  const TotalTimeDuration = useMemo(
-    ()=>{
-      console.log(formData?.startTime,formData?.endTime)
-    },
-    [formData?.startTime, formData?.endTime]
-  );
+  const TotalTimeDuration = useMemo(() => {
+    if (!formData?.startTime || !formData?.endTime) return "00:00";
+  
+    const [startHours, startMinutes] = formData.startTime.split(":").map(Number);
+    const [endHours, endMinutes] = formData.endTime.split(":").map(Number);
+  
+    let totalMinutes = (endHours * 60 + endMinutes) - (startHours * 60 + startMinutes);
+  
+    if (totalMinutes < 0) totalMinutes += 24 * 60; // Handle overnight time calculation
+  
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    setFormData((prev)=>({...prev,timeDuration:`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`}));
+   
+  }, [formData?.startTime, formData?.endTime]);
+  
 
   return (
     <>

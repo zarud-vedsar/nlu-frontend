@@ -33,28 +33,33 @@ function UserTestimonials() {
     loadData();
   }, []);
 
-  const CustomArrow = ({ onClick, direction }) => (
-    <div
-      onClick={onClick}
-      style={{
-        position: "absolute",
-        top: "50%",
-        [direction]: "-40px",
-        transform: "translateY(-50%)",
-        background: "#2e3e50",
-        borderRadius: "50%",
-        width: "40px",
-        height: "40px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        zIndex: 10,
-      }}
-    >
-      {direction === "left" ? <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
-    </div>
-  );
+  const CustomArrow = ({ onClick, direction }) => {
+    const isMobile = window.innerWidth <= 768; // Check for mobile view
+  
+    return (
+      <div
+        onClick={onClick}
+        style={{
+          position: "absolute",
+          top: "50%",
+          [direction]: isMobile ? "-15px" : "-40px", // Adjust based on screen width
+          transform: "translateY(-50%)",
+          background: "#2e3e50",
+          borderRadius: "50%",
+          width: "40px",
+          height: "40px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          zIndex: 10,
+        }}
+      >
+        {direction === "left" ? <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
+      </div>
+    );
+  };
+  
 
   const settings = {
     dots: true,
@@ -82,7 +87,7 @@ function UserTestimonials() {
      
        <div className="row">
             <div className="col-md-12 mb-3 text-center">
-              <h2 className="heading-primary2">What Our Student Say</h2>
+              <h2 className="heading-primary2">What Our Students Say</h2>
               <div className="heading-divider"></div>
             </div>
           </div>
@@ -175,6 +180,13 @@ function UserTestimonials() {
           }
 
           @media (max-width: 768px) {
+            .slick-prev {
+    left: 0 !important;
+  }
+
+  .slick-next {
+    right: 0 !important;
+  }
             .testimonial-card {
               padding: 15px;
             }

@@ -35,32 +35,32 @@ const UseFullLinks = () => {
     }
   };
 
-  const CustomArrow = ({ onClick, direction }) => (
-    <div
-      onClick={onClick}
-      style={{
-        position: "absolute",
-        top: "50%",
-        [direction]: "-40px", // ✅ Position based on direction
-        transform: "translateY(-50%)",
-        background: "#2e3e50",
-        borderRadius: "50%",
-        width: "40px",
-        height: "40px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        zIndex: 10,
-      }}
-    >
-      {direction === "left" ? (
-        <FaChevronLeft color="white" size={20} />
-      ) : (
-        <FaChevronRight color="white" size={20} />
-      )}
-    </div>
-  );
+  const CustomArrow = ({ onClick, direction }) => {
+     const isMobile = window.innerWidth <= 768; // Check for mobile view
+   
+     return (
+       <div
+         onClick={onClick}
+         style={{
+           position: "absolute",
+           top: "50%",
+           [direction]: isMobile ? "-15px" : "-40px", // Adjust based on screen width
+           transform: "translateY(-50%)",
+           background: "#2e3e50",
+           borderRadius: "50%",
+           width: "40px",
+           height: "40px",
+           display: "flex",
+           alignItems: "center",
+           justifyContent: "center",
+           cursor: "pointer",
+           zIndex: 10,
+         }}
+       >
+         {direction === "left" ? <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
+       </div>
+     );
+   };
   
   const sliderSettings = {
     dots: false,

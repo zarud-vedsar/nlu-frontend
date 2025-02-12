@@ -6,12 +6,16 @@ Dilsad ------
 
 
 Today -------- 4 issue done 
+
 8. Auto calculation of maximum mark in end term and mid term both at the time of marks uploading
+
+10. session wise student fetching dropdown
 
 11. Excel sheet in attendance chart 
 6. hostel mark attendace should be same as class mark attendance
+13.fixed book catalogue in student 
 
-10. session wise student fetching dropdown
+
 
 
 --------8 February --------

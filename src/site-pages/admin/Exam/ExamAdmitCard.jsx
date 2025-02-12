@@ -138,7 +138,7 @@ function AddExam() {
             exam_type,
           }
         );
-        console.log(response);
+        
 
         if (response?.data?.statusCode === 200 && response.data.data?.length) {
           const title = response.data.data[0].title; // Adjust based on API response structure
@@ -492,7 +492,7 @@ function AddExam() {
                         <>
                         <div className="p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
                                           <div className="search-icon">
-                                            <i className="pi pi-search" ></i>
+                                          <i className="pi pi-search" />
                                           </div>
                                           <InputText
                                             type="search"
@@ -586,7 +586,7 @@ function AddExam() {
                             sortable
                              filterField="status"
                           />
-                          {console.log(viewSelectedIndex)}
+                          
                           <Column
                             header="Action"
                             body={(rowData,{rowIndex}) => (

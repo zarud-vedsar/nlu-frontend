@@ -53,6 +53,7 @@ Today --------
 5. notification system for modator to notify faculty to submit exam paper if not submitted yet
 6. mark freezing system --> 
 4. submit exam paper to exam cell (button), remove all action button from exam paper
+5. Academic Calendar system.
 
 
 11-02-2025

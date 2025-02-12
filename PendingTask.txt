@@ -7,7 +7,6 @@ Dilsad ------
 
 
 Today --------
-4. Remove Class cancel from dropdown in class attendance 
 5. Generate attendance marks button should be there only while uploading end semeter marks in exam paper instead of generate attendance
 6. Remove from sidebar faculty department
 8. Auto calculation of maximum mark in end term and mid term both at the time of marks uploading

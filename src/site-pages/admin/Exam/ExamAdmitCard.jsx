@@ -26,6 +26,8 @@ import html2canvas from "html2canvas";
 import useRolePermission from "../../../site-components/admin/useRolePermission";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
+import { InputText } from "primereact/inputtext";
+
 function AddExam() {
   const [session, setSession] = useState([]); // Session data: the fuel for exams.
   const [courseList, setCourseList] = useState([]); // Courses: pick your poison.
@@ -40,6 +42,7 @@ function AddExam() {
   });
   const [admitData, setAdmitData] = useState([]);
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
+  const [globalFilter, setGlobalFilter] = useState("");
   /**
    * API Fetching Functions
    */
@@ -486,6 +489,19 @@ function AddExam() {
                       }`}
                     >
                       {admitData.length > 0 ? (
+                        <>
+                        <div className="p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                                          <div className="search-icon">
+                                            <i className="pi pi-search" ></i>
+                                          </div>
+                                          <InputText
+                                            type="search"
+                                            value={globalFilter}
+                                            onChange={(e) => setGlobalFilter(e.target.value)}
+                                            placeholder="Search"
+                                            className="form-control dtsearch-input"
+                                          />
+                                        </div>
                         <DataTable
                           value={admitData}
                           removableSort
@@ -496,6 +512,7 @@ function AddExam() {
                           className="p-datatable-custom"
                           tableStyle={{ minWidth: "50rem" }}
                           sortMode="multiple"
+                          filters={{ global: { value: globalFilter, matchMode: "contains" } }}
                         >
                           <Column
                             body={(row, { rowIndex }) => rowIndex + 1}
@@ -546,11 +563,13 @@ function AddExam() {
                               </div>
                             )}
                             sortable
+                            filterField="candidate_name"
                           />
                           <Column
                             body={(row) => row.roll_no}
                             header="Roll No"
                             sortable
+                            filterField="roll_no"
                           />
                           <Column
                             body={(row) =>
@@ -558,12 +577,14 @@ function AddExam() {
                             }
                             header="Examination Type"
                             sortable
+                            filterField="exam_type"
                           />
 
                           <Column
                             body={(row) => row.status}
                             header="Status"
                             sortable
+                             filterField="status"
                           />
                           {console.log(viewSelectedIndex)}
                           <Column
@@ -578,6 +599,7 @@ function AddExam() {
                             )}
                           />
                         </DataTable>
+                        </>
                       ) : (
                         <>
                           <div className="col-md-12 alert alert-danger">

@@ -170,12 +170,12 @@ const UseFullLinks = () => {
                   max-width: 250px;
                 }
 
-               .linkiimg {
+    .linkiimg {
   display: block;
-  max-width: 100%; /* Ensures responsiveness */
-  height: auto;
-  object-fit: contain; /* Prevents stretching */
-  margin: auto; /* ✅ Centers image horizontally */
+  width: 100%; /* Ensure the image stretches full width */
+  height: 200px; /* Set a fixed height for consistent aspect ratio */
+  object-fit: cover; /* Ensures the image fully fills its container */
+  border-radius: 10px; /* Optional, for rounded corners */
 }
 
                 .linkttx {
@@ -183,6 +183,7 @@ const UseFullLinks = () => {
                   font-weight: 500;
                   margin-top: 10px;
                 }
+        
               `}
             </style>
           </div>

@@ -80,7 +80,7 @@ const Gallery = () => {
     <div className="gallery-section" data-aos="fade-up" data-aos-delay="100">
       <div className="container  my-4 py-2">
         <div className="row">
-          <div className="col-md-12 text-center" style={{position:"relative"}}>
+          <div className="col-md-12 col-12 text-center" style={{position:"relative"}}>
             <h2 className="heading-primary2">Our Gallery</h2>
             <div className="heading-divider"></div>
           </div>
@@ -89,10 +89,10 @@ const Gallery = () => {
         <div className="gallery-container mt-4 ">
           <Slider {...sliderSettings}>
             {image.map((img, index) => (
-              <div key={index} className="slider-item">
+              <div key={index} className="slider-item col-12">
                 <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" rel="noopener noreferrer">
                 <img
-  className="gallery-img"
+  className="gallery-img1"
   src={`${FILE_API_URL}/gallery/${img}`}
   alt={`Gallery Image ${index + 1}`}
   style={{ 
@@ -130,7 +130,7 @@ const Gallery = () => {
   width: 100%; 
 }
 
-.gallery-img {
+.gallery-img1 {
   width: 100%;
   max-width: 100%;
   height: 200px; 
@@ -146,7 +146,7 @@ const Gallery = () => {
     width: 100%;
   }
 
-  .gallery-img {
+  .gallery-img1 {
     width: 100%;
     max-width: 100%;
     height: auto; 
@@ -155,18 +155,18 @@ const Gallery = () => {
   }
 }
  @media screen and (min-width:430px) and (max-width:500px){
-  .gallery-img {
+  .gallery-img1 {
   margin-left:40px;
  }
         }
   @media screen and (min-width:370px) and (max-width:400px){
-  .gallery-img {
+  .gallery-img1 {
   margin-left:20px;
  }
 
         }
    @media screen and (min-width:410px) and (max-width:430px){
-  .gallery-img {
+  .gallery-img1 {
   margin-left:30px;
  }
 

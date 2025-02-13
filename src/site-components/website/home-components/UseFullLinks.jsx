@@ -88,7 +88,7 @@ const UseFullLinks = () => {
         <section className="usefulllnk" data-aos="fade-up" data-aos-delay="100">
           <div className="container">
             <div className="row">
-              <div className="col-md-12 text-center">
+              <div className="col-md-12 col-12 text-center">
                 <h2 className="heading-primary2">Useful Links</h2>
                 <div className="heading-divider"></div>
               </div>

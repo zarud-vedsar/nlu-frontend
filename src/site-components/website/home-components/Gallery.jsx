@@ -97,6 +97,8 @@ const Gallery = () => {
   alt={`Gallery Image ${index + 1}`}
   style={{ 
     width: "100%", 
+    maxWidth: "100%", 
+   
     height: "200px", 
     objectFit: "cover", 
     borderRadius: "10px" 
@@ -121,23 +123,42 @@ const Gallery = () => {
   }
 
 
-    .gallery-img {
-      width: 100%;  
-      height: 200px; 
-      object-fit: cover; 
-      border-radius: 10px;
-    }
+.slider-item {
+  display: flex;
+  justify-content: center; /* Change from end to center */
+  align-items: center;
+  width: 100%; 
+}
 
-    @media (max-width: 768px) {
-     
-  .slider-item{
-  width: 100%;  
-  display:"flex";
-  justify-content:"center";
+.gallery-img {
+  width: 100%;
+  max-width: 100%;
+  height: 200px; 
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .slider-item {
+    display: flex;
+    justify-content: center; /* Ensures the image is centered */
+    align-items: center;
+    width: 100%;
   }
- 
- 
-    }
+
+  .gallery-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto; 
+    object-fit: cover;
+   
+  }
+}
+ @media screen and (min-width:410px) and (max-width:500px){
+  .gallery-img {
+  margin-left:40px;
+ }
+        }
 
     .addtextoverlap {
       position: absolute;

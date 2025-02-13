@@ -183,7 +183,17 @@ const UseFullLinks = () => {
                   font-weight: 500;
                   margin-top: 10px;
                 }
-        
+                  @media (max-width: 768px) {
+        .slick-track {
+                
+                  gap: 0px !important;
+                }
+              }
+                  @media screen and (min-width:370px) and (max-width:420px){
+  .gallery-img {
+  margin-left:20px;
+ }
+        }
               `}
             </style>
           </div>

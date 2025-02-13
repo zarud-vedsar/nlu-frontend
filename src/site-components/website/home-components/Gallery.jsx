@@ -154,16 +154,21 @@ const Gallery = () => {
    
   }
 }
- @media screen and (min-width:420px) and (max-width:500px){
+ @media screen and (min-width:430px) and (max-width:500px){
   .gallery-img {
   margin-left:40px;
  }
         }
-  @media screen and (min-width:370px) and (max-width:420px){
+  @media screen and (min-width:370px) and (max-width:400px){
   .gallery-img {
   margin-left:20px;
  }
+
         }
+   @media screen and (min-width:410px) and (max-width:430px){
+  .gallery-img {
+  margin-left:30px;
+ }
 
     .addtextoverlap {
       position: absolute;

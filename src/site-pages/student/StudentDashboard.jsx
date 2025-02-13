@@ -389,9 +389,6 @@ function StudentDashboard() {
     </div>
   </div>
 </div>
-
-
-
               {data?.timetable && data?.timetable?.length > 0 && (
             <div className="col-md-5 col-lg-5 px-0">
               <div className="card flex-fill id-card">

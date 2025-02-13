@@ -382,6 +382,11 @@ function ViewCompiledAttendance() {
                   <button className="btn goback" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                   <Link to={"/admin/attendance/compiled-attendance"}>
+                                          <button className="btn btn-primary ml-2">
+                                            <i className="fas fa-plus"></i> Add New
+                                          </button>
+                                        </Link>
                 </div>
               </div>
             </div>

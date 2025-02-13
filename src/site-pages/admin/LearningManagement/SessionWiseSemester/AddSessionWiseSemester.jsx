@@ -288,6 +288,11 @@ function AddSessionWiseSemester() {
                       >
                         <i className="fas fa-arrow-left" /> Go Back
                       </button>
+                       <Link to="/admin/learning-management/session-wise-semester/list">
+                                                          <button className="ml-2 btn-md btn border-0 btn-secondary">
+                                                            <i className="fas fa-list"></i> Class List
+                                                          </button>
+                                                        </Link>
                       
                     </div>
                   </div>

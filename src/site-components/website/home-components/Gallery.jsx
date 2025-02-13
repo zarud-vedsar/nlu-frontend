@@ -154,9 +154,14 @@ const Gallery = () => {
    
   }
 }
- @media screen and (min-width:410px) and (max-width:500px){
+ @media screen and (min-width:420px) and (max-width:500px){
   .gallery-img {
   margin-left:40px;
+ }
+        }
+  @media screen and (min-width:370px) and (max-width:420px){
+  .gallery-img {
+  margin-left:20px;
  }
         }
 

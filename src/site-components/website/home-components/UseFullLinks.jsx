@@ -88,7 +88,7 @@ const UseFullLinks = () => {
         <section className="usefulllnk" data-aos="fade-up" data-aos-delay="100">
           <div className="container">
             <div className="row">
-              <div className="col-md-12 text-center">
+              <div className="col-md-12 col-12 text-center">
                 <h2 className="heading-primary2">Useful Links</h2>
                 <div className="heading-divider"></div>
               </div>
@@ -170,12 +170,12 @@ const UseFullLinks = () => {
                   max-width: 250px;
                 }
 
-               .linkiimg {
+    .linkiimg {
   display: block;
-  max-width: 100%; /* Ensures responsiveness */
-  height: auto;
-  object-fit: contain; /* Prevents stretching */
-  margin: auto; /* ✅ Centers image horizontally */
+  width: 100%; /* Ensure the image stretches full width */
+  height: 200px; /* Set a fixed height for consistent aspect ratio */
+  object-fit: cover; /* Ensures the image fully fills its container */
+  border-radius: 10px; /* Optional, for rounded corners */
 }
 
                 .linkttx {
@@ -183,6 +183,17 @@ const UseFullLinks = () => {
                   font-weight: 500;
                   margin-top: 10px;
                 }
+                  @media (max-width: 768px) {
+        .slick-track {
+                
+                  gap: 0px !important;
+                }
+              }
+                  @media screen and (min-width:370px) and (max-width:420px){
+  .gallery-img {
+  margin-left:20px;
+ }
+        }
               `}
             </style>
           </div>

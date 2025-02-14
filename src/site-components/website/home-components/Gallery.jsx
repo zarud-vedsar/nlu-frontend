@@ -6,7 +6,8 @@ import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import { Link } from 'react-router-dom';
+import { FaLongArrowAltRight } from "react-icons/fa";
 const Gallery = () => {
   const [image, setImage] = useState([]);
 
@@ -77,23 +78,31 @@ const Gallery = () => {
 
   return (
     <div className="gallery-section" data-aos="fade-up" data-aos-delay="100">
-      <div className="container">
+      <div className="container  my-4 py-2">
         <div className="row">
-          <div className="col-md-12 text-center my-4">
+          <div className="col-md-12 col-12 text-center" style={{position:"relative"}}>
             <h2 className="heading-primary2">Our Gallery</h2>
             <div className="heading-divider"></div>
           </div>
         </div>
-        <div className="gallery-container mt-4">
+        <Link to="/image-gallery" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaLongArrowAltRight /></Link>
+        <div className="gallery-container mt-4 ">
           <Slider {...sliderSettings}>
             {image.map((img, index) => (
-              <div key={index} className="slider-item">
+              <div key={index} className="slider-item col-12">
                 <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" rel="noopener noreferrer">
                 <img
-  className="gallery-img"
+  className="gallery-img1"
   src={`${FILE_API_URL}/gallery/${img}`}
   alt={`Gallery Image ${index + 1}`}
-  style={{ width: "300px", height: "200px", objectFit: "cover", borderRadius: "10px" }}
+  style={{ 
+    width: "100%", 
+    maxWidth: "100%", 
+   
+    height: "200px", 
+    objectFit: "cover", 
+    borderRadius: "10px" 
+  }}
 />
                 </a>
               </div>
@@ -106,12 +115,66 @@ const Gallery = () => {
 
 <style>
         {`
-              .gallery-img {
-  width: 300px;  /* Set desired width */
-  height: 200px; /* Set desired height */
-  object-fit: cover; /* Ensures the image fills the area without distortion */
-  border-radius: 10px; /* Optional: Adds rounded corners */
+ 
+  .addtextoverlap{
+      position: absolute;
+    right: 100px;
+    top: 20px;
+  }
+
+
+.slider-item {
+  display: flex;
+  justify-content: center; /* Change from end to center */
+  align-items: center;
+  width: 100%; 
 }
+
+.gallery-img1 {
+  width: 100%;
+  max-width: 100%;
+  height: 200px; 
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .slider-item {
+    display: flex;
+    justify-content: center; /* Ensures the image is centered */
+    align-items: center;
+    width: 100%;
+  }
+
+  .gallery-img1 {
+    width: 100%;
+    max-width: 100%;
+    height: auto; 
+    object-fit: cover;
+   
+  }
+}
+ @media screen and (min-width:430px) and (max-width:500px){
+  .gallery-img1 {
+  margin-left:40px;
+ }
+        }
+  @media screen and (min-width:370px) and (max-width:400px){
+  .gallery-img1 {
+  margin-left:20px;
+ }
+
+        }
+   @media screen and (min-width:410px) and (max-width:430px){
+  .gallery-img1 {
+  margin-left:30px;
+ }
+
+    .addtextoverlap {
+      position: absolute;
+      right: 10%;
+      top: 20px;
+    }
         `}
         </style>
     </div>

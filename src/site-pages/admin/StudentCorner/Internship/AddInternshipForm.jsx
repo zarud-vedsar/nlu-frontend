@@ -5,6 +5,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import { PHP_API_URL, CKEDITOR_URL } from "../../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
@@ -245,6 +246,13 @@ const AddInternshipForm = () => {
                   </i>{" "}
                   Go Back
                 </Button>
+                 <Link
+                                    to="/admin/internship"
+                                    className="ml-2 btn-md btn border-0 btn-secondary"
+                                  >
+                                    <i className="fas fa-list" /> Internship List
+                                  </Link>
+               
               </div>
             </div>
           </div>

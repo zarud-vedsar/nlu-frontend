@@ -4,6 +4,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import { PHP_API_URL, CKEDITOR_URL } from "../../../../site-components/Helper/Constant";
 import { toast, } from "react-toastify";
@@ -234,6 +235,12 @@ const AddPlacementForm = () => {
                   </i>{" "}
                   Go Back
                 </Button>
+                  <Link
+                                                 to="/admin/placement"
+                                                                    className="ml-2 btn-md btn border-0 btn-secondary"
+                                                                  >
+                                                                    <i className="fas fa-list" /> Placement List
+                                                                  </Link>
               </div>
             </div>
           </div>

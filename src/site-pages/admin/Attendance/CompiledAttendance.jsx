@@ -218,6 +218,11 @@ function AddExam() {
                   <button className="btn goback" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                   <Link to="/admin/attendance-management/view-compile-attendance">
+                                                                            <button className="ml-2 btn-md btn border-0 btn-secondary">
+                                                                              <i className="fas fa-list"></i> Compile Class Attendance
+                                                                            </button>
+                                                                          </Link>
                 </div>
               </div>
             </div>

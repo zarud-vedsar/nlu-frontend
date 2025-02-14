@@ -3,23 +3,14 @@ import axios from "axios";
 import {
   Modal,
   Button,
-  Form,
-  Table,
-  Spinner,
-  Col,
-  Row,
-  InputGroup,
+  Spinner
 } from "react-bootstrap";
-import Select from "react-select";
-import { FaFilter } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
-import { IoIosEye } from "react-icons/io";
-import { IoIosEyeOff } from "react-icons/io";
-import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+
 import { Link } from "react-router-dom";
 import {
+  FILE_API_URL,
   NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
@@ -34,154 +25,26 @@ import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert"
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 
-const MyVerticallyCenteredModal = (props = {}) => {
-  const [content, setContent] = useState("");
-  const [link, setLink] = useState("");
-  const [loading, setLoading] = useState(false);
-  const id = props?.selectedmarque?.id;
-
-  useEffect(() => {
-    setContent(props?.selectedmarque?.content || "");
-    setLink(props?.selectedmarque?.link || "");
-  }, [props.selectedmarque]);
-
-  const handleSubmit = async () => {
-    if (!content.trim()) {
-      toast.error("Content cannot be empty");
-      return;
-    }
-    if (!link.trim()) {
-      toast.error("Link cannot be empty");
-      return;
-    }
-    setLoading(true);
-    try {
-      const bformData = new FormData();
-      bformData.append("data", "mrq_slider_add");
-      bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
-      bformData.append("login_type", secureLocalStorage.getItem("loginType"));
-      bformData.append("content", content);
-      bformData.append("link", link);
-
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
-
-      if (id) {
-        bformData.append("updateid", id);
-      }
-
-      const response = await axios.post(
-        `${PHP_API_URL}/mrq_slider.php`,
-        bformData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(response);
-
-      if (response?.data?.status === 200 || response?.data?.status === 201) {
-        toast.success(response?.data?.msg);
-        setContent("");
-        setLink("");
-        props.submit();
-      } else {
-        toast.error("Failed to submit");
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      toast.error("An error occurred. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Add New</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <div className="form-group col-md-12">
-          <label className="font-weight-semibold" htmlFor="content">
-            Content
-          </label>
-          <textarea
-            type="text"
-            className="form-control"
-            name="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            disabled={loading}
-          />
-        </div>
-        <div className="form-group col-md-12">
-          <label className="font-weight-semibold" htmlFor="link">
-            Link
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="link"
-            value={link}
-            onChange={(e) => setLink(e.target.value)}
-            disabled={loading}
-          />
-        </div>
-      </Modal.Body>
-      <Modal.Footer>
-        <div className="mx-auto">
-          <Button
-            onClick={props.close}
-            className="btn btn-danger"
-            disabled={loading}
-          >
-            Close
-          </Button>{" "}
-          <Button
-            onClick={handleSubmit}
-            className="btn btn-success"
-            disabled={loading}
-          >
-            {loading ? "Submitting..." : "Submit"}
-          </Button>
-        </div>
-      </Modal.Footer>
-    </Modal>
-  );
-};
-
-const MarqueSlide = () => {
+const KeynoteSpeakerList = () => {
   const navigate = useNavigate();
 
-  const [MarqueList, setMarqueList] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [recycleTitle, setRecycleTitle] = useState("Show Recycle Bin");
 
   const [loading, setLoading] = useState(false);
-  const [selectedmarque, setSelectedMarque] = useState(null);
   const [modalShow, setModalShow] = useState(false);
 
-  const editMarque = (index) => {
-    const currentLob = MarqueList[index];
-    console.log(currentLob);
-    setSelectedMarque(currentLob);
+  const [selectedtestimonial, setselectedtestimonial] = useState(null);
+
+  const viewAllImages = (index) => {
+    const currentSetTestimonial = messages[index];
+    setselectedtestimonial(currentSetTestimonial);
+    setModalShow(true);
   };
-  useEffect(() => {
-    if (selectedmarque != null) {
-      setModalShow(true);
-    }
-  }, [selectedmarque]);
 
   useEffect(() => {
-    loadMarqueList();
+    load_message();
   }, []);
 
   const showRecyleBin = () => {
@@ -190,18 +53,17 @@ const MarqueSlide = () => {
         ? "Hide Recycle Bin"
         : "Show Recycle Bin"
     );
-    recycleTitle === "Show Recycle Bin" ? getDeletedMarque() : loadMarqueList();
+    recycleTitle === "Show Recycle Bin" ? getDeletedUserList() : load_message();
   };
-
-  const getDeletedMarque = async () => {
+  const getDeletedUserList = async () => {
     setLoading(true);
     try {
       const bformData = new FormData();
-      bformData.append("data", "load_mrq_slider");
+      bformData.append("data", "load_keynote");
       bformData.append("delete_status", 1);
 
       const response = await axios.post(
-        `${PHP_API_URL}/mrq_slider.php`,
+        `${PHP_API_URL}/keynote_speaker.php`,
         bformData,
         {
           headers: {
@@ -209,23 +71,30 @@ const MarqueSlide = () => {
           },
         }
       );
-      console.log(response.data.data);
-      setMarqueList(response.data.data);
+      setMessages(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const loadMarqueList = async () => {
+  const load_message = async (filter = {}) => {
     setLoading(true);
     try {
       const bformData = new FormData();
-      bformData.append("data", "load_mrq_slider");
+      bformData.append("data", "load_keynote");
 
+      if (filter) {
+        Object.keys(filter).forEach((key) => {
+          const value = filter[key];
+          if (value !== "") {
+            bformData.append(key, value);
+          }
+        });
+      }
       const response = await axios.post(
-        `${PHP_API_URL}/mrq_slider.php`,
+        `${PHP_API_URL}/keynote_speaker.php`,
         bformData,
         {
           headers: {
@@ -234,27 +103,31 @@ const MarqueSlide = () => {
         }
       );
       console.log(response);
-      setMarqueList(response.data.data);
+      setMessages(response.data.data);
     } catch (error) {
-      console.error("Error fetching  data:", error);
+      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const deleteMarque = async (id) => {
+  const editDetail = (id) => {
+    navigate(`/admin/edit-keynote-speaker-detail/${id}`);
+  };
+
+  const deleteMessage = async (id) => {
     try {
       const bformData = new FormData();
 
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
-      bformData.append("data", "delete_mrq_slider");
+      bformData.append("data", "delete_keynote");
       bformData.append("id", id);
 
       const deleteAlert = await DeleteSweetAlert();
       if (deleteAlert) {
         const response = await axios.post(
-          `${PHP_API_URL}/mrq_slider.php`,
+          `${PHP_API_URL}/keynote_speaker.php`,
           bformData,
           {
             headers: {
@@ -265,8 +138,8 @@ const MarqueSlide = () => {
         if (response.status == "200") {
           toast.success(response.data.msg);
           recycleTitle === "Show Recycle Bin"
-            ? loadMarqueList()
-            : getDeletedMarque();
+            ? load_message()
+            : getDeletedUserList();
         }
       }
     } catch (error) {
@@ -284,7 +157,8 @@ const MarqueSlide = () => {
     } finally {
     }
   };
-  const updateStatus = async (id) => {
+  
+ const updateStatus = async (id) => {
     try {
       const bformData = new FormData();
 
@@ -294,7 +168,7 @@ const MarqueSlide = () => {
       bformData.append("id", id);
 
       const response = await axios.post(
-        `${PHP_API_URL}/mrq_slider.php`,
+        `${PHP_API_URL}/keynote_speaker.php`,
         bformData,
         {
           headers: {
@@ -303,12 +177,12 @@ const MarqueSlide = () => {
         }
       );
       if (response.status == "200") {
-        const updatedMarques = MarqueList?.map((marque) =>
-          marque.id === id ? { ...marque, status: !marque.status } : marque
+        const updatedFaculty = messages?.map((faculty) =>
+          faculty.id === id ? { ...faculty, status: !faculty.status } : faculty
         );
         toast.success(response.data.msg);
 
-        setMarqueList(updatedMarques);
+        setMessages(updatedFaculty);
       }
     } catch (error) {
       const status = error.response?.data?.status;
@@ -331,35 +205,41 @@ const MarqueSlide = () => {
       <div className="page-container">
         <div className="main-content">
           <div className="container-fluid">
-            <div className="mt-0">
+            <div className="">
               <nav className="breadcrumb">
                 <a href="/" className="breadcrumb-item">
                   CMS
                 </a>
 
-                <span className="breadcrumb-item active">Marque </span>
+                <span className="breadcrumb-item active">
+                  Keynote speaker
+                </span>
               </nav>
             </div>
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new">Marque List</h5>
+                <h5 className="card-title h6_new">Keynote Speaker List</h5>
                 <div className="ml-auto">
-                  <button
-                    className="ml-auto btn-md btn border-0 btn-light mr-2"
-                    onClick={() => goBack()}
-                  >
-                    <i className="fas fa-arrow-left" /> Go Back
-                  </button>
                   <Button
-                    variant="dark"
-                    className="ml-2 mb-2 mb-md-0 btn-secondary"
-                    onClick={() => setModalShow(true)}
+                    variant="light"
+                    onClick={() => window.history.back()}
+                    className="mr-2 mb-md-0"
+                  >
+                    <i className="fas">
+                      <FaArrowLeft />
+                    </i>{" "}
+                    Go Back
+                  </Button>
+
+                  <Link
+                    to="/admin/add-keynote-speaker"
+                    className="btn btn-secondary"
                   >
                     <i className="fas">
                       <IoMdAdd />
                     </i>{" "}
                     Add New
-                  </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -400,43 +280,53 @@ const MarqueSlide = () => {
                 ) : (
                   <div className="table-responsive">
                     <DataTable
-                      value={MarqueList}
+                      value={messages}
                       paginator
                       rows={10}
                       rowsPerPageOptions={[10, 25, 50]}
                       globalFilter={globalFilter}
                       emptyMessage="No records found"
                       className="p-datatable-custom"
-                      tableStyle={{ minWidth: "10rem" }}
+                      tableStyle={{ minWidth: "50rem" }}
                       sortMode="multiple"
                     >
                       <Column
                         body={(rowData, { rowIndex }) => rowIndex + 1}
                         header="#"
-                        style={{ width: "5%" }}
                         sortable
                       />
 
-                      <Column field="content" header="Marque" sortable />
-
+                      <Column field="keynote_name" header="Name" sortable />
                       <Column
-                        style={{ width: "15%" }}
-                        header="Add Keynote"
-                        body={(rowData, { rowIndex }) => (
-                          <div className="d-flex justify-content-around">
-                            <Link
-                              to={`/admin/add-keynote-speaker/${rowData.id}`}
-                              variant="dark"
-                              className="px-3 py-1 btn-secondary rounded"
-                            >
-                              Keynote
-                            </Link>
+                        header="Photo"
+                        body={(rowData) => (
+                          <div
+                            className="info-column d-flex align-items-center
+"
+                          >
+                            <div className="info-image mr-4 px-2 py-3 ">
+                              <img
+                                src={`${FILE_API_URL}/keynote/${rowData.keynote_photo}`}
+                                alt=""
+                                style={{
+                                  width: "120px",
+                                  height: "120px",
+                                  backgroundColor: "#e6fff3",
+                                  fontSize: "20px",
+                                  color: "#00a158",
+                                }}
+                                className=" d-flex justify-content-center align-items-center"
+                              />
+                            </div>
                           </div>
                         )}
                         sortable
                       />
+                       <Column field="keynote_content" header="Content" sortable />
+                    
+
                       <Column
-                        style={{ width: "15%" }}
+                        style={{ width: "10%" }}
                         header="Action"
                         body={(rowData, { rowIndex }) => (
                           <div className="d-flex justify-content-around">
@@ -453,8 +343,9 @@ const MarqueSlide = () => {
                                 htmlFor={`switch${rowData.id}`}
                               ></label>
                             </div>
+                           
                             <div
-                              onClick={() => editMarque(rowIndex)}
+                              onClick={() => editDetail(rowData.id)}
                               className="avatar avatar-icon avatar-md avatar-orange"
                             >
                               <i className="fas fa-edit"></i>
@@ -472,7 +363,7 @@ const MarqueSlide = () => {
                                 <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
                                   <i
                                     className="fas fa-trash-alt"
-                                    onClick={() => deleteMarque(rowData.id)}
+                                    onClick={() => deleteMessage(rowData.id)}
                                   ></i>
                                 </div>
                               </OverlayTrigger>
@@ -488,7 +379,7 @@ const MarqueSlide = () => {
                                 <div className="avatar ml-2 avatar-icon avatar-md avatar-lime">
                                   <i
                                     className="fas fa-recycle"
-                                    onClick={() => deleteMarque(rowData.id)}
+                                    onClick={() => deleteMessage(rowData.id)}
                                   ></i>
                                 </div>
                               </OverlayTrigger>
@@ -505,17 +396,8 @@ const MarqueSlide = () => {
           </div>
         </div>
       </div>
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        close={() => setModalShow(false)}
-        submit={() => {
-          loadMarqueList();
-          setModalShow(false);
-        }}
-        selectedmarque={selectedmarque}
-      />
     </>
   );
 };
 
-export default MarqueSlide;
+export default KeynoteSpeakerList;

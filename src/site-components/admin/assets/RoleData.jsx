@@ -505,6 +505,11 @@ export const RoleData = [
         value: "Banner",
         crud: ["create","list","status","delete", "recycle bin"], // CRUD operations
       },
+      {
+        label: "Keynote Speaker",
+        value: "Keynote Speaker",
+        crud: ["create","list","status","delete", "recycle bin"], // CRUD operations
+      },
     ],
   },
   {

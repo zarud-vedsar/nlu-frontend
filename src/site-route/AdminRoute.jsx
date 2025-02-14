@@ -8,6 +8,8 @@ import "../site-components/admin/assets/css/Custom.css";
 import ProtectedRoute from "../site-pages/admin/ProtectedRoute";
 import IsAdminLoggedIn from "../site-pages/admin/IsAdminLoggedIn";
 import ErrorBoundary from "./ErrorBoundary.jsx";
+import KeynoteSpeaker from "../site-pages/admin/KeynoteSpeaker.jsx";
+import KeynoteSpeakerList from "../site-pages/admin/KeynoteSpeakerList.jsx";
 
 const MessageForm = lazy(() => import("../site-pages/admin/MessageForm"));
 const Gallery = lazy(() => import("../site-pages/admin/Gallery"));
@@ -64,6 +66,8 @@ const components = {
   AddSpecility: lazyLoad("AddSpecility"),
   StudentTestimonial: lazyLoad("StudentTestimonial"),
   StudentTestimonialForm: lazyLoad("StudentTestimonialForm"),
+  KeynoteSpeaker: lazyLoad("KeynoteSpeaker"),
+  KeynoteSpeakerList: lazyLoad("KeynoteSpeakerList"),
   Feedback: lazyLoad("Feedback"),
   Contact: lazyLoad("Contact"),
   ContactHistory: lazyLoad("ContactHistory"),
@@ -475,9 +479,33 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
               }
             />
             <Route
+              path="/add-keynote-speaker"
+              element={
+                <ProtectedRoute element={<components.KeynoteSpeaker />} />
+              }
+            />
+            <Route
+              path="/add-keynote-speaker/:id"
+              element={
+                <ProtectedRoute element={<components.KeynoteSpeaker />} />
+              }
+            />
+            <Route
+              path="/keynote-speaker-list"
+              element={
+                <ProtectedRoute element={<components.KeynoteSpeakerList />} />
+              }
+            />
+            <Route
               path="/edit-student-testimonial-detail/:id"
               element={
                 <ProtectedRoute element={<components.StudentTestimonialForm />} />
+              }
+            />
+            <Route
+              path="/edit-keynote-speaker-detail/:id"
+              element={
+                <ProtectedRoute element={<components.KeynoteSpeaker />} />
               }
             />
             <Route

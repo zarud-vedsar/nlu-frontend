@@ -420,6 +420,11 @@ function AddExam() {
                 <button className="btn goback" onClick={goBack}>
                   <i className="fas fa-arrow-left"></i> Go Back
                 </button>
+                <Link to="/admin/exam-paper/list">
+                                    <button className="ml-2 btn-md btn border-0 btn-secondary">
+                                      <i className="fas fa-list"></i> Exam Paper List
+                                    </button>
+                                  </Link>
               </div>
             </div>
             <div className="card border-0">

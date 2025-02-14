@@ -3,6 +3,7 @@ import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import {
   PHP_API_URL,
   CKEDITOR_URL,
@@ -350,7 +351,7 @@ const JobRecruitmentForm = () => {
           </div>
           <div className="card bg-transparent mb-2">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
-              <h5 className="card-title h6_new">Job List</h5>
+              <h5 className="card-title h6_new">Add Job</h5>
               <div className="ml-auto">
                 <Button
                   variant="light"
@@ -362,6 +363,12 @@ const JobRecruitmentForm = () => {
                   </i>{" "}
                   Go Back
                 </Button>
+                 <Link
+                                 to="/admin/job-recruitment"
+                                                    className="ml-2 btn-md btn border-0 btn-secondary"
+                                                  >
+                                                    <i className="fas fa-list" /> Job List
+                                                  </Link>
               </div>
             </div>
           </div>

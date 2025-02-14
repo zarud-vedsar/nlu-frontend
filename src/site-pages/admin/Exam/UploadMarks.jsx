@@ -367,13 +367,7 @@ function AddExam() {
                                   value={marksData[rowData.stid]?.max_mid || ""}
                                   name={`max_mid${rowData.stid}`}
                                   placeholder="Enter Max Marks"
-                                  onChange={(e) =>
-                                    handleInputChange(
-                                      rowData.stid,
-                                      "max_mid",
-                                      e.target.value
-                                    )
-                                  }
+                                  readOnly
                                 />
                               </div>
                             )}

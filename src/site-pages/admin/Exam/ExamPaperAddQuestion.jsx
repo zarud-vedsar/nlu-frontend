@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
+  capitalizeAllLetters,
   dataFetchingPost,
   goBack,
 } from "../../../site-components/Helper/HelperFunction";
@@ -19,15 +20,10 @@ function AddExam() {
   const location = useLocation();
   const dbId = location?.state?.dbId;
   const paper_set = location?.state?.paper_set;
-
+  const [examData, setExamData] = useState([]);
   const [questionForm, setQuestionForm] = useState({
     examId: "",
-    section: [
-      {
-        title: "A",
-        question: "",
-      },
-    ],
+    section: [],
   });
   const [isSubmit, setIsSubmit] = useState(false);
   const config = {
@@ -44,12 +40,13 @@ function AddExam() {
     askBeforePasteHTML: false,
   };
   // Fetch and set the session list
-  const fetchSavedQuestion = async () => {
+  const fetchSavedQuestion = async (paper_set) => {
     try {
       const { data } = await axios.post(
         `${NODE_API_URL}/api/exam/paper/question-list`,
         {
           examId: dbId,
+          paper_set
         }
       );
       if (data?.statusCode === 200 && data.data.length) {
@@ -84,7 +81,7 @@ function AddExam() {
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
         const fetchedData = response.data[0];
-
+        setExamData(fetchedData);
         const parsedSections = JSON.parse(fetchedData.section);
         setQuestionForm((prev) => ({
           ...prev,
@@ -94,7 +91,7 @@ function AddExam() {
           })),
         }));
         setTimeout(() => {
-          fetchSavedQuestion(dbId);
+          fetchSavedQuestion(paper_set);
         }, 300);
       } else {
         toast.error("Data not found.");
@@ -143,10 +140,12 @@ function AddExam() {
   );
 
   useEffect(() => {
-    if (dbId && parseInt(dbId, 10) > 0) {
+    if (dbId && parseInt(dbId, 10) > 0 && paper_set) {
       handleUpdate(dbId);
+    } else {
+      toast.error("Paper set or exam id is missing.");
     }
-  }, [dbId, handleUpdate]);
+  }, [dbId, paper_set, handleUpdate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -156,6 +155,7 @@ function AddExam() {
         `${NODE_API_URL}/api/exam/paper/add-question`,
         {
           examId: dbId,
+          paper_set,
           section: questionForm.section,
           loguserid: secureLocalStorage.getItem("login_id"),
           login_type: secureLocalStorage.getItem("loginType"),
@@ -173,7 +173,6 @@ function AddExam() {
       setIsSubmit(false);
     }
   };
-
   return (
     <div className="page-container">
       <div className="main-content">
@@ -194,7 +193,7 @@ function AddExam() {
           <div className="card border-0 bg-transparent mb-0">
             <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
               <h5 className="card-title h6_new font-16">
-                {dbId ? "Update Exam Paper" : "Add Exam Paper"}
+                Exam Paper Questions
               </h5>
               {/* The almighty 'Go Back' button */}
               <button className="btn goback" onClick={goBack}>
@@ -208,6 +207,16 @@ function AddExam() {
             </div>
           </div>
           <div className="card border-0">
+            <div className="card-header d-flex justify-content-between align-items-center">
+              <h5 className="card-title h6_new font-16"> {examData?.coursename}, {examData?.semtitle ? capitalizeAllLetters(examData?.semtitle) : ''}
+                <br /> {examData?.subject}
+              </h5>
+              <div>
+                <p>Exam Type: {examData.examType ? capitalizeAllLetters(examData?.examType?.replace("-", " ")) : ''}</p>
+                <p>Paper Code: {examData?.paperCode}</p>
+                <p>Paper Set: {paper_set}</p>
+              </div>
+            </div>
             <div className="card-body px-3">
               <form onSubmit={handleSubmit}>
                 <div className="row">

@@ -352,12 +352,60 @@ function AddExam() {
           setSections(sections);
         }
         if (step === "next") {
-          setTimeout(() => {
-            navigate(`/admin/exam-paper/add-question`, {
-              replace: false,
-              state: { dbId: data?.data?.dbId },
-            });
-          }, 300);
+          // Show SweetAlert with radio options for Paper Set
+          const { value: result } = await Swal.fire({
+            showCancelButton: true, // Allow the user to cancel
+            html: `
+                  <div>
+                    <label for="paperSet">Choose Paper Set:</label>
+                    <div>
+                      <input type="radio" id="paperSet1" name="paperSet" value="A">
+                      <label for="paperSet1">Paper Set A</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="paperSet2" name="paperSet" value="B">
+                      <label for="paperSet2">Paper Set B</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="paperSet3" name="paperSet" value="C">
+                      <label for="paperSet3">Paper Set C</label>
+                    </div>
+                  </div>
+                `,
+            preConfirm: () => {
+              const popup = Swal.getPopup(); // Get the popup element
+
+              // Check if the popup is available
+              if (!popup) {
+                return Swal.fire("Error: Unable to access the modal.");
+              }
+
+              const paperSet = popup.querySelector('input[name="paperSet"]:checked');
+
+              // Check if the paperSet is selected
+              if (!paperSet) {
+                return Swal.fire("Please select a paper set.");
+              }
+              return {
+                paperSet: paperSet.value, // Return the selected paper set value
+              };
+            }
+          });
+          if (result) {
+            const { paperSet } = result;
+            if (paperSet) {
+              setTimeout(() => {
+                navigate(`/admin/exam-paper/add-question`, {
+                  replace: false,
+                  state: { dbId: data?.data?.dbId, paper_set: paperSet },
+                });
+              }, 300);
+            } else {
+              toast.error("Paper set are required to proceed.");
+            }
+          } else {
+            toast.error("Paper set are required to proceed.");
+          }
         }
         toast.success(data.message);
       } else {
@@ -683,56 +731,77 @@ function AddExam() {
                     </div>
                     {sections.map((section, index) => (
                       <div className="col-md-12 form-group" key={index}>
-                        <div
-                          className="row border mx-auto"
-                          style={{ width: "99.8%" }}
-                        >
+                        <div className="row border mx-auto" style={{ width: "99.8%" }}>
+
+                          {/* Section Title Field */}
                           <FormField
                             label="Section Title"
-                            name="title" // Remove index here
-                            id={`title-${index}`} // Keep unique IDs for accessibility
+                            name="title"
+                            id={`title-${index}`} // Unique ID for accessibility
                             required={true}
                             value={section.title}
                             column="col-md-12 col-12 form-group"
-                            onChange={(e) => handleSectionChange(e, index)}
+                            onChange={(e) => handleSectionChange(e, index)} // Update this section value
                             placeholder="A"
                           />
+
+                          {/* Marks per Question Field */}
                           <FormField
                             label="Marks/Question"
-                            name="marksPerQuestion" // Remove index here
+                            name="marksPerQuestion"
                             id={`marksPerQuestion-${index}`}
                             required={true}
                             type="number"
                             value={section.marksPerQuestion}
-                            column="col-md-4 col-12 form-group"
+                            column="col-md-3 col-12 form-group"
                             onChange={(e) => handleSectionChange(e, index)}
                             placeholder="4"
                           />
+
+                          {/* Total Questions Field */}
                           <FormField
                             label="Total Question"
-                            name="totalQuestion" // Remove index here
+                            name="totalQuestion"
                             id={`totalQuestion-${index}`}
                             required={true}
                             type="number"
                             value={section.totalQuestion}
-                            column="col-md-4 col-12 form-group"
+                            column="col-md-3 col-12 form-group"
                             onChange={(e) => handleSectionChange(e, index)}
                             placeholder="5"
                           />
+
+                          {/* Attempted Questions Field */}
                           <FormField
                             label="Attempt Question"
-                            name="attemptQuestion" // Remove index here
+                            name="attemptQuestion"
                             id={`attemptQuestion-${index}`}
                             required={true}
                             type="number"
                             value={section.attemptQuestion}
-                            column="col-md-4 col-12 form-group"
+                            column="col-md-3 col-12 form-group"
                             onChange={(e) => handleSectionChange(e, index)}
                             placeholder="4"
                           />
+
+                          {/* Remove Button */}
+                          {index > 0 && (
+                            <div className="col-md-3 d-flex justify-content-center align-items-center">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setSections((prev) => prev.filter((item, i) => i !== index)); // Remove section at the specific index
+                                }}
+                                className="btn btn-danger"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
+
 
                     <div className="col-md-12 form-group">
                       <button

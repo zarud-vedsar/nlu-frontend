@@ -5,10 +5,8 @@
        margin: 0px;
    }
    .container-page {
-       width: 100%;
-       /* A4 width */
+       width: 21cm;
        height: auto;
-       /* A4 height */
        margin: 5px auto 0 auto;
        padding: 1cm !important;
        background-color: #fff;
@@ -59,7 +57,7 @@
 
  .id-info span {
      border: 1px solid #333;
-     width: 5cm;
+     width: 7cm;
      display: inline-block;
      padding: 4px;
      font-size: 16px;
@@ -165,4 +163,9 @@
      font-weight: 500 !important;
      color: #333;
  }
- 
+ .endofpaper{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 20px;
+ }

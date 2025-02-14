@@ -11,16 +11,75 @@ import Swal from 'sweetalert2';
 import "./examPaper.css";
 import rpnl_logo from "../../../site-components/website/assets/Images/rpnl_logo.png";
 import { useReactToPrint } from "react-to-print";
-
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 function AddExam() {
     const location = useLocation();
     const dbId = location?.state?.dbId; // Destructure dbId from the state
+    const paper_set = location?.state?.paper_set;
     const contentRef = useRef(null);
     const reactToPrintFn = useReactToPrint({ contentRef });
     // State variables: The true chaos handlers.
     const [formData, setFormData] = useState([]); // For holding all the exam data.
     // Fetch and set the semester list based on the selected course
+    const [totalFiles, setTotalFiles] = useState(0);
+    const [downloaded, setDownloaded] = useState(0);
+    const [loading, setLoading] = useState(false); // State for managing loader visibility
+    const pdfRef = useRef();
+    const handleDownload = async () => {
+        setLoading(true); // Show loader
+        try {
+            const element = pdfRef.current; // Get the referenced div
+            const pdf = new jsPDF("portrait", "mm", "a4");
 
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
+            const margin = 10; // Margin to avoid clipping
+            const scaleFactor = 2; // Higher scale for better quality
+
+            // Capture full element as canvas
+            const canvas = await html2canvas(element, {
+                scale: scaleFactor,
+                useCORS: true,
+                allowTaint: false,
+            });
+
+            const imgData = canvas.toDataURL("image/png");
+
+            const imgWidth = pageWidth - margin * 2;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+            let yPos = margin;
+            let remainingHeight = imgHeight;
+
+            // Loop to add pages if content overflows
+            let pageIndex = 0;
+            while (remainingHeight > 0) {
+                const sourceY = pageIndex * (pageHeight - margin * 2) * (canvas.height / imgHeight);
+
+                const pageCanvas = document.createElement("canvas");
+                pageCanvas.width = canvas.width;
+                pageCanvas.height = (pageHeight - margin * 2) * (canvas.height / imgHeight);
+                const ctx = pageCanvas.getContext("2d");
+
+                ctx.drawImage(canvas, 0, sourceY, canvas.width, pageCanvas.height, 0, 0, canvas.width, pageCanvas.height);
+
+                const pageImgData = pageCanvas.toDataURL("image/png");
+
+                if (pageIndex > 0) pdf.addPage();
+                pdf.addImage(pageImgData, "PNG", margin, margin, imgWidth, pageHeight - margin * 2);
+
+                remainingHeight -= pageHeight - margin * 2;
+                pageIndex++;
+            }
+
+            pdf.save("document.pdf");
+        } catch (error) {
+            console.error("Error generating PDF:", error);
+        } finally {
+            setLoading(false); // Hide loader
+        }
+    };
     // Fetch the data for the list
     const fetchDataForUpdate = async (dbId) => {
         if (!dbId || parseInt(dbId, 10) < 1) {
@@ -53,7 +112,7 @@ function AddExam() {
         try {
             const { data } = await axios.post(
                 `${NODE_API_URL}/api/exam/paper/question-list`,
-                { examId: dbId }
+                { examId: dbId, paper_set }
             );
             if (data?.statusCode === 200 && data.data.length) {
                 setQuestionForm(JSON.parse(data.data[0].questions));
@@ -106,10 +165,12 @@ function AddExam() {
         }
     };
     useEffect(() => {
-        if (dbId && parseInt(dbId, 10) > 0) {
+        if (dbId && parseInt(dbId, 10) > 0 && paper_set) {
             handleUpdate(dbId);
+        } else {
+            toast.error("Paper set or exam id is missing.");
         }
-    }, [dbId]);
+    }, [dbId, paper_set]);
 
     function formatExamDate(date) {
         const parsedDate = new Date(date); // Parse the date
@@ -125,6 +186,21 @@ function AddExam() {
     function getYear(date) {
         const parsedDate = new Date(date);
         return parsedDate.getFullYear(); // Example: 2024
+    }
+    function formatDuration(timeString) {
+        let [hours, minutes] = timeString.split(":").map(Number);
+
+        let formattedTime = "";
+
+        if (hours > 0) {
+            formattedTime += `${hours} hour${hours > 1 ? "s" : ""}`;
+        }
+
+        if (minutes > 0) {
+            formattedTime += `${formattedTime ? " " : ""}${minutes} min`;
+        }
+
+        return formattedTime || "0 min";  // Handle case where both are 0
     }
     return (
         <>
@@ -153,19 +229,26 @@ function AddExam() {
                                 <h5 className="card-title h6_new font-16">
                                     Exam Paper
                                 </h5>
-                                <div className='ml-auto'>
+                                <div className='ml-auto d-flex'>
                                     <button className="btn goback" onClick={goBack}>
                                         <i className="fas fa-arrow-left"></i> Go Back
                                     </button>
-                                    <button onClick={() => reactToPrintFn()} className="btn btn-primary ml-2">
-                                        <i className="fas fa-print"></i> Print
+                                    <button
+                                        onClick={handleDownload}
+                                        className="btn border-0 ml-2 btn-primary d-flex justify-content-center align-items-center"
+                                        disabled={loading} // Disable button while loading
+                                    >
+                                        <i className="fas fa-download"></i> &nbsp; Download {loading && (
+                                            <div className="loader-circle"></div>
+                                        )}
                                     </button>
+
                                 </div>
                             </div>
                         </div>
                         <div className='row'>
                             <div className='col-md-12'>
-                                <div id="hello" className="container-page" ref={contentRef}>
+                                <div id="hello" className="container-page" ref={pdfRef} style={{ width: "100%", backgroundColor: "#fff", padding: "20px" }}>
                                     <div className="id-inner-container">
                                         <div className="id-header-wrapper">
                                             <div>
@@ -178,7 +261,7 @@ function AddExam() {
                                             </div>
                                         </div>
                                         <div className="id-text-title-right">
-                                        RPNLUP/{validator.unescape(`${formData?.examType == 'end-term' ? 'ET' : 'MT'} EXAMINATION`)}
+                                            RPNLUP/{validator.unescape(`${formData?.examType == 'end-term' ? 'ET' : 'MT'} EXAMINATION`)}
                                             {validator.unescape(`/${formData?.semtitle ? capitalizeAllLetters(formData?.semtitle) : formData?.semtitle}`)} {" "}
                                             {formData?.examDate ? formatExamDate(formData.examDate) : ""} {" "}
                                             {validator.unescape(`${formData?.subject}/${formData?.paperCode}`)}
@@ -190,7 +273,7 @@ function AddExam() {
                                         <div className="id-info">
                                             <span>{validator.unescape("Roll No.")}</span>
                                             <div>
-                                                {validator.unescape(`Time Duration - ${formData?.timeDuration}`)} &nbsp;&nbsp;
+                                                {formData?.timeDuration ? validator.unescape(`Time Duration - ${formatDuration(formData?.timeDuration)}`) : ''} &nbsp;&nbsp;
                                                 <br />
                                                 {validator.unescape(`Max-Marks - ${formData?.maxMarks}`)}
                                             </div>
@@ -246,9 +329,11 @@ function AddExam() {
                                                 ></div>
                                             </div>
                                         ))}
+                                        <div className='endofpaper'>
+                                            ------------------- ** END OF THE PAPER ** -------------------
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

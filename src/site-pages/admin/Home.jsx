@@ -436,7 +436,7 @@ const navigate = useNavigate();
     </div>
            <div className="row">
             <div className="col-md-6">
-              <div className="card">
+              <div className="card equalhight">
                 <div className="card-body">
                   <div className="card-title">Monthly Visitor Analytics</div>
                   <form action="" id="form2">
@@ -476,7 +476,7 @@ const navigate = useNavigate();
               </div>
             </div>
             <div className="col-md-6">
-              <div className="card announcement">
+              <div className="card announcement equalhight">
                 <div className="card-body cardspacingzzwqx">
                   <div className="card-title">Announcements</div>
 

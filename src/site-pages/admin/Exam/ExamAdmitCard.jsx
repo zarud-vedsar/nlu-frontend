@@ -138,7 +138,6 @@ function AddExam() {
             exam_type,
           }
         );
-        
 
         if (response?.data?.statusCode === 200 && response.data.data?.length) {
           const title = response.data.data[0].title; // Adjust based on API response structure
@@ -235,11 +234,13 @@ function AddExam() {
   const [loading, setLoading] = useState(false); // State for managing loader visibility
   const [totalFiles, setTotalFiles] = useState(0);
   const [downloaded, setDownloaded] = useState(0);
-  const [viewSelectedIndex, setViewSelectedIndex] = useState(0);
+  const [loadingIndexes, setLoadingIndexes] = useState(null);
 
   const handleDownload = async () => {
-    setLoading(true); // Show loader
+    setLoading(true);
     try {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
       const elements = document.querySelectorAll("[data-jsx-template]");
       const pdf = new jsPDF("portrait", "mm", "a4");
 
@@ -268,13 +269,53 @@ function AddExam() {
         setDownloaded((prev) => prev + 1);
       }
 
-      pdf.save("document.pdf");
+      pdf.save("admit_cards.pdf");
     } catch (error) {
       console.error("Error generating PDF:", error);
     } finally {
       setLoading(false); // Hide loader
     }
   };
+
+  const downloadSinglePdf = async (currentIndex, candidate_name, roll_no) => {
+    setLoading(true);
+
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      const elements = document.querySelectorAll("[data-jsx-template]");
+
+      // Ensure the currentIndex is within the elements range
+      if (currentIndex < 0 || currentIndex >= elements.length) {
+        
+        return;
+      }
+
+      const pdf = new jsPDF("portrait", "mm", "a4");
+      const element = elements[currentIndex]; // Get the specific element
+
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+      });
+
+      const imgData = canvas.toDataURL("image/png");
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+
+      pdf.addImage(imgData, "PNG", 0, 0, pageWidth, pageHeight);
+      let fileName = `admit_card_${candidate_name}_${roll_no}.pdf`;
+      let newFileName = fileName.split(" ").join("_");
+
+      pdf.save(newFileName); // Unique file name
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    } finally {
+      setLoadingIndexes(null);
+      setLoading(false);
+    }
+  };
+
   function convertTo12Hour(time) {
     // Assume time is in "HH:MM" format
     const [hours, minutes] = time.split(":").map(Number);
@@ -464,20 +505,23 @@ function AddExam() {
               </div>
             </div>
             <div className="row">
-              {/* <div className="col-md-12">
+              <div className="col-md-12">
                 {hasPermission("Admit Card", "download") && (
                   <button
-                    onClick={handleDownload}
+                    onClick={() => {
+                      setLoading(true);
+                      handleDownload();
+                    }}
                     className="btn border-0 btn-primary d-flex justify-content-center align-items-center"
                     disabled={loading} // Disable button while loading
                   >
-                    <i className="fas fa-download"></i> &nbsp; Download{" "}
+                    <i className="fas fa-download"></i> &nbsp; Download All{" "}
                     {loading && <div className="loader-circle"></div>}
                   </button>
                 )}
                 <div className="mt-3">Total Files: {totalFiles}</div>
                 <div className="mt-3">Total Downloaded: {downloaded}</div>
-              </div> */}
+              </div>
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-body">
@@ -490,115 +534,131 @@ function AddExam() {
                     >
                       {admitData.length > 0 ? (
                         <>
-                        <div className="p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
-                                          <div className="search-icon">
-                                          <i className="pi pi-search" />
-                                          </div>
-                                          <InputText
-                                            type="search"
-                                            value={globalFilter}
-                                            onChange={(e) => setGlobalFilter(e.target.value)}
-                                            placeholder="Search"
-                                            className="form-control dtsearch-input"
-                                          />
-                                        </div>
-                        <DataTable
-                          value={admitData}
-                          removableSort
-                          paginator
-                          rows={10}
-                          rowsPerPageOptions={[10, 25, 50]}
-                          emptyMessage="No records found"
-                          className="p-datatable-custom"
-                          tableStyle={{ minWidth: "50rem" }}
-                          sortMode="multiple"
-                          filters={{ global: { value: globalFilter, matchMode: "contains" } }}
-                        >
-                          <Column
-                            body={(row, { rowIndex }) => rowIndex + 1}
-                            header="#"
-                            sortable
-                          />
-                          <Column
-                            header="Student"
-                            body={(rowData) => (
-                              <div
-                                className="info-column d-flex align-items-center
+                          <div className="p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                            <div className="search-icon">
+                              <i className="pi pi-search" />
+                            </div>
+                            <InputText
+                              type="search"
+                              value={globalFilter}
+                              onChange={(e) => setGlobalFilter(e.target.value)}
+                              placeholder="Search"
+                              className="form-control dtsearch-input"
+                            />
+                          </div>
+                          <DataTable
+                            value={admitData}
+                            removableSort
+                            paginator
+                            rows={10}
+                            rowsPerPageOptions={[10, 25, 50]}
+                            emptyMessage="No records found"
+                            className="p-datatable-custom"
+                            tableStyle={{ minWidth: "50rem" }}
+                            sortMode="multiple"
+                            filters={{
+                              global: {
+                                value: globalFilter,
+                                matchMode: "contains",
+                              },
+                            }}
+                          >
+                            <Column
+                              body={(row, { rowIndex }) => rowIndex + 1}
+                              header="#"
+                              sortable
+                            />
+                            <Column
+                              header="Student"
+                              body={(rowData) => (
+                                <div
+                                  className="info-column d-flex align-items-center
                                                         "
-                              >
-                                <div className="info-image mr-4">
-                                  {rowData.pic ? (
-                                    <img
-                                      src={`${FILE_API_URL}/${rowData?.pic}`}
-                                      alt=""
-                                      style={{
-                                        width: "40px",
-                                        height: "40px",
-                                        backgroundColor: "#e6fff3",
-                                        fontSize: "20px",
-                                        color: "#00a158",
-                                      }}
-                                      className="rounded-circle d-flex justify-content-center align-items-center"
-                                    />
-                                  ) : (
-                                    <div
-                                      style={{
-                                        width: "40px",
-                                        height: "40px",
-                                        backgroundColor: "#e6fff3",
-                                        fontSize: "20px",
-                                        color: "#00a158",
-                                      }}
-                                      className="rounded-circle d-flex justify-content-center align-items-center"
-                                    >
-                                      {rowData?.candidate_name[0]}
+                                >
+                                  <div className="info-image mr-4">
+                                    {rowData.pic ? (
+                                      <img
+                                        src={`${FILE_API_URL}/${rowData?.pic}`}
+                                        alt=""
+                                        style={{
+                                          width: "40px",
+                                          height: "40px",
+                                          backgroundColor: "#e6fff3",
+                                          fontSize: "20px",
+                                          color: "#00a158",
+                                        }}
+                                        className="rounded-circle d-flex justify-content-center align-items-center"
+                                      />
+                                    ) : (
+                                      <div
+                                        style={{
+                                          width: "40px",
+                                          height: "40px",
+                                          backgroundColor: "#e6fff3",
+                                          fontSize: "20px",
+                                          color: "#00a158",
+                                        }}
+                                        className="rounded-circle d-flex justify-content-center align-items-center"
+                                      >
+                                        {rowData?.candidate_name[0]}
+                                      </div>
+                                    )}
+                                  </div>
+                                  <div>
+                                    <div className="info-name">
+                                      <span>{`${rowData.candidate_name}`}</span>
                                     </div>
-                                  )}
-                                </div>
-                                <div>
-                                  <div className="info-name">
-                                    <span>{`${rowData.candidate_name}`}</span>
                                   </div>
                                 </div>
-                              </div>
-                            )}
-                            sortable
-                            filterField="candidate_name"
-                          />
-                          <Column
-                            body={(row) => row.roll_no}
-                            header="Roll No"
-                            sortable
-                            filterField="roll_no"
-                          />
-                          <Column
-                            body={(row) =>
-                              capitalizeFirstLetter(row?.exam_type)
-                            }
-                            header="Examination Type"
-                            sortable
-                            filterField="exam_type"
-                          />
+                              )}
+                              sortable
+                              filterField="candidate_name"
+                            />
+                            <Column
+                              body={(row) => row.roll_no}
+                              header="Roll No"
+                              sortable
+                              filterField="roll_no"
+                            />
+                            <Column
+                              body={(row) =>
+                                capitalizeFirstLetter(row?.exam_type)
+                              }
+                              header="Examination Type"
+                              sortable
+                              filterField="exam_type"
+                            />
 
-                          <Column
-                            body={(row) => row.status}
-                            header="Status"
-                            sortable
-                             filterField="status"
-                          />
-                          
-                          <Column
-                            header="Action"
-                            body={(rowData,{rowIndex}) => (
-                              <div className="d-flex justify-content-center">
-                                <i className={`fas fa-eye ${viewSelectedIndex==rowIndex?'text-primary':'text-warning'}`} onClick={()=>setViewSelectedIndex(rowIndex)}>
+                            <Column
+                              body={(row) => row.status}
+                              header="Status"
+                              sortable
+                              filterField="status"
+                            />
 
-                                </i>
-                                
-                              </div>
-                            )}
-                          />
-                        </DataTable>
+                            <Column
+                              header="Download"
+                              body={(rowData, { rowIndex }) => (
+                                <div className="d-flex justify-content-center">
+                                  {loading && loadingIndexes == rowIndex ? (
+                                    <div className="loader-circle"></div>
+                                  ) : (
+                                    <i
+                                      className={`fa-solid fa-file-arrow-down text-primary`}
+                                      onClick={() => {
+                                        setLoadingIndexes(rowIndex);
+                                        downloadSinglePdf(
+                                          rowIndex,
+                                          rowData.candidate_name,
+                                          rowData.roll_no
+                                        );
+                                      }}
+                                    ></i>
+                                  )}
+                                </div>
+                              )}
+                            />
+                          </DataTable>
                         </>
                       ) : (
                         <>
@@ -611,211 +671,211 @@ function AddExam() {
                   </div>
                 </div>
               </div>
-              {admitData && admitData.length>0 && 
-              <div className="col-md-12">
-              <div
-                      className="card"
-                      
-                      
-                    >
-                      <div className="card-body">
-                {hasPermission("Admit Card", "download") && (
-                  <button
-                    onClick={handleDownload}
-                    className="btn border-0 btn-primary d-flex justify-content-center align-items-center"
-                    disabled={loading} // Disable button while loading
-                  >
-                    <i className="fas fa-download"></i> &nbsp; Download{" "}
-                    {loading && <div className="loader-circle"></div>}
-                  </button>
-                )}
-               
-              </div>
-              </div>
-              </div> }
-              <div className="col-md-12">
-                {admitData &&
-                  admitData.length > 0 &&
+              {/* {admitData && admitData.length > 0 && (
+                <div className="col-md-12">
+                  <div className="card">
+                    <div className="card-body">
+                      {hasPermission("Admit Card", "download") && (
+                        <button
+                          onClick={handleDownload}
+                          className="btn border-0 btn-primary d-flex justify-content-center align-items-center"
+                          disabled={loading} // Disable button while loading
+                        >
+                          <i className="fas fa-download"></i> &nbsp; Download{" "}
+                          {loading && <div className="loader-circle"></div>}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )} */}
 
-                 
-                    <div
-                      className="container-main"
-                      
-                      data-jsx-template={viewSelectedIndex}
-                    >
-                      <div className="inner-container">
-                        <div className="id-header-wrapper">
-                          <div>
-                            <img
-                              src={rpnl_logo}
-                              alt=""
-                              className="id-header-img"
-                            />
-                          </div>
-                          <div className="id-header-content">
-                            <h4>Dr. Rajendra Prasad</h4>
-                            <h3>National Law University, Prayagraj</h3>
-                            <hr />
-                          </div>
-                        </div>
-                        <p className="id-head-content">
-                          {admitForm.title}
-                          <br />
-                          ADMIT CARD
-                        </p>
-                        <div className="id-personal-details-wrapper">
-                          <div className="id-personal-details">
-                            <p className="id-padd-p">
-                              <span className="id-text-bold">Roll No.</span>:
-                              <span className="id-text-light">
-                                { admitData[viewSelectedIndex]?.roll_no}
-                              </span>
-                            </p>
-                            <p className="id-padd-p">
-                              <span className="id-text-bold">
-                                Candidate Name
-                              </span>
-                              :{" "}
-                              <span className="id-text-light">
-                                { admitData[viewSelectedIndex]?.candidate_name}
-                              </span>
-                            </p>
-                            <p className="id-padd-p">
-                              <span className="id-text-bold">Semester</span>:
-                              <span className="id-text-light">
-                                { admitData[viewSelectedIndex]?.semester}
-                              </span>
-                            </p>
-                            <p className="id-padd-p">
-                              <span className="id-text-bold">Program</span>:
-                              <span className="id-text-light">
-                                { admitData[viewSelectedIndex]?.program}
-                              </span>
-                            </p>
-                            <p className="id-padd-p">
-                              <span className="id-text-bold">
-                                Examination Type
-                              </span>
-                              :
-                              <span className="id-text-light">
-                                {capitalizeFirstLetter( admitData[viewSelectedIndex]?.exam_type)}
-                              </span>
-                            </p>
-                            <p className="id-padd-p">
-                              <span className="id-text-bold">
-                                Status (Eligible/Debarred)
-                              </span>
-                              :
-                              <span className="id-text-light">
-                                { admitData[viewSelectedIndex]?.status
-                                  ? capitalizeAllLetters( admitData[viewSelectedIndex]?.status)
-                                  :  admitData[viewSelectedIndex]?.status}
-                              </span>
-                            </p>
-                          </div>
-                          <div className="id-candidate-photo-wrapper">
-                            <div className="id-candidate-photo">
-                              <img src={`${FILE_API_URL}/${ admitData[viewSelectedIndex]?.pic}`} />
+              {loading && (
+                <div className="col-md-12 ">
+                  {admitData &&
+                    admitData.length > 0 &&
+                    admitData.map((item, index) => (
+                      <div
+                        className="container-main"
+                        key={index}
+                        data-jsx-template={index}
+                      >
+                        <div className="inner-container">
+                          <div className="id-header-wrapper">
+                            <div>
+                              <img
+                                src={rpnl_logo}
+                                alt=""
+                                className="id-header-img"
+                              />
                             </div>
-                            <div className="id-candidate-sign">
-                              <img src={`${FILE_API_URL}/${ admitData[viewSelectedIndex]?.sign}`} />
+                            <div className="id-header-content">
+                              <h4>Dr. Rajendra Prasad</h4>
+                              <h3>National Law University, Prayagraj</h3>
+                              <hr />
                             </div>
-                            <span className="id-cendidate-sign-text">
-                              (Candidate's Signature)
-                            </span>
                           </div>
-                        </div>
-                        <div className="details">
-                          <table>
-                            <tbody>
-                              <tr>
-                                <th>Date</th>
-                                <th>Timing</th>
-                                <th>Paper Code</th>
-                                <th>Subject</th>
-                                <th>Venue</th>
-                              </tr>
-                              { admitData[viewSelectedIndex]?.papers.map((paper, index) => (
-                                <tr key={index}>
-                                  <td>
-                                    {paper.examDate
-                                      ? `${formatDate(
-                                          paper.examDate
-                                        )}, ${new Date(
-                                          paper.examDate
-                                        ).toLocaleDateString("en-US", {
-                                          weekday: "long",
-                                        })}`
-                                      : paper.examDate}
-                                  </td>
-
-                                  <td>
-                                    {paper.startTime
-                                      ? convertTo12Hour(paper.startTime)
-                                      : ""}{" "}
-                                    -{" "}
-                                    {paper.endTime
-                                      ? convertTo12Hour(paper.endTime)
-                                      : ""}
-                                  </td>
-                                  <td>{paper.paperCode}</td>
-                                  <td>{paper.subject}</td>
-                                  <td>{paper.venue}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                        <div className="instructions">
-                          <h3>Important Instructions:</h3>
-                          <ul>
-                            <li>
-                              It is mandatory for the candidates to carry their
-                              admit card during the course of the examination.
-                            </li>
-                            <li>
-                              Candidates need to put their signature in the
-                              space provided below the photograph.
-                            </li>
-                            <li>
-                              Each candidate shall show his or her 'Admit Card'
-                              to the Superintendent of Examination at the time
-                              of examination and is required to produce the same
-                              to the invigilator during the course of the
-                              examination.
-                            </li>
-                            <li>
-                              The candidates are directed to occupy their
-                              respective seats 30 minutes before the
-                              commencement of the examination.
-                            </li>
-                            <li>
-                              Candidates shall not be allowed 30 minutes after
-                              the commencement of the examination.
-                            </li>
-                            <li>
-                              Candidates are not allowed to take with them any
-                              unauthorized material, including mobile phones,
-                              smartwatches, pen drives, books, notes, Bluetooth
-                              devices, etc., to the examination center.
-                            </li>
-                            <li>
-                              The Superintendent of Examination, the
-                              invigilator, and the Examination team can do the
-                              physical search of the candidates at any time
-                              during the course of the examination to ensure
-                              that they do not have any unauthorized material in
-                              their possession.
-                            </li>
-                          </ul>
-                          <p className="id-dean-examination">
-                            Dean Examination
+                          <p className="id-head-content">
+                            {admitForm.title}
+                            <br />
+                            ADMIT CARD
                           </p>
+                          <div className="id-personal-details-wrapper">
+                            <div className="id-personal-details">
+                              <p className="id-padd-p">
+                                <span className="id-text-bold">Roll No.</span>:
+                                <span className="id-text-light">
+                                  {item?.roll_no}
+                                </span>
+                              </p>
+                              <p className="id-padd-p">
+                                <span className="id-text-bold">
+                                  Candidate Name
+                                </span>
+                                :{" "}
+                                <span className="id-text-light">
+                                  {item?.candidate_name}
+                                </span>
+                              </p>
+                              <p className="id-padd-p">
+                                <span className="id-text-bold">Semester</span>:
+                                <span className="id-text-light">
+                                  {item?.semester}
+                                </span>
+                              </p>
+                              <p className="id-padd-p">
+                                <span className="id-text-bold">Program</span>:
+                                <span className="id-text-light">
+                                  {item?.program}
+                                </span>
+                              </p>
+                              <p className="id-padd-p">
+                                <span className="id-text-bold">
+                                  Examination Type
+                                </span>
+                                :
+                                <span className="id-text-light">
+                                  {item?.exam_type}
+                                </span>
+                              </p>
+                              <p className="id-padd-p">
+                                <span className="id-text-bold">
+                                  Status (Eligible/Debarred)
+                                </span>
+                                :
+                                <span className="id-text-light">
+                                  {item?.status
+                                    ? capitalizeAllLetters(item?.status)
+                                    : item?.status}
+                                </span>
+                              </p>
+                            </div>
+                            <div className="id-candidate-photo-wrapper">
+                              <div className="id-candidate-photo">
+                                <img src={`${FILE_API_URL}/${item?.pic}`} />
+                              </div>
+                              <div className="id-candidate-sign">
+                                <img src={`${FILE_API_URL}/${item?.sign}`} />
+                              </div>
+                              <span className="id-cendidate-sign-text">
+                                (Candidate's Signature)
+                              </span>
+                            </div>
+                          </div>
+                          <div className="details">
+                            <table>
+                              <tbody>
+                                <tr>
+                                  <th>Date</th>
+                                  <th>Timing</th>
+                                  <th>Paper Code</th>
+                                  <th>Subject</th>
+                                  <th>Venue</th>
+                                </tr>
+                                {item?.papers.map((paper, index) => (
+                                  <tr key={index}>
+                                    <td>
+                                      {paper.examDate
+                                        ? `${formatDate(
+                                            paper.examDate
+                                          )}, ${new Date(
+                                            paper.examDate
+                                          ).toLocaleDateString("en-US", {
+                                            weekday: "long",
+                                          })}`
+                                        : paper.examDate}
+                                    </td>
+
+                                    <td>
+                                      {paper.startTime
+                                        ? convertTo12Hour(paper.startTime)
+                                        : ""}{" "}
+                                      -{" "}
+                                      {paper.endTime
+                                        ? convertTo12Hour(paper.endTime)
+                                        : ""}
+                                    </td>
+                                    <td>{paper.paperCode}</td>
+                                    <td>{paper.subject}</td>
+                                    <td>{paper.venue}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                          <div className="instructions">
+                            <h3>Important Instructions:</h3>
+                            <ul>
+                              <li>
+                                It is mandatory for the candidates to carry
+                                their admit card during the course of the
+                                examination.
+                              </li>
+                              <li>
+                                Candidates need to put their signature in the
+                                space provided below the photograph.
+                              </li>
+                              <li>
+                                Each candidate shall show his or her 'Admit
+                                Card' to the Superintendent of Examination at
+                                the time of examination and is required to
+                                produce the same to the invigilator during the
+                                course of the examination.
+                              </li>
+                              <li>
+                                The candidates are directed to occupy their
+                                respective seats 30 minutes before the
+                                commencement of the examination.
+                              </li>
+                              <li>
+                                Candidates shall not be allowed 30 minutes after
+                                the commencement of the examination.
+                              </li>
+                              <li>
+                                Candidates are not allowed to take with them any
+                                unauthorized material, including mobile phones,
+                                smartwatches, pen drives, books, notes,
+                                Bluetooth devices, etc., to the examination
+                                center.
+                              </li>
+                              <li>
+                                The Superintendent of Examination, the
+                                invigilator, and the Examination team can do the
+                                physical search of the candidates at any time
+                                during the course of the examination to ensure
+                                that they do not have any unauthorized material
+                                in their possession.
+                              </li>
+                            </ul>
+                            <p className="id-dean-examination">
+                              Dean Examination
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  }
-              </div>
+                    ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

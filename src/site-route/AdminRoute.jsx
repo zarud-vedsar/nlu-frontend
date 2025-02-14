@@ -8,8 +8,7 @@ import "../site-components/admin/assets/css/Custom.css";
 import ProtectedRoute from "../site-pages/admin/ProtectedRoute";
 import IsAdminLoggedIn from "../site-pages/admin/IsAdminLoggedIn";
 import ErrorBoundary from "./ErrorBoundary.jsx";
-import KeynoteSpeaker from "../site-pages/admin/KeynoteSpeaker.jsx";
-import KeynoteSpeakerList from "../site-pages/admin/KeynoteSpeakerList.jsx";
+
 
 const MessageForm = lazy(() => import("../site-pages/admin/MessageForm"));
 const Gallery = lazy(() => import("../site-pages/admin/Gallery"));
@@ -478,20 +477,21 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
                 <ProtectedRoute element={<components.StudentTestimonialForm />} />
               }
             />
+           
             <Route
-              path="/add-keynote-speaker"
+              path="/add-keynote-speaker/:mrq_slider_id"
+              element={
+                <ProtectedRoute element={<components.KeynoteSpeaker />} />
+              }
+            />
+             <Route
+              path="/edit-keynote-speaker/:mrq_slider_id/:key_note_id"
               element={
                 <ProtectedRoute element={<components.KeynoteSpeaker />} />
               }
             />
             <Route
-              path="/add-keynote-speaker/:id"
-              element={
-                <ProtectedRoute element={<components.KeynoteSpeaker />} />
-              }
-            />
-            <Route
-              path="/keynote-speaker-list"
+              path="/keynote-speaker-list/:mrq_slider_id"
               element={
                 <ProtectedRoute element={<components.KeynoteSpeakerList />} />
               }
@@ -502,12 +502,7 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
                 <ProtectedRoute element={<components.StudentTestimonialForm />} />
               }
             />
-            <Route
-              path="/edit-keynote-speaker-detail/:id"
-              element={
-                <ProtectedRoute element={<components.KeynoteSpeaker />} />
-              }
-            />
+            
             <Route
               path="/add-student-testimonial"
               element={
@@ -698,7 +693,7 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
               element={<components.TermsAndUse />}
             />
             <Route path="/marque-slide" element={<components.MarqueSlide />} />
-            <Route path="/marque-slide" element={<components.MarqueSlide />} />
+            
             <Route
               path="/session"
               element={<ProtectedRoute element={<components.Session />} />}

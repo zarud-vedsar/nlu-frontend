@@ -46,7 +46,7 @@ function AssignmentAddNew() {
   const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const [session,setSession] = useState([]);
+  const [session, setSession] = useState([]);
   const sessionListDropdown = async () => {
     try {
       const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
@@ -77,7 +77,17 @@ function AssignmentAddNew() {
    */
   // Jodit editor configuration
   const config = {
-    readonly: false, // set to true if you want readonly mode
+    readonly: false,
+    placeholder: '',
+    spellcheck: true,
+    language: 'pt_br',
+    defaultMode: '1',
+    minHeight: 400,
+    maxHeight: -1,
+    defaultActionOnPaste: 'insert_as_html',
+    defaultActionOnPasteFromWord: 'insert_as_html',
+    askBeforePasteFromWord: false,
+    askBeforePasteHTML: false,
   };
   const questionTypes = ["mcq", "scq", "image", "description"];
   const courseListDropdown = async () => {
@@ -197,7 +207,7 @@ function AssignmentAddNew() {
           question_type: data?.question_type,
           pdf_file: data.pdf_file ? validator.unescape(data.pdf_file) : "",
           description: validator.unescape(data.description || " "),
-          session:data?.session
+          session: data?.session
         }));
         if (data.pdf_file) setPreviewPdf(validator.unescape(data.pdf_file));
         return response;
@@ -261,7 +271,7 @@ function AssignmentAddNew() {
   };
   // Handle form submission
   const handleSubmit = async (step) => {
-   
+
     setIsSubmit(true);
     errorMsg("", "");
     if (!formData.courseid) {
@@ -342,8 +352,8 @@ function AssignmentAddNew() {
 
         if (response?.data?.statusCode === 201) {
           setFormData({ ...formData, assignment_title: "" });
-          
-          if(step==="next"){
+
+          if (step === "next") {
             navigate(`/admin/assignment/add-question/${response?.data?.data?.dbId}`)
           }
         }
@@ -431,9 +441,9 @@ function AssignmentAddNew() {
                   <div className="card-body">
                     <form >
                       <div className="row">
-                      <div className="col-md-4 col-12 form-group">
+                        <div className="col-md-4 col-12 form-group">
                           <label className="font-weight-semibold">
-                            Session 
+                            Session
                           </label>
                           <Select
                             options={session?.map(({ id, dtitle }) => ({
@@ -448,11 +458,11 @@ function AssignmentAddNew() {
                                 ({ id }) => id === +formData.session
                               )
                                 ? {
-                                    value: +formData.session,
-                                    label: session.find(
-                                      ({ id }) => id === +formData.session
-                                    ).dtitle,
-                                  }
+                                  value: +formData.session,
+                                  label: session.find(
+                                    ({ id }) => id === +formData.session
+                                  ).dtitle,
+                                }
                                 : { value: formData.session, label: "Select" }
                             }
                           />
@@ -778,23 +788,23 @@ function AssignmentAddNew() {
                         <div className="col-md-12 col-lg-12 col-12">
                           {!isSubmit ? (
                             <div className="d-flex ">
-                            <button
-                              className="btn btn-success mr-2 "
-                              
-                              onClick={(e)=>{e.preventDefault();handleSubmit("save")}}
-                            >
-                              {assignmentId ? "Update":"Save"}
-                              
-                            </button>
-                            {!assignmentId && 
-                            <button
-                              className="btn btn-secondary  "
-                              
-                              onClick={(e)=>{e.preventDefault();handleSubmit("next")}}
-                            >
-                              Save And Next{" "}
-                            </button>
-}
+                              <button
+                                className="btn btn-success mr-2 "
+
+                                onClick={(e) => { e.preventDefault(); handleSubmit("save") }}
+                              >
+                                {assignmentId ? "Update" : "Save"}
+
+                              </button>
+                              {!assignmentId &&
+                                <button
+                                  className="btn btn-secondary  "
+
+                                  onClick={(e) => { e.preventDefault(); handleSubmit("next") }}
+                                >
+                                  Save And Next{" "}
+                                </button>
+                              }
                             </div>
                           ) : (
                             <button

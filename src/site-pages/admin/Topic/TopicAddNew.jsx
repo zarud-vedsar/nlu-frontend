@@ -39,7 +39,17 @@ function TopicAddNew() {
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
   // Jodit editor configuration
   const config = {
-    readonly: false, // set to true if you want readonly mode
+    readonly: false,
+    placeholder: '',
+    spellcheck: true,
+    language: 'pt_br',
+    defaultMode: '1',
+    minHeight: 400,
+    maxHeight: -1,
+    defaultActionOnPaste: 'insert_as_html',
+    defaultActionOnPasteFromWord: 'insert_as_html',
+    askBeforePasteFromWord: false,
+    askBeforePasteHTML: false,
   };
   const courseListDropdown = async () => {
     try {
@@ -296,7 +306,7 @@ function TopicAddNew() {
                   <a href="./" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" /> Learning Management
                   </a>
-                  
+
                   <span className="breadcrumb-item">Topic</span>
                   <span className="breadcrumb-item active">
                     {topicId ? "Update Topic" : "Add New Topic"}

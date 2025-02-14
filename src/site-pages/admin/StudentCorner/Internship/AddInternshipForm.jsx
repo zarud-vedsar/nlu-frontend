@@ -38,7 +38,17 @@ const AddInternshipForm = () => {
   const [formData, setFormData] = useState(initialization);
   // Jodit editor configuration
   const config = {
-    readonly: false, // set to true if you want readonly mode
+    readonly: false,
+    placeholder: '',
+    spellcheck: true,
+    language: 'pt_br',
+    defaultMode: '1',
+    minHeight: 400,
+    maxHeight: -1,
+    defaultActionOnPaste: 'insert_as_html',
+    defaultActionOnPasteFromWord: 'insert_as_html',
+    askBeforePasteFromWord: false,
+    askBeforePasteHTML: false,
   };
   useEffect(() => {
     const loadData = async () => {
@@ -246,13 +256,13 @@ const AddInternshipForm = () => {
                   </i>{" "}
                   Go Back
                 </Button>
-                 <Link
-                                    to="/admin/internship"
-                                    className="ml-2 btn-md btn border-0 btn-secondary"
-                                  >
-                                    <i className="fas fa-list" /> Internship List
-                                  </Link>
-               
+                <Link
+                  to="/admin/internship"
+                  className="ml-2 btn-md btn border-0 btn-secondary"
+                >
+                  <i className="fas fa-list" /> Internship List
+                </Link>
+
               </div>
             </div>
           </div>

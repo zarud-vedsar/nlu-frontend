@@ -19,7 +19,17 @@ const AddPlacementForm = () => {
   const [errorMessage, setErrorMessage] = useState();
   // Jodit editor configuration
   const config = {
-    readonly: false, // set to true if you want readonly mode
+    readonly: false,
+    placeholder: '',
+    spellcheck: true,
+    language: 'pt_br',
+    defaultMode: '1',
+    minHeight: 400,
+    maxHeight: -1,
+    defaultActionOnPaste: 'insert_as_html',
+    defaultActionOnPasteFromWord: 'insert_as_html',
+    askBeforePasteFromWord: false,
+    askBeforePasteHTML: false,
   };
 
   const initialization = {
@@ -235,12 +245,12 @@ const AddPlacementForm = () => {
                   </i>{" "}
                   Go Back
                 </Button>
-                  <Link
-                                                 to="/admin/placement"
-                                                                    className="ml-2 btn-md btn border-0 btn-secondary"
-                                                                  >
-                                                                    <i className="fas fa-list" /> Placement List
-                                                                  </Link>
+                <Link
+                  to="/admin/placement"
+                  className="ml-2 btn-md btn border-0 btn-secondary"
+                >
+                  <i className="fas fa-list" /> Placement List
+                </Link>
               </div>
             </div>
           </div>

@@ -51,7 +51,17 @@ function CourseAdd() {
   const [previewPdf, setPreviewPdf] = useState(null);
   // Jodit editor configuration
   const config = {
-    readonly: false, // set to true if you want readonly mode
+    readonly: false,
+    placeholder: '',
+    spellcheck: true,
+    language: 'pt_br',
+    defaultMode: '1',
+    minHeight: 400,
+    maxHeight: -1,
+    defaultActionOnPaste: 'insert_as_html',
+    defaultActionOnPasteFromWord: 'insert_as_html',
+    askBeforePasteFromWord: false,
+    askBeforePasteHTML: false,
   };
   // Fetch department list
   const fetchDepartmentList = async (deleteStatus = 0) => {
@@ -299,7 +309,7 @@ function CourseAdd() {
                   <a href="./" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" /> Learning Management
                   </a>
-                  
+
                   <span className="breadcrumb-item">Course</span>
                   <span className="breadcrumb-item active">{courseId ? "Update Course" : "Add Course"}</span>
                 </nav>

@@ -6,7 +6,7 @@ import {
 } from "../../../site-components/Helper/HelperFunction";
 import {
   NODE_API_URL,
- 
+
 } from "../../../site-components/Helper/Constant";
 import validator from "validator";
 import { toast } from "react-toastify";
@@ -18,24 +18,8 @@ import JoditEditor from "jodit-react"; // Import Jodit editor
 function AddExam() {
   const location = useLocation();
   const dbId = location?.state?.dbId;
+  const paper_set = location?.state?.paper_set;
 
-  const initialFormData = {
-    examDate: "",
-    sessionId: "",
-    examType: "",
-    courseId: "",
-    semesterId: "",
-    subjectId: "",
-    paperCode: "",
-    timeDuration: "",
-    maxMarks: "",
-    password: "",
-    instruction: "",
-    section: [],
-    pass: 0,
-  };
-
-  const [formData, setFormData] = useState(initialFormData);
   const [questionForm, setQuestionForm] = useState({
     examId: "",
     section: [
@@ -45,18 +29,20 @@ function AddExam() {
       },
     ],
   });
-
-
   const [isSubmit, setIsSubmit] = useState(false);
-  const [isrefresh, setisrefresh] = useState(false);
-
   const config = {
-    readonly: false, // set to true if you want readonly mode
+    readonly: false,
+    placeholder: '',
+    spellcheck: true,
+    language: 'pt_br',
+    defaultMode: '1',
+    minHeight: 400,
+    maxHeight: -1,
+    defaultActionOnPaste: 'insert_as_html',
+    defaultActionOnPasteFromWord: 'insert_as_html',
+    askBeforePasteFromWord: false,
+    askBeforePasteHTML: false,
   };
-
-
- 
-
   // Fetch and set the session list
   const fetchSavedQuestion = async () => {
     try {
@@ -80,13 +66,12 @@ function AddExam() {
               questions.find((q) => q.title === section.title)?.question || "",
           })),
         }));
-        setisrefresh(true);
       }
     } catch (error) {
       console.error("Error fetching saved questions", error);
     }
   };
-  
+
   const fetchDataForUpdate = useCallback(async (id) => {
     if (!id || parseInt(id, 10) < 1) {
       toast.error("Invalid exam ID");
@@ -99,21 +84,7 @@ function AddExam() {
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
         const fetchedData = response.data[0];
-        setFormData({
-          dbId: fetchedData.id,
-          examDate: fetchedData.examDate?.split("T")[0] || "",
-          sessionId: fetchedData.sessionId,
-          examType: fetchedData.examType,
-          courseId: fetchedData.courseId,
-          semesterId: fetchedData.semesterId,
-          subjectId: fetchedData.subjectId,
-          paperCode: fetchedData.paperCode,
-          timeDuration: fetchedData.timeDuration,
-          maxMarks: fetchedData.maxMarks,
-          instruction: fetchedData.instruction,
-          section: JSON.parse(fetchedData.section),
-          pass: 1,
-        });
+
         const parsedSections = JSON.parse(fetchedData.section);
         setQuestionForm((prev) => ({
           ...prev,
@@ -193,7 +164,6 @@ function AddExam() {
 
       if ([200, 201].includes(data?.statusCode)) {
         toast.success(data.message);
-        if (data.statusCode === 201) setFormData(initialFormData); // Reset if a new exam is created
       } else {
         toast.error("An error occurred. Please try again.");
       }
@@ -216,9 +186,26 @@ function AddExam() {
               </Link>
               <span className="breadcrumb-item">Exam Management</span>
               <span className="breadcrumb-item active">
-                {dbId ? "Update Exam Details" : "Add New Exam"}
+                Questions
               </span>
             </nav>
+          </div>
+          {/* Main Content Starts Here */}
+          <div className="card border-0 bg-transparent mb-0">
+            <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
+              <h5 className="card-title h6_new font-16">
+                {dbId ? "Update Exam Paper" : "Add Exam Paper"}
+              </h5>
+              {/* The almighty 'Go Back' button */}
+              <button className="btn goback" onClick={goBack}>
+                <i className="fas fa-arrow-left"></i> Go Back
+              </button>
+              <Link to="/admin/exam-paper/list">
+                <button className="ml-2 btn-md btn border-0 btn-secondary">
+                  <i className="fas fa-list"></i> Exam Paper List
+                </button>
+              </Link>
+            </div>
           </div>
           <div className="card border-0">
             <div className="card-body px-3">
@@ -229,21 +216,21 @@ function AddExam() {
                       <label className="font-weight-semibold">
                         Section {item.title}
                       </label>
-                      
-                      <JoditEditor
-                      value={item?.question ? validator.unescape(item?.question) : ''}
-                      config={config}
 
-                      onBlur={(newContent) => {
-                        const updatedQuestionForm = { ...questionForm };
-                        updatedQuestionForm.section[index].question = newContent;
-                        setQuestionForm(updatedQuestionForm);
-                      }}
-                    />                    
-                     
+                      <JoditEditor
+                        value={item?.question ? validator.unescape(item?.question) : ''}
+                        config={config}
+
+                        onBlur={(newContent) => {
+                          const updatedQuestionForm = { ...questionForm };
+                          updatedQuestionForm.section[index].question = newContent;
+                          setQuestionForm(updatedQuestionForm);
+                        }}
+                      />
+
                     </div>
                   ))}
-                 
+
                   <div className="col-md-12 col-12">
                     <button
                       className="btn btn-dark d-flex justify-content-center align-items-center"

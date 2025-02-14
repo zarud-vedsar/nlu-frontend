@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  Modal,
-  Button,
-  Spinner
-} from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 
 import { Link } from "react-router-dom";
 import {
   FILE_API_URL,
-  NODE_API_URL,
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
 import { DataTable } from "primereact/datatable";
@@ -24,24 +19,16 @@ import { useNavigate } from "react-router-dom";
 import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert";
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 
 const KeynoteSpeakerList = () => {
   const navigate = useNavigate();
-
+  const { mrq_slider_id } = useParams();
   const [messages, setMessages] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [recycleTitle, setRecycleTitle] = useState("Show Recycle Bin");
 
   const [loading, setLoading] = useState(false);
-  const [modalShow, setModalShow] = useState(false);
-
-  const [selectedtestimonial, setselectedtestimonial] = useState(null);
-
-  const viewAllImages = (index) => {
-    const currentSetTestimonial = messages[index];
-    setselectedtestimonial(currentSetTestimonial);
-    setModalShow(true);
-  };
 
   useEffect(() => {
     load_message();
@@ -60,6 +47,7 @@ const KeynoteSpeakerList = () => {
     try {
       const bformData = new FormData();
       bformData.append("data", "load_keynote");
+      bformData.append("mrq_slider_id", mrq_slider_id);
       bformData.append("delete_status", 1);
 
       const response = await axios.post(
@@ -84,7 +72,7 @@ const KeynoteSpeakerList = () => {
     try {
       const bformData = new FormData();
       bformData.append("data", "load_keynote");
-
+      bformData.append("mrq_slider_id", mrq_slider_id);
       if (filter) {
         Object.keys(filter).forEach((key) => {
           const value = filter[key];
@@ -102,7 +90,7 @@ const KeynoteSpeakerList = () => {
           },
         }
       );
-      console.log(response);
+
       setMessages(response.data.data);
     } catch (error) {
       console.error("Error fetching faculty data:", error);
@@ -111,8 +99,8 @@ const KeynoteSpeakerList = () => {
     }
   };
 
-  const editDetail = (id) => {
-    navigate(`/admin/edit-keynote-speaker-detail/${id}`);
+  const editDetail = (mrq_slider_id, id) => {
+    navigate(`/admin/edit-keynote-speaker/${mrq_slider_id}/${id}`);
   };
 
   const deleteMessage = async (id) => {
@@ -157,8 +145,8 @@ const KeynoteSpeakerList = () => {
     } finally {
     }
   };
-  
- const updateStatus = async (id) => {
+
+  const updateStatus = async (id) => {
     try {
       const bformData = new FormData();
 
@@ -211,9 +199,7 @@ const KeynoteSpeakerList = () => {
                   CMS
                 </a>
 
-                <span className="breadcrumb-item active">
-                  Keynote speaker
-                </span>
+                <span className="breadcrumb-item active">Keynote speaker</span>
               </nav>
             </div>
             <div className="card bg-transparent mb-2">
@@ -231,9 +217,14 @@ const KeynoteSpeakerList = () => {
                     Go Back
                   </Button>
 
+                  <Link to={`/admin/marque-slide`}>
+                    <button className="ml-auto btn-md btn border-0 btn-primary mr-2">
+                      <i className="fa-solid fa-list"></i> Marque List
+                    </button>
+                  </Link>
                   <Link
-                    to="/admin/add-keynote-speaker"
-                    className="btn btn-secondary"
+                    to={`/admin/add-keynote-speaker/${mrq_slider_id}`}
+                    className="btn btn-secondary mr-2"
                   >
                     <i className="fas">
                       <IoMdAdd />
@@ -322,8 +313,11 @@ const KeynoteSpeakerList = () => {
                         )}
                         sortable
                       />
-                       <Column field="keynote_content" header="Content" sortable />
-                    
+                      <Column
+                        field="keynote_content"
+                        header="Content"
+                        sortable
+                      />
 
                       <Column
                         style={{ width: "10%" }}
@@ -343,9 +337,11 @@ const KeynoteSpeakerList = () => {
                                 htmlFor={`switch${rowData.id}`}
                               ></label>
                             </div>
-                           
+
                             <div
-                              onClick={() => editDetail(rowData.id)}
+                              onClick={() =>
+                                editDetail(rowData.mrq_slider_id, rowData.id)
+                              }
                               className="avatar avatar-icon avatar-md avatar-orange"
                             >
                               <i className="fas fa-edit"></i>

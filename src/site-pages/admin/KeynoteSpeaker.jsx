@@ -4,7 +4,6 @@ import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import {
   PHP_API_URL,
-  NODE_API_URL,
   FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
@@ -12,8 +11,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const KeynoteSpeaker = () => {
-  const { id } = useParams();
-  console.log(id)
+  const { mrq_slider_id, key_note_id } = useParams();
 
   const initialForm = {
     keynote_name: "",
@@ -24,17 +22,16 @@ const KeynoteSpeaker = () => {
   };
 
   const [formData, setFormData] = useState(initialForm);
-  const [marquee, setMarquee] = useState([]);
+  const [marquee, setMarquee] = useState();
   const [previewImage, setPreviewImage] = useState(null);
   const [isSubmit, setIsSubmit] = useState(false);
 
   const getMarquee = async () => {
-    console.log('API call initiated');  // Add this log to confirm if the function is being called
     try {
       const bformData = new FormData();
-      bformData.append("data:get_mrq_slider_by_id");
-      bformData.append("id", id);
-  
+      bformData.append("data", "get_mrq_slider_by_id");
+      bformData.append("id", mrq_slider_id);
+
       const response = await axios.post(
         `${PHP_API_URL}/mrq_slider.php`,
         bformData,
@@ -44,13 +41,12 @@ const KeynoteSpeaker = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.status === 200) {
-        setMarquee(response);
+        setMarquee(response?.data?.data[0]);
       }
     } catch (error) {
       const status = error.response?.data?.status;
-  
+
       if (status === 400 || status === 500) {
         toast.error(error.response.data.msg || "A server error occurred.");
       } else {
@@ -62,14 +58,10 @@ const KeynoteSpeaker = () => {
   };
 
   useEffect(() => {
-    if (id) {
+    if (mrq_slider_id) {
       getMarquee();
-      console.log(id);
     }
-  }, [id]);  // Ensure id is a dependency
-  
-
-
+  }, [mrq_slider_id]); // Ensure id is a dependency
 
   const handleChange = (e) => {
     setFormData({
@@ -78,12 +70,12 @@ const KeynoteSpeaker = () => {
     });
   };
 
-  // for update 
+  // for update
   const getMessage = async () => {
     try {
       const bformData = new FormData();
       bformData.append("data", "get_keynote_by_id");
-      bformData.append("id", id);
+      bformData.append("id", key_note_id);
 
       const response = await axios.post(
         `${PHP_API_URL}/keynote_speaker.php`,
@@ -94,7 +86,6 @@ const KeynoteSpeaker = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.status === 200) {
         setFormData({
           keynote_name: response.data.data[0].keynote_name,
@@ -124,10 +115,10 @@ const KeynoteSpeaker = () => {
   };
 
   useEffect(() => {
-    if (id) {
+    if (key_note_id) {
       getMessage();
     }
-  }, []);
+  }, [key_note_id]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -137,7 +128,6 @@ const KeynoteSpeaker = () => {
     if (id === "keynote_photo") {
       if (file.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(file));
-        console.log(file);
 
         setFormData((formData) => ({ ...formData, keynote_photo: file }));
       } else {
@@ -150,14 +140,12 @@ const KeynoteSpeaker = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const phoneRegex = /^[0-9]{10}$/;
-    console.log(formData);
 
     setIsSubmit(true);
     if (!formData.keynote_name) {
       toast.error("Name is required.");
       return setIsSubmit(false);
-    }  else if (!formData.keynote_link) {
+    } else if (!formData.keynote_link) {
       toast.error("Company Name is required.");
       return setIsSubmit(false);
     } else if (!formData.keynote_content) {
@@ -172,20 +160,16 @@ const KeynoteSpeaker = () => {
     sendFormData.append("data", "keynote_add");
     sendFormData.append("loguserid", secureLocalStorage.getItem("login_id"));
     sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
+    sendFormData.append("mrq_slider_id", mrq_slider_id);
 
-    if (id) {
-      sendFormData.append("updateid", id);
-      console.log('updateid',id)
+    if (key_note_id) {
+      sendFormData.append("updateid", key_note_id);
     }
 
-    for (let key in formData) {
-      sendFormData.append(key, formData[key]);
-    }
+    Object.entries(formData).forEach(([key, value]) => {
+      sendFormData.append(key, value);
+    });
 
-    for(let [key,value] of sendFormData){
-      console.log(key,value)
-    }
-    console.log(`${PHP_API_URL}/keynote_speaker.php`)
     try {
       const response = await axios.post(
         `${PHP_API_URL}/keynote_speaker.php`,
@@ -196,7 +180,6 @@ const KeynoteSpeaker = () => {
           },
         }
       );
-      console.log(response);
 
       if (response.data?.status === 200 || response.data?.status === 201) {
         toast.success(response.data.msg);
@@ -233,16 +216,14 @@ const KeynoteSpeaker = () => {
                 <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> CMS
                 </a>
-                <span className="breadcrumb-item active">
-                  Keynote Speaker
-                </span>
+                <span className="breadcrumb-item active">Keynote Speaker</span>
               </nav>
             </div>
           </div>
           <div className="card bg-transparent ">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
               <h5 className="card-title h6_new">
-                {id
+                {key_note_id
                   ? "Update Keynote Speaker"
                   : "Add New Keynote Speaker"}
               </h5>
@@ -253,10 +234,9 @@ const KeynoteSpeaker = () => {
                 >
                   <i className="fas fa-arrow-left" /> Go Back
                 </button>
-                <Link to="/admin/keynote-speaker-list">
+                <Link to={`/admin/keynote-speaker-list/${mrq_slider_id}`}>
                   <button className="ml-auto btn-md btn border-0 btn-primary mr-2">
-                    <i className="fa-solid fa-list"></i> Keynote Speaker
-                    List
+                    <i className="fa-solid fa-list"></i> Keynote Speaker List
                   </button>
                 </Link>
               </div>
@@ -268,6 +248,13 @@ const KeynoteSpeaker = () => {
                 <div className="card">
                   <div className="card-body">
                     <div className="row">
+                      <div className="form-group col-md-12 ">
+                        <label>
+                          <strong>Import Update Title</strong>
+                        </label>
+                        <div className="col-md-12 mb-3">{marquee?.content}</div>
+                      </div>
+
                       <div className="form-group col-md-6">
                         <label>
                           Name<span className="text-danger">*</span>
@@ -280,7 +267,7 @@ const KeynoteSpeaker = () => {
                           onChange={handleChange}
                         />
                       </div>
-                     
+
                       <div className="form-group col-md-6">
                         <label>
                           Link<span className="text-danger">*</span>
@@ -293,7 +280,6 @@ const KeynoteSpeaker = () => {
                           onChange={handleChange}
                         />
                       </div>
-                     
 
                       <div className="form-group col-md-12 ">
                         <label>

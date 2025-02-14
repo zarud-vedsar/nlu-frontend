@@ -1,28 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  Modal,
-  Button,
-  Form,
-  Table,
-  Spinner,
-  Col,
-  Row,
-  InputGroup,
-} from "react-bootstrap";
-import Select from "react-select";
-import { FaFilter } from "react-icons/fa";
+import { Modal, Button, Spinner } from "react-bootstrap";
+
 import { IoMdAdd } from "react-icons/io";
-import { FaArrowLeft } from "react-icons/fa6";
-import { IoIosEye } from "react-icons/io";
-import { IoIosEyeOff } from "react-icons/io";
-import { FaEdit } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
+
 import { Link } from "react-router-dom";
-import {
-  NODE_API_URL,
-  PHP_API_URL,
-} from "../../site-components/Helper/Constant";
+import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
 import { InputText } from "primereact/inputtext"; // Import InputText for the search box
@@ -63,10 +46,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
       bformData.append("content", content);
       bformData.append("link", link);
 
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
-
       if (id) {
         bformData.append("updateid", id);
       }
@@ -80,7 +59,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
           },
         }
       );
-      console.log(response);
 
       if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response?.data?.msg);
@@ -171,7 +149,6 @@ const MarqueSlide = () => {
 
   const editMarque = (index) => {
     const currentLob = MarqueList[index];
-    console.log(currentLob);
     setSelectedMarque(currentLob);
   };
   useEffect(() => {
@@ -209,7 +186,6 @@ const MarqueSlide = () => {
           },
         }
       );
-      console.log(response.data.data);
       setMarqueList(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -233,7 +209,6 @@ const MarqueSlide = () => {
           },
         }
       );
-      console.log(response);
       setMarqueList(response.data.data);
     } catch (error) {
       console.error("Error fetching  data:", error);
@@ -493,6 +468,21 @@ const MarqueSlide = () => {
                                 </div>
                               </OverlayTrigger>
                             )}
+                            <OverlayTrigger
+                              placement="bottom"
+                              overlay={
+                                <Tooltip id="button-tooltip-2">
+                                  Keynote list
+                                </Tooltip>
+                              }
+                            >
+                              <Link
+                                className="avatar ml-2 avatar-icon avatar-md avatar-lime"
+                                to={`/admin/keynote-speaker-list/${rowData.id}`}
+                              >
+                                <i className="fas fa-list"></i>
+                              </Link>
+                            </OverlayTrigger>
                           </div>
                         )}
                         sortable

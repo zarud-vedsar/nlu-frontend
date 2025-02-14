@@ -571,7 +571,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           }, 500);
         }}
       />
+      { secureLocalStorage.getItem("sguardianemail") &&
        <p className="id-parent-panel-position-fixed">Parent Panel</p>
+      }
     </>
   );
 };

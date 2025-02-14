@@ -182,9 +182,6 @@ function Preview() {
                     <div className="loader-circle"></div>
                   )}
                 </button>
-                {/* <button onClick={() => reactToPrintFn()} className="btn btn-primary ml-auto">
-                  <i className="fas fa-print"></i> Print
-                </button> */}
               </div>
             )}
             <div className="card mt-2 pdiv" ref={pdfRef} id="pdiv">

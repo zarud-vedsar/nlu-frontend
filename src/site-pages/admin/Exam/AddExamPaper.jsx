@@ -5,9 +5,8 @@ import { capitalizeFirstLetter, dataFetchingPost, goBack } from '../../../site-c
 import { FormField } from '../../../site-components/admin/assets/FormField'; // The sacred field for all inputs.
 import {
   NODE_API_URL,
-  CKEDITOR_URL,
 } from "../../../site-components/Helper/Constant"; // The secret base URL we talk to.
-import validator, { isISBN } from 'validator'; // Validating like a pro, no shady inputs allowed.
+import validator from 'validator'; // Validating like a pro, no shady inputs allowed.
 import { toast } from 'react-toastify'; // Toasts: because why suffer in silence when you can pop a notification?
 import secureLocalStorage from 'react-secure-storage'; // Encryption? Check. Security? Double-check.
 import axios from 'axios'; // Axios is like the courier for your HTTP requests.
@@ -67,8 +66,19 @@ function AddExam() {
   };
   // Jodit editor configuration
   const config = {
-    readonly: false, // set to true if you want readonly mode
+    readonly: false,
+    placeholder: '',
+    spellcheck: true,
+    language: 'pt_br',
+    defaultMode: '1',
+    minHeight: 400,
+    maxHeight: -1,
+    defaultActionOnPaste: 'insert_as_html',
+    defaultActionOnPasteFromWord: 'insert_as_html',
+    askBeforePasteFromWord: false,
+    askBeforePasteHTML: false,
   };
+
   // State variables: The true chaos handlers.
   const [formData, setFormData] = useState(initialFormData); // For holding all the exam data.
   const [error, setError] = useState({ field: "", msg: "" }); // For pointing fingers at mistakes.
@@ -241,7 +251,7 @@ function AddExam() {
   const handleSectionChange = (e, index) => {
     const { name, value } = e.target;
     const updatedSections = [...sections];
-    updatedSections[index][name] = value; // Dynamically update the correct field
+    updatedSections[index][name] = value ? value.toUpperCase() : value; // Dynamically update the correct field
     setSections(updatedSections);
   };
   const handleUpdate = async (dbId) => {
@@ -292,7 +302,7 @@ function AddExam() {
     }
   }, [dbId]);
   const handleSubmit = async (step) => {
-    
+
     setIsSubmit(true);
     // Define all required fields and their corresponding error messages
     const requiredFields = [
@@ -340,15 +350,62 @@ function AddExam() {
         if (data?.statusCode === 201) {
           setFormData(initialFormData);
           setSections(sections);
-          
-          if(step==="next"){
-          setTimeout(() => {
-            navigate(`/admin/exam-paper/add-question`, {
-              replace: false,
-              state: { dbId: data?.data?.dbId },
-            });
-          }, 300);
         }
+        if (step === "next") {
+          // Show SweetAlert with radio options for Paper Set
+          const { value: result } = await Swal.fire({
+            showCancelButton: true, // Allow the user to cancel
+            html: `
+                  <div>
+                    <label for="paperSet">Choose Paper Set:</label>
+                    <div>
+                      <input type="radio" id="paperSet1" name="paperSet" value="A">
+                      <label for="paperSet1">Paper Set A</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="paperSet2" name="paperSet" value="B">
+                      <label for="paperSet2">Paper Set B</label>
+                    </div>
+                    <div>
+                      <input type="radio" id="paperSet3" name="paperSet" value="C">
+                      <label for="paperSet3">Paper Set C</label>
+                    </div>
+                  </div>
+                `,
+            preConfirm: () => {
+              const popup = Swal.getPopup(); // Get the popup element
+
+              // Check if the popup is available
+              if (!popup) {
+                return Swal.fire("Error: Unable to access the modal.");
+              }
+
+              const paperSet = popup.querySelector('input[name="paperSet"]:checked');
+
+              // Check if the paperSet is selected
+              if (!paperSet) {
+                return Swal.fire("Please select a paper set.");
+              }
+              return {
+                paperSet: paperSet.value, // Return the selected paper set value
+              };
+            }
+          });
+          if (result) {
+            const { paperSet } = result;
+            if (paperSet) {
+              setTimeout(() => {
+                navigate(`/admin/exam-paper/add-question`, {
+                  replace: false,
+                  state: { dbId: data?.data?.dbId, paper_set: paperSet },
+                });
+              }, 300);
+            } else {
+              toast.error("Paper set are required to proceed.");
+            }
+          } else {
+            toast.error("Paper set are required to proceed.");
+          }
         }
         toast.success(data.message);
       } else {
@@ -372,23 +429,23 @@ function AddExam() {
     }));
   }
 
-  
+
   const TotalTimeDuration = useMemo(() => {
     if (!formData?.startTime || !formData?.endTime) return "00:00";
-  
+
     const [startHours, startMinutes] = formData.startTime.split(":").map(Number);
     const [endHours, endMinutes] = formData.endTime.split(":").map(Number);
-  
+
     let totalMinutes = (endHours * 60 + endMinutes) - (startHours * 60 + startMinutes);
-  
+
     if (totalMinutes < 0) totalMinutes += 24 * 60; // Handle overnight time calculation
-  
+
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
-    setFormData((prev)=>({...prev,timeDuration:`${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`}));
-   
+    setFormData((prev) => ({ ...prev, timeDuration: `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}` }));
+
   }, [formData?.startTime, formData?.endTime]);
-  
+
 
   return (
     <>
@@ -421,10 +478,10 @@ function AddExam() {
                   <i className="fas fa-arrow-left"></i> Go Back
                 </button>
                 <Link to="/admin/exam-paper/list">
-                                    <button className="ml-2 btn-md btn border-0 btn-secondary">
-                                      <i className="fas fa-list"></i> Exam Paper List
-                                    </button>
-                                  </Link>
+                  <button className="ml-2 btn-md btn border-0 btn-secondary">
+                    <i className="fas fa-list"></i> Exam Paper List
+                  </button>
+                </Link>
               </div>
             </div>
             <div className="card border-0">
@@ -442,7 +499,6 @@ function AddExam() {
                         }))}
                         onChange={({ value }) => {
                           setFormData({ ...formData, sessionId: value });
-                          fetchSemesterBasedOnCourse(value);
                         }}
                         value={
                           session.find(({ id }) => id === +formData.sessionId)
@@ -605,7 +661,6 @@ function AddExam() {
                       name="startTime"
                       id="startTime"
                       type="time"
-                      required={true}
                       value={formData.startTime}
                       column="col-md-3 col-12 form-group"
                       onChange={handleInputChange}
@@ -620,7 +675,6 @@ function AddExam() {
                       value={formData.endTime}
                       column="col-md-3 col-12 form-group"
                       onChange={handleInputChange}
-                      required={true}
                     />
                     <FormField
                       borderError={error.field === "venue"}
@@ -639,7 +693,7 @@ function AddExam() {
                       label="Time Duration"
                       name="timeDuration"
                       id="timeDuration"
-                      
+
                       value={formData.timeDuration}
                       column="col-md-4 col-12 form-group"
                       readOnly
@@ -677,56 +731,77 @@ function AddExam() {
                     </div>
                     {sections.map((section, index) => (
                       <div className="col-md-12 form-group" key={index}>
-                        <div
-                          className="row border mx-auto"
-                          style={{ width: "99.8%" }}
-                        >
+                        <div className="row border mx-auto" style={{ width: "99.8%" }}>
+
+                          {/* Section Title Field */}
                           <FormField
                             label="Section Title"
-                            name="title" // Remove index here
-                            id={`title-${index}`} // Keep unique IDs for accessibility
+                            name="title"
+                            id={`title-${index}`} // Unique ID for accessibility
                             required={true}
                             value={section.title}
                             column="col-md-12 col-12 form-group"
-                            onChange={(e) => handleSectionChange(e, index)}
+                            onChange={(e) => handleSectionChange(e, index)} // Update this section value
                             placeholder="A"
                           />
+
+                          {/* Marks per Question Field */}
                           <FormField
                             label="Marks/Question"
-                            name="marksPerQuestion" // Remove index here
+                            name="marksPerQuestion"
                             id={`marksPerQuestion-${index}`}
                             required={true}
                             type="number"
                             value={section.marksPerQuestion}
-                            column="col-md-4 col-12 form-group"
+                            column="col-md-3 col-12 form-group"
                             onChange={(e) => handleSectionChange(e, index)}
                             placeholder="4"
                           />
+
+                          {/* Total Questions Field */}
                           <FormField
                             label="Total Question"
-                            name="totalQuestion" // Remove index here
+                            name="totalQuestion"
                             id={`totalQuestion-${index}`}
                             required={true}
                             type="number"
                             value={section.totalQuestion}
-                            column="col-md-4 col-12 form-group"
+                            column="col-md-3 col-12 form-group"
                             onChange={(e) => handleSectionChange(e, index)}
                             placeholder="5"
                           />
+
+                          {/* Attempted Questions Field */}
                           <FormField
                             label="Attempt Question"
-                            name="attemptQuestion" // Remove index here
+                            name="attemptQuestion"
                             id={`attemptQuestion-${index}`}
                             required={true}
                             type="number"
                             value={section.attemptQuestion}
-                            column="col-md-4 col-12 form-group"
+                            column="col-md-3 col-12 form-group"
                             onChange={(e) => handleSectionChange(e, index)}
                             placeholder="4"
                           />
+
+                          {/* Remove Button */}
+                          {index > 0 && (
+                            <div className="col-md-3 d-flex justify-content-center align-items-center">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setSections((prev) => prev.filter((item, i) => i !== index)); // Remove section at the specific index
+                                }}
+                                className="btn btn-danger"
+                              >
+                                Remove
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
+
 
                     <div className="col-md-12 form-group">
                       <button
@@ -751,7 +826,7 @@ function AddExam() {
                       <button
                         className="btn btn-success d-flex justify-content-center align-items-center mr-2"
                         type="submit"
-                        onClick={(e)=>{e.preventDefault();handleSubmit("save")}}
+                        onClick={(e) => { e.preventDefault(); handleSubmit("save") }}
                       >
                         {dbId ? "Update" : "Save"}
                         {" "}
@@ -760,16 +835,16 @@ function AddExam() {
                             &nbsp;<div className="loader-circle"></div>
                           </>
                         )}
-                        
-
                       </button>
-                      {!isSubmit && !dbId &&
-                        <button
+                      <button
                         className="btn btn-secondary d-flex justify-content-center align-items-center"
                         type="submit"
-                        onClick={(e)=>{e.preventDefault();handleSubmit("next")}}
-                      > Save And Next</button>
-                        }
+                        onClick={(e) => { e.preventDefault(); handleSubmit("next") }}
+                      > Save And Next  {isSubmit && (
+                        <>
+                          &nbsp;<div className="loader-circle"></div>
+                        </>
+                      )}</button>
                     </div>
                   </div>
                 </form>

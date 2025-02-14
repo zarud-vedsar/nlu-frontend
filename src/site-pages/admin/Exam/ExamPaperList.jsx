@@ -338,39 +338,81 @@ function ExamList() {
       return false;
     }
     try {
-      const { value: password } = await Swal.fire({
-        title: "Enter Password to view exam paper",
-        input: "password", // Updated input type to "password"
+      // Show SweetAlert with radio options for Paper Set
+      const { value: result } = await Swal.fire({
+        title: "Enter Password to add questions into paper",
+        input: "password", // Password input
         inputLabel: "Password",
         inputPlaceholder: "Enter your password",
-        showCancelButton: true, // Optionally allow the user to cancel the action
-      });
+        showCancelButton: true, // Allow the user to cancel
+        html: `
+        <div>
+          <label for="paperSet">Choose Paper Set:</label>
+          <div>
+            <input type="radio" id="paperSet1" name="paperSet" value="A">
+            <label for="paperSet1">Paper Set A</label>
+          </div>
+          <div>
+            <input type="radio" id="paperSet2" name="paperSet" value="B">
+            <label for="paperSet2">Paper Set B</label>
+          </div>
+          <div>
+            <input type="radio" id="paperSet3" name="paperSet" value="C">
+            <label for="paperSet3">Paper Set C</label>
+          </div>
+        </div>
+      `,
+        preConfirm: () => {
+          const popup = Swal.getPopup(); // Get the popup element
 
-      if (password) {
-        const { data } = await axios.post(
-          `${NODE_API_URL}/api/exam/paper/checkpass`,
-          {
-            dbId,
-            password,
-            loguserid: secureLocalStorage.getItem("login_id"),
-            login_type: secureLocalStorage.getItem("loginType"),
+          // Check if the popup is available
+          if (!popup) {
+            return Swal.fire("Error: Unable to access the modal.");
           }
-        );
-        // Handle success or failure
-        if ([200].includes(data?.statusCode)) {
-          toast.success(data.message);
-          setTimeout(() => {
-            // Navigate and pass the dbId as part of the state
-            navigate(`/admin/exam-paper/view-paper`, {
-              replace: false,
-              state: { dbId },
-            });
-          }, 300);
+
+          const password = popup.querySelector('input[type="password"]').value;
+          const paperSet = popup.querySelector('input[name="paperSet"]:checked');
+
+          // Check if the paperSet is selected
+          if (!paperSet) {
+            return Swal.fire("Please select a paper set.");
+          }
+          return {
+            password,
+            paperSet: paperSet.value, // Return the selected paper set value
+          };
+        }
+      });
+      if (result) {
+        const { password, paperSet } = result;
+        if (password) {
+          const { data } = await axios.post(
+            `${NODE_API_URL}/api/exam/paper/checkpass`,
+            {
+              dbId,
+              password,
+              loguserid: secureLocalStorage.getItem("login_id"),
+              login_type: secureLocalStorage.getItem("loginType"),
+            }
+          );
+          // Handle success or failure
+          if ([200].includes(data?.statusCode)) {
+            toast.success(data.message);
+            setTimeout(() => {
+              // Navigate and pass the dbId as part of the state
+              navigate(`/admin/exam-paper/view-paper`, {
+                replace: false,
+                state: { dbId, paper_set: paperSet },
+              });
+            }, 300);
+          } else {
+            toast.error("An error occurred. Please try again.");
+          }
         } else {
-          toast.error("An error occurred. Please try again.");
+          toast.error("Both password and paper set are required to proceed.");
         }
       } else {
-        Swal.fire("Password is required to proceed.");
+        toast.error("Both password and paper set are required to proceed.");
       }
     } catch (error) {
       // Handle different error types
@@ -434,46 +476,93 @@ function ExamList() {
     }
   }
 
-  
+
   const addQuestion = async (dbId) => {
     if (!dbId || parseInt(dbId, 10) < 1) {
       toast.error("Invalid exam id");
       return false;
     }
     try {
-      const { value: password } = await Swal.fire({
+      // Show SweetAlert with radio options for Paper Set
+      const { value: result } = await Swal.fire({
         title: "Enter Password to add questions into paper",
-        input: "password", // Updated input type to "password"
+        input: "password", // Password input
         inputLabel: "Password",
         inputPlaceholder: "Enter your password",
-        showCancelButton: true, // Optionally allow the user to cancel the action
+        showCancelButton: true, // Allow the user to cancel
+        html: `
+        <div>
+          <label for="paperSet">Choose Paper Set:</label>
+          <div>
+            <input type="radio" id="paperSet1" name="paperSet" value="A">
+            <label for="paperSet1">Paper Set A</label>
+          </div>
+          <div>
+            <input type="radio" id="paperSet2" name="paperSet" value="B">
+            <label for="paperSet2">Paper Set B</label>
+          </div>
+          <div>
+            <input type="radio" id="paperSet3" name="paperSet" value="C">
+            <label for="paperSet3">Paper Set C</label>
+          </div>
+        </div>
+      `,
+        preConfirm: () => {
+          const popup = Swal.getPopup(); // Get the popup element
+
+          // Check if the popup is available
+          if (!popup) {
+            return Swal.fire("Error: Unable to access the modal.");
+          }
+
+          const password = popup.querySelector('input[type="password"]').value;
+          const paperSet = popup.querySelector('input[name="paperSet"]:checked');
+
+          // Check if the paperSet is selected
+          if (!paperSet) {
+            return Swal.fire("Please select a paper set.");
+          }
+
+          return {
+            password,
+            paperSet: paperSet.value, // Return the selected paper set value
+          };
+        }
       });
 
-      if (password) {
-        const { data } = await axios.post(
-          `${NODE_API_URL}/api/exam/paper/checkpass`,
-          {
-            dbId,
-            password,
-            loguserid: secureLocalStorage.getItem("login_id"),
-            login_type: secureLocalStorage.getItem("loginType"),
+      if (result) {
+        const { password, paperSet } = result;
+
+        if (password && paperSet) {
+          const { data } = await axios.post(
+            `${NODE_API_URL}/api/exam/paper/checkpass`,
+            {
+              dbId,
+              password,
+              loguserid: secureLocalStorage.getItem("login_id"),
+              login_type: secureLocalStorage.getItem("loginType"),
+              paperSet, // Send the selected paper set
+            }
+          );
+
+          // Handle success or failure
+          if ([200].includes(data?.statusCode)) {
+            toast.success(data.message);
+            setTimeout(() => {
+              // Navigate and pass the dbId and paperSet as part of the state
+              navigate(`/admin/exam-paper/add-question`, {
+                replace: false,
+                state: { dbId, paper_set: paperSet },
+              });
+            }, 300);
+          } else {
+            toast.error("An error occurred. Please try again.");
           }
-        );
-        // Handle success or failure
-        if ([200].includes(data?.statusCode)) {
-          toast.success(data.message);
-          setTimeout(() => {
-            // Navigate and pass the dbId as part of the state
-            navigate(`/admin/exam-paper/add-question`, {
-              replace: false,
-              state: { dbId },
-            });
-          }, 300);
         } else {
-          toast.error("An error occurred. Please try again.");
+          toast.error("Both password and paper set are required to proceed.");
         }
       } else {
-        Swal.fire("Password is required to proceed.");
+        toast.error("Both password and paper set are required to proceed.");
       }
     } catch (error) {
       // Handle different error types
@@ -482,7 +571,8 @@ function ExamList() {
       toast.error(errorMessage);
       Swal.fire(errorMessage);
     }
-  }
+  };
+
   const submitIdForPasschange = async () => {
     if (!changePassword.dbId || parseInt(changePassword.dbId, 10) < 1) {
       toast.error("Invalid exam id");
@@ -509,7 +599,6 @@ function ExamList() {
       );
       // Handle success or failure
       if (response.status === 200) {
-        console.log(response.data);
         if (response.data.statusCode === 105) {
           setChangePassword((prev) => ({
             ...prev,
@@ -849,13 +938,13 @@ function ExamList() {
                             )
                           }
 
-{
+                          {
                             hasPermission("Exam Paper List", "marks upload") && (
                               <OverlayTrigger
                                 placement="top"
                                 overlay={
                                   <Tooltip id="button-tooltip-2">
-                                     View Marks
+                                    View Marks
                                   </Tooltip>
                                 }
                               >
@@ -869,7 +958,7 @@ function ExamList() {
                             )
                           }
 
-                         
+
                           {isBeforeEndDate(rowData.examDate) && hasPermission("Exam Paper List", "delete") && (
                             <OverlayTrigger
                               placement="top"

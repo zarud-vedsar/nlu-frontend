@@ -291,7 +291,7 @@ const navigate = useNavigate();
               </nav>
             </div>
           </div>
-          <div className="container">
+          <div className="px-3">
           <div className="row">
           <div className="bg-dark" style={{ color: "white", padding: "20px" }}>
       <div className="banneradmins">

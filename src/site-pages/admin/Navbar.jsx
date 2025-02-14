@@ -601,7 +601,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       icon: <AiOutlineSetting />, // CMS-related settings icon
       url: "",
       dropdownMenus: [
-        { subtitle: "Menu", url: "menu-list", icon: <FaListUl /> }, // List icon for menu management
+        // { subtitle: "Menu", url: "menu-list", icon: <FaListUl /> }, // List icon for menu management
         { subtitle: "Add Page", url: "add-page", icon: <FaRegFile /> }, // File icon for adding pages
         { subtitle: "Page List", url: "page-list", icon: <FaRegListAlt /> }, // List icon for page list
         { subtitle: "Faqs", url: "faq-list", icon: <FaListUl /> }, // List icon for FAQs
@@ -632,6 +632,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           url: "cms/banner/list",
           icon: <FaPlayCircle />,
         },
+        {
+          subtitle: "Keynote Speaker",
+          url: "keynote-speaker-list",
+          icon: <FaPlayCircle />,
+        },
+        
       ],
     },
     {

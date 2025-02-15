@@ -12,6 +12,7 @@ import BookImage from "./assets/img/dummy.avif";
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 
+
 const BookCatalogue = () => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [book, setBook] = useState([]);
@@ -81,8 +82,8 @@ const BookCatalogue = () => {
                       placeholder="Search"
                       className="form-control dtsearch-input"
                     />
-                    <button className="btn btn-secondary">
-                      <IoSearch onClick={fetchData} />
+                    <button className="btn btn-secondary" onClick={fetchData}>
+                      <IoSearch  />
                     </button>
                   </div>
                 </div>
@@ -117,8 +118,11 @@ const BookCatalogue = () => {
                       />
                     </div>
                     <div className="px-3">
-                      <h5 className="card-title mb-1">{book.book_name}</h5>
-                      <p className="card-text mb-1">{book.author}</p>
+                      <h5 className="card-title mb-1">{book?.book_name}</h5>
+                     {book?.author && <p className="card-text mb-1">Author : {book?.author}</p> }
+                     {book?.edition && <p className="card-text mb-1">Edition : {book?.edition}</p>}
+                     {book?.language && <p className="card-text mb-1">Language : {book?.language}</p>}
+                     {book?.publisher && <p className="card-text mb-1">Publisher : {book?.publisher}</p>}
                       <Link
                         to={`/student/book-catalogue-detail/${book.id}`}
                         className="ml-auto btn-md btn border-0 btn-light "

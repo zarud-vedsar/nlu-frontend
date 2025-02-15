@@ -30,7 +30,7 @@ const BookCatalogueDetail = () => {
          
           if (response?.data?.status === 200) {
             setBook(response?.data?.data[0]);
-            console.log(response.data.data[0]);
+           
           }
         } catch (error) {
           setBook([]);
@@ -89,10 +89,13 @@ const BookCatalogueDetail = () => {
                 <div className="col-md-7 col-lg-7 col-12 col-sm-12 p-input-icon-left mb-3 ">
                     <div className='details'>
                     <h5 className="card-title mb-1"> <strong style={{width:"110px",display:"inline-block"}}>Book Name: </strong> {book.book_name}</h5>
-                    <p className="card-text mb-1"><strong style={{width:"110px",display:"inline-block"}}>Author Name: </strong>  {book.author}</p>
-                    <p> <strong style={{width:"110px", display:"inline-block"}}>publisher: </strong> {book.publisher}</p>
-                    <p><strong style={{width:"110px", display:"inline-block"}}>Language: </strong>  {book.language}</p>
-                    <p><strong style={{width:"110px", display:"inline-block"}}>Edition: </strong>  {book.edition}</p>
+                   {book?.author  && <p> <strong style={{width:"110px", display:"inline-block" , margin:"0px"}}>Author Name:: </strong> {book.author}</p> }
+                   {book?.publisher  && <p> <strong style={{width:"110px", display:"inline-block" , margin:"0px"}}>Publisher: </strong> {book.publisher}</p> }
+                   {book?.language &&  <p><strong style={{width:"110px", display:"inline-block" , margin:"0px"}}>Language: </strong>  {book.language}</p> }
+                   {book?.edition &&  <p><strong style={{width:"110px", display:"inline-block" ,margin:"0px"}}>Edition: </strong>  {book.edition}</p> }
+                   {book?.block &&  <p><strong style={{width:"110px", display:"inline-block" ,margin:"0px"}}>Block: </strong>  {book.block}</p> }
+                   {book?.section &&  <p><strong style={{width:"110px", display:"inline-block" ,margin:"0px"}}>Section: </strong>  {book.section}</p> }
+                   {book?.row  && <p><strong style={{width:"110px", display:"inline-block" ,margin:"0px"}}>Row: </strong>  {book.row}</p> }
                     </div>
                 
                 </div>

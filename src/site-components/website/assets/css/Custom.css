@@ -3615,5 +3615,7 @@ table tbody th {
   .image-box-wrapper {
     padding: 5px 20px 30px;
   }
-
+    .headermain {
+      padding: 8px 15px !important;
+    }
 }

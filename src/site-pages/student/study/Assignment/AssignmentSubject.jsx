@@ -4,7 +4,7 @@ import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
 import { NODE_API_URL } from "../../../../site-components/Helper/Constant";
 import "../.././assets/custom.css";
-import { capitalizeFirstLetter } from "../../../../site-components/Helper/HelperFunction";
+import { capitalizeFirstLetter, goBack } from "../../../../site-components/Helper/HelperFunction";
 function AssignmentSubject() {
   const sid = secureLocalStorage.getItem("studentId"); // Retrieve student ID from secure local storage.
   const [courseSemester, setCourseSemester] = useState(null); // Initialize as `null` for an object.
@@ -196,6 +196,12 @@ function AssignmentSubject() {
                   {" - "}
                   {currentCourse?.semtitle}
                 </h5>
+                 <button
+                                                                  className="ml-auto btn-md btn border-0 goback mr-2"
+                                                                  onClick={goBack}
+                                                                >
+                                                                  <i className="fas fa-arrow-left"></i> Go Back
+                                                                </button>
               </div>
               <div className="card-body">
                 <div className="row">

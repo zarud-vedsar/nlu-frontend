@@ -174,6 +174,11 @@ const Footer = () => {
                       &nbsp;Video Gallery
                     </Link>
                   </li>
+                  <li>
+                    <Link to="/career">
+                      &nbsp; Career
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -211,7 +216,6 @@ const Footer = () => {
                       &nbsp;Grievance
                     </Link>
                   </li>
-
                 </ul>
               </div>
             </div>
@@ -295,7 +299,6 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-
       {/*End of Footer Area*/}
     </>
   );

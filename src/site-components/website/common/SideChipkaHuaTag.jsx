@@ -83,12 +83,12 @@ function SideChipkaHuaTag() {
                         <Link to={iconLink?.youtube} target="_blank"><img src={YouTubePng} alt="" style={{ height: "25px" }} /></Link>
                     </div>
                 </div>
-                <div className='socialiconsize'>
+                {/* <div className='socialiconsize'>
                     <div onClick={() => setToggleLanguage(!toggleLanguage)} className='text-white heading-primary3'><IoLanguage /></div>
                     <div className={`itemSocial ${toggleLanguage ? '' : 'd-none'}`}>
 
                     </div>
-                </div>
+                </div> */}
             </div>
         </>
     )

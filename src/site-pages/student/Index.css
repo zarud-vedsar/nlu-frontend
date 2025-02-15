@@ -4,7 +4,7 @@
     border-radius: 10px;
 }
 body{
-    background-color: #f1f1f1 !important;
+    background-color: #F5F5F5 !important;
 }
 .blinking-text {
     animation: blink .7s linear infinite;

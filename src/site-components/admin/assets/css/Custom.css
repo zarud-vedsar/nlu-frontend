@@ -2328,19 +2328,48 @@ font-size: 16px;
 .equalhight{
   height: 100%;
 }
-/* LOGIN CSS */
-.notification-card{
-  height: 600px;
-overflow-y: auto;
-scrollbar-width: none; /* Firefox */
+.instructions-container {
+  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.instructions-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-align: start;
+  color: #B81365;
+}
+
+.instructions-list {
+  list-style-type: decimal;
+  padding-left: 20px;
+  line-height: 1.6;
+}
+
+.instructions-list ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.instructions-list li {
+  margin-bottom: 6px;
+  color: #444;
+}
+
+.instructions-list strong {
+  color: #222;
+}
 .notification-card::-webkit-scrollbar {
 display: none; /* Chrome, Safari */
 }
 .fixedwidths{
   width: 100%;
-  max-width: 80%;
+  max-width: 90%;
   margin: 0px auto;
 }
 .fixedwidthsLogin{
@@ -2350,11 +2379,12 @@ display: none; /* Chrome, Safari */
 }
 button.submitsbutton {
 cursor: pointer;
-  background: #8F0F50;
+  background: #B81365;
   width: 100%;
-  color: white;
+  color: #fff;
   padding: 8px 50px;
-  border-radius: 20px;
+  border-radius: 5px;
+  border: none;
 }
 .alingItem{
   align-items: center;
@@ -2370,8 +2400,8 @@ font-size: 500;
   border-radius: 4px;
 }
 .backbtn1 {
-  background: #dc3086;
-  color: white;
+  background: #B81365;
+  color: #fff;
   border: none;
   padding: 3px 10px;
 font-size: 500;
@@ -2497,7 +2527,7 @@ color: white;
 /* Container */
 .notification-container {
   display: flex;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
   align-items: center;
 }
 
@@ -2580,7 +2610,7 @@ color: white;
     margin-top: 20px;
   }
   .fixedwidths {
-    max-width: 95%;
+    max-width: 97%;
   }
   .notification-card {
     padding: 15px;
@@ -2600,43 +2630,6 @@ color: white;
     font-size: 11px;
   }
 }
-
-
-/* Responsive Design */
-/* @media (max-width: 768px) {
-  .notification-card {
-    padding: 15px;
-  }
-
-  .notification-header {
-    font-size: 16px;
-  }
-
-  .step-number {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
-  }
-
-  .notification-list h6 {
-    font-size: 14px;
-  }
-
-  .notification-list p {
-    font-size: 13px;
-  }
-} */
-
-
-
-
-
-@media only screen and (min-width: 1400px) {
-  .notification-card{
-    height: 565px;
-  }
-}
-
 
   @media only screen and (max-width: 700px) {
     .notification-container {

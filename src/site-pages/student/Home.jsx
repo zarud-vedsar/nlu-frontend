@@ -15,7 +15,6 @@ import {
   indianStates,
 } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
-import { FontSize } from "ckeditor5";
 import { useNavigate } from "react-router-dom";
 function Home() {
   // Initial form data structure

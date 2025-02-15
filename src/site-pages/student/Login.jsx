@@ -9,6 +9,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import IsStudentoggedIn from "./IsStudentoggedIn";
 import HeaderPanel from "./HeaderPanel";
+import ContactIcon from "../../site-components/website/home-components/ContactIcon";
 function Index() {
     const [showPassword, setShowPassword] = useState(false);
     const [captcha, setCaptcha] = useState("");
@@ -140,15 +141,15 @@ function Index() {
                     <h1 className="font-20 fw-bold text-danger blinking-text">Student Login Portal</h1>
                     <h2 className="font-18">B.A. LLB. (Hons.) / LL.M. / Ph.D.</h2>
                 </div>
-               
+
                 <div className="col-md-12 col-12 col-sm-12 col-lg-12 order2 fixedwidthsLogin ">
                     <div className="card mt-0" style={{ borderRadius: "15px" }}>
-                        <div className="card-header py-0" style={{ background: '#2C5784', borderRadius: "15px 15px 0 0" }}>
+                        <div className="card-header py-0" style={{ background: '#000000', borderRadius: "15px 15px 0 0" }}>
                             <h5 className="card-title py-2 mb-0" style={{ color: '#EDE7E3' }}>Student Login  Portal</h5>
                         </div>
                         <div className="card-body">
                             <form onSubmit={(e) => e.preventDefault()}>
-                       
+
                                 <div className="row">
                                     <FormField
                                         bottom={true}
@@ -222,45 +223,12 @@ function Index() {
                                             )}
                                         </button>
                                         <p className="mt-3 text-start">New Registration? Click <Link to="/student/register">here</Link></p>
-                                        <div className="floating_btn">
-                                            <a
-                                                target="_blank"
-                                                href="https://api.whatsapp.com/send?phone=+919519876699&text=Hello"
-                                            >
-                                                <div className="contact_icon">
-                                                    <i className="fab fa-whatsapp my-float" />
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div className="floating_btn1">
-                                            <a target="_blank" href="tel:+918924057222">
-                                                <div className="contact_icon1">
-                                                    <i className="fas fa-phone my-float" />
-                                                </div>
-                                            </a>
-                                        </div>
+                                        <ContactIcon />
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    {/* <div className="card mt-0" style={{ borderRadius: "15px" }}>
-                        <div className="card-header">
-                            <h6 className="card-title" style={{ color: "#F26419" }}>Need Help? Contact Us</h6>
-                        </div>
-                        <div className="card-body">
-                            <p>
-                                For any queries, feel free to reach out to us via email at{' '}
-                                <a href="mailto:info@rpnlup.ac.in" style={{ color: '#F26419', textDecoration: 'none' }}>
-                                    info@rpnlup.ac.in
-                                </a>{' '}
-                                or call us at:{' '}
-                                <a href="tel:+915322990413" style={{ fontWeight: 'bold' }}>+91-532-2990413</a>,{' '}
-                                <a href="tel:+915322990414" style={{ fontWeight: 'bold' }}>+91-532-2990414</a>,{' '}
-                                <a href="tel:+915322990415" style={{ fontWeight: 'bold' }}>+91-532-2990415</a>.
-                            </p>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </div>

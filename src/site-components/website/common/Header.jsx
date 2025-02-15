@@ -163,7 +163,6 @@ function Header() {
                       ))}
                     </div>
                   </li>
-                  <li className="navigation__item"><Link to={'/career'} className='navigation__item_link'>Career</Link></li>
                   <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">Media </Link>
                     <div className="navigation__item_dropdown-content">
@@ -172,7 +171,7 @@ function Header() {
                     </div>
                   </li>
                   <li className="navigation__item arr-li">
-                    <Link className="navigation__item_link arr-true">Student Corner </Link>
+                    <Link className="navigation__item_link arr-true">Student Corner</Link>
                     <div className="navigation__item_dropdown-content">
                       <Link to="/student" className="navigation__item_drop_link">Registration</Link>
                       <Link to="/internship" className="navigation__item_drop_link">Internship</Link>
@@ -181,6 +180,12 @@ function Header() {
                     </div>
                   </li>
                   <li className="navigation__item"><Link to={'/student/book-issued'} className='navigation__item_link'>Library</Link></li>
+                  <li className="navigation__item arr-li">
+                    <Link className="navigation__item_link arr-true">Cells</Link>
+                    <div className="navigation__item_dropdown-content">
+                      <Link to="/equal-opportunity-cell" className="navigation__item_drop_link">Equal Opportunity Cell</Link>
+                    </div>
+                  </li>
                   <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">Contact </Link>
                     <div className="navigation__item_dropdown-content">

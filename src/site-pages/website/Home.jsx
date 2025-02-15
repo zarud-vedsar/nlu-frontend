@@ -10,8 +10,8 @@ import SocialMedia from "../../site-components/website/home-components/SocialMed
 import WhyChoose from "../../site-components/website/home-components/WhyChoose";
 import ContactFeatures from "../../site-components/website/home-components/ContactFeatures";
 import MarqueeSlider from "../../site-components/website/home-components/MarqueeSlider";
-import Speciality from "./Speciality"
-import FacultySlider from "./FacultySlider"
+import Speciality from "./Speciality";
+import FacultySlider from "./FacultySlider";
 import Gallery from "../../site-components/website/home-components/Gallery";
 import HomeVideo from "../../site-components/website/home-components/HomeVideo";
 import Achivement from "../../site-components/website/home-components/Achivement";

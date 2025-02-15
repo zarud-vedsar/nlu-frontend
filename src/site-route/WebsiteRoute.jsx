@@ -34,6 +34,7 @@ import '../site-components/website/assets/css/dynamics/dds_News.css';
 
 const KeyNote = lazy(() => import('../site-components/website/home-components/KeyNote.jsx'));
 const Home = lazy(() => import('../site-pages/website/Home'));
+const EqualOpportunityCell = lazy(() => import('../site-pages/website/EqualOpportunityCell'));
 const Header = lazy(() => import('../site-components/website/common/Header'));
 const SideChipkaHuaTag = lazy(() => import('../site-components/website/common/SideChipkaHuaTag'));
 const Footer = lazy(() => import('../site-components/website/common/Footer'));
@@ -66,7 +67,6 @@ const Career = lazy(() => import('../site-pages/website/Career/Career.jsx'));
 const Job = lazy(() => import('../site-pages/website/Career/Job.jsx'));
 const InternshipDetail = lazy(() => import('../site-pages/website/StudentCorner/Internship/InternshipDetail.jsx'));
 const PlacementDetail = lazy(() => import('../site-pages/website/StudentCorner/Placement/PlacementDetail.jsx'));
-const PlacementForm = lazy(() => import('../site-pages/website/StudentCorner/Placement/PlacementForm.jsx'));
 const ApplicationForm = lazy(() => import('../site-pages/website/Career/ApplicationForm.jsx'));
 const InternshipForm = lazy(() => import('../site-pages/website/StudentCorner/Internship/InternshipForm.jsx'));
 const JobDetailForm = lazy(() => import('../site-pages/website/Career/JobDetailForm.jsx'));
@@ -133,6 +133,7 @@ function WebsiteRoute() {
         <Route path='/job/verify/:id' element={<ApplicationForm />} />
         <Route path='/job/apply/:id' element={<JobDetailForm />} />
         <Route path='/marquee/:mrId' element={<KeyNote />} />
+        <Route path='/equal-opportunity-cell' element={<EqualOpportunityCell />} />
         <Route path="*" element={<Navigate to="/page-not-found" />} />
       </Routes>
       <Footer />

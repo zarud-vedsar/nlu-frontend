@@ -75,11 +75,11 @@ const ImageGallery = lazy(() => import('../site-pages/website/ImageGallery'));
 const ImageGalleryViewAll = lazy(() => import('../site-pages/website/ImageGalleryViewAll'));
 const ViewAllGalleryVideo = lazy(() => import('../site-pages/website/ViewAllGalleryVideo.jsx'));
 const AboutDrRajendraPrasad = lazy(() => import('../site-pages/website/AboutDrRajendraPrasad.jsx'))
-
+import SuspensionLoader from '../SuspensionLoader.jsx';
 
 function WebsiteRoute() {
   return (
-    <Suspense fallback={'...'}>
+    <Suspense fallback={<SuspensionLoader />}>
       <Header />
       <SideChipkaHuaTag />
       <ToastContainer

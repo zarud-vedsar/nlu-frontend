@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import rpnl_logo from '../assets/Images/rpnlu.png';
 import './header.css';
 import { Link } from 'react-router-dom';
-import { FaAngleDown } from 'react-icons/fa';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { PHP_API_URL } from '../../Helper/Constant';
 import axios from 'axios';

@@ -10,6 +10,7 @@ import RouteGaurd from "../site-pages/student/RouteGaurd";
 import Navbar from "../site-pages/student/Navbar";
 import StudentDashboard from "../site-pages/student/StudentDashboard.jsx";
 import secureLocalStorage from "react-secure-storage";
+import SuspensionLoader from "../SuspensionLoader.jsx";
 
 const lazyLoad = (path) =>
   lazy(() => import(`../site-pages/student/${path}.jsx`));
@@ -122,8 +123,8 @@ function StudentRoute({ toggleExpand, toggleFolded }) {
       {isLoggedIn && (
         <Navbar toggleExpand={toggleExpand} toggleFolded={toggleFolded} />
       )}
-      
-      <Suspense fallback="...">
+
+      <Suspense fallback={<SuspensionLoader />}>
         <ToastContainer
           autoClose={5000}
           position="top-right"

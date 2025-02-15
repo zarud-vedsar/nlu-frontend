@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
+import SuspensionLoader from "./SuspensionLoader.jsx";
 const NotFoundPage = lazy(() => import("./404"));
 const WebsiteRoute = lazy(() => import("./site-route/WebsiteRoute"));
 const AdminRoute = lazy(() => import("./site-route/AdminRoute"));
@@ -20,7 +21,7 @@ function App() {
     setFolded(data);
   }
   return (
-    <Suspense fallback={"....."}>
+    <Suspense fallback={<SuspensionLoader />}>
       <Router>
         <Routes>
           <Route path="/*" element={<WebsiteRoute />}></Route>

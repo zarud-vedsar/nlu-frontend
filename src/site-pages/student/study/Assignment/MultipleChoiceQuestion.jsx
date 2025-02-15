@@ -28,8 +28,8 @@ function MultipleChoiceQuestion() {
   const [isSubmit, setIsSubmit] = useState(false);
   const [assignmentDetail, setAssignmentDetail] = useState();
   const [studentDetail, setStudentDetail] = useState();
-   const [modalShow, setModalShow] = useState(false);
-      const [selectedmarque, setSelectedMarque] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedmarque, setSelectedMarque] = useState(null);
   const navigate = useNavigate();
   const inititalData = {
     courseId: courseId,
@@ -272,8 +272,8 @@ function MultipleChoiceQuestion() {
           course: courseSemester?.courseIdName?.[0]?.coursename,
           semester: semesterId
             ? courseSemester?.allotedCourseSemester?.find(
-                (semester) => semester.semesterid == semesterId
-              )?.semtitle
+              (semester) => semester.semesterid == semesterId
+            )?.semtitle
             : "",
           subject: subject?.subject,
           assignment: assignmentDetail?.assignment_title,
@@ -453,7 +453,7 @@ function MultipleChoiceQuestion() {
                     style={{ width: "100px", height: "40px" }}
                     onClick={previousQuestion}
                   >
-                    <i class="fa-solid fa-chevron-left"></i>
+                    <i className="fa-solid fa-chevron-left"></i>
                     {"  "} Previous
                   </button>
                 </div>
@@ -464,7 +464,7 @@ function MultipleChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={nextQuestion}
                     >
-                      Next <i class="fa-solid fa-chevron-right"></i>
+                      Next <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -475,7 +475,7 @@ function MultipleChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={handleSubmit}
                     >
-                      Submit <i class="fa-solid fa-chevron-right"></i>
+                      Submit <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -507,9 +507,8 @@ function MultipleChoiceQuestion() {
                           style={{ height: "50px" }}
                         >
                           <div
-                            className={`${
-                              statusMap[question?.attempted]
-                            } col-12 text-center align-items-center`}
+                            className={`${statusMap[question?.attempted]
+                              } col-12 text-center align-items-center`}
                           >
                             {index + 1}
                           </div>
@@ -603,7 +602,7 @@ function MultipleChoiceQuestion() {
 export default MultipleChoiceQuestion;
 
 const MyVerticallyCenteredModal = (props = {}) => {
-  
+
   const [loading, setLoading] = useState(false);
   const currentDate = new Date().toLocaleDateString();
 
@@ -698,7 +697,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
               </div>
 
               <div className="get-current-date mt-3">
-                <p className="mb-0" style={{color:"#0b2947;"}}>Submision Date</p>
+                <p className="mb-0" style={{ color: "#0b2947;" }}>Submision Date</p>
                 <p>{currentDate}</p>
               </div>
             </div>

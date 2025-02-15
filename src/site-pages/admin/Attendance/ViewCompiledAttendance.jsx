@@ -364,7 +364,7 @@ function ViewCompiledAttendance() {
                     <i className="fas fa-home m-r-5" />
                     Attendance Management
                   </Link>
-                  
+
                   <span className="breadcrumb-item active">
                     View Compiled Attendance
                   </span>
@@ -382,11 +382,11 @@ function ViewCompiledAttendance() {
                   <button className="btn goback" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
-                   <Link to={"/admin/attendance/compiled-attendance"}>
-                                          <button className="btn btn-primary ml-2">
-                                            <i className="fas fa-plus"></i> Add New
-                                          </button>
-                                        </Link>
+                  <Link to={"/admin/attendance/compiled-attendance"}>
+                    <button className="btn btn-primary ml-2">
+                      <i className="fas fa-plus"></i> Add New
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -503,7 +503,7 @@ function ViewCompiledAttendance() {
                 <div className="card">
                   <div className="card-body">
                     <div className="row">
-                      <table class="table">
+                      <table className="table">
                         <thead>
                           <tr>
                             <th scope="col">#</th>

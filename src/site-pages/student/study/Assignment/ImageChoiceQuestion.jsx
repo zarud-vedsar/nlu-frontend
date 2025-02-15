@@ -29,8 +29,8 @@ function ImageChoiceQuestion() {
   const [isSubmit, setIsSubmit] = useState(false);
   const [assignmentDetail, setAssignmentDetail] = useState();
   const [studentDetail, setStudentDetail] = useState();
-   const [modalShow, setModalShow] = useState(false);
-    const [selectedmarque, setSelectedMarque] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedmarque, setSelectedMarque] = useState(null);
   const navigate = useNavigate();
   const inititalData = {
     courseId: courseId,
@@ -79,7 +79,7 @@ function ImageChoiceQuestion() {
       bformData.append("data", "load_assignment_questions");
       bformData.append("assignment_id", assignmentId);
 
-      
+
 
       const response = await axios.post(
         `${PHP_API_URL}/assignment.php`,
@@ -263,7 +263,7 @@ function ImageChoiceQuestion() {
         bformData.append(key, formData[key]);
       });
 
-      
+
       const response = await axios.post(
         `${PHP_API_URL}/assignment.php`,
         bformData,
@@ -280,8 +280,8 @@ function ImageChoiceQuestion() {
           course: courseSemester?.courseIdName?.[0]?.coursename,
           semester: semesterId
             ? courseSemester?.allotedCourseSemester?.find(
-                (semester) => semester.semesterid == semesterId
-              )?.semtitle
+              (semester) => semester.semesterid == semesterId
+            )?.semtitle
             : "",
           subject: subject?.subject,
           assignment: assignmentDetail?.assignment_title,
@@ -393,106 +393,102 @@ function ImageChoiceQuestion() {
                   </div>
 
                   <div className="row">
-                      <div className="col-6 mb-4 text-center">
-                      <h4 className="px-5" style={{textAlign:"left"}} >Option No: 1</h4>
+                    <div className="col-6 mb-4 text-center">
+                      <h4 className="px-5" style={{ textAlign: "left" }} >Option No: 1</h4>
                       <img
                         className="img-fluid"
                         src={`${FILE_API_URL}/assignment/${questionList[currentQuestion]?.option1}`}
                         // src={`https://play-lh.googleusercontent.com/ZpZeppBkhNtSE_IRrWN09fslhQXDBcANI0cVOIJOzfneUBV5wAW0MDW3_4R5hjfF2g=w526-h296-rw`}
                         alt="option1"
                         style={{
-                          border: `${
-                            questionList[currentQuestion]?.answer === "option1"
+                          border: `${questionList[currentQuestion]?.answer === "option1"
                               ? "2px solid #38bb38"
                               : ""
-                          }`,
+                            }`,
                           width: "300px",
                         }}
                         onClick={() => markAnswer("option1")}
                       />
-                      </div>
-                     
-                        <div className="col-6 mb-4 text-center"> 
-                        <h4 className="px-5" style={{textAlign:"left"}} >Option No: 2</h4>
-                        <img
+                    </div>
+
+                    <div className="col-6 mb-4 text-center">
+                      <h4 className="px-5" style={{ textAlign: "left" }} >Option No: 2</h4>
+                      <img
                         className="img-fluid"
                         src={`${FILE_API_URL}/assignment/${questionList[currentQuestion]?.option2}`}
                         // src={`https://play-lh.googleusercontent.com/ZpZeppBkhNtSE_IRrWN09fslhQXDBcANI0cVOIJOzfneUBV5wAW0MDW3_4R5hjfF2g=w526-h296-rw`}
                         alt="option2"
                         style={{
-                          border: `${
-                            questionList[currentQuestion]?.answer === "option2"
+                          border: `${questionList[currentQuestion]?.answer === "option2"
                               ? "2px solid #38bb38"
                               : ""
-                          }`,
+                            }`,
                           width: "300px",
                         }}
                         onClick={() => markAnswer("option2")}
                       />
 
-                        </div>
-                     
-                     <div className="col-6 mb-4 text-center">
-                     <h4 className="px-5" style={{textAlign:"left"}} >Option No: 3</h4>
-                     <img
+                    </div>
+
+                    <div className="col-6 mb-4 text-center">
+                      <h4 className="px-5" style={{ textAlign: "left" }} >Option No: 3</h4>
+                      <img
                         className="img-fluid"
                         src={`${FILE_API_URL}/assignment/${questionList[currentQuestion]?.option3}`}
                         // src={`https://play-lh.googleusercontent.com/ZpZeppBkhNtSE_IRrWN09fslhQXDBcANI0cVOIJOzfneUBV5wAW0MDW3_4R5hjfF2g=w526-h296-rw`}
                         alt="option3"
                         style={{
-                          border: `${
-                            questionList[currentQuestion]?.answer === "option3"
+                          border: `${questionList[currentQuestion]?.answer === "option3"
                               ? "2px solid #38bb38"
                               : ""
-                          }`,
+                            }`,
                           width: "300px",
                         }}
                         onClick={() => markAnswer("option3")}
                       />
 
-                     </div>
-                     
-                     <div className="col-6 mb-4 text-center">
-                     <h4 className="px-5" style={{textAlign:"left"}} >Option No: 4</h4>
-                     <img className="img-fluid "
+                    </div>
+
+                    <div className="col-6 mb-4 text-center">
+                      <h4 className="px-5" style={{ textAlign: "left" }} >Option No: 4</h4>
+                      <img className="img-fluid "
                         src={`${FILE_API_URL}/assignment/${questionList[currentQuestion]?.option4}`}
                         // src={`https://play-lh.googleusercontent.com/ZpZeppBkhNtSE_IRrWN09fslhQXDBcANI0cVOIJOzfneUBV5wAW0MDW3_4R5hjfF2g=w526-h296-rw`}
                         alt="option4"
                         style={{
-                          border: `${
-                            questionList[currentQuestion]?.answer === "option4"
+                          border: `${questionList[currentQuestion]?.answer === "option4"
                               ? "2px solid #38bb38"
                               : ""
-                          }`,
+                            }`,
                           width: "300px"
                         }}
                         onClick={() => markAnswer("option4")}
                       />
 
-                     </div>
-                      
-                      <div className="col-6 mb-3 d-flex align-items-center">
-                        <input
-                          type="checkbox"
-                          id="option5"
-                          checked={
-                            questionList[currentQuestion]?.answer === "option5"
-                          }
-                          onChange={() => markAnswer("option5")}
-                          style={{ marginRight: "8px" }}
-                        />
-                        <label
-                          htmlFor="option5"
-                          style={{
-                            cursor: "pointer",
-                            
-                            padding: "5px",
-                          }}
-                        >
-                          None of these
-                        </label>
-                      </div>
                     </div>
+
+                    <div className="col-6 mb-3 d-flex align-items-center">
+                      <input
+                        type="checkbox"
+                        id="option5"
+                        checked={
+                          questionList[currentQuestion]?.answer === "option5"
+                        }
+                        onChange={() => markAnswer("option5")}
+                        style={{ marginRight: "8px" }}
+                      />
+                      <label
+                        htmlFor="option5"
+                        style={{
+                          cursor: "pointer",
+
+                          padding: "5px",
+                        }}
+                      >
+                        None of these
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -510,7 +506,7 @@ function ImageChoiceQuestion() {
                     style={{ width: "100px", height: "40px" }}
                     onClick={previousQuestion}
                   >
-                    <i class="fa-solid fa-chevron-left"></i>
+                    <i className="fa-solid fa-chevron-left"></i>
                     {"  "} Previous
                   </button>
                 </div>
@@ -521,7 +517,7 @@ function ImageChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={nextQuestion}
                     >
-                      Next <i class="fa-solid fa-chevron-right"></i>
+                      Next <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -532,7 +528,7 @@ function ImageChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={handleSubmit}
                     >
-                      Submit <i class="fa-solid fa-chevron-right"></i>
+                      Submit <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -564,9 +560,8 @@ function ImageChoiceQuestion() {
                           style={{ height: "50px" }}
                         >
                           <div
-                            className={`${
-                              statusMap[question?.attempted]
-                            } col-12 text-center align-items-center`}
+                            className={`${statusMap[question?.attempted]
+                              } col-12 text-center align-items-center`}
                           >
                             {index + 1}
                           </div>
@@ -653,13 +648,13 @@ function ImageChoiceQuestion() {
           -ms-transition: all 0.2s ease;
         }
       `}</style>
-      
+
 
     </>
   );
 }
 const MyVerticallyCenteredModal = (props = {}) => {
- 
+
   const [loading, setLoading] = useState(false);
   const currentDate = new Date().toLocaleDateString();
 
@@ -754,7 +749,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
               </div>
 
               <div className="get-current-date mt-3">
-                <p className="mb-0" style={{color:"#0b2947;"}}>Submision Date</p>
+                <p className="mb-0" style={{ color: "#0b2947;" }}>Submision Date</p>
                 <p>{currentDate}</p>
               </div>
             </div>

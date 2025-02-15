@@ -3,7 +3,7 @@ import axios from "axios";
 import {
   Modal,
   Button,
- 
+
   Spinner,
 
 } from "react-bootstrap";
@@ -481,7 +481,7 @@ const Book = () => {
 
                   <Link
                     className="ml-2 mb-2 mb-md-0 btn btn-secondary"
-                     to="/admin/add-book"
+                    to="/admin/add-book"
                   >
                     <i className="fas">
                       <IoMdAdd />
@@ -509,11 +509,10 @@ const Book = () => {
                   </div>
                   <div className="col-md-5 col-lg-5 col-5 col-sm-2  ">
                     <button
-                      className={`btn mr-2 ${
-                        recycleTitle === "Show Recycle Bin"
+                      className={`btn mr-2 ${recycleTitle === "Show Recycle Bin"
                           ? "btn-secondary"
                           : "btn-danger"
-                      }`}
+                        }`}
                       onClick={showRecyleBin}
                     >
                       {recycleTitle} <i className="fa fa-recycle"></i>
@@ -610,7 +609,7 @@ const Book = () => {
                                       setSelectedBook(rowData);
                                   }}
                                 >
-                                  <i class="fa-solid fa-file-pen"></i>
+                                  <i className="fa-solid fa-file-pen"></i>
                                 </button>
                               </div>
                             ) : (

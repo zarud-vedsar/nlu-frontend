@@ -33,24 +33,19 @@ const SignInFaculty = () => {
         setSeconds(seconds - 1);
       }
     }, 1000);
-
     return () => {
       clearInterval(interval);
     };
   });
-
   useEffect(() => {
     if (IsAdminLoggedIn()) {
-      
       setRedirect(true);
     }
   }, []);
-
   const handleSubmit = async (e) => {
     e?.preventDefault();
     setIsSubmit(true);
     let isValid = true;
-
     // Validate email
     if (!email || !/\S+@\S+\.\S+/.test(email)) {
       setEmailError("Please enter a valid email address");
@@ -58,15 +53,13 @@ const SignInFaculty = () => {
     } else {
       setEmailError("");
     }
-
     if (!verified && !resendOtp && (!otp || otp.length < 6)) {
       setOtpError("Please Enter Valid OTP");
-      console.log("Please Enter Valid OTP");
+
       isValid = false;
     } else {
       setOtpError("");
     }
-
     // Validate password
     if (!password && !resendOtp) {
       setPasswordError("Please enter your password");
@@ -90,10 +83,6 @@ const SignInFaculty = () => {
         if (!verified && !resendOtp) {
           bformData.append("otp", otp);
         }
-        console.log(bformData);
-        for (let [key, value] of bformData) {
-          console.log(key, value);
-        }
         const response = await axios.post(
           `${PHP_API_URL}/faculty.php`,
           bformData,
@@ -103,10 +92,9 @@ const SignInFaculty = () => {
             },
           }
         );
-        console.log(response.data);
+
         if (response.data?.status === 200) {
           toast.success(response.data.msg);
-          console.log(response.data);
           secureLocalStorage.setItem("login_id", response.data.data[0].id);
           secureLocalStorage.setItem("email", response.data.data[0].u_email);
           secureLocalStorage.setItem("role_id", response.data.data[0].role);
@@ -118,7 +106,8 @@ const SignInFaculty = () => {
             toast.error("User not found.");
             return;
           }
-          navigate("/admin/home");
+          navigate('/admin/home');
+          window.location.reload(); // This will force a page reload
         } else if (response.data?.status === 201) {
           setSeconds(60);
           setResendOtp(false);

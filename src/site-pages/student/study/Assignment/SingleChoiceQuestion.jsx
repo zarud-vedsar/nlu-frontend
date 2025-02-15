@@ -79,7 +79,7 @@ function SingleChoiceQuestion() {
       bformData.append("data", "load_assignment_questions");
       bformData.append("assignment_id", assignmentId);
 
-     
+
 
       const response = await axios.post(
         `${PHP_API_URL}/assignment.php`,
@@ -237,7 +237,7 @@ function SingleChoiceQuestion() {
     if (!deleteAlert) {
       return;
     }
-   
+
 
 
     try {
@@ -264,7 +264,7 @@ function SingleChoiceQuestion() {
         bformData.append(key, formData[key]);
       });
 
-      
+
       const response = await axios.post(
         `${PHP_API_URL}/assignment.php`,
         bformData,
@@ -281,8 +281,8 @@ function SingleChoiceQuestion() {
           course: courseSemester?.courseIdName?.[0]?.coursename,
           semester: semesterId
             ? courseSemester?.allotedCourseSemester?.find(
-                (semester) => semester.semesterid == semesterId
-              )?.semtitle
+              (semester) => semester.semesterid == semesterId
+            )?.semtitle
             : "",
           subject: subject?.subject,
           assignment: assignmentDetail?.assignment_title,
@@ -472,7 +472,7 @@ function SingleChoiceQuestion() {
                     style={{ width: "100px", height: "40px" }}
                     onClick={previousQuestion}
                   >
-                    <i class="fa-solid fa-chevron-left"></i>
+                    <i className="fa-solid fa-chevron-left"></i>
                     {"  "} Previous
                   </button>
                 </div>
@@ -483,7 +483,7 @@ function SingleChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={nextQuestion}
                     >
-                      Next <i class="fa-solid fa-chevron-right"></i>
+                      Next <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -494,7 +494,7 @@ function SingleChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={handleSubmit}
                     >
-                      Submit <i class="fa-solid fa-chevron-right"></i>
+                      Submit <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -525,9 +525,8 @@ function SingleChoiceQuestion() {
                           style={{ height: "50px" }}
                         >
                           <div
-                            className={`${
-                              statusMap[question?.attempted]
-                            } col-12 text-center align-items-center`}
+                            className={`${statusMap[question?.attempted]
+                              } col-12 text-center align-items-center`}
                           >
                             {index + 1}
                           </div>
@@ -619,7 +618,7 @@ function SingleChoiceQuestion() {
   );
 }
 const MyVerticallyCenteredModal = (props = {}) => {
- 
+
   const [loading, setLoading] = useState(false);
   const currentDate = new Date().toLocaleDateString();
 
@@ -714,7 +713,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
               </div>
 
               <div className="get-current-date mt-3">
-                <p className="mb-0" style={{color:"#0b2947;"}}>Submision Date</p>
+                <p className="mb-0" style={{ color: "#0b2947;" }}>Submision Date</p>
                 <p>{currentDate}</p>
               </div>
             </div>

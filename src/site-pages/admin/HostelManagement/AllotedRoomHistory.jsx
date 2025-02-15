@@ -141,7 +141,7 @@ function AllotedRoomHistory() {
     fetchStudent()
   }, []);
 
-  const [studentListing,setStudentListing] = useState([])
+  const [studentListing, setStudentListing] = useState([])
   const fetchStudent = async () => {
     try {
       const response = await axios.get(
@@ -323,56 +323,56 @@ function AllotedRoomHistory() {
                       sortable
                     />
 
-<Column
-                        header="Student"
-                        body={(rowData) => (
-                          <div
-                            className="info-column d-flex align-items-center
+                    <Column
+                      header="Student"
+                      body={(rowData) => (
+                        <div
+                          className="info-column d-flex align-items-center
                     "
-                          >
-                            <div className="info-image mr-4">
-                              {rowData.spic ? (
-                                <img
-                                  src={`${FILE_API_URL}/student/${rowData.studentId}${rowData.registrationNo}/${rowData.spic}`}
-                                  alt=""
-                                  style={{
-                                    width: "40px",
-                                    height: "40px",
-                                    backgroundColor: "#e6fff3",
-                                    fontSize: "20px",
-                                    color: "#00a158",
-                                  }}
-                                  className="rounded-circle d-flex justify-content-center align-items-center"
-                                />
-                              ) : (
-                                <div
-                                  style={{
-                                    width: "40px",
-                                    height: "40px",
-                                    backgroundColor: "#e6fff3",
-                                    fontSize: "20px",
-                                    color: "#00a158",
-                                  }}
-                                  className="rounded-circle d-flex justify-content-center align-items-center"
-                                >
-                                  {rowData?.sname[0]}
-                                </div>
-                              )}
-                            </div>
-                            <div>
-                              <div className="info-name">
-                                <span>{`${rowData.sname}`}</span>
+                        >
+                          <div className="info-image mr-4">
+                            {rowData.spic ? (
+                              <img
+                                src={`${FILE_API_URL}/student/${rowData.studentId}${rowData.registrationNo}/${rowData.spic}`}
+                                alt=""
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  backgroundColor: "#e6fff3",
+                                  fontSize: "20px",
+                                  color: "#00a158",
+                                }}
+                                className="rounded-circle d-flex justify-content-center align-items-center"
+                              />
+                            ) : (
+                              <div
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  backgroundColor: "#e6fff3",
+                                  fontSize: "20px",
+                                  color: "#00a158",
+                                }}
+                                className="rounded-circle d-flex justify-content-center align-items-center"
+                              >
+                                {rowData?.sname[0]}
                               </div>
-
-                              <div className="info-email">
-                                <span>Enroll : {rowData.enrollmentNo}</span>
-                              </div>
-                              
-                            </div>
+                            )}
                           </div>
-                        )}
-                        sortable
-                      />
+                          <div>
+                            <div className="info-name">
+                              <span>{`${rowData.sname}`}</span>
+                            </div>
+
+                            <div className="info-email">
+                              <span>Enroll : {rowData.enrollmentNo}</span>
+                            </div>
+
+                          </div>
+                        </div>
+                      )}
+                      sortable
+                    />
                     <Column field="block" header="Block" sortable />
                     <Column field="roomNo" header="Room No" sortable />
 
@@ -402,7 +402,7 @@ function AllotedRoomHistory() {
                       header="Semester"
                       sortable
                     />
-                     
+
                     <Column
                       body={(row) => formatDate(row.allotDate)}
                       header="Alloted Date"
@@ -415,20 +415,20 @@ function AllotedRoomHistory() {
                       header="Created At"
                       sortable
                     />
-                    
+
                     <Column
                       header="Vacate"
                       body={(rowData) => (
                         <div className="d-flex">
-                        {rowData?.vacate_date? formatDate(rowData?.vacate_date):
-                       
-                          <Link
-                            to={`/admin/update-vacate-date/${rowData.id}`}
-                            className="avatar avatar-icon avatar-md avatar-orange"
-                          >
-                            <i class="fa-solid fa-right-from-bracket"></i>
-                          </Link>
-                        } </div>
+                          {rowData?.vacate_date ? formatDate(rowData?.vacate_date) :
+
+                            <Link
+                              to={`/admin/update-vacate-date/${rowData.id}`}
+                              className="avatar avatar-icon avatar-md avatar-orange"
+                            >
+                              <i className="fa-solid fa-right-from-bracket"></i>
+                            </Link>
+                          } </div>
                       )}
                     />
                     <Column
@@ -444,7 +444,7 @@ function AllotedRoomHistory() {
                         </div>
                       )}
                     />
-                    
+
                   </DataTable>
                 </div>
               </div>
@@ -578,36 +578,36 @@ function AllotedRoomHistory() {
               </div>
 
               <div className="col-md-12 col-12 form-group">
-                      <label className="font-weight-semibold">
-                        Select Student 
-                      </label>
-                      <Select
-                        options={
-                          studentListing?.map((student) => ({
-                            value: student.id,
-                            label: `${student.sname} (${student.enrollmentNo})`,
-                          })) || []
-                        }
-                        onChange={(selectedOption) => {
-                          setFilters({
-                            ...filters,
-                            studentId: selectedOption.value,
-                          });
-                        }}
-                        value={
-                          filters.studentId
-                            ? {
-                                value: filters.studentId,
-                                label:
-                                  studentListing?.find(
-                                    (student) =>
-                                      student.id === filters.studentId
-                                  )?.sname || "Select",
-                              }
-                            : { value: "", label: "Select" }
-                        }
-                      />
-                    </div>
+                <label className="font-weight-semibold">
+                  Select Student
+                </label>
+                <Select
+                  options={
+                    studentListing?.map((student) => ({
+                      value: student.id,
+                      label: `${student.sname} (${student.enrollmentNo})`,
+                    })) || []
+                  }
+                  onChange={(selectedOption) => {
+                    setFilters({
+                      ...filters,
+                      studentId: selectedOption.value,
+                    });
+                  }}
+                  value={
+                    filters.studentId
+                      ? {
+                        value: filters.studentId,
+                        label:
+                          studentListing?.find(
+                            (student) =>
+                              student.id === filters.studentId
+                          )?.sname || "Select",
+                      }
+                      : { value: "", label: "Select" }
+                  }
+                />
+              </div>
 
               {/* Visit Date */}
               <FormField

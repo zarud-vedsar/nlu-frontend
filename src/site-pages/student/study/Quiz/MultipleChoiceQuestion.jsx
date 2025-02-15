@@ -29,8 +29,8 @@ function MultipleChoiceQuestion() {
   const [isSubmit, setIsSubmit] = useState(false);
   const [quizDetail, setQuizDetail] = useState();
   const [studentDetail, setStudentDetail] = useState();
-   const [modalShow, setModalShow] = useState(false);
-      const [selectedmarque, setSelectedMarque] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedmarque, setSelectedMarque] = useState(null);
   const navigate = useNavigate();
   const inititalData = {
     courseId: courseId,
@@ -221,18 +221,18 @@ function MultipleChoiceQuestion() {
     return result;
   };
 
-  const handleSubmit = async (e=false) => {
+  const handleSubmit = async (e = false) => {
     e.preventDefault();
     setIsSubmit(true);
 
-    if(e){
-        const deleteAlert = await DeleteSweetAlert(" ");
-        
-        if (!deleteAlert ) {
-          return;
-    
-        }
+    if (e) {
+      const deleteAlert = await DeleteSweetAlert(" ");
+
+      if (!deleteAlert) {
+        return;
+
       }
+    }
 
     try {
       let formData = {};
@@ -247,7 +247,7 @@ function MultipleChoiceQuestion() {
         const value = resArray[key];
         value?.map((ele) => {
           if (key === "answer") {
-            const temp = ele?.join("$;") ? ele.join("$;") :" " ;
+            const temp = ele?.join("$;") ? ele.join("$;") : " ";
             bformData.append(`${key}[]`, temp);
           }
           if (key === "id") {
@@ -277,8 +277,8 @@ function MultipleChoiceQuestion() {
           course: courseSemester?.courseIdName?.[0]?.coursename,
           semester: semesterId
             ? courseSemester?.allotedCourseSemester?.find(
-                (semester) => semester.semesterid == semesterId
-              )?.semtitle
+              (semester) => semester.semesterid == semesterId
+            )?.semtitle
             : "",
           subject: subject?.subject,
           quiz: quizDetail?.quiz_title,
@@ -375,7 +375,7 @@ function MultipleChoiceQuestion() {
                 </div>
               </div>
               <div className="p-3 d-flex justify-content-between  ">
-              {quizDetail?.duration_in_min &&  <div className="mx-3"><ReverseTimer handleSubmit={handleSubmit} minute={parseInt(quizDetail?.duration_in_min)}/></div> }
+                {quizDetail?.duration_in_min && <div className="mx-3"><ReverseTimer handleSubmit={handleSubmit} minute={parseInt(quizDetail?.duration_in_min)} /></div>}
 
                 <div>
                   {" "}
@@ -460,7 +460,7 @@ function MultipleChoiceQuestion() {
                     style={{ width: "100px", height: "40px" }}
                     onClick={previousQuestion}
                   >
-                    <i class="fa-solid fa-chevron-left"></i>
+                    <i className="fa-solid fa-chevron-left"></i>
                     {"  "} Previous
                   </button>
                 </div>
@@ -471,7 +471,7 @@ function MultipleChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={nextQuestion}
                     >
-                      Next <i class="fa-solid fa-chevron-right"></i>
+                      Next <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -482,7 +482,7 @@ function MultipleChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={handleSubmit}
                     >
-                      Submit <i class="fa-solid fa-chevron-right"></i>
+                      Submit <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -514,9 +514,8 @@ function MultipleChoiceQuestion() {
                           style={{ height: "50px" }}
                         >
                           <div
-                            className={`${
-                              statusMap[question?.attempted]
-                            } col-12 text-center align-items-center`}
+                            className={`${statusMap[question?.attempted]
+                              } col-12 text-center align-items-center`}
                           >
                             {index + 1}
                           </div>
@@ -610,7 +609,7 @@ function MultipleChoiceQuestion() {
 export default MultipleChoiceQuestion;
 
 const MyVerticallyCenteredModal = (props = {}) => {
-  
+
   const [loading, setLoading] = useState(false);
   const currentDate = new Date().toLocaleDateString();
 
@@ -705,7 +704,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
               </div>
 
               <div className="get-current-date mt-3">
-                <p className="mb-0" style={{color:"#0b2947;"}}>Submision Date</p>
+                <p className="mb-0" style={{ color: "#0b2947;" }}>Submision Date</p>
                 <p>{currentDate}</p>
               </div>
             </div>

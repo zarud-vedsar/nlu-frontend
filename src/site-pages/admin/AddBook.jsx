@@ -29,14 +29,14 @@ const AddBook = () => {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: "",
     spellcheck: true,
-    language: 'pt_br',
-    defaultMode: '1',
+    language: "pt_br",
+    defaultMode: "1",
     minHeight: 400,
     maxHeight: -1,
-    defaultActionOnPaste: 'insert_as_html',
-    defaultActionOnPasteFromWord: 'insert_as_html',
+    defaultActionOnPaste: "insert_as_html",
+    defaultActionOnPasteFromWord: "insert_as_html",
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
   };
@@ -66,19 +66,11 @@ const AddBook = () => {
         }));
         setSubjectList(tempSubjectList);
       } else {
-        toast.error("Data not found.");
         setSubjectList([]);
       }
     } catch (error) {
       setSubjectList([]);
-      const statusCode = error.response?.data?.statusCode;
-      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
-        toast.error(error.response.message || "A server error occurred.");
-      } else {
-        toast.error(
-          "An error occurred. Please check your connection or try again."
-        );
-      }
+      
     }
   };
 
@@ -99,6 +91,9 @@ const AddBook = () => {
     isbn_no: "",
     book_name: "",
     vendor: "",
+    block: "",
+    section: "",
+    row: "",
   };
   const [formData, setFormData] = useState(initialization);
 
@@ -141,6 +136,9 @@ const AddBook = () => {
           book_name: result[0]?.book_name,
           vendor: result[0]?.vendor,
           unlink_image: result[0]?.image,
+          block: result[0]?.block || "",
+          section: result[0]?.section || "",
+          row: result[0]?.row || "",
         });
         setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
         const selSubject = subjectList?.find(
@@ -194,6 +192,9 @@ const AddBook = () => {
         book_name: result[0]?.book_name,
         vendor: result[0]?.vendor,
         unlink_image: result[0]?.image,
+        block: result[0]?.block || "",
+        section: result[0]?.section || "",
+        row: result[0]?.row || "",
       });
       console.log(formData);
       setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
@@ -646,7 +647,7 @@ const AddBook = () => {
                           className="font-weight-semibold"
                           htmlFor="vendor"
                         >
-                          Subject ID
+                          Subject 
                         </label>
                         <Select
                           value={subject}
@@ -657,6 +658,48 @@ const AddBook = () => {
                         {errorKey === ".subject_id" && (
                           <span className="text-danger">{errorMessage}</span>
                         )}
+                      </div>
+                      <div className="form-group col-md-4">
+                        <label className="font-weight-semibold" htmlFor="block">
+                          Block
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="block"
+                          value={formData.block}
+                          onChange={handleChange}
+                          disabled={isbnValid}
+                        />
+                      </div>
+                      <div className="form-group col-md-4">
+                        <label
+                          className="font-weight-semibold"
+                          htmlFor="section"
+                        >
+                          Section
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="section"
+                          value={formData.section}
+                          onChange={handleChange}
+                          disabled={isbnValid}
+                        />
+                      </div>
+                      <div className="form-group col-md-4">
+                        <label className="font-weight-semibold" htmlFor="row">
+                          Row
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="row"
+                          value={formData.row}
+                          onChange={handleChange}
+                          disabled={isbnValid}
+                        />
                       </div>
 
                       <div className="col-md-12 ">

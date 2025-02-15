@@ -56,7 +56,7 @@ const About = () => {
       <div className="about-page-area section-padding">
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-sm-none d-md-block d-lg-block">
+            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-sm-none d-md-block d-lg-block leftpart">
               <h3 className="heading-primary2 butler-regular">About Us</h3>
               <div className="heading-divider mb-3"></div>
               <ul className="mcd-menu">
@@ -76,7 +76,7 @@ const About = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-9 col-md-9 col-12 col-sm-12 col-xs-12">
+            <div className="col-lg-9 col-md-9 col-12 col-sm-12 col-xs-12 rightpart">
               <div className="section-title-wrapper">
                 <div className="section-title">
                   <h3 className="heading-primary3 butler-regular">{aboutData.atitle}</h3>
@@ -108,6 +108,33 @@ const About = () => {
             </div>
           </div>
         </div>
+        <style>
+          {
+            `
+
+            .contentestsec{
+              height: 400px;
+         overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+            }
+
+            .contentestsec::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+          .rightpart, .leftpart {
+  height: 500px;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.rightpart::-webkit-scrollbar, 
+.leftpart::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+            `
+          }
+        </style>
       </div >
     </>
   );

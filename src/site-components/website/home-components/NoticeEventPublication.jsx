@@ -134,8 +134,8 @@ const NoticeEventPublication = () => {
         <div className='container' data-aos="fade-up" data-aos-delay="50">
           <div className='row'>
              
-                      <div className="col-md-12 text-center my-4" style={{position:"relative"}}>
-                        <h2 className="heading-primary2">Upcoming Events</h2>
+                      <div className="col-md-12  my-4 textManage" style={{position:"relative"}}>
+                        <h2 className="heading-primary2 "  >Upcoming Events</h2>
                         <div className="heading-divider"></div>
                     <Link to="/view-all/event" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaArrowRightLong /></Link>
 

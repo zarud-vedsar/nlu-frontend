@@ -5168,6 +5168,9 @@ table.table.tblpad-10>tbody>tr>td {
 	margin-left: 15px;
 	margin-bottom: 15px;
   }
+  .textManage{
+	text-align: start;
+  }
 .about-text-container ul li {
 	list-style-type: disc;
   }
@@ -5179,6 +5182,9 @@ table.table.tblpad-10>tbody>tr>td {
 
 
 @media (max-width:768px) {
+	.textManage{
+		text-align: center;
+	  }
 	.title-img-bx {
 		justify-content: center;
 		gap: 5px;

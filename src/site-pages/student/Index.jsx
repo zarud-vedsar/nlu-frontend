@@ -7,7 +7,7 @@ import validator from 'validator';
 import axios from "axios";
 import { TbArrowBadgeRightFilled } from "react-icons/tb";
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import IsStudentoggedIn from "./IsStudentoggedIn";
 import HeaderPanel from "./HeaderPanel";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -27,6 +27,7 @@ function Index() {
         }
     }, []);
     const navigate = useNavigate();
+    const location = useLocation();
     const initialState = {
         enrollmentNo: '',
         name: '',
@@ -232,6 +233,7 @@ function Index() {
     return (
         <div className="container-fluid">
             <HeaderPanel />
+      
             <div className="row fixedwidths">
 
             <div to="/" className="backbtn" onClick={() => window.history.back()}>

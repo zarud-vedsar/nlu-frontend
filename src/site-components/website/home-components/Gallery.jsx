@@ -80,19 +80,19 @@ const Gallery = () => {
     <div className="gallery-section" data-aos="fade-up" data-aos-delay="100">
       <div className="container  my-4 py-2">
         <div className="row">
-          <div className="col-md-12 col-12 text-center" style={{position:"relative"}}>
+          <div className="col-md-12 col-12 col-sm-12 text-center" style={{position:"relative"}}>
             <h2 className="heading-primary2">Our Gallery</h2>
             <div className="heading-divider"></div>
           </div>
         </div>
         <Link to="/image-gallery" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaLongArrowAltRight /></Link>
-        <div className="gallery-container mt-4 ">
+        <div className="gallery-container col-sm-12 mt-4 ">
           <Slider {...sliderSettings}>
             {image.map((img, index) => (
               <div key={index} className="slider-item col-12">
-                <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" rel="noopener noreferrer">
+                <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" className="col-" rel="noopener noreferrer">
                 <img
-  className="gallery-img1"
+  className="gallery-img1 col-12"
   src={`${FILE_API_URL}/gallery/${img}`}
   alt={`Gallery Image ${index + 1}`}
   style={{ 
@@ -138,37 +138,10 @@ const Gallery = () => {
   border-radius: 10px;
 }
 
-@media (max-width: 768px) {
-  .slider-item {
-    display: flex;
-    justify-content: center; /* Ensures the image is centered */
-    align-items: center;
-    width: 100%;
-  }
-
-  .gallery-img1 {
-    width: 100%;
-    max-width: 100%;
-    height: auto; 
-    object-fit: cover;
-   
-  }
-}
- @media screen and (min-width:430px) and (max-width:500px){
-  .gallery-img1 {
-  margin-left:40px;
- }
+ @media screen and (min-width:320px) and (max-width:768px){
+ .slider-item {
+ max-width:100% !important;
         }
-  @media screen and (min-width:370px) and (max-width:400px){
-  .gallery-img1 {
-  margin-left:20px;
- }
-
-        }
-   @media screen and (min-width:410px) and (max-width:430px){
-  .gallery-img1 {
-  margin-left:30px;
- }
 
     .addtextoverlap {
       position: absolute;

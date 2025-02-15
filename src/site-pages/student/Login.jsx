@@ -135,31 +135,20 @@ function Index() {
     return (
         <div className="container-fluid">
             <HeaderPanel />
-            <div className="row">
+            <div className="row mb-4">
                 <div className="col-md-12 text-center my-3">
                     <h1 className="font-20 fw-bold text-danger blinking-text">Student Login Portal</h1>
                     <h2 className="font-18">B.A. LLB. (Hons.) / LL.M. / Ph.D.</h2>
                 </div>
-                <div className="col-md-7 col-12 col-sm-12 col-lg-7 order1">
-                    <div className="card mt-0" style={{ borderRadius: "15px" }}>
-                        <div className="card-header py-0" style={{ borderRadius: "15px 15px 0 0" }}>
-                            <h5 className="card-title py-2 mb-0" style={{ color: '#494e4d' }}>Notifications & Instructions</h5>
-                        </div>
-                        <div className="card-body">
-                            <ul className="list-group">
-                                <li className="list-item font-13">Registration on this portal is exclusively for existing students of Dr. Rajendra Prasad National Law University.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-5 col-12 col-sm-12 col-lg-5 order2">
+               
+                <div className="col-md-12 col-12 col-sm-12 col-lg-12 order2 fixedwidthsLogin ">
                     <div className="card mt-0" style={{ borderRadius: "15px" }}>
                         <div className="card-header py-0" style={{ background: '#2C5784', borderRadius: "15px 15px 0 0" }}>
                             <h5 className="card-title py-2 mb-0" style={{ color: '#EDE7E3' }}>Student Login  Portal</h5>
                         </div>
                         <div className="card-body">
                             <form onSubmit={(e) => e.preventDefault()}>
-                                <p className="text-start">New Registration? Click <Link to="/student/register">here</Link></p>
+                       
                                 <div className="row">
                                     <FormField
                                         bottom={true}
@@ -222,7 +211,7 @@ function Index() {
                                     <div className="col-md-12 form-group mb-0">
                                         <button
                                             type="button" onClick={handleSubmit}
-                                            className="btn btn-dark d-flex justify-content-center align-items-center btn-block submit_btn"
+                                            className="submitsbutton"
                                             disabled={isSubmitDisabled}
                                         >
                                             Log In
@@ -255,7 +244,7 @@ function Index() {
                             </form>
                         </div>
                     </div>
-                    <div className="card mt-0" style={{ borderRadius: "15px" }}>
+                    {/* <div className="card mt-0" style={{ borderRadius: "15px" }}>
                         <div className="card-header">
                             <h6 className="card-title" style={{ color: "#F26419" }}>Need Help? Contact Us</h6>
                         </div>
@@ -271,7 +260,7 @@ function Index() {
                                 <a href="tel:+915322990415" style={{ fontWeight: 'bold' }}>+91-532-2990415</a>.
                             </p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import "./assets/TempNavbar.css";
 
 function HeaderPanel() {
   return (
-    <div className="row header-top py-2 align-items-center custon-navbar opacity-0">
+    <div className="row header-top py-2 align-items-center custon-navbar opacity-0 alingItem">
       <div className="col-md-7 col-12 col-sm-12 text-start d-flex align-self-end">
         <div className="d-flex justify-content-center align-items-center logo-container">
           <img
@@ -25,6 +25,7 @@ function HeaderPanel() {
 
       <div className="col-md-5 text-right d-flex justify-content-end hide-in-mobile navigation-links">
         <div className="row" />
+    
         <div>
           <Link to="/" className="nav-link">
             Home

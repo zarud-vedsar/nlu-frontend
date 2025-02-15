@@ -48,7 +48,7 @@ function AddExam() {
   // Initial state of the form: the blank canvas before the chaos.
   const initialFormData = {
     examDate: "", // examDate
-    sessionId: "", // Session of the all-powerful exam.
+    sessionId: localStorage.getItem("session"), // Session of the all-powerful exam.
     examType: "", // What kind of torture is this? Midterm? Final? Surprise?
     courseId: "", // The course in question. Literally.
     semesterId: "", // Which semester will remember this?

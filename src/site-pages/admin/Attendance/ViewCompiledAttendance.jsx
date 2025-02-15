@@ -163,7 +163,7 @@ function ViewCompiledAttendance() {
   const [modalShow, setModalShow] = useState(false);
   const [selectedStudentDetail, setSelectedStudentDetail] = useState();
   const [admitForm, setAdmitForm] = useState({
-    session: "",
+    session: localStorage.getItem("session"),
     course_id: "",
     semester_id: "",
   });

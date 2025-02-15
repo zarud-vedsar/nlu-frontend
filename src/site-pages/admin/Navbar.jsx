@@ -2,7 +2,10 @@
 import React, { useEffect, useState } from "react";
 import { RiMenuFold3Fill } from "react-icons/ri";
 import rpnl_logo from "../../site-components/website/assets/Images/rpnl_logo.png";
-import { FILE_API_URL } from "../../site-components/Helper/Constant";
+import {
+  FILE_API_URL,
+  PHP_API_URL,
+} from "../../site-components/Helper/Constant";
 import {
   AiOutlineDashboard,
   AiOutlineBook,
@@ -82,6 +85,7 @@ import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import Select from "react-select";
 import { Modal, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const MyVerticallyCenteredModal = (props = {}) => {
   const [sessionList, setSessionList] = useState([]);
@@ -142,7 +146,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
       aria-labelledby="contained-modal-title-vcenter"
       top
     >
-      <Modal.Header >
+      <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">Session</Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -159,7 +163,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
       </Modal.Body>
       <Modal.Footer>
         <div className="mx-auto">
-
           <Button onClick={handleSubmit} className="btn btn-success">
             Submit
           </Button>
@@ -201,12 +204,47 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
   useEffect(() => {
     getSessionTitle();
   }, []);
+  const getCurrentSession = async () => {
+    try {
+      const bformData = new FormData();
+      bformData.append("data", "get_currentsession");
+
+      const response = await axios.post(
+        `${PHP_API_URL}/sitesetting.php`,
+        bformData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      
+      if (response.data.status === 200) {
+        localStorage.setItem(
+          "session",
+          response?.data?.data[0]?.currentsession
+        );
+        localStorage.setItem("sessionTitle", response?.data?.data[0]?.dtitle);
+        setSessionTitle(response?.data?.data[0]?.dtitle);
+      }
+    } catch (error) {
+      const status = error.response?.data?.status;
+      if (status === 400 || status === 500) {
+        toast.error(error.response.data.msg || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    }
+  };
+
   const getSessionTitle = () => {
     const title = localStorage.getItem("sessionTitle");
     if (title) {
       setSessionTitle(title);
     } else {
-      setModalShow(true)
+      getCurrentSession();
       setSessionTitle("Select Session");
     }
   };
@@ -284,11 +322,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           url: "hostel-management/mark-attendance",
           icon: <FaBed />,
         }, // Hostel-related icon
-        {
-          subtitle: "Update Hostel Attendance",
-          url: "hostel-management/update-attendance",
-          icon: <MdPlaylistAddCheck />,
-        }, // Checkmark again for updates
+
         {
           subtitle: "Hostel Attendance History",
           url: "hostel-management/attendance-history",
@@ -316,7 +350,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         //   subtitle: "Faculty Department",
         //   url: "department-faculty",
         //   icon: <FaBuilding />,
-        // }, 
+        // },
         { subtitle: "Department", url: "department", icon: <FaBuilding /> }, // Building for departments
         {
           subtitle: "Designation",
@@ -447,7 +481,6 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           url: "expense/list",
           icon: <MdInventory />,
         },
-
       ],
     },
     {
@@ -637,7 +670,6 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           url: "keynote-speaker-list",
           icon: <FaPlayCircle />,
         },
-        
       ],
     },
     {
@@ -664,8 +696,16 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       url: "",
       dropdownMenus: [
         { subtitle: "Books", url: "book", icon: <FaBookReader /> }, // Book reader icon for books
-        { subtitle: "Issue New Book", url: "issue-book-add", icon: <FaBookReader /> }, // Book reader for issuing books
-        { subtitle: "Issued Book List", url: "issue-book", icon: <FaBookReader /> }, // Clearer distinction for issued books
+        {
+          subtitle: "Issue New Book",
+          url: "issue-book-add",
+          icon: <FaBookReader />,
+        }, // Book reader for issuing books
+        {
+          subtitle: "Issued Book List",
+          url: "issue-book",
+          icon: <FaBookReader />,
+        }, // Clearer distinction for issued books
         {
           subtitle: "Library Settings",
           url: "library-setting",
@@ -678,7 +718,11 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       icon: <AiOutlineCamera />, // Icon for media
       url: "",
       dropdownMenus: [
-        { subtitle: "Media Category", url: "gallery-category", icon: <FaSuitcase /> }, // Suitcase icon for categories
+        {
+          subtitle: "Media Category",
+          url: "gallery-category",
+          icon: <FaSuitcase />,
+        }, // Suitcase icon for categories
         { subtitle: "Image", url: "gallery", icon: <FaImages /> }, // Image icon for gallery images
         { subtitle: "Video", url: "video-gallery", icon: <FaVideo /> }, // Video icon for video gallery
       ],
@@ -891,17 +935,23 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         <div className="side-nav-inner">
           <ul className="side-nav-menu scrollable">
             {sideBarMenu.map((option, index) => {
-              const url = location?.pathname?.split('/admin/');
-              let activeClass = Array.isArray(url) && url.length > 1 ? url[1] : false;
+              const url = location?.pathname?.split("/admin/");
+              let activeClass =
+                Array.isArray(url) && url.length > 1 ? url[1] : false;
               let showMenu = true;
               if (RolePermission && RolePermission.length > 0) {
                 let resp = RolePermission.map((rData) => Object.keys(rData)[0]);
-                {/* console.log(resp); */ }
+                
                 showMenu = resp.length > 0 && resp.includes(option.title);
               }
-              if (option.url && (showMenu || loginType === 'superadmin')) {
+              if (option.url && (showMenu || loginType === "superadmin")) {
                 return (
-                  <li key={index} className={`nav-item dropdown cursor ${activeClass == option.url ? 'mactive' : ''}`}>
+                  <li
+                    key={index}
+                    className={`nav-item dropdown cursor ${
+                      activeClass == option.url ? "mactive" : ""
+                    }`}
+                  >
                     <Link to={`/admin/${option.url}`}>
                       <span className="icon-holder">{option.icon}</span>
                       <span className="title font-14">{option.title}</span>
@@ -909,14 +959,17 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                   </li>
                 );
               }
-              let addClass = option.dropdownMenus.some((item) => activeClass == item.url);
+              let addClass = option.dropdownMenus.some(
+                (item) => activeClass == item.url
+              );
               // If the menu has dropdown items and should be shown
               if (!option.url && (showMenu || loginType === "superadmin")) {
                 return (
                   <li
                     key={index}
-                    className={`nav-item dropdown cursor ${(activeSidebarMenu === index) || addClass ? "open" : ""
-                      }`}
+                    className={`nav-item dropdown cursor ${
+                      activeSidebarMenu === index || addClass ? "open" : ""
+                    }`}
                     onClick={() =>
                       setActiveSidebarMenu(
                         activeSidebarMenu === index ? null : index
@@ -945,10 +998,11 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                           return (
                             <li
                               key={subIndex}
-                              className={`${activeSubSidebarMenu === subIndex
-                                ? "active"
-                                : ""
-                                } font-14`}
+                              className={`${
+                                activeSubSidebarMenu === subIndex
+                                  ? "active"
+                                  : ""
+                              } font-14`}
                               onClick={() => setActiveSubSidebarMenu(subIndex)}
                             >
                               <Link

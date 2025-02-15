@@ -14,7 +14,7 @@ import { FormField } from "../../../../site-components/admin/assets/FormField";
 function AddSessionWiseSemester() {
   // Initial form state
   const initialForm = {
-    session: "",
+    session: localStorage.getItem("session"),
     course: "",
     semester: "",
     startdate: "",
@@ -379,6 +379,7 @@ function AddSessionWiseSemester() {
                           <label className="font-weight-semibold">
                             Session <span className="text-danger">*</span>
                           </label>
+                            
                           <Select
                             options={sessionList.map((item) => ({
                               value: item.id,
@@ -392,18 +393,18 @@ function AddSessionWiseSemester() {
                             }}
                             value={
                               sessionList.find(
-                                (item) => item.id === formData.session
+                                (item) => item.id === +formData.session
                               )
                                 ? {
-                                    value: formData.session,
+                                    value: +formData.session,
                                     label: capitalizeFirstLetter(
                                       sessionList.find(
-                                        (item) => item.id === formData.session
+                                        (item) => item.id === +formData.session
                                       ).dtitle
                                     ),
                                   }
                                 : {
-                                    value: formData.session,
+                                    value: +formData.session,
                                     label: "Select",
                                   }
                             }

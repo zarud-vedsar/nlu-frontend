@@ -52,11 +52,11 @@ function AttendanceHIstory() {
     year: new Date().getFullYear(),
     month: "",
     studentId: "",
-    session: localStorage.getItem("session")
+    session: localStorage.getItem("session"),
   };
 
   const [filters, setFilters] = useState(initializeFilter);
-  const [filterMonth, setFilterMonth] = useState(null);
+ 
   const [filterYear, setFilterYear] = useState(null);
   /**
 * ROLE & PERMISSION
@@ -84,7 +84,7 @@ function AttendanceHIstory() {
   };
 
   const applyFilters = () => {
-    setFilterMonth(filters.month);
+    
     setFilterYear(filters?.year);
     handleSubmit(true, false);
   };
@@ -191,7 +191,7 @@ function AttendanceHIstory() {
     }
   };
 
-  useEffect(() => { }, [studentListing]);
+  
   const fetchStudentBasedOnCourseAndSemester = async (courseid, semesterid) => {
     try {
       const response = await dataFetchingPost(
@@ -326,7 +326,7 @@ function AttendanceHIstory() {
   );
 
   const handleSubmit = async (applyFilter = false, e = false) => {
-    if (e) e.preventDefault();
+    if (e) e.preventDefault() ;
 
     setIsFetching(true);
 

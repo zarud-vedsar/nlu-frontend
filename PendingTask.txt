@@ -7,7 +7,6 @@ Today -------- 4 issue done
 10. session wise student fetching dropdown
 
 11. Excel sheet in attendance chart 
-6. hostel mark attendace should be same as class mark attendance
 13.fixed book catalogue in student 
 
 

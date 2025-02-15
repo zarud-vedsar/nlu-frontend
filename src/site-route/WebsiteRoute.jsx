@@ -76,68 +76,72 @@ const ImageGalleryViewAll = lazy(() => import('../site-pages/website/ImageGaller
 const ViewAllGalleryVideo = lazy(() => import('../site-pages/website/ViewAllGalleryVideo.jsx'));
 const AboutDrRajendraPrasad = lazy(() => import('../site-pages/website/AboutDrRajendraPrasad.jsx'))
 import SuspensionLoader from '../SuspensionLoader.jsx';
+import ErrorBoundary from './ErrorBoundary.jsx';
 
 function WebsiteRoute() {
   return (
-    <Suspense fallback={<SuspensionLoader />}>
-      <Header />
-      <SideChipkaHuaTag />
-      <ToastContainer
-        autoClose={5000}
-        position='top-right'
-        hideProgressBar={false}
-        draggable
-        pauseOnHover
-        closeOnClick
-      />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/dr-rajendra-prasad' element={<AboutDrRajendraPrasad />} />
-        <Route path='/vision-mission' element={<VisionMission />} />
-        <Route path='/emblem-motto' element={<EmblemMotto />} />
-        <Route path='/message/:id' element={<Chairperson />} />
-        <Route path='/chairperson' element={<Chairperson />} />
-        <Route path='/speciality/:id' element={<DetailSpeciality />} />
-        <Route path='/faculty/:id' element={<DetailFaculty />} />
-        <Route path='/page/:cid/:slug' element={<Page />} />
-        <Route path='/video-gallery' element={<VideoGallery />} />
-        <Route path='/image-gallery' element={<ImageGallery />} />
-        <Route path='/image-view-all/:id' element={<ImageGalleryViewAll />} />
-        <Route path='/viewall-videogallery/:id' element={<ViewAllGalleryVideo />} />
-        <Route path='/courses/:id' element={<Courses />} />
-        <Route path='/view-all/:id' element={<AllNotice />} />
-        <Route path='/notice-details/:id' element={<NoticeDetails />} />
-        <Route path='/all-event' element={<AllEvent />} />
-        <Route path='/event-details' element={<EventDetails />} />
-        <Route path='/all-publication' element={<AllPublication />} />
-        <Route path='/publication-details' element={<PublicationDetials />} />
-        <Route path='/contact-us' element={<ContactUs />} />
-        <Route path='/feedback' element={<Feedback />} />
-        <Route path='/grievance' element={<Grievance />} />
-        <Route path='/faculty' element={<Faculty />} />
-        <Route path='/copyright-policy' element={<CopyRightPolicy />} />
-        <Route path='/termof-use' element={<TermOfUse />} />
-        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
-        <Route path='/term-condition' element={<TermCondition />} />
-        <Route path='/anti-ragging-policy' element={<AntiRaggingPolicy />} />
-        <Route path='/placement/job/:id' element={<PlacementDetail />} />
-        <Route path='/placement/:id' element={<PlacementViewpage />} />
-        <Route path='/internship/:id' element={<InternshipDetail />} />
-        <Route path='/internship/apply/:id' element={<InternshipForm />} />
-        <Route path='/scholarship' element={<Scholarship />} />
-        <Route path='/career' element={<Career />} />
-        <Route path='/placement' element={<Navigate to="../student" />} />
-        <Route path='/internship' element={<Navigate to="../student" />} />
-        <Route path='/job/:id' element={<Job />} />
-        <Route path='/job/verify/:id' element={<ApplicationForm />} />
-        <Route path='/job/apply/:id' element={<JobDetailForm />} />
-        <Route path='/marquee/:mrId' element={<KeyNote />} />
-        <Route path='/equal-opportunity-cell' element={<EqualOpportunityCell />} />
-        <Route path="*" element={<Navigate to="/page-not-found" />} />
-      </Routes>
-      <Footer />
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<SuspensionLoader />}>
+        <Header />
+        <SideChipkaHuaTag />
+        <ToastContainer
+          autoClose={5000}
+          position='top-right'
+          hideProgressBar={false}
+          draggable
+          pauseOnHover
+          closeOnClick
+        />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/dr-rajendra-prasad' element={<AboutDrRajendraPrasad />} />
+          <Route path='/vision-mission' element={<VisionMission />} />
+          <Route path='/emblem-motto' element={<EmblemMotto />} />
+          <Route path='/message/:id' element={<Chairperson />} />
+          <Route path='/chairperson' element={<Chairperson />} />
+          <Route path='/speciality/:id' element={<DetailSpeciality />} />
+          <Route path='/faculty/:id' element={<DetailFaculty />} />
+          <Route path='/page/:cid/:slug' element={<Page />} />
+          <Route path='/video-gallery' element={<VideoGallery />} />
+          <Route path='/image-gallery' element={<ImageGallery />} />
+          <Route path='/image-view-all/:id' element={<ImageGalleryViewAll />} />
+          <Route path='/viewall-videogallery/:id' element={<ViewAllGalleryVideo />} />
+          <Route path='/courses/:id' element={<Courses />} />
+          <Route path='/view-all/:id' element={<AllNotice />} />
+          <Route path='/notice-details/:id' element={<NoticeDetails />} />
+          <Route path='/all-event' element={<AllEvent />} />
+          <Route path='/event-details' element={<EventDetails />} />
+          <Route path='/all-publication' element={<AllPublication />} />
+          <Route path='/publication-details' element={<PublicationDetials />} />
+          <Route path='/contact-us' element={<ContactUs />} />
+          <Route path='/feedback' element={<Feedback />} />
+          <Route path='/grievance' element={<Grievance />} />
+          <Route path='/faculty' element={<Faculty />} />
+          <Route path='/copyright-policy' element={<CopyRightPolicy />} />
+          <Route path='/termof-use' element={<TermOfUse />} />
+          <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+          <Route path='/term-condition' element={<TermCondition />} />
+          <Route path='/anti-ragging-policy' element={<AntiRaggingPolicy />} />
+          <Route path='/placement/job/:id' element={<PlacementDetail />} />
+          <Route path='/placement/:id' element={<PlacementViewpage />} />
+          <Route path='/internship/:id' element={<InternshipDetail />} />
+          <Route path='/internship/apply/:id' element={<InternshipForm />} />
+          <Route path='/scholarship' element={<Scholarship />} />
+          <Route path='/career' element={<Career />} />
+          <Route path='/placement' element={<Navigate to="../student" />} />
+          <Route path='/internship' element={<Navigate to="../student" />} />
+          <Route path='/job/:id' element={<Job />} />
+          <Route path='/job/verify/:id' element={<ApplicationForm />} />
+          <Route path='/job/apply/:id' element={<JobDetailForm />} />
+          <Route path='/marquee/:mrId' element={<KeyNote />} />
+          <Route path='/equal-opportunity-cell' element={<EqualOpportunityCell />} />
+          <Route path="*" element={<Navigate to="/page-not-found" />} />
+        </Routes>
+        <Footer />
+      </Suspense>
+    </ErrorBoundary>
+
   );
 }
 

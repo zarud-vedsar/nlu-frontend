@@ -26,7 +26,7 @@ const SuspensionLoader = () => {
             </div>
             <p>{progress}%</p>
 
-            <style jsx>{`
+            <style>{`
         .loader-container {
           position: fixed;
           top: 0;

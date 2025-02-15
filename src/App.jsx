@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
 import SuspensionLoader from "./SuspensionLoader.jsx";
+import ErrorBoundary from "./site-route/ErrorBoundary.jsx";
 const NotFoundPage = lazy(() => import("./404"));
 const WebsiteRoute = lazy(() => import("./site-route/WebsiteRoute"));
 const AdminRoute = lazy(() => import("./site-route/AdminRoute"));
@@ -21,50 +22,54 @@ function App() {
     setFolded(data);
   }
   return (
-    <Suspense fallback={<SuspensionLoader />}>
-      <Router>
-        <Routes>
-          <Route path="/*" element={<WebsiteRoute />}></Route>
-          <Route
-            path="/admin/*"
-            element={
-              <div
-                className={`${expand ? "is-expand" : ""} ${folded ? "is-folded" : ""
-                  }`}
-              >
-                <AdminRoute
-                  toggleExpand={toggleExpand}
-                  toggleFolded={toggleFolded}
-                />
-              </div>
-            }
-          ></Route>
-          <Route
-            path="/student/*"
-            element={
-              <div
-                className={`${expand ? "is-expand" : ""} ${folded ? "is-folded" : ""
-                  }`}
-              >
-                <StudentRoute
-                  toggleExpand={toggleExpand}
-                  toggleFolded={toggleFolded}
-                />
-              </div>
-            }
-          ></Route>
-          <Route
-            path="/assignment/*"
-            element={<StudentAssignmentRoute />}
-          ></Route>
-          <Route path="/quiz/*" element={<StudentQuizRoute />}></Route>
-          <Route path="/parent/*" element={<ParentRoute />}></Route>
-          <Route path="/page-not-found" element={<NotFoundPage />} />
-          <Route path="/forbidden" element={<ForBidden />} />
-          <Route path="*" element={<Navigate to="/page-not-found" />} />
-        </Routes>
-      </Router>
-    </Suspense>
+    <ErrorBoundary>
+
+      <Suspense fallback={<SuspensionLoader />}>
+        <Router>
+          <Routes>
+            <Route path="/*" element={<WebsiteRoute />}></Route>
+            <Route
+              path="/admin/*"
+              element={
+                <div
+                  className={`${expand ? "is-expand" : ""} ${folded ? "is-folded" : ""
+                    }`}
+                >
+                  <AdminRoute
+                    toggleExpand={toggleExpand}
+                    toggleFolded={toggleFolded}
+                  />
+                </div>
+              }
+            ></Route>
+            <Route
+              path="/student/*"
+              element={
+                <div
+                  className={`${expand ? "is-expand" : ""} ${folded ? "is-folded" : ""
+                    }`}
+                >
+                  <StudentRoute
+                    toggleExpand={toggleExpand}
+                    toggleFolded={toggleFolded}
+                  />
+                </div>
+              }
+            ></Route>
+            <Route
+              path="/assignment/*"
+              element={<StudentAssignmentRoute />}
+            ></Route>
+            <Route path="/quiz/*" element={<StudentQuizRoute />}></Route>
+            <Route path="/parent/*" element={<ParentRoute />}></Route>
+            <Route path="/page-not-found" element={<NotFoundPage />} />
+            <Route path="/forbidden" element={<ForBidden />} />
+            <Route path="*" element={<Navigate to="/page-not-found" />} />
+          </Routes>
+        </Router>
+      </Suspense>
+    </ErrorBoundary>
+
   );
 }
 export default App;

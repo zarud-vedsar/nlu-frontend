@@ -181,7 +181,7 @@ const components = {
   ExpenseCategory: lazyLoadExpense("ExpenseCategory"),
   AddExpense: lazyLoadExpense("AddExpense"),
   ExpenseList: lazyLoadExpense("ExpenseList"),
-  SessionSetting : lazyLoadUniversitySetting("SessionSetting"),
+  SessionSetting: lazyLoadUniversitySetting("SessionSetting"),
 };
 components.AddResourcePdf = lazy(() => import("../site-pages/admin/Resource/Pdf/AddPdfResource.jsx"));
 components.ResourcePdfList = lazy(() => import("../site-pages/admin/Resource/Pdf/PdfResourceList.jsx"));

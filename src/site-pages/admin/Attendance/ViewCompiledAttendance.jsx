@@ -163,7 +163,7 @@ function ViewCompiledAttendance() {
   const [modalShow, setModalShow] = useState(false);
   const [selectedStudentDetail, setSelectedStudentDetail] = useState();
   const [admitForm, setAdmitForm] = useState({
-    session: "",
+    session: localStorage.getItem("session"),
     course_id: "",
     semester_id: "",
   });
@@ -320,7 +320,7 @@ function ViewCompiledAttendance() {
             ...data,
             attendancePercentage:
               total_days > 0
-                ? ((total_present * 100) / total_days).toFixed(3)
+                ? ((total_present * 100) / total_days).toFixed(2)
                 : "0.000",
           };
         });
@@ -485,7 +485,7 @@ function ViewCompiledAttendance() {
                           className="btn btn-dark  d-flex justify-content-center align-items-center"
                           type="submit"
                         >
-                          Load{" "}
+                          Fetch{" "}
                           {isSubmit && (
                             <>
                               &nbsp;<div className="loader-circle"></div>

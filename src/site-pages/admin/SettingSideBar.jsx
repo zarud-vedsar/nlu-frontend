@@ -37,6 +37,11 @@ const SettingSideBar = () => {
           Contact Icon
         </Link>
       </li>
+      <li className={`nav-item ${id=='session-setting'?'mark':''}`}>
+        <Link to="/admin/session-setting"  className="nav-link text-dark ">
+          Session Setting
+        </Link>
+      </li>
     </ul>
 
         <style jsx>{

@@ -152,7 +152,7 @@ function MarkAttendanceForm() {
       toast.error("Block is required.");
       return setIsSubmit(false);
     }
-    if (!formData.roomNo && !formData.roomId) {
+    if (!formData.roomNo || !formData.roomId) {
       errorMsg("roomNo", "Room is required.");
       toast.error("Room is required.");
       return setIsSubmit(false);
@@ -325,7 +325,7 @@ function MarkAttendanceForm() {
                     </div>
 
                     <div className="col-md-4 col-lg-4 col-12 form-group">
-                      <label className="font-weight-semibold">Room No</label>
+                      <label className="font-weight-semibold">Room No <span className="text-danger">*</span></label>
                       <Select
                         options={blockRoomNo.map((item) => ({
                           value: item.id,
@@ -398,7 +398,7 @@ function MarkAttendanceForm() {
                         className="btn btn-dark"
                         type="submit"
                       >
-                        Load Student{" "}
+                        Fetch{" "}
                         {isSubmit && (
                           <>
                             &nbsp; <div className="loader-circle"></div>
@@ -420,7 +420,7 @@ function MarkAttendanceForm() {
                         <th>#</th>
                         <th>Enrollment No.</th>
                         <th>Name</th>
-                        <th>Attendance Date</th>
+                        
                         <th>Attendance</th>
                         <th>Status</th>
                       </tr>
@@ -475,7 +475,7 @@ function MarkAttendanceForm() {
                                 </div>
                               </div>
                             </td>
-                            <td>{formatDate(formData.date)}</td>
+                            
                             <td>
                               <Select
                                 value={

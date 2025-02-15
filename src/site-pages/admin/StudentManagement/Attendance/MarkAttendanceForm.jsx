@@ -22,7 +22,7 @@ function MarkAttendanceForm() {
     course_id: "",
     semester_id: "",
     subject_id: "",
-    session: "",
+    session: localStorage.getItem("session"),
     date: new Date().toISOString().split("T")[0],
   };
   const [session, setSession] = useState([]); // Session data: the fuel for exams.
@@ -599,7 +599,7 @@ function MarkAttendanceForm() {
                               className="btn btn-dark  d-flex justify-content-center align-items-center"
                               type="submit"
                             >
-                              Load{" "}
+                              Fetch{" "}
                             </button>
                           ) : (
                             <button
@@ -625,7 +625,7 @@ function MarkAttendanceForm() {
                             <th>#</th>
                             <th>Enrollment No.</th>
                             <th>Name</th>
-                            <th>Attendance Date</th>
+                            
                             <th>Attendance</th>
                             <th>Status</th>
                           </tr>
@@ -639,7 +639,7 @@ function MarkAttendanceForm() {
                                   {capitalizeFirstLetter(row?.enrollmentNo)}
                                 </td>
                                 <td>{capitalizeFirstLetter(row?.sname)}</td>
-                                <td>{formatDate(filter.date)}</td>
+                                
                                 <td>
                                   <Select
                                   isDisabled={row.attendance==="CC"}

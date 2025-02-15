@@ -155,7 +155,6 @@ function Index() {
                         </div>
                         <div className="card-body">
                             <form onSubmit={(e) => e.preventDefault()}>
-
                                 <div className="row">
                                     <FormField
                                         bottom={true}

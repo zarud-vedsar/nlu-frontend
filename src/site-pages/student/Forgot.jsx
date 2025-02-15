@@ -7,6 +7,7 @@ import axios from "axios";
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import { Link, useNavigate } from "react-router-dom";
 import HeaderPanel from "./HeaderPanel";
+import { IoMdArrowRoundBack, IoMdHome } from "react-icons/io";
 function Forgot() {
   const [showPassword, setShowPassword] = useState(false);
   const [captcha, setCaptcha] = useState("");
@@ -170,8 +171,14 @@ function Forgot() {
       <HeaderPanel />
       <div className="row mt-3">
         <div className="col-md-5 col-12 col-sm-12 col-lg-5 mx-auto">
-          <div className="card mt-0" style={{ borderRadius: "15px" }}>
-            <div className="card-header py-0" style={{ background: '#2C5784', borderRadius: "15px 15px 0 0" }}>
+          <div className="backbtn btn" onClick={() => window.history.back()}>
+            <IoMdArrowRoundBack /> Back
+          </div>
+          <Link to="/" className="backbtn1 btn" >
+            <IoMdHome /> Home
+          </Link>
+          <div className="card mt-5" style={{ borderRadius: "15px" }}>
+            <div className="card-header py-0" style={{ background: '#000000', borderRadius: "15px 15px 0 0" }}>
               <h5 className="card-title py-2 mb-0" style={{ color: '#EDE7E3' }}>Forgot Password?</h5>
             </div>
             <div className="card-body">

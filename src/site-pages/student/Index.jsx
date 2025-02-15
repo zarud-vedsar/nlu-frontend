@@ -1,11 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
-import "./Index.css";
 import { FormField } from "../../site-components/admin/assets/FormField";
 import { toast } from 'react-toastify';
 import validator from 'validator';
 import axios from "axios";
-import { TbArrowBadgeRightFilled } from "react-icons/tb";
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import IsStudentoggedIn from "./IsStudentoggedIn";
@@ -13,6 +11,7 @@ import HeaderPanel from "./HeaderPanel";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { IoMdHome } from "react-icons/io";
 import ContactIcon from "../../site-components/website/home-components/ContactIcon";
+import './Index.css';
 function Index() {
     const [showPassword, setShowPassword] = useState(false);
     const [captcha, setCaptcha] = useState("");

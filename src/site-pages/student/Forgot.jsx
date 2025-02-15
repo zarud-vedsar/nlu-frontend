@@ -265,7 +265,7 @@ function Forgot() {
                   <div className="col-md-12 form-group mb-0">
                     <button
                       type="button" onClick={handleSubmit}
-                      className="btn btn-dark d-flex justify-content-center align-items-center btn-block submit_btn"
+                      className="submitsbutton"
                       disabled={isSubmitDisabled}
                     >
                       {btnText}

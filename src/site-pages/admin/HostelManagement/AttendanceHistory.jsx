@@ -40,8 +40,8 @@ function AttendanceHIstory() {
     { value: 12, label: "December" },
   ];
   /**
-* ROLE & PERMISSION
-*/
+   * ROLE & PERMISSION
+   */
   const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate(); // Initialize useNavigate
   useEffect(() => {
@@ -60,12 +60,11 @@ function AttendanceHIstory() {
     year: new Date().getFullYear(),
     month: "",
     studentId: "",
-    session: localStorage.getItem("session")
-
+    session: localStorage.getItem("session"),
   };
 
   // Fetch and set the session list for the dropdown
-  const [session,setSession] = useState([]);
+  const [session, setSession] = useState([]);
   const sessionListDropdown = async () => {
     try {
       const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
@@ -81,21 +80,21 @@ function AttendanceHIstory() {
   };
 
   const [filters, setFilters] = useState(initializeFilter);
-  const [filterMonth, setFilterMonth] = useState();
+  const [dataAvailable, setDataAvailable] = useState("not fetched yet");
   const [filterYear, setFilterYear] = useState();
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const resetFilters = () => {
+    setDataAvailable("not fetched yet");
     setFilters(initializeFilter);
-    handleSubmit();
+    
   };
 
   const applyFilters = () => {
-    setFilterMonth(filters.month);
     setFilterYear(filters.year);
     handleSubmit(true, false);
   };
@@ -234,12 +233,12 @@ function AttendanceHIstory() {
                 ? months[m][i]
                 : { year: filters?.year, month: m, day: i + 1, present: 2 };
 
-                if (attendanceData.present == 1) {
-                  presentCount++;
-                }
-                if (attendanceData.present == 0) {
-                  absentCount++;
-                }
+            if (attendanceData.present == 1) {
+              presentCount++;
+            }
+            if (attendanceData.present == 0) {
+              absentCount++;
+            }
 
             return attendanceData;
           }),
@@ -267,6 +266,18 @@ function AttendanceHIstory() {
       bformData = filters;
     }
     setIsFetching(true);
+    if(!filters.year){
+      toast.success("Year is required");
+      return setIsFetching(false);
+    }
+    if(!filters.block){
+      toast.success("Block is required");
+      return setIsFetching(false);
+    }
+    if(!filters.roomNo){
+      toast.success("Room is required");
+      return setIsFetching(false);
+    }
     try {
       const response = await axios.post(
         `${NODE_API_URL}/api/hostel-management/student/attendance-record-for-admin`,
@@ -274,14 +285,17 @@ function AttendanceHIstory() {
           ...bformData,
         }
       );
-      console.log(response)
+      console.log(response);
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
         toast.success(response?.data?.message);
         generateCompleteAttendance(response.data.data);
+        setDataAvailable("data fetched")
       } else {
+        setDataAvailable("data not available");
         setAttendanceHistory([]);
       }
     } catch (error) {
+      setDataAvailable("data not available");
       setAttendanceHistory([]);
       if (
         error?.response?.data?.statusCode === 400 ||
@@ -295,10 +309,8 @@ function AttendanceHIstory() {
     }
   };
   useEffect(() => {
-    handleSubmit();
     fetchDistinctBlock();
-    sessionListDropdown();
-
+    
   }, []);
 
   return (
@@ -312,9 +324,9 @@ function AttendanceHIstory() {
                   <a href="./" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" /> Attendance Management
                   </a>
-                  
+
                   <span className="breadcrumb-item active">
-                  Hostel Attendance History
+                    Hostel Attendance History
                   </span>
                 </nav>
               </div>
@@ -349,7 +361,7 @@ function AttendanceHIstory() {
             </div>
             <div className="card">
               <div className="card-body">
-                {attendanceHistory.length > 0 && (
+                {attendanceHistory.length > 0 && dataAvailable === "data fetched" && (
                   <div className={`table-responsive`}>
                     {filters?.year && (
                       <>
@@ -370,8 +382,24 @@ function AttendanceHIstory() {
                                       </th>
                                     )
                                   )}
-                                  <th scope="col" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>T-P</th>
-                                  <th scope="col" style={{backgroundColor:"rgb(231 227 227)",paddingRight:"10px" }}>T-A</th>
+                                  <th
+                                    scope="col"
+                                    style={{
+                                      backgroundColor: "rgb(231 227 227)",
+                                      paddingLeft: "10px",
+                                    }}
+                                  >
+                                    T-P
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    style={{
+                                      backgroundColor: "rgb(231 227 227)",
+                                      paddingRight: "10px",
+                                    }}
+                                  >
+                                    T-A
+                                  </th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -385,28 +413,44 @@ function AttendanceHIstory() {
                                     {student?.attendance.map((day, index) => (
                                       <td key={index}>
                                         {day && (
-                                                <>
-                                                  {day?.present == 1 && (
-                                                    <span className="badge badge-success">
-                                                      P
-                                                    </span>
-                                                  )}
-                                                  {day?.present == 0 && (
-                                                    <span className="badge badge-danger">
-                                                      A
-                                                    </span>
-                                                  )}
-                                                  {day?.present == 2 && (
-                                                    <span className="badge badge-light">
-                                                      N
-                                                    </span>
-                                                  )}
-                                                </>
-                                              )}
+                                          <>
+                                            {day?.present == 1 && (
+                                              <span className="badge badge-success">
+                                                P
+                                              </span>
+                                            )}
+                                            {day?.present == 0 && (
+                                              <span className="badge badge-danger">
+                                                A
+                                              </span>
+                                            )}
+                                            {day?.present == 2 && (
+                                              <span className="badge badge-light">
+                                                N
+                                              </span>
+                                            )}
+                                          </>
+                                        )}
                                       </td>
                                     ))}
-                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>{student?.presentCount}</td>
-                                    <td className="text-center" style={{backgroundColor:"rgb(231 227 227)",paddingRight:"10px" }}>{student?.absentCount}</td>
+                                    <td
+                                      className="text-center"
+                                      style={{
+                                        backgroundColor: "rgb(231 227 227)",
+                                        paddingLeft: "10px",
+                                      }}
+                                    >
+                                      {student?.presentCount}
+                                    </td>
+                                    <td
+                                      className="text-center"
+                                      style={{
+                                        backgroundColor: "rgb(231 227 227)",
+                                        paddingRight: "10px",
+                                      }}
+                                    >
+                                      {student?.absentCount}
+                                    </td>
                                   </tr>
                                 ))}
                               </tbody>
@@ -417,13 +461,12 @@ function AttendanceHIstory() {
                     )}
                   </div>
                 )}
-                {!(attendanceHistory && attendanceHistory.length > 0) &&
-                  (!filters.block || !filters.roomNo) && (
-                    <span className="text-danger">
-                      Provide Block, Room No And Year in filter
-                    </span>
-                  )}
-                {!(attendanceHistory && attendanceHistory.length > 0) &&
+                {dataAvailable === "not fetched yet" && (
+                  <span className="text-danger">
+                    Provide Year, Block And Room in filter
+                  </span>
+                )}
+                {dataAvailable === "data not available" &&
                   filters.block &&
                   filters.roomNo && (
                     <span className="text-danger">Data Not Available</span>
@@ -441,87 +484,8 @@ function AttendanceHIstory() {
         <Modal.Body>
           <Form id="filteruserlist">
             <Row>
-            <div className="col-md-12 col-12 form-group">
-                          <label className="font-weight-semibold">
-                            Session 
-                          </label>
-                          <Select
-                            options={session?.map(({ id, dtitle }) => ({
-                              value: id,
-                              label: dtitle,
-                            }))}
-                            onChange={({ value }) => {
-                              setFilters({ ...filters, session: value });
-                            }}
-                            value={
-                              session.find(
-                                ({ id }) => id === +filters.session
-                              )
-                                ? {
-                                    value: +filters.session,
-                                    label: session.find(
-                                      ({ id }) => id === +filters.session
-                                    ).dtitle,
-                                  }
-                                : { value: filters.session, label: "Select" }
-                            }
-                          />
-                        </div>
-              <div className="col-md-12  form-group">
-                <label className="font-weight-semibold">Block</label>
-                <Select
-                  options={block.map((item) => ({
-                    value: item.block,
-                    label: item.block,
-                  }))}
-                  onChange={(selectedOption) => {
-                    setFilters({
-                      ...filters,
-                      block: selectedOption.value,
-                    });
-                    fetchRoomNoBasedOnBlock(selectedOption.value);
-                    fetchStudentBasedOnBlock(selectedOption.value);
-                  }}
-                  value={
-                    block.find((item) => item.block === filters.block)
-                      ? {
-                        value: filters.block,
-                        label: block.find(
-                          (item) => item.block === filters.block
-                        ).block,
-                      }
-                      : { value: filters.block, label: "Select" }
-                  }
-                />
-              </div>
-              <div className="col-md-12 form-group">
-                <label className="font-weight-semibold">Room No</label>
-                <Select
-                  options={blockRoomNo.map((item) => ({
-                    value: item.roomNo,
-                    label: item.roomNo,
-                  }))}
-                  onChange={(selectedOption) => {
-                    setFilters({
-                      ...filters,
-                      roomNo: selectedOption.value,
-                    });
-                  }}
-                  value={
-                    blockRoomNo.find((item) => item.roomNo === filters.roomNo)
-                      ? {
-                        value: filters.roomNo,
-                        label: blockRoomNo.find(
-                          (item) => item.roomNo === filters.roomNo
-                        ).roomNo,
-                      }
-                      : { value: filters.roomNo, label: "Select" }
-                  }
-                />
-              </div>
-
-              <div className="col-md-12  form-group">
-                <label className="font-weight-semibold">Select Year</label>
+            <div className="col-md-12  form-group">
+                <label className="font-weight-semibold">Select Year <span className="text-danger">*</span></label>
                 <Select
                   options={availableYears.map((year) => ({
                     value: year,
@@ -541,6 +505,60 @@ function AttendanceHIstory() {
                 />
               </div>
               <div className="col-md-12  form-group">
+                <label className="font-weight-semibold">Block <span className="text-danger">*</span></label>
+                <Select
+                  options={block.map((item) => ({
+                    value: item.block,
+                    label: item.block,
+                  }))}
+                  onChange={(selectedOption) => {
+                    setFilters({
+                      ...filters,
+                      block: selectedOption.value,
+                    });
+                    fetchRoomNoBasedOnBlock(selectedOption.value);
+                    fetchStudentBasedOnBlock(selectedOption.value);
+                  }}
+                  value={
+                    block.find((item) => item.block === filters.block)
+                      ? {
+                          value: filters.block,
+                          label: block.find(
+                            (item) => item.block === filters.block
+                          ).block,
+                        }
+                      : { value: filters.block, label: "Select" }
+                  }
+                />
+              </div>
+              <div className="col-md-12 form-group">
+                <label className="font-weight-semibold">Room <span className="text-danger">*</span></label>
+                <Select
+                  options={blockRoomNo.map((item) => ({
+                    value: item.roomNo,
+                    label: item.roomNo,
+                  }))}
+                  onChange={(selectedOption) => {
+                    setFilters({
+                      ...filters,
+                      roomNo: selectedOption.value,
+                    });
+                  }}
+                  value={
+                    blockRoomNo.find((item) => item.roomNo === filters.roomNo)
+                      ? {
+                          value: filters.roomNo,
+                          label: blockRoomNo.find(
+                            (item) => item.roomNo === filters.roomNo
+                          ).roomNo,
+                        }
+                      : { value: filters.roomNo, label: "Select" }
+                  }
+                />
+              </div>
+
+              
+              <div className="col-md-12  form-group">
                 <label className="font-weight-semibold">Select Month</label>
                 <Select
                   options={months.map((month) => month)}
@@ -553,11 +571,11 @@ function AttendanceHIstory() {
                   value={
                     months.find((month) => month.value === filters?.month)
                       ? {
-                        value: filters?.month,
-                        label: months.find(
-                          (month) => month.value === filters?.month
-                        ).label,
-                      }
+                          value: filters?.month,
+                          label: months.find(
+                            (month) => month.value === filters?.month
+                          ).label,
+                        }
                       : { value: filters.month, label: "Select" }
                   }
                 />
@@ -578,9 +596,9 @@ function AttendanceHIstory() {
                   value={
                     selectedStudent
                       ? {
-                        value: selectedStudent.id,
-                        label: `${selectedStudent.sname} (${selectedStudent.enrollmentNo})`,
-                      }
+                          value: selectedStudent.id,
+                          label: `${selectedStudent.sname} (${selectedStudent.enrollmentNo})`,
+                        }
                       : { value: "", label: "Select" }
                   }
                 />

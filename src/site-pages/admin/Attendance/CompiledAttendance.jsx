@@ -23,7 +23,7 @@ function AddExam() {
   const [semesterList, setSemesterList] = useState([]); // Semesters: time is a flat circle.
   const [subjectList, setSubjectList] = useState([]); // Subjects: the reason we're here.
   const [admitForm, setAdmitForm] = useState({
-    session: "",
+    session: localStorage.getItem("session"),
     course_id: "",
     semester_id: "",
     subject_id: "",

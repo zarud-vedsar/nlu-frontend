@@ -41,6 +41,8 @@ const lazyLoadBanner = (path) =>
   lazy(() => import(`../site-pages/admin/Banner/${path}.jsx`));
 const lazyLoadExpense = (path) =>
   lazy(() => import(`../site-pages/admin/Expense/${path}.jsx`));
+const lazyLoadUniversitySetting = (path) =>
+  lazy(() => import(`../site-pages/admin/UniversitySetting/${path}.jsx`));
 
 
 const components = {
@@ -179,6 +181,7 @@ const components = {
   ExpenseCategory: lazyLoadExpense("ExpenseCategory"),
   AddExpense: lazyLoadExpense("AddExpense"),
   ExpenseList: lazyLoadExpense("ExpenseList"),
+  SessionSetting : lazyLoadUniversitySetting("SessionSetting"),
 };
 components.AddResourcePdf = lazy(() => import("../site-pages/admin/Resource/Pdf/AddPdfResource.jsx"));
 components.ResourcePdfList = lazy(() => import("../site-pages/admin/Resource/Pdf/PdfResourceList.jsx"));
@@ -663,6 +666,12 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
               path="/contact-icon-setting"
               element={
                 <ProtectedRoute element={<components.ContactIconSetting />} />
+              }
+            />
+            <Route
+              path="/session-setting"
+              element={
+                <ProtectedRoute element={<components.SessionSetting />} />
               }
             />
             <Route

@@ -13,7 +13,7 @@ const MarqueeSlider = () => {
       if (items.length > 0) return;
       try {
         const formData = new FormData();
-        formData.append("data", "load_mrq_slider");
+        formData.append("data", "load_mrq_slider_front");
         const marQueeResponse = await axios.post(
           `${PHP_API_URL}/mrq_slider.php`,
           formData,
@@ -44,9 +44,9 @@ const MarqueeSlider = () => {
               <div className="marquee">
                 {items.map((item, index) => (
                   <span key={index} className="marquee-item ml-2">
-                    <a href={item?.link ? validator.unescape(item.link) : '#'}>
+                    <Link to={`/marquee/${item.id}`}>
                       {item?.content ? validator.unescape(item.content) : ''}
-                    </a>
+                    </Link>
                   </span>
                 ))}
               </div>

@@ -28,24 +28,6 @@ const About = () => {
       }
     } catch (error) { /* empty */ }
   }
-  // Decode HTML content from the server and cache the result
-  const decodeHtml = async (html, messageId) => {
-    try {
-      // Check if message is already decoded
-      if (decodedMessages[messageId]) {
-        return decodedMessages[messageId];
-      }
-      const response = await axios.post(
-        `${PHP_API_URL}/page.php`,
-        { data: 'decodeData', html },
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      );
-      return response.data;
-    } catch (error) {
-      console.error("Error decoding HTML:", error);
-      return html; // Return original content if decoding fails
-    }
-  };
   useEffect(() => {
     getAbout();
   }, []);

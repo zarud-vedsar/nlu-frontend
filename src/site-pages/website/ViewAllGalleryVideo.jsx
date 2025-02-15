@@ -4,8 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { capitalizeFirstLetter } from "../../site-components/Helper/HelperFunction";
-import { PHP_API_URL, NODE_API_URL, FILE_API_URL } from "../../site-components/Helper/Constant";
-import  "../../site-components/website/assets/css/ViewAllVideoGallery.css"
+import { PHP_API_URL, FILE_API_URL } from "../../site-components/Helper/Constant";
+import "../../site-components/website/assets/css/ViewAllVideoGallery.css"
 
 const ViewAllVideoGallery = () => {
   const { id } = useParams();
@@ -118,7 +118,7 @@ const ViewAllVideoGallery = () => {
         </div>
       </div>
 
-     
+
     </>
   );
 };

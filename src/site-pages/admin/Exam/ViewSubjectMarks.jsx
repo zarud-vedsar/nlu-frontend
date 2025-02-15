@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { goBack } from "../../../site-components/Helper/HelperFunction";
-import { PHP_API_URL,FILE_API_URL } from "../../../site-components/Helper/Constant";
+import { PHP_API_URL, FILE_API_URL } from "../../../site-components/Helper/Constant";
 import validator from "validator";
 import { toast } from "react-toastify";
 import secureLocalStorage from "react-secure-storage";
@@ -49,39 +49,39 @@ function ViewSubjectMarks() {
         setStudentList(response.data.data);
 
         // Initialize marksData with all required fields
-        if(examType === 'mid-term'){
-            const initialMarks = {};
-            response.data.data.forEach((student) => {
-                initialMarks[student.stid] = {
-                    mid_term: student.mid_term || 0,
-                    max_mid: student.max_mid || 0,
-                    marksid: student.marksid || null,
-                    sessionsemester: student.sessionsemester,
-                    subject_id: student.subject_id,
-                };
-            });
-            setMarksData(initialMarks);
-        }else{
-        const initialMarks = {};
-        response.data.data.forEach((student) => {
-        initialMarks[student.stid] = {
-          mid_term: student.mid_term || 0,
-          max_mid: student.max_mid || 0,
-          p_written: student.p_written || 0,
-          p_ppt: student.p_ppt || 0,
-          p_viva: student.p_viva || 0,
-          p_total: student.p_total || 0,
-          attendance: student.attendance || 0,
-          end_term: student.end_term || 0,
-          grand_total: student.grand_total || 0,
-          max_p: student.max_p || 0,
-          max_end: student.max_end || 0,
-          marksid: student.marksid || null,
-          sessionsemester: student.sessionsemester,
-          subject_id: student.subject_id,
-        };
-        });
-        setMarksData(initialMarks);
+        if (examType === 'mid-term') {
+          const initialMarks = {};
+          response.data.data.forEach((student) => {
+            initialMarks[student.stid] = {
+              mid_term: student.mid_term || 0,
+              max_mid: student.max_mid || 0,
+              marksid: student.marksid || null,
+              sessionsemester: student.sessionsemester,
+              subject_id: student.subject_id,
+            };
+          });
+          setMarksData(initialMarks);
+        } else {
+          const initialMarks = {};
+          response.data.data.forEach((student) => {
+            initialMarks[student.stid] = {
+              mid_term: student.mid_term || 0,
+              max_mid: student.max_mid || 0,
+              p_written: student.p_written || 0,
+              p_ppt: student.p_ppt || 0,
+              p_viva: student.p_viva || 0,
+              p_total: student.p_total || 0,
+              attendance: student.attendance || 0,
+              end_term: student.end_term || 0,
+              grand_total: student.grand_total || 0,
+              max_p: student.max_p || 0,
+              max_end: student.max_end || 0,
+              marksid: student.marksid || null,
+              sessionsemester: student.sessionsemester,
+              subject_id: student.subject_id,
+            };
+          });
+          setMarksData(initialMarks);
         }
       } else {
         toast.error("An error occurred. Please try again.");
@@ -94,82 +94,82 @@ function ViewSubjectMarks() {
   };
 
 
- const exportExcel = async (term) => {
-  
+  const exportExcel = async (term) => {
 
-  try {
-    // Create a new form element
-    const form = document.createElement("form");
-    form.action = `${PHP_API_URL}/exam_marks.php`;
-    form.method = "POST";
-    form.target = "hidden_iframe"; // Target the hidden iframe for submission
 
-    // Append hidden input fields to the form
-    const formDataEntries = [
-      { name: "loguserid", value: secureLocalStorage.getItem("login_id") },
-      { name: "login_type", value: secureLocalStorage.getItem("loginType") },
-      { name: "data", value: term},
-      { name: "paper_id", value: dbId },
-    ];
+    try {
+      // Create a new form element
+      const form = document.createElement("form");
+      form.action = `${PHP_API_URL}/exam_marks.php`;
+      form.method = "POST";
+      form.target = "hidden_iframe"; // Target the hidden iframe for submission
 
-    formDataEntries.forEach((entry) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = entry.name;
-      input.value = entry.value;
-      form.appendChild(input);
-    });
+      // Append hidden input fields to the form
+      const formDataEntries = [
+        { name: "loguserid", value: secureLocalStorage.getItem("login_id") },
+        { name: "login_type", value: secureLocalStorage.getItem("loginType") },
+        { name: "data", value: term },
+        { name: "paper_id", value: dbId },
+      ];
 
-    // Create a hidden iframe
-    const iframe = document.createElement("iframe");
-    iframe.name = "hidden_iframe"; // The iframe name must match the form's target
-    iframe.style.display = "none"; // Hide the iframe from view
-    document.body.appendChild(iframe);
+      formDataEntries.forEach((entry) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = entry.name;
+        input.value = entry.value;
+        form.appendChild(input);
+      });
 
-    // Handle the iframe's onload event
-    iframe.onload = function () {
-      try {
-        // Parse the iframe response (assuming the response is JSON)
-        const iframeContent = iframe.contentWindow.document.body.innerText; // Get iframe body content
-        const responseData = JSON.parse(iframeContent); // Parse JSON response
-        
+      // Create a hidden iframe
+      const iframe = document.createElement("iframe");
+      iframe.name = "hidden_iframe"; // The iframe name must match the form's target
+      iframe.style.display = "none"; // Hide the iframe from view
+      document.body.appendChild(iframe);
 
-        // Handle different statuses based on responseData
-        if (
-          responseData?.statusCode === 200 ||
-          responseData?.statusCode === 201
-        ) {
-          toast.success(responseData.msg); // Success message
-          if (responseData.statusCode === 201) {
-           
+      // Handle the iframe's onload event
+      iframe.onload = function () {
+        try {
+          // Parse the iframe response (assuming the response is JSON)
+          const iframeContent = iframe.contentWindow.document.body.innerText; // Get iframe body content
+          const responseData = JSON.parse(iframeContent); // Parse JSON response
+
+
+          // Handle different statuses based on responseData
+          if (
+            responseData?.statusCode === 200 ||
+            responseData?.statusCode === 201
+          ) {
+            toast.success(responseData.msg); // Success message
+            if (responseData.statusCode === 201) {
+
+            }
+          } else if (responseData?.statusCode === 400) {
+            toast.error("Student not found");
+          } else if (responseData?.statusCode === 500) {
+            toast.error("Internal server error. Please try again.");
+          } else {
+            toast.error("An unexpected error occurred. Please try again.");
           }
-        } else if (responseData?.statusCode === 400) {
-          toast.error("Student not found");
-        } else if (responseData?.statusCode === 500) {
-          toast.error("Internal server error. Please try again.");
-        } else {
-          toast.error("An unexpected error occurred. Please try again.");
+        } catch (error) {
+          console.error("Error parsing iframe response:", error);
+          toast.error("An error occurred while processing the response.");
+        } finally {
+          // Clean up the iframe after processing
+          document.body.removeChild(iframe);
         }
-      } catch (error) {
-        console.error("Error parsing iframe response:", error);
-        toast.error("An error occurred while processing the response.");
-      } finally {
-        // Clean up the iframe after processing
-        document.body.removeChild(iframe);
-      }
-    };
+      };
 
-    // Append the form to the body
-    document.body.appendChild(form);
+      // Append the form to the body
+      document.body.appendChild(form);
 
-    // Submit the form to the hidden iframe (no page reload)
-    form.submit();
-  } catch (error) {
-    
-    console.error("Error submitting form:", error);
-    toast.error("An error occurred while submitting the form.");
-  } 
-};
+      // Submit the form to the hidden iframe (no page reload)
+      form.submit();
+    } catch (error) {
+
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred while submitting the form.");
+    }
+  };
   return (
     <div className="page-container">
       <div className="main-content">
@@ -181,10 +181,10 @@ function ViewSubjectMarks() {
                 Exam Management
               </Link>
               <Link to="/admin/" className="breadcrumb-item">
-                
+
                 Exam Paper
               </Link>
-              
+
               <span className="breadcrumb-item active">Student Marks</span>
             </nav>
           </div>
@@ -195,21 +195,21 @@ function ViewSubjectMarks() {
                 <button className="btn goback" onClick={goBack}>
                   <i className="fas fa-arrow-left"></i> Go Back
                 </button>
-                {examType === "end-term" &&  studentList && studentList.length > 0 && (
+                {examType === "end-term" && studentList && studentList.length > 0 && (
                   <button
                     className="btn btn-primary ml-2"
-                    onClick={()=>exportExcel("export_end_term_marks")}
+                    onClick={() => exportExcel("export_end_term_marks")}
                   >
-                    <i class="fa-solid fa-file-export"></i> Export Marks
+                    <i className="fa-solid fa-file-export"></i> Export Marks
                     {loader && <div className="loader-circle"></div>}
                   </button>
                 )}
-                {examType === "mid-term" &&  studentList && studentList.length > 0 &&  (
+                {examType === "mid-term" && studentList && studentList.length > 0 && (
                   <button
                     className="btn btn-primary ml-2"
-                    onClick={()=>exportExcel("export_mid_term_marks")}
+                    onClick={() => exportExcel("export_mid_term_marks")}
                   >
-                    <i class="fa-solid fa-file-export"></i> Export Marks
+                    <i className="fa-solid fa-file-export"></i> Export Marks
                     {loader && <div className="loader-circle"></div>}
                   </button>
                 )}
@@ -242,9 +242,8 @@ function ViewSubjectMarks() {
                     </div>
                     <div className="card-body px-2">
                       <div
-                        className={`table-responsive ${
-                          isFetching ? "form" : ""
-                        }`}
+                        className={`table-responsive ${isFetching ? "form" : ""
+                          }`}
                       >
                         <DataTable
                           value={studentList}
@@ -253,7 +252,7 @@ function ViewSubjectMarks() {
                           className="p-datatable-custom"
                           tableStyle={{ minWidth: "50rem" }}
                           sortMode="multiple"
-                          filters={{ global: { value: globalFilter, matchMode: "contains" } }} 
+                          filters={{ global: { value: globalFilter, matchMode: "contains" } }}
                         >
                           <Column
                             header="Student Name"
@@ -281,7 +280,7 @@ function ViewSubjectMarks() {
                             header="Roll no"
                             sortable
                             body={(rowData) => rowData.roll_no}
-                             filterField="roll_no"
+                            filterField="roll_no"
                           />
                           <Column
                             header="MT Max Marks"
@@ -299,7 +298,7 @@ function ViewSubjectMarks() {
                             )}
                             filterField="mid_term"
                           />
-                          
+
                         </DataTable>
                       </div>
                     </div>
@@ -367,7 +366,7 @@ function ViewSubjectMarks() {
                         body={(rowData) => rowData.roll_no}
                         filterField="roll_no"
                       />
-                      
+
                       <Column
                         header="Mid Max"
                         sortable
@@ -386,7 +385,7 @@ function ViewSubjectMarks() {
                         body={(rowData) => marksData[rowData.stid]?.max_p || ""}
                         filterField="max_p"
                       />
-                      
+
                       <Column
                         header="Proj Writ"
                         sortable

@@ -10,6 +10,7 @@ import "../../assets/custom.css";
 import {
   capitalizeFirstLetter,
   formatDate,
+  goBack
 } from "../../../../site-components/Helper/HelperFunction";
 import { toast } from "react-toastify";
 
@@ -150,7 +151,7 @@ function QuizSubjectDashboard() {
               </nav>
             </div>
             <div className="card">
-              <div className="card-header">
+              <div className="card-header d-flex justify-content-center align-items-center">
                 <h5 className="card-title col-md-9 col-lg-9 col-12 col-sm-12 h6_new font-14">
                   My Course:{" "}
                   {courseSemester?.courseIdName?.[0]?.coursename ||
@@ -166,6 +167,12 @@ function QuizSubjectDashboard() {
                     )}`}
                   <span> ({capitalizeFirstLetter(subject?.subject)})</span>
                 </h5>
+                 <button
+                                                                                  className="ml-auto btn-md btn border-0 goback mr-2"
+                                                                                  onClick={goBack}
+                                                                                >
+                                                                                  <i className="fas fa-arrow-left"></i> Go Back
+                                                                                </button>
               </div>
             </div>
             <div className="row">

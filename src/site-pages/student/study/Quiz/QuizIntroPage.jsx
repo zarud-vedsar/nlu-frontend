@@ -10,7 +10,7 @@ import "../../assets/custom.css";
 import TopicPng from "../../assets/img/topic.png";
 import { toast } from "react-toastify";
 import validator from "validator";
-import { formatDate,capitalizeFirstLetter,capitalizeAllLetters } from "../../../../site-components/Helper/HelperFunction";
+import { formatDate, capitalizeFirstLetter, capitalizeAllLetters } from "../../../../site-components/Helper/HelperFunction";
 
 function QuizIntroPage() {
   const sid = secureLocalStorage.getItem("studentId");
@@ -124,10 +124,10 @@ function QuizIntroPage() {
 
   return (
     <>
-    <div className="" style={{height:"100vh", width:"100vw", background:"rgb(224 224 224 / 30%)"}}>
-      <div className="container-fluid">
-        <div className="mb-3 mt-0 pt-2 px-5">
-          {/* <nav className="breadcrumb">
+      <div className="" style={{ height: "100vh", width: "100vw", background: "rgb(224 224 224 / 30%)" }}>
+        <div className="container-fluid">
+          <div className="mb-3 mt-0 pt-2 px-5">
+            {/* <nav className="breadcrumb">
             <Link to="/student" className="breadcrumb-item">
               Home
             </Link>
@@ -135,84 +135,84 @@ function QuizIntroPage() {
             <Link className="breadcrumb-item active">Quiz</Link>
             <span className="breadcrumb-item active">paper</span>
           </nav> */}
-        </div>
-        <div className="card">
-          <div className="card-header id-card-header">
-            <h5 className="card-title col-md-9 col-lg-9 col-12 col-sm-12  text-light">
-              My Course:{" "}
-              {courseSemester?.courseIdName?.[0]?.coursename ||
-                "Course name not available"}
-              <span>
-                {" "}
-                {semesterId &&
-                  courseSemester?.allotedCourseSemester?.find(
-                    (semester) => semester.semesterid == semesterId
-                  )?.semtitle &&
-                  ` - ${capitalizeFirstLetter(
-                    courseSemester.allotedCourseSemester.find(
-                      (semester) => semester.semesterid == semesterId
-                    ).semtitle
-                  )}`}
-              </span>
-              <span> ({capitalizeFirstLetter(subject?.subject)})</span>
-            </h5>
           </div>
-        </div>
-        <div className="row">
-          {apiHit ? (
-            <div className="col-md-12 text-center">
-              <div className="loader-fetch mx-auto"></div>
+          <div className="card">
+            <div className="card-header id-card-header">
+              <h5 className="card-title col-md-9 col-lg-9 col-12 col-sm-12  text-light">
+                My Course:{" "}
+                {courseSemester?.courseIdName?.[0]?.coursename ||
+                  "Course name not available"}
+                <span>
+                  {" "}
+                  {semesterId &&
+                    courseSemester?.allotedCourseSemester?.find(
+                      (semester) => semester.semesterid == semesterId
+                    )?.semtitle &&
+                    ` - ${capitalizeFirstLetter(
+                      courseSemester.allotedCourseSemester.find(
+                        (semester) => semester.semesterid == semesterId
+                      ).semtitle
+                    )}`}
+                </span>
+                <span> ({capitalizeFirstLetter(subject?.subject)})</span>
+              </h5>
             </div>
-          ) : (
-            ""
-          )}
-          {quizList && (
-            <div className="col-md-12 ">
-              {/* <p className="mb-0 px-5" style={{color:"#4087f5"}}>Quizs</p> */}
-            </div>
-          )}
-          <div className="col-md-12 mb-2 col-lg-12 col-12 col-sm-12">
-            <div className="card border-0">
-              <div className="card-body pt-3 ">
-                <div className="row">
-                <div className="col-md-7 mb-2 col-lg-7 col-12 col-sm-12">
-                <h6 className="id-title">
-                  {capitalizeFirstLetter(quizDetail.quiz_title)}
-                </h6>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Subject:</strong> {capitalizeFirstLetter(subject?.subject)}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Question Type:</strong>{capitalizeAllLetters(quizDetail.question_type)}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Numbers of Question:</strong> {quizDetail.number_of_question}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Marks Per Question:</strong>  {quizDetail.marks_per_question}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Negative Marks Per Wrong Answer:</strong>{quizDetail.minus_mark}</p>
-                
-               
-                <p className="id-assign-d-p"><strong className="id-strong-d">Total Marks:</strong> {quizDetail.total_marks}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Duration:</strong> {quizDetail?.duration_in_min} Minutes </p>
-                  </div>
-                  <div className="col-md-5 mb-2 col-lg-5 col-12 col-sm-12 id-position-relative">
-                  <h6 className="id-h6_new">
-                  Description :-
-                </h6>
-              
-                 <p>{quizDetail.description ? validator.unescape(quizDetail.description) : 'No description available'}</p>
-                 {/* <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita ex possimus nihil sed. Iure totam quisquam, tenetur quam, voluptatibus architecto dicta commodi nesciunt corporis deleniti ducimus, impedit reiciendis nihil dolores inventore blanditiis ut temporibus?</p> */}
+          </div>
+          <div className="row">
+            {apiHit ? (
+              <div className="col-md-12 text-center">
+                <div className="loader-fetch mx-auto"></div>
+              </div>
+            ) : (
+              ""
+            )}
+            {quizList && (
+              <div className="col-md-12 ">
+                {/* <p className="mb-0 px-5" style={{color:"#4087f5"}}>Quizs</p> */}
+              </div>
+            )}
+            <div className="col-md-12 mb-2 col-lg-12 col-12 col-sm-12">
+              <div className="card border-0">
+                <div className="card-body pt-3 ">
+                  <div className="row">
+                    <div className="col-md-7 mb-2 col-lg-7 col-12 col-sm-12">
+                      <h6 className="id-title">
+                        {capitalizeFirstLetter(quizDetail.quiz_title)}
+                      </h6>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Subject:</strong> {capitalizeFirstLetter(subject?.subject)}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Question Type:</strong>{capitalizeAllLetters(quizDetail.question_type)}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Numbers of Question:</strong> {quizDetail.number_of_question}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Marks Per Question:</strong>  {quizDetail.marks_per_question}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Negative Marks Per Wrong Answer:</strong>{quizDetail.minus_mark}</p>
 
-                    {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati sunt, soluta neque minima a repudiandae minus perspiciatis sequi, vel sed, qui excepturi culpa? Non quod nemo nulla et, facere dolores.</p> */}
-                    <div className="id-button-wrapper">
-                    <Link class="btn btn-dark id-btn-bg-color-cancel" type="submit" disabled="">Cancel</Link>
-                    
-                    <Link class="btn btn-dark id-btn-bg-color" to={`/quiz/quiz-subject/paper/${quizDetail.question_type}/${courseId}/${semesterId}/${subjectId}/${quizId}`} >Attempt <i className="fas fa-arrow-right"></i></Link>
+
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Total Marks:</strong> {quizDetail.total_marks}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Duration:</strong> {quizDetail?.duration_in_min} Minutes </p>
                     </div>
+                    <div className="col-md-5 mb-2 col-lg-5 col-12 col-sm-12 id-position-relative">
+                      <h6 className="id-h6_new">
+                        Description :-
+                      </h6>
+
+                      <p>{quizDetail.description ? validator.unescape(quizDetail.description) : 'No description available'}</p>
+                      {/* <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita ex possimus nihil sed. Iure totam quisquam, tenetur quam, voluptatibus architecto dicta commodi nesciunt corporis deleniti ducimus, impedit reiciendis nihil dolores inventore blanditiis ut temporibus?</p> */}
+
+                      {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati sunt, soluta neque minima a repudiandae minus perspiciatis sequi, vel sed, qui excepturi culpa? Non quod nemo nulla et, facere dolores.</p> */}
+                      <div className="id-button-wrapper">
+                        <Link className="btn btn-dark id-btn-bg-color-cancel" type="submit" disabled="">Cancel</Link>
+
+                        <Link className="btn btn-dark id-btn-bg-color" to={`/quiz/quiz-subject/paper/${quizDetail.question_type}/${courseId}/${semesterId}/${subjectId}/${quizId}`} >Attempt <i className="fas fa-arrow-right"></i></Link>
+                      </div>
+                    </div>
+
+
                   </div>
-                  
 
                 </div>
-               
               </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
 
     </>

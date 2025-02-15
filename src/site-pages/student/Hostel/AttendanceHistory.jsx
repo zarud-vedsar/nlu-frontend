@@ -196,12 +196,12 @@ function AttendanceHistory() {
                 {/* Search Box */}
                 <div className="row">
                   <div className="col-md-10 col-lg-10 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
-                    <div class="mb-3 d-flex align-items-center">
-                      <label class="form-label mr-2" style={{ width: "auto" }}>
+                    <div className="mb-3 d-flex align-items-center">
+                      <label className="form-label mr-2" style={{ width: "auto" }}>
                         Select Year
                       </label>
                       <select
-                        class="selectpicker form-control"
+                        className="selectpicker form-control"
                         id="yearPicker"
                         value={filters.year}
                         onChange={(e) =>
@@ -240,8 +240,8 @@ function AttendanceHistory() {
                                           </th>
                                         )
                                       )}
-                                      <th scope="col"  style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>T-P</th>
-                                      <th scope="col" style={{backgroundColor:"rgb(231 227 227)" , paddingRight:"10px"}}>T-A</th>
+                                      <th scope="col" style={{ backgroundColor: "rgb(231 227 227)", paddingLeft: "10px" }}>T-P</th>
+                                      <th scope="col" style={{ backgroundColor: "rgb(231 227 227)", paddingRight: "10px" }}>T-A</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -272,8 +272,8 @@ function AttendanceHistory() {
                                             </td>
                                           )
                                         )}
-                                        <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" , paddingLeft:"10px"}}>{student?.presentCount}</td>
-                                        <td className="text-center" style={{backgroundColor:"rgb(231 227 227)" , paddingRight:"10px"}}>{student?.absentCount}</td>
+                                        <td className="text-center" style={{ backgroundColor: "rgb(231 227 227)", paddingLeft: "10px" }}>{student?.presentCount}</td>
+                                        <td className="text-center" style={{ backgroundColor: "rgb(231 227 227)", paddingRight: "10px" }}>{student?.absentCount}</td>
                                       </tr>
                                     ))}
                                   </tbody>

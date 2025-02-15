@@ -8,13 +8,13 @@ import placeholder from "../assets/Images/placeholder-image.jpg";
 import validator from 'validator';
 const Courses = () => {
   const [course, setCourse] = useState([]);
-    useEffect(() => {
-      AOS.init({
-        duration: 1000,
-        easing: "ease-out-cubic",
-      });
-    }, []);
-  
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
   useEffect(() => {
 
     const fetchData = async () => {
@@ -27,7 +27,6 @@ const Courses = () => {
         // console.log(response);
         if (response.data.success) {
           setCourse(response.data.data);
-          console.log(response);
         }
       } catch (error) { /* empty */ }
     };

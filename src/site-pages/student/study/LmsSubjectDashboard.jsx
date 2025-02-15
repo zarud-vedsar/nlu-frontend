@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import {
+  goBack,
+} from "../../../site-components/Helper/HelperFunction";
+import { Button, Spinner } from "react-bootstrap";
+import { FaArrowLeft } from "react-icons/fa6";
 import secureLocalStorage from "react-secure-storage";
 import { NODE_API_URL } from "../../../site-components/Helper/Constant";
 import "../assets/custom.css";
@@ -183,7 +188,7 @@ function LmsSubjectDashboard() {
               </nav>
             </div>
             <div className="card">
-              <div className="card-header">
+              <div className="card-header d-flex  justify-content-between align-items-center">
                 <h5 className="card-title col-md-9 col-lg-9 col-12 col-sm-12 h6_new font-14">
                   My Course:{" "}
                   {courseSemester?.courseIdName?.[0]?.coursename ||
@@ -199,6 +204,13 @@ function LmsSubjectDashboard() {
                     )}`}
                   <span> ({capitalizeFirstLetter(subject?.subject)})</span>
                 </h5>
+                 <button
+                                                                  className="ml-auto btn-md btn border-0 goback mr-2"
+                                                                  onClick={goBack}
+                                                                >
+                                                                  <i className="fas fa-arrow-left"></i> Go Back
+                                                                </button>
+
               </div>
             </div>
 

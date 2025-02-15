@@ -989,13 +989,13 @@ const QuizResponseView = () => {
                               {" "}
                               Number of wrong questions :{" "}
                               {quizResponse?.wrong}{" "}
-                              <i class="fa-solid fa-xmark text-danger"></i>
+                              <i className="fa-solid fa-xmark text-danger"></i>
                             </div>
                             <div className="col-12 mb-1">
                               {" "}
                               Number of right question :{" "}
                               {quizResponse?.right_}{" "}
-                              <i class="fa-solid fa-check text-success"></i>
+                              <i className="fa-solid fa-check text-success"></i>
                             </div>{" "}
                           </>
                         )}

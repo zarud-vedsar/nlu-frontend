@@ -32,8 +32,8 @@ function DescriptiveQuestion() {
   const [studentDetail, setStudentDetail] = useState();
   const [pdfName, setPdfName] = useState();
   const [pdfFile, setPdfFile] = useState();
-   const [modalShow, setModalShow] = useState(false);
-        const [selectedmarque, setSelectedMarque] = useState(null);
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedmarque, setSelectedMarque] = useState(null);
   const navigate = useNavigate();
   const inititalData = {
     courseId: courseId,
@@ -251,8 +251,8 @@ function DescriptiveQuestion() {
           course: courseSemester?.courseIdName?.[0]?.coursename,
           semester: semesterId
             ? courseSemester?.allotedCourseSemester?.find(
-                (semester) => semester.semesterid == semesterId
-              )?.semtitle
+              (semester) => semester.semesterid == semesterId
+            )?.semtitle
             : "",
           subject: subject?.subject,
           assignment: assignmentDetail?.assignment_title,
@@ -476,7 +476,7 @@ function DescriptiveQuestion() {
                           rel="noopener noreferrer"
                           className="ml-2"
                         >
-                          <i class="fa fa-eye" aria-hidden="true"></i>
+                          <i className="fa fa-eye" aria-hidden="true"></i>
                         </a>
                       </p>
                       <div>
@@ -485,7 +485,7 @@ function DescriptiveQuestion() {
                           style={{ width: "100px", height: "40px" }}
                           onClick={handleSubmit}
                         >
-                          Submit <i class="fa-solid fa-chevron-right"></i>
+                          Submit <i className="fa-solid fa-chevron-right"></i>
                         </button>
                       </div>
                     </>
@@ -523,7 +523,7 @@ function DescriptiveQuestion() {
 
 export default DescriptiveQuestion;
 const MyVerticallyCenteredModal = (props = {}) => {
-  
+
   const [loading, setLoading] = useState(false);
   const currentDate = new Date().toLocaleDateString();
 
@@ -560,9 +560,9 @@ const MyVerticallyCenteredModal = (props = {}) => {
             </div>
 
 
-              <div className="get-current-date">
-                <p className="mb-0" style={{fontSize:"17px", color:"#000;"}}>Submision Date</p>
-                <p>{currentDate}</p>
+            <div className="get-current-date">
+              <p className="mb-0" style={{ fontSize: "17px", color: "#000;" }}>Submision Date</p>
+              <p>{currentDate}</p>
             </div>
           </div>
         </Modal.Body>

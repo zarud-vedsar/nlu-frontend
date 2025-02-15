@@ -10,7 +10,7 @@ import "../../assets/custom.css";
 import TopicPng from "../../assets/img/topic.png";
 import { toast } from "react-toastify";
 import validator from "validator";
-import { formatDate,capitalizeFirstLetter,capitalizeAllLetters } from "../../../../site-components/Helper/HelperFunction";
+import { formatDate, capitalizeFirstLetter, capitalizeAllLetters } from "../../../../site-components/Helper/HelperFunction";
 
 function AssignmentIntroPage() {
   const sid = secureLocalStorage.getItem("studentId");
@@ -124,10 +124,10 @@ function AssignmentIntroPage() {
 
   return (
     <>
-    <div className="" style={{height:"100vh", width:"100vw", background:"rgb(224 224 224 / 30%)"}}>
-      <div className="container-fluid">
-        <div className="mb-3 mt-0 pt-2 px-5">
-          {/* <nav className="breadcrumb">
+      <div className="" style={{ height: "100vh", width: "100vw", background: "rgb(224 224 224 / 30%)" }}>
+        <div className="container-fluid">
+          <div className="mb-3 mt-0 pt-2 px-5">
+            {/* <nav className="breadcrumb">
             <Link to="/student" className="breadcrumb-item">
               Home
             </Link>
@@ -135,80 +135,81 @@ function AssignmentIntroPage() {
             <Link className="breadcrumb-item active">Assignment</Link>
             <span className="breadcrumb-item active">paper</span>
           </nav> */}
-        </div>
-        <div className="card">
-          <div className="card-header id-card-header">
-            <h5 className="card-title col-md-9 col-lg-9 col-12 col-sm-12  text-light">
-              My Course:{" "}
-              {courseSemester?.courseIdName?.[0]?.coursename ||
-                "Course name not available"}
-              <span>
-                {" "}
-                {semesterId &&
-                  courseSemester?.allotedCourseSemester?.find(
-                    (semester) => semester.semesterid == semesterId
-                  )?.semtitle &&
-                  ` - ${capitalizeFirstLetter(
-                    courseSemester.allotedCourseSemester.find(
-                      (semester) => semester.semesterid == semesterId
-                    ).semtitle
-                  )}`}
-              </span>
-              <span> ({capitalizeFirstLetter(subject?.subject)})</span>
-            </h5>
           </div>
-        </div>
-        <div className="row">
-          {apiHit ? (
-            <div className="col-md-12 text-center">
-              <div className="loader-fetch mx-auto"></div>
-            </div>
-          ) : (
-            ""
-          )}
-          
-          <div className="col-md-12 mb-2 col-lg-12 col-12 col-sm-12">
-            <div className="card border-0">
-              <div className="card-body pt-3 ">
-                <div className="row">
-                <div className="col-md-7 mb-2 col-lg-7 col-12 col-sm-12">
-                <h6 className="id-title">
-                  {capitalizeFirstLetter(assignmentDetail.assignment_title)}
-                </h6>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Subject:</strong> {capitalizeFirstLetter(subject?.subject)}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Question Type:</strong>{capitalizeAllLetters(assignmentDetail.question_type)}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Numbers of Question:</strong> {assignmentDetail.number_of_question}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Marks Per Question:</strong>  {assignmentDetail.marks_per_question}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Negative Marks Per Wrong Answer:</strong>{assignmentDetail.minus_mark}</p>
-                
-               
-                <p className="id-assign-d-p"><strong className="id-strong-d">Total Marks:</strong> {assignmentDetail.total_marks}</p>
-                <p className="id-assign-d-p"><strong className="id-strong-d">Due Date:</strong> {formatDate(assignmentDetail?.deadline_date)} </p>
-                  </div>
-                  <div className="col-md-5 mb-2 col-lg-5 col-12 col-sm-12 id-position-relative">
-                  <h6 className="id-h6_new">
-                  Description :-
-                </h6>
-              
-                 <p>{assignmentDetail.description ? validator.unescape(assignmentDetail.description) : 'No description available'}</p>
-                 {/* <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita ex possimus nihil sed. Iure totam quisquam, tenetur quam, voluptatibus architecto dicta commodi nesciunt corporis deleniti ducimus, impedit reiciendis nihil dolores inventore blanditiis ut temporibus?</p> */}
+          <div className="card">
+            <div className="card-header id-card-header d-flex justify-content-between align-items-center">
+              <h5 className="card-title col-md-9 col-lg-9 col-12 col-sm-12  text-light">
+                My Course:{" "}
+                {courseSemester?.courseIdName?.[0]?.coursename ||
+                  "Course name not available"}
+                <span>
+                  {" "}
+                  {semesterId &&
+                    courseSemester?.allotedCourseSemester?.find(
+                      (semester) => semester.semesterid == semesterId
+                    )?.semtitle &&
+                    ` - ${capitalizeFirstLetter(
+                      courseSemester.allotedCourseSemester.find(
+                        (semester) => semester.semesterid == semesterId
+                      ).semtitle
+                    )}`}
+                </span>
+                <span> ({capitalizeFirstLetter(subject?.subject)})</span>
+              </h5>
 
-                    {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati sunt, soluta neque minima a repudiandae minus perspiciatis sequi, vel sed, qui excepturi culpa? Non quod nemo nulla et, facere dolores.</p> */}
-                    <div className="id-button-wrapper">
-                    <Link class="btn btn-dark id-btn-bg-color-cancel" type="submit" disabled="">Cancel</Link>
-                    
-                    <Link class="btn btn-dark id-btn-bg-color" to={`/assignment/assignment-subject/paper/${assignmentDetail.question_type}/${courseId}/${semesterId}/${subjectId}/${assignmentId}`} >Attempt <i className="fas fa-arrow-right"></i></Link>
+            </div>
+          </div>
+          <div className="row">
+            {apiHit ? (
+              <div className="col-md-12 text-center">
+                <div className="loader-fetch mx-auto"></div>
+              </div>
+            ) : (
+              ""
+            )}
+
+            <div className="col-md-12 mb-2 col-lg-12 col-12 col-sm-12">
+              <div className="card border-0">
+                <div className="card-body pt-3 ">
+                  <div className="row">
+                    <div className="col-md-7 mb-2 col-lg-7 col-12 col-sm-12">
+                      <h6 className="id-title">
+                        {capitalizeFirstLetter(assignmentDetail.assignment_title)}
+                      </h6>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Subject:</strong> {capitalizeFirstLetter(subject?.subject)}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Question Type:</strong>{capitalizeAllLetters(assignmentDetail.question_type)}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Numbers of Question:</strong> {assignmentDetail.number_of_question}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Marks Per Question:</strong>  {assignmentDetail.marks_per_question}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Negative Marks Per Wrong Answer:</strong>{assignmentDetail.minus_mark}</p>
+
+
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Total Marks:</strong> {assignmentDetail.total_marks}</p>
+                      <p className="id-assign-d-p"><strong className="id-strong-d">Due Date:</strong> {formatDate(assignmentDetail?.deadline_date)} </p>
                     </div>
+                    <div className="col-md-5 mb-2 col-lg-5 col-12 col-sm-12 id-position-relative">
+                      <h6 className="id-h6_new">
+                        Description :-
+                      </h6>
+
+                      <p>{assignmentDetail.description ? validator.unescape(assignmentDetail.description) : 'No description available'}</p>
+                      {/* <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita ex possimus nihil sed. Iure totam quisquam, tenetur quam, voluptatibus architecto dicta commodi nesciunt corporis deleniti ducimus, impedit reiciendis nihil dolores inventore blanditiis ut temporibus?</p> */}
+
+                      {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati sunt, soluta neque minima a repudiandae minus perspiciatis sequi, vel sed, qui excepturi culpa? Non quod nemo nulla et, facere dolores.</p> */}
+                      <div className="id-button-wrapper">
+                        <Link className="btn btn-dark id-btn-bg-color-cancel" type="submit" disabled="">Cancel</Link>
+
+                        <Link className="btn btn-dark id-btn-bg-color" to={`/assignment/assignment-subject/paper/${assignmentDetail.question_type}/${courseId}/${semesterId}/${subjectId}/${assignmentId}`} >Attempt <i className="fas fa-arrow-right"></i></Link>
+                      </div>
+                    </div>
+
+
                   </div>
-                  
 
                 </div>
-               
               </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
 
     </>

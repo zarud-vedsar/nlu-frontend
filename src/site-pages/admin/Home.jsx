@@ -83,7 +83,7 @@ const navigate = useNavigate();
         `${NODE_API_URL}/api/visitor-website/fetch`,
         { year: selectedYear }
       );
-      console.log(response);
+      
       if (response?.statusCode === 200 && response.data.length > 0) {
         setVisitorData(response.data);
       } else {
@@ -188,7 +188,7 @@ const navigate = useNavigate();
         }
       );
       setData(response.data.data);
-      console.log(response.data.data);
+      
     } catch (error) {
       console.error("Error fetching admin Dashboard data:", error);
     }
@@ -440,12 +440,12 @@ const navigate = useNavigate();
                 <div className="card-body">
                   <div className="card-title">Monthly Visitor Analytics</div>
                   <form action="" id="form2">
-                    <div class="mb-3 d-flex align-items-center">
-                      <label class="form-label mr-2" style={{ width: "auto" }}>
+                    <div className="mb-3 d-flex align-items-center">
+                      <label className="form-label mr-2" style={{ width: "auto" }}>
                         Select Year
                       </label>
                       <select
-                        class="selectpicker form-control"
+                        className="selectpicker form-control"
                         id="yearPicker"
                         value={selectedYear}
                         onChange={(e) =>
@@ -646,7 +646,7 @@ export default Home;
 //         `${NODE_API_URL}/api/visitor-website/fetch`,
 //         { year: selectedYear }
 //       );
-//       console.log(response);
+//       
 //       if (response?.statusCode === 200 && response.data.length > 0) {
 //         setVisitorData(response.data);
 //       } else {
@@ -751,7 +751,7 @@ export default Home;
 //         }
 //       );
 //       setData(response.data.data);
-//       console.log(response.data.data);
+//       
 //     } catch (error) {
 //       console.error("Error fetching admin Dashboard data:", error);
 //     }
@@ -841,12 +841,12 @@ export default Home;
 //                 <div className="card-body">
 //                   <div className="card-title">Monthly Visitor Analytics</div>
 //                   <form action="" id="form2">
-//                     <div class="mb-3 d-flex align-items-center">
-//                       <label class="form-label mr-2" style={{ width: "auto" }}>
+//                     <div className="mb-3 d-flex align-items-center">
+//                       <label className="form-label mr-2" style={{ width: "auto" }}>
 //                         Select Year
 //                       </label>
 //                       <select
-//                         class="selectpicker form-control"
+//                         className="selectpicker form-control"
 //                         id="yearPicker"
 //                         value={selectedYear}
 //                         onChange={(e) =>

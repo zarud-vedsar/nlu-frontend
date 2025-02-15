@@ -29,10 +29,10 @@ const SuccessTextareaField = ({
 }) => {
 
   const borderShade = borderError
-    ? "1px solid #FA5252"  
+    ? "1px solid #FA5252"
     : borderSuccess
-    ? "1px solid rgb(97, 245, 63)"  
-    : "";  
+      ? "1px solid rgb(97, 245, 63)"
+      : "";
 
   const divStyle = {
     border: borderShade || "1px solid #ced4da",
@@ -45,7 +45,7 @@ const SuccessTextareaField = ({
   return (
     <div className={`${column} form-group`}>
       <label className={labelClass} htmlFor={id}>
-        {label} 
+        {label}
       </label>
       <div style={divStyle} id={id} className={className}>
         {value || "N/A"}
@@ -71,8 +71,8 @@ const SuccessFormField = ({
   const borderShade = borderError
     ? "1px solid #FA5252"
     : borderSuccess
-    ? "1px solid rgb(97, 245, 63)"
-    : "1px solid #ced4da";  
+      ? "1px solid rgb(97, 245, 63)"
+      : "1px solid #ced4da";
 
   const divStyle = {
     border: borderShade,
@@ -86,8 +86,8 @@ const SuccessFormField = ({
   return (
     <div className={`${column} form-group`} id={colId}>
       <label className={labelClass} htmlFor={id}>
-        {label} 
-        
+        {label}
+
       </label>
       <div style={divStyle} id={id} className={className}>
         {value || "N/A"}
@@ -128,10 +128,10 @@ const SuccessMultiSelectField = ({ value = [] }) => {
     <div style={divStyle}>
       {value.length > 0
         ? value.map((item, index) => (
-            <span key={index} className="badge badge-primary mr-2">
-              {capitalizeFirstLetter(item)}
-            </span>
-          ))
+          <span key={index} className="badge badge-primary mr-2">
+            {capitalizeFirstLetter(item)}
+          </span>
+        ))
         : "N/A"}
     </div>
   );
@@ -260,7 +260,7 @@ const McqForm = ({ item, index }) => {
               />
               <div className="col-md-6 col-lg-6 col-12 col-sm-12 form-group">
                 <label className="font-weight-semibold">
-                  Correct Answer 
+                  Correct Answer
                 </label>
 
                 <SuccessMultiSelectField
@@ -404,7 +404,7 @@ const ScqForm = ({ item, index }) => {
               />
               <div className="col-md-6 col-lg-6 col-12 col-sm-12 form-group">
                 <label className="font-weight-semibold">
-                  Correct Answer 
+                  Correct Answer
                 </label>
 
                 <SuccessSingleSelectField
@@ -554,7 +554,7 @@ const ImageForm = ({ item, index }) => {
                       </div>
                     )}
                   </div>
-                  
+
                   <div className="col-md-3 col-lg-3">
                     <SuccessFormField
                       borderSuccess={
@@ -616,8 +616,8 @@ const ImageForm = ({ item, index }) => {
                 </div>
               </div>
 
-          
-              
+
+
 
               <SuccessFormField
                 borderSuccess={
@@ -630,14 +630,14 @@ const ImageForm = ({ item, index }) => {
                 }
                 value="Option 5 (None of these)"
                 name="option5_scq"
-                id="option5_scq" 
+                id="option5_scq"
                 type="text"
                 column="col-md-6 col-lg-6"
                 readOnly
               />
               <div className="col-md-6 col-lg-6 col-12 col-sm-12 form-group">
                 <label className="font-weight-semibold">
-                  Correct Answer 
+                  Correct Answer
                 </label>
 
                 <SuccessSingleSelectField
@@ -661,13 +661,13 @@ const ImageForm = ({ item, index }) => {
     </div>
   );
 };
-const DescriptionForm = ({ item,  index }) => {
+const DescriptionForm = ({ item, index }) => {
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
     setFormData(item);
   }, [item]);
- 
+
 
   return (
     <div className="row">
@@ -751,18 +751,18 @@ const Result = () => {
   };
 
   useEffect(() => {
-    if (quizId ) {
+    if (quizId) {
       fetchQuizDetail();
- 
+
     }
-  }, [quizId ]);
+  }, [quizId]);
   useEffect(() => {
-  
-      fetchQuestion();
- 
- 
-    
-  }, [quizDetail ]);
+
+    fetchQuestion();
+
+
+
+  }, [quizDetail]);
 
   const fetchQuestion = async () => {
     setLoading(true);
@@ -772,7 +772,7 @@ const Result = () => {
       bformData.append("data", "load_quiz_questions");
       bformData.append("quiz_id", quizId);
 
-     
+
       const response = await axios.post(
         `${PHP_API_URL}/quiz.php`,
         bformData,
@@ -800,7 +800,7 @@ const Result = () => {
           });
         }
 
- 
+
 
         if (questions[0]?.question_type === "mcq") {
           const formattedQuestions = questions.map((question) => ({
@@ -872,8 +872,8 @@ const Result = () => {
     }
   };
 
- 
- 
+
+
 
   const fetchQuizResponse = async () => {
     setIsFetching(true);
@@ -887,7 +887,7 @@ const Result = () => {
       bformData.append("data", "quiz_response_view_s");
       bformData.append("response_id", id);
       bformData.append("student_id", secureLocalStorage.getItem("studentId"));
-     
+
 
 
       const response = await axios.post(
@@ -924,7 +924,7 @@ const Result = () => {
   useEffect(() => {
     fetchQuizResponse();
   }, []);
- 
+
 
   return (
     <>
@@ -933,16 +933,16 @@ const Result = () => {
           <div className="container-fluid">
             <div className="page-header mb-0">
               <div className="header-sub-title">
-              <nav className="breadcrumb">
-                <Link to="/student" className="breadcrumb-item">
-                  Home
-                </Link>
-                <Link className="breadcrumb-item ">
-                  Learning Management System
-                </Link>
-                <Link className="breadcrumb-item ">Quiz</Link>
-                <span className="breadcrumb-item active">Result</span>
-              </nav>
+                <nav className="breadcrumb">
+                  <Link to="/student" className="breadcrumb-item">
+                    Home
+                  </Link>
+                  <Link className="breadcrumb-item ">
+                    Learning Management System
+                  </Link>
+                  <Link className="breadcrumb-item ">Quiz</Link>
+                  <span className="breadcrumb-item active">Result</span>
+                </nav>
               </div>
             </div>
             <div className="card bg-transparent mb-2">
@@ -955,7 +955,7 @@ const Result = () => {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
-                  
+
                 </div>
               </div>
             </div>
@@ -1026,13 +1026,13 @@ const Result = () => {
                               {" "}
                               Number of wrong questions :{" "}
                               {quizResponse?.wrong}{" "}
-                              <i class="fa-solid fa-xmark text-danger"></i>
+                              <i className="fa-solid fa-xmark text-danger"></i>
                             </div>
                             <div className="col-12 mb-1">
                               {" "}
                               Number of right question :{" "}
                               {quizResponse?.right_}{" "}
-                              <i class="fa-solid fa-check text-success"></i>
+                              <i className="fa-solid fa-check text-success"></i>
                             </div>{" "}
                           </>
                         )}
@@ -1133,7 +1133,7 @@ const Result = () => {
                         />
                       </div>
                     ))}
-                  
+
                 </div>
                 <div className="col-6 response-container">
                   {quizDetail?.question_type === "description" &&

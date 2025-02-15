@@ -100,7 +100,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
             disabled={loading}
           />
         </div>
-        <div className="form-group col-md-12">
+        <div className="form-group col-md-12 d-none">
           <label className="font-weight-semibold" htmlFor="link">
             Link
           </label>
@@ -356,11 +356,10 @@ const MarqueSlide = () => {
                   </div>
                   <div className="col-md-4 col-lg-4 col-10 col-sm-4">
                     <button
-                      className={`btn ${
-                        recycleTitle === "Show Recycle Bin"
-                          ? "btn-secondary"
-                          : "btn-danger"
-                      }`}
+                      className={`btn ${recycleTitle === "Show Recycle Bin"
+                        ? "btn-secondary"
+                        : "btn-danger"
+                        }`}
                       onClick={showRecyleBin}
                     >
                       {recycleTitle} <i className="fa fa-recycle"></i>

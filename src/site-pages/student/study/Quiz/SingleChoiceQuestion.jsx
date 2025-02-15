@@ -79,7 +79,7 @@ function SingleChoiceQuestion() {
       bformData.append("data", "load_quiz_questions");
       bformData.append("quiz_id", quizId);
 
-      
+
 
       const response = await axios.post(
         `${PHP_API_URL}/quiz.php`,
@@ -230,18 +230,18 @@ function SingleChoiceQuestion() {
     return result;
   };
 
-  const handleSubmit = async (e=false) => {
+  const handleSubmit = async (e = false) => {
     e.preventDefault();
     setIsSubmit(true);
-    if(e){
-        const deleteAlert = await DeleteSweetAlert(" ");
-        
-        if (!deleteAlert ) {
-          return;
-    
-        }
+    if (e) {
+      const deleteAlert = await DeleteSweetAlert(" ");
+
+      if (!deleteAlert) {
+        return;
+
       }
-   
+    }
+
 
 
     try {
@@ -268,7 +268,7 @@ function SingleChoiceQuestion() {
         bformData.append(key, formData[key]);
       });
 
-      
+
       const response = await axios.post(
         `${PHP_API_URL}/quiz.php`,
         bformData,
@@ -286,8 +286,8 @@ function SingleChoiceQuestion() {
           course: courseSemester?.courseIdName?.[0]?.coursename,
           semester: semesterId
             ? courseSemester?.allotedCourseSemester?.find(
-                (semester) => semester.semesterid == semesterId
-              )?.semtitle
+              (semester) => semester.semesterid == semesterId
+            )?.semtitle
             : "",
           subject: subject?.subject,
           quiz: quizDetail?.quiz_title,
@@ -356,7 +356,7 @@ function SingleChoiceQuestion() {
                 </div>
               </div>
               <div className="p-3 d-flex justify-content-between  ">
-              {quizDetail?.duration_in_min &&  <div className="mx-3"><ReverseTimer handleSubmit={handleSubmit} minute={parseInt(quizDetail?.duration_in_min)}/></div> }
+                {quizDetail?.duration_in_min && <div className="mx-3"><ReverseTimer handleSubmit={handleSubmit} minute={parseInt(quizDetail?.duration_in_min)} /></div>}
 
                 <div>
                   {" "}
@@ -479,7 +479,7 @@ function SingleChoiceQuestion() {
                     style={{ width: "100px", height: "40px" }}
                     onClick={previousQuestion}
                   >
-                    <i class="fa-solid fa-chevron-left"></i>
+                    <i className="fa-solid fa-chevron-left"></i>
                     {"  "} Previous
                   </button>
                 </div>
@@ -490,7 +490,7 @@ function SingleChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={nextQuestion}
                     >
-                      Next <i class="fa-solid fa-chevron-right"></i>
+                      Next <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -501,7 +501,7 @@ function SingleChoiceQuestion() {
                       style={{ width: "100px", height: "40px" }}
                       onClick={handleSubmit}
                     >
-                      Submit <i class="fa-solid fa-chevron-right"></i>
+                      Submit <i className="fa-solid fa-chevron-right"></i>
                     </button>
                   </div>
                 )}
@@ -532,9 +532,8 @@ function SingleChoiceQuestion() {
                           style={{ height: "50px" }}
                         >
                           <div
-                            className={`${
-                              statusMap[question?.attempted]
-                            } col-12 text-center align-items-center`}
+                            className={`${statusMap[question?.attempted]
+                              } col-12 text-center align-items-center`}
                           >
                             {index + 1}
                           </div>
@@ -626,7 +625,7 @@ function SingleChoiceQuestion() {
   );
 }
 const MyVerticallyCenteredModal = (props = {}) => {
-  
+
   const [loading, setLoading] = useState(false);
   const currentDate = new Date().toLocaleDateString();
 
@@ -721,7 +720,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
               </div>
 
               <div className="get-current-date mt-3">
-                <p className="mb-0" style={{color:"#0b2947;"}}>Submision Date</p>
+                <p className="mb-0" style={{ color: "#0b2947;" }}>Submision Date</p>
                 <p>{currentDate}</p>
               </div>
             </div>

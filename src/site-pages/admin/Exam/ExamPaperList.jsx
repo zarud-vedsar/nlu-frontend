@@ -952,7 +952,7 @@ function ExamList() {
                                   onClick={() => viewMarks(rowData.id, rowData.examType)}
                                   className="btn btn-sm ml-1 btn-warning"  // Updated button color
                                 >
-                                  <i class="fa-regular fa-rectangle-list"></i>  {/* Icon for the button */}
+                                  <i className="fa-regular fa-rectangle-list"></i>  {/* Icon for the button */}
                                 </button>
                               </OverlayTrigger>
                             )

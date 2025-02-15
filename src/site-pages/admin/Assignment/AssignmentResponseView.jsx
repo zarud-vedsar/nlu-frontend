@@ -1137,13 +1137,13 @@ const AssignmentResponseView = () => {
                               {" "}
                               Number of wrong questions :{" "}
                               {assignmentResponse?.wrong}{" "}
-                              <i class="fa-solid fa-xmark text-danger"></i>
+                              <i className="fa-solid fa-xmark text-danger"></i>
                             </div>
                             <div className="col-12 mb-1">
                               {" "}
                               Number of right question :{" "}
                               {assignmentResponse?.right_}{" "}
-                              <i class="fa-solid fa-check text-success"></i>
+                              <i className="fa-solid fa-check text-success"></i>
                             </div>{" "}
                           </>
                         )}

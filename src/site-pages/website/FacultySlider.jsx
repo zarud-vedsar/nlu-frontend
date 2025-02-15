@@ -4,8 +4,7 @@ import axios from "axios";
 import Slider from "react-slick";
 import {
   PHP_API_URL,
-  NODE_API_URL,
-  FILE_API_URL,
+  FILE_API_URL
 } from "../../site-components/Helper/Constant";
 import { Link } from "react-router-dom";
 const FacultySlider = () => {
@@ -17,12 +16,6 @@ const FacultySlider = () => {
       easing: "ease-out-cubic",
     });
   }, []);
-
-  const capitalizeFirstLetter = (str) => {
-    if (!str) return "";
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-  };
-
   const loadFacultyData = async () => {
     try {
       const bformData = new FormData();

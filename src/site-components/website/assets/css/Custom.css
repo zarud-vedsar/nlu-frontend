@@ -2081,7 +2081,7 @@ table tbody th {
 
 .id-top-header-increase-font-size a:hover {
   background-color: white;
-  color: #950e51;
+  color: #B81365;
   text-decoration: none;
 }
 
@@ -2384,7 +2384,7 @@ table tbody th {
 
 .prev-button:hover,
 .next-button:hover {
-  background-color: #950e51;
+  background-color: #B81365;
   color: #fff;
 }
 
@@ -2788,7 +2788,7 @@ table tbody th {
 }
 
 .btn-primary {
-  background-color: #950e51;
+  background-color: #B81365;
 }
 
 .btn-primary:hover,
@@ -2805,15 +2805,15 @@ table tbody th {
 }
 
 .text-primary {
-  color: #950e51 !important;
+  color: #B81365 !important;
 }
 
 .bg-primary {
-  background-color: #950e51 !important;
+  background-color: #B81365 !important;
 }
 
 .border-primary {
-  border-color: #950e51 !important;
+  border-color: #B81365 !important;
 }
 
 .border-bottom-2 {
@@ -2821,7 +2821,7 @@ table tbody th {
 }
 
 .custom-link {
-  color: #950e51;
+  color: #B81365;
   text-decoration: none;
   font-size: 15px !important;
   font-weight: 700 !important;
@@ -2837,7 +2837,7 @@ table tbody th {
   display: grid;
   place-content: center;
   background: #fff;
-  color: #950e51;
+  color: #B81365;
   font-size: 30px;
 }
 
@@ -2896,7 +2896,7 @@ table tbody th {
   display: inline-block;
   font-size: 30px;
   line-height: 1;
-  color: #950e51;
+  color: #B81365;
   height: 52px;
   min-width: 52px;
 }
@@ -3053,7 +3053,7 @@ table tbody th {
   display: block;
   -webkit-transition: max-height 0.5s ease-in;
   transition: max-height 0.5s ease-in;
-  color: #950e51;
+  color: #B81365;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0em;
@@ -3143,7 +3143,7 @@ table tbody th {
 }
 
 .event-hover-container:hover .event-hover-title {
-  color: #950e51;
+  color: #B81365;
 }
 
 .heading-divider {
@@ -3157,7 +3157,7 @@ table tbody th {
   content: "";
   width: 66px;
   height: 3px;
-  background: #950e51;
+  background: #B81365;
 }
 
 .soft-shadow {
@@ -3567,7 +3567,7 @@ table tbody th {
   min-width: 20px;
   display: grid;
   place-content: center;
-  padding: 0 0 0 20px;
+  padding: 0 20px 0 20px;
 }
 
 .form-custom-input {
@@ -3580,7 +3580,7 @@ table tbody th {
   font-weight: 500;
   color: #696969;
   border: 1px solid #f5f5f5;
-  background-color: #f5f5f5;
+  background-color: #fff;
 }
 
 .id-achivement-position-relative {
@@ -3615,5 +3615,7 @@ table tbody th {
   .image-box-wrapper {
     padding: 5px 20px 30px;
   }
-
+    .headermain {
+      padding: 8px 15px !important;
+    }
 }

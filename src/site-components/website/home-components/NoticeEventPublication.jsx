@@ -35,7 +35,7 @@ const NoticeEventPublication = () => {
 
         console.log(noticeResponse)
         if (noticeResponse.data?.statusCode === 200) {
-          console.log("notice",noticeResponse.data.data)
+          console.log("notice", noticeResponse.data.data)
           setEvents(noticeResponse.data.data);
         }
 
@@ -45,7 +45,7 @@ const NoticeEventPublication = () => {
           { notice_type: "event", limit: 3 }
         );
         if (eventResponse.data?.statusCode === 200) {
-          console.log("event",eventResponse.data.data)
+          console.log("event", eventResponse.data.data)
           setNotices(eventResponse.data.data);
         }
 
@@ -66,48 +66,48 @@ const NoticeEventPublication = () => {
 
     fetchData();
   }, []);
-    const CustomArrow = ({ onClick, direction }) => {
-      const isMobile = window.innerWidth <= 768; // Check for mobile view
-    
-      return (
-        <div
-          onClick={onClick}
-          style={{
-            position: "absolute",
-            top: "50%",
-            [direction]: isMobile ? "-15px" : "0px", // Adjust based on screen width
-            transform: "translateY(-50%)",
-            background: "#2e3e50",
-            borderRadius: "50%",
-            width: "40px",
-            height: "40px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-            zIndex: 10,
-          }}
-        >
-          {direction === "left" ? <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
-        </div>
-      );
-    };
-    const settings = {
-      dots: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      centerMode: false,
-      prevArrow: <CustomArrow direction="left" />,
-      nextArrow: <CustomArrow direction="right" />,
-      responsive: [
-        { breakpoint: 1024, settings: { slidesToShow: 2, centerMode: false } },
-        { breakpoint: 768, settings: { slidesToShow: 1, centerMode: false } },
-      ],
-    };
+  const CustomArrow = ({ onClick, direction }) => {
+    const isMobile = window.innerWidth <= 768; // Check for mobile view
+
+    return (
+      <div
+        onClick={onClick}
+        style={{
+          position: "absolute",
+          top: "50%",
+          [direction]: isMobile ? "-15px" : "0px", // Adjust based on screen width
+          transform: "translateY(-50%)",
+          background: "#2e3e50",
+          borderRadius: "50%",
+          width: "40px",
+          height: "40px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          zIndex: 10,
+        }}
+      >
+        {direction === "left" ? <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
+      </div>
+    );
+  };
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    centerMode: false,
+    prevArrow: <CustomArrow direction="left" />,
+    nextArrow: <CustomArrow direction="right" />,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2, centerMode: false } },
+      { breakpoint: 768, settings: { slidesToShow: 1, centerMode: false } },
+    ],
+  };
 
   const settings2 = {
     dots: true,
@@ -130,103 +130,104 @@ const NoticeEventPublication = () => {
   };
   return (
     <>
-      <section className='public bg-f5'>
-        <div className='container' data-aos="fade-up" data-aos-delay="50">
+      <section className='public bg-f5' data-aos="fade-up" data-aos-delay="50">
+        <div className='container'>
           <div className='row'>
-             
-                      <div className="col-md-12 text-center my-4" style={{position:"relative"}}>
-                        <h2 className="heading-primary2">Upcoming Events</h2>
-                        <div className="heading-divider"></div>
-                    <Link to="/view-all/event" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaArrowRightLong /></Link>
-
-                      </div>
-                 
-            {/* <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
-              <h2 className="heading-primary2 m-0">Upcoming Events</h2>
-              <Link to="/view-all/event"  className="text-primary custom-link gorditas-regular">More events &nbsp; <FaArrowRightLong /></Link>
-            </div> */}
             <div className="col-md-8 col-lg-8 col-12 col-sm-12">
               <div className="row">
-
-                <Slider {...settings}>
-                  {notices.map((notice, index) => (
-                    <div key={index} className="">
-                      <div className="card border-0 soft-shadow  ">
-                        <div className="new-img-container">
-                          <Link to={`/notice-details/${notice.id}`}>
-                            <img src={notice.image || placeholder} className="news-image" alt="News Image" />
-                          </Link>
-
-                        </div>
-                        <div className="card-body">
-                          <div className="newsttl">
-                            {validator.unescape(notice.title)}
+                <div className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage" style={{ position: "relative" }}>
+                  <div>
+                    <h2 className="heading-primary2 ">Upcoming Events</h2>
+                    <div className="heading-divider"></div>
+                  </div>
+                  <Link to="/view-all/event" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaArrowRightLong /></Link>
+                </div>
+                <div className="col-md-12">
+                  <Slider {...settings}>
+                    {notices.map((notice, index) => (
+                      <div key={index} className="">
+                        <div className="card border-0 soft-shadow  ">
+                          <div className="new-img-container">
+                            <Link to={`/notice-details/${notice.id}`}>
+                              <img src={notice.image || placeholder} className="news-image" alt="News Image" />
+                            </Link>
                           </div>
-                          <p className="card-text gorditas-regular">
-                            {new Date(notice.notice_date).toLocaleDateString('en-US', {
-                              month: 'short', // "Jan"
-                              day: '2-digit', // "22"
-                              year: 'numeric' // "2021"
-                            })}
-                          </p>
-                        </div>
-                        <div className="cardftr">
-                          <Link className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more" to={`/notice-details/${notice.id}`}>Read More &nbsp; <FaArrowRightLong /></Link>
+                          <div className="card-body">
+                            <div className="newsttl">
+                              {validator.unescape(notice.title)}
+                            </div>
+                            <p className="card-text gorditas-regular">
+                              {new Date(notice.notice_date).toLocaleDateString('en-US', {
+                                month: 'short', // "Jan"
+                                day: '2-digit', // "22"
+                                year: 'numeric' // "2021"
+                              })}
+                            </p>
+                          </div>
+                          <div className="cardftr">
+                            <Link className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more" to={`/notice-details/${notice.id}`}>Read More &nbsp; <FaArrowRightLong /></Link>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </Slider>
+                    ))}
+                  </Slider>
+                </div>
               </div>
             </div>
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mt-sm-50">
-              <div className="card border-0 rounded-0 border-bottom-2 soft-shadow mx-auto border-bottom border-primary">
-                <div className="card-body pb-0 ">
-                  <div className="rightconten">
-                    <div className='d-flex justify-content-between align-items-center'>
-                      <h2 className="heading-primary2a">Latest News</h2>
-                      <Link to="/view-all/notice" className="text-primary custom-link gorditas-regular">View all News &nbsp; <FaArrowRightLong /></Link>
+              <div className="row">
+                <div className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage" style={{ position: "relative" }}>
+                  <div>
+                    <h2 className="heading-primary2 ">Latest News</h2>
+                    <div className="heading-divider"></div>
+                  </div>
+                  <Link to="/view-all/notice" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaArrowRightLong /></Link>
+                </div>
+                <div className="col-md-12">
+                  <div className="card border-0 rounded-0 border-bottom-2 soft-shadow mx-auto border-bottom border-primary" style={{ minHeight: '300px' }}>
+                    <div className="card-body pb-0">
+                      <div className="rightconten">
+                        <div className="marquee-container">
+                          <div className="eventdiv marquee-content">
+                            {events && events.length > 0 && events.map((event, index) => (
+                              <Link to={`/notice-details/${event.id}`} key={index} className="text-decoration-none event-hover-container">
+                                <div className={`row ${(events.length - 1) !== index && 'border-bottom'} eventrow`}>
+                                  <div className="col-md-2 col-lg-2 col-2 col-sm-2 d-flex justify-content-center align-items-center flex-column">
+                                    <h4 className="date-event butler-regular text-primary">
+                                      {new Date(event.notice_date).toLocaleDateString('en-GB', {
+                                        day: '2-digit'
+                                      })}
+                                    </h4>
+                                    <h5 className="date-event-month gorditas-regular">
+                                      {new Date(event.notice_date).toLocaleDateString('en-GB', {
+                                        month: 'short'
+                                      })}
+                                    </h5>
+                                  </div>
+                                  <div className="col-md-10 col-lg-10 col-10 col-sm-10">
+                                    <div className="rightnews">
+                                      {`${validator.unescape(event.title)}`}
+                                    </div>
+                                    <p className="card-text gorditas-regular">
+                                      {new Date(event.notice_date).toLocaleDateString('en-GB', {
+                                        year: 'numeric'
+                                      })}
+                                    </p>
+                                  </div>
+                                </div>
+                              </Link>
+                            ))}
+                            {events && events.length > 0 && (
+                              <div className="box-footer">
+                                <Link to="/view-all/notice" className="btn-view-more">
+                                  <FaAnglesDown className="scroll-icon" />
+                                </Link>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="marquee-container fixedhights">
-  <div className="eventdiv marquee-content">
-    {events && events.length > 0 && events.map((event, index) => (
-      <Link to={`/notice-details/${event.id}`} key={index} className="text-decoration-none event-hover-container">
-        <div className={`row ${(events.length - 1) !== index && 'border-bottom'} eventrow`}>
-          <div className="col-md-2 col-lg-2 col-2 col-sm-2 d-flex justify-content-center align-items-center flex-column">
-            <h4 className="date-event butler-regular text-primary">
-              {new Date(event.notice_date).toLocaleDateString('en-GB', {
-                day: '2-digit'
-              })}
-            </h4>
-            <h5 className="date-event-month gorditas-regular">
-              {new Date(event.notice_date).toLocaleDateString('en-GB', {
-                month: 'short'
-              })}
-            </h5>
-          </div>
-          <div className="col-md-10 col-lg-10 col-10 col-sm-10">
-            <div className="rightnews">
-              {`${validator.unescape(event.title)}`}
-            </div>
-            <p className="card-text gorditas-regular">
-              {new Date(event.notice_date).toLocaleDateString('en-GB', {
-                year: 'numeric'
-              })}
-            </p>
-          </div>
-        </div>
-      </Link>
-    ))}
-    {events && events.length > 0 && (
-     <div className="box-footer">
-     <Link to="/view-all/notice" className="btn-view-more">
-       <FaAnglesDown className="scroll-icon" />
-     </Link>
-   </div>
-    )}
-  </div>
-</div>
-
                   </div>
                 </div>
               </div>
@@ -242,8 +243,8 @@ const NoticeEventPublication = () => {
               <Link to="/view-all/notice" className="text-primary custom-link gorditas-regular">More Publications &nbsp; <FaArrowRightLong /></Link>
             </div>
           </div>
-          <div className="w-100">
-            <div className="pubsldrbx">
+          <div className="row">
+            <div className="col-md-12">
               <Slider {...settings2}>
                 {publications.map((publication, index) => (
                   <div key={index} className="sldr">
@@ -332,8 +333,15 @@ const NoticeEventPublication = () => {
 .fixedhights::-webkit-scrollbar {
   display: none; /* Hide scrollbar in Chrome, Safari, and Edge */
 }
-  
-              `
+.slick-initialized div:nth-child(1) {
+    left: 15px !important;
+}
+
+.slick-initialized > div + .slick-list + div {
+    right: -15px !important;
+}
+
+`
             }
           </style>
         </div>

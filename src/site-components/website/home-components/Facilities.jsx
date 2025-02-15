@@ -10,18 +10,18 @@ import research from "../assets/Images/research-64.png";
 import dance from "../assets/Images/dance-64.png";
 
 const Facilities = () => {
-    useEffect(() => {
-      AOS.init({
-        duration: 1000,
-        easing: "ease-out-cubic",
-      });
-    }, []);
-  
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
+
   return (
     <>
-      <section className="facilities-sec">
+      <section className="facilities-sec" data-aos="fade-up" data-aos-delay="100">
         <div className="container id-position-relative">
-          <div className="row" data-aos="fade-up" data-aos-delay="100">
+          <div className="row">
             <div className="col-md-12 mb-3 text-center">
               <h2 className="heading-primary2">Our Facilities</h2>
               <div className="heading-divider"></div>

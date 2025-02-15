@@ -146,7 +146,7 @@ function MarkAttendanceForm() {
   };
   const handleSubmit = async () => {
     setIsSubmit(true);
-    console.log(studentListWithAttendance);
+  
     if (!formData.block) {
       errorMsg("block", "Block is required.");
       toast.error("Block is required.");
@@ -167,35 +167,26 @@ function MarkAttendanceForm() {
     errorMsg("", "");
 
     try {
-      const bformData = new FormData();
-      bformData.append(
-        "loguserid",
-        secureLocalStorage.getItem("login_id") 
-      );
-      bformData.append(
-        "login_type",
-        secureLocalStorage.getItem("loginType") 
-      );
-      bformData.append("date", formData.date );
-      bformData.append("block", formData.block );
-      bformData.append("roomNo", formData.roomNo );
-      bformData.append("roomId", formData.roomId );
-
+      const bformData = {
+        loguserid: secureLocalStorage.getItem("login_id"),
+        login_type: secureLocalStorage.getItem("loginType"),
+        date: formData.date,
+        block: formData.block,
+        roomNo: formData.roomNo,
+        roomId: formData.roomId,
+      };
       let attendance = studentListWithAttendance.map((attendance) => ({
         present: attendance.present,
         studentId: attendance.sid,
       }));
 
-      bformData.append("attendanceList", JSON.stringify(attendance)); 
-
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
+      bformData.attendanceList = attendance;
 
       const response = await axios.post(
         `${NODE_API_URL}/api/hostel-management/admin/mark-attendance`,
         bformData
       );
+     
 
       if (
         response.data?.statusCode === 200 ||
@@ -207,7 +198,7 @@ function MarkAttendanceForm() {
         toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.log(error);
+     
       const statusCode = error.response?.data?.statusCode;
       const errorField = error.response?.data?.errorField;
 

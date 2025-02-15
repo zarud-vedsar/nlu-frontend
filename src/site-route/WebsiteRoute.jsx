@@ -32,6 +32,7 @@ import '../site-components/website/assets/css/dynamics/Left_Menu/Style_Css.css';
 import '../site-components/website/assets/css/dynamics/LatestNews/css/site.css';
 import '../site-components/website/assets/css/dynamics/dds_News.css';
 
+const KeyNote = lazy(() => import('../site-components/website/home-components/KeyNote.jsx'));
 const Home = lazy(() => import('../site-pages/website/Home'));
 const Header = lazy(() => import('../site-components/website/common/Header'));
 const SideChipkaHuaTag = lazy(() => import('../site-components/website/common/SideChipkaHuaTag'));
@@ -131,6 +132,7 @@ function WebsiteRoute() {
         <Route path='/job/:id' element={<Job />} />
         <Route path='/job/verify/:id' element={<ApplicationForm />} />
         <Route path='/job/apply/:id' element={<JobDetailForm />} />
+        <Route path='/marquee/:mrId' element={<KeyNote />} />
         <Route path="*" element={<Navigate to="/page-not-found" />} />
       </Routes>
       <Footer />

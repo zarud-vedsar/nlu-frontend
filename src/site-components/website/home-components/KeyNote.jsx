@@ -1,21 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import AOS from "aos";
-import Slider from 'react-slick';
-import { Link } from 'react-router-dom';
-import { FaChevronRight } from "react-icons/fa";
-import { FaChevronLeft } from "react-icons/fa";
-import P1 from '../assets/Images/keynote/p1.jpg';
-import P2 from '../assets/Images/keynote/p2.jpg';
-import P3 from '../assets/Images/keynote/p3.jpg';
-import P4 from '../assets/Images/keynote/p4.jpg';
-import P5 from '../assets/Images/keynote/p5.png';
-import P6 from '../assets/Images/keynote/p6.png';
-import P7 from '../assets/Images/keynote/p7.jpg';
-import P8 from '../assets/Images/keynote/p8.jpg';
-import P9 from '../assets/Images/keynote/p9.jpg';
-import P10 from '../assets/Images/keynote/p10.jpg';
-import { FaArrowRightLong } from 'react-icons/fa6';
-
+import { Link, useParams } from 'react-router-dom';
+import { FaAngleRight, FaArrowRightLong } from 'react-icons/fa6';
+import axios from 'axios';
+import { PHP_API_URL, FILE_API_URL } from '../../Helper/Constant';
+import validator from 'validator';
 const KeyNote = () => {
   useEffect(() => {
     AOS.init({
@@ -24,147 +13,104 @@ const KeyNote = () => {
     });
   }, []);
 
-  const sliderRef = useRef(null);
+  const params = useParams();
+  const mrId = params?.mrId;
+  const [keyNoteData, setKeyNoteData] = useState([]);
+  const [marqueeTitle, setMarqueeTitle] = useState([]);
+  const fetchKeyNote = async (mrId) => {
+    try {
+      const bformData = new FormData();
+      bformData.append("data", "load_keynote_front");
+      bformData.append("mrq_slider_id", mrId);
 
-  // Define an array of keynote data
-  const keyNotes = [
-    {
-      id: 1,
-      name: 'Professor Klaus Bosselmann',
-      imageUrl: P1,
-      contactDetails: 'Faculty of Law, University of Auckland, New Zealand',
-      link: 'https://profiles.auckland.ac.nz/k-bosselmann'
-    },
-    {
-      id: 2,
-      name: 'Professor Philippe Cullet',
-      imageUrl: P2,
-      contactDetails: 'SOAS, University of London, England',
-      link: 'https://www.soas.ac.uk/about/philippe-cullet'
-    },
-    {
-      id: 3,
-      name: 'Dr. Ivano Alogna',
-      imageUrl: P3,
-      contactDetails: 'Senior Research Fellow in Environmental and Climate Change Law, BIICL, France',
-      link: 'https://www.biicl.org/people/ivano-alogna'
-    },
-    {
-      id: 4,
-      name: 'Dr. Robert Russo',
-      imageUrl: P4,
-      contactDetails: 'Peter Allard School of Law, University of British Columbia, Vancouver, Canada',
-      link: 'https://allard.ubc.ca/about-us/our-people/robert-russo'
-    },
-    {
-      id: 5,
-      name: 'Professor Leela Krishnan',
-      imageUrl: P5,
-      contactDetails: 'School of Legal Studies, Cochin University of Science and Technology',
-      link: 'https://www.rpnlup.ac.in/wp-content/uploads/2024/11/Prof.-P.-Leelakrishnan.pdf'
-    },
-    {
-      id: 6,
-      name: 'Justice Rinzin Penjor',
-      imageUrl: P6,
-      contactDetails: 'Judge, Supreme Court of Bhutan; Vice Chairman, Bar Council of Bhutan',
-      link: 'blank'
-    },
-    {
-      id: 7,
-      name: 'Professor K. Konasinghe',
-      imageUrl: P7,
-      contactDetails: 'Faculty of Law, University of Colombo, Sri Lanka',
-      link: 'https://www.res.cmb.ac.lk/public.international.law/kokila/'
-    },
-    {
-      id: 8,
-      name: 'Professor Amber Pant',
-      imageUrl: P8,
-      contactDetails: 'University of Tribhuvan, Nepal',
-      link: 'https://www.iucnael.org/en/81-about-us/members-of-the-governing-board/501-professor-amber-prasad-pant'
-    },
-    {
-      id: 9,
-      name: 'Michael D. Wilson',
-      imageUrl: P9,
-      contactDetails: 'Justice, Hawaii Supreme Court, USA',
-      link: 'https://en.wikipedia.org/wiki/Michael_D._Wilson'
-    },
-    {
-      id: 10,
-      name: 'Professor Moon-Hyun Koh',
-      imageUrl: P10,
-      contactDetails: 'Professor, College of Law, Soongsil University, Seoul, Korea',
-      link: 'https://law.ssu.ac.kr/web/sub1/sub1_prof_detail02.do'
-    },
+      const response = await axios.post(
+        `${PHP_API_URL}/keynote_speaker.php`,
+        bformData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-  ];
-
-  const sliderSettings = {
-    infinite: true,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    dots: false,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 30000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          centerMode: true,
-          centerPadding: '20px',
-        },
-      },
-    ],
-  };
-
-  const nextSlide = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickNext();
+      if (response.data.status === 200) {
+        setKeyNoteData(response.data.data);
+      }
+    } catch (error) {
+      /** empty */
     }
   };
+  const fetchMarqueeTitle = async (mrId) => {
+    try {
+      const bformData = new FormData();
+      bformData.append("data", "get_mrq_slider_title");
+      bformData.append("id", mrId);
 
-  const prevSlide = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev();
+      const response = await axios.post(
+        `${PHP_API_URL}/mrq_slider.php`,
+        bformData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.data.status === 200 && response.data.data.length > 0) {
+        setMarqueeTitle(response.data.data[0]);
+      }
+    } catch (error) {
+      /** empty */
     }
   };
-
+  useEffect(() => {
+    if (mrId && parseInt(mrId, 10) > 0) {
+      fetchKeyNote(mrId);
+      fetchMarqueeTitle(mrId);
+    }
+  }, [mrId]);
   return (
-    <div
-      className="latest-area section-padding-20 kn-position-realative"
-      style={{ background: "#F2F2F2" }} data-aos="fade-up" data-aos-delay="100">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12 mb-3 text-center">
-            <h2 className="heading-primary2">Keynote Speakers</h2>
-            <div className="heading-divider"></div>
+    <>
+      <div className="breadcrumb-banner-area">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="breadcrumb-text">
+                <h1 className="text-center heading-primary butler-regular text-white">Keynote Speakers</h1>
+                <div className="breadcrumb-bar">
+                  <ul className="breadcrumb text-center">
+                    <li>
+                      <Link to="/">Home</Link><FaAngleRight />
+                    </li>
+                    <li>Important Updates <FaAngleRight /></li>
+                    <li>Keynote Speakers</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div className="row mt-3">
-          {/* Prev button */}
-          <div className="col-2">
-            <button onClick={prevSlide} className="kn-prev kn-btn">
-              <FaChevronLeft />
-            </button>
+      </div>
+      <div className='container'>
+        <div className="row">
+          <div className="col-md-12 pt-2 text-center">
+            <h2 className="heading-primary3">{marqueeTitle?.content}</h2>
           </div>
-
-          <Slider
-            ref={sliderRef}
-            {...sliderSettings}
-            className="kn-cards-contain"
-          >
-            {keyNotes.map((note) => (
-              <div className="sldrbx" key={note.id} style={{ margin: "auto" }}>
+        </div>
+      </div>
+      <div
+        className="latest-area kn-position-realative"
+        style={{ background: "#F5F5F5" }} data-aos="fade-up" data-aos-delay="100">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12 mb-5 text-center">
+              <h2 className="heading-primary2">Keynote Speakers</h2>
+              <div className="heading-divider"></div>
+            </div>
+          </div>
+          <div className="row mt-3">
+            {keyNoteData && keyNoteData.map((note) => (
+              <div className="col-md-4 mt-3" key={note.id} style={{ margin: "auto" }}>
                 <div
                   className="sldrcard card border-0 soft-shadow"
                   style={{
@@ -175,21 +121,21 @@ const KeyNote = () => {
                 >
                   <div className="sldritem">
                     <div className="sldrbimgbx">
-                      <img src={note.imageUrl} className="sldrbimg" />
+                      <img src={`${FILE_API_URL}/keynote/${note?.keynote_photo}`} className="sldrbimg" />
                     </div>
 
                     <div className="ms-3">
                       <h5 className="card-title mt-0 xtitle kn-title text-center">
-                        {note.name}
+                        {note?.keynote_name ? validator.unescape(note.keynote_name) : ''}
                       </h5>
                       <p
                         className="card-text threeeclips"
                         style={{ textAlign: "center" }}
                       >
-                        {note.contactDetails}
+                        {note?.keynote_content ? validator.unescape(note.keynote_content) : ''}
                       </p>
                       <div className="text-center">
-                        <Link target="" className="btn-link" to={note.link}>
+                        <Link target="" className="btn-link" to={note?.keynote_link ? validator.unescape(note.keynote_link) : ''}>
                           Read More &nbsp;
                           <FaArrowRightLong />{" "}
                         </Link>
@@ -199,17 +145,10 @@ const KeyNote = () => {
                 </div>
               </div>
             ))}
-          </Slider>
-
-          {/* Next button */}
-          <div className="col-2">
-            <button onClick={nextSlide} className="kn-next kn-btn">
-              <FaChevronRight />
-            </button>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

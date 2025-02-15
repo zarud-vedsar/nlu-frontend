@@ -5,7 +5,7 @@ import secureLocalStorage from 'react-secure-storage';
 import { NODE_API_URL } from '../../../site-components/Helper/Constant';
 import '../assets/custom.css';
 import '../assets/CustomNavTab.css';
-import { capitalizeFirstLetter, googleDriveUrl } from '../../../site-components/Helper/HelperFunction';
+import { capitalizeFirstLetter, googleDriveUrl,} from '../../../site-components/Helper/HelperFunction';
 import TopicPng from "../assets/img/topic.png";
 import PdfPng from "../assets/img/pdf.png";
 import validator from 'validator';
@@ -219,7 +219,7 @@ function LmsSubjectDashboard() {
                             </nav>
                         </div>
                         <div className="card">
-                            <div className="card-header">
+                            <div className="card-header  d-flex  justify-content-between align-items-center">
                                 <h5 className="card-title col-md-9 col-lg-9 col-12 col-sm-12 h6_new font-14">
                                     My Course:{" "}
                                     {courseSemester?.courseIdName?.[0]?.coursename || "Course name not available"}
@@ -234,6 +234,8 @@ function LmsSubjectDashboard() {
                                         )}`}
                                     <span>{" "} ({capitalizeFirstLetter(subject?.subject)})</span>
                                 </h5>
+                                 
+                                
                             </div>
                         </div>
                         <div className='row'>

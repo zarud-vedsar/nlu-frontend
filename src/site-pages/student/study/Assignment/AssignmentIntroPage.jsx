@@ -137,7 +137,7 @@ function AssignmentIntroPage() {
           </nav> */}
         </div>
         <div className="card">
-          <div className="card-header id-card-header">
+          <div className="card-header id-card-header d-flex justify-content-between align-items-center">
             <h5 className="card-title col-md-9 col-lg-9 col-12 col-sm-12  text-light">
               My Course:{" "}
               {courseSemester?.courseIdName?.[0]?.coursename ||
@@ -156,6 +156,7 @@ function AssignmentIntroPage() {
               </span>
               <span> ({capitalizeFirstLetter(subject?.subject)})</span>
             </h5>
+            
           </div>
         </div>
         <div className="row">

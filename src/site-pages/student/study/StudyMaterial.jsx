@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {
+  goBack,
+} from "../../../site-components/Helper/HelperFunction";
+import { Button, Spinner } from "react-bootstrap";
+import { FaArrowLeft } from "react-icons/fa6";
 import secureLocalStorage from 'react-secure-storage';
 import { NODE_API_URL } from '../../../site-components/Helper/Constant';
 import '.././assets/custom.css';
@@ -67,6 +72,12 @@ function SudyMaterial() {
                                         ? courseSemester.courseIdName[0].coursename
                                         : "Course name not available"}
                                 </h5>
+                               <button
+                                                  className="ml-auto btn-md btn border-0 goback mr-2"
+                                                  onClick={goBack}
+                                                >
+                                                  <i className="fas fa-arrow-left"></i> Go Back
+                                                </button>
                                 <select className='form-control col-md-3 col-lg-3 col-12 col-sm-12' name='semester' onChange={(e) => {
                                     if (e.target.value) {
                                         setApiHit(true);

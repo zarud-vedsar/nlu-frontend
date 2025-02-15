@@ -20,6 +20,7 @@ import ContactIcon from "../../site-components/website/home-components/ContactIc
 import PopupNotice from "../../site-components/website/home-components/PopupNotice";
 import Facilities from "../../site-components/website/home-components/Facilities";
 import UserTestimonials from "./UserTestimoinals";
+import OurSociety from "./OurSociety";
 
 function Home() {
   return (
@@ -43,9 +44,9 @@ function Home() {
       <Gallery />
       <SocialMedia />
       <ContactIcon />
-      <UserTestimonials/>
+      <UserTestimonials />
       <UseFullLinks />
-
+      {/* <OurSociety /> */}
     </>
   );
 }

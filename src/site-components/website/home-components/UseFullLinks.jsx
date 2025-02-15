@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import { FILE_API_URL, PHP_API_URL } from "../../Helper/Constant";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; 
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import axios from "axios";
 import defaultImage from "../assets/Images/useful-1.png";
 import { slugify } from "../../Helper/HelperFunction";
@@ -36,32 +36,32 @@ const UseFullLinks = () => {
   };
 
   const CustomArrow = ({ onClick, direction }) => {
-     const isMobile = window.innerWidth <= 768; // Check for mobile view
-   
-     return (
-       <div
-         onClick={onClick}
-         style={{
-           position: "absolute",
-           top: "50%",
-           [direction]: isMobile ? "-15px" : "-40px", // Adjust based on screen width
-           transform: "translateY(-50%)",
-           background: "#2e3e50",
-           borderRadius: "50%",
-           width: "40px",
-           height: "40px",
-           display: "flex",
-           alignItems: "center",
-           justifyContent: "center",
-           cursor: "pointer",
-           zIndex: 10,
-         }}
-       >
-         {direction === "left" ? <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
-       </div>
-     );
-   };
-  
+    const isMobile = window.innerWidth <= 768; // Check for mobile view
+
+    return (
+      <div
+        onClick={onClick}
+        style={{
+          position: "absolute",
+          top: "50%",
+          [direction]: isMobile ? "-15px" : "-40px", // Adjust based on screen width
+          transform: "translateY(-50%)",
+          background: "#2e3e50",
+          borderRadius: "50%",
+          width: "40px",
+          height: "40px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          zIndex: 10,
+        }}
+      >
+        {direction === "left" ? <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
+      </div>
+    );
+  };
+
   const sliderSettings = {
     dots: false,
     infinite: true,
@@ -204,95 +204,3 @@ const UseFullLinks = () => {
 };
 
 export default UseFullLinks;
-
-
-
-
-// import { React, useState, useEffect } from 'react';
-// import AOS from "aos";
-// import { FILE_API_URL, PHP_API_URL } from '../../Helper/Constant';
-// import axios from 'axios';
-// import defaultImage from '../assets/Images/useful-1.png';
-// import { slugify } from '../../Helper/HelperFunction';
-// const UseFullLinks = () => {
-//   const [usefulLinks, setUsefullLinks] = useState([]);
-//   useEffect(() => {
-//     AOS.init({
-//       duration: 1000,
-//       easing: "ease-out-cubic",
-//     });
-//   }, []);
-
-//   const getUsefulLink = async () => {
-//     try {
-//       const bformData = new FormData();
-//       bformData.append("data", "load_link");
-//       const response = await axios.post(
-//         `${PHP_API_URL}/useful_link.php`,
-//         bformData
-//       );
-//       setUsefullLinks(response.data.data);
-//     } catch (error) { /* empty */ }
-//   };
-
-//   useEffect(() => {
-//     getUsefulLink();
-//   }, []);
-//   return (
-//     <>
-//       {usefulLinks && usefulLinks.length > 0 && (
-//         <section className="usefulllnk" data-aos="fade-up" data-aos-delay="100">
-//           <div className="container">
-//             <div className="row">
-//               <div className="col-md-12 text-center">
-//                 <h2 className="heading-primary2">Useful Links</h2>
-//                 <div className="heading-divider"></div>
-//               </div>
-//             </div>
-//             <div className="usefullcontainer mt-4">
-//               <div className="row">
-//                 {usefulLinks &&
-//                   usefulLinks.map((link, index) => {
-//                     if (link.status == 1 && link.delete_status == 0) {
-//                       return (
-//                         <div
-//                           className="col-12 col-md-3 mt-3 col-lg-3 text-center"
-//                           key={index}
-//                         >
-//                           <a
-//                             href={
-//                               link.link_other_link
-//                                 ? link.link_other_link
-//                                 : `/page/${link.link_link}/${slugify(link.link_title)}`
-//                             }
-//                             className="useful-link-col"
-//                             target={link.target}
-//                             rel="noopener noreferrer"
-//                           >
-//                             <img
-//                               className="linkiimg"
-//                               src={
-//                                 link?.image_file
-//                                   ? `${FILE_API_URL}/${link.image_file}`
-//                                   : defaultImage
-//                               }
-//                               alt={link.link_title}
-//                             />
-//                             <p className="linkttx mt-3">{link.link_title}</p>
-//                           </a>
-//                         </div>
-//                       )
-//                     } else {
-//                       return null;
-//                     }
-//                   })}
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-//       )}
-//     </>
-//   );
-// };
-
-// export default UseFullLinks;

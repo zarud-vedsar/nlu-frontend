@@ -7,7 +7,6 @@ import CampusLife from "../../site-components/website/home-components/CampusLife
 import Message from "../../site-components/website/home-components/Message";
 import UseFullLinks from "../../site-components/website/home-components/UseFullLinks";
 import SocialMedia from "../../site-components/website/home-components/SocialMedia";
-import KeyNote from "../../site-components/website/home-components/KeyNote";
 import WhyChoose from "../../site-components/website/home-components/WhyChoose";
 import ContactFeatures from "../../site-components/website/home-components/ContactFeatures";
 import MarqueeSlider from "../../site-components/website/home-components/MarqueeSlider";
@@ -38,15 +37,14 @@ function Home() {
       <CampusLife />
       <Speciality />
       <ContactFeatures />
-      <KeyNote />
       <Achivement />
       <Facilities />
       <Gallery />
       <SocialMedia />
       <ContactIcon />
       <UserTestimonials />
+      <OurSociety />
       <UseFullLinks />
-      {/* <OurSociety /> */}
     </>
   );
 }

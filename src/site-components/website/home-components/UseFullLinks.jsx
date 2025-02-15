@@ -105,7 +105,7 @@ const UseFullLinks = () => {
                             ? link.link_other_link
                             : `/page/${link.link_link}/${slugify(link.link_title)}`
                         }
-                        className="useful-link-col"
+                        className="useful-link-col shadow-none"
                         target={link.target}
                         rel="noopener noreferrer"
                       >
@@ -161,11 +161,9 @@ const UseFullLinks = () => {
                   display: flex;
                   flex-direction: column;
                   align-items: center;
-                  
                   padding: 15px;
                   background: #fff;
                   border-radius: 10px;
-                  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                   width: 100%;
                   max-width: 250px;
                 }
@@ -174,7 +172,7 @@ const UseFullLinks = () => {
   display: block;
   width: 100%; /* Ensure the image stretches full width */
   height: 200px; /* Set a fixed height for consistent aspect ratio */
-  object-fit: cover; /* Ensures the image fully fills its container */
+  object-fit: contain; /* Ensures the image fully fills its container */
   border-radius: 10px; /* Optional, for rounded corners */
 }
 

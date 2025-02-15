@@ -1,39 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import AOS from "aos";
-import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import axios from "axios";
-import defaultImage from "../../site-components/website/assets/Images/useful-1.png";
-import { slugify } from "../../site-components/Helper/HelperFunction";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
+import LegalExcellence from '../../site-components/website/assets/society/Legal-Excellence-Society.png';
+import JusticeAdvocasy from '../../site-components/website/assets/society/Justice-Advocacy-Forum.png';
+import Constitutional from '../../site-components/website/assets/society/Constitutional-Law-Society.png';
+import MootCourt from '../../site-components/website/assets/society/Moot-Court-ADR-Society.png';
+import HumarRights from '../../site-components/website/assets/society/Human-Rights-Legal-Aid-Society.png';
+import Corporate from '../../site-components/website/assets/society/Corporate-Business-Law-Society.png';
+import CyberLaw from '../../site-components/website/assets/society/Cyber-Law-Technology-Forum.png';
+import Environmental from '../../site-components/website/assets/society/Environmental-Law-Sustainability-Society.png';
 
 const OurSociety = () => {
-    const [usefulLinks, setOurSociety] = useState([]);
-
     useEffect(() => {
         AOS.init({
             duration: 1000,
             easing: "ease-out-cubic",
         });
-
-        getUsefulLink();
     }, []);
-
-    const getUsefulLink = async () => {
-        try {
-            const bformData = new FormData();
-            bformData.append("data", "load_link");
-            const response = await axios.post(
-                `${PHP_API_URL}/useful_link.php`,
-                bformData
-            );
-            setOurSociety(response.data.data);
-        } catch (error) {
-            console.error("Error fetching useful links:", error);
-        }
-    };
 
     const CustomArrow = ({ onClick, direction }) => {
         const isMobile = window.innerWidth <= 768; // Check for mobile view
@@ -81,10 +68,60 @@ const OurSociety = () => {
             { breakpoint: 480, settings: { slidesToShow: 1 } },
         ],
     };
+    const society = [
+        {
+            id: 1,
+            title: "Legal Excellence Society",
+            link: "https://www.aimoaiko.com",
+            image_file: LegalExcellence,
+        },
+        {
+            id: 2,
+            title: "Justice & Advocacy Forum",
+            link: "https://www.justiceforum.com",
+            image_file: JusticeAdvocasy,
+        },
+        {
+            id: 3,
+            title: "Constitutional Law Society",
+            link: "https://www.constitutionalsociety.com",
+            image_file: Constitutional,
+        },
+        {
+            id: 4,
+            title: "Moot Court & ADR Society",
+            link: "https://www.mootcourtadr.com",
+            image_file: MootCourt,
+        },
+        {
+            id: 5,
+            title: "Human Rights & Legal Aid Society",
+            link: "https://www.humanrightslegal.com",
+            image_file: HumarRights,
+        },
+        {
+            id: 6,
+            title: "Corporate & Business Law Society",
+            link: "https://www.corporatelawsociety.com",
+            image_file: Corporate,
+        },
+        {
+            id: 7,
+            title: "Cyber Law & Technology Forum",
+            link: "https://www.cyberlawforum.com",
+            image_file: CyberLaw,
+        },
+        {
+            id: 8,
+            title: "Environmental Law & Sustainability Society",
+            link: "https://www.environmentallawsociety.com",
+            image_file: Environmental,
+        }
+    ];
 
     return (
         <>
-            {usefulLinks && usefulLinks.length > 0 && (
+            {society && society.length > 0 && (
                 <section className="usefulllnk" data-aos="fade-up" data-aos-delay="100">
                     <div className="container">
                         <div className="row">
@@ -95,33 +132,22 @@ const OurSociety = () => {
                         </div>
                         <div className="usefullcontainer mt-4">
                             <Slider {...sliderSettings}>
-                                {usefulLinks
-                                    .filter((link) => link.status === 1 && link.delete_status === 0)
-                                    .map((link, index) => (
-                                        <div key={index} className="slider-item">
-                                            <a
-                                                href={
-                                                    link.link_other_link
-                                                        ? link.link_other_link
-                                                        : `/page/${link.link_link}/${slugify(link.link_title)}`
-                                                }
-                                                className="useful-link-col"
-                                                target={link.target}
-                                                rel="noopener noreferrer"
-                                            >
-                                                <img
-                                                    className="linkiimg"
-                                                    src={
-                                                        link?.image_file
-                                                            ? `${FILE_API_URL}/${link.image_file}`
-                                                            : defaultImage
-                                                    }
-                                                    alt={link.link_title}
-                                                />
-                                                <p className="linkttx mt-3">{link.link_title}</p>
-                                            </a>
-                                        </div>
-                                    ))}
+                                {society.map((link, index) => (
+                                    <div key={index} className="slider-item">
+                                        <Link to={link.link}
+                                            className="useful-link-col shadow-none"
+                                            target={link.target}
+                                            rel="noopener noreferrer"
+                                        >
+                                            <img
+                                                className="linkiimg"
+                                                src={link?.image_file}
+                                                alt={link.title}
+                                            />
+                                            <p className="linkttx mt-3">{link.title}</p>
+                                        </Link>
+                                    </div>
+                                ))}
                             </Slider>
                         </div>
                         <style>
@@ -160,12 +186,10 @@ const OurSociety = () => {
                   text-align: center;
                   display: flex;
                   flex-direction: column;
-                  align-items: center;
-                  
+                  align-items: center;                  
                   padding: 15px;
                   background: #fff;
                   border-radius: 10px;
-                  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                   width: 100%;
                   max-width: 250px;
                 }
@@ -174,7 +198,7 @@ const OurSociety = () => {
   display: block;
   width: 100%; /* Ensure the image stretches full width */
   height: 200px; /* Set a fixed height for consistent aspect ratio */
-  object-fit: cover; /* Ensures the image fully fills its container */
+  object-fit: contain; /* Ensures the image fully fills its container */
   border-radius: 10px; /* Optional, for rounded corners */
 }
 

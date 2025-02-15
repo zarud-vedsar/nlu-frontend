@@ -17,9 +17,6 @@ Today -------- 4 issue done
 7. Sidebar Option Rearrange
 
 
-
-
-
 -------issue list------
 8. class should not editable after 24hr , if they what to edit they required permission
 

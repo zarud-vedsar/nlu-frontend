@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import rpnl_logo from '../assets/Images/rpnlu.png';
 import './header.css';
 import { Link } from 'react-router-dom';
-import { FaAngleDown } from 'react-icons/fa';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { PHP_API_URL } from '../../Helper/Constant';
 import axios from 'axios';
@@ -173,13 +172,13 @@ function Header() {
                   <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">Student Corner</Link>
                     <div className="navigation__item_dropdown-content">
-                      <Link to="/student" className="navigation__item_drop_link">Registration</Link>
-                      <Link to="/internship" className="navigation__item_drop_link">Internship</Link>
-                      <Link to="/placement" className="navigation__item_drop_link">Placement</Link>
-                      <Link to="/scholarship" className="navigation__item_drop_link">Scholarship</Link>
+                      <Link to="/student" target='_blank' className="navigation__item_drop_link">Registration</Link>
+                      <Link to="/student/internship" target='_blank' className="navigation__item_drop_link">Internship</Link>
+                      <Link to="/student/placement" target='_blank' className="navigation__item_drop_link">Placement</Link>
+                      <Link to="/student/scholarship" target='_blank' className="navigation__item_drop_link">Scholarship</Link>
                     </div>
                   </li>
-                  <li className="navigation__item"><Link to={'/student/book-issued'} className='navigation__item_link'>Library</Link></li>
+                  <li className="navigation__item"><Link to={'/student/book-issued'} target='_blank' className='navigation__item_link'>Library</Link></li>
                   <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">Cells</Link>
                     <div className="navigation__item_dropdown-content">

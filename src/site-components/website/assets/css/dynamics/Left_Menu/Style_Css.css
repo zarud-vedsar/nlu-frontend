@@ -37,7 +37,7 @@ body {
         display: block;
         text-decoration: none;
         padding: 15px 10px 10px 10px;
-        color: #270091;
+        color: #2e3e50;
         text-align: left;
         height: 56px;
         position: relative;
@@ -508,77 +508,106 @@ body {
 }
 
 @media only screen and (max-width: 479px) {
-    .mcd-menu { 
-		width: 100%;
-	}
-	.mcd-menu li a { 
-		position: relative;
-		padding: 12px 16px;
-		height:20px;
-	}
-	.mcd-menu li a small { 
-		display: none;
-	}
-	.mcd-menu li a strong { 
-		display: none;
-	}
-	.mcd-menu li a:hover strong,.mcd-menu li a.active strong {
-		display:block;
-		font-size:10px;
-		padding:3px 0;
-		position:absolute;
-		bottom:0px;
-		left:0;
-		background:#e67e22;
-		color:#FFF;
-		min-width:100%;
-		text-transform:lowercase;
-		font-weight:normal;
-		text-align:center;
-	}
-	.mcd-menu li .search { 
-		display: none;
-	}
-	
-	.mcd-menu li > ul {
-		min-width:180px;
-		left:70px;
-	}
-	.mcd-menu li:hover > ul {
-		min-width:180px;
-		left:50px;
-	}
-	.mcd-menu li ul li > ul, .mcd-menu li ul li ul li > ul {
-		min-width:150px;
-	}
-	.mcd-menu li ul li:hover > ul {
-		left:180px;
-		min-width:150px;
-	}
-	.mcd-menu li ul li ul li > ul {
-		left:35px;
-		top: 45px;
-		border:0;
-		border-top:4px solid #e67e22;
-	}
-	.mcd-menu li ul li ul li > ul:before {
-		left:30px;
-		top: -9px;
-		border:0;
-		border-bottom:5px solid #e67e22;
-		border-left:5px solid transparent;
-		border-right:5px solid transparent;
-	}
-	.mcd-menu li ul li ul li:hover > ul {
-		left:30px;
-		min-width:150px;
-		top: 35px;
-	}
-	.mcd-menu li ul a {
-		font-size:12px;
-	}
-	.mcd-menu li ul a i {
-		font-size:14px;
-	}
-    
+  .mcd-menu { 
+  width: 100%;
+  margin-bottom: 40px;
+}
+.mcd-menu li a.active small { 
+  margin-top: 18px;
+  text-align: left;
+}
+.mcd-menu li a small { 
+
+  text-align: left;
+}
+.mcd-menu li a.active { 
+  position: relative;
+  padding: 18px 16px;
+  height:50px;
+}
+.mcd-menu li a { 
+  position: relative;
+  padding: 18px 16px;
+  height:50px;
+  text-align: left;
+}
+.mcd-menu li a small{
+  margin: 4px 0px;
+  
+}
+/* .mcd-menu li a small { 
+  display: none;
+} */
+.mcd-menu li a strong {
+  text-align: start;
+  font-size: 14px;
+}
+.mcd-menu li a.active strong {
+  text-align: start !important;
+  font-size: 14px;
+}
+/* .mcd-menu li a strong { 
+  display: none;
+} */
+.mcd-menu li a:hover strong,.mcd-menu li a.active strong {
+  display:block;
+  font-size:15px;
+  padding:15px 0;
+  position:absolute;
+  bottom:0px;
+  left:45px;
+  /* background:#FFC0CB; */
+  color:#000 !important;
+  min-width:100%;
+  /* text-transform:lowercase; */
+  font-weight:normal;
+  text-align:center;
+}
+.leftpart{
+  height: auto !important;
+}
+.mcd-menu li .search { 
+  display: none;
+}
+
+.mcd-menu li > ul {
+  min-width:180px;
+  left:70px;
+}
+.mcd-menu li:hover > ul {
+  min-width:180px;
+  left:50px;
+}
+.mcd-menu li ul li > ul, .mcd-menu li ul li ul li > ul {
+  min-width:150px;
+}
+.mcd-menu li ul li:hover > ul {
+  left:180px;
+  min-width:150px;
+}
+.mcd-menu li ul li ul li > ul {
+  left:35px;
+  top: 45px;
+  border:0;
+  border-top:4px solid #e67e22;
+}
+.mcd-menu li ul li ul li > ul:before {
+  left:30px;
+  top: -9px;
+  border:0;
+  border-bottom:5px solid #e67e22;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+}
+.mcd-menu li ul li ul li:hover > ul {
+  left:30px;
+  min-width:150px;
+  top: 35px;
+}
+.mcd-menu li ul a {
+  font-size:12px;
+}
+
+
+
 }

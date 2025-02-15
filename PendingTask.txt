@@ -23,6 +23,9 @@ Today -------- 4 issue done
 -------issue list------
 8. class should not editable after 24hr , if they what to edit they required permission
 
+-> Library Books restock( adding books with ISBN that is already registered), after fetching the previous data do not set the book quantity as previous, else set it to 0 and target the cursor to it.
+-> In Library book add add 3 new fields "block", "section" and "row" and reflect it in all the occurance of book view. 
+
 
 --------------- 8 February  Pending task ----------------
 

@@ -8,8 +8,8 @@ import IsStudentoggedIn from "../site-pages/student/IsStudentoggedIn";
 import ProtectedRouteStudent from "../site-pages/student/ProtectedRoute";
 import RouteGaurd from "../site-pages/student/RouteGaurd";
 import Navbar from "../site-pages/student/Navbar";
-import StudentDashboard from "../site-pages/student/StudentDashboard.jsx";
-import secureLocalStorage from "react-secure-storage";
+import SuspensionLoader from "../SuspensionLoader.jsx";
+import ErrorBoundary from "./ErrorBoundary.jsx";
 
 const lazyLoad = (path) =>
   lazy(() => import(`../site-pages/student/${path}.jsx`));
@@ -78,14 +78,12 @@ const components = {
   AssignmentSubjectDashboard: lazyLoadAssignment("AssignmentSubjectDashboard"),
   AssignmentPaper: lazyLoadAssignment("AssignmentPaper"),
   AssignmentResult: lazyLoadAssignment("Result"),
-
   QuizSubject: lazyLoadQuiz("QuizSubject"),
   QuizSubjectDashboard: lazyLoadQuiz("QuizSubjectDashboard"),
   QuizPaper: lazyLoadQuiz("QuizPaper"),
   QuizResult: lazyLoadQuiz("Result"),
   BookPdfViewer: lazyLoadLibrary("BookPdfViewer"),
 };
-
 // Additional lazy-loaded component
 components.StudyMaterial = lazy(() =>
   import("../site-pages/student/study/StudyMaterial.jsx")
@@ -122,365 +120,366 @@ function StudentRoute({ toggleExpand, toggleFolded }) {
       {isLoggedIn && (
         <Navbar toggleExpand={toggleExpand} toggleFolded={toggleFolded} />
       )}
+      <ErrorBoundary>
+        <Suspense fallback={<SuspensionLoader />}>
+          <ToastContainer
+            autoClose={5000}
+            position="top-right"
+            hideProgressBar={false}
+            draggable
+            pauseOnHover
+            closeOnClick
+          />
+          <Routes>
+            <Route path="/" element={<Navigate to="/student/register" />} />
+            <Route path="/register" element={<components.Index />} />
+            <Route
+              path="/home"
+              element={<ProtectedRouteStudent element={<components.Home />} />}
+            />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.StudentDashboard />}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={<ProtectedRouteStudent element={<components.Profile />} />}
+            />
+            <Route
+              path="/course-selection"
+              element={
+                <ProtectedRouteStudent
+                  element={
+                    <RouteGaurd element={<components.CourseSelection />} />
+                  }
+                />
+              }
+            />
+            <Route
+              path="/qualification"
+              element={
+                <ProtectedRouteStudent
+                  element={<RouteGaurd element={<components.Qualification />} />}
+                />
+              }
+            />
+            <Route
+              path="/document-upload"
+              element={
+                <ProtectedRouteStudent
+                  element={<RouteGaurd element={<components.DocumentUpload />} />}
+                />
+              }
+            />
+            <Route
+              path="/preview"
+              element={
+                <ProtectedRouteStudent
+                  element={<RouteGaurd element={<components.Preview />} />}
+                />
+              }
+            />
+            <Route
+              path="/assignment/result/:id"
+              element={
+                <ProtectedRouteStudent
+                  element={
+                    <RouteGaurd element={<components.AssignmentResult />} />
+                  }
+                />
+              }
+            />
+            <Route
+              path="/quiz/result/:id"
+              element={
+                <ProtectedRouteStudent
+                  element={<RouteGaurd element={<components.QuizResult />} />}
+                />
+              }
+            />
+            <Route path="/login" element={<components.Login />} />
+            <Route path="/forgot" element={<components.Forgot />} />
+            <Route
+              path="/book-catalogue"
+              element={
+                <ProtectedRouteStudent element={<components.BookCatalogue />} />
+              }
+            />
+            <Route
+              path="/book-catalogue-detail/:id"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.BookCatalogueDetail />}
+                />
+              }
+            />
+            <Route
+              path="/book-issued"
+              element={
+                <ProtectedRouteStudent element={<components.BookIssued />} />
+              }
+            />
+            <Route
+              path="/issued-list"
+              element={
+                <ProtectedRouteStudent element={<components.IssueList />} />
+              }
+            />
+            <Route
+              path="/issued-detail/:id"
+              element={
+                <ProtectedRouteStudent element={<components.IssueDetail />} />
+              }
+            />
+            <Route
+              path="/internship"
+              element={
+                <ProtectedRouteStudent element={<components.InternshipList />} />
+              }
+            />
+            <Route
+              path="/internship-applied-history"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.InternshipAppliedHistory />}
+                />
+              }
+            />
+            <Route
+              path="/job-applied-history"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.JobAppliedHistory />}
+                />
+              }
+            />
+            <Route
+              path="/joblist"
+              element={<ProtectedRouteStudent element={<components.Joblist />} />}
+            />
+            <Route
+              path="/new-feedback"
+              element={
+                <ProtectedRouteStudent element={<components.FeedbackForm />} />
+              }
+            />
+            <Route
+              path="/feedback-list"
+              element={
+                <ProtectedRouteStudent element={<components.FeedbackList />} />
+              }
+            />
+            <Route
+              path="/internship-details/:id"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.InternshipDetails />}
+                />
+              }
+            />
+            <Route
+              path="/previous-registration-list"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.AllPreviousRegistraton />}
+                />
+              }
+            />
+            <Route
+              path="/preview-previous-registration/:sid/:selectedcourse"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.PreviewPreviousRegistration />}
+                />
+              }
+            />
+            <Route
+              path="/lms"
+              element={
+                <ProtectedRouteStudent element={<components.LmsDashboard />} />
+              }
+            />
+            <Route
+              path="/study-material"
+              element={
+                <ProtectedRouteStudent element={<components.StudyMaterial />} />
+              }
+            />
+            <Route
+              path="/lms-subject-dashboard/:subjectId/:semesterId"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.LmsSubjectDashboard />}
+                />
+              }
+            />
+            <Route
+              path="/lms-topic-dashboard/:topicId/:subjectId/:semesterId"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.LmsTopicDashboard />}
+                />
+              }
+            />
+            <Route
+              path="/lms-topic-dashboard/:topicId/:subjectId/:semesterId/:courseId/:videoId"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.LmsTopicDashboard />}
+                />
+              }
+            />
+            <Route
+              path="/lms-live-details/:dbId/:subjectId/:semesterId"
+              element={
+                <ProtectedRouteStudent element={<components.LmsLiveDetails />} />
+              }
+            />
+            <Route
+              path="/topic-pdf-viewer"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.LmsTopicPdfViewer />}
+                />
+              }
+            />
+            <Route
+              path="/book-viewer"
+              element={
+                <ProtectedRouteStudent element={<components.BookPdfViewer />} />
+              }
+            />
+            <Route
+              path="/alloted-room-history"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.AllotedRoomHistory />}
+                />
+              }
+            />
+            <Route
+              path="/raise-query"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.RaiseQueryForHostelRoom />}
+                />
+              }
+            />
+            <Route
+              path="/raised-room-queries"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.RaisedRoomQueries />}
+                />
+              }
+            />
 
-      <Suspense fallback="...">
-        <ToastContainer
-          autoClose={5000}
-          position="top-right"
-          hideProgressBar={false}
-          draggable
-          pauseOnHover
-          closeOnClick
-        />
-        <Routes>
-          <Route path="/" element={<Navigate to="/student/register" />} />
-          <Route path="/register" element={<components.Index />} />
-          <Route
-            path="/home"
-            element={<ProtectedRouteStudent element={<components.Home />} />}
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRouteStudent
-                element={<components.StudentDashboard />}
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={<ProtectedRouteStudent element={<components.Profile />} />}
-          />
-          <Route
-            path="/course-selection"
-            element={
-              <ProtectedRouteStudent
-                element={
-                  <RouteGaurd element={<components.CourseSelection />} />
-                }
-              />
-            }
-          />
-          <Route
-            path="/qualification"
-            element={
-              <ProtectedRouteStudent
-                element={<RouteGaurd element={<components.Qualification />} />}
-              />
-            }
-          />
-          <Route
-            path="/document-upload"
-            element={
-              <ProtectedRouteStudent
-                element={<RouteGaurd element={<components.DocumentUpload />} />}
-              />
-            }
-          />
-          <Route
-            path="/preview"
-            element={
-              <ProtectedRouteStudent
-                element={<RouteGaurd element={<components.Preview />} />}
-              />
-            }
-          />
-          <Route
-            path="/assignment/result/:id"
-            element={
-              <ProtectedRouteStudent
-                element={
-                  <RouteGaurd element={<components.AssignmentResult />} />
-                }
-              />
-            }
-          />
-          <Route
-            path="/quiz/result/:id"
-            element={
-              <ProtectedRouteStudent
-                element={<RouteGaurd element={<components.QuizResult />} />}
-              />
-            }
-          />
-          <Route path="/login" element={<components.Login />} />
-          <Route path="/forgot" element={<components.Forgot />} />
-          <Route
-            path="/book-catalogue"
-            element={
-              <ProtectedRouteStudent element={<components.BookCatalogue />} />
-            }
-          />
-          <Route
-            path="/book-catalogue-detail/:id"
-            element={
-              <ProtectedRouteStudent
-                element={<components.BookCatalogueDetail />}
-              />
-            }
-          />
-          <Route
-            path="/book-issued"
-            element={
-              <ProtectedRouteStudent element={<components.BookIssued />} />
-            }
-          />
-          <Route
-            path="/issued-list"
-            element={
-              <ProtectedRouteStudent element={<components.IssueList />} />
-            }
-          />
-          <Route
-            path="/issued-detail/:id"
-            element={
-              <ProtectedRouteStudent element={<components.IssueDetail />} />
-            }
-          />
-          <Route
-            path="/internship"
-            element={
-              <ProtectedRouteStudent element={<components.InternshipList />} />
-            }
-          />
-          <Route
-            path="/internship-applied-history"
-            element={
-              <ProtectedRouteStudent
-                element={<components.InternshipAppliedHistory />}
-              />
-            }
-          />
-          <Route
-            path="/job-applied-history"
-            element={
-              <ProtectedRouteStudent
-                element={<components.JobAppliedHistory />}
-              />
-            }
-          />
-          <Route
-            path="/joblist"
-            element={<ProtectedRouteStudent element={<components.Joblist />} />}
-          />
-          <Route
-            path="/new-feedback"
-            element={
-              <ProtectedRouteStudent element={<components.FeedbackForm />} />
-            }
-          />
-          <Route
-            path="/feedback-list"
-            element={
-              <ProtectedRouteStudent element={<components.FeedbackList />} />
-            }
-          />
-          <Route
-            path="/internship-details/:id"
-            element={
-              <ProtectedRouteStudent
-                element={<components.InternshipDetails />}
-              />
-            }
-          />
-          <Route
-            path="/previous-registration-list"
-            element={
-              <ProtectedRouteStudent
-                element={<components.AllPreviousRegistraton />}
-              />
-            }
-          />
-          <Route
-            path="/preview-previous-registration/:sid/:selectedcourse"
-            element={
-              <ProtectedRouteStudent
-                element={<components.PreviewPreviousRegistration />}
-              />
-            }
-          />
-          <Route
-            path="/lms"
-            element={
-              <ProtectedRouteStudent element={<components.LmsDashboard />} />
-            }
-          />
-          <Route
-            path="/study-material"
-            element={
-              <ProtectedRouteStudent element={<components.StudyMaterial />} />
-            }
-          />
-          <Route
-            path="/lms-subject-dashboard/:subjectId/:semesterId"
-            element={
-              <ProtectedRouteStudent
-                element={<components.LmsSubjectDashboard />}
-              />
-            }
-          />
-          <Route
-            path="/lms-topic-dashboard/:topicId/:subjectId/:semesterId"
-            element={
-              <ProtectedRouteStudent
-                element={<components.LmsTopicDashboard />}
-              />
-            }
-          />
-          <Route
-            path="/lms-topic-dashboard/:topicId/:subjectId/:semesterId/:courseId/:videoId"
-            element={
-              <ProtectedRouteStudent
-                element={<components.LmsTopicDashboard />}
-              />
-            }
-          />
-          <Route
-            path="/lms-live-details/:dbId/:subjectId/:semesterId"
-            element={
-              <ProtectedRouteStudent element={<components.LmsLiveDetails />} />
-            }
-          />
-          <Route
-            path="/topic-pdf-viewer"
-            element={
-              <ProtectedRouteStudent
-                element={<components.LmsTopicPdfViewer />}
-              />
-            }
-          />
-          <Route
-            path="/book-viewer"
-            element={
-              <ProtectedRouteStudent element={<components.BookPdfViewer />} />
-            }
-          />
-          <Route
-            path="/alloted-room-history"
-            element={
-              <ProtectedRouteStudent
-                element={<components.AllotedRoomHistory />}
-              />
-            }
-          />
-          <Route
-            path="/raise-query"
-            element={
-              <ProtectedRouteStudent
-                element={<components.RaiseQueryForHostelRoom />}
-              />
-            }
-          />
-          <Route
-            path="/raised-room-queries"
-            element={
-              <ProtectedRouteStudent
-                element={<components.RaisedRoomQueries />}
-              />
-            }
-          />
-
-          <Route
-            path="/complain-history"
-            element={
-              <ProtectedRouteStudent element={<components.ComplainHistory />} />
-            }
-          />
-          <Route
-            path="/raise-complain"
-            element={
-              <ProtectedRouteStudent element={<components.RaiseComplain />} />
-            }
-          />
-          <Route
-            path="/leave-request"
-            element={
-              <ProtectedRouteStudent
-                element={<components.LeaveRequestForm />}
-              />
-            }
-          />
-          <Route
-            path="/leave-request-list"
-            element={
-              <ProtectedRouteStudent
-                element={<components.LeaveRequestList />}
-              />
-            }
-          />
-          <Route
-            path="/attendance-history"
-            element={
-              <ProtectedRouteStudent
-                element={<components.AttendanceHistory />}
-              />
-            }
-          />
-          <Route
-            path="/class-attendance-history"
-            element={
-              <ProtectedRouteStudent
-                element={<components.ClassAttendanceHistory />}
-              />
-            }
-          />
-          <Route
-            path="/assignment-subject"
-            element={
-              <ProtectedRouteStudent
-                element={<components.AssignmentSubject />}
-              />
-            }
-          />
-          <Route
-            path="/assignment-subject/:courseId/:semesterId/:subjectId"
-            element={
-              <ProtectedRouteStudent
-                element={<components.AssignmentSubjectDashboard />}
-              />
-            }
-          />
-          <Route
-            path="/quiz-subject"
-            element={
-              <ProtectedRouteStudent element={<components.QuizSubject />} />
-            }
-          />
-          <Route
-            path="/quiz-subject/:courseId/:semesterId/:subjectId"
-            element={
-              <ProtectedRouteStudent
-                element={<components.QuizSubjectDashboard />}
-              />
-            }
-          />
-          <Route
-            path="/new-message"
-            element={
-              <ProtectedRouteStudent element={<components.NewMessage />} />
-            }
-          />
-          <Route
-            path="/message-list"
-            element={
-              <ProtectedRouteStudent element={<components.MessageList />} />
-            }
-          />
-          <Route
-            path="/message-list/view/:dbId"
-            element={
-              <ProtectedRouteStudent element={<components.MessageView />} />
-            }
-          />
-          <Route
-            path="/time-table"
-            element={
-              <ProtectedRouteStudent element={<components.TimeTable />} />
-            }
-          />
-          <Route path="*" element={<Navigate to="/page-not-found" />} />
-        </Routes>
-      </Suspense>
+            <Route
+              path="/complain-history"
+              element={
+                <ProtectedRouteStudent element={<components.ComplainHistory />} />
+              }
+            />
+            <Route
+              path="/raise-complain"
+              element={
+                <ProtectedRouteStudent element={<components.RaiseComplain />} />
+              }
+            />
+            <Route
+              path="/leave-request"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.LeaveRequestForm />}
+                />
+              }
+            />
+            <Route
+              path="/leave-request-list"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.LeaveRequestList />}
+                />
+              }
+            />
+            <Route
+              path="/attendance-history"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.AttendanceHistory />}
+                />
+              }
+            />
+            <Route
+              path="/class-attendance-history"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.ClassAttendanceHistory />}
+                />
+              }
+            />
+            <Route
+              path="/assignment-subject"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.AssignmentSubject />}
+                />
+              }
+            />
+            <Route
+              path="/assignment-subject/:courseId/:semesterId/:subjectId"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.AssignmentSubjectDashboard />}
+                />
+              }
+            />
+            <Route
+              path="/quiz-subject"
+              element={
+                <ProtectedRouteStudent element={<components.QuizSubject />} />
+              }
+            />
+            <Route
+              path="/quiz-subject/:courseId/:semesterId/:subjectId"
+              element={
+                <ProtectedRouteStudent
+                  element={<components.QuizSubjectDashboard />}
+                />
+              }
+            />
+            <Route
+              path="/new-message"
+              element={
+                <ProtectedRouteStudent element={<components.NewMessage />} />
+              }
+            />
+            <Route
+              path="/message-list"
+              element={
+                <ProtectedRouteStudent element={<components.MessageList />} />
+              }
+            />
+            <Route
+              path="/message-list/view/:dbId"
+              element={
+                <ProtectedRouteStudent element={<components.MessageView />} />
+              }
+            />
+            <Route
+              path="/time-table"
+              element={
+                <ProtectedRouteStudent element={<components.TimeTable />} />
+              }
+            />
+            <Route path="*" element={<Navigate to="/page-not-found" />} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 }

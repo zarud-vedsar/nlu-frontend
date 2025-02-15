@@ -104,7 +104,7 @@ function Home() {
           approved: approved,
         }));
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   // Function to handle and set error messages
@@ -468,9 +468,8 @@ function Home() {
               <div className="row mt-2 d-flex justify-content-center">
                 <div className="col-md-12">
                   <div
-                    className={`card ${
-                      lastResponse?.approved === 1 ? "success" : "danger"
-                    }`}
+                    className={`card ${lastResponse?.approved === 1 ? "success" : "danger"
+                      }`}
                   >
                     <div className="card-title d-flex justify-content-between">
                       {capitalizeFirstLetter(lastResponse?.subject)}
@@ -519,14 +518,14 @@ function Home() {
                           currentCourse?.approved == 0
                         )) ||
                         !currentCourse) && (
-                        <Link
-                          to="/student/course-selection"
-                          className="btn btn-secondary ml-2"
-                        >
-                          Course Selection{" "}
-                          <i className="fas fa-arrow-right"></i>
-                        </Link>
-                      )}
+                          <Link
+                            to="/student/course-selection"
+                            className="btn btn-secondary ml-2"
+                          >
+                            Course Selection{" "}
+                            <i className="fas fa-arrow-right"></i>
+                          </Link>
+                        )}
                     </>
                   )}
                 </div>
@@ -1028,14 +1027,14 @@ function Home() {
                           currentCourse?.approved == 0
                         )) ||
                         (!currentCourse && showCourseLink)) && (
-                        <Link
-                          to="/student/course-selection"
-                          className="btn btn-secondary ml-2"
-                        >
-                          Course Selection{" "}
-                          <i className="fas fa-arrow-right"></i>
-                        </Link>
-                      )}
+                          <Link
+                            to="/student/course-selection"
+                            className="btn btn-secondary ml-2"
+                          >
+                            Course Selection{" "}
+                            <i className="fas fa-arrow-right"></i>
+                          </Link>
+                        )}
                     </div>
                   </div>
                 </form>

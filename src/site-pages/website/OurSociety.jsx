@@ -133,19 +133,23 @@ const OurSociety = () => {
                         <div className="usefullcontainer mt-4">
                             <Slider {...sliderSettings}>
                                 {society.map((link, index) => (
-                                    <div key={index} className="slider-item">
-                                        <Link to={link.link}
-                                            className="useful-link-col shadow-none"
-                                            target={link.target}
-                                            rel="noopener noreferrer"
-                                        >
-                                            <img
-                                                className="linkiimg"
-                                                src={link?.image_file}
-                                                alt={link.title}
-                                            />
-                                            <p className="linkttx mt-3">{link.title}</p>
-                                        </Link>
+                                    <div className="row" key={index}>
+                                        <div className="col-md-12 text-center">
+                                            <div className="slider-item" style={{ display: 'flex !important' }}>
+                                                <Link to={link.link}
+                                                    className="useful-link-col shadow-none"
+                                                    target={link.target}
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <img
+                                                        className="linkiimg"
+                                                        src={link?.image_file}
+                                                        alt={link.title}
+                                                    />
+                                                    <p className="linkttx mt-3">{link.title}</p>
+                                                </Link>
+                                            </div>
+                                        </div>
                                     </div>
                                 ))}
                             </Slider>

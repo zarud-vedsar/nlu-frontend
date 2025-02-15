@@ -520,7 +520,7 @@ body {
 		display: none;
 	}
 	.mcd-menu li a strong { 
-		display: none;
+		/* display: none; */
 	}
 	.mcd-menu li a:hover strong,.mcd-menu li a.active strong {
 		display:block;

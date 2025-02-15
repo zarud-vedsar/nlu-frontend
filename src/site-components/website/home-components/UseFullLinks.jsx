@@ -98,28 +98,32 @@ const UseFullLinks = () => {
                 {usefulLinks
                   .filter((link) => link.status === 1 && link.delete_status === 0)
                   .map((link, index) => (
-                    <div key={index} className="slider-item">
-                      <a
-                        href={
-                          link.link_other_link
-                            ? link.link_other_link
-                            : `/page/${link.link_link}/${slugify(link.link_title)}`
-                        }
-                        className="useful-link-col shadow-none"
-                        target={link.target}
-                        rel="noopener noreferrer"
-                      >
-                        <img
-                          className="linkiimg"
-                          src={
-                            link?.image_file
-                              ? `${FILE_API_URL}/${link.image_file}`
-                              : defaultImage
-                          }
-                          alt={link.link_title}
-                        />
-                        <p className="linkttx mt-3">{link.link_title}</p>
-                      </a>
+                    <div className="row" key={index}>
+                      <div className="col-md-12 text-center">
+                        <div className="slider-item" style={{ display: 'flex !important' }}>
+                          <a
+                            href={
+                              link.link_other_link
+                                ? link.link_other_link
+                                : `/page/${link.link_link}/${slugify(link.link_title)}`
+                            }
+                            className="useful-link-col shadow-none"
+                            target={link.target}
+                            rel="noopener noreferrer"
+                          >
+                            <img
+                              className="linkiimg"
+                              src={
+                                link?.image_file
+                                  ? `${FILE_API_URL}/${link.image_file}`
+                                  : defaultImage
+                              }
+                              alt={link.link_title}
+                            />
+                            <p className="linkttx mt-3">{link.link_title}</p>
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   ))}
               </Slider>

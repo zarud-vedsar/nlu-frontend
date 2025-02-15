@@ -398,7 +398,7 @@ function MarkAttendanceForm() {
                         className="btn btn-dark"
                         type="submit"
                       >
-                        Load Student{" "}
+                        Fetch{" "}
                         {isSubmit && (
                           <>
                             &nbsp; <div className="loader-circle"></div>

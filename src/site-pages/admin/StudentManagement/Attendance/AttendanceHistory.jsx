@@ -58,6 +58,7 @@ function AttendanceHIstory() {
   const [filters, setFilters] = useState(initializeFilter);
  
   const [filterYear, setFilterYear] = useState(null);
+  const [dataAvailable,setDataAvailable] = useState("not fetched yet");
   /**
 * ROLE & PERMISSION
 */
@@ -73,14 +74,16 @@ function AttendanceHIstory() {
   /**
    * THE END OF ROLE & PERMISSION
    */
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const resetFilters = () => {
+    setDataAvailable("not fetched yet");
     setFilters(initializeFilter);
-    handleSubmit();
+    
+    
   };
 
   const applyFilters = () => {
@@ -329,6 +332,22 @@ function AttendanceHIstory() {
     if (e) e.preventDefault() ;
 
     setIsFetching(true);
+    if(!filters.session){
+      toast.error("Session is required");
+      return setIsFetching(false);
+    }
+    if(!filters.course_id){
+      toast.error("Course is required");
+      return setIsFetching(false);
+    }
+    if(!filters.semester_id){
+      toast.error("Semester is required");
+      return setIsFetching(false);
+    }
+    if(!filters.subject_id){
+      toast.error("Subject is required");
+      return setIsFetching(false);
+    }
 
     try {
       let bformData = new FormData();
@@ -361,12 +380,15 @@ function AttendanceHIstory() {
       if (response.data?.status === 200 && response.data.data.length > 0) {
         toast.success(response?.data?.msg);
         generateCompleteAttendance(response?.data?.data)
-
+        setDataAvailable("data fetched")
       } else {
+          setDataAvailable("data not available");
+        
         setAttendanceHistory([]);
       }
     } catch (error) {
       setAttendanceHistory([]);
+      setDataAvailable("data not available");
       if (
         error?.response?.data?.status === 400 ||
         error?.response?.data?.status === 404 ||
@@ -378,9 +400,7 @@ function AttendanceHIstory() {
       setIsFetching(false);
     }
   };
-  useEffect(() => {
-    handleSubmit();
-  }, []);
+
 
   return (
     <>
@@ -431,7 +451,7 @@ function AttendanceHIstory() {
 
             <div className="card">
               <div className="card-body">
-                {attendanceHistory.length > 0 && (
+                {attendanceHistory.length > 0 && dataAvailable === "data fetched" && (
                   <div className={`table-responsive`}>
                     {filters?.year && (
                       <>
@@ -520,15 +540,12 @@ function AttendanceHIstory() {
 
                   </div>
                 )}
-                {!(attendanceHistory && attendanceHistory.length > 0) &&
-                  (!filters.course_id || !filters.semester_id) && (
+                { dataAvailable == "not fetched yet" && (
                     <span className="text-danger">
                       Provide Session , Course , Semester , Subject And Year in filter
                     </span>
                   )}
-                {!(attendanceHistory && attendanceHistory.length > 0) &&
-                  filters.course_id &&
-                  filters.semester_id && (
+                { dataAvailable === "data not available" && (
                     <span className="text-danger">Data Not Available</span>
                   )}
               </div>
@@ -572,9 +589,11 @@ function AttendanceHIstory() {
                           />
                         </div>
 
-              <Col md={12} className="mb-3">
-                <Form.Group controlId="status">
-                  <Form.Label>Course</Form.Label>
+                        <div className="col-md-12 col-12 form-group">
+                          <label className="font-weight-semibold">
+                          Course <span className="text-danger">*</span>
+                          </label>
+              
                   <Select
                     options={courseListing.map((item) => ({
                       value: item.id,
@@ -601,11 +620,12 @@ function AttendanceHIstory() {
                         : { value: filters.course_id, label: "Select" }
                     }
                   />
-                </Form.Group>
-              </Col>
-              <Col md={12} className="mb-3">
-                <Form.Group controlId="status">
-                  <Form.Label>Semester</Form.Label>
+                </div>
+                <div className="col-md-12 col-12 form-group">
+                          <label className="font-weight-semibold">
+                          Semester <span className="text-danger">*</span>
+                          </label>
+           
                   <Select
                     options={semesterListing.map((item) => ({
                       value: item.id,
@@ -643,11 +663,11 @@ function AttendanceHIstory() {
                         }
                     }
                   />
-                </Form.Group>
-              </Col>
+                </div>
+              
               <div className="col-md-12 col-12 form-group">
                 <label className="font-weight-semibold" htmlFor="subject_id">
-                  Subject
+                  Subject  <span className="text-danger">*</span>
                 </label>
                 <Select
                   id="subject_id"
@@ -680,6 +700,26 @@ function AttendanceHIstory() {
                   }
                 />
               </div>
+              <div className="col-md-12  form-group">
+                <label className="font-weight-semibold">Select Year <span className="text-danger">*</span></label>
+                <Select
+                  options={availableYears.map((year) => ({
+                    value: year,
+                    label: year.toString(),
+                  }))}
+                  onChange={(selectedOption) => {
+                    setFilters({
+                      ...filters,
+                      year: selectedOption.value,
+                    });
+                  }}
+                  value={
+                    availableYears.includes(filters?.year)
+                      ? { value: filters?.year, label: filters?.year.toString() }
+                      : { value: "", label: "Select" }
+                  }
+                />
+              </div>
               <div className="col-md-12 form-group">
                 <label className="font-weight-semibold">Select Student</label>
                 <Select
@@ -704,26 +744,7 @@ function AttendanceHIstory() {
                 />
               </div>
               
-              <div className="col-md-12  form-group">
-                <label className="font-weight-semibold">Select Year</label>
-                <Select
-                  options={availableYears.map((year) => ({
-                    value: year,
-                    label: year.toString(),
-                  }))}
-                  onChange={(selectedOption) => {
-                    setFilters({
-                      ...filters,
-                      year: selectedOption.value,
-                    });
-                  }}
-                  value={
-                    availableYears.includes(filters?.year)
-                      ? { value: filters?.year, label: filters?.year.toString() }
-                      : { value: "", label: "Select" }
-                  }
-                />
-              </div>
+             
               <div className="col-md-12  form-group">
                 <label className="font-weight-semibold">Select Month</label>
                 <Select

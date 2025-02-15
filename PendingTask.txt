@@ -1,16 +1,14 @@
-Dilsad ------
-4. go back and listing button in every page (2. add go back button in exam paper form and add question form)
 
 
 Today -------- 4 issue done 
-
 10. session wise student fetching dropdown
-
 11. Excel sheet in attendance chart 
-13.fixed book catalogue in student 
 
 
-
+------------Testing Changes Exam Module ----------
+1. auto redirecting add question page after save exam paper
+3. faculty only allowed to see exam paper 
+1. Validation of vacancy in hostel in room assignment 
 
 --------8 February --------
 1. 3 paper addition in each created exam 
@@ -18,15 +16,11 @@ Today -------- 4 issue done
 3. Marks upload should be single time and can be edited within 24hr after that edit is required and history will be created for the edit for proper reasoning 
 7. Sidebar Option Rearrange
 
-------------Testing Changes Exam Module ----------
-1. auto redirecting add question page after save exam paper
-3. faculty only allowed to see exam paper 
-1. Validation of vacancy in hostel in room assignment 
+
 
 
 
 -------issue list------
-7. add label and export attendance history
 8. class should not editable after 24hr , if they what to edit they required permission
 
 

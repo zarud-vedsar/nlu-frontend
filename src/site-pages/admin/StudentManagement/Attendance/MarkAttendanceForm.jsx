@@ -599,7 +599,7 @@ function MarkAttendanceForm() {
                               className="btn btn-dark  d-flex justify-content-center align-items-center"
                               type="submit"
                             >
-                              Load{" "}
+                              Fetch{" "}
                             </button>
                           ) : (
                             <button

@@ -195,7 +195,7 @@ function LeaveRequestForm() {
                       </label>
 
                       <Select
-                        options={["halfday", "fullday"].map((item) => ({
+                        options={["halfday", "fullday","internship leave"].map((item) => ({
                           value: item,
                           label: capitalizeFirstLetter(item),
                         }))}

@@ -589,6 +589,9 @@ const Book = () => {
                       <Column field="isbn_no" header="ISBN Number" sortable />
                       <Column field="qty" header="Quantity" sortable />
                       <Column field="price" header="Price" sortable />
+                      <Column field="block" header="Block" sortable />
+                      <Column field="section" header="Section" sortable />
+                      <Column field="row" header="Row" sortable />
                       <Column
                         header="Upload PDF"
                         body={(rowData) => (
@@ -684,7 +687,7 @@ const Book = () => {
                             )}
                           </div>
                         )}
-                        sortable
+                        
                       />
                     </DataTable>
                   </div>

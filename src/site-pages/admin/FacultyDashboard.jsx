@@ -69,29 +69,15 @@ const PieChart = ({ dataValues }) => {
 };
 
 const FacultyDashboard = () => {
-  //   const [session, setSession] = useState(); // Session data: the fuel for exams.
   const [data, setData] = useState([]);
 
-  // const sessionListDropdown = async () => {
-  //     try {
-  //       const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
-  //         status: 1,
-  //         column: "id, dtitle",
-  //       });
-  //       data?.statusCode === 200 && data.data.length
-  //         ? setSession(data.data)
-  //         : (toast.error("Session not found."), setSession([]));
-  //     } catch {
-  //       setSession([]);
-  //     }
-  //   };
 
-  const [isFetching, setIsFetching] = useState(false);
+
 
   const [loading, setLoading] = useState();
   const [facultyListing, setFacultyListing] = useState([]);
   const [facultyId, setFacultyId] = useState(
-    secureLocalStorage.getItem("login_id")
+    null
   );
   const loadFacultyData = async () => {
     setLoading(true);
@@ -135,8 +121,10 @@ const FacultyDashboard = () => {
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
       bformData.append("session", localStorage.getItem("session"));
       bformData.append("data", "faculty_dashboard");
-
+      
+      if(facultyId){
       bformData.append("faculty_id", facultyId);
+      }
 
       const response = await axios.post(
         `${PHP_API_URL}/dashboard.php`,
@@ -525,7 +513,7 @@ const FacultyDashboard = () => {
                       {scheduleClass &&
                         scheduleClass?.length > 0 &&
                         scheduleClass.map((data, index) => (
-                          <tr>
+                          <tr key={index}>
                             <td>{capitalizeFirstLetter(data?.course)}</td>
                             <td>{capitalizeFirstLetter(data?.semester)}</td>
                             <td>{capitalizeFirstLetter(data?.subject)}</td>
@@ -606,7 +594,7 @@ const FacultyDashboard = () => {
                         <tbody>
                           {pendingAssignment?.length > 0 ? (
                             pendingAssignment.map((data, index) => (
-                              <tr>
+                              <tr key={index}>
                                 <td>{capitalizeFirstLetter(data?.course)}</td>
                                 <td>{capitalizeFirstLetter(data?.semester)}</td>
                                 <td>{capitalizeFirstLetter(data?.subject)}</td>

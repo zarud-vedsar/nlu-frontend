@@ -23,9 +23,8 @@ const AddBook = () => {
   const [errorMessage, setErrorMessage] = useState();
   const [subjectList, setSubjectList] = useState([]);
   const [subject, setSubject] = useState({});
-  const [isFetching, setIsFetching] = useState(false);
   const [isbnValid, setIsbnValid] = useState(false);
-
+const qtyRef = useRef(null);
   // Jodit editor configuration
   const config = {
     readonly: false,
@@ -44,7 +43,7 @@ const AddBook = () => {
   useEffect(() => {
     fetchSubject();
     if (id) {
-      getFacultyDetail();
+      getBookDetailById();
     }
   }, []);
 
@@ -75,8 +74,7 @@ const AddBook = () => {
   };
 
   const initialization = {
-    user_update_id: "",
-    user_updateu_id: "",
+   
     image: "",
     des: "",
     qty: "",
@@ -118,12 +116,12 @@ const AddBook = () => {
       });
       const result = res.data.data;
       if (res?.data?.status == 200) {
+        console.log(res)
         setFormData({
-          user_update_id: result[0].id,
-          user_updateu_id: result[0]?.uid,
+          
           image: result[0]?.image,
           des: result[0]?.des ? validator.unescape(result[0]?.des) : "",
-          qty: result[0]?.qty,
+          qty: 0,
           price: result[0]?.price,
           language: result[0]?.language,
           number_of_pages: result[0]?.number_of_pages,
@@ -148,6 +146,9 @@ const AddBook = () => {
           setSubject(selSubject);
         }
         setIsbnValid(true);
+        if (qtyRef.current) {
+          qtyRef.current.focus();
+        }
       }
     } catch (error) {
       setFormData((pre) => ({
@@ -160,7 +161,7 @@ const AddBook = () => {
     }
   };
 
-  const getFacultyDetail = async () => {
+  const getBookDetailById = async () => {
     try {
       const bformData = new FormData();
       bformData.append("data", "getBookById");
@@ -175,8 +176,7 @@ const AddBook = () => {
       });
       const result = res.data.data;
       setFormData({
-        user_update_id: result[0].id,
-        user_updateu_id: result[0]?.uid,
+       
         image: result[0]?.image,
         des: result[0]?.des ? validator.unescape(result[0]?.des) : "",
         qty: result[0]?.qty,
@@ -561,6 +561,8 @@ const AddBook = () => {
                           className="form-control"
                           name="qty"
                           value={formData.qty}
+                          ref={qtyRef}
+                          
                           onChange={handleChange}
                         />
                         {errorKey === ".qty" && (

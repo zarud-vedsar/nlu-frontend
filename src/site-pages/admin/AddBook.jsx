@@ -11,7 +11,6 @@ import Select from "react-select";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
-import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { dataFetchingPost } from "../../site-components/Helper/HelperFunction";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
@@ -22,7 +21,7 @@ const AddBook = () => {
   const [errorKey, setErrorKey] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const [subjectList, setSubjectList] = useState([]);
-  const [subject, setSubject] = useState({});
+  const [subject, setSubject] = useState({value:"",label:"Select Subject"});
   const [isbnValid, setIsbnValid] = useState(false);
 const qtyRef = useRef(null);
   // Jodit editor configuration
@@ -49,19 +48,18 @@ const qtyRef = useRef(null);
 
   const fetchSubject = async (deleteStatus = 0) => {
     try {
+      const bformData = new FormData();
+      bformData.append("data","load_subjects");
       const response = await dataFetchingPost(
-        `${NODE_API_URL}/api/subject/fetch`,
-        {
-          deleteStatus,
-          column:
-            "id, subname, subcode, created_at, status, deleted_at, deleteStatus",
-        }
+        `${PHP_API_URL}/lib_books.php`,
+        bformData,
       );
-      if (response?.statusCode === 200 && response.data.length > 0) {
-        
+      
+      if (response?.status === 200 && response?.data?.length > 0) {
+       
         const tempSubjectList = response.data.map((subject) => ({
           value: subject.id,
-          label: subject.subname,
+          label: subject.subject,
         }));
         setSubjectList(tempSubjectList);
       } else {
@@ -116,7 +114,7 @@ const qtyRef = useRef(null);
       });
       const result = res.data.data;
       if (res?.data?.status == 200) {
-        console.log(res)
+        
         setFormData({
           
           image: result[0]?.image,
@@ -139,12 +137,7 @@ const qtyRef = useRef(null);
           row: result[0]?.row || "",
         });
         setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
-        const selSubject = subjectList?.find(
-          (sub) => sub.value === result[0].subject_id
-        );
-        if (selSubject) {
-          setSubject(selSubject);
-        }
+        
         setIsbnValid(true);
         if (qtyRef.current) {
           qtyRef.current.focus();
@@ -160,6 +153,15 @@ const qtyRef = useRef(null);
       setIsbnValid(false);
     }
   };
+
+  useEffect(()=>{
+    const selSubject = subjectList?.find(
+      (sub) => sub.value === formData.subject_id
+    );
+    if (selSubject) {
+      setSubject(selSubject);
+    }
+  },[formData])
 
   const getBookDetailById = async () => {
     try {
@@ -198,12 +200,7 @@ const qtyRef = useRef(null);
       });
       
       setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
-      const selSubject = subjectList?.find(
-        (sub) => sub.value === result[0].subject_id
-      );
-      if (selSubject) {
-        setSubject(selSubject);
-      }
+     
     } catch (error) {
      
     }
@@ -225,18 +222,22 @@ const qtyRef = useRef(null);
     if (formData.isbn_no == "") {
       setErrorMessage("Please enter ISBN number");
       setErrorKey(".isbn_no");
+      toast.error("Please enter ISBN number")
       isValid = false;
     } else if (formData.book_name == "") {
       setErrorMessage("Please enter book name");
       setErrorKey(".book_name");
+      toast.error("Please enter book name")
       isValid = false;
     } else if (formData.qty == "" || formData.qty < 1) {
       setErrorMessage("Quantity must be greater than and equal to 1");
       setErrorKey(".qty");
+      toast.error("Quantity must be greater than and equal to 1")
       isValid = false;
     } else if (formData.price == "" || formData.price < 0) {
       setErrorMessage("Price valid price");
       setErrorKey(".price");
+      toast.error("Price valid price")
       isValid = false;
     }
 
@@ -298,7 +299,7 @@ const qtyRef = useRef(null);
       }
     }
   };
-
+ 
   const updateSubject = (e) => {
     setSubject(e);
     setFormData((prevState) => ({
@@ -651,7 +652,7 @@ const qtyRef = useRef(null);
                           Subject 
                         </label>
                         <Select
-                          value={subject}
+                          value={subject }
                           options={subjectList}
                           onChange={updateSubject}
                           disabled={isbnValid}

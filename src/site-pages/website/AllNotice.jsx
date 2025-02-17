@@ -87,19 +87,19 @@ const AllNotice = () => {
                   {/* Dynamically map over AllNotice array */}
                   {AllNotice.map((notice, index) => (
                     <div key={index} className="noricerow">
-                    
+
                       <div className='noticecontent'>
-                      <span className='ccntn'>{`${index + 1}`}</span>
-                          <Link to={`/notice-details/${notice.notice_type}`}>
-                            {notice.title}
-                          </Link>
+                        <span className='ccntn'>{`${index + 1}`}</span>
+                        <Link to={`/notice-details/${notice.notice_type}`}>
+                          {notice.title}
+                        </Link>
                       </div>
                       <div className='noticeftr'>
                         <div className="dateon">
                           Updated on: {new Date(notice.notice_date).toLocaleDateString()}
                         </div>
                         <div>
-                          <Link to={`/notice-details/${notice.notice_type}`} className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more" style={{ fontWeight: "bold" }}>
+                          <Link to={`/notice-details/${notice.id}`} className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more" style={{ fontWeight: "bold" }}>
                             Read More&nbsp;<i className="fa fa-arrow-right" />
                           </Link>
                         </div>

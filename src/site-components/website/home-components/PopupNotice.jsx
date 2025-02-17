@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { dataFetchingPost } from "../../Helper/HelperFunction";
 import { NODE_API_URL } from "../../Helper/Constant";
-import { Link } from "react-router-dom";
-import { right } from "@popperjs/core";
 import { FaArrowRightLong } from "react-icons/fa6";
 import logo from '../assets/Images/rpnlu.png';
-
+import validator from 'validator';
 const PopupNotice = () => {
   const [modalShow, setModalShow] = useState(false);
   const [data, setData] = useState([]);
@@ -20,9 +18,7 @@ const PopupNotice = () => {
 
   const fetchPopupNotice = async () => {
     try {
-      const response = await dataFetchingPost(
-        `${NODE_API_URL}/api/popup-notice/fetch`
-      );
+      const response = await dataFetchingPost(`${NODE_API_URL}/api/popup-notice/fetch`, { status: 1, deleteStatus: 0 });
       if (response?.statusCode === 200 && response.data.length > 0) {
         setData(response.data);
       } else {
@@ -73,7 +69,7 @@ const PopupNotice = () => {
                     <tr key={index}>
                       <th><strong>{index + 1}</strong></th>
                       <td className="text-start">
-                        {data.title}
+                        {data?.title ? validator.unescape(validator.unescape(data?.title)) : ''}
                       </td>
                       <td className="text-end" style={{ verticalAlign: 'middle' }}>
                         <a

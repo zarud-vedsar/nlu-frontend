@@ -262,7 +262,6 @@ const FacultyDashboard = () => {
     { length: 10 },
     (_, index) => currentYear - index
   );
-
   useEffect(() => {
     getAdminDashboardData(selectedYear); // Fetch product data based on selected year
   }, [selectedYear]);

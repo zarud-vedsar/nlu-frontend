@@ -56,7 +56,6 @@ const EmailStatus = async (dbId) => {
         error?.message ||
         "An error occurred. Please try again later.";
       toast.error(errorMessage);
-      console.log("Error occurred:", error); // Log full error details
     }
   };
 

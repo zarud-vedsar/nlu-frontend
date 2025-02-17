@@ -137,8 +137,8 @@ function NewApplication() {
                   <a href="./" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" /> Dashboard
                   </a>
-                  <span className="breadcrumb-item">Application</span>
-                  <span className="breadcrumb-item active">
+                  <span className="breadcrumb-item active">Student Management</span>
+                  <span className="breadcrumb-item ">
                     Applications List
                   </span>
                 </nav>

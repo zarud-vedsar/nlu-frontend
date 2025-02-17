@@ -199,11 +199,9 @@ function CourseSelection() {
         number++; 
 
         semester = `${parts[0]} ${number}`; 
-        console.log(semester)
           let updatedSemester = semesterListing.find( 
           (item) => item.semtitle.toLowerCase() === semester 
         ) || tempSelectedSemester;
-        console.log(updatedSemester.id)
         setFormData((prev)=>({...prev,...newSemeterData,semesterid:updatedSemester.id})) 
         setSelectedSemester(updatedSemester.semtitle.toLowerCase());
       }
@@ -229,7 +227,6 @@ function CourseSelection() {
     getStudentSelectedCourse();
   }, []);
   const fetchSemesterBasedOnCourse = async (courseid) => {
-    console.log(courseid)
     if (
       !courseid ||
       !Number.isInteger(parseInt(courseid, 10)) ||

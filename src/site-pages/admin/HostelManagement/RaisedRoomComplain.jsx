@@ -59,9 +59,28 @@ function RaisedRoomComplain() {
   const [courseListing, setCourseListing] = useState([]);
   const [semesterListing, setSemesterListing] = useState([]);
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
+
+  const formatDateForMonth = (date) => {
+    return new Intl.DateTimeFormat("en-CA", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(date);
+  };
+  
+    
+  const getFirstDayOfMonth = () => {
+    const now = new Date();
+    return formatDateForMonth(new Date(now.getFullYear(), now.getMonth(), 1));
+  };
+  
+  const getLastDayOfMonth = () => {
+    const now = new Date();
+    return formatDateForMonth(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+  };
   const [formData, setFormData] = useState({
-    startDate: "",
-    endDate: "",
+    startDate: getFirstDayOfMonth(),
+    endDate: getLastDayOfMonth(),
     studentId: "",
   });
 
@@ -158,7 +177,6 @@ function RaisedRoomComplain() {
         `${NODE_API_URL}/api/student-detail/get-student`,
         {session:session}
       );
-      console.log(response);
       if (
         response?.data?.statusCode === 200 &&
         response?.data?.data.length > 0
@@ -169,7 +187,6 @@ function RaisedRoomComplain() {
         setStudentListing([]);
       }
     } catch (error) {
-      console.log(error);
       setStudentListing([]);
     }
   };

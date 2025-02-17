@@ -153,7 +153,6 @@ function LmsSubjectDashboard() {
     useEffect(() => {
         FetchVideoById(videoId);
     }, [videoId]);
-    console.log(videos)
     const getSubject = async (subjectId) => {
         
         try { 
@@ -308,7 +307,6 @@ function LmsSubjectDashboard() {
                                 { 
                                     topicList && (  
                                         <>
-                                        {console.log(topicList[0]?.thumbnail)}
                                             <img src={topicList[0]?.thumbnail ? topicList[0]?.thumbnail : TopicPng} className='col-12 p-0 mb-2' style={{ maxHeight: '200px' }} />
                                             <h2 className='font-15 h6_new'>{capitalizeFirstLetter(topicList?.[0]?.topic_name) || "No topic available"}</h2>
                                         </>

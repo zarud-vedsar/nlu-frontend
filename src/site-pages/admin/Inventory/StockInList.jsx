@@ -135,7 +135,6 @@ function ProductList() {
       }
     } catch (error) {
       setProductList([]);
-      console.log(error);
 
       const statusCode = error?.statusCode;
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -170,7 +169,7 @@ function ProductList() {
                   </a>
                   <span className="breadcrumb-item">Inventory Management</span>
                   <span className="breadcrumb-item active">
-                    Stock In History
+                    Stock In 
                   </span>
                 </nav>
               </div>

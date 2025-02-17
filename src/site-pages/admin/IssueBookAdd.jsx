@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { PHP_API_URL, NODE_API_URL } from "../../site-components/Helper/Constant";
+import {
+  PHP_API_URL,
+  NODE_API_URL,
+} from "../../site-components/Helper/Constant";
 import { toast, ToastContainer } from "react-toastify";
 import Select from "react-select";
 
@@ -30,9 +33,9 @@ const IssueBookAdd = () => {
       let session = localStorage.getItem("session");
       const response = await axios.post(
         `${NODE_API_URL}/api/student-detail/get-student`,
-        {session:session}
+        { session: session }
       );
-      
+
       if (
         response?.data?.statusCode === 200 &&
         response?.data?.data.length > 0
@@ -43,7 +46,6 @@ const IssueBookAdd = () => {
         setStudentListing([]);
       }
     } catch (error) {
-      console.log(error);
       setStudentListing([]);
     }
   };
@@ -104,7 +106,6 @@ const IssueBookAdd = () => {
 
       let isValid = true;
       const booklist = issueBookList;
-      console.log(booklist);
 
       if (!issue.student_id) {
         setErrorMessage("Please select student");
@@ -132,9 +133,7 @@ const IssueBookAdd = () => {
         });
       }
 
-      if (!isValid) {
-        console.log("Form contains errors. Please correct them and try again.");
-      } else {
+      if (isValid) {
         setErrorMessage("");
         setErrorKey("");
       }
@@ -147,7 +146,6 @@ const IssueBookAdd = () => {
         bformData.append("duration", librarySetting?.issue_duration);
 
         const resArray = convertToStructuredArray(issueBookList);
-        console.log(resArray);
 
         Object.keys(resArray).forEach((key) => {
           const value = resArray[key];
@@ -161,9 +159,7 @@ const IssueBookAdd = () => {
           bformData.append(key, value);
         });
 
-        for (let [key, value] of bformData) {
-          console.log(key, value);
-        }
+       
 
         const response = await axios.post(
           `${PHP_API_URL}/lib_books.php`,
@@ -298,8 +294,6 @@ const IssueBookAdd = () => {
 
   const addMoreField = (e) => {
     e.preventDefault();
-    console.log(issueBookList.length + stdBookIssueCount);
-    console.log(librarySetting);
     if (issueBookList.length + stdBookIssueCount >= librarySetting?.max_issue) {
       toast.error("Max limit allowed cross");
       return;
@@ -338,7 +332,6 @@ const IssueBookAdd = () => {
     }
   };
   const getStudentDetail = async (studentId) => {
-    console.log(studentId);
     if (studentId) {
       setIsStudentId(true);
       await getLibrarySetting();
@@ -373,7 +366,6 @@ const IssueBookAdd = () => {
           issue_books_no: issue_no,
         }));
       }
-
     } catch (error) {
       const status = error.response?.data?.status;
 
@@ -485,8 +477,7 @@ const IssueBookAdd = () => {
                         className="font-weight-semibold"
                         htmlFor="student_id"
                       >
-
-                        Select Student  <span className="text-danger">*</span>
+                        Select Student <span className="text-danger">*</span>
                       </label>
                       <Select
                         options={
@@ -500,25 +491,30 @@ const IssueBookAdd = () => {
                             ...issue,
                             student_id: selectedOption.value,
                           });
-                          getStudentDetail(selectedOption.value)
+                          getStudentDetail(selectedOption.value);
                         }}
                         value={
                           issue.student_id
                             ? {
-                              value: issue.student_id,
-                              label: studentListing?.find(
-                                (student) => student.id === issue.student_id
-                              )
-                                ? `${studentListing.find(
+                                value: issue.student_id,
+                                label: studentListing?.find(
                                   (student) => student.id === issue.student_id
-                                )?.sname} (${studentListing.find(
-                                  (student) => student.id === issue.student_id
-                                )?.enrollmentNo})`
-                                : "Select",
-                            }
+                                )
+                                  ? `${
+                                      studentListing.find(
+                                        (student) =>
+                                          student.id === issue.student_id
+                                      )?.sname
+                                    } (${
+                                      studentListing.find(
+                                        (student) =>
+                                          student.id === issue.student_id
+                                      )?.enrollmentNo
+                                    })`
+                                  : "Select",
+                              }
                             : { value: "", label: "Select" }
                         }
-
                       />
 
                       {errorKey === ".student_id" && (
@@ -588,7 +584,9 @@ const IssueBookAdd = () => {
                             className="form-control"
                             name="isbn_no"
                             value={formData.isbn_no}
-                            onChange={(event) => handleInputChange(index, event)}
+                            onChange={(event) =>
+                              handleInputChange(index, event)
+                            }
                             onKeyDown={(e) => {
                               if (e.key === "Enter") {
                                 e.preventDefault(); // Prevent Enter key inside the form
@@ -602,11 +600,7 @@ const IssueBookAdd = () => {
                               setFetchBook(false);
                             }}
                           />
-                          {
-                            FetchBook && (
-                              <div className="loader-circle"></div>
-                            )
-                          }
+                          {FetchBook && <div className="loader-circle"></div>}
                         </div>
                         {errorKey === ".isbn_no" && (
                           <span className="text-danger">{errorMessage}</span>

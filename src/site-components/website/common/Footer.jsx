@@ -32,7 +32,6 @@ const Footer = () => {
     try {
       const response = await axios.post(`${NODE_API_URL}/api/visitor-website/show`);
       setVisitorData(response.data);
-      // console.log(response.data)
 
     } catch (error) {
       console.error("Error occurred:", error.response ? error.response.data : error.message);
@@ -48,7 +47,6 @@ const Footer = () => {
         `${PHP_API_URL}/sitesetting.php`,
         bformData);
       setIconLink(response.data.data[0]);
-      // console.log(response.data.data[0]);
     } catch (error) {
       console.error("Error occurred:");
     }

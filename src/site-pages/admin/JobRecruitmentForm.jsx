@@ -44,14 +44,14 @@ const JobRecruitmentForm = () => {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: "",
     spellcheck: true,
-    language: 'pt_br',
-    defaultMode: '1',
+    language: "pt_br",
+    defaultMode: "1",
     minHeight: 400,
     maxHeight: -1,
-    defaultActionOnPaste: 'insert_as_html',
-    defaultActionOnPasteFromWord: 'insert_as_html',
+    defaultActionOnPaste: "insert_as_html",
+    defaultActionOnPasteFromWord: "insert_as_html",
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
   };
@@ -62,7 +62,6 @@ const JobRecruitmentForm = () => {
     }));
   };
   const updateJobType = (e) => {
-
     setFormData((prevState) => ({
       ...prevState,
       job_type: e.value,
@@ -70,7 +69,6 @@ const JobRecruitmentForm = () => {
   };
 
   const updateMinExp = (e) => {
-
     setFormData((prevState) => ({
       ...prevState,
       job_experience: e.value,
@@ -100,7 +98,6 @@ const JobRecruitmentForm = () => {
       setCategory(tempCat);
     } catch (error) {
       setCategory([]);
-      console.error("Error fetching  data:", error);
     } finally {
       setLoading(false);
     }
@@ -128,7 +125,6 @@ const JobRecruitmentForm = () => {
       setJobTypes(tempCat);
     } catch (error) {
       setJobTypes([]);
-      console.error("Error fetching  data:", error);
     } finally {
       setLoading(false);
     }
@@ -156,7 +152,6 @@ const JobRecruitmentForm = () => {
       setMinExperienceList(tempCat);
     } catch (error) {
       setMinExperienceList([]);
-      console.error("Error fetching  data:", error);
     } finally {
       setLoading(false);
     }
@@ -188,7 +183,6 @@ const JobRecruitmentForm = () => {
           },
         }
       );
-      console.log(result);
 
       const updatedFormData = {
         updateid: id,
@@ -206,14 +200,12 @@ const JobRecruitmentForm = () => {
         education_level: result?.data?.data[0]?.education_level,
         salary_starting: result?.data?.data[0]?.salary_starting,
         salary_to: result?.data?.data[0]?.salary_to,
-        description: validator.unescape(result?.data?.data[0]?.description || ""),
+        description: validator.unescape(
+          result?.data?.data[0]?.description || ""
+        ),
       };
       setFormData((prev) => ({ ...prev, ...updatedFormData }));
-
-
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const handleChange = async (e) => {
@@ -290,9 +282,7 @@ const JobRecruitmentForm = () => {
       isValid = false;
     }
 
-    if (!isValid) {
-      console.log("Form contains errors. Please correct them and try again.");
-    } else {
+    if (isValid) {
       setErrorMessage("");
       setErrorKey("");
     }
@@ -302,7 +292,6 @@ const JobRecruitmentForm = () => {
       Object.keys(formData).forEach((key) => {
         const value = formData[key];
         bformData.append(key, value);
-        console.log(key, value);
       });
       // bformData.append("description", formData["description"]);
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
@@ -329,7 +318,6 @@ const JobRecruitmentForm = () => {
           toast.error("An error occurred. Please try again.");
         }
       } catch (error) {
-        console.error("Error:", error);
         const status = error.response?.data?.status;
 
         if (status === 500) {
@@ -647,11 +635,14 @@ const JobRecruitmentForm = () => {
                       )}
                     </div>
                     <div className="form-group col-md-12">
-
-
-                      <div className='col-md-12 px-0'>
-                        <label className='font-weight-semibold'>Description</label>
-                        <textarea id="editor1" name="description">{formData.description && validator.unescape(formData.description)}</textarea>
+                      <div className="col-md-12 px-0">
+                        <label className="font-weight-semibold">
+                          Description
+                        </label>
+                        <textarea id="editor1" name="description">
+                          {formData.description &&
+                            validator.unescape(formData.description)}
+                        </textarea>
                       </div>
                     </div>
 

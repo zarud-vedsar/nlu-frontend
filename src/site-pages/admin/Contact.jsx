@@ -36,7 +36,7 @@ import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 
 const formatDate = (date) => {
-  console.log(date);
+  
   const d = new Date(date);
   const day = String(d.getDate()).padStart(2, "0");
   const month = String(d.getMonth() + 1).padStart(2, "0");
@@ -73,7 +73,7 @@ const Contact = () => {
       }));
     };
     const applyFilters = () => {
-      console.log(filters)
+      
       load_vendor(filters);
       handleClose();
     };
@@ -117,11 +117,10 @@ const Contact = () => {
           },
         }
       );
-      console.log(response);
+      
       setMessages(response.data.data);
     } catch (error) {
       setMessages([]);
-      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }
@@ -151,13 +150,12 @@ const Contact = () => {
           },
         }
       );
-      console.log(response);
+      
       if(response?.data?.status===200){
       setMessages(response.data.data);
       }
     } catch (error) {
       setMessages([])
-      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }

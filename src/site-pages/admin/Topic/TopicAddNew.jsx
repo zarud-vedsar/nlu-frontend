@@ -40,7 +40,7 @@ function TopicAddNew() {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter your description here...',
     spellcheck: true,
     language: 'pt_br',
     defaultMode: '1',
@@ -314,7 +314,7 @@ function TopicAddNew() {
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2">
+            <div className="card bg-transparent mb-2 col-md-10 m-auto">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">
                   {topicId ? "Update Topic" : "Add New Topic"}
@@ -469,6 +469,7 @@ function TopicAddNew() {
                             className="form-control"
                             name="title"
                             value={formData.topic_name}
+                            placeholder="Enter Topic Name"
                             onChange={(e) => {
                               setFormData({
                                 ...formData,
@@ -507,6 +508,7 @@ function TopicAddNew() {
                           <JoditEditor
                             value={formData?.description ? validator.unescape(formData.description) : ""}
                             config={config}
+                            
                             onBlur={handleEditorChange}
                           />
                         </div>

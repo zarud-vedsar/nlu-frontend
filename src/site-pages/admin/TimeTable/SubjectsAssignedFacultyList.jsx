@@ -83,7 +83,6 @@ function SemesterSubjectList() {
           },
         }
       );
-      console.log(response);
       // Assuming response.data.data contains the faculty data
       setFacultyListing(response.data.data);
     } catch (error) {
@@ -211,12 +210,10 @@ function SemesterSubjectList() {
     }
 
     try {
-      console.log(payload);
       const response = await dataFetchingPost(
         `${NODE_API_URL}/api/time-table/table-chart/assigned-faculty-list`,
         payload
       );
-      console.log(response);
       if (response?.statusCode === 200 && response.data.length > 0) {
         setSemesterSubjectListing(response.data);
       } else {
@@ -296,7 +293,7 @@ function SemesterSubjectList() {
               <div className="card-body">
                 {/* Search Box */}
                 <div className="row">
-                  <div className="col-md-7 col-lg-7 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                  <div className="col-md-10 col-lg-10 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
                     <div className="search-icon">
                       <i className="pi pi-search" />
                     </div>

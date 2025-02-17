@@ -52,12 +52,10 @@ const PlacementViewpage = () => {
         }
       );
       if (response?.data?.status === 200 || response?.data?.status === 201) {
-        console.log(response?.data?.data[0]);
         setDetail(response?.data?.data[0]);
         decodeHtml(response?.data?.data[0].description);
       }
     } catch (error) {
-      console.log(error);
     }
   };
 

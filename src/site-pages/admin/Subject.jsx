@@ -184,7 +184,6 @@ function Subject() {
             const response = await dataFetchingPost(`${NODE_API_URL}/api/subject/fetch`,
                 { dbId: dbId }
             );
-            console.log(response);
 
             if (response?.statusCode === 200 && response.data.length > 0) {
                 toast.success(response.message);

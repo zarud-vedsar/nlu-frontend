@@ -100,7 +100,7 @@ function CourseAdd() {
         `${NODE_API_URL}/api/course/fetch`,
         { dbId: courseId }
       );
-      console.log(response);
+      
       if (response?.statusCode === 200 && response.data.length > 0) {
         toast.success(response.message);
         setFormData((prev) => ({
@@ -128,7 +128,7 @@ function CourseAdd() {
         toast.error("Data not found.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -383,6 +383,7 @@ function CourseAdd() {
                       label="Course Code"
                       name="coursecode"
                       id="coursecode"
+                      placeholder="012345"
                       value={formData.coursecode}
                       onChange={handleChange}
                       column="col-md-4"
@@ -395,6 +396,7 @@ function CourseAdd() {
                       label="Course Name"
                       name="coursename"
                       id="coursename"
+                      placeholder="Enter Course Name"
                       value={formData.coursename}
                       onChange={handleChange}
                       column="col-md-4"
@@ -562,6 +564,7 @@ function CourseAdd() {
                       label="Short Description (Max 15 words)"
                       name="short_description"
                       id="short_description"
+                      placeholder="Enter your short description"
                       required={true}
                       value={formData.short_description}
                       onChange={handleChange}
@@ -573,7 +576,9 @@ function CourseAdd() {
                       <label className='font-weight-semibold'>Description</label>
                       <JoditEditor
                         value={formData?.description || ''}
-                        config={config}
+                        config={{config,
+                          placeholder: 'Enter your description here...'
+                        }}
                         onBlur={handleEditorChange}
                       />
                     </div>

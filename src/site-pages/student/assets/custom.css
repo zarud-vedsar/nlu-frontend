@@ -469,7 +469,7 @@ position: relative;
     border-radius: 5px;
     margin-bottom: 10px;
   }
-  .id-dsh-text h4, .id-dsh-text p {
+  .id-dsh-text h4,h6, .id-dsh-text p {
     color: white;
   }
 
@@ -535,7 +535,7 @@ position: relative;
     position: absolute;
     right: 0;
     top: 0;
-    height: 119px;
+    height: 148.7px;
     border-radius: 0px 4px 4px 0px;
 }
 .id-text-dark{

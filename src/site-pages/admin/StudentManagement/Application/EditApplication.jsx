@@ -38,7 +38,7 @@ const EditApplication = () => {
   const [trigger, setTrigger] = useState(false); // Boolean to trigger re-render
 
     const update = () => {
-        console.log('Update function called');
+        
         setTrigger(prev => !prev); 
     };
 

@@ -11,7 +11,6 @@ import Select from "react-select";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
-import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { dataFetchingPost } from "../../site-components/Helper/HelperFunction";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
@@ -22,10 +21,9 @@ const AddBook = () => {
   const [errorKey, setErrorKey] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const [subjectList, setSubjectList] = useState([]);
-  const [subject, setSubject] = useState({});
-  const [isFetching, setIsFetching] = useState(false);
+  const [subject, setSubject] = useState({value:"",label:"Select Subject"});
   const [isbnValid, setIsbnValid] = useState(false);
-
+const qtyRef = useRef(null);
   // Jodit editor configuration
   const config = {
     readonly: false,
@@ -44,25 +42,24 @@ const AddBook = () => {
   useEffect(() => {
     fetchSubject();
     if (id) {
-      getFacultyDetail();
+      getBookDetailById();
     }
   }, []);
 
   const fetchSubject = async (deleteStatus = 0) => {
     try {
+      const bformData = new FormData();
+      bformData.append("data","load_subjects");
       const response = await dataFetchingPost(
-        `${NODE_API_URL}/api/subject/fetch`,
-        {
-          deleteStatus,
-          column:
-            "id, subname, subcode, created_at, status, deleted_at, deleteStatus",
-        }
+        `${PHP_API_URL}/lib_books.php`,
+        bformData,
       );
-      if (response?.statusCode === 200 && response.data.length > 0) {
-        console.log(response);
+      
+      if (response?.status === 200 && response?.data?.length > 0) {
+       
         const tempSubjectList = response.data.map((subject) => ({
           value: subject.id,
-          label: subject.subname,
+          label: subject.subject,
         }));
         setSubjectList(tempSubjectList);
       } else {
@@ -75,8 +72,7 @@ const AddBook = () => {
   };
 
   const initialization = {
-    user_update_id: "",
-    user_updateu_id: "",
+   
     image: "",
     des: "",
     qty: "",
@@ -118,12 +114,12 @@ const AddBook = () => {
       });
       const result = res.data.data;
       if (res?.data?.status == 200) {
+        
         setFormData({
-          user_update_id: result[0].id,
-          user_updateu_id: result[0]?.uid,
+          
           image: result[0]?.image,
           des: result[0]?.des ? validator.unescape(result[0]?.des) : "",
-          qty: result[0]?.qty,
+          qty: 0,
           price: result[0]?.price,
           language: result[0]?.language,
           number_of_pages: result[0]?.number_of_pages,
@@ -141,13 +137,11 @@ const AddBook = () => {
           row: result[0]?.row || "",
         });
         setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
-        const selSubject = subjectList?.find(
-          (sub) => sub.value === result[0].subject_id
-        );
-        if (selSubject) {
-          setSubject(selSubject);
-        }
+        
         setIsbnValid(true);
+        if (qtyRef.current) {
+          qtyRef.current.focus();
+        }
       }
     } catch (error) {
       setFormData((pre) => ({
@@ -160,7 +154,16 @@ const AddBook = () => {
     }
   };
 
-  const getFacultyDetail = async () => {
+  useEffect(()=>{
+    const selSubject = subjectList?.find(
+      (sub) => sub.value === formData.subject_id
+    );
+    if (selSubject) {
+      setSubject(selSubject);
+    }
+  },[formData])
+
+  const getBookDetailById = async () => {
     try {
       const bformData = new FormData();
       bformData.append("data", "getBookById");
@@ -175,8 +178,7 @@ const AddBook = () => {
       });
       const result = res.data.data;
       setFormData({
-        user_update_id: result[0].id,
-        user_updateu_id: result[0]?.uid,
+       
         image: result[0]?.image,
         des: result[0]?.des ? validator.unescape(result[0]?.des) : "",
         qty: result[0]?.qty,
@@ -196,16 +198,11 @@ const AddBook = () => {
         section: result[0]?.section || "",
         row: result[0]?.row || "",
       });
-      console.log(formData);
+      
       setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
-      const selSubject = subjectList?.find(
-        (sub) => sub.value === result[0].subject_id
-      );
-      if (selSubject) {
-        setSubject(selSubject);
-      }
+     
     } catch (error) {
-      console.log(error);
+     
     }
   };
 
@@ -225,30 +222,33 @@ const AddBook = () => {
     if (formData.isbn_no == "") {
       setErrorMessage("Please enter ISBN number");
       setErrorKey(".isbn_no");
+      toast.error("Please enter ISBN number")
       isValid = false;
     } else if (formData.book_name == "") {
       setErrorMessage("Please enter book name");
       setErrorKey(".book_name");
+      toast.error("Please enter book name")
       isValid = false;
     } else if (formData.qty == "" || formData.qty < 1) {
       setErrorMessage("Quantity must be greater than and equal to 1");
       setErrorKey(".qty");
+      toast.error("Quantity must be greater than and equal to 1")
       isValid = false;
     } else if (formData.price == "" || formData.price < 0) {
       setErrorMessage("Price valid price");
       setErrorKey(".price");
+      toast.error("Price valid price")
       isValid = false;
     }
 
-    if (!isValid) {
-      console.log("Form contains errors. Please correct them and try again.");
-    } else {
+    if (isValid) {
+       
       setErrorMessage("");
       setErrorKey("");
     }
 
     if (isValid) {
-      console.log("submit");
+     
       const bformData = new FormData();
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
@@ -257,7 +257,7 @@ const AddBook = () => {
       Object.keys(formData).forEach((key) => {
         const value = formData[key];
         bformData.append(key, value);
-        console.log(key, value);
+       
       });
       if (id) {
         bformData.append("update_id", id);
@@ -282,7 +282,7 @@ const AddBook = () => {
           toast.error("An error occurred. Please try again.");
         }
       } catch (error) {
-        console.error("Error:", error);
+        
         const status = error.response?.data?.status;
 
         if (status === 500) {
@@ -299,7 +299,7 @@ const AddBook = () => {
       }
     }
   };
-
+ 
   const updateSubject = (e) => {
     setSubject(e);
     setFormData((prevState) => ({
@@ -562,6 +562,8 @@ const AddBook = () => {
                           className="form-control"
                           name="qty"
                           value={formData.qty}
+                          ref={qtyRef}
+                          
                           onChange={handleChange}
                         />
                         {errorKey === ".qty" && (
@@ -650,7 +652,7 @@ const AddBook = () => {
                           Subject 
                         </label>
                         <Select
-                          value={subject}
+                          value={subject }
                           options={subjectList}
                           onChange={updateSubject}
                           disabled={isbnValid}

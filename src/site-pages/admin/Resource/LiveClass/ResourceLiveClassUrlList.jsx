@@ -371,7 +371,7 @@ function ResourceLiveClassUrlList() {
               <div className={`card-body px-3 ${showFilter ? "" : "d-none"}`}>
                 <form onSubmit={handleSubmit}>
                   <div className="row">
-                    <div className="col-md-3 col-lg-3 col-12 form-group">
+                    <div className="col-md-4 col-lg-4 col-12 form-group">
                       <label className="font-weight-semibold">
                         Course <span className="text-danger">*</span>
                       </label>
@@ -406,7 +406,7 @@ function ResourceLiveClassUrlList() {
                       />
                     </div>
 
-                    <div className="col-md-3 col-lg-3 col-12 form-group">
+                    <div className="col-md-4 col-lg-4 col-12 form-group">
                       <label className="font-weight-semibold">
                         Semester <span className="text-danger">*</span>
                       </label>

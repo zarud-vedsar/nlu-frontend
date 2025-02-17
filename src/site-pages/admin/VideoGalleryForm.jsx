@@ -84,7 +84,6 @@ const VideoGalleryForm = () => {
   };
 
   const removeImage = (index) => {
-    console.log(index);
     setFormData((prevFormData) => ({
       ...prevFormData,
       gallery_videos: prevFormData.gallery_videos.filter((_, i) => i !== index),
@@ -92,8 +91,6 @@ const VideoGalleryForm = () => {
     }));
 
     setPreviewImages((prevImages) => prevImages.filter((_, i) => i !== index));
-    console.log(formData);
-    console.log(previewImages);
   };
 
   const handleChange = (e) => {
@@ -238,9 +235,7 @@ const VideoGalleryForm = () => {
       sendFormData.append("oldfile[]", file);
     });
 
-    for (let [key, value] of sendFormData) {
-      console.log(key, value);
-    }
+    
 
     try {
       const response = await axios.post(
@@ -252,10 +247,8 @@ const VideoGalleryForm = () => {
           },
         }
       );
-      console.log(response);
       if (response.data?.status === 200 || response.data?.status === 201) {
         toast.success(response.data?.msg);
-        console.log(response.data.msg);
         setFormData((prev) => ({
           ...prev,
           title: "",
@@ -273,7 +266,6 @@ const VideoGalleryForm = () => {
         toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.log(error);
       const status = error.response?.data?.status;
 
       if (status === 400 || status === 500) {

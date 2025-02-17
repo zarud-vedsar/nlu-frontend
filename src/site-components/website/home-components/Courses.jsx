@@ -24,7 +24,6 @@ const Courses = () => {
           `${NODE_API_URL}/api/course/course-data`,
           { dbId: 1, limit: 10 }
         );
-        // console.log(response);
         if (response.data.success) {
           setCourse(response.data.data);
         }

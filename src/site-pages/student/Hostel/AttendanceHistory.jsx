@@ -155,7 +155,6 @@ function AttendanceHistory() {
       });
 
       finalAttendance.push(monthAttendance);
-      console.log(finalAttendance);
     }
     setAttendanceHistory(finalAttendance);
   }

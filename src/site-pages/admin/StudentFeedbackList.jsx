@@ -14,10 +14,30 @@ const FeedbackList = () => {
     const [filterText, setFilterText] = useState(""); // State for filtering
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState("");
+    
+    const formatDateForMonth = (date) => {
+        return new Intl.DateTimeFormat("en-CA", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        }).format(date);
+      };
+      
+        
+      const getFirstDayOfMonth = () => {
+        const now = new Date();
+        return formatDateForMonth(new Date(now.getFullYear(), now.getMonth(), 1));
+      };
+      
+      const getLastDayOfMonth = () => {
+        const now = new Date();
+        return formatDateForMonth(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+      };
     const initialData = {
-        fromDate: '',
-        toDate: ''
+        fromDate: getFirstDayOfMonth(),
+        toDate: getLastDayOfMonth()
     }
+
     const [formData, setFormData] = useState(initialData);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -98,18 +118,21 @@ const FeedbackList = () => {
                 <div className="main-content">
                     <div className="container-fluid">
                         <div className="page-header mb-0">
-                            <div className="header-sub-title">
-                                <nav className="breadcrumb breadcrumb-dash">
-                                    <a href="/student" className="breadcrumb-item">
-                                        Home
-                                    </a>
-                                    <span className="breadcrumb-item">Feedback</span>
-                                </nav>
-                            </div>
+                        <div className="header-sub-title">
+                <nav className="breadcrumb breadcrumb-dash">
+                  <a href="./" className="breadcrumb-item">
+                    <i className="fas fa-home m-r-5" /> Dashboard
+                  </a>
+                  <span className="breadcrumb-item">Student Management</span>
+                  <span className="breadcrumb-item active">
+                    Feedbacks
+                  </span>
+                </nav>
+              </div>
                         </div>
                         <div className="card border-0 bg-transparent mb-2">
                             <div className="card-header border-0 bg-transparent py-1 d-flex justify-content-between align-items-center px-0">
-                                <h5 className="card-title h6_new">All Feedback</h5>
+                                <h5 className="card-title h6_new">All Feedbacks</h5>
                                 <div className="ml-auto">
                                     <button
                                         className="ml-auto btn-md btn border-0 btn-light "
@@ -125,11 +148,11 @@ const FeedbackList = () => {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <label className="font-weight-semibold">From</label>
-                                        <input type="date" className="form-control" name="fromDate" id="fromDate" onChange={handleChange} />
+                                        <input type="date" className="form-control" name="fromDate" id="fromDate" value={formData.fromDate} onChange={handleChange} />
                                     </div>
                                     <div className="col-md-4">
                                         <label className="font-weight-semibold">To</label>
-                                        <input type="date" className="form-control" name="toDate" id="toDate" onChange={handleChange} />
+                                        <input type="date" className="form-control" name="toDate" id="toDate" value={formData.toDate} onChange={handleChange} />
                                     </div>
                                     <div className="col-md-4 d-flex justify-content-start align-items-center">
                                         <button className="btn btn-info mt-4" onClick={filterList}>Search</button>

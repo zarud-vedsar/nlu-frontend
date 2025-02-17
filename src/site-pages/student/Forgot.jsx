@@ -142,7 +142,6 @@ function Forgot() {
         errorMsg("", "");
       }
     } catch (error) {
-      console.error(error);
       const status = error.response?.data?.status;
       setIsSubmit(false);
       setIsSubmitDisabled(false);

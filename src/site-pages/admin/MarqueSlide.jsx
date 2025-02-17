@@ -69,7 +69,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
         toast.error("Failed to submit");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
       toast.error("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
@@ -84,7 +83,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Add New</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">{id ? "Update Slider" : "Add New Slider"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="form-group col-md-12">
@@ -188,7 +187,6 @@ const MarqueSlide = () => {
       );
       setMarqueList(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
     }
@@ -211,7 +209,6 @@ const MarqueSlide = () => {
       );
       setMarqueList(response.data.data);
     } catch (error) {
-      console.error("Error fetching  data:", error);
     } finally {
       setLoading(false);
     }
@@ -308,16 +305,17 @@ const MarqueSlide = () => {
           <div className="container-fluid">
             <div className="mt-0">
               <nav className="breadcrumb">
-                <a href="/" className="breadcrumb-item">
-                  CMS
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
-                <span className="breadcrumb-item active">Marque </span>
+                <span className="breadcrumb-item active">CMS</span>
+                <span className="breadcrumb-item active">Important Update Sliders</span>
               </nav>
             </div>
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new">Marque List</h5>
+                <h5 className="card-title h6_new">Important Update Sliders List</h5>
                 <div className="ml-auto">
                   <button
                     className="ml-auto btn-md btn border-0 btn-light mr-2"

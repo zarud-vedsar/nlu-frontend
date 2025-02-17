@@ -53,7 +53,6 @@ const LmsLiveDetails = () => {
           allotedCourseSemesterList: "yes",
         }
       );
-      console.log(response);
       if (response.data.data) {
         const [firstCourse] = response.data.data;
         setCourseSemester(firstCourse);
@@ -81,7 +80,6 @@ const LmsLiveDetails = () => {
           dbId,
         }
       );
-      console.log(response);
       if (response.data?.data && response.data.data.length > 0) {
         setLiveData(response.data.data[0]);
       } else {
@@ -117,7 +115,7 @@ const LmsLiveDetails = () => {
             <div className="card">
               <div className="card-header">
                 <h5 className="card-title col-md-9 col-lg-9 col-12 col-sm-12 h6_new font-14">
-                  My Course: {console.log(courseSemester)}
+                  My Course: 
                   {courseSemester?.courseIdName?.[0]?.coursename ||
                     "Course name not available"}
                   {semesterId &&

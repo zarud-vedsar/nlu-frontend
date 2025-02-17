@@ -76,12 +76,12 @@ function TimeSlot() {
                 toast.success(response.data.message);
                 setTitleError('');
                 fetchList(0);
+                setToggleShow(false);
             } else {
                 toast.error("An error occurred. Please try again.");
             }
         } catch (error) {
             const statusCode = error.response?.data?.statusCode;
-
             if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
                 setTitleError(error.response.data.message);
                 toast.error(error.response.data.message || "A server error occurred.");
@@ -149,7 +149,6 @@ function TimeSlot() {
                 toast.error("Data not found.");
             }
         } catch (error) {
-            console.error("Error:", error);
             const statusCode = error.response?.data?.statusCode;
 
             if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -256,7 +255,7 @@ function TimeSlot() {
             </div>
             <Modal show={toggleShow} onHide={handleToggleShow}>
                 <Modal.Header>
-                    <Modal.Title>Department</Modal.Title>
+                    <Modal.Title>{formData.dbId ? "Update Time Slot" : "Add New Time Slot"}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={(e) => e.preventDefault()}>

@@ -76,6 +76,8 @@ function TimeSlot() {
                 }
                 setTitleError('');
                 fetchList(0);
+                setToggleShow(false)
+                
             } else {
                 toast.error("An error occurred. Please try again.");
             }
@@ -256,7 +258,7 @@ function TimeSlot() {
             </div>
             <Modal show={toggleShow} onHide={handleToggleShow}>
                 <Modal.Header>
-                    <Modal.Title>Department</Modal.Title>
+                    <Modal.Title>{formData.dbId ? "Update Category" : "Add New Category"} </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={(e) => e.preventDefault()}>

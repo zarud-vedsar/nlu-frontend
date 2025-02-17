@@ -32,7 +32,7 @@ function AddAchievement() {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter Your description here...',
     spellcheck: true,
     language: 'pt_br',
     defaultMode: '1',
@@ -73,7 +73,7 @@ function AddAchievement() {
         toast.error("Data not found.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -215,18 +215,19 @@ function AddAchievement() {
             <div className="page-header mb-0">
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
-                  <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Announcement
+                <a href="./" className="breadcrumb-item">
+                    <i className="fas fa-home m-r-5" /> Dashboard
                   </a>
-                  <span className="breadcrumb-item">Achievement</span>
-                  <span className="breadcrumb-item active">Add Achievement</span>
+                  
+                  <span className="breadcrumb-item active">Announcements</span>
+                  <span className="breadcrumb-item">Achivement</span>
                 </nav>
               </div>
             </div>
             <div className="card border-0 bg-transparent mb-2">
               <div className="card-header border-0 bg-transparent py-1 d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">
-                  {achievementId ? "Update Achievement" : "Add Achievement"}
+                  {achievementId ? "Update Achievement" : "Add New Achievement"}
                 </h5>
                 <div className="ml-auto">
                   <button
@@ -257,6 +258,7 @@ function AddAchievement() {
                       label="Achievement"
                       name="title"
                       id="title"
+                      placeholder="Enter Achivement"
                       value={formData.title}
                       onChange={handleChange}
                       column="col-md-12"

@@ -304,7 +304,6 @@ function AssignmentAddNew() {
       toast.error("Number of question is required.");
       return setIsSubmit(false);
     }
-    console.log(parseInt(formData.minus_mark))
     if (
       parseInt(formData.minus_mark) <= -1) {
       errorMsg("minus_mark", "Please enter valid negative marks.");
@@ -604,6 +603,7 @@ function AssignmentAddNew() {
                           <input
                             id="assignment_title"
                             type="text"
+                            placeholder="Enter Assignment"
                             className="form-control"
                             name="assignment_title"
                             value={formData.assignment_title}
@@ -657,6 +657,7 @@ function AssignmentAddNew() {
                             className="form-control"
                             name="number_of_question"
                             value={formData.number_of_question}
+                            placeholder="0"
                             onChange={(e) => {
                               setFormData({
                                 ...formData,
@@ -700,6 +701,7 @@ function AssignmentAddNew() {
                             className="form-control"
                             name="marks_per_question"
                             value={formData.marks_per_question}
+                            placeholder="0"
                             onChange={(e) => {
                               setFormData({
                                 ...formData,
@@ -781,7 +783,9 @@ function AssignmentAddNew() {
                           <label className='font-weight-semibold'>Description</label>
                           <JoditEditor
                             value={formData?.description || ''}
-                            config={config}
+                            config={{config,
+                              placeholder: 'Enter your description here...'
+                            }}
                             onBlur={handleEditorChange}
                           />
                         </div>

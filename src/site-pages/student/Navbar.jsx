@@ -360,7 +360,6 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           (response?.data?.data?.semtitle === "semester 1" &&
             response?.data?.data?.approved === 1)
         ) {
-          console.log(response)
           secureLocalStorage.setItem("selectedCourseId", response?.data?.data?.id)
 
           setApprovedStudent(true);

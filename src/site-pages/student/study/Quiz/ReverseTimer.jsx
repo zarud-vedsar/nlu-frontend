@@ -6,7 +6,6 @@ const ReverseTimer = ({ minute,handleSubmit }) => {
   useEffect(() => {
     if (time <= 0) {
         handleSubmit()
-      console.log("Time's up!");
       return;
     }
 

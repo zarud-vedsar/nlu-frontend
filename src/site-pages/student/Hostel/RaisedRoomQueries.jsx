@@ -20,7 +20,6 @@ import Tooltip from "react-bootstrap/Tooltip";
 import validator from "validator";
 
 function MyVerticallyCenteredModal(props) {
-  console.log(props);
 
   return (
     <Modal
@@ -120,7 +119,6 @@ function RaisedRoomQueries() {
           ...bformData,
         }
       );
-      console.log(response);
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
         setRaisedRoomQueries(response.data.data);
       } else {

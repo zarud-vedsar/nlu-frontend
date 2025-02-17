@@ -37,7 +37,7 @@ function AddResourceLiveClass() {
     // Jodit editor configuration
     const config = {
         readonly: false,
-        placeholder: '',
+        placeholder: 'Enter your description here..',
         spellcheck: true,
         language: 'pt_br',
         defaultMode: '1',
@@ -348,14 +348,14 @@ function AddResourceLiveClass() {
                                     </a>
                                     <span className="breadcrumb-item">Resource</span>
                                     <span className="breadcrumb-item">Live Class</span>
-                                    <span className="breadcrumb-item active">{dbId ? 'Update Data' : 'Add New Live Class'}</span>
+                                    <span className="breadcrumb-item active">{dbId ? 'Update Live Class' : 'Add New Live Class'}</span>
                                 </nav>
                             </div>
                         </div>
-                        <div className="card bg-transparent mb-2">
+                        <div className="card bg-transparent mb-2 col-md-10 m-auto">
                             <div className="card-header d-flex justify-content-between align-items-center px-0">
                                 <h5 className="card-title h6_new">
-                                    {dbId ? 'Update Data' : 'Add New Live Class'}
+                                    {dbId ? 'Update Live Class' : 'Add New Live Class'}
                                 </h5>
                                 <div className="ml-auto">
                                     <button
@@ -513,6 +513,7 @@ function AddResourceLiveClass() {
                                                     label="Title"
                                                     name="title"
                                                     id="title"
+                                                    placeholder="Enter Title"
                                                     required
                                                     value={formData.title}
                                                     onChange={handleChange}
@@ -525,6 +526,7 @@ function AddResourceLiveClass() {
                                                     label="Live Url (Ex: Google Meet Url)"
                                                     name="liveUrl"
                                                     id="liveUrl"
+                                                    placeholder="Enter Url"
                                                     required
                                                     value={formData.liveUrl}
                                                     onChange={handleChange}

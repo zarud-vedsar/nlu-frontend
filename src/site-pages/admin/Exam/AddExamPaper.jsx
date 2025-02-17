@@ -1,34 +1,37 @@
 // Import the usual suspects (like a hacker assembling a team for a heist)
-import React, { useCallback, useEffect, useMemo, useState } from 'react'; // React is life; state is chaos.
-import { Link, useLocation, useNavigate } from 'react-router-dom'; // For navigating the matrix.
-import { capitalizeFirstLetter, dataFetchingPost, goBack } from '../../../site-components/Helper/HelperFunction'; // Escape hatch in case things go south.
-import { FormField } from '../../../site-components/admin/assets/FormField'; // The sacred field for all inputs.
+import React, { useCallback, useEffect, useMemo, useState } from "react"; // React is life; state is chaos.
+import { Link, useLocation, useNavigate } from "react-router-dom"; // For navigating the matrix.
 import {
-  NODE_API_URL,
-} from "../../../site-components/Helper/Constant"; // The secret base URL we talk to.
-import validator from 'validator'; // Validating like a pro, no shady inputs allowed.
-import { toast } from 'react-toastify'; // Toasts: because why suffer in silence when you can pop a notification?
-import secureLocalStorage from 'react-secure-storage'; // Encryption? Check. Security? Double-check.
-import axios from 'axios'; // Axios is like the courier for your HTTP requests.
-import Select from 'react-select'; // React Select
-import Swal from 'sweetalert2';
-import useRolePermission from '../../../site-components/admin/useRolePermission';
+  capitalizeFirstLetter,
+  dataFetchingPost,
+  goBack,
+} from "../../../site-components/Helper/HelperFunction"; // Escape hatch in case things go south.
+import { FormField } from "../../../site-components/admin/assets/FormField"; // The sacred field for all inputs.
+import { NODE_API_URL } from "../../../site-components/Helper/Constant"; // The secret base URL we talk to.
+import validator from "validator"; // Validating like a pro, no shady inputs allowed.
+import { toast } from "react-toastify"; // Toasts: because why suffer in silence when you can pop a notification?
+import secureLocalStorage from "react-secure-storage"; // Encryption? Check. Security? Double-check.
+import axios from "axios"; // Axios is like the courier for your HTTP requests.
+import Select from "react-select"; // React Select
+import Swal from "sweetalert2";
+import useRolePermission from "../../../site-components/admin/useRolePermission";
 import JoditEditor from "jodit-react"; // Import Jodit editor
 
 function AddExam() {
   const location = useLocation();
   const dbId = location?.state?.dbId; // Destructure dbId from the state
   /**
-* ROLE & PERMISSION
-*/
+   * ROLE & PERMISSION
+   */
   const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate(); // Initialize useNavigate
   useEffect(() => {
     if (RolePermission && RolePermission.length > 0) {
-
-      if (dbId && hasPermission("Add Exam Paper", "update")) { /* empty */ }
-      else if (hasPermission("Add Exam Paper", "create")) { /* empty */ }
-      else {
+      if (dbId && hasPermission("Add Exam Paper", "update")) {
+        /* empty */
+      } else if (hasPermission("Add Exam Paper", "create")) {
+        /* empty */
+      } else {
         navigate("/forbidden");
       }
     }
@@ -67,14 +70,14 @@ function AddExam() {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: "",
     spellcheck: true,
-    language: 'pt_br',
-    defaultMode: '1',
+    language: "pt_br",
+    defaultMode: "1",
     minHeight: 400,
     maxHeight: -1,
-    defaultActionOnPaste: 'insert_as_html',
-    defaultActionOnPasteFromWord: 'insert_as_html',
+    defaultActionOnPaste: "insert_as_html",
+    defaultActionOnPasteFromWord: "insert_as_html",
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
   };
@@ -302,7 +305,6 @@ function AddExam() {
     }
   }, [dbId]);
   const handleSubmit = async (step) => {
-
     setIsSubmit(true);
     // Define all required fields and their corresponding error messages
     const requiredFields = [
@@ -319,7 +321,7 @@ function AddExam() {
 
     // Loop through each required field and validate
     for (let { field, message } of requiredFields) {
-      if (field === 'password' && !formData[field] && !dbId) {
+      if (field === "password" && !formData[field] && !dbId) {
         toast.error(message);
         errorMsg(field, message);
         setIsSubmit(false);
@@ -380,7 +382,9 @@ function AddExam() {
                 return Swal.fire("Error: Unable to access the modal.");
               }
 
-              const paperSet = popup.querySelector('input[name="paperSet"]:checked');
+              const paperSet = popup.querySelector(
+                'input[name="paperSet"]:checked'
+              );
 
               // Check if the paperSet is selected
               if (!paperSet) {
@@ -389,7 +393,7 @@ function AddExam() {
               return {
                 paperSet: paperSet.value, // Return the selected paper set value
               };
-            }
+            },
           });
           if (result) {
             const { paperSet } = result;
@@ -427,25 +431,30 @@ function AddExam() {
       ...prev,
       instruction: newContent,
     }));
-  }
-
+  };
 
   const TotalTimeDuration = useMemo(() => {
     if (!formData?.startTime || !formData?.endTime) return "00:00";
 
-    const [startHours, startMinutes] = formData.startTime.split(":").map(Number);
+    const [startHours, startMinutes] = formData.startTime
+      .split(":")
+      .map(Number);
     const [endHours, endMinutes] = formData.endTime.split(":").map(Number);
 
-    let totalMinutes = (endHours * 60 + endMinutes) - (startHours * 60 + startMinutes);
+    let totalMinutes =
+      endHours * 60 + endMinutes - (startHours * 60 + startMinutes);
 
     if (totalMinutes < 0) totalMinutes += 24 * 60; // Handle overnight time calculation
 
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
-    setFormData((prev) => ({ ...prev, timeDuration: `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}` }));
-
+    setFormData((prev) => ({
+      ...prev,
+      timeDuration: `${String(hours).padStart(2, "0")}:${String(
+        minutes
+      ).padStart(2, "0")}`,
+    }));
   }, [formData?.startTime, formData?.endTime]);
-
 
   return (
     <>
@@ -486,7 +495,7 @@ function AddExam() {
             </div>
             <div className="card border-0">
               <div className="card-body px-3">
-                <form >
+                <form>
                   <div className="row">
                     <div className="col-md-3 col-12 form-group">
                       <label className="font-weight-semibold">
@@ -503,11 +512,11 @@ function AddExam() {
                         value={
                           session.find(({ id }) => id === +formData.sessionId)
                             ? {
-                              value: +formData.sessionId,
-                              label: session.find(
-                                ({ id }) => id === +formData.sessionId
-                              ).dtitle,
-                            }
+                                value: +formData.sessionId,
+                                label: session.find(
+                                  ({ id }) => id === +formData.sessionId
+                                ).dtitle,
+                              }
                             : { value: formData.sessionId, label: "Select" }
                         }
                       />
@@ -553,11 +562,11 @@ function AddExam() {
                         value={
                           courseList.find(({ id }) => id === +formData.courseId)
                             ? {
-                              value: +formData.courseId,
-                              label: courseList.find(
-                                ({ id }) => id === +formData.courseId
-                              ).coursename,
-                            }
+                                value: +formData.courseId,
+                                label: courseList.find(
+                                  ({ id }) => id === +formData.courseId
+                                ).coursename,
+                              }
                             : { value: formData.courseId, label: "Select" }
                         }
                       />
@@ -586,13 +595,13 @@ function AddExam() {
                             ({ id }) => id === formData.semesterId
                           )
                             ? {
-                              value: formData.semesterId,
-                              label: capitalizeFirstLetter(
-                                semesterList.find(
-                                  ({ id }) => id === formData.semesterId
-                                ).semtitle
-                              ),
-                            }
+                                value: formData.semesterId,
+                                label: capitalizeFirstLetter(
+                                  semesterList.find(
+                                    ({ id }) => id === formData.semesterId
+                                  ).semtitle
+                                ),
+                              }
                             : { value: formData.semesterId, label: "Select" }
                         }
                       />
@@ -617,13 +626,13 @@ function AddExam() {
                             ({ id }) => id === formData.subjectId
                           )
                             ? {
-                              value: formData.subjectId,
-                              label: capitalizeFirstLetter(
-                                subjectList.find(
-                                  ({ id }) => id === formData.subjectId
-                                ).subject
-                              ),
-                            }
+                                value: formData.subjectId,
+                                label: capitalizeFirstLetter(
+                                  subjectList.find(
+                                    ({ id }) => id === formData.subjectId
+                                  ).subject
+                                ),
+                              }
                             : { value: formData.subjectId, label: "Select" }
                         }
                       />
@@ -665,6 +674,7 @@ function AddExam() {
                       column="col-md-3 col-12 form-group"
                       onChange={handleInputChange}
                     />
+
                     <FormField
                       borderError={error.field === "endTime"}
                       errorMessage={error.field === "endTime" && error.msg}
@@ -685,7 +695,7 @@ function AddExam() {
                       value={formData.venue}
                       column="col-md-6 col-12 form-group"
                       onChange={handleInputChange}
-                      placeholder='Academic Block'
+                      placeholder="Academic Block"
                     />
                     <FormField
                       borderError={error.field === "timeDuration"}
@@ -693,7 +703,6 @@ function AddExam() {
                       label="Time Duration"
                       name="timeDuration"
                       id="timeDuration"
-
                       value={formData.timeDuration}
                       column="col-md-4 col-12 form-group"
                       readOnly
@@ -731,8 +740,10 @@ function AddExam() {
                     </div>
                     {sections.map((section, index) => (
                       <div className="col-md-12 form-group" key={index}>
-                        <div className="row border mx-auto" style={{ width: "99.8%" }}>
-
+                        <div
+                          className="row border mx-auto"
+                          style={{ width: "99.8%" }}
+                        >
                           {/* Section Title Field */}
                           <FormField
                             label="Section Title"
@@ -790,7 +801,9 @@ function AddExam() {
                               <button
                                 type="button"
                                 onClick={() => {
-                                  setSections((prev) => prev.filter((item, i) => i !== index)); // Remove section at the specific index
+                                  setSections((prev) =>
+                                    prev.filter((item, i) => i !== index)
+                                  ); // Remove section at the specific index
                                 }}
                                 className="btn btn-danger"
                               >
@@ -801,7 +814,6 @@ function AddExam() {
                         </div>
                       </div>
                     ))}
-
 
                     <div className="col-md-12 form-group">
                       <button
@@ -817,8 +829,15 @@ function AddExam() {
                         Instruction
                       </label>
                       <JoditEditor
-                        value={formData?.instruction ? validator.unescape(formData.instruction) : ""}
-                        config={config}
+                        value={
+                          formData?.instruction
+                            ? validator.unescape(formData.instruction)
+                            : ""
+                        }
+                        config={{
+                          config,
+                          placeholder: "Enter your instructions here...",
+                        }}
                         onBlur={handleEditorChange}
                       />
                     </div>
@@ -826,10 +845,12 @@ function AddExam() {
                       <button
                         className="btn btn-success d-flex justify-content-center align-items-center mr-2"
                         type="submit"
-                        onClick={(e) => { e.preventDefault(); handleSubmit("save") }}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleSubmit("save");
+                        }}
                       >
-                        {dbId ? "Update" : "Save"}
-                        {" "}
+                        {dbId ? "Update" : "Save"}{" "}
                         {isSubmit && (
                           <>
                             &nbsp;<div className="loader-circle"></div>
@@ -839,12 +860,19 @@ function AddExam() {
                       <button
                         className="btn btn-secondary d-flex justify-content-center align-items-center"
                         type="submit"
-                        onClick={(e) => { e.preventDefault(); handleSubmit("next") }}
-                      > Save And Next  {isSubmit && (
-                        <>
-                          &nbsp;<div className="loader-circle"></div>
-                        </>
-                      )}</button>
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleSubmit("next");
+                        }}
+                      >
+                        {" "}
+                        Save And Next{" "}
+                        {isSubmit && (
+                          <>
+                            &nbsp;<div className="loader-circle"></div>
+                          </>
+                        )}
+                      </button>
                     </div>
                   </div>
                 </form>

@@ -35,7 +35,7 @@ function NoticeList() {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter Your description here...',
     spellcheck: true,
     language: 'pt_br',
     defaultMode: '1',
@@ -67,7 +67,7 @@ function NoticeList() {
     if (id === "image") {
       if (file.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(file));
-        console.log(file);
+        
         setFormData((formData) => ({ ...formData, image: file }));
       } else {
         toast.error(
@@ -180,7 +180,7 @@ function NoticeList() {
         response.data?.statusCode === 200 ||
         response.data?.statusCode === 201
       ) {
-        console.log(response.data?.statusCode);
+        
         if (response.data?.statusCode === 201) {
           setFormData(initialData);
         } else if (response.data?.statusCode === 200) {
@@ -297,6 +297,7 @@ function NoticeList() {
                       required
                       name="title"
                       id="title"
+                      placeholder="Enter Title"
                       value={formData.title}
                       column="col-md-12"
                       onChange={handleChange}

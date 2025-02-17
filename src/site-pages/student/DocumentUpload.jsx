@@ -38,7 +38,6 @@ function DocumentUpload() {
                 formData
               );
               if (response?.data?.statusCode === 200) {
-                console.log(response)
                 setLevel(response?.data?.data[0]);
               }
             } catch (error) {}
@@ -81,7 +80,6 @@ function DocumentUpload() {
         const sendFormData = new FormData();
         for (let key in formData) {
             sendFormData.append(key, formData[key]);
-            console.log(key,formData[key])
         }
         sendFormData.append('data', 'savedocumentupload');
         sendFormData.append('dtc', formData.dtc);

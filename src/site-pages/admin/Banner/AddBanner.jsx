@@ -4,7 +4,7 @@ import { goBack } from "../../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import { PHP_API_URL } from "../../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const AddBanner = () => {
   const initialForm = {
@@ -77,7 +77,6 @@ const AddBanner = () => {
           },
         }
       );
-      console.log(response);
 
       if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response.data.msg);
@@ -115,17 +114,16 @@ const AddBanner = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/home" className="breadcrumb-item">
-                  <i className="fas fa-home m-r-5" /> CMS
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
-                <a href="/admin/home" className="breadcrumb-item">
-                  Banner
-                </a>
+               
+                <span className="breadcrumb-item active">CMS</span>
                 <span className="breadcrumb-item active">Add New</span>
               </nav>
             </div>
           </div>
-          <div className="card bg-transparent ">
+          <div className="card bg-transparent col-lg-8 col-md-8 mx-auto">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
               <h5 className="card-title h6_new"> Add New Banner</h5>
               <div className="ml-auto">
@@ -135,11 +133,16 @@ const AddBanner = () => {
                 >
                   <i className="fas fa-arrow-left" /> Go Back
                 </button>
+                 <Link to="/admin/cms/banner/list"
+                                    className="ml-2 btn-md btn border-0 btn-secondary"
+                                  >
+                                    <i className="fas fa-list" /> Banner List
+                                  </Link>
               </div>
             </div>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="card">
+            <div className="card col-md-8 mx-auto">
               <div className="card-body">
                 <div className="row mb-4">
                   <div className="form-group col-md-12 ">
@@ -167,6 +170,7 @@ const AddBanner = () => {
                       type="text"
                       className="form-control"
                       name="btitle"
+                      placeholder="Enter Title"
                       value={formData.btitle}
                       onChange={handleChange}
                     />
@@ -177,6 +181,7 @@ const AddBanner = () => {
                       type="text"
                       className="form-control"
                       name="bshort"
+                      placeholder="Enter your short description..."
                       value={formData.bshort}
                       onChange={handleChange}
                     />

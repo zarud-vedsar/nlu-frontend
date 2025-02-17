@@ -46,7 +46,6 @@ const SocialMediaSetting = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.status === 200) {
         setFormData({
           
@@ -86,12 +85,10 @@ const SocialMediaSetting = () => {
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
       sendFormData.append(key, value);
-      console.log(key,value)
     });
   
     Object.keys(sendFormData).forEach((key) => {
       const value = sendFormData[key];
-      console.log(key, value);
     });
   
     try {
@@ -105,7 +102,6 @@ const SocialMediaSetting = () => {
         }
       );
   
-      console.log(response);
   
       if (response.data?.status === 201 || response.data?.status === 200) {
         toast.success(response.data.msg);

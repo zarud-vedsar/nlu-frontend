@@ -14,7 +14,6 @@ const FAQ = () => {
       );
       setFaq(response.data.data);
     } catch (error) {
-      console.log('error');
     }
   }
   useEffect(() => {

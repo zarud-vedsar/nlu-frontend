@@ -46,7 +46,7 @@ function AddPage() {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter your description here...',
     spellcheck: true,
     language: 'pt_br',
     defaultMode: '1',
@@ -222,7 +222,7 @@ function AddPage() {
                   <i className="fas fa-home m-r-5" />
                   Dashboard
                 </a>
-                <span className="breadcrumb-item">Academic</span>
+                <span className="breadcrumb-item">CMS</span>
                 <span className="breadcrumb-item active">Standard Pages</span>
               </nav>
             </div>
@@ -260,6 +260,7 @@ function AddPage() {
                           type="text"
                           className="form-control"
                           name="ptitle"
+                          placeholder="Enter Title"
                           value={formData.ptitle}
                           onChange={handleChange}
                         />
@@ -355,6 +356,7 @@ function AddPage() {
                         label="Meta Title"
                         name="meta_title"
                         id="meta_title"
+                        placeholder="Enter Meta Title"
                         value={formData.meta_title}
                         column="col-md-12"
                         onChange={handleChange}
@@ -363,6 +365,7 @@ function AddPage() {
                         label="Meta Description"
                         name="meta_content"
                         id="meta_content"
+                        placeholder="Enter Meta Description"
                         value={formData.meta_content}
                         column="col-md-12"
                         onChange={handleChange}
@@ -371,6 +374,7 @@ function AddPage() {
                         label="Meta Keywords"
                         name="meta_keywords"
                         id="meta_keywords"
+                        placeholder="Enter Meta Keywords"
                         value={formData.meta_keywords}
                         column="col-md-12"
                         onChange={handleChange}

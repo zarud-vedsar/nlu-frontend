@@ -70,7 +70,6 @@ const VideoGallery = () => {
           },
         }
       );
-      console.log(response);
 
       response.data.data.map((gallery) => {
         gallery.gallery_videos = gallery.gallery_videos.split("$;");
@@ -85,7 +84,6 @@ const VideoGallery = () => {
   };
 
   const getGallery = async () => {
-    console.log("getgallery");
 
     try {
       const bformData = new FormData();
@@ -102,14 +100,12 @@ const VideoGallery = () => {
           },
         }
       );
-      console.log(response);
 
       response.data.data.map((gallery) => {
         gallery.gallery_videos = gallery.gallery_videos.split("$;");
       });
       
       setGallery(response.data.data);
-      console.log(setGallery)
     } catch (error) {
       setGallery([]);
 
@@ -119,7 +115,6 @@ const VideoGallery = () => {
   };
 
   const editDetail = (id) => {
-    console.log(`/admin/edit-video-gallery/${id}`);
     navigate(`/admin/edit-video-gallery/${id}`);
   };
 

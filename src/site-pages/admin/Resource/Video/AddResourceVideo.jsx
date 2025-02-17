@@ -38,7 +38,7 @@ function AddResourceVideo() {
     // Jodit editor configuration
     const config = {
         readonly: false,
-        placeholder: '',
+        placeholder: 'Enter your description here..',
         spellcheck: true,
         language: 'pt_br',
         defaultMode: '1',
@@ -65,7 +65,6 @@ function AddResourceVideo() {
             });
             if (response.data?.statusCode === 200 && response.data.data.length > 0) {
                 setTopicList(response.data.data);
-                console.log(response.data.data, "TOPIC")
             } else {
                 setTopicList([]);
             }
@@ -358,7 +357,7 @@ function AddResourceVideo() {
                                 </nav>
                             </div>
                         </div>
-                        <div className="card bg-transparent mb-2">
+                        <div className="card bg-transparent mb-2 col-md-10 m-auto">
                             <div className="card-header d-flex justify-content-between align-items-center px-0">
                                 <h5 className="card-title h6_new">
                                     {dbId ? "Update Video" : "Add New Video"}
@@ -553,6 +552,7 @@ function AddResourceVideo() {
                                                     label="Title"
                                                     name="title"
                                                     id="title"
+                                                    placeholder="Enter Title"
                                                     value={formData.title}
                                                     onChange={handleChange}
                                                     column="col-md-12 col-lg-12 col-12 col-sm-12"
@@ -563,6 +563,7 @@ function AddResourceVideo() {
                                                     label="Video Url (Google Drive)"
                                                     name="video_url"
                                                     id="video_url"
+                                                    placeholder="Enter Url"
                                                     value={formData.video_url}
                                                     onChange={handleChange}
                                                     column="col-md-12 col-lg-12 col-12 col-sm-12"

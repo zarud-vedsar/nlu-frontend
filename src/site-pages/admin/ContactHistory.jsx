@@ -31,7 +31,6 @@ const decodeHtml = async (html) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error decoding HTML:", error);
     return "";
   }
 };
@@ -122,15 +121,13 @@ const MyVerticallyCenteredModal = (props = {}) => {
       bformData.append("message", detail?.message);
       bformData.append("conId", detail?.conId);
 
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
+      
       const response = await axios.post(`${PHP_API_URL}/front.php`, bformData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response);
+      
 
       if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response?.data?.msg);
@@ -144,7 +141,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
         toast.error("Failed to submit content");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
       toast.error("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
@@ -278,7 +274,6 @@ const ContactHistory = () => {
       setConversation(response.data.data);
     } catch (error) {
       setConversation([]);
-      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }

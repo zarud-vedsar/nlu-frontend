@@ -78,6 +78,7 @@ function Session() {
                 toast.success(response.data.message);
                 setTitleError('');
                 fetchList(0);
+                setToggleShow(false);
             } else {
                 toast.error("An error occurred. Please try again.");
             }
@@ -107,7 +108,6 @@ function Session() {
             const response = await dataFetchingPost(`${NODE_API_URL}/api/session/fetch`,
                 { dbId: dbId }
             );
-            console.log(response);
 
             if (response?.statusCode === 200 && response.data.length > 0) {
                 toast.success(response.message);
@@ -121,7 +121,6 @@ function Session() {
                 toast.error("Data not found.");
             }
         } catch (error) {
-            console.error("Error:", error);
             const statusCode = error.response?.data?.statusCode;
 
             if (statusCode === 400 ||  statusCode === 401 || statusCode === 500) {
@@ -221,7 +220,7 @@ function Session() {
             </div>
             <Modal show={toggleShow} onHide={handleToggleShow}>
                 <Modal.Header>
-                    <Modal.Title>Session</Modal.Title>
+                    <Modal.Title>{formData.dbId ? "Update Session" : "Add New Session"}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={(e) => e.preventDefault()}>
@@ -234,12 +233,13 @@ function Session() {
                     <Button variant="light" onClick={handleToggleShow}>
                         Close
                     </Button>
-                    <Button variant="dark" className='d-flex justify-content-center align-items-center' onClick={submitForm}>
+                    <Button variant="dark" className='d-flex justify-content-center align-items-center' onClick={submitForm} >
                         Save{" "} {isSubmit && (
                             <>
                                 &nbsp; <div className="loader-circle"></div>
                             </>
                         )}
+                        
                     </Button>
                 </Modal.Footer>
             </Modal>

@@ -79,7 +79,6 @@ function Message() {
     }
   };
   const fetchStudentBasedOnBlock = async (courseid, semesterid) => {
-    console.log(courseid, semesterid);
     try {
       const response = await dataFetchingPost(
         `${NODE_API_URL}/api/student-detail/get-student-based-on-course-and-semester`,
@@ -127,7 +126,6 @@ function Message() {
     e.preventDefault();
     setIsSubmit(true);
     errorMsg("", "");
-    console.log(formData);
     if (!formData.courseid) {
       errorMsg("courseid", "Course is required.");
       toast.error("Course is required.");
@@ -351,6 +349,7 @@ function Message() {
                           label="Message"
                           name="message"
                           id="message"
+                          placeholder="Enter your message"
                           value={formData.message}
                           onChange={handleChange}
                           column="col-md-12"

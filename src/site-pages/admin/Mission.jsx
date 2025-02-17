@@ -82,11 +82,9 @@ const Mission = () => {
     const image = e.target.files[0];
     const { id } = e.target;
     if (!image) return;
-    console.log(image);
     if (id === "image") {
       if (image.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(image));
-        console.log(previewImage);
         setFormData((formData) => ({ ...formData, bgImage: image }));
       } else {
         toast.error(
@@ -160,10 +158,11 @@ const Mission = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/home" className="breadcrumb-item">
-                  <i className="fas fa-home m-r-5" /> CMS
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
-                <span className="breadcrumb-item active">Mission</span>
+                <span className="breadcrumb-item active">CMS</span>
+                <span className="breadcrumb-item">Mission</span>
               </nav>
             </div>
           </div>

@@ -25,7 +25,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
   const [link, setLink] = useState("");
   const [loading, setLoading] = useState(false);
   const id = props?.selectedmarque?.id;
-  console.log(props)
 
   useEffect(() => {
     const { title = '', link: rawLink = '' } = props?.selectedmarque || {};
@@ -61,7 +60,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
         `${NODE_API_URL}/api/popup-notice/register`,
         bformData
       );
-      console.log(response);
 
       if (
         response?.data?.statusCode === 200 ||
@@ -75,7 +73,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
         toast.error("Failed to submit");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
       toast.error("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
@@ -90,7 +87,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Add New</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">{id ? "Update Popup Notice" : "Add New Popup Notice"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="form-group col-md-12">
@@ -157,7 +154,6 @@ const PopupNotice = () => {
 
   const editMarque = (index) => {
     const currentLob = MarqueList[index];
-    console.log(currentLob);
     setSelectedMarque(currentLob);
   };
   useEffect(() => {
@@ -189,11 +185,9 @@ const PopupNotice = () => {
         }
       );
 
-      console.log(response.data.data);
       setMarqueList(response.data.data);
     } catch (error) {
       setMarqueList([]);
-      console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
     }
@@ -209,11 +203,9 @@ const PopupNotice = () => {
         }
       );
 
-      console.log(response.data.data);
       setMarqueList(response.data.data);
     } catch (error) {
       setMarqueList([]);
-      console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
     }
@@ -247,7 +239,6 @@ const PopupNotice = () => {
         }
       }
     } catch (error) {
-      console.error("Error:", error);
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -275,7 +266,6 @@ const PopupNotice = () => {
       const response = await dataFetchingPatch(
         `${NODE_API_URL}/api/popup-notice/status/${dbId}/${loguserid}/${login_type}`
       );
-      console.log(response)
       if (response?.statusCode === 200) {
         toast.success(response.message);
         // Update the notice list to reflect the status change
@@ -288,7 +278,6 @@ const PopupNotice = () => {
         toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
-        console.log(error)
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -309,11 +298,12 @@ const PopupNotice = () => {
           <div className="container-fluid">
             <div className="mt-0">
               <nav className="breadcrumb">
-                <a href="/" className="breadcrumb-item">
-                  CMS
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
-                <span className="breadcrumb-item active">Popup Notice </span>
+                <span className="breadcrumb-item active">CMS</span>
+                <span className="breadcrumb-item ">Popup Notice</span>
               </nav>
             </div>
             <div className="card bg-transparent mb-2">

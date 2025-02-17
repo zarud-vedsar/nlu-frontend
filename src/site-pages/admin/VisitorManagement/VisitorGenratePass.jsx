@@ -229,7 +229,6 @@ const VisitorGenratePass = () => {
             `${NODE_API_URL}/api/campus/visitor/generate-campus-pass`,
             formData
         );
-        console.log(response);
         if (
             response.data?.statusCode === 200 ||
             response.data?.statusCode === 201
@@ -275,7 +274,6 @@ const VisitorGenratePass = () => {
       );
 
       // Log the response for debugging
-      console.log('API Response:', response);
 
       if (response?.statusCode === 200 && response.data?.length > 0) {
         const data = response.data[0]; // Assuming data is an array and taking the first item
@@ -323,15 +321,15 @@ const VisitorGenratePass = () => {
                   </a>
                   <span className="breadcrumb-item">Visitor Management</span>
                   <span className="breadcrumb-item active">
-                    {dbId ? "Update Data" : "Add New Genrate Pass"}
+                    Add New Genrate Pass
                   </span>
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2">
+            <div className="card bg-transparent mb-2 col-md-10 col-lg-10 mx-auto ">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">
-                  {dbId ? "Update Data" : "Add New Genrate Pass"}
+                  Add New Genrate Pass
                 </h5>
                 <div className="ml-auto">
                   <button
@@ -348,7 +346,7 @@ const VisitorGenratePass = () => {
                 </div>
               </div>
             </div>
-            <div className="card border-0">
+            <div className="card border-0 col-md-10 col-lg-10 mx-auto">
               <div className="card-body">
                 <form onSubmit={handleSubmit}>
                   <div className="row">
@@ -361,10 +359,10 @@ const VisitorGenratePass = () => {
                       id="hostDetails"
                       value={formData.hostDetails || ""}
                       onChange={handleChange}
-                      column="col-md-4 col-lg-4"
+                      column="col-md-6 col-lg-6"
                       required
                     />
-                    <div className="col-md-4 col-lg-4 form-group">
+                    <div className="col-md-6 col-lg-6 form-group">
                       <label className="font-weight-semibold">
                         Visitor Type <span className="text-danger">*</span>
                       </label>
@@ -399,11 +397,11 @@ const VisitorGenratePass = () => {
                       id="visitorPhone"
                       value={formData.visitorPhone}
                       onChange={handleChange}
-                      column="col-md-4 col-lg-4"
+                      column="col-md-6 col-lg-6"
                       required
                     />
 
-                    <div className="col-md-4 col-lg-4 form-group">
+                    <div className="col-md-6 col-lg-6 form-group">
                       <label className="font-weight-semibold">
                         Pass Type <span className="text-danger">*</span>
                       </label>

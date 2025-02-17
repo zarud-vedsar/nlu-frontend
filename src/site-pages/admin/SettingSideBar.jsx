@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 const SettingSideBar = () => {
   const { '*' : id } = useParams();
-  console.log(id);
   return (
     <>
     <ul className="nav flex-column bg-white mb-0 py-3">

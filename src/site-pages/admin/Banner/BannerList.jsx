@@ -25,7 +25,6 @@ import {
 } from "../../../site-components/Helper/HelperFunction";
 
 function MyVerticallyCenteredModal(props) {
-  console.log(props);
 
   return (
     <Modal
@@ -119,9 +118,7 @@ const BannerList = () => {
           },
         }
       );
-      console.log(response);
       if (response?.status === 200 && response.data.length > 0) {
-        console.log(response);
         setMessages(response?.data);
       } else {
         setMessages([]);
@@ -130,7 +127,6 @@ const BannerList = () => {
     } catch (error) {
       setMessages([]);
 
-      console.log(error);
       const statusCode = error.response?.data?.status;
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
         toast.error(error.response.msg || "A server error occurred.");
@@ -162,7 +158,6 @@ const BannerList = () => {
             },
           }
         );
-        console.log(response);
         if (response.status == 200) {
           toast.success(response.data.msg);
           recycleTitle === "Show Recycle Bin"
@@ -203,7 +198,6 @@ const BannerList = () => {
           },
         }
       );
-      console.log(response);
 
       if (response.status === 200) {
         toast.success(response.data.msg);
@@ -236,14 +230,12 @@ const BannerList = () => {
           <div className="container-fluid">
             <div className="">
               <nav className="breadcrumb">
-                <a href="/" className="breadcrumb-item">
-                  CMS
-                </a>
-                <a href="/" className="breadcrumb-item">
-                  Banner
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
-                <span className="breadcrumb-item active">List</span>
+                <span className="breadcrumb-item active">CMS</span>
+                <span className="breadcrumb-item active">Banner</span>
               </nav>
             </div>
             <div className="card bg-transparent mb-2">

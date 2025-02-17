@@ -37,7 +37,6 @@ const IssueBookReceipt = () => {
         }
       );
       setIssueBookList([]);
-      console.log(response)
       if (response?.data?.status === 200) {
         setIssue((pre) => ({
           ...pre,
@@ -81,7 +80,6 @@ const IssueBookReceipt = () => {
       ) {
         toast.success(error?.response?.data?.msg);
       }
-      console.error("Error fetching internships data:", error);
     } finally {
       setLoading(false);
     }

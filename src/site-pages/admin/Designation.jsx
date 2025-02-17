@@ -1,19 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Modal, Button, Table } from 'react-bootstrap';
-import { FormField } from '../../site-components/admin/assets/FormField';
-import axios from 'axios';
-import Select from 'react-select'; // Dropdown component
+import React, { useEffect, useState } from "react";
+import { Modal, Button, Table } from "react-bootstrap";
+import { FormField } from "../../site-components/admin/assets/FormField";
+import axios from "axios";
+import Select from "react-select"; // Dropdown component
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
-import { toast } from 'react-toastify';
-import { dataFetchingDelete, dataFetchingGet, dataFetchingPatch, dataFetchingPost, formatDate, goBack } from '../../site-components/Helper/HelperFunction';
-import { DeleteSweetAlert } from '../../site-components/Helper/DeleteSweetAlert';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/Column';
-import { InputText } from 'primereact/inputtext'; // Import InputText for the search box
-import '../../../node_modules/primeicons/primeicons.css';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
-import secureLocalStorage from 'react-secure-storage';
+import { toast } from "react-toastify";
+import {
+  dataFetchingDelete,
+  dataFetchingGet,
+  dataFetchingPatch,
+  dataFetchingPost,
+  formatDate,
+  goBack,
+} from "../../site-components/Helper/HelperFunction";
+import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/Column";
+import { InputText } from "primereact/inputtext"; // Import InputText for the search box
+import "../../../node_modules/primeicons/primeicons.css";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import secureLocalStorage from "react-secure-storage";
 function Designation() {
     const [toggleShow, setToggleShow] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
@@ -119,127 +126,146 @@ function Designation() {
                 toast.success(response.data.message);
                 setTitleError('');
                 fetchList(0);
+                setToggleShow(false);
             } else {
                 toast.error("An error occurred. Please try again.");
             }
         } catch (error) {
             const statusCode = error.response?.data?.statusCode;
 
-            if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
-                setTitleError(error.response.data.message);
-                toast.error(error.response.data.message || "A server error occurred.");
-            } else {
-                toast.error(
-                    "An error occurred. Please check your connection or try again."
-                );
-            }
-        } finally {
-            setIsSubmit(false);
-        }
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        setTitleError(error.response.data.message);
+        toast.error(error.response.data.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    } finally {
+      setIsSubmit(false);
     }
-    const handleToggleShow = () => {
+  };
+  const handleToggleShow = () => {
+    setToggleShow(!toggleShow);
+    setFormData(iniatialForm);
+    setTitleError("");
+  };
+  const handleToggleStatus = async (dbId, currentStatus) => {
+    if (
+      !dbId ||
+      !Number.isInteger(parseInt(dbId, 10)) ||
+      parseInt(dbId, 10) <= 0
+    )
+      return toast.error("Invalid ID.");
+    const newStatus = currentStatus === 1 ? 0 : 1;
+    try {
+      // Toggle the status (currentStatus is the current checkbox state)
+      const loguserid = secureLocalStorage.getItem("login_id");
+      const login_type = secureLocalStorage.getItem("loginType");
+      const response = await dataFetchingPatch(
+        `${NODE_API_URL}/api/designation/active-inactive-designation/${dbId}/${loguserid}/${login_type}`
+      );
+      if (response?.statusCode === 200) {
+        toast.success(response.message);
+        // Update the notice list to reflect the status change
+        setDesignationList((prevList) =>
+          prevList.map((item) =>
+            item.id === dbId ? { ...item, status: newStatus } : item
+          )
+        );
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
+    } catch (error) {
+      const statusCode = error.response?.data?.statusCode;
+
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        setTitleError(error.response.message);
+        toast.error(error.response.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    }
+  };
+  const deleteStatus = async (dbId) => {
+    if (
+      !dbId ||
+      !Number.isInteger(parseInt(dbId, 10)) ||
+      parseInt(dbId, 10) <= 0
+    )
+      return toast.error("Invalid ID.");
+    try {
+      const deleteAlert = await DeleteSweetAlert();
+      if (deleteAlert) {
+        const loguserid = secureLocalStorage.getItem("login_id");
+        const login_type = secureLocalStorage.getItem("loginType");
+        const response = await dataFetchingDelete(
+          `${NODE_API_URL}/api/designation/delete-designation/${dbId}/${loguserid}/${login_type}`
+        );
+        if (response?.statusCode === 200) {
+          toast.success(response.message);
+          setTitleError("");
+          if (response.data == 1) {
+            fetchDesignationList(1);
+          } else {
+            fetchDesignationList(0);
+          }
+          showRecyleBin();
+        } else {
+          toast.error("An error occurred. Please try again.");
+        }
+      }
+    } catch (error) {
+      const statusCode = error.response?.data?.statusCode;
+
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        setTitleError(error.response.message);
+        toast.error(error.response.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    }
+  };
+  const updateDataFetch = async (dbId) => {
+    if (
+      !dbId ||
+      !Number.isInteger(parseInt(dbId, 10)) ||
+      parseInt(dbId, 10) <= 0
+    )
+      return toast.error("Invalid ID.");
+    try {
+      const response = await dataFetchingGet(
+        `${NODE_API_URL}/api/designation/retrieve-designation-by-id/${dbId}`
+      );
+      if (response?.statusCode === 200 && response.data.length > 0) {
+        toast.success(response.message);
+        setFormData((prev) => ({
+          ...prev,
+          dbId: response.data[0].id,
+          title: response.data[0].title,
+          department_id: response.data[0].department_id,
+        }));
         setToggleShow(!toggleShow);
-        setFormData(iniatialForm);
-        setTitleError('');
+      } else {
+        toast.error("Data not found.");
+      }
+    } catch (error) {
+      const statusCode = error.response?.data?.statusCode;
 
-    };
-    const handleToggleStatus = async (dbId, currentStatus) => {
-        if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
-        const newStatus = currentStatus === 1 ? 0 : 1;
-        try {
-            // Toggle the status (currentStatus is the current checkbox state)
-            const loguserid = secureLocalStorage.getItem('login_id');
-            const login_type = secureLocalStorage.getItem('loginType');
-            const response = await dataFetchingPatch(`${NODE_API_URL}/api/designation/active-inactive-designation/${dbId}/${loguserid}/${login_type}`);
-            if (response?.statusCode === 200) {
-                toast.success(response.message);
-                // Update the notice list to reflect the status change
-                setDesignationList(prevList =>
-                    prevList.map(item =>
-                        item.id === dbId ? { ...item, status: newStatus } : item
-                    )
-                );
-            } else {
-                toast.error("An error occurred. Please try again.");
-            }
-        } catch (error) {
-            const statusCode = error.response?.data?.statusCode;
-
-            if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
-                setTitleError(error.response.message);
-                toast.error(error.response.message || "A server error occurred.");
-            } else {
-                toast.error(
-                    "An error occurred. Please check your connection or try again."
-                );
-            }
-        }
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        setTitleError(error.response.message);
+        toast.error(error.response.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
     }
-    const deleteStatus = async (dbId) => {
-        if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
-        try {
-            const deleteAlert = await DeleteSweetAlert();
-            if (deleteAlert) {
-                const loguserid = secureLocalStorage.getItem('login_id');
-                const login_type = secureLocalStorage.getItem('loginType');
-                const response = await dataFetchingDelete(`${NODE_API_URL}/api/designation/delete-designation/${dbId}/${loguserid}/${login_type}`);
-                if (response?.statusCode === 200) {
-                    toast.success(response.message);
-                    setTitleError('');
-                    if (response.data == 1) {
-                        fetchDesignationList(1);
-                    } else {
-                        fetchDesignationList(0);
-                    }
-                    showRecyleBin()
-                } else {
-                    toast.error("An error occurred. Please try again.");
-                }
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            const statusCode = error.response?.data?.statusCode;
-
-            if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
-                setTitleError(error.response.message);
-                toast.error(error.response.message || "A server error occurred.");
-            } else {
-                toast.error(
-                    "An error occurred. Please check your connection or try again."
-                );
-            }
-        }
-    }
-    const updateDataFetch = async (dbId) => {
-        if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
-        try {
-            const response = await dataFetchingGet(`${NODE_API_URL}/api/designation/retrieve-designation-by-id/${dbId}`);
-            if (response?.statusCode === 200 && response.data.length > 0) {
-                toast.success(response.message);
-                setFormData((prev) => ({
-                    ...prev,
-                    dbId: response.data[0].id,
-                    title: response.data[0].title,
-                    department_id: response.data[0].department_id
-                }));
-                setToggleShow(!toggleShow);
-            } else {
-                toast.error("Data not found.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            const statusCode = error.response?.data?.statusCode;
-
-            if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
-                setTitleError(error.response.message);
-                toast.error(error.response.message || "A server error occurred.");
-            } else {
-                toast.error(
-                    "An error occurred. Please check your connection or try again."
-                );
-            }
-        }
-    }
+  };
 
     return (
         <>
@@ -369,7 +395,7 @@ function Designation() {
             </div>
             <Modal show={toggleShow} onHide={handleToggleShow}>
                 <Modal.Header>
-                    <Modal.Title>Designation</Modal.Title>
+                    <Modal.Title>{formData.dbId ? "Update Designation" : "Add New Designation"} </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={(e) => e.preventDefault()}>
@@ -417,4 +443,4 @@ function Designation() {
         </>
     )
 }
-export default Designation
+export default Designation;

@@ -242,7 +242,7 @@ function AddExpense() {
                   </a>
                   <span className="breadcrumb-item">Expense Management</span>
                   <span className="breadcrumb-item active">
-                    Add New Expense
+                  {expenseId ? "Update Expense" : "Add New Expense"}
                   </span>
                 </nav>
               </div>
@@ -272,7 +272,7 @@ function AddExpense() {
               <div className="card-body">
                 <form onSubmit={handleSubmit}>
                   <div className="row">
-                    <div className="col-md-4 form-group">
+                    <div className="col-md-7 form-group">
                       <label className="font-weight-semibold">
                         Expense Category <span className="text-danger">*</span>
                       </label>
@@ -315,10 +315,11 @@ function AddExpense() {
                       label="Amount"
                       name="amount"
                       id="amount"
+                      placeholder="0"
                       type="text"
                       value={formData.amount}
                       onChange={handleChange}
-                      column="col-md-4"
+                      column="col-md-5"
                       required
                     />
 
@@ -338,6 +339,7 @@ function AddExpense() {
                       label="Creditor Name"
                       name="creditto"
                       id="creditto"
+                      placeholder="Enter Creditor Name"
                       type="text"
                       value={formData.creditto}
                       onChange={handleChange}
@@ -350,6 +352,7 @@ function AddExpense() {
                       name="mobileno"
                       id="mobileno"
                       type="text"
+                      placeholder="0123456789"
                       value={formData.mobileno}
                       onChange={handleChange}
                       column="col-md-4"
@@ -361,6 +364,7 @@ function AddExpense() {
                       label="Remark "
                       name="remark"
                       id="remark"
+                      placeholder="Enter Remark"
                       required={true}
                       value={formData.remark}
                       onChange={handleChange}

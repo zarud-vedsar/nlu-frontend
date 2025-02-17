@@ -34,7 +34,7 @@ const MessageForm = () => {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter your message here...',
     spellcheck: true,
     language: 'pt_br',
     defaultMode: '1',
@@ -177,9 +177,11 @@ const MessageForm = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/home" className="breadcrumb-item">
-                  <i className="fas fa-home m-r-5" /> CMS
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
+
+                <span className="breadcrumb-item active">CMS</span>
                 <span className="breadcrumb-item active">Message</span>
               </nav>
             </div>
@@ -216,6 +218,7 @@ const MessageForm = () => {
                       type="text"
                       className="form-control"
                       name="from"
+                      placeholder="Enter Message From"
                       value={formData.from}
                       onChange={handleChange}
                     />
@@ -228,6 +231,7 @@ const MessageForm = () => {
                       type="text"
                       className="form-control"
                       name="name"
+                      placeholder="Enter Name"
                       value={formData.name}
                       onChange={handleChange}
                     />

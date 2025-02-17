@@ -247,7 +247,7 @@ function SemesterSubjectAdd() {
                                 </nav>
                             </div>
                         </div>
-                        <div className="card bg-transparent mb-2">
+                        <div className="card bg-transparent mb-2 col-md-10 m-auto">
                             <div className="card-header d-flex justify-content-between align-items-center px-0">
                                 <h5 className="card-title h6_new">
                                     {semesterId ? "Update Subject" : "Add New Subject"}
@@ -478,6 +478,7 @@ function SemesterSubjectAdd() {
                                                         className="form-control"
                                                         name="title"
                                                         value={formData.subject}
+                                                        placeholder="Enter Subject Name"
                                                         onChange={(e) => {
                                                             setFormData({
                                                                 ...formData,

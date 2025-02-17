@@ -87,7 +87,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Add New</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">{id ? "Update Popup Notice" : "Add New Popup Notice"}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="form-group col-md-12">
@@ -298,11 +298,12 @@ const PopupNotice = () => {
           <div className="container-fluid">
             <div className="mt-0">
               <nav className="breadcrumb">
-                <a href="/" className="breadcrumb-item">
-                  CMS
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
-                <span className="breadcrumb-item active">Popup Notice </span>
+                <span className="breadcrumb-item active">CMS</span>
+                <span className="breadcrumb-item ">Popup Notice</span>
               </nav>
             </div>
             <div className="card bg-transparent mb-2">

@@ -224,9 +224,8 @@ function AddNewRoom() {
                                         <i className="fas fa-home m-r-5" /> Dashboard
                                     </a>
                                     <span className="breadcrumb-item">Hostel Management</span>
-                                    <span className="breadcrumb-item">Visitor</span>
                                     <span className="breadcrumb-item active">
-                                        {dbId ? "Update Data" : "New Visitor Entry"}
+                                        {dbId ? "Update Visitor Entry" : "Add New Visitor Entry"}
                                     </span>
                                 </nav>
                             </div>
@@ -234,7 +233,7 @@ function AddNewRoom() {
                         <div className="card bg-transparent mb-2">
                             <div className="card-header d-flex justify-content-between align-items-center px-0">
                                 <h5 className="card-title h6_new">
-                                    {dbId ? "Update Data" : "New Visitor Entry"}
+                                    {dbId ? "Update Visitor Entry" : "Add New Visitor Entry"}
                                 </h5>
                                 <div className="ml-auto">
                                     <button
@@ -296,6 +295,7 @@ function AddNewRoom() {
                                             label="Visitor Name"
                                             name="name"
                                             id="name"
+                                            placeholder='Enter Visitor Name'
                                             value={formData.name}
                                             onChange={handleChange}
                                             column="col-md-6 col-lg-6"
@@ -308,6 +308,7 @@ function AddNewRoom() {
                                             label="Contact No"
                                             name="contact_number"
                                             id="contact_number"
+                                            placeholder='0123456789'
                                             value={formData.contact_number}
                                             onChange={handleChange}
                                             column="col-md-3 col-lg-3"
@@ -320,6 +321,7 @@ function AddNewRoom() {
                                             label="Purpose Of Visit"
                                             name="purpose"
                                             id="purpose"
+                                            placeholder='Enter Your Visit Purpose'
                                             value={formData.purpose}
                                             onChange={handleChange}
                                             column="col-md-12"

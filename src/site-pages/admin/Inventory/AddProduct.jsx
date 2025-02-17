@@ -182,7 +182,7 @@ function Registration() {
                                     </button>
                                     <Link to="/admin/inventory/product">
                                         <button className="ml-2 btn-md btn border-0 btn-secondary">
-                                            Product History  <i className="fas fa-list"></i>
+                                        <i className="fas fa-list"></i>  Product List  
                                         </button>
                                     </Link>
                                 </div>
@@ -229,6 +229,7 @@ function Registration() {
                                             label="Product Name"
                                             name="pname"
                                             id="pname"
+                                            placeholder="Enter Product Name"
                                             value={formData.pname}
                                             onChange={handleChange}
                                             column="col-md-6 col-lg-6"
@@ -253,6 +254,7 @@ function Registration() {
                                             label="Product Code"
                                             name="pcode"
                                             id="pcode"
+                                            placeholder="012345"
                                             value={formData.pcode}
                                             onChange={handleChange}
                                             column="col-md-3 col-lg-3"
@@ -286,6 +288,7 @@ function Registration() {
                                             label="Product Brand"
                                             name="pbrand"
                                             id="pbrand"
+                                            placeholder="Enter Product Brand"
                                             value={formData.pbrand}
                                             onChange={handleChange}
                                             column="col-md-4 col-lg-4"
@@ -297,6 +300,7 @@ function Registration() {
                                             label="Product Description"
                                             name="pdesc"
                                             id="pdesc"
+                                            placeholder="Enter your description here..."
                                             value={formData.pdesc}
                                             onChange={handleChange}
                                             column="col-md-12 col-lg-12"

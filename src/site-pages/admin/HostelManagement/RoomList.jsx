@@ -128,7 +128,6 @@ function RoomList() {
                                         <i className="fas fa-home m-r-5" /> Dashboard
                                     </a>
                                     <span className="breadcrumb-item">Hostel Management</span>
-                                    <span className="breadcrumb-item">Room</span>
                                     <span className="breadcrumb-item active">
                                         Room List
                                     </span>

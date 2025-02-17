@@ -36,7 +36,7 @@ function AddNewRoom() {
     // Jodit editor configuration
     const config = {
         readonly: false,
-        placeholder: '',
+        placeholder: 'Enter your description here...',
         spellcheck: true,
         language: 'pt_br',
         defaultMode: '1',
@@ -197,7 +197,6 @@ function AddNewRoom() {
                                         <i className="fas fa-home m-r-5" /> Dashboard
                                     </a>
                                     <span className="breadcrumb-item">Hostel Management</span>
-                                    <span className="breadcrumb-item">Room</span>
                                     <span className="breadcrumb-item active">
                                         {dbId ? "Update Room" : "Add Room"}
                                     </span>
@@ -235,6 +234,7 @@ function AddNewRoom() {
                                             label="Block Name"
                                             name="block"
                                             id="block"
+                                            placeholder='Enter Block Name'
                                             value={formData.block}
                                             onChange={handleChange}
                                             column="col-md-4"
@@ -247,6 +247,7 @@ function AddNewRoom() {
                                             label="Room No"
                                             name="roomNo"
                                             id="roomNo"
+                                            placeholder='01'
                                             value={formData.roomNo}
                                             onChange={handleChange}
                                             column="col-md-4"
@@ -259,6 +260,7 @@ function AddNewRoom() {
                                             label="Floor"
                                             name="floor"
                                             id="floor"
+                                            placeholder='1st'
                                             value={formData.floor}
                                             onChange={handleChange}
                                             column="col-md-4"
@@ -271,6 +273,7 @@ function AddNewRoom() {
                                             label="Capacity"
                                             name="capacity"
                                             id="capacity"
+                                            placeholder='10'
                                             value={formData.capacity}
                                             onChange={handleChange}
                                             column="col-md-4"
@@ -283,6 +286,7 @@ function AddNewRoom() {
                                             label="No Of Beds"
                                             name="occupied_beds"
                                             id="occupied_beds"
+                                            placeholder='10'
                                             value={formData.occupied_beds}
                                             onChange={handleChange}
                                             column="col-md-4"
@@ -311,6 +315,7 @@ function AddNewRoom() {
                                             <TagsInput
                                                 value={amenities}
                                                 onChange={addNewAmenity}
+                                                placeHolder='Enter Amenities'
                                                 name=""
                                                 className="form-control"
                                             />

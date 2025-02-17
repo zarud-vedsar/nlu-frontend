@@ -30,8 +30,8 @@ function AddExam() {
   });
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
   /**
- * ROLE & PERMISSION
- */
+   * ROLE & PERMISSION
+   */
   const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate(); // Initialize useNavigate
   useEffect(() => {
@@ -199,13 +199,15 @@ function AddExam() {
                     <i className="fas fa-home m-r-5" />
                     Attendance Management
                   </Link>
-                  
+
                   <span className="breadcrumb-item active">
                     Compile Class Attendance
                   </span>
                 </nav>
               </div>
             </div>
+            <div className="row d-flex justify-content-center">
+              <div className="col-md-6 ">
             {/* Main Content Starts Here */}
             <div className="card border-0 bg-transparent mb-0">
               <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
@@ -217,14 +219,17 @@ function AddExam() {
                   <button className="btn goback" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
-                   <Link to="/admin/attendance-management/view-compile-attendance">
-                                                                            <button className="ml-2 btn-md btn border-0 btn-secondary">
-                                                                              <i className="fas fa-list"></i> Compile Class Attendance
-                                                                            </button>
-                                                                          </Link>
+                  <Link to="/admin/attendance-management/view-compile-attendance">
+                    <button className="ml-2 btn-md btn border-0 btn-secondary">
+                      <i className="fas fa-list"></i> Compile Class Attendance
+                    </button>
+                  </Link>
                 </div>
               </div>
+              </div>
             </div>
+            </div>
+
             <div className="row">
               <div className="col-md-6 mx-auto">
                 <div className="card">
@@ -246,11 +251,11 @@ function AddExam() {
                           value={
                             session.find(({ id }) => id === +admitForm.session)
                               ? {
-                                value: +admitForm.session,
-                                label: session.find(
-                                  ({ id }) => id === +admitForm.session
-                                ).dtitle,
-                              }
+                                  value: +admitForm.session,
+                                  label: session.find(
+                                    ({ id }) => id === +admitForm.session
+                                  ).dtitle,
+                                }
                               : { value: admitForm.session, label: "Select" }
                           }
                         />
@@ -273,11 +278,11 @@ function AddExam() {
                               ({ id }) => id === +admitForm.course_id
                             )
                               ? {
-                                value: +admitForm.course_id,
-                                label: courseList.find(
-                                  ({ id }) => id === +admitForm.course_id
-                                ).coursename,
-                              }
+                                  value: +admitForm.course_id,
+                                  label: courseList.find(
+                                    ({ id }) => id === +admitForm.course_id
+                                  ).coursename,
+                                }
                               : { value: admitForm.course_id, label: "Select" }
                           }
                         />
@@ -303,17 +308,17 @@ function AddExam() {
                               ({ id }) => id === admitForm.semester_id
                             )
                               ? {
-                                value: admitForm.semester_id,
-                                label: capitalizeFirstLetter(
-                                  semesterList.find(
-                                    ({ id }) => id === admitForm.semester_id
-                                  ).semtitle
-                                ),
-                              }
+                                  value: admitForm.semester_id,
+                                  label: capitalizeFirstLetter(
+                                    semesterList.find(
+                                      ({ id }) => id === admitForm.semester_id
+                                    ).semtitle
+                                  ),
+                                }
                               : {
-                                value: admitForm.semester_id,
-                                label: "Select",
-                              }
+                                  value: admitForm.semester_id,
+                                  label: "Select",
+                                }
                           }
                         />
                       </div>
@@ -334,13 +339,13 @@ function AddExam() {
                               ({ id }) => id === admitForm.subject_id
                             )
                               ? {
-                                value: admitForm.subject_id,
-                                label: capitalizeFirstLetter(
-                                  subjectList.find(
-                                    ({ id }) => id === admitForm.subject_id
-                                  ).subject
-                                ),
-                              }
+                                  value: admitForm.subject_id,
+                                  label: capitalizeFirstLetter(
+                                    subjectList.find(
+                                      ({ id }) => id === admitForm.subject_id
+                                    ).subject
+                                  ),
+                                }
                               : { value: admitForm.subject_id, label: "Select" }
                           }
                         />
@@ -351,7 +356,7 @@ function AddExam() {
                           className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
                           type="submit"
                         >
-                          Compile {" "}
+                          Compile{" "}
                           {isSubmit && (
                             <>
                               &nbsp;<div className="loader-circle"></div>

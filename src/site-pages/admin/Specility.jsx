@@ -185,16 +185,18 @@ const Specility = () => {
     <>
       <div className="page-container">
         <div className="main-content">
-          <div className="container-fluid">
-            <div className="">
-              <nav className="breadcrumb">
-                <a href="/" className="breadcrumb-item">
-                  Library
+        <div className="container-fluid">
+
+          <div className="">
+            <nav className="breadcrumb">
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
-                <span className="breadcrumb-item active">Speciality</span>
-              </nav>
-            </div>
+              <span className="breadcrumb-item active">CMS</span>
+              <span className="breadcrumb-item active">Speciality</span>
+            </nav>
+          </div>
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">Speciality List</h5>

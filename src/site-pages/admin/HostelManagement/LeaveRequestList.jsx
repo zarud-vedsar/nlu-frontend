@@ -135,6 +135,7 @@ const ResponseModal = (props = {}) => {
           label="Remark"
           name="response"
           id="response"
+          placeholder="Enter Remark"
           value={detail.response}
           onChange={(e) =>
             setDetail((pre) => ({

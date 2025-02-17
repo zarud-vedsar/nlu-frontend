@@ -230,14 +230,12 @@ const BannerList = () => {
           <div className="container-fluid">
             <div className="">
               <nav className="breadcrumb">
-                <a href="/" className="breadcrumb-item">
-                  CMS
-                </a>
-                <a href="/" className="breadcrumb-item">
-                  Banner
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
-                <span className="breadcrumb-item active">List</span>
+                <span className="breadcrumb-item active">CMS</span>
+                <span className="breadcrumb-item active">Banner</span>
               </nav>
             </div>
             <div className="card bg-transparent mb-2">

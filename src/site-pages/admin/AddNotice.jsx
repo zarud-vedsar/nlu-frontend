@@ -35,7 +35,7 @@ function NoticeList() {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter Your description here...',
     spellcheck: true,
     language: 'pt_br',
     defaultMode: '1',
@@ -297,6 +297,7 @@ function NoticeList() {
                       required
                       name="title"
                       id="title"
+                      placeholder="Enter Title"
                       value={formData.title}
                       column="col-md-12"
                       onChange={handleChange}

@@ -169,7 +169,7 @@ function ProductList() {
                   </a>
                   <span className="breadcrumb-item">Inventory Management</span>
                   <span className="breadcrumb-item active">
-                    Stock In History
+                    Stock In 
                   </span>
                 </nav>
               </div>

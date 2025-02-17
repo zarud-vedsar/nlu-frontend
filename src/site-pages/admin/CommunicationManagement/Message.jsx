@@ -349,6 +349,7 @@ function Message() {
                           label="Message"
                           name="message"
                           id="message"
+                          placeholder="Enter your message"
                           value={formData.message}
                           onChange={handleChange}
                           column="col-md-12"

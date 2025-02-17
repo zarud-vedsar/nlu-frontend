@@ -137,9 +137,12 @@ function MessageList() {
                             <div className="card-header d-flex justify-content-between align-items-center px-0">
                                 <h5 className="card-title">Message List</h5>
                                 <div className="ml-auto">
-                                    <button className="btn btn-secondary mr-2" onClick={goBack}>
-                                        <i className="fas fa-arrow-left"></i> Go Back
-                                    </button>
+                                     <button
+                                                       className="ml-auto btn-md btn border-0 btn-light mr-2"
+                                                       onClick={goBack}
+                                                     >
+                                                       <i className="fas fa-arrow-left"></i> Go Back
+                                                     </button>
                                     <Link to="/admin/cmn-mng-message">
                                         <button className="btn btn-secondary">
                                             <i className="fas fa-plus"></i> Add New

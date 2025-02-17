@@ -269,7 +269,7 @@ function AddNewResourcePdf() {
                                 </nav>
                             </div>
                         </div>
-                        <div className="card bg-transparent mb-2">
+                        <div className="card bg-transparent mb-2 col-md-7 m-auto">
                             <div className="card-header d-flex justify-content-between align-items-center px-0">
                                 <h5 className="card-title h6_new">
                                     {dbId ? "Update Pdf" : "Add New Pdf"}
@@ -290,7 +290,7 @@ function AddNewResourcePdf() {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-md-10 mx-auto">
+                            <div className="col-md-7 mx-auto">
                                 <div className="card">
                                     <div className="card-body">
                                         <form onSubmit={handleSubmit}>

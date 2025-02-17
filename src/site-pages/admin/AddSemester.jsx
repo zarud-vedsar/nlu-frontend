@@ -200,7 +200,7 @@ function SemesterAdd() {
                 <div className="card border-0 bg-transparent mb-2">
                   <div className="card-header border-0 bg-transparent py-1 d-flex justify-content-between align-items-center px-0">
                     <h5 className="card-title h6_new">
-                      {semesterId ? "Update Semester" : "Add Semester"}
+                      {semesterId ? "Update Semester" : "Add New Semester"}
                     </h5>
                     <div className="ml-auto">
                       <button

@@ -52,7 +52,7 @@ const OurSociety = () => {
     const sliderSettings = {
         dots: false,
         infinite: true,
-        speed: 100000000000,
+        speed: 1000,
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -195,7 +195,6 @@ const OurSociety = () => {
                   background: #fff;
                   border-radius: 10px;
                   width: 100%;
-                  max-width: 250px;
                 }
 
     .linkiimg {

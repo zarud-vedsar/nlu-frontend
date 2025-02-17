@@ -5196,12 +5196,33 @@ table.table.tblpad-10>tbody>tr>td {
 	width: 100%;
 }
 .socicard-bx {
-	background: #f8f8f8;
-	height: 150px;
-	border-radius: 8px;
+	padding: 15px 0;
   }
+.socicard-bx-item-bx {
+	background: #f8f8f8;
+	border-radius: 8px;
+	border: solid 1px rgb(146, 66, 86);
+	border-bottom: solid 3px #800020;
 
+  }
+  .socicard-bx-item-link {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+}
+
+.socicard-bx-item-linkimg {
+	height: 60px;
+}
 @media (max-width:768px) {
+	.socicard-bx {
+		padding: 15px 30px 15px 45px;
+	  }
+	  .slider-item2{
+		padding: 15px 30px 15px 45px;
+	  }
 	.textManage{
 		text-align: center;
 	  }

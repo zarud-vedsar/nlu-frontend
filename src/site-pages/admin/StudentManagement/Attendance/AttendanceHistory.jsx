@@ -24,7 +24,7 @@ function AttendanceHIstory() {
   const [subjectListing, setSubjectListing] = useState([]);
 
   const [isFetching, setIsFetching] = useState(false);
-
+  const session = localStorage.getItem("session");
   const currentYear = new Date().getFullYear();
   const availableYears = Array.from(
     { length: 10 },
@@ -52,7 +52,7 @@ function AttendanceHIstory() {
     year: new Date().getFullYear(),
     month: "",
     studentId: "",
-    session: localStorage.getItem("session"),
+    session:session,
   };
 
   const [filters, setFilters] = useState(initializeFilter);
@@ -93,7 +93,7 @@ function AttendanceHIstory() {
   };
 
   // Fetch and set the session list for the dropdown
-  const [session,setSession] = useState([]);
+  const [SessionList,setSessionList] = useState([]);
   const sessionListDropdown = async () => {
     try {
       const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
@@ -101,10 +101,10 @@ function AttendanceHIstory() {
         column: "id, dtitle",
       });
       data?.statusCode === 200 && data.data.length
-        ? setSession(data.data) // Populate session list
-        : (toast.error("Session not found."), setSession([])); // Error handling
+        ? setSessionList(data.data) // Populate session list
+        : (toast.error("Session not found."), setSessionList([])); // Error handling
     } catch {
-      setSession([]); // Clear list on failure
+      setSessionList([]); // Clear list on failure
     }
   };
 
@@ -203,6 +203,7 @@ function AttendanceHIstory() {
           courseid,
           semesterid,
           approved: 1,
+          session
         }
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
@@ -567,7 +568,7 @@ function AttendanceHIstory() {
                             Session <span className="text-danger">*</span>
                           </label>
                           <Select
-                            options={session?.map(({ id, dtitle }) => ({
+                            options={SessionList?.map(({ id, dtitle }) => ({
                               value: id,
                               label: dtitle,
                             }))}
@@ -575,12 +576,12 @@ function AttendanceHIstory() {
                               setFilters({ ...filters, session: value });
                             }}
                             value={
-                              session.find(
+                              SessionList.find(
                                 ({ id }) => id === +filters.session
                               )
                                 ? {
                                     value: +filters.session,
-                                    label: session.find(
+                                    label: SessionList.find(
                                       ({ id }) => id === +filters.session
                                     ).dtitle,
                                   }

@@ -27,9 +27,12 @@ const IssueBookAdd = () => {
   };
   const fetchStudent = async () => {
     try {
-      const response = await axios.get(
-        `${NODE_API_URL}/api/student-detail/get-student`
+      let session = localStorage.getItem("session");
+      const response = await axios.post(
+        `${NODE_API_URL}/api/student-detail/get-student`,
+        {session:session}
       );
+      
       if (
         response?.data?.statusCode === 200 &&
         response?.data?.data.length > 0

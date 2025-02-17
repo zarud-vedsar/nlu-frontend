@@ -26,7 +26,7 @@ function Message() {
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
   const [studentListing, setStudentListing] = useState([]);
   const [mailsent, setMailsent] = useState(false);
-
+  const session = localStorage.getItem("session");
   const courseListDropdown = async () => {
     try {
       const response = await axios.get(`${NODE_API_URL}/api/course/dropdown`);
@@ -87,6 +87,7 @@ function Message() {
           courseid,
           semesterid,
           approved: 1,
+          session
         }
       );
       if (response?.statusCode === 200 && response.data.length > 0) {

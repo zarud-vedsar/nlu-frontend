@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
   capitalizeEachLetter,
-  goBack,
+  goBack
 } from "../../site-components/Helper/HelperFunction";
 import { RoleData } from "../../site-components/admin/assets/RoleData";
 import { FormField } from "../../site-components/admin/assets/FormField";
@@ -25,19 +25,19 @@ function AddRole() {
     rolePermissions: [],
   });
 
-useEffect(() => {
-  if (roleData.length) {
-    setFormData((prev) => ({
-      ...prev,
-      rolePermissions: roleData.map((item) => ({
-        [item.title]: item.items.map((subItem) => ({
-          subRole: subItem.label,
-          crud: [],
+  useEffect(() => {
+    if (roleData.length) {
+      setFormData((prev) => ({
+        ...prev,
+        rolePermissions: roleData.map((item) => ({
+          [item.title]: item.items.map((subItem) => ({
+            subRole: subItem.label,
+            crud: [],
+          })),
         })),
-      })),
-    }));
-  }
-}, [roleData]);
+      }));
+    }
+  }, [roleData]);
 
   const handleChange = (e) => {
     setFormData({
@@ -89,56 +89,56 @@ useEffect(() => {
 
   // Update the effect to set rolePermissions when role data is fetched
 
- const handleCheckboxChange = (role, permission, mainTitle) => {
-   setFormData((prev) => {
-     let updatedPermissions = [...prev.rolePermissions];
+  const handleCheckboxChange = (role, permission, mainTitle) => {
+    setFormData((prev) => {
+      let updatedPermissions = [...prev.rolePermissions];
 
-     let mainTitleIndex = updatedPermissions.findIndex(
-       (item) => Object.keys(item)[0] === mainTitle
-     );
+      let mainTitleIndex = updatedPermissions.findIndex(
+        (item) => Object.keys(item)[0] === mainTitle
+      );
 
-     if (mainTitleIndex !== -1) {
-       let existingMainTitle = updatedPermissions[mainTitleIndex];
+      if (mainTitleIndex !== -1) {
+        let existingMainTitle = updatedPermissions[mainTitleIndex];
 
-       let rolePermissions = existingMainTitle[mainTitle] || [];
+        let rolePermissions = existingMainTitle[mainTitle] || [];
 
-       let roleIndex = rolePermissions.findIndex((r) => r.subRole === role);
+        let roleIndex = rolePermissions.findIndex((r) => r.subRole === role);
 
-       if (roleIndex !== -1) {
-         let newCrud = [...rolePermissions[roleIndex].crud];
-         newCrud.includes(permission)
-           ? (newCrud = newCrud.filter((perm) => perm !== permission))
-           : newCrud.push(permission);
+        if (roleIndex !== -1) {
+          let newCrud = [...rolePermissions[roleIndex].crud];
+          newCrud.includes(permission)
+            ? (newCrud = newCrud.filter((perm) => perm !== permission))
+            : newCrud.push(permission);
 
-         rolePermissions[roleIndex] = { subRole: role, crud: newCrud };
-       } else {
-         rolePermissions.push({ subRole: role, crud: [permission] });
-       }
+          rolePermissions[roleIndex] = { subRole: role, crud: newCrud };
+        } else {
+          rolePermissions.push({ subRole: role, crud: [permission] });
+        }
 
-       existingMainTitle[mainTitle] = rolePermissions;
-     } else {
-       updatedPermissions.push({
-         [mainTitle]: [{ subRole: role, crud: [permission] }],
-       });
-     }
+        existingMainTitle[mainTitle] = rolePermissions;
+      } else {
+        updatedPermissions.push({
+          [mainTitle]: [{ subRole: role, crud: [permission] }],
+        });
+      }
 
-     return { ...prev, rolePermissions: updatedPermissions };
-   });
- };
+      return { ...prev, rolePermissions: updatedPermissions };
+    });
+  };
 
 
   const handleSubmit = async (e) => {
-   const filteredPermissions = formData.rolePermissions.filter(
-     (permissionObj) => {
-       let mainTitle = Object.keys(permissionObj)[0];
+    const filteredPermissions = formData.rolePermissions.filter(
+      (permissionObj) => {
+        let mainTitle = Object.keys(permissionObj)[0];
 
-       // Ensure the mainTitle has a valid array and at least one subRole with non-empty crud
-       return (
-         permissionObj[mainTitle].length > 0 &&
-         permissionObj[mainTitle].some((subRole) => subRole.crud.length > 0)
-       );
-     }
-   );
+        // Ensure the mainTitle has a valid array and at least one subRole with non-empty crud
+        return (
+          permissionObj[mainTitle].length > 0 &&
+          permissionObj[mainTitle].some((subRole) => subRole.crud.length > 0)
+        );
+      }
+    );
 
     e.preventDefault();
     setIsSubmit(true);
@@ -248,13 +248,13 @@ useEffect(() => {
                             <h6>{item.label}</h6>
                             <div className="d-flex flex-wrap bg_light p-3 rounded-3">
                               {item.crud.map((perm, permIndex) => {
-                              let checked = formData.rolePermissions
-                                .find((perm) => perm[role.title])
-                                ?.[role.title]?.some(
-                                  (r) =>
-                                    r.subRole === item.label &&
-                                    r.crud.includes(perm)
-                                );
+                                let checked = formData.rolePermissions
+                                  .find((perm) => perm[role.title])
+                                  ?.[role.title]?.some(
+                                    (r) =>
+                                      r.subRole === item.label &&
+                                      r.crud.includes(perm)
+                                  );
                                 return (
                                   <div key={permIndex} className="col-12">
                                     <div className="checkbox">

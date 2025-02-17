@@ -18,12 +18,12 @@ function App() {
   function toggleExpand(data) {
     setExpand(data);
   }
+
   function toggleFolded(data) {
     setFolded(data);
   }
   return (
     <ErrorBoundary>
-
       <Suspense fallback={<SuspensionLoader />}>
         <Router>
           <Routes>

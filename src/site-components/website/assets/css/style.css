@@ -4743,8 +4743,20 @@ a:hover {
 	border-radius: 12px;
 }
 
+.testibx {
+	display: flex;
+	text-align: left;
+	gap: 10px;
+}
+.testi-name-review-bx {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
 
-
+.ratee {
+	margin-left: auto;
+}
 @media (max-width:768px) {
 	#wowslider-container1 img.sliderimg {
 		height: 100%;
@@ -5053,6 +5065,10 @@ ul.facitems li {
 	color: #b81365;
 }
 
+.oursos {
+	padding: 60px 0 70px;
+	/* background: #f3f3f3; */
+}
 .usefulllnk {
 	padding: 60px 0 70px;
 	background: #f3f3f3;

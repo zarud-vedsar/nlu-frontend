@@ -1,6 +1,7 @@
 
 
 import React, { useEffect, useState } from "react";
+import AOS from "aos";
 import Slider from "react-slick";
 import axios from "axios";
 import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
@@ -10,7 +11,12 @@ import "slick-carousel/slick/slick-theme.css";
 
 function UserTestimonials() {
   const [testimonials, setTestimonials] = useState([]);
-
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+    });
+  }, []);
   useEffect(() => {
     const loadData = async () => {
       try {
@@ -35,7 +41,7 @@ function UserTestimonials() {
 
   const CustomArrow = ({ onClick, direction }) => {
     const isMobile = window.innerWidth <= 768; // Check for mobile view
-  
+
     return (
       <div
         onClick={onClick}
@@ -59,13 +65,13 @@ function UserTestimonials() {
       </div>
     );
   };
-  
+
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -83,65 +89,72 @@ function UserTestimonials() {
     );
 
   return (
-    <div className="container pb-5 mb-4">
-     
-       <div className="row">
-            <div className="col-md-12 mb-3 text-center">
-              <h2 className="heading-primary2">What Our Students Are Saying</h2>
-              <div className="heading-divider"></div>
-            </div>
+    <div className="usertesti" data-aos="fade-up" data-aos-delay="100">
+      <div className="container pb-5 mb-4 ">
+
+        <div className="row">
+          <div className="col-md-12 mb-3 text-center">
+            <h2 className="heading-primary2">What Our Students Are Saying</h2>
+            <div className="heading-divider"></div>
           </div>
-      {testimonials.length > 0 ? (
-        <Slider {...settings}>
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="px-3 my-4">
-              <div className="testimonial-card">
-                <p className="testimonial-text mb-0 py-1">
-                  "{testimonial.test_content.split(" ").slice(0, 10).join(" ")}
-                  {testimonial.test_content.split(" ").length > 10 ? "..." : ""}"
-                </p>
-                <h5 className="fw-semibold mb-1 py-1">{testimonial.test_name}</h5>
+        </div>
+        {testimonials.length > 0 ? (
+          <Slider {...settings}>
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="px-3 my-4">
+                <div className="testimonial-card">
+                  <div className="testi-name-review-bx">
+                    <h5 className="fw-semibold mb-1 py-1">{testimonial.test_name}</h5>
+                    <div className="ratee">{renderStars(parseInt(testimonial.test_rating))}</div>
+                  </div>
+                  <p className="testimonial-text mb-0 py-1">
+                    "{testimonial.test_content.split(" ").slice(0, 10).join(" ")}
+                    {testimonial.test_content.split(" ").length > 10 ? "..." : ""}"
+                  </p>
 
-                <div className="row align-items-center g-3 responsivebox">
-                  <div className="col-12 col-md-4 d-flex1 justify-center items-center ">
-                    {testimonial.test_photo && (
-                      <img
-                        src={`${FILE_API_URL}/testimonial/${testimonial.test_photo}`}
-                        alt={testimonial.test_name}
-                        className="rounded-circle border border-2 border-secondary"
-                        style={{
-                          width: "60px",
-                          height: "60px",
-                          objectFit: "cover",
-                          flexShrink: 0,
-                        }}
-                      />
-                      
-                    )}
+                  <div className="testibx">
+                    <div className="testibx-left">
+                      {testimonial.test_photo && (
+                        <img
+                          src={`${FILE_API_URL}/testimonial/${testimonial.test_photo}`}
+                          alt={testimonial.test_name}
+                          className="rounded-circle border border-2 border-secondary"
+                          style={{
+                            width: "60px",
+                            height: "60px",
+                            objectFit: "cover",
+                            flexShrink: 0,
+                          }}
+                        />
 
+                      )}
+
+                    </div>
+
+                    <div className="testibx-right">
+                      <p className="text-muted small mb-0">
+                        {testimonial.test_occupation} at {testimonial.test_company}
+                      </p>
+                      <p className="text-muted small mb-0">{testimonial.email}</p>
+                      <p className="text-muted small mb-0">{testimonial.phone}</p>
+                    </div>
                   </div>
 
-                  <div className="col-12 col-md-8 text-center text-md-start">
-                    <p className="text-muted small mb-0">
-                      {testimonial.test_occupation} at {testimonial.test_company}
-                    </p>
-                    <p className="text-muted small mb-0">{testimonial.email}</p>
-                    <p className="text-muted small mb-0">{testimonial.phone}</p>
-                  </div>
                 </div>
-
-                <div className="d-flex justify-content-center py-3">{renderStars(parseInt(testimonial.test_rating))}</div>
               </div>
-            </div>
-          ))}
-        </Slider>
-      ) : (
-        <p className="text-center">No testimonials available.</p>
-      )}
+            ))}
+          </Slider>
+        ) : (
+          <p className="text-center">No testimonials available.</p>
+        )}
 
-      {/* Internal CSS */}
-      <style>
-        {`
+        {/* Internal CSS */}
+        <style>
+          {`
+        .usertesti {
+        background: #f3f3f3;
+        padding: 60px 0 1px;
+        }
           .testimonial-card {
             background: white;
             border-radius: 10px;
@@ -156,7 +169,7 @@ function UserTestimonials() {
           .testimonial-text {
             font-style: italic;
             color: #555;
-            min-height: 100px;
+            min-height: 80px;
           }
 
           .testimonial-user {
@@ -200,7 +213,8 @@ function UserTestimonials() {
 }
           }
         `}
-      </style>
+        </style>
+      </div>
     </div>
   );
 }

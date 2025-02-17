@@ -122,7 +122,7 @@ const OurSociety = () => {
     return (
         <>
             {society && society.length > 0 && (
-                <section className="usefulllnk" data-aos="fade-up" data-aos-delay="100">
+                <section className="oursos" data-aos="fade-up" data-aos-delay="100">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 col-12 text-center">

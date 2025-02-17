@@ -286,7 +286,6 @@ function LeaveRequestList() {
         setStudentListing([]);
       }
     } catch (error) {
-      console.log(error);
       setStudentListing([]);
     }
   };

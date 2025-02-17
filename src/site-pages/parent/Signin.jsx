@@ -40,7 +40,6 @@ const Signin = () => {
 
   useEffect(() => {
     if (IsStudentoggedIn()) {
-      console.log(IsStudentoggedIn)
       setRedirect(true)
     }
   }, []);
@@ -60,7 +59,6 @@ const Signin = () => {
 
     if (otpSend && !resendOtp && (!otp || otp.length < 6)) {
       setOtpError("Please Enter Valid OTP");
-      console.log("Please Enter Valid OTP");
       isValid = false;
     } else {
       setOtpError("");
@@ -73,7 +71,6 @@ const Signin = () => {
       }, 100);
     }
 
-    console.log(isValid);
     if (isValid) {
       try {
         const bformData = new FormData();
@@ -86,7 +83,6 @@ const Signin = () => {
           bformData.append("data", "ParentLogin_ad");
         }
 
-        console.log(bformData);
         const response = await axios.post(
           `${PHP_API_URL}/parent.php`,
           bformData,
@@ -96,9 +92,7 @@ const Signin = () => {
             },
           }
         );
-        console.log(response);
         if (response.data?.status === 200) {
-          console.log(response);
           toast.success(response.data.msg);
           setEmail("");
           setOtp("");
@@ -114,7 +108,6 @@ const Signin = () => {
           }, 300);
         } else if (response.data?.status === 201) {
           setSeconds(60);
-          console.log(response);
           setOtpSend(true);
           setResendOtp(false)
           toast.success("OTP Sent");

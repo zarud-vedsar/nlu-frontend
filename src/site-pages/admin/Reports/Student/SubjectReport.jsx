@@ -40,7 +40,6 @@ function SubjectReport() {
   const courseListDropdown = async () => {
     try {
       const response = await axios.get(`${NODE_API_URL}/api/course/dropdown`);
-      console.log(response,"res")
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
         setCourseListing(response.data.data);
       } else {
@@ -148,7 +147,6 @@ function SubjectReport() {
           // Parse the iframe response (assuming the response is JSON)
           const iframeContent = iframe.contentWindow.document.body.innerText; // Get iframe body content
           const responseData = JSON.parse(iframeContent); // Parse JSON response
-          console.log(responseData);
   
           // Handle different statuses based on responseData
           if (responseData?.statusCode === 200 || responseData?.statusCode === 201) {
@@ -182,7 +180,6 @@ function SubjectReport() {
       form.submit();
   
     } catch (error) {
-      console.log(error);
       console.error("Error submitting form:", error);
       toast.error("An error occurred while submitting the form.");
     } finally {

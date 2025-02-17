@@ -37,7 +37,6 @@ const PlacementDetail = () => {
         bformData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      console.log(response);
 
       if (response?.data?.status === 200 || response?.data?.status === 201) {
         const jobData = response?.data?.data[0];

@@ -82,11 +82,9 @@ const Mission = () => {
     const image = e.target.files[0];
     const { id } = e.target;
     if (!image) return;
-    console.log(image);
     if (id === "image") {
       if (image.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(image));
-        console.log(previewImage);
         setFormData((formData) => ({ ...formData, bgImage: image }));
       } else {
         toast.error(

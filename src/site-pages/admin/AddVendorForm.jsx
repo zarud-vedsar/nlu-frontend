@@ -51,16 +51,14 @@ const AddVendorForm = () => {
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
       bformData.append("id", id);
       
-      bformData.forEach((value, key) => {
-        console.log(key, value);
-      });
+      
       const res = await axios.post(`${PHP_API_URL}/vendor.php`, bformData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       const result = res.data.data;
-      console.log(result);
+      
       setFormData({
         user_update_id: result[0].id,
         user_updateu_id: result[0]?.uid,
@@ -72,12 +70,11 @@ const AddVendorForm = () => {
         state: result[0]?.state,
         email: result[0]?.email,
       });
-      console.log(`${FILE_API_URL}/vendor/${result[0].profile}`)
       setPreviewImage(
         `${FILE_API_URL}/vendor/${result[0].profile}`
       );
     } catch (error) {
-      console.log(error);
+      
     } finally {
     }
   };
@@ -97,7 +94,7 @@ const AddVendorForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let isValid = true;
-    console.log(formData);
+    
 
     // Validate customer name
     if (!formData.name) {
@@ -131,9 +128,7 @@ const AddVendorForm = () => {
       setErrorKey(".c_address");
       isValid = false;
     }
-    if (!isValid) {
-      console.log("Form contains errors. Please correct them and try again.");
-    } else {
+    if (isValid) {
       setErrorMessage("");
       setErrorKey("");
     }
@@ -151,7 +146,7 @@ const AddVendorForm = () => {
       Object.keys(formData).forEach((key) => {
         const value = formData[key];
         bformData.append(key, value);
-        console.log(key, value);
+       
       });
 
       try {
@@ -164,7 +159,7 @@ const AddVendorForm = () => {
             },
           }
         );
-        console.log(response);
+        
         if (response.data?.status === 200 || response.data?.status === 201) {
           toast.success(response.data.msg);
           setFormData((pre) => ({
@@ -188,7 +183,7 @@ const AddVendorForm = () => {
           toast.error("An error occurred. Please try again.");
         }
       } catch (error) {
-        console.error("Error:", error);
+        
         const status = error.response?.data?.status;
 
         if (status === 500) {

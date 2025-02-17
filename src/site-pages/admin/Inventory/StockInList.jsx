@@ -135,7 +135,6 @@ function ProductList() {
       }
     } catch (error) {
       setProductList([]);
-      console.log(error);
 
       const statusCode = error?.statusCode;
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {

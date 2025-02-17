@@ -57,13 +57,11 @@ const IssueBook = () => {
           },
         }
       );
-      console.log(response)
       if (response?.data?.status === 200) {
         setInternshipList(response.data.data);
       }
     } catch (error) {
       setInternshipList([]);
-      console.error("Error fetching internships data:", error);
     } finally {
       setLoading(false);
     }

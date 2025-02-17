@@ -84,7 +84,6 @@ function Preview() {
           approved,
         } = response.data?.data || {};
 
-        console.log(response);
         setCurrentCourse((prev) => ({
           ...prev,
           id,

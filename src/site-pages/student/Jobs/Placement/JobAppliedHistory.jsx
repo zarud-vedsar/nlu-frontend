@@ -32,7 +32,6 @@ const JobAppliedHistory = () => {
           },
         }
       );
-      console.log(response);
       setJobs(response.data.data);
     } catch (error) {
       console.error("Error fetching faculty data:", error);

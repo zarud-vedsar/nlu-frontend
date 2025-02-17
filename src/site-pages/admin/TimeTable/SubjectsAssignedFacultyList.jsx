@@ -83,7 +83,6 @@ function SemesterSubjectList() {
           },
         }
       );
-      console.log(response);
       // Assuming response.data.data contains the faculty data
       setFacultyListing(response.data.data);
     } catch (error) {
@@ -211,12 +210,10 @@ function SemesterSubjectList() {
     }
 
     try {
-      console.log(payload);
       const response = await dataFetchingPost(
         `${NODE_API_URL}/api/time-table/table-chart/assigned-faculty-list`,
         payload
       );
-      console.log(response);
       if (response?.statusCode === 200 && response.data.length > 0) {
         setSemesterSubjectListing(response.data);
       } else {

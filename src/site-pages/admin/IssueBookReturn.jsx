@@ -41,8 +41,6 @@ const IssueBookReturn = () => {
   const getIssuedBookDetail = async (id, fineData, return_date) => {
     setLoading(true);
     setIssueBookList([]);
-    console.log(fineData);
-    console.log(issue);
     try {
       const bformData = new FormData();
       bformData.append("data", "load_issued_books");
@@ -60,7 +58,6 @@ const IssueBookReturn = () => {
       );
       setIssueBookList([]);
 
-      console.log(response);
       if (response?.data?.status === 200) {
         setIssue((pre) => ({
           ...pre,
@@ -80,8 +77,10 @@ const IssueBookReturn = () => {
           fine_amount: fineData?.fine_amount,
           fine_days: fineData?.fine_days,
           fine_perday: fineData?.fine_perday,
-          payable_amount: response?.data?.data?.booksData.length * fineData?.fine_amount,
-          total_amount: response?.data?.data?.booksData.length * fineData?.fine_amount,
+          payable_amount:
+            response?.data?.data?.booksData.length * fineData?.fine_amount,
+          total_amount:
+            response?.data?.data?.booksData.length * fineData?.fine_amount,
           singleBookFine: fineData?.fine_amount * fineData?.fine_perday || 0,
           total_fine: 0,
         }));
@@ -114,8 +113,6 @@ const IssueBookReturn = () => {
       ) {
         toast.success(error?.response?.data?.msg);
       }
-
-      console.error("Error fetching internships data:", error);
     } finally {
       setLoading(false);
     }
@@ -124,7 +121,6 @@ const IssueBookReturn = () => {
   const handleChange = async (e) => {
     const { name, value, type } = e.target;
     if (issue.issue_books_date > value) return;
-    console.log(name, value);
     setIssue((prevState) => ({
       ...prevState,
       [name]: value,
@@ -143,7 +139,6 @@ const IssueBookReturn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(issue, issueBookList);
     setIsSubmit(true);
     try {
       let isValid = true;
@@ -160,12 +155,7 @@ const IssueBookReturn = () => {
         isValid = false;
       }
 
-
-
-
-      if (!isValid) {
-        console.log("Form contains errors. Please correct them and try again.");
-      } else {
+      if (isValid) {
         setErrorMessage("");
         setErrorKey("");
       }
@@ -190,10 +180,6 @@ const IssueBookReturn = () => {
           bformData.append(key, value);
         });
 
-        for (let [key, value] of bformData) {
-          console.log(key, value);
-        }
-
         const response = await axios.post(
           `${PHP_API_URL}/lib_books.php`,
           bformData,
@@ -204,7 +190,6 @@ const IssueBookReturn = () => {
           }
         );
         if (response.data?.status === 200 || response.data?.status === 201) {
-          console.log(response)
           toast.success(response.data.msg);
 
           if (response.data.status === 200) {
@@ -215,7 +200,6 @@ const IssueBookReturn = () => {
         }
       }
     } catch (error) {
-      console.error("Error:", error);
       const status = error.response?.data?.status;
 
       if (status === 500) {
@@ -232,17 +216,17 @@ const IssueBookReturn = () => {
     }
   };
 
-
   const handleInputChange = (index, event) => {
-
-    if (event.target.value && (!/^\d+$/.test(event.target.value) || parseInt(event.target.value) < 1)) {
-      return
+    if (
+      event.target.value &&
+      (!/^\d+$/.test(event.target.value) || parseInt(event.target.value) < 1)
+    ) {
+      return;
     }
 
     const inputLostBookAmount = parseFloat(event.target.value);
     let tempissueData = { ...issue };
     let valuesBookList = [...issueBookList];
-    console.log(tempissueData);
 
     let currentBookDetail = valuesBookList[index];
 
@@ -254,7 +238,6 @@ const IssueBookReturn = () => {
         currentBookDetail.lost_book_price = 0;
         currentBookDetail.late_fine = tempissueData?.singleBookFine || 0;
       }
-      console.log(currentBookDetail);
       valuesBookList[index][event.target.name] = event.target.value;
 
       calculatePayableAmount(valuesBookList);
@@ -282,7 +265,6 @@ const IssueBookReturn = () => {
 
     setIssue(tempissueData);
   };
-
 
   const getLateFine = async (value) => {
     try {
@@ -318,10 +300,9 @@ const IssueBookReturn = () => {
   };
 
   const removeField = (index) => {
-
     const values = [...issueBookList];
     if (values.length == 1) {
-      toast.error("Minimum 1 book is required")
+      toast.error("Minimum 1 book is required");
       return;
     }
     values.splice(index, 1);

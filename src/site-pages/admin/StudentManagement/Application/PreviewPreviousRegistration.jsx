@@ -104,7 +104,7 @@ function PreviewPreviousRegistration() {
   useEffect(() => {
     if (selectedcourse) {
       getDocument(selectedcourse).then((res) => {
-        console.log(res);
+        
         if (res.length > 0) {
           setDocument(res[0]);
         }

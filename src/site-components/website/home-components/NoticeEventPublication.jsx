@@ -33,9 +33,7 @@ const NoticeEventPublication = () => {
           { notice_type: "notice", limit: 20 }
         );
 
-        console.log(noticeResponse)
         if (noticeResponse.data?.statusCode === 200) {
-          console.log("notice", noticeResponse.data.data)
           setEvents(noticeResponse.data.data);
         }
 
@@ -45,7 +43,6 @@ const NoticeEventPublication = () => {
           { notice_type: "event", limit: 3 }
         );
         if (eventResponse.data?.statusCode === 200) {
-          console.log("event", eventResponse.data.data)
           setNotices(eventResponse.data.data);
         }
 

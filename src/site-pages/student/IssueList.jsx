@@ -40,7 +40,6 @@ const IssueList = () => {
           },
         }
       );
-      console.log(response);
       if (response?.data?.status === 200) {
         setIssuedBookList(response?.data?.data);
       }

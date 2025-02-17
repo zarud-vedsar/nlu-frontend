@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const AdminMailVerification = () => {
   const params = new URLSearchParams(location.search);
   const uid = params.get("uid");
-  console.log(uid);
+  
   const navigate=useNavigate()
 
   const [status, setStatus] = useState("pending");
@@ -26,7 +26,7 @@ const AdminMailVerification = () => {
           },
         }
       );
-      console.log(response);
+      
       if (response?.data?.status == 200) {
         setStatus("verified");
 
@@ -38,7 +38,7 @@ const AdminMailVerification = () => {
     } catch (error) {
       setStatus("error");
 
-      console.log(error);
+    
       const status = error.response?.data?.status;
 
       if (status === 400 || status === 500) {

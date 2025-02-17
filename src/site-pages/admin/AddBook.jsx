@@ -59,7 +59,7 @@ const AddBook = () => {
         }
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
-        console.log(response);
+        
         const tempSubjectList = response.data.map((subject) => ({
           value: subject.id,
           label: subject.subname,
@@ -196,7 +196,7 @@ const AddBook = () => {
         section: result[0]?.section || "",
         row: result[0]?.row || "",
       });
-      console.log(formData);
+      
       setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
       const selSubject = subjectList?.find(
         (sub) => sub.value === result[0].subject_id
@@ -205,7 +205,7 @@ const AddBook = () => {
         setSubject(selSubject);
       }
     } catch (error) {
-      console.log(error);
+     
     }
   };
 
@@ -240,15 +240,14 @@ const AddBook = () => {
       isValid = false;
     }
 
-    if (!isValid) {
-      console.log("Form contains errors. Please correct them and try again.");
-    } else {
+    if (isValid) {
+       
       setErrorMessage("");
       setErrorKey("");
     }
 
     if (isValid) {
-      console.log("submit");
+     
       const bformData = new FormData();
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
@@ -257,7 +256,7 @@ const AddBook = () => {
       Object.keys(formData).forEach((key) => {
         const value = formData[key];
         bformData.append(key, value);
-        console.log(key, value);
+       
       });
       if (id) {
         bformData.append("update_id", id);
@@ -282,7 +281,7 @@ const AddBook = () => {
           toast.error("An error occurred. Please try again.");
         }
       } catch (error) {
-        console.error("Error:", error);
+        
         const status = error.response?.data?.status;
 
         if (status === 500) {

@@ -28,7 +28,6 @@ import { toast } from "react-toastify";
 import { formatDate } from "../../site-components/Helper/HelperFunction";
 
 function MyVerticallyCenteredModal(props) {
-  console.log(props);
   return (
     <Modal
       {...props}
@@ -124,7 +123,6 @@ const Scholarship = () => {
           },
         }
       );
-      console.log(response);
       setScholarships(response.data.data);
     } catch (error) {
       console.error("Error fetching faculty data:", error);
@@ -229,7 +227,6 @@ const Scholarship = () => {
 
   const viewFile = (index) => {
     const currentScholarship = scholarships[index];
-    console.log(currentScholarship);
     setSelectedScholarship(currentScholarship);
   };
 

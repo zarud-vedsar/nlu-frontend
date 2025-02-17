@@ -65,7 +65,6 @@ const ForgetPassword = () => {
 
     if (otpSend && !resendOtp && (!otp || otp.length < 6)) {
       setOtpError("Please Enter Valid OTP");
-      console.log("Please Enter Valid OTP");
       isValid = false;
     } else {
       setOtpError("");
@@ -98,7 +97,7 @@ const ForgetPassword = () => {
       }, 100);
     }
 
-    console.log(isValid);
+   
     if (isValid) {
       try {
         const bformData = new FormData();
@@ -112,7 +111,7 @@ const ForgetPassword = () => {
           bformData.append("data", "resetpass1");
         }
 
-        console.log(bformData);
+        
         const response = await axios.post(
           `${PHP_API_URL}/faculty.php`,
           bformData,
@@ -122,9 +121,9 @@ const ForgetPassword = () => {
             },
           }
         );
-        console.log(response.data);
+        
         if (response.data?.status === 200) {
-          console.log(response);
+          
           toast.success(response.data.msg);
           setEmail("");
           setNewPassword("");
@@ -138,7 +137,6 @@ const ForgetPassword = () => {
           }, 3000);
         } else if (response.data?.status === 201) {
           setSeconds(60);
-          console.log(response);
           setOtpSend(true);
           setResendOtp(false)
           toast.success("OTP Sent");
@@ -146,7 +144,6 @@ const ForgetPassword = () => {
           toast.error("An error occurred. Please try again.");
         }
       } catch (error) {
-        console.error("Error:", error);
         const status = error.response?.data?.status;
 
         if (status === 400 || status === 500 || status === 401) {

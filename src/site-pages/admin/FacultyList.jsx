@@ -83,10 +83,10 @@ const FacultyList = () => {
           },
         }
       );
-      console.log(response);
+      
       setStateOptions(response.data.data);
     } catch (error) {
-      console.error("Error fetching faculty data:", error);
+      
     } finally {
       setLoading(false);
     }
@@ -105,11 +105,11 @@ const FacultyList = () => {
           },
         }
       );
-      console.log(response);
+      
       setDistrictOptions(response.data.data);
-      console.log(response.data.data);
+     
     } catch (error) {
-      console.error("Error fetching faculty data:", error);
+      
     } finally {
       setLoading(false);
     }
@@ -141,7 +141,7 @@ const FacultyList = () => {
       );
       setFacultyList(response.data.data);
     } catch (error) {
-      console.error("Error fetching faculty data:", error);
+      
     } finally {
       setLoading(false);
     }
@@ -170,10 +170,10 @@ const FacultyList = () => {
           },
         }
       );
-      console.log(response);
+      
       setFacultyList(response.data.data);
     } catch (error) {
-      console.error("Error fetching faculty data:", error);
+      
     } finally {
       setLoading(false);
     }
@@ -202,7 +202,6 @@ const FacultyList = () => {
   };
 
   const handleChangeDistrict = (e) => {
-    console.log(e);
     setFilters((filters) => ({
       ...filters,
       ddistrict: e.value,
@@ -210,7 +209,6 @@ const FacultyList = () => {
   };
 
   const handleChangeState = (e) => {
-    console.log(e);
     setFilters((filters) => ({
       ...filters,
       dstate: e.value,

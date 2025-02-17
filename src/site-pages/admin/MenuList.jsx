@@ -122,7 +122,6 @@ const DragDropMenu = () => {
   ]);
 
   const moveItem = (fromIndex, toIndex, fromParentIndex, toParentIndex) => {
-    console.log(fromIndex, toIndex, fromParentIndex, toParentIndex) 
     const newItems = [...items];
     const fromItem = getItem(newItems, fromParentIndex, fromIndex);
 
@@ -273,7 +272,6 @@ function MenuList() {
         }
       }
     } catch (error) {
-      console.error("Error:", error);
       const statusCode = error.response?.data?.status;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {

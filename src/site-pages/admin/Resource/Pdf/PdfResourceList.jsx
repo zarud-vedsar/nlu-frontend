@@ -161,7 +161,6 @@ function ResourcePdfList() {
           deleteStatus,
           listing: 'yes'
         });
-      console.log(response)
       if (response?.statusCode === 200 && response.data.length > 0) {
         setResourcePdfListing(response.data);
       } else {

@@ -163,7 +163,6 @@ function AddExam() {
     }
   };
 
-  useEffect(()=>console.log(marksData),[marksData])
 
   
   const handleUpload = async (stid) => {

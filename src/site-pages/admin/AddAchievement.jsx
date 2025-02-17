@@ -73,7 +73,7 @@ function AddAchievement() {
         toast.error("Data not found.");
       }
     } catch (error) {
-      console.error("Error:", error);
+      
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {

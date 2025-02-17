@@ -104,7 +104,6 @@ function RaiseQueryForHostelRoom() {
         `${NODE_API_URL}/api/course-selection/fetchCurrentCourse`,
         formData
       );
-      console.log(response)
       if (response.data?.statusCode === 200) {
         if (response?.data?.data?.approved === 1) {
           setCurrentCourse((prev) => ({
@@ -150,7 +149,6 @@ function RaiseQueryForHostelRoom() {
       }
     }
   };
-  useEffect(()=>{console.log(currentCourse)},[currentCourse])
   return (
     <>
       <div className="page-container">

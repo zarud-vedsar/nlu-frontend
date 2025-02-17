@@ -29,7 +29,6 @@ import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 
 function MyVerticallyCenteredModal(props) {
-  console.log(props);
   return (
     <Modal
       {...props}
@@ -69,7 +68,7 @@ const Feedback = () => {
 
   const viewAllImages = (index) => {
     const currentLob = jobList[index];
-    console.log(currentLob);
+    
     setSelectedJob(currentLob);
   };
   useEffect(() => {
@@ -83,7 +82,7 @@ const Feedback = () => {
   }, []);
 
   const formatDate = (date) => {
-    console.log(date);
+    
     const d = new Date(date);
     const day = String(d.getDate()).padStart(2, "0");
     const month = String(d.getMonth() + 1).padStart(2, "0");
@@ -114,7 +113,7 @@ const Feedback = () => {
       });
       setJobList(response.data.data);
     } catch (error) {
-      console.error("Error fetching jobs data:", error);
+      
     } finally {
       setLoading(false);
     }
@@ -131,10 +130,9 @@ const Feedback = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response);
+      
       setJobList(response.data.data);
     } catch (error) {
-      console.error("Error fetching jobs data:", error);
     } finally {
       setLoading(false);
     }

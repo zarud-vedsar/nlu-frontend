@@ -161,7 +161,6 @@ function StudentDashboard() {
       );
       if (response?.data?.status === 200) {
         setData(response?.data?.data);
-        console.log(data);
 
         let subjectMap = {};
         let teacherMap = {};

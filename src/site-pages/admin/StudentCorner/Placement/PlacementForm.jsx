@@ -154,9 +154,7 @@ const AddPlacementForm = () => {
       isValid = false;
     }
 
-    if (!isValid) {
-      console.log("Form contains errors. Please correct them and try again.");
-    } else {
+    if (isValid)  {
       setErrorMessage("");
       setErrorKey("");
     }

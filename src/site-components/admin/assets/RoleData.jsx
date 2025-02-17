@@ -3,6 +3,11 @@ export const RoleData = [
     title: "Dashboard",
     items: [
       {
+        label: "Home",
+        value: "Home",
+        crud: ["list"], // CRUD operations
+      },
+      {
         label: "Admin",
         value: "Admin",
         crud: ["list"], // CRUD operations
@@ -83,7 +88,7 @@ export const RoleData = [
       },
     ],
   },
-  
+
   {
     title: "Attendance Management",
     items: [
@@ -459,7 +464,7 @@ export const RoleData = [
         value: "About",
         crud: ["update"], // CRUD operations
       },
-      
+
       {
         label: "Important Update Sliders",
         value: "Important Update Sliders",
@@ -503,12 +508,12 @@ export const RoleData = [
       {
         label: "Banner",
         value: "Banner",
-        crud: ["create","list","status","delete", "recycle bin"], // CRUD operations
+        crud: ["create", "list", "status", "delete", "recycle bin"], // CRUD operations
       },
       {
         label: "Keynote Speaker",
         value: "Keynote Speaker",
-        crud: ["create","list","status","delete", "recycle bin"], // CRUD operations
+        crud: ["create", "list", "status", "delete", "recycle bin"], // CRUD operations
       },
     ],
   },

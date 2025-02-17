@@ -44,7 +44,7 @@ const UseFullLinks = () => {
         style={{
           position: "absolute",
           top: "50%",
-          [direction]: isMobile ? "-15px" : "-40px", // Adjust based on screen width
+          [direction]: isMobile ? "-15px" : "-40px",
           transform: "translateY(-50%)",
           background: "#2e3e50",
           borderRadius: "50%",
@@ -98,9 +98,9 @@ const UseFullLinks = () => {
                 {usefulLinks
                   .filter((link) => link.status === 1 && link.delete_status === 0)
                   .map((link, index) => (
-                    <div className="row" key={index}>
-                      <div className="col-md-12 text-center">
-                        <div className="slider-item" style={{ display: 'flex !important' }}>
+                    <div className="usefbx" key={index}>
+                      <div className="usef text-center">
+                        <div className="slider-item2" style={{ display: 'flex !important' }}>
                           <a
                             href={
                               link.link_other_link
@@ -141,7 +141,6 @@ const UseFullLinks = () => {
                   justify-content: center;
                   align-items: center;
                   min-width: 250px;
-                  max-width: 300px;
                   padding: 10px;
                 }
 
@@ -169,7 +168,6 @@ const UseFullLinks = () => {
                   background: #fff;
                   border-radius: 10px;
                   width: 100%;
-                  max-width: 250px;
                 }
 
     .linkiimg {

@@ -22,9 +22,7 @@ import {
   AiOutlineUnlock,
   AiOutlineQuestionCircle,
   AiOutlineRead,
-  AiOutlineLogout,
-  AiOutlineLock,
-  AiOutlineAppstore,
+  AiOutlineLogout
 } from "react-icons/ai";
 import {
   FaChalkboardTeacher,
@@ -218,7 +216,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           },
         }
       );
-      
+
       if (response.data.status === 200) {
         localStorage.setItem(
           "session",
@@ -255,17 +253,10 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       icon: <AiOutlineDashboard />, // General dashboard icon
       url: "",
       dropdownMenus: [
-        { subtitle: "Admin", url: "admin-dashboard", icon: <FaUserGraduate /> }, // User-related icon
-        {
-          subtitle: "Faculty",
-          url: "faculty-dashboard",
-          icon: <FaChalkboardTeacher />,
-        },
-        {
-          subtitle: "User Log",
-          url: "user-log",
-          icon: <FaChalkboardTeacher />,
-        },
+        { subtitle: "Home", url: "home", icon: <FaUserGraduate /> },
+        { subtitle: "Admin", url: "admin-dashboard", icon: <FaUserGraduate /> },
+        { subtitle: "Faculty", url: "faculty-dashboard", icon: <FaChalkboardTeacher /> },
+        { subtitle: "User Log", url: "user-log", icon: <FaChalkboardTeacher /> },
       ],
     },
     {
@@ -941,16 +932,15 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
               let showMenu = true;
               if (RolePermission && RolePermission.length > 0) {
                 let resp = RolePermission.map((rData) => Object.keys(rData)[0]);
-                
+
                 showMenu = resp.length > 0 && resp.includes(option.title);
               }
               if (option.url && (showMenu || loginType === "superadmin")) {
                 return (
                   <li
                     key={index}
-                    className={`nav-item dropdown cursor ${
-                      activeClass == option.url ? "mactive" : ""
-                    }`}
+                    className={`nav-item dropdown cursor ${activeClass == option.url ? "mactive" : ""
+                      }`}
                   >
                     <Link to={`/admin/${option.url}`}>
                       <span className="icon-holder">{option.icon}</span>
@@ -967,9 +957,8 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                 return (
                   <li
                     key={index}
-                    className={`nav-item dropdown cursor ${
-                      activeSidebarMenu === index || addClass ? "open" : ""
-                    }`}
+                    className={`nav-item dropdown cursor ${activeSidebarMenu === index || addClass ? "open" : ""
+                      }`}
                     onClick={() =>
                       setActiveSidebarMenu(
                         activeSidebarMenu === index ? null : index
@@ -998,11 +987,10 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                           return (
                             <li
                               key={subIndex}
-                              className={`${
-                                activeSubSidebarMenu === subIndex
-                                  ? "active"
-                                  : ""
-                              } font-14`}
+                              className={`${activeSubSidebarMenu === subIndex
+                                ? "active"
+                                : ""
+                                } font-14`}
                               onClick={() => setActiveSubSidebarMenu(subIndex)}
                             >
                               <Link

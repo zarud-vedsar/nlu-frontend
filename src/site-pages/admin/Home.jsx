@@ -221,7 +221,7 @@ const Home = () => {
                             {facultyDataList?.middle_name}{" "}
                             {facultyDataList?.last_name}</span>
                         </div>
-                        <div className="h6_new font-15 mt-2"><span className="text-white">{greeting}! Hope you have a great day at work.</span></div>
+                        <div className="h6_new font-15 mt-2"><span className="text-white">{greeting}!</span></div>
                         <div className="mt-2 font-14"><FaCalendar /> {" "}{currentDate}</div>
                       </div>
                     </div>

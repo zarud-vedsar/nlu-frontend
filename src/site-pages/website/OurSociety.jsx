@@ -52,7 +52,7 @@ const OurSociety = () => {
     const sliderSettings = {
         dots: false,
         infinite: true,
-        speed: 1000,
+        speed: 100000000000,
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
@@ -133,16 +133,16 @@ const OurSociety = () => {
                         <div className="usefullcontainer mt-4">
                             <Slider {...sliderSettings}>
                                 {society.map((link, index) => (
-                                    <div className="row" key={index}>
-                                        <div className="col-md-12 text-center">
-                                            <div className="slider-item" style={{ display: 'flex !important' }}>
+                                    <div className="socicard-bx" key={index}>
+                                        <div className="socicard-bx-item-bx text-center">
+                                            <div className="socicard-bx-item" style={{ display: 'flex !important' }}>
                                                 <Link to={link.link}
-                                                    className="useful-link-col shadow-none"
+                                                    className="socicard-bx-item-link"
                                                     target={link.target}
                                                     rel="noopener noreferrer"
                                                 >
                                                     <img
-                                                        className="linkiimg"
+                                                        className="socicard-bx-item-linkimg"
                                                         src={link?.image_file}
                                                         alt={link.title}
                                                     />

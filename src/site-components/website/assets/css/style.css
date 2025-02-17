@@ -5195,7 +5195,11 @@ table.table.tblpad-10>tbody>tr>td {
   .letestnncard {
 	width: 100%;
 }
-
+.socicard-bx {
+	background: #f8f8f8;
+	height: 150px;
+	border-radius: 8px;
+  }
 
 @media (max-width:768px) {
 	.textManage{

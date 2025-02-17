@@ -6,6 +6,7 @@ import {
   capitalizeFirstLetter,
   goBack,
   capitalizeEachLetter,
+  formatDate,
 } from "../../site-components/Helper/HelperFunction";
 import "../../../node_modules/primeicons/primeicons.css";
 import axios from "axios";
@@ -159,7 +160,7 @@ function UserLogList() {
                   <div className="row">
                     <div className="col-md-3 col-lg-3 col-12 form-group">
                       <label className="font-weight-semibold">
-                        Select Student
+                        Select User
                       </label>
 
                       <Select
@@ -318,6 +319,11 @@ function UserLogList() {
                       <Column
                         body={(row) => capitalizeFirstLetter(row.log_type)}
                         header="Log Type"
+                        sortable
+                      />
+                      <Column
+                        body={(row) => formatDate(row.date_time)}
+                        header="Date"
                         sortable
                       />
                       <Column

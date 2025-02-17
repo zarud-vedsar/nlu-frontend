@@ -52,7 +52,6 @@ const Vission = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.statusCode === 200) {
         setFormData((prev) => ({
           ...prev,
@@ -61,10 +60,8 @@ const Vission = () => {
           content: validator.unescape(response.data?.data[0]?.content || ""),
         }));
         if (response.data?.data[0].image) {
-          console.log();
           setPreviewImage(response.data?.data[0]?.image);
         }
-        console.log(previewImage);
       }
     } catch (error) {
       const status = error.response?.statusCode;
@@ -85,11 +82,9 @@ const Vission = () => {
     const image = e.target.files[0];
     const { id } = e.target;
     if (!image) return;
-    console.log(image);
     if (id === "image") {
       if (image.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(image));
-        console.log(previewImage);
         setFormData((formData) => ({ ...formData, image: image }));
       } else {
         toast.error(

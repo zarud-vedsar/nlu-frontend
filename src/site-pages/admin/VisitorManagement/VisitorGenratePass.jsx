@@ -229,7 +229,6 @@ const VisitorGenratePass = () => {
             `${NODE_API_URL}/api/campus/visitor/generate-campus-pass`,
             formData
         );
-        console.log(response);
         if (
             response.data?.statusCode === 200 ||
             response.data?.statusCode === 201
@@ -275,7 +274,6 @@ const VisitorGenratePass = () => {
       );
 
       // Log the response for debugging
-      console.log('API Response:', response);
 
       if (response?.statusCode === 200 && response.data?.length > 0) {
         const data = response.data[0]; // Assuming data is an array and taking the first item

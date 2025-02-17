@@ -137,7 +137,6 @@ function Registration() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
         setIsSubmit(true);
         if (!formData.pId) {
             errorMsg("pId", "An error occured.");
@@ -169,7 +168,6 @@ function Registration() {
                 toast.error("An error occurred. Please try again.");
             }
         } catch (error) {
-            console.log(error)
             const statusCode = error.response?.data?.statusCode;
             const errorField = error.response?.data?.errorField;
 

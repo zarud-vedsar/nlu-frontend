@@ -73,7 +73,6 @@ function VisitorRegistrationHistory() {
   };
 
   const applyFilters = () => {
-    console.log(filters);
     handleSubmit(true, false);
   };
 
@@ -235,8 +234,6 @@ function VisitorRegistrationHistory() {
       const response = await axios.post(
         `${NODE_API_URL}/api/campus/visitor/campus-pass-cancel`,{passId:dbId,loguserid,login_type}
       );
-      console.log(`${NODE_API_URL}/api/campus/visitor/campus-pass-cancel`)
-      console.log(response)
       if (response?.data?.statusCode === 200) {
         toast.success(response?.data?.message);
         
@@ -250,7 +247,6 @@ function VisitorRegistrationHistory() {
         toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.log(error)
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -306,9 +302,7 @@ function VisitorRegistrationHistory() {
           ...bformData,
         }
       );
-      console.log(response);
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
-        console.log(response.data.data);
 
         setVisitorHistory(response.data.data);
       } else {

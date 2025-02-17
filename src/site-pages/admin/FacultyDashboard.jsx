@@ -107,11 +107,11 @@ const FacultyDashboard = () => {
           },
         }
       );
-      console.log(response);
+      
       // Assuming response.data.data contains the faculty data
       setFacultyListing(response.data.data);
     } catch (error) {
-      console.error("Error fetching faculty data:", error);
+      
     } finally {
       setLoading(false);
     }
@@ -129,7 +129,7 @@ const FacultyDashboard = () => {
   );
   const getAdminDashboardData = async () => {
     try {
-      console.log("getAdminDashboardData");
+    
       const bformData = new FormData();
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
@@ -148,7 +148,7 @@ const FacultyDashboard = () => {
         }
       );
       setData(response.data.data);
-      console.log(response?.data?.data);
+     
       setScheduleClass(response.data.data?.today_schedule);
       setUpcomingExamList(response?.data?.data?.upcomingExam);
       setSubjectList(response?.data?.data?.facultysubjects);
@@ -157,7 +157,7 @@ const FacultyDashboard = () => {
         response?.data?.data?.selfSubjectDailyAttendance
       );
     } catch (error) {
-      console.error("Error fetching admin Dashboard data:", error);
+      
     }
   };
 

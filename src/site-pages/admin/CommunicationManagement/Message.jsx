@@ -26,7 +26,7 @@ function Message() {
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
   const [studentListing, setStudentListing] = useState([]);
   const [mailsent, setMailsent] = useState(false);
-
+  const session = localStorage.getItem("session");
   const courseListDropdown = async () => {
     try {
       const response = await axios.get(`${NODE_API_URL}/api/course/dropdown`);
@@ -79,7 +79,6 @@ function Message() {
     }
   };
   const fetchStudentBasedOnBlock = async (courseid, semesterid) => {
-    console.log(courseid, semesterid);
     try {
       const response = await dataFetchingPost(
         `${NODE_API_URL}/api/student-detail/get-student-based-on-course-and-semester`,
@@ -87,6 +86,7 @@ function Message() {
           courseid,
           semesterid,
           approved: 1,
+          session
         }
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
@@ -126,7 +126,6 @@ function Message() {
     e.preventDefault();
     setIsSubmit(true);
     errorMsg("", "");
-    console.log(formData);
     if (!formData.courseid) {
       errorMsg("courseid", "Course is required.");
       toast.error("Course is required.");

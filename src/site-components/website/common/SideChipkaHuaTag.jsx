@@ -51,7 +51,6 @@ function SideChipkaHuaTag() {
                 `${PHP_API_URL}/sitesetting.php`,
                 bformData);
             setIconLink(response.data.data[0]);
-            // console.log(response.data.data[0]);
         } catch (error) { /* empty */ }
     }
     useEffect(() => {

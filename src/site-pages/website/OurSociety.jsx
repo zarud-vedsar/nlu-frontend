@@ -122,7 +122,7 @@ const OurSociety = () => {
     return (
         <>
             {society && society.length > 0 && (
-                <section className="usefulllnk" data-aos="fade-up" data-aos-delay="100">
+                <section className="oursos" data-aos="fade-up" data-aos-delay="100">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 col-12 text-center">
@@ -133,16 +133,16 @@ const OurSociety = () => {
                         <div className="usefullcontainer mt-4">
                             <Slider {...sliderSettings}>
                                 {society.map((link, index) => (
-                                    <div className="row" key={index}>
-                                        <div className="col-md-12 text-center">
-                                            <div className="slider-item" style={{ display: 'flex !important' }}>
+                                    <div className="socicard-bx" key={index}>
+                                        <div className="socicard-bx-item-bx text-center">
+                                            <div className="socicard-bx-item" style={{ display: 'flex !important' }}>
                                                 <Link to={link.link}
-                                                    className="useful-link-col shadow-none"
+                                                    className="socicard-bx-item-link"
                                                     target={link.target}
                                                     rel="noopener noreferrer"
                                                 >
                                                     <img
-                                                        className="linkiimg"
+                                                        className="socicard-bx-item-linkimg"
                                                         src={link?.image_file}
                                                         alt={link.title}
                                                     />
@@ -195,7 +195,6 @@ const OurSociety = () => {
                   background: #fff;
                   border-radius: 10px;
                   width: 100%;
-                  max-width: 250px;
                 }
 
     .linkiimg {

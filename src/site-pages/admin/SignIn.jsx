@@ -62,7 +62,6 @@ const SignIn = () => {
         );
         if (response.data?.statusCode === 200) {
           toast.success(response.data.message);
-          console.log(response.data.data);
           secureLocalStorage.setItem('login_id', response.data.data.id);
           secureLocalStorage.setItem('email', response.data.data.email);
           secureLocalStorage.setItem('loginType', 'superadmin');

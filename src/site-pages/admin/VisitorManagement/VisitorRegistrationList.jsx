@@ -77,7 +77,6 @@ function VisitorRegistrationHistory() {
   };
 
   const applyFilters = () => {
-    console.log(filters);
     handleSubmit(true, false);
   };
 
@@ -229,7 +228,6 @@ function VisitorRegistrationHistory() {
     if (applyFilter) {
       bformData = filters;
     }
-    console.log(bformData);
     setIsFetching(true);
     try {
       const response = await axios.post(
@@ -238,9 +236,7 @@ function VisitorRegistrationHistory() {
           ...bformData,
         }
       );
-      console.log(response);
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
-        console.log(response.data.data);
 
         setVisitorHistory(response.data.data);
       } else {

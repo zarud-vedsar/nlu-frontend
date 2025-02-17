@@ -77,7 +77,6 @@ const AddBanner = () => {
           },
         }
       );
-      console.log(response);
 
       if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response.data.msg);

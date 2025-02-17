@@ -85,7 +85,6 @@ const ApplicationForm = () => {
       formData.append("email", email);
       formData.append("job_id", id);
 
-      console.log(otpSend)
       if (otpSend) {
         formData.append("otp", otp);
       }
@@ -143,7 +142,6 @@ const ApplicationForm = () => {
           toast.success(response?.data?.msg);
         }
       } catch (error) {
-        console.log(error);
       } finally {
         setResendOtp(false);
       }

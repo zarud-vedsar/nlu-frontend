@@ -130,7 +130,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
 
   const updateApproved = async () => {
     setLoading(true);
-    console.log(detail);
+    
     if (detail?.approved == "1") {
       if (!detail?.roll_no) {
         toast.error("Roll no is required");
@@ -445,7 +445,7 @@ function ViewApplication() {
         `${NODE_API_URL}/api/course-selection/fetchCurrentCourse`,
         formData
       );
-      console.log(response);
+      
       if (response.data?.statusCode === 200) {
         const {
           id,

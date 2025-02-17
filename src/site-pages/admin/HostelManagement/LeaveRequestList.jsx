@@ -272,10 +272,11 @@ function LeaveRequestList() {
   const [studentListing, setStudentListing] = useState([]);
   const fetchStudent = async () => {
     try {
-      const response = await axios.get(
-        `${NODE_API_URL}/api/student-detail/get-student`
+      let session = localStorage.getItem("session");
+      const response = await axios.post(
+        `${NODE_API_URL}/api/student-detail/get-student`,
+        {session:session}
       );
-      console.log(response);
       if (
         response?.data?.statusCode === 200 &&
         response?.data?.data.length > 0
@@ -286,7 +287,6 @@ function LeaveRequestList() {
         setStudentListing([]);
       }
     } catch (error) {
-      console.log(error);
       setStudentListing([]);
     }
   };

@@ -85,9 +85,9 @@ const BookCatalogueDetail = () => {
                       style={{ height: "300px", width: "auto" }}
                     />
                   </div>
-                  <div className="col-md-7 col-lg-7 col-12 col-sm-12 p-input-icon-left mb-3 ">
+                  <div className="col-md-4 col-lg-4 col-12 col-sm-12 p-input-icon-left mb-3 ">
                     <div className="details">
-                      <h5 className="card-title mb-1">
+                      <h5 className="card-title ">
                         {" "}
                         <strong
                           style={{ width: "110px", display: "inline-block" }}
@@ -97,7 +97,7 @@ const BookCatalogueDetail = () => {
                         {book.book_name}
                       </h5>
                       {book?.author && (
-                        <p>
+                        <p >
                           {" "}
                           <strong
                             style={{
@@ -106,7 +106,7 @@ const BookCatalogueDetail = () => {
                               margin: "0px",
                             }}
                           >
-                            Author Name::{" "}
+                            Author Name:{" "}
                           </strong>{" "}
                           {book.author}
                         </p>
@@ -154,6 +154,21 @@ const BookCatalogueDetail = () => {
                           {book.edition}
                         </p>
                       )}
+                      
+                    </div>
+                  </div>
+                  <div className="col-md-3 col-lg-3 col-12 col-sm-12 p-input-icon-left mb-3 ">
+                    <div className="details">
+                      <h5 className="card-title ">
+                        {" "}
+                        <strong
+                          style={{  display: "inline-block" }}
+                        >
+                          Book Cell Location{" "}
+                        </strong>{" "}
+                        
+                      </h5>
+                     
                       {book?.block && (
                         <p>
                           <strong

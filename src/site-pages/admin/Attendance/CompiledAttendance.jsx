@@ -156,7 +156,6 @@ function AddExam() {
           },
         }
       );
-      console.log(response.data);
 
       if (response.data?.status === 200 || response.data?.status === 201) {
         toast.success(response.data.msg);

@@ -61,7 +61,6 @@ function BookPdfViewer() {
           },
         }
       );
-      console.log(response);
       if (response?.data?.data && response?.data?.data?.length > 0) {
         setPdfs(response.data.data);
       } else {

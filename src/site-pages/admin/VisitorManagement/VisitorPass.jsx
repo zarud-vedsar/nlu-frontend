@@ -193,12 +193,9 @@ function VisitorPass() {
           visitorId: dbId 
         }
       );
-      // console.log(response);
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
-        console.log(response.data.data);
 
         setVisitorHistory(response.data.data[0]);
-        console.log(visitorHistory);
       } else {
         setVisitorHistory([]);
       }

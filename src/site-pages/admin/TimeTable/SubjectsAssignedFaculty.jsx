@@ -25,7 +25,6 @@ function SubjectsAssignedFaculty() {
     facultyId: "",
   };
   const { dbId } = useParams();
-  console.log(dbId);
   const [formData, setFormData] = useState(initialForm); // Form state
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
   const [courseListing, setCourseListing] = useState([]); // Form submission state
@@ -103,7 +102,6 @@ function SubjectsAssignedFaculty() {
           column: "id, subject",
         }
       );
-      console.log(response)
       if (response?.statusCode === 200 && response.data.length > 0) {
         setSubjectListing(response.data);
       } else {
@@ -137,7 +135,6 @@ function SubjectsAssignedFaculty() {
         `${NODE_API_URL}/api/time-table/table-chart/assigned-faculty-list`,
         { dbId , all: true}
       );
-       console.log(response)
       if (response?.statusCode === 200 && response.data.length > 0) {
         toast.success(response.message);
         const data = response.data[0];
@@ -149,7 +146,6 @@ function SubjectsAssignedFaculty() {
           subjects: data.subjectList?.map((subject)=>subject.id),
           facultyId: data.facultyId,
         }));
-        console.log(data)
         return response;
       } else {
         toast.error("Data not found.");
@@ -176,7 +172,6 @@ function SubjectsAssignedFaculty() {
           },
         }
       );
-      console.log(response);
       // Assuming response.data.data contains the faculty data
       setFacultyListing(response.data.data);
     } catch (error) {
@@ -205,7 +200,6 @@ function SubjectsAssignedFaculty() {
     e.preventDefault();
     setIsSubmit(true);
     errorMsg("", "");
-    console.log(formData);
     if (!formData.courseid) {
       errorMsg("courseid", "Course is required.");
       toast.error("Course is required.");
@@ -267,7 +261,6 @@ function SubjectsAssignedFaculty() {
       updateFetchData(dbId).then((response) => {
         if (response?.statusCode === 200 && response.data.length > 0) {
           const { courseid,semesterid } = response.data[0];
-          console.log(response?.data[0])
           fetchSemesterBasedOnCourseAndYear(courseid);
           fetchSubjectBasedOnCourseAndSemeter(
             courseid,
@@ -456,8 +449,6 @@ function SubjectsAssignedFaculty() {
                           <label>
                             Subjects <span className="text-danger">*</span>
                           </label>
-                          {console.log(formData?.subjects)}
-                          {console.log(subjectListing)}
                           <Select
                             isMulti
                             options={subjectListing.map((item) => ({

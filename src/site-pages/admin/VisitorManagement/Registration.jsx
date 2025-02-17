@@ -190,7 +190,6 @@ function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     setIsSubmit(true);
     if (!formData.visitorType) {
       errorMsg("visitorType", "Visitor Type is required.");
@@ -257,7 +256,6 @@ Object.keys(formData).forEach(key => {
         `${NODE_API_URL}/api/campus/visitor/visitor-entry`,
         bformData
       );
-      console.log(response);
       if (
         response.data?.statusCode === 200 ||
         response.data?.statusCode === 201
@@ -273,7 +271,6 @@ Object.keys(formData).forEach(key => {
         toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.log(error)
       const statusCode = error.response?.data?.statusCode;
       const errorField = error.response?.data?.errorField;
 
@@ -300,7 +297,6 @@ Object.keys(formData).forEach(key => {
         `${NODE_API_URL}/api/campus/visitor/campus-visitor-list`,
         { dbId }
       );
-      console.log(response)
   
       if (response?.statusCode === 200 && response.data.length > 0) {
         const data = response.data[0];
@@ -345,17 +341,14 @@ Object.keys(formData).forEach(key => {
       const file = e.target.files[0];
       const {id} = e.target;
       if(id==="photo"){
-        console.log(id)
         setPreviewImage(URL.createObjectURL(file));
 
       }
       else if(id==="governmentProofPhoto"){
-        console.log(id)
 
         setPreGovernmentProofPhoto(URL.createObjectURL(file))
       }
       if (file) {
-        console.log(file)
         setFormData((prev)=>({
           ...prev,
           [id]: file,

@@ -26,7 +26,6 @@ import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 
 function MyVerticallyCenteredModal(props) {
-  console.log(props);
   return (
     <Modal
       {...props}
@@ -130,7 +129,6 @@ const StudentTestimonial = () => {
           },
         }
       );
-      console.log(response);
       setMessages(response.data.data);
     } catch (error) {
       console.error("Error fetching faculty data:", error);

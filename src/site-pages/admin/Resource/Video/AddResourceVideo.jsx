@@ -65,7 +65,6 @@ function AddResourceVideo() {
             });
             if (response.data?.statusCode === 200 && response.data.data.length > 0) {
                 setTopicList(response.data.data);
-                console.log(response.data.data, "TOPIC")
             } else {
                 setTopicList([]);
             }

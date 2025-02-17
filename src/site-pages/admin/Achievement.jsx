@@ -63,7 +63,7 @@ function Achievement() {
 
   const openModal = (index) => {
     const currentLob = CourseListing[index];
-    console.log(currentLob);
+    
     setselectedachievement(currentLob);
     setModalShow(true);
   };
@@ -175,7 +175,7 @@ function Achievement() {
         }
       }
     } catch (error) {
-      console.error("Error:", error);
+      
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {

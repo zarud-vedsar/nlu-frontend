@@ -69,7 +69,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
         toast.error("Failed to submit");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
       toast.error("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
@@ -188,7 +187,6 @@ const MarqueSlide = () => {
       );
       setMarqueList(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
     }
@@ -211,7 +209,6 @@ const MarqueSlide = () => {
       );
       setMarqueList(response.data.data);
     } catch (error) {
-      console.error("Error fetching  data:", error);
     } finally {
       setLoading(false);
     }

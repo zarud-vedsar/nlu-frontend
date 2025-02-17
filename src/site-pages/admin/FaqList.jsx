@@ -31,7 +31,6 @@ function FaqList() {
                         'Content-Type': 'multipart/form-data'
                     },
                 });
-            console.log(response.data)
             if (response.data.status === 200) {
                 setFaqListing(response.data.data);
             }
@@ -127,7 +126,6 @@ function FaqList() {
                 }
             }
         } catch (error) {
-            console.error("Error:", error);
             const statusCode = error.response?.data?.status;
 
             if (statusCode === 400 || statusCode === 401 || statusCode === 500) {

@@ -59,7 +59,6 @@ function NoticeList() {
                     status: formData.status,
                     listing: 'yes'
                 });
-            console.log(response);
             if (response?.statusCode === 200 && response.data.length > 0) {
                 setnoticeList(response.data);
             } else {
@@ -143,7 +142,6 @@ function NoticeList() {
                 }
             }
         } catch (error) {
-            console.error("Error:", error);
             const statusCode = error.response?.data?.statusCode;
 
             if (statusCode === 400 || statusCode === 401 || statusCode === 500) {

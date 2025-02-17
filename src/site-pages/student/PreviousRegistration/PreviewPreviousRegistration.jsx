@@ -29,13 +29,11 @@ function PreviewPreviousRegistration() {
       formData.studentId = sid;
       formData.selectedcourse = selectedcourse;
       formData.login_type = "student";
-      console.log("getStudentSelectedCourse")
       const response = await axios.post(
         `${NODE_API_URL}/api/course-selection/fetchCurrentCourse`,
         formData
       );
       if (response.data?.statusCode === 200) {
-        console.log(response)
         const {
           id,
           coursename,
@@ -94,7 +92,6 @@ function PreviewPreviousRegistration() {
   useEffect(() => {
     if (selectedcourse) {
       getDocument(selectedcourse).then((res) => {
-        console.log(res);
         if (res.length > 0) {
           setDocument(res[0]);
         }

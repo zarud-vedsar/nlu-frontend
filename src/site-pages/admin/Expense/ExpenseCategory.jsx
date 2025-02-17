@@ -35,9 +35,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
       bformData.append("cat_title", content);
 
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
+      
 
       if (id) {
         bformData.append("updateid", id);
@@ -52,7 +50,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
           },
         }
       );
-      console.log(response);
 
       if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response?.data?.msg);
@@ -128,7 +125,6 @@ const ExpenseCategory = () => {
 
   const editMarque = (index) => {
     const currentLob = MarqueList[index];
-    console.log(currentLob);
     setSelectedMarque(currentLob);
   };
   useEffect(() => {
@@ -166,7 +162,6 @@ const ExpenseCategory = () => {
           },
         }
       );
-      console.log(response.data.data);
       setMarqueList(response.data.data);
     } catch (error) {
       setMarqueList([]);
@@ -192,7 +187,6 @@ const ExpenseCategory = () => {
           },
         }
       );
-      console.log(response);
 
       setMarqueList(response.data.data);
     } catch (error) {
@@ -246,7 +240,6 @@ const ExpenseCategory = () => {
   };
   const updateStatus = async (id) => {
     try {
-      console.log(id);
       const bformData = new FormData();
 
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));

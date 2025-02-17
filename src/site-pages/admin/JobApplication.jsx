@@ -86,18 +86,15 @@ const JobApplication = () => {
           },
         }
       );
-      console.log(response);
       setFacultyList(response.data.data);
     } catch (error) {
       setFacultyList([]);
-      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }
   };
 
   const applyFilters = () => {
-    console.log(filters);
     loadFacultyData(filters);
     handleClose();
   };
@@ -133,11 +130,9 @@ const JobApplication = () => {
         value: dep.id,
         label: dep.cat_title,
       }));
-      console.log(tempCat);
       setCategory(tempCat);
     } catch (error) {
       setCategory([]);
-      console.error("Error fetching  data:", error);
     } finally {
       setLoading(false);
     }

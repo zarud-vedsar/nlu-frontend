@@ -1,18 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { Modal, Button, Table } from 'react-bootstrap';
-import { FormField } from '../../site-components/admin/assets/FormField';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Modal, Button, Table } from "react-bootstrap";
+import { FormField } from "../../site-components/admin/assets/FormField";
+import axios from "axios";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
-import { toast } from 'react-toastify';
-import { dataFetchingDelete, dataFetchingPatch, dataFetchingPost, formatDate, goBack } from '../../site-components/Helper/HelperFunction';
-import { DeleteSweetAlert } from '../../site-components/Helper/DeleteSweetAlert';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/Column';
-import { InputText } from 'primereact/inputtext'; // Import InputText for the search box
-import '../../../node_modules/primeicons/primeicons.css';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
-import secureLocalStorage from 'react-secure-storage';
+import { toast } from "react-toastify";
+import {
+  dataFetchingDelete,
+  dataFetchingPatch,
+  dataFetchingPost,
+  formatDate,
+  goBack,
+} from "../../site-components/Helper/HelperFunction";
+import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/Column";
+import { InputText } from "primereact/inputtext"; // Import InputText for the search box
+import "../../../node_modules/primeicons/primeicons.css";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import secureLocalStorage from "react-secure-storage";
 function Department() {
     const [toggleShow, setToggleShow] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
@@ -92,116 +98,133 @@ function Department() {
         } catch (error) {
             const statusCode = error.response?.data?.statusCode;
 
-            if (statusCode === 400 ||  statusCode === 401 || statusCode === 500) {
-                setTitleError(error.response.data.message);
-                toast.error(error.response.data.message || "A server error occurred.");
-            } else {
-                toast.error(
-                    "An error occurred. Please check your connection or try again."
-                );
-            }
-        } finally {
-            setIsSubmit(false);
-        }
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        setTitleError(error.response.data.message);
+        toast.error(error.response.data.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    } finally {
+      setIsSubmit(false);
     }
-    const handleToggleShow = () => {
+  };
+  const handleToggleShow = () => {
+    setToggleShow(!toggleShow);
+    setFormData(iniatialForm);
+  };
+  const handleToggleStatus = async (dbId) => {
+    if (
+      !dbId ||
+      !Number.isInteger(parseInt(dbId, 10)) ||
+      parseInt(dbId, 10) <= 0
+    )
+      return toast.error("Invalid ID.");
+    try {
+      const loguserid = secureLocalStorage.getItem("login_id");
+      const login_type = secureLocalStorage.getItem("loginType");
+      const response = await dataFetchingPatch(
+        `${NODE_API_URL}/api/department/status/${dbId}/${loguserid}/${login_type}`
+      );
+      if (response?.statusCode === 200) {
+        toast.success(response.message);
+        setTitleError("");
+        fetchList(0);
+      } else {
+        toast.error("An error occurred. Please try again.");
+      }
+    } catch (error) {
+      const statusCode = error.response?.data?.statusCode;
+
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        setTitleError(error.response.message);
+        toast.error(error.response.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    }
+  };
+  const deleteStatus = async (dbId) => {
+    if (
+      !dbId ||
+      !Number.isInteger(parseInt(dbId, 10)) ||
+      parseInt(dbId, 10) <= 0
+    )
+      return toast.error("Invalid ID.");
+    try {
+      const deleteAlert = await DeleteSweetAlert();
+      if (deleteAlert) {
+        const loguserid = secureLocalStorage.getItem("login_id");
+        const login_type = secureLocalStorage.getItem("loginType");
+        const response = await dataFetchingDelete(
+          `${NODE_API_URL}/api/department/deleteStatus/${dbId}/${loguserid}/${login_type}`
+        );
+        if (response?.statusCode === 200) {
+          toast.success(response.message);
+          setTitleError("");
+          if (response.data == 1) {
+            fetchList(1);
+          } else {
+            fetchList(0);
+          }
+          showRecyleBin();
+        } else {
+          toast.error("An error occurred. Please try again.");
+        }
+      }
+    } catch (error) {
+      const statusCode = error.response?.data?.statusCode;
+
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        setTitleError(error.response.message);
+        toast.error(error.response.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    }
+  };
+  const updateDataFetch = async (dbId) => {
+    if (
+      !dbId ||
+      !Number.isInteger(parseInt(dbId, 10)) ||
+      parseInt(dbId, 10) <= 0
+    )
+      return toast.error("Invalid ID.");
+    try {
+      const response = await dataFetchingPost(
+        `${NODE_API_URL}/api/department/fetch`,
+        { dbId: dbId }
+      );
+
+      if (response?.statusCode === 200 && response.data.length > 0) {
+        toast.success(response.message);
+        setFormData((prev) => ({
+          ...prev,
+          dbId: response.data[0].id,
+          title: response.data[0].dtitle,
+        }));
         setToggleShow(!toggleShow);
-        setFormData(iniatialForm)
-    };
-    const handleToggleStatus = async (dbId) => {
-        if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
-        try {
-            const loguserid = secureLocalStorage.getItem('login_id');
-            const login_type = secureLocalStorage.getItem('loginType');
-            const response = await dataFetchingPatch(`${NODE_API_URL}/api/department/status/${dbId}/${loguserid}/${login_type}`);
-            if (response?.statusCode === 200) {
-                toast.success(response.message);
-                setTitleError('');
-                fetchList(0);
-            } else {
-                toast.error("An error occurred. Please try again.");
-            }
-        } catch (error) {
-            const statusCode = error.response?.data?.statusCode;
+      } else {
+        toast.error("Data not found.");
+      }
+    } catch (error) {
+      const statusCode = error.response?.data?.statusCode;
 
-            if (statusCode === 400 ||  statusCode === 401 || statusCode === 500) {
-                setTitleError(error.response.message);
-                toast.error(error.response.message || "A server error occurred.");
-            } else {
-                toast.error(
-                    "An error occurred. Please check your connection or try again."
-                );
-            }
-        }
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        setTitleError(error.response.message);
+        toast.error(error.response.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
     }
-    const deleteStatus = async (dbId) => {
-        if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
-        try {
-            const deleteAlert = await DeleteSweetAlert();
-            if (deleteAlert) {
-                const loguserid = secureLocalStorage.getItem('login_id');
-                const login_type = secureLocalStorage.getItem('loginType');
-                const response = await dataFetchingDelete(`${NODE_API_URL}/api/department/deleteStatus/${dbId}/${loguserid}/${login_type}`);
-                if (response?.statusCode === 200) {
-                    toast.success(response.message);
-                    setTitleError('');
-                    if (response.data == 1) {
-                        fetchList(1);
-                    } else {
-                        fetchList(0);
-                    }
-                    showRecyleBin()
-                } else {
-                    toast.error("An error occurred. Please try again.");
-                }
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            const statusCode = error.response?.data?.statusCode;
-
-            if (statusCode === 400 ||  statusCode === 401 || statusCode === 500) {
-                setTitleError(error.response.message);
-                toast.error(error.response.message || "A server error occurred.");
-            } else {
-                toast.error(
-                    "An error occurred. Please check your connection or try again."
-                );
-            }
-        }
-    }
-    const updateDataFetch = async (dbId) => {
-        if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
-        try {
-            const response = await dataFetchingPost(`${NODE_API_URL}/api/department/fetch`,
-                { dbId: dbId }
-            );
-            console.log(response);
-
-            if (response?.statusCode === 200 && response.data.length > 0) {
-                toast.success(response.message);
-                setFormData((prev) => ({
-                    ...prev,
-                    dbId: response.data[0].id,
-                    title: response.data[0].dtitle,
-                }));
-                setToggleShow(!toggleShow);
-            } else {
-                toast.error("Data not found.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            const statusCode = error.response?.data?.statusCode;
-
-            if (statusCode === 400 ||  statusCode === 401 || statusCode === 500) {
-                setTitleError(error.response.message);
-                toast.error(error.response.message || "A server error occurred.");
-            } else {
-                toast.error(
-                    "An error occurred. Please check your connection or try again."
-                );
-            }
-        }
-    }
+  };
 
     return (
         <>
@@ -352,4 +375,4 @@ function Department() {
         </>
     )
 }
-export default Department
+export default Department;

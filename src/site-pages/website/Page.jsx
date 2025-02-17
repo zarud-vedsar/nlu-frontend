@@ -30,7 +30,6 @@ const Page = () => {
     getPageDetail();
   }, []);
   const getPageDetail = async () => {
-    console.log("run");
     try {
       const bformData = new FormData();
       bformData.append("data", "fetch_page");
@@ -38,10 +37,7 @@ const Page = () => {
       const response = await axios.post(`${PHP_API_URL}/page.php`, bformData);
       decodeHtml(response?.data?.data[0].page_content);
       setPageData(response.data.data[0]);
-      console.log(response.data.data[0]);
-      console.log(pageData);
     } catch (e) {
-      console.log(e);
     } finally {
     }
   };

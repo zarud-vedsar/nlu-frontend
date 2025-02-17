@@ -31,7 +31,6 @@ function UseFulLinks() {
                         'Content-Type': 'multipart/form-data'
                     },
                 });
-            console.log(response.data)
             if (response.data.status === 200) {
                 setUseFulListing(response.data.data);
             }

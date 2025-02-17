@@ -26,8 +26,6 @@ const IssuedBookStatus = () => {
   const getIssuedBookDetail = async (id, fineData, return_date) => {
     setLoading(true);
     setIssueBookList([]);
-    console.log(fineData);
-    console.log(issue);
     try {
       const bformData = new FormData();
       bformData.append("data", "load_issued_books");
@@ -45,7 +43,6 @@ const IssuedBookStatus = () => {
       );
       setIssueBookList([]);
 
-      console.log(response);
       if (response?.data?.status === 200) {
         setIssue((pre) => ({
           ...pre,
@@ -122,7 +119,6 @@ const IssuedBookStatus = () => {
         toast.success(error?.response?.data?.msg);
       }
 
-      console.error("Error fetching internships data:", error);
     } finally {
       setLoading(false);
     }

@@ -48,7 +48,6 @@ function UpdateVacateDate() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-    console.log(formData);
    
 
     if (!formData.allotDate) {
@@ -105,7 +104,6 @@ function UpdateVacateDate() {
     }
   };
   const fetchDataForupdateBasedOnId = async (dbId) => {
-    console.log(dbId);
     if (!dbId || parseInt(dbId, 10) <= 0) {
       toast.error("Invalid ID.");
       return;
@@ -117,7 +115,6 @@ function UpdateVacateDate() {
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
         const data = response.data[0];
-        console.log(data);
         setFormData((prev) => ({
           ...prev,
           dbId: data.id,
@@ -236,10 +233,11 @@ function UpdateVacateDate() {
 
   const fetchStudent = async () => {
     try {
-      const response = await axios.get(
-        `${NODE_API_URL}/api/student-detail/get-student`
+      let session = localStorage.getItem("session");
+      const response = await axios.post(
+        `${NODE_API_URL}/api/student-detail/get-student`,
+        {session:session}
       );
-      console.log(response);
       if (
         response?.data?.statusCode === 200 &&
         response?.data?.data.length > 0
@@ -250,7 +248,6 @@ function UpdateVacateDate() {
         setStudentListing([]);
       }
     } catch (error) {
-      console.log(error);
       setStudentListing([]);
     }
   };

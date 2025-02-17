@@ -34,7 +34,6 @@ const InternshipAppliedHistory = () => {
           },
         }
       );
-      console.log(response)
       setInternships(response.data.data);
     } catch (error) {
       console.error("Error fetching internship data:", error);

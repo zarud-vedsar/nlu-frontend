@@ -255,7 +255,7 @@ function EducationDetail({sid , trigger }) {
   };
   const getEducationDetail=(selectedcourse)=>{
       getEducation(selectedcourse).then((res) => {
-        console.log(res)
+        
         if (res.length > 0) {
           setFormData((prev) => ({
             ...prev,

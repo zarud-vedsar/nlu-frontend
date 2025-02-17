@@ -52,7 +52,6 @@ function AllotedRoomHistory() {
           ...bformData,
         }
       );
-      console.log(response);
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
         setAllotedroomHistory(response.data.data);
       } else {

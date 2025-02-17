@@ -198,7 +198,6 @@ function AddNewRoom() {
             const response = await dataFetchingPost(`${NODE_API_URL}/api/hostel-management/room/distinct-blocks`);
             if (response?.statusCode === 200 && response.data.length > 0) {
                 setBlock(response.data);
-                console.log(response.data, "MAD");
 
                 return null;
             } else {

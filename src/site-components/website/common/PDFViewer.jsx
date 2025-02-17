@@ -7,7 +7,6 @@ const PDFViewer = ({ pdfUrl }) => {
   const onLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };
-  console.log(pdfUrl)
 
   return (
     <div>

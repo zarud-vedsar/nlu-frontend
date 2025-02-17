@@ -47,10 +47,8 @@ const formatDate = (date) => {
 function ViewMessageModal(props) {
   const [decodedMessage, setDecodedMessage] = useState();
   useEffect(() => {
-    console.log(props)
     if (props.selectedMessage?.message) {
       decodeHtml(props.selectedMessage?.message).then((decoded) => {
-        console.log(decoded)
         setDecodedMessage(decoded);
       });
     }
@@ -144,9 +142,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
         bformData.append("description", detail?.message);
       }
 
-      for(let [key,value] of bformData){
-        console.log(key,value)
-      }
+      
   
       const response = await axios.post(
         `${PHP_API_URL}/placementApplication.php`,
@@ -157,7 +153,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
           },
         }
       );
-console.log(response)
       if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response?.data?.msg);
         setDetail({
@@ -341,7 +336,6 @@ const PlacementApplicationViewPage = () => {
           },
         }
       );
-      console.log(response)
       setConversation(response.data.data);
     } catch (error) {
       setConversation([]);
@@ -368,7 +362,6 @@ const PlacementApplicationViewPage = () => {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      console.log(res)
       if (res.data?.status === 200) {
         setCustomerDetail(res?.data?.data[0]);
         await decodeHtml(res?.data?.data[0]?.description).then((res)=>{

@@ -37,7 +37,6 @@ const IssueDetail = () => {
           },
         }
       );
-      console.log(response);
       if (response?.data?.status === 200) {
         setIssuedBookList(response?.data?.data);
       }
@@ -49,7 +48,6 @@ const IssueDetail = () => {
   };
 
   const redirectToPdfViewer = (dbId) => {
-    console.log(dbId);
     navigate(`/student/book-viewer`, {
       state: { dbId }, // Passing dbId in state
       replace: false, // This will replace the current entry in the history stack

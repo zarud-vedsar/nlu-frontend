@@ -938,7 +938,6 @@ const AddQuestionInQuiz = () => {
         toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.log(error)
       const status = error.response?.data?.status;
       const errorField = error.response?.data?.errorField;
 

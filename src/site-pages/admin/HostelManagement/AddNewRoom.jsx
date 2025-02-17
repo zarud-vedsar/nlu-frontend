@@ -65,7 +65,6 @@ function AddNewRoom() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmit(true);
-        console.log(formData)
         if (!formData.block) {
             toast.error("Block is required.")
             errorMsg("block", "Block is required.");

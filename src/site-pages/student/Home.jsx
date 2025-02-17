@@ -84,11 +84,9 @@ function Home() {
         formData
       );
 
-      console.log(response);
       if (response.data?.statusCode === 200) {
         const { semtitle, approved, preview } = response.data?.data || {};
 
-        console.log(response);
 
         if (
           semtitle.toLowerCase() !== "semester 1" ||
@@ -209,7 +207,6 @@ function Home() {
     }
     if (name === "spincode") {
       const value = e.target.value.replace(/[^0-9]/g, "");
-      console.log(value);
 
       if (value.length > 5) {
         fetchPinCodeStateCity(value);
@@ -445,7 +442,6 @@ function Home() {
         formData
       );
       if (response?.data?.statusCode === 200) {
-        console.log(response);
         setLastResponse(response?.data?.data[0]);
       } else {
         setLastResponse({});

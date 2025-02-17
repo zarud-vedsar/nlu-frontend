@@ -75,7 +75,7 @@ const ContactSetting = () => {
           },
         }
       );
-      console.log(response);
+      
       if (response.data.status === 200) {
         setFormData({
           c_map: response?.data?.data[0]?.c_map,
@@ -126,7 +126,7 @@ const ContactSetting = () => {
           },
         }
       );
-      console.log(response);
+      
 
       if (response.data?.status === 201 || response.data?.status === 200) {
         toast.success(response.data.msg);

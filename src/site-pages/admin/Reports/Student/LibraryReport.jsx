@@ -63,8 +63,6 @@ function InventoryReport() {
         }
       );
       setAuthors(response.data.data);
-      console.log(response);
-      console.log(productBrand);
     } catch (error) {
       console.error("Error fetching faculty data:", error);
     }
@@ -83,8 +81,6 @@ function InventoryReport() {
         }
       );
       setLanguage(response.data.data);
-      console.log(response);
-      console.log(productBrand);
     } catch (error) {
       console.error("Error fetching faculty data:", error);
     }
@@ -145,7 +141,6 @@ languageData()
           // Parse the iframe response (assuming the response is JSON)
           const iframeContent = iframe.contentWindow.document.body.innerText; // Get iframe body content
           const responseData = JSON.parse(iframeContent); // Parse JSON response
-          console.log(responseData);
 
           // Handle different statuses based on responseData
           if (
@@ -182,7 +177,6 @@ languageData()
       // Submit the form to the hidden iframe (no page reload)
       form.submit();
     } catch (error) {
-      console.log(error);
       console.error("Error submitting form:", error);
       toast.error("An error occurred while submitting the form.");
     } 

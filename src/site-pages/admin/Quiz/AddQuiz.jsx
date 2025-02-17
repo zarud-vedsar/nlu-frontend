@@ -322,7 +322,6 @@ function AddQuiz() {
       toast.error("Number of question is required.");
       return setIsSubmit(false);
     }
-    console.log(parseInt(formData.minus_mark));
     if (parseInt(formData.minus_mark) <= -1) {
       errorMsg("minus_mark", "Please enter valid negative marks.");
       toast.error("Please enter valid negative marks.");

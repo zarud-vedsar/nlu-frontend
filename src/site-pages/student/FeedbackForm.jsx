@@ -47,7 +47,6 @@ const FeedbackForm = () => {
                 response.data?.statusCode === 200 ||
                 response.data?.statusCode === 201
             ) {
-                console.log(response.data?.statusCode)
                 if (response.data?.statusCode === 201) {
                     setFormData(initialData);
                 }

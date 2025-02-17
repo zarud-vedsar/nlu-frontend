@@ -46,8 +46,6 @@ function ViewApplication() {
         response.data?.statusCode === 200 ||
         response.data?.statusCode === 201
       ) {
-        console.log(response);
-        console.log(response?.data?.data);
         
         setAllPreviousRegisterSemester(response?.data?.data);
         
@@ -85,7 +83,6 @@ function ViewApplication() {
         const { id, coursename, semtitle, approved } =
           response.data?.data || {};
 
-        console.log(response);
         if((response?.data?.data?.preview === 1 &&  response?.data?.data?.approved === 0) || (response?.data?.data?.preview === 0 &&  response?.data?.data?.approved === 2) ){
         setCurrentCourse(
           [{

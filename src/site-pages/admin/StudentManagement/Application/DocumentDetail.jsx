@@ -139,7 +139,7 @@ function DocumentDetail({ sid }) {
     if (level?.id) {
       getDocument(level?.id).then((res) => {
         if (res.length > 0) {
-            console.log(res)
+            
           setFormData((prev) => ({
             ...prev,
             sid: res[0].sid,

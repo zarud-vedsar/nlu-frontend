@@ -251,7 +251,6 @@ function AttendanceHIstory() {
 
       finalAttendance.push(monthAttendance);
     }
-    console.log(finalAttendance);
     setAttendanceHistory(finalAttendance);
   }
 
@@ -285,7 +284,6 @@ function AttendanceHIstory() {
           ...bformData,
         }
       );
-      console.log(response);
       if (response.data?.statusCode === 200 && response.data.data.length > 0) {
         toast.success(response?.data?.message);
         generateCompleteAttendance(response.data.data);

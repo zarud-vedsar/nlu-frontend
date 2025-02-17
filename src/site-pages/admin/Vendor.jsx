@@ -70,7 +70,6 @@ const Vendor = () => {
           },
         }
       );
-      console.log(response)
       setMessages(response.data.data);
     } catch (error) {
       setMessages([])
@@ -103,7 +102,6 @@ const Vendor = () => {
           },
         }
       );
-      console.log(response)
       setMessages(response.data.data);
     } catch (error) {
       console.error("Error fetching faculty data:", error);

@@ -37,7 +37,6 @@ function NoticeList() {
         sendFormData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
-      console.log(response);
       
       if (response.data?.status === 200) {
         setRole(response.data.data);
@@ -98,7 +97,6 @@ useEffect(() => {
      ) {
        return toast.error("Invalid ID.");
      }
-     console.log(dbId);
      
      try {
        const deleteAlert = await DeleteSweetAlert();
@@ -117,7 +115,6 @@ useEffect(() => {
          toast.error("An error occurred. Please try again.");
        }
      } catch (error) {
-       console.error("Error:", error);
        toast.error(error.response?.data?.message || "A server error occurred.");
      }
    };

@@ -40,7 +40,6 @@ function MessageList() {
     useEffect(() => {
         if (sid) fetchAllMessages(sid);
     }, [sid]);
-    console.log(messageListing);
 
     return (
         <>

@@ -4,7 +4,6 @@ Akshay --------
 book catalogue ui in student panel
 
 Today -------- 4 issue done 
-10. session wise student fetching dropdown
 11. Excel sheet in attendance chart 
 
 

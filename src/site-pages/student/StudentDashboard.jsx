@@ -161,7 +161,6 @@ function StudentDashboard() {
       );
       if (response?.data?.status === 200) {
         setData(response?.data?.data);
-        console.log(data);
 
         let subjectMap = {};
         let teacherMap = {};
@@ -182,10 +181,10 @@ function StudentDashboard() {
   };
 
   const messages = [
-    { start: 0, end: 6, message: "Good night", img: NightImg },
-    { start: 6, end: 12, message: "Good morning", img: MorningImg },
-    { start: 12, end: 18, message: "Good afternoon", img: AfternoonImg },
-    { start: 18, end: 24, message: "Good evening", img: EveningImg },
+    { start: 0, end: 6, message: "Good Night", img: NightImg },
+    { start: 6, end: 12, message: "Good Morning", img: MorningImg },
+    { start: 12, end: 18, message: "Good Afternoon", img: AfternoonImg },
+    { start: 18, end: 24, message: "Good Evening", img: EveningImg },
   ];
 
   const [currentMessage, setCurrentMessage] = useState("");
@@ -223,7 +222,9 @@ function StudentDashboard() {
                 <div className="card w-100" style={{ background: "#1f2c4b" }}>
                   <div className="card-body id-dsh-banner-relative">
                     <div className="id-dsh-text">
+                      
                       <h4>{currentMessage}, {secureLocalStorage.getItem("sname")}</h4>
+                      <h6>{data?.Course} - {capitalizeFirstLetter(data?.Semester)}</h6>
                       <p>
                         {(() => {
                           const date = new Date();

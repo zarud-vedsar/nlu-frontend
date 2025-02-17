@@ -77,7 +77,6 @@ function LmsTopicPdfViewer() {
             setApiHit(false);
         }
     };
-    console.log(courseSemester);
 
     const fetchTopicsBasedOn = async (topicId) => {
         setApiHit(true);

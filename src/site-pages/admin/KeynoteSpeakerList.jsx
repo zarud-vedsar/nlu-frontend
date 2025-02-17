@@ -61,7 +61,6 @@ const KeynoteSpeakerList = () => {
       );
       setMessages(response.data.data);
     } catch (error) {
-      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }
@@ -93,7 +92,6 @@ const KeynoteSpeakerList = () => {
 
       setMessages(response.data.data);
     } catch (error) {
-      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }

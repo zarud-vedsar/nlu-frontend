@@ -54,7 +54,6 @@ const decodeHtml = async (html) => {
 };
 
 function MyVerticallyCenteredModal(props) {
-  console.log(props);
   const [description,setDescription] = useState();
   
   useEffect(()=>{
@@ -146,7 +145,6 @@ const JobRecruitmentList = () => {
       setJobTypes(tempCat);
     } catch (error) {
       setJobTypes([]);
-      console.error("Error fetching  data:", error);
     } finally {
       setLoading(false);
     }
@@ -174,7 +172,6 @@ const JobRecruitmentList = () => {
       setCategory(tempCat);
     } catch (error) {
       setCategory([]);
-      console.error("Error fetching  data:", error);
     } finally {
       setLoading(false);
     }
@@ -182,7 +179,6 @@ const JobRecruitmentList = () => {
 
   const viewAllImages = (index) => {
     const currentLob = internshipList[index];
-    console.log(currentLob);
     setSelectedInternship(currentLob);
   };
   useEffect(() => {
@@ -224,11 +220,9 @@ const JobRecruitmentList = () => {
           },
         }
       );
-      console.log(response)
       setInternshipList(response.data.data);
     } catch (error) {
       setInternshipList([]);
-      console.error("Error fetching internships data:", error);
     } finally {
       setLoading(false);
     }
@@ -299,11 +293,9 @@ const JobRecruitmentList = () => {
           },
         }
       );
-      console.log(response);
       setInternshipList(response.data.data);
     } catch (error) {
       setInternshipList([]);
-      console.error("Error fetching internships data:", error);
     } finally {
       setLoading(false);
     }
@@ -333,7 +325,6 @@ const JobRecruitmentList = () => {
             },
           }
         );
-        console.log(response);
         if (response.status == "200") {
           toast.success(response.data.msg);
           recycleTitle === "Show Recycle Bin"

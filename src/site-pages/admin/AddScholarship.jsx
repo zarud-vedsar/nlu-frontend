@@ -37,7 +37,6 @@ const AddScholarship = () => {
       const bformData = new FormData();
       bformData.append("data", "get_scholarship_by_id");
       bformData.append("id", id);
-      console.log(`${PHP_API_URL}/scholarship.php`);
 
       const response = await axios.post(
         `${PHP_API_URL}/scholarship.php`,
@@ -48,7 +47,6 @@ const AddScholarship = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.status === 200) {
         setFormData({
           title: response.data.data[0].title,
@@ -129,15 +127,12 @@ const AddScholarship = () => {
     }
 
     Object.keys(formData).map((key)=>{
-      console.log(key, formData[key])
       if(formData[key]){
       sendFormData.append(key, formData[key]);
       }
     })
     
-    for (let [key, value] of sendFormData.entries()) {
-      console.log(key, value);
-    }
+  
     
 
 
@@ -151,7 +146,7 @@ const AddScholarship = () => {
           },
         }
       );
-      console.log(response);
+      
 
       if (response.data?.status === 201 || response.data?.status === 200) {
         toast.success(response.data.msg);
@@ -166,7 +161,7 @@ const AddScholarship = () => {
     } catch (error) {
       const status = error.response?.data?.status;
       if (status === 400 || status === 500) {
-        console.log(error)
+        
 
         toast.error(error.response.data.msg || "A server error occurred.");
       } else {

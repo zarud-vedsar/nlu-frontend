@@ -98,7 +98,6 @@ const StudentTestimonialForm = () => {
     if (id === "test_photo") {
       if (file.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(file));
-        console.log(file);
 
         setFormData((formData) => ({ ...formData, test_photo: file }));
       } else {
@@ -112,7 +111,6 @@ const StudentTestimonialForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const phoneRegex = /^[0-9]{10}$/;
-    console.log(formData);
 
     setIsSubmit(true);
     if (!formData.test_name) {
@@ -148,17 +146,12 @@ const StudentTestimonialForm = () => {
 
     if (id) {
       sendFormData.append("updateid", id);
-      console.log('updateid',id)
     }
 
     for (let key in formData) {
       sendFormData.append(key, formData[key]);
     }
 
-    for(let [key,value] of sendFormData){
-      console.log(key,value)
-    }
-    console.log(`${PHP_API_URL}/std_testimonial.php`)
     try {
       const response = await axios.post(
         `${PHP_API_URL}/std_testimonial.php`,
@@ -169,7 +162,6 @@ const StudentTestimonialForm = () => {
           },
         }
       );
-      console.log(response);
 
       if (response.data?.status === 200 || response.data?.status === 201) {
         toast.success(response.data.msg);

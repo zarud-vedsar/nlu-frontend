@@ -159,9 +159,7 @@ function AssignmentResponse() {
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
 
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
+      
 
       const response = await axios.post(
         `${PHP_API_URL}/assignment.php`,
@@ -179,7 +177,6 @@ function AssignmentResponse() {
         setAssignmentResponseList([]);
       }
     } catch (error) {
-      console.log(error);
       setAssignmentResponseList([]);
       if (
         error?.response?.data?.status === 400 ||

@@ -93,11 +93,11 @@ const About = () => {
     const file = e.target.files[0];
     const { id } = e.target;
     if (!file) return;
-    console.log(file);
+    
     if (id === "image_file") {
       if (file.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(file));
-        console.log(previewImage);
+       
         setFormData((formData) => ({ ...formData, image_file: file }));
       } else {
         toast.error(

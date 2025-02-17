@@ -246,7 +246,6 @@ function AddNew() {
                 dbId
             });
             if (data.statusCode === 200 && data?.data.length > 0) {
-                console.log(data.data[0]);
                 
                 setFormData((prev) => ({
                   ...prev,

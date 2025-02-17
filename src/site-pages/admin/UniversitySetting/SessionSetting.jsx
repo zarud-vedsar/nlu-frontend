@@ -68,7 +68,6 @@ const SessionSetting = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.status === 200) {
         setFormData(response?.data?.data[0]?.currentsession);
       }

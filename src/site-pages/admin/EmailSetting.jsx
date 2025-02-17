@@ -29,13 +29,11 @@ const EmailSetting = () => {
       let containsNumber = pattern.test(value);
       let isValidLength = value.length <= 10;
 
-      if (containsNumber && isValidLength) {
-        console.log("Valid input:", value);
-      } else if (!containsNumber) {
-        console.log("Input must contain a number (0-9)");
+       if (!containsNumber) {
+        
         return;
       } else if (value.length > 10) {
-        console.log("Input must not be greater than 10 characters");
+        
         return;
       }
     }
@@ -60,7 +58,7 @@ const EmailSetting = () => {
           },
         }
       );
-      console.log(response);
+      
       if (response.data.status === 200) {
         setFormData({
           mail_host: response?.data?.data[0].mail_host,
@@ -91,7 +89,7 @@ const EmailSetting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-    console.log(formData);
+    
   
     if (!formData.mail_driver) {
       toast.error("Mail Driver is required.");
@@ -132,16 +130,13 @@ const EmailSetting = () => {
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
       sendFormData.append(key, value);
-      console.log(`${key}: ${value}`);
+      
     });
   
-    sendFormData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+    
   
     try {
-      console.log(        `${PHP_API_URL}/sitesetting.php`,
-      )
+     
       const response = await axios.post(
         `${PHP_API_URL}/sitesetting.php`,
         sendFormData,
@@ -151,7 +146,7 @@ const EmailSetting = () => {
           },
         }
       );
-      console.log(response);
+      
   
       if (response.data?.status === 201 || response.data?.status === 200) {
         toast.success(response.data.msg);

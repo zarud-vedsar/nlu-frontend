@@ -31,7 +31,6 @@ const decodeHtml = async (html) => {
     );
     return response.data;
   } catch (error) {
-    console.error("Error decoding HTML:", error);
     return "";
   }
 };
@@ -47,10 +46,8 @@ const formatDate = (date) => {
 function ViewMessageModal(props) {
   const [decodedMessage, setDecodedMessage] = useState();
   useEffect(() => {
-    console.log(props)
     if (props.selectedMessage?.message) {
       decodeHtml(props.selectedMessage?.message).then((decoded) => {
-        console.log(decoded)
         setDecodedMessage(decoded);
       });
     }
@@ -171,7 +168,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
         toast.error("Failed to submit content");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
       toast.error("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
@@ -338,11 +334,9 @@ const JobApplicationDetail = () => {
           },
         }
       );
-      console.log(response)
       setConversation(response.data.data);
     } catch (error) {
       setConversation([]);
-      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }

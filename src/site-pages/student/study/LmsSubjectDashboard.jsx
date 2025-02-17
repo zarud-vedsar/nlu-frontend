@@ -121,10 +121,8 @@ function LmsSubjectDashboard() {
           subjectId,
         }
       );
-      console.log(response);
       if (response.data?.data && response.data.data.length > 0) {
         setLiveList(response.data.data);
-        console.log(liveList);
       } else {
         setLiveList([]);
       }

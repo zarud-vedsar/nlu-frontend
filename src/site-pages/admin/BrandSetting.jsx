@@ -35,10 +35,10 @@ const BrandSetting = () => {
   });
 
   const handleFileChange = (e, field) => {
-    console.log(e);
+   
     const file = e.target.files[0];
     const { name } = e.target;
-    console.log(name, file);
+   
 
     if (file) {
       setFiles((prevFiles) => ({
@@ -79,7 +79,7 @@ const BrandSetting = () => {
           },
         }
       );
-      console.log(response);
+      
       if (response.data.status === 200) {
         setFormData((pre) => ({
           ...pre,
@@ -188,7 +188,7 @@ const BrandSetting = () => {
           },
         }
       );
-      console.log(response);
+      
 
       if (response.data?.status === 201 || response.data?.status === 200) {
         toast.success(response.data.msg);

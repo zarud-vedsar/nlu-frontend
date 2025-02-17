@@ -40,7 +40,6 @@ const LibrarySetting = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.status === 200) {
         setFormData({
           max_issue: response?.data?.data[0].max_issue,
@@ -69,7 +68,6 @@ const LibrarySetting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-    console.log(formData);
 
     if (!formData.max_issue) {
       toast.error("Maximum number of book issue allowed is required.");
@@ -102,12 +100,9 @@ const LibrarySetting = () => {
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
       sendFormData.append(key, value);
-      console.log(`${key}: ${value}`);
     });
 
-    sendFormData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+    
 
     try {
       const response = await axios.post(
@@ -119,7 +114,6 @@ const LibrarySetting = () => {
           },
         }
       );
-      console.log(response);
 
       if (response.data?.status === 201 || response.data?.status === 200) {
         toast.success(response.data.msg);

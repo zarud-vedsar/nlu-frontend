@@ -42,7 +42,7 @@ const ContactIconSetting = () => {
           },
         }
       );
-      console.log(response);
+      
       if (response.data.status === 200) {
         setFormData({
           whatsapplink: response?.data?.data[0]?.whatsapplink,

@@ -94,7 +94,6 @@ function Registration() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
         setIsSubmit(true);
         if (!formData.catId) {
             errorMsg("catId", "Product category is required.");

@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {
-  Modal,
-  Button,
-  
-  Spinner,
-  
-} from "react-bootstrap";
+import { Modal, Button, Spinner } from "react-bootstrap";
 
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 
-import {
-  PHP_API_URL,
-} from "../../site-components/Helper/Constant";
+import { PHP_API_URL } from "../../site-components/Helper/Constant";
 
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
@@ -36,7 +28,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
       toast.error("Content cannot be empty");
       return;
     }
-   
+
     setLoading(true);
     try {
       const bformData = new FormData();
@@ -44,10 +36,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
       bformData.append("cat_title", content);
-
-      for( let [key,value] of  bformData){
-      console.log(key,value)
-      }
 
       if (id) {
         bformData.append("updateid", id);
@@ -62,7 +50,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
           },
         }
       );
-      console.log(response)
 
       if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response?.data?.msg);
@@ -72,7 +59,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
         toast.error("Failed to submit");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
       toast.error("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
@@ -87,7 +73,9 @@ const MyVerticallyCenteredModal = (props = {}) => {
       centered
     >
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">Add New Category</Modal.Title>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Add New Category
+        </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <div className="form-group col-md-12">
@@ -103,7 +91,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
             disabled={loading}
           />
         </div>
-        
       </Modal.Body>
       <Modal.Footer>
         <div className="mx-auto">
@@ -140,7 +127,6 @@ const GalleryCategory = () => {
 
   const editMarque = (index) => {
     const currentLob = MarqueList[index];
-    console.log(currentLob);
     setSelectedMarque(currentLob);
   };
   useEffect(() => {
@@ -178,12 +164,9 @@ const GalleryCategory = () => {
           },
         }
       );
-      console.log(response.data.data);
       setMarqueList(response.data.data);
     } catch (error) {
-        setMarqueList([]);
-
-      console.error("Error fetching data:", error);
+      setMarqueList([]);
     } finally {
       setLoading(false);
     }
@@ -204,11 +187,9 @@ const GalleryCategory = () => {
           },
         }
       );
-      console.log(response);
-      
+
       setMarqueList(response.data.data);
     } catch (error) {
-      console.error("Error fetching  data:", error);
     } finally {
       setLoading(false);
     }
@@ -258,9 +239,8 @@ const GalleryCategory = () => {
   };
   const updateStatus = async (id) => {
     try {
-        console.log(id)
       const bformData = new FormData();
-        
+
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
       bformData.append("data", "toggle_mediaCategory");
@@ -298,38 +278,36 @@ const GalleryCategory = () => {
     } finally {
     }
   };
-  
 
   return (
     <>
-      
       <div className="page-container">
         <div className="main-content">
-        <div className="container-fluid">
-          <div className="">
-            <nav className="breadcrumb breadcrumb-dash">
-              <a href="/" className="breadcrumb-item">
-              Media
-              </a>
+          <div className="container-fluid">
+            <div className="">
+              <nav className="breadcrumb breadcrumb-dash">
+                <a href="/" className="breadcrumb-item">
+                  Media
+                </a>
 
-              <span className="breadcrumb-item active">Category </span>
-            </nav>
-          </div>
-          <div className="card bg-transparent mb-2">
+                <span className="breadcrumb-item active">Category </span>
+              </nav>
+            </div>
+            <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new"> Category</h5>
                 <div className="ml-auto">
-                <Button
-                variant="light"
-                onClick={() => window.history.back()}
-                className="mb-2 mb-md-0"
-              >
-                <i className="fas">
-                  <FaArrowLeft />
-                </i>{" "}
-                Go Back
-              </Button>
-              <Button
+                  <Button
+                    variant="light"
+                    onClick={() => window.history.back()}
+                    className="mb-2 mb-md-0"
+                  >
+                    <i className="fas">
+                      <FaArrowLeft />
+                    </i>{" "}
+                    Go Back
+                  </Button>
+                  <Button
                     className={`btn ${
                       recycleTitle === "Show Recycle Bin"
                         ? "btn-secondary"
@@ -339,106 +317,106 @@ const GalleryCategory = () => {
                   >
                     {recycleTitle} <i className="fa fa-recycle"></i>
                   </Button>
-              <Button
-                className="ml-2 mb-2 mb-md-0 btn btn-secondaary"
-                onClick={() => setModalShow(true)}
-              >
-                <i className="fas">
-                  <IoMdAdd />
-                </i>{" "}
-                Add New
-              </Button>
+                  <Button
+                    className="ml-2 mb-2 mb-md-0 btn btn-secondaary"
+                    onClick={() => setModalShow(true)}
+                  >
+                    <i className="fas">
+                      <IoMdAdd />
+                    </i>{" "}
+                    Add New
+                  </Button>
                 </div>
               </div>
             </div>
-          
-          
-          {loading ? (
-            <div className="text-center">
-              <Spinner animation="border" />
-            </div>
-          ) : (
-            <div className="table-responsive d-flex flex-wrap">
-              {MarqueList.map((item, index) => (
-                <div key={index} className="col-md-4  flex-wrap">
-                  <div className="card">
-                    <div className="card-body d-flex justify-content-between" style={{
-    padding: '10px'}} >
 
-                      <h6 className="d-flex align-items-center  justify-content-start">
-                        {item.cat_title}
-                      </h6>
-                    
-                      <div className="d-flex align-items-center  justify-content-start">
-                        <div className="switch ">
-                          <input
-                            type="checkbox"
-                            checked={item.status == 1 ? true : false}
-                            onChange={() => updateStatus(item.id)}
-                            className="facultydepartment-checkbox"
-                            id={`switch${item.id}`}
-                          />
-                          <label
-                            className="mt-0"
-                            htmlFor={`switch${item.id}`}
-                          ></label>
-                        </div>
+            {loading ? (
+              <div className="text-center">
+                <Spinner animation="border" />
+              </div>
+            ) : (
+              <div className="table-responsive d-flex flex-wrap">
+                {MarqueList.map((item, index) => (
+                  <div key={index} className="col-md-4  flex-wrap">
+                    <div className="card">
+                      <div
+                        className="card-body d-flex justify-content-between"
+                        style={{
+                          padding: "10px",
+                        }}
+                      >
+                        <h6 className="d-flex align-items-center  justify-content-start">
+                          {item.cat_title}
+                        </h6>
 
-                        <div className="d-flex ">
-                          <div
-                            onClick={() => editMarque(index)}
-                            className="avatar avatar-icon avatar-md avatar-orange"
-                          >
-                            <i className="fas fa-edit"></i>
+                        <div className="d-flex align-items-center  justify-content-start">
+                          <div className="switch ">
+                            <input
+                              type="checkbox"
+                              checked={item.status == 1 ? true : false}
+                              onChange={() => updateStatus(item.id)}
+                              className="facultydepartment-checkbox"
+                              id={`switch${item.id}`}
+                            />
+                            <label
+                              className="mt-0"
+                              htmlFor={`switch${item.id}`}
+                            ></label>
                           </div>
-                        </div>
-                        {item.delete_status == 0 ? (
-                          <OverlayTrigger
-                            placement="bottom"
-                            overlay={
-                              <Tooltip id="button-tooltip-2">Delete</Tooltip>
-                            }
-                          >
-                            <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
-                              <i
-                                className="fas fa-trash-alt"
-                                onClick={() => deleteMarque(item.id)}
-                              ></i>
-                            </div>
-                          </OverlayTrigger>
-                        ) : (
-                          <OverlayTrigger
-                            placement="bottom"
-                            overlay={
-                              <Tooltip id="button-tooltip-2">Restore</Tooltip>
-                            }
-                          >
-                            <div className="avatar ml-2 avatar-icon avatar-md avatar-lime">
-                              <i
-                                className="fas fa-recycle"
-                                onClick={() => deleteMarque(item.id)}
-                              ></i>
-                            </div>
-                          </OverlayTrigger>
-                        )}
-                      </div>
-                      </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
 
-         
-        </div>
+                          <div className="d-flex ">
+                            <div
+                              onClick={() => editMarque(index)}
+                              className="avatar avatar-icon avatar-md avatar-orange"
+                            >
+                              <i className="fas fa-edit"></i>
+                            </div>
+                          </div>
+                          {item.delete_status == 0 ? (
+                            <OverlayTrigger
+                              placement="bottom"
+                              overlay={
+                                <Tooltip id="button-tooltip-2">Delete</Tooltip>
+                              }
+                            >
+                              <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
+                                <i
+                                  className="fas fa-trash-alt"
+                                  onClick={() => deleteMarque(item.id)}
+                                ></i>
+                              </div>
+                            </OverlayTrigger>
+                          ) : (
+                            <OverlayTrigger
+                              placement="bottom"
+                              overlay={
+                                <Tooltip id="button-tooltip-2">Restore</Tooltip>
+                              }
+                            >
+                              <div className="avatar ml-2 avatar-icon avatar-md avatar-lime">
+                                <i
+                                  className="fas fa-recycle"
+                                  onClick={() => deleteMarque(item.id)}
+                                ></i>
+                              </div>
+                            </OverlayTrigger>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <MyVerticallyCenteredModal
         show={modalShow}
-        close={() => {setModalShow(false);
-            setSelectedMarque(null)
-        }
-        }
+        close={() => {
+          setModalShow(false);
+          setSelectedMarque(null);
+        }}
         submit={() => {
           loadMarqueList();
           setSelectedMarque(null);

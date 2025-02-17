@@ -160,9 +160,7 @@ function QuizResponse() {
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
 
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
+      
 
       const response = await axios.post(
         `${PHP_API_URL}/quiz.php`,
@@ -173,7 +171,6 @@ function QuizResponse() {
           },
         }
       );
-      console.log(response);
 
       if (response.data?.status === 200 && response.data.data.length > 0) {
         // toast.success(response?.data?.msg);
@@ -182,7 +179,6 @@ function QuizResponse() {
         setQuizResponseList([]);
       }
     } catch (error) {
-      console.log(error);
       setQuizResponseList([]);
       if (
         error?.response?.data?.status === 400 ||
@@ -211,9 +207,7 @@ function QuizResponse() {
       bformData.append("courseid", formData?.courseid);
       bformData.append("semesterid", formData?.semesterid);
 
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
+      
 
       const response = await axios.post(
         `${PHP_API_URL}/report.php`,
@@ -224,7 +218,6 @@ function QuizResponse() {
           },
         }
       );
-      console.log(response);
       if (response.data?.status === 200 || response.data?.status === 201) {
         toast.success(response.data.msg);
 
@@ -234,7 +227,6 @@ function QuizResponse() {
         toast.error("An error occurred. Please try again.");
       }
     } catch (error) {
-      console.log(error);
       const status = error.response?.data?.status;
       const errorField = error.response?.data?.errorField;
 

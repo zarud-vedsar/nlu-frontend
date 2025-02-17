@@ -76,8 +76,6 @@ const GalleryForm = () => {
     }));
 
     setPreviewImages((prevImages) => prevImages.filter((_, i) => i !== index));
-    console.log(formData);
-    console.log(previewImages);
   };
 
   const handleChange = (e) => {
@@ -104,7 +102,6 @@ const GalleryForm = () => {
       );
 
       if (response.data.status === 200) {
-        console.log(response);
         let splitedGallery =
           response.data?.data[0]?.gallery_images?.split("$;");
 
@@ -135,7 +132,6 @@ const GalleryForm = () => {
         setPreviewImages(updatedPreviewImages);
       }
     } catch (error) {
-      console.log(error);
       const status = error.response?.data?.status;
       if (status === 400 || status === 500) {
         toast.error(error.response.data.msg || "A server error occurred.");
@@ -182,7 +178,6 @@ const GalleryForm = () => {
       setCategory(tempCat);
     } catch (error) {
       setCategory([]);
-      console.error("Error fetching  data:", error);
     } finally {
     }
   };
@@ -218,7 +213,6 @@ const GalleryForm = () => {
 
     formData.gallery_images.forEach((file, index) => {
       sendFormData.append("gallery_images[]", file);
-      console.log(file);
     });
     formData.oldfile.forEach((file, index) => {
       sendFormData.append("oldfile[]", file);
@@ -236,7 +230,6 @@ const GalleryForm = () => {
       );
       if (response.data?.status === 200 || response.data?.status === 201) {
         toast.success(response.data?.msg);
-        console.log(response.data.msg);
         setFormData((prev) => ({
           ...prev,
           title: "",

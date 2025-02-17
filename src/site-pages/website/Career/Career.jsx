@@ -33,7 +33,6 @@ const Career = () => {
           },
         }
       );
-      console.log(response);
       setScholarships(response.data.data);
     } catch (error) {
       console.error("Error fetching faculty data:", error);

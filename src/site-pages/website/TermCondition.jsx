@@ -24,7 +24,6 @@ const TermCondition = () => {
         setpcontent(response2.data);
       }
       setTermConData(response.data.data[0]);
-      // console.log(response);
 
     } catch (error) {
       console.error("Error occurred:");

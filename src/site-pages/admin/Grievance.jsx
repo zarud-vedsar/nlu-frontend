@@ -79,12 +79,10 @@ const Grievance = () => {
       end.setHours(23, 59, 59, 999);
     }
 
-    console.log(allGrievanceList);
 
     let data = allGrievanceList.filter((item) => {
       const createdAtDate = new Date(item.created_at);
       createdAtDate.setHours(0, 0, 0, 0);
-      console.log(createdAtDate);
       if (start && end) {
         return createdAtDate >= start && createdAtDate <= end;
       }
@@ -97,7 +95,6 @@ const Grievance = () => {
       return true;
     });
 
-    console.log(data);
 
     setGrievanceList(data);
   };
@@ -154,7 +151,6 @@ const Grievance = () => {
       setGrievanceList(response.data.data);
       setAllGrievanceList(response.data.data);
     } catch (error) {
-      console.error("Error fetching grievance data:", error);
     } finally {
       setLoading(false);
     }

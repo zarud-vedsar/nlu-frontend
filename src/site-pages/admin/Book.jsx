@@ -56,9 +56,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
       bformData.append("vendor", vendor);
       bformData.append("csvfile", csvFile);
 
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
+      
 
       const response = await axios.post(
         `${PHP_API_URL}/lib_books.php`,
@@ -78,7 +76,6 @@ const MyVerticallyCenteredModal = (props = {}) => {
         toast.error("Failed to submit content");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
       toast.error("An error occurred. Please try again later.");
     } finally {
       setSubmit(false);
@@ -161,7 +158,6 @@ const UploadBookModal = (props = {}) => {
   const [file, setfile] = useState(null);
   const [submit, setSubmit] = useState(false);
 
-  console.log(props);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const { id } = e.target;
@@ -189,9 +185,7 @@ const UploadBookModal = (props = {}) => {
         props?.book?.pdf_file ? props?.book?.pdf_file : null
       );
 
-      for (let [key, value] of bformData) {
-        console.log(key, value);
-      }
+      
 
       const response = await axios.post(
         `${PHP_API_URL}/lib_books.php`,
@@ -211,7 +205,7 @@ const UploadBookModal = (props = {}) => {
         toast.error("Failed to submit content");
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
+      
       toast.error("An error occurred. Please try again later.");
     } finally {
       setSubmit(false);
@@ -329,7 +323,7 @@ const Book = () => {
       setMessages(response.data.data);
     } catch (error) {
       setMessages([]);
-      console.error("Error fetching faculty data:", error);
+      
     } finally {
       setLoading(false);
     }
@@ -350,12 +344,11 @@ const Book = () => {
           },
         }
       );
-      console.log(response);
+      
       setMessages(response.data.data);
     } catch (error) {
       setMessages([]);
 
-      console.error("Error fetching faculty data:", error);
     } finally {
       setLoading(false);
     }

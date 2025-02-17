@@ -32,7 +32,6 @@ const Internship = () => {
           },
         }
       );
-      console.log(response);
       setplacement(response.data.data);
     } catch (error) {
       console.error("Error fetching faculty data:", error);

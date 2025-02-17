@@ -29,13 +29,9 @@ const SEOSetting = () => {
       let containsNumber = pattern.test(value);
       let isValidLength = value.length <= 10;
 
-      if (containsNumber && isValidLength) {
-        console.log("Valid input:", value);
-      } else if (!containsNumber) {
-        console.log("Input must contain a number (0-9)");
+       if (!containsNumber) {
         return;
       } else if (value.length > 10) {
-        console.log("Input must not be greater than 10 characters");
         return;
       }
     }
@@ -60,7 +56,6 @@ const SEOSetting = () => {
           },
         }
       );
-      console.log(response);
       if (response.data.status === 200) {
         setFormData({
           
@@ -90,7 +85,6 @@ const SEOSetting = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
-    console.log(formData)
 
     if (!formData.meta_title) {
       toast.error("Title is required.");
@@ -117,7 +111,6 @@ const SEOSetting = () => {
     });
     Object.keys(sendFormData).forEach(key => {
       const value = sendFormData[key];
-      console.log(key,value)
     });
 
     try {
@@ -130,7 +123,6 @@ const SEOSetting = () => {
           },
         }
       );
-      console.log(response);
 
       if (response.data?.status === 201 || response.data?.status === 200) {
         toast.success(response.data.msg);

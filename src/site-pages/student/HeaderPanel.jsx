@@ -8,7 +8,6 @@ function HeaderPanel() {
   const [update, setUpdate] = useState(false); // Force re-render
 
   useEffect(() => {
-    console.log("HeaderPanel Re-rendered:", location.pathname);
     setUpdate((prev) => !prev); // Toggle state to force re-render
   }, [location.pathname]);
 

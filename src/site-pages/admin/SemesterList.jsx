@@ -26,7 +26,6 @@ function SemesterList() {
                     deleteStatus,
                     listing: 'yes'
                 });
-            console.log(response.data);
 
             if (response?.statusCode === 200 && response.data.length > 0) {
                 setSemesterListing(response.data);

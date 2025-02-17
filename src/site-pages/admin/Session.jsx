@@ -107,7 +107,6 @@ function Session() {
             const response = await dataFetchingPost(`${NODE_API_URL}/api/session/fetch`,
                 { dbId: dbId }
             );
-            console.log(response);
 
             if (response?.statusCode === 200 && response.data.length > 0) {
                 toast.success(response.message);
@@ -121,7 +120,6 @@ function Session() {
                 toast.error("Data not found.");
             }
         } catch (error) {
-            console.error("Error:", error);
             const statusCode = error.response?.data?.statusCode;
 
             if (statusCode === 400 ||  statusCode === 401 || statusCode === 500) {

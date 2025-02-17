@@ -35,15 +35,6 @@ const NoticeDetails = () => {
 
     fetchData(id);
   }, [id]); // Run only once when the component mounts
-
-  if (loading) {
-    return (
-      <div className="loading-container">
-        <h3>Loading...</h3> {/* A simple loading message */}
-      </div>
-    );
-  }
-
   return (
     <>
       <div className="breadcrumb-banner-area">
@@ -79,14 +70,18 @@ const NoticeDetails = () => {
           </div>
 
           <div className="row">
-            <div className="col-md-12">
-              <iframe
-                src={noticeDetails?.pdf_file || ""}
-                width="100%"
-                height="600px"
-                title="Notice PDF"
-              />
-            </div>
+            {
+              noticeDetails && noticeDetails.length > 0 && (
+                <div className="col-md-12">
+                  <iframe
+                    src={noticeDetails?.pdf_file || ""}
+                    width="100%"
+                    height="600px"
+                    title="Notice PDF"
+                  />
+                </div>
+              )
+            }
           </div>
 
           <div className="row">

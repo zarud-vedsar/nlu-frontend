@@ -237,7 +237,7 @@ const NoticeEventPublication = () => {
           <div className="row">
             <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
               <h2 className="heading-primary2 m-0">Publications</h2>
-              <Link to="/view-all/notice" className="text-primary custom-link gorditas-regular">More Publications &nbsp; <FaArrowRightLong /></Link>
+              <Link to="/view-all/publication" className="text-primary custom-link gorditas-regular">More Publications &nbsp; <FaArrowRightLong /></Link>
             </div>
           </div>
           <div className="row">

@@ -119,6 +119,7 @@ function Designation() {
                 toast.success(response.data.message);
                 setTitleError('');
                 fetchList(0);
+                setToggleShow(flase);
             } else {
                 toast.error("An error occurred. Please try again.");
             }
@@ -369,7 +370,7 @@ function Designation() {
             </div>
             <Modal show={toggleShow} onHide={handleToggleShow}>
                 <Modal.Header>
-                    <Modal.Title>Designation</Modal.Title>
+                    <Modal.Title>{formData.dbId ? "Update Designation" : "Add New Designation"} </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={(e) => e.preventDefault()}>

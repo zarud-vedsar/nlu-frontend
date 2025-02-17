@@ -309,6 +309,7 @@ function Registration() {
                                             label="Remark"
                                             name="remark"
                                             id="remark"
+                                            placeholder="Enter Remark"
                                             value={formData.remark}
                                             onChange={handleChange}
                                             column="col-md-12 col-lg-12"

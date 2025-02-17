@@ -293,15 +293,15 @@ function SubjectsAssignedFaculty() {
                   <span className="breadcrumb-item">Time Table Management</span>
                   <span className="breadcrumb-item">Assigned Subject To Faculty</span>
                   <span className="breadcrumb-item active">
-                  Add Subject To Faculty
+                  {dbId ? "Update Subject To Faculty" : " Add Subject To Faculty"}
                   </span>
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2">
+            <div className="card bg-transparent mb-2 col-md-7 m-auto">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">
-                  {dbId ? "Update Subjects " : " Add Subject To Faculty"}
+                  {dbId ? "Update Subject To Faculty" : " Add Subject To Faculty"}
                 </h5>
                 <div className="ml-auto">
                   <button

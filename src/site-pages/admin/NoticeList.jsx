@@ -177,7 +177,7 @@ function NoticeList() {
                                         <i className="fas fa-home m-r-5" />
                                         Dashboard
                                     </Link>
-                                    <span className="breadcrumb-item">Announcement</span>
+                                    <span className="breadcrumb-item">Announcements</span>
                                     <span className="breadcrumb-item active">Notice</span>
                                 </nav>
                             </div>

@@ -199,9 +199,9 @@ useEffect(() => {
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2">
+            <div className="card bg-transparent mb-2 col-lg-7 col-md-7 mx-auto">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new">{dbId ? 'Update Useful Link' : 'Add Useful Link'}</h5>
+                <h5 className="card-title h6_new">{dbId ? 'Update Useful Link' : 'Add New Useful Link'}</h5>
                 <div className="ml-auto">
                   <button
                     className="ml-auto btn-md btn border-0 btn-light mr-2"
@@ -218,12 +218,16 @@ useEffect(() => {
               </div>
             </div>
             <div className="row">
-              <div className="col-md-6 col-lg-6 col-12 mx-auto">
+              <div className="col-md-7 col-lg-7 col-12 mx-auto">
                 <div className="card">
                   <div className="card-body">
                   <form onSubmit={handleSubmit}>
                   <div className='row'>
-                        <FormField label="Title" required name="link_title" id="link_title" value={formData.link_title} column="col-md-12" onChange={handleChange} />
+                        <FormField label="Title" required name="link_title" id="link_title"
+                         value={formData.link_title} 
+                         placeholder='Enter Title'
+                         column="col-md-12"
+                          onChange={handleChange} />
                         <div className="col-md-12 col-lg-12 col-12 form-group " >
                           <label>Choose Image</label>
                           <input

@@ -280,17 +280,16 @@ function AllotRoomToStudent() {
                     <i className="fas fa-home m-r-5" /> Dashboard
                   </a>
                   <span className="breadcrumb-item">Hostel Management</span>
-                  <span className="breadcrumb-item">Allot Room</span>
                   <span className="breadcrumb-item active">
-                    {dbId ? "Update Data" : "New Allot Room"}
+                    {dbId ? "Update Room Allotment" : "Add New Room Allotment"}
                   </span>
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2">
+            <div className="card bg-transparent mb-2 col-md-10 mx-auto">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">
-                  {dbId ? "Update Data" : "New Allot Room"}
+                {dbId ? "Update Room Allotment" : "Add New Room Allotment"}
                 </h5>
                 <div className="ml-auto">
                   <button
@@ -307,11 +306,11 @@ function AllotRoomToStudent() {
                 </div>
               </div>
             </div>
-            <div className="card border-0">
+            <div className="card border-0 col-md-10 mx-auto">
               <div className="card-body">
                 <form onSubmit={handleSubmit}>
                   <div className="row">
-                    <div className="col-md-4 col-lg-4 form-group">
+                    <div className="col-md-6 col-lg-6 form-group">
                       <label className="font-weight-semibold">Block</label>
                       <Select
                         options={block.map((item) => ({
@@ -341,7 +340,7 @@ function AllotRoomToStudent() {
                         <span className="text-danger">{error.msg}</span>
                       )}
                     </div>
-                    <div className="col-md-4 col-lg-4 form-group">
+                    <div className="col-md-6 col-lg-6 form-group">
                       <label className="font-weight-semibold">Room No</label>
                       <Select
                         options={blockRoomNo.map((item) => ({
@@ -372,7 +371,7 @@ function AllotRoomToStudent() {
                         <span className="text-danger">{error.msg}</span>
                       )}
                     </div>
-                    <div className="col-md-4 col-12 form-group">
+                    <div className="col-md-6 col-12 form-group">
                       <label className="font-weight-semibold">
                         Course <span className="text-danger">*</span>
                       </label>
@@ -412,7 +411,7 @@ function AllotRoomToStudent() {
                       )}
                     </div>
 
-                    <div className="col-md-4 col-12 form-group">
+                    <div className="col-md-6 col-12 form-group">
                       <label className="font-weight-semibold">
                         Semester <span className="text-danger">*</span>
                       </label>
@@ -450,7 +449,7 @@ function AllotRoomToStudent() {
                       )}
                     </div>
 
-                    <div className="col-md-4 col-12 form-group">
+                    <div className="col-md-6 col-12 form-group">
                       <label className="font-weight-semibold">
                         Select Student <span className="text-danger">*</span>
                       </label>
@@ -495,7 +494,7 @@ function AllotRoomToStudent() {
                       type="date"
                       value={formData.allotDate}
                       onChange={handleChange}
-                      column="col-md-4 col-lg-4"
+                      column="col-md-6 col-lg-6"
                       required
                     />
   { !formData?.vacate_date &&

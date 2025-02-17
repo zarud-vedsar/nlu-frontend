@@ -173,7 +173,7 @@ function ProductList() {
                                         <i className="fas fa-home m-r-5" /> Dashboard
                                     </a>
                                     <a className="breadcrumb-item">Inventory Management</a>
-                                    <span className="breadcrumb-item active">Stock Out History
+                                    <span className="breadcrumb-item active">Stock Out
                                     </span>
                                 </nav>
                             </div>

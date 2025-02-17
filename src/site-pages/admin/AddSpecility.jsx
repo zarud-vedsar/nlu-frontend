@@ -8,7 +8,7 @@ import {
   CKEDITOR_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
-import { useParams } from "react-router-dom";
+import { useParams , Link } from "react-router-dom";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
 const AddSpeciality = () => {
@@ -182,9 +182,10 @@ const AddSpeciality = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/home" className="breadcrumb-item">
-                  <i className="fas fa-home m-r-5" /> CMS
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
+                <span className="breadcrumb-item active">CMS</span>
                 <span className="breadcrumb-item active">Speciality</span>
               </nav>
             </div>
@@ -193,7 +194,7 @@ const AddSpeciality = () => {
             <div className="card-header d-flex justify-content-between align-items-center px-0">
               <h5 className="card-title h6_new">
                 {" "}
-                {id ? "Add New Speciality" : "Update Speciality"}
+                {id ? "Update Speciality" : "Add New Speciality"}
               </h5>
               <div className="ml-auto">
                 <button
@@ -202,6 +203,11 @@ const AddSpeciality = () => {
                 >
                   <i className="fas fa-arrow-left" /> Go Back
                 </button>
+                 <Link to="/admin/specility">
+                                  <button className="ml-auto btn-md btn border-0 btn-primary mr-2">
+                                    <i className="fa-solid fa-list"></i> Speciality List
+                                  </button>
+                                </Link>
               </div>
             </div>
           </div>

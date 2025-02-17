@@ -610,6 +610,7 @@ function AddQuiz() {
                             className="form-control"
                             name="quiz_title"
                             value={formData.quiz_title}
+                            placeholder="Enter Quiz"
                             onChange={(e) => {
                               setFormData({
                                 ...formData,
@@ -632,6 +633,7 @@ function AddQuiz() {
                             className="form-control"
                             name="duration_in_min"
                             value={formData.duration_in_min}
+                            placeholder="0"
                             onChange={(e) => {
                               setFormData({
                                 ...formData,
@@ -657,6 +659,7 @@ function AddQuiz() {
                             className="form-control"
                             name="number_of_question"
                             value={formData.number_of_question}
+                            placeholder="0"
                             onChange={(e) => {
                               setFormData({
                                 ...formData,
@@ -700,6 +703,7 @@ function AddQuiz() {
                             className="form-control"
                             name="marks_per_question"
                             value={formData.marks_per_question}
+                            placeholder="0"
                             onChange={(e) => {
                               setFormData({
                                 ...formData,

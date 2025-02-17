@@ -207,9 +207,10 @@ function Achievement() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                    Announcement
+                   Dashboard 
                   </a>
-                  <span className="breadcrumb-item active">Achievement</span>
+                  <span className="breadcrumb-item active">Announcements</span>
+                  <span className="breadcrumb-item ">Achivement</span>
                 </nav>
               </div>
             </div>

@@ -256,6 +256,7 @@ function Registration() {
                                             errorMessage={error.field === "vendorName" && error.msg}
                                             label="Vendor Name"
                                             name="vendorName"
+                                            placeholder="Enter Vendor Name"
                                             id="vendorName"
                                             value={formData.vendorName}
                                             onChange={handleChange}
@@ -268,6 +269,7 @@ function Registration() {
                                             label="Vendor Contact Number"
                                             name="vendorContactNumber"
                                             id="vendorContactNumber"
+                                            placeholder="0123456789"
                                             value={formData.vendorContactNumber}
                                             onChange={handleChange}
                                             column="col-md-4 col-lg-4"
@@ -279,6 +281,7 @@ function Registration() {
                                             label="Vendor Address"
                                             name="vendorAddress"
                                             id="vendorAddress"
+                                            placeholder="Enter Vendor Address"
                                             value={formData.vendorAddress}
                                             onChange={handleChange}
                                             column="col-md-12 col-lg-12"
@@ -289,6 +292,7 @@ function Registration() {
                                             label="Remark"
                                             name="remark"
                                             id="remark"
+                                            placeholder="Enter Remark"
                                             value={formData.remark}
                                             onChange={handleChange}
                                             column="col-md-12 col-lg-12"

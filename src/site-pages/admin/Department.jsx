@@ -85,6 +85,7 @@ function Department() {
                 toast.success(response.data.message);
                 setTitleError('');
                 fetchList(0);
+                setToggleShow(false);
             } else {
                 toast.error("An error occurred. Please try again.");
             }
@@ -326,7 +327,7 @@ function Department() {
             </div>
             <Modal show={toggleShow} onHide={handleToggleShow}>
                 <Modal.Header>
-                    <Modal.Title>Department</Modal.Title>
+                    <Modal.Title>{formData.dbId ? "Update Department" : "Add New Department"}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={(e) => e.preventDefault()}>

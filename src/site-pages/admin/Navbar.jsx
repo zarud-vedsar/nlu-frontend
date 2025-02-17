@@ -665,11 +665,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           url: "cms/banner/list",
           icon: <FaPlayCircle />,
         },
-        {
-          subtitle: "Keynote Speaker",
-          url: "keynote-speaker-list",
-          icon: <FaPlayCircle />,
-        },
+       
       ],
     },
     {

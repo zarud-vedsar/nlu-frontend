@@ -380,7 +380,7 @@ Object.keys(formData).forEach(key => {
                   </a>
                   <span className="breadcrumb-item">Visitor Management</span>
                   <span className="breadcrumb-item active">
-                    {dbId ? "Update Data" : "New Visitor Registration"}
+                    {dbId ? "Update Registration" : "Add New Registration"}
                   </span>
                 </nav>
               </div>
@@ -388,7 +388,7 @@ Object.keys(formData).forEach(key => {
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">
-                  {dbId ? "Update Data" : "New Visitor Registration"}
+                {dbId ? "Update Registration" : "Add New Registration"}
                 </h5>
                 <div className="ml-auto">
                   <button
@@ -442,6 +442,7 @@ Object.keys(formData).forEach(key => {
                       label="Visitor Name"
                       name="visitorName"
                       id="visitorName"
+                      placeholder="Enter Visitor Name"
                       value={formData.visitorName}
                       onChange={handleChange}
                       column="col-md-3 col-lg-3"
@@ -454,6 +455,7 @@ Object.keys(formData).forEach(key => {
                       label="Visitor Email"
                       name="visitorEmail"
                       id="visitorEmail"
+                      placeholder="Enter Visitor Email"
                       value={formData.visitorEmail}
                       onChange={handleChange}
                       column="col-md-3 col-lg-3"
@@ -465,6 +467,7 @@ Object.keys(formData).forEach(key => {
                       label="Phone No"
                       name="visitorPhone"
                       id="visitorPhone"
+                      placeholder="0123456789"
                       value={formData.visitorPhone}
                       onChange={handleChange}
                       column="col-md-3 col-lg-3"
@@ -480,6 +483,7 @@ Object.keys(formData).forEach(key => {
                       label="Purpose Of Visit"
                       name="visitorPurpose"
                       id="visitorPurpose"
+                      placeholder="Enter Purpose of Visit"
                       value={formData.visitorPurpose}
                       onChange={handleChange}
                       column="col-md-12"
@@ -592,6 +596,7 @@ Object.keys(formData).forEach(key => {
                       label="Id number (Issued by Government)"
                       name="governmentIdProofNo"
                       id="governmentIdProofNo"
+                      placeholder="XXXX XXXX XXXX"
                       value={formData.governmentIdProofNo}
                       onChange={handleChange}
                       column="col-md-4 col-lg-4"
@@ -684,9 +689,10 @@ Object.keys(formData).forEach(key => {
                       label="Host Details"
                       name="hostDetails"
                       id="hostDetails"
+                      placeholder="Enter Host Details"
                       value={formData.hostDetails}
                       onChange={handleChange}
-                      column="col-md-3 col-lg-3"
+                      column="col-md-6 col-lg-6"
                       required
                     />
                     {/* photo  capture  */}
@@ -698,7 +704,7 @@ Object.keys(formData).forEach(key => {
                       id="governmentProofPhoto"
                       onChange={handleImageUpload}
                       type="file" 
-                      column="col-md-4 col-lg-4"
+                      column="col-md-6 col-lg-6"
                       required
                     />
                      {formData?.governmentProofPhoto && (
@@ -717,6 +723,7 @@ Object.keys(formData).forEach(key => {
                       label="Remarks"
                       name="remark"
                       id="remark"
+                      placeholder="Enter Remarks"
                       value={formData.remark}
                       onChange={handleChange}
                       column="col-md-12"

@@ -98,18 +98,21 @@ const FeedbackList = () => {
                 <div className="main-content">
                     <div className="container-fluid">
                         <div className="page-header mb-0">
-                            <div className="header-sub-title">
-                                <nav className="breadcrumb breadcrumb-dash">
-                                    <a href="/student" className="breadcrumb-item">
-                                        Home
-                                    </a>
-                                    <span className="breadcrumb-item">Feedback</span>
-                                </nav>
-                            </div>
+                        <div className="header-sub-title">
+                <nav className="breadcrumb breadcrumb-dash">
+                  <a href="./" className="breadcrumb-item">
+                    <i className="fas fa-home m-r-5" /> Dashboard
+                  </a>
+                  <span className="breadcrumb-item">Student Management</span>
+                  <span className="breadcrumb-item active">
+                    Feedbacks
+                  </span>
+                </nav>
+              </div>
                         </div>
                         <div className="card border-0 bg-transparent mb-2">
                             <div className="card-header border-0 bg-transparent py-1 d-flex justify-content-between align-items-center px-0">
-                                <h5 className="card-title h6_new">All Feedback</h5>
+                                <h5 className="card-title h6_new">All Feedbacks</h5>
                                 <div className="ml-auto">
                                     <button
                                         className="ml-auto btn-md btn border-0 btn-light "

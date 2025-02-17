@@ -78,7 +78,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Add New Expense Category
+         {id ? "Update Expense Category" : "Add New Expense Category"}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

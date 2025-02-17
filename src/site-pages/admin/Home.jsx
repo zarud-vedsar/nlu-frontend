@@ -22,6 +22,14 @@ import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import "react-tabs/style/react-tabs.css";
+import { useNavigate } from "react-router-dom";
+import { FaAngleRight } from "react-icons/fa6";
+import { MdEventAvailable } from "react-icons/md";
+import { HiOutlineSpeakerphone } from "react-icons/hi";
+import { FiEdit } from "react-icons/fi";
+import { LuRefreshCcw } from "react-icons/lu";
+
+import banners1 from "../../site-components/admin/assets/images/dashboard/shape-01.png";
 import banners2 from "../../site-components/admin/assets/images/dashboard/shape-02.png";
 import banners4 from "../../site-components/admin/assets/images/dashboard/shape-04.png";
 import { facultyData } from "../../site-components/admin/FetchFacultyLoginData";
@@ -48,6 +56,21 @@ ChartJS.register(
 );
 const Home = () => {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  // const sessionListDropdown = async () => {
+  //     try {
+  //       const { data } = await axios.post(`${NODE_API_URL}/api/session/fetch`, {
+  //         status: 1,
+  //         column: "id, dtitle",
+  //       });
+  //       data?.statusCode === 200 && data.data.length
+  //         ? setSession(data.data)
+  //         : (toast.error("Session not found."), setSession([]));
+  //     } catch {
+  //       setSession([]);
+  //     }
+  //   };
+
   const [isFetching, setIsFetching] = useState(false);
   const [visitorData, setVisitorData] = useState([]);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
@@ -157,6 +180,11 @@ const Home = () => {
   useEffect(() => {
     getAdminDashboardData();
   }, []);
+
+  const [activeCategory, setActiveCategory] = useState("notice"); // Track active tab for accordion behavior
+
+
+
   const [greeting, setGreeting] = useState("");
   const [currentDate, setCurrentDate] = useState("");
   useEffect(() => {
@@ -180,7 +208,12 @@ const Home = () => {
       const dateOptions = { day: "2-digit", month: "short", year: "numeric" };
       const formattedDate = today.toLocaleDateString("en-GB", dateOptions);
       // Format Time (e.g., "10:30:45 AM")
-      const timeOptions = { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true };
+      const timeOptions = {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      };
       const formattedTime = today.toLocaleTimeString("en-US", timeOptions);
       // Combine Date & Time
       setCurrentDate(`${formattedDate}, ${formattedTime}`);
@@ -203,110 +236,187 @@ const Home = () => {
     <div className="page-container">
       <div className="main-content">
         <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-8">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="text-white py-4 px-3 mb-3 border_10" style={{ background: '#274C77', overflow: 'hidden' }}>
-                    <div className="banneradmins" style={{
-                      backgroundImage: `url(${bg})`,
-                      backgroundPosition: "right center",
-                      backgroundSize: "contain",
-                      backgroundRepeat: "no-repeat"
-                    }}>
-                      <div>
-                        <div className="banerheadings mt-3 h5_new font-18">
-                          <span className="text-white">Hello, {" "}
-                            {facultyDataList?.first_name}{" "}
-                            {facultyDataList?.middle_name}{" "}
-                            {facultyDataList?.last_name}</span>
-                        </div>
-                        <div className="h6_new font-15 mt-2"><span className="text-white">{greeting}! Hope you have a great day at work.</span></div>
-                        <div className="mt-2 font-14"><FaCalendar /> {" "}{currentDate}</div>
-                      </div>
+          <div className="page-header mb-3">
+            <div className="admintext">Admin Dashboard</div>
+            <div className="header-sub-title">
+              <nav className="breadcrumb breadcrumb-dash">
+                <a href="./" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
+                <span className="breadcrumb-item active">Home</span>
+              </nav>
+            </div>
+          </div>
+          <div className="px-3">
+            <div className="row">
+              <div className="bg-dark" style={{ color: "white", padding: "20px" }}>
+                <div className="banneradmins">
+                  <div>
+                    <div className="banerheadings"
+                      style={{
+
+                        marginBottom: "8px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        fontWeight: "700"
+                      }}
+                    >
+                      Welcome Back, Mr. Herald <span className="editIcons dark-hover"><FiEdit /></span>
                     </div>
-                    <img src={banners2} alt="icon" width="50" height="70" className="img-fluid shape-02" />
-                    <img src={banners4} alt="icon" width="25" height="25" className="img-fluid shape-04" />
+                    <div style={{ fontSize: "14px" }}> {greeting}! Hope you have a great day at work.</div>
+                  </div>
+                  <div>
+                    <LuRefreshCcw style={{ fontSize: "14px", color: "white", marginRight: "6px" }} />
+                    {/* Updated Recently on  */}
+                    {currentDate}
                   </div>
                 </div>
-                <div className="col-md-12">
-                  <div className="row">
-                    <div className="col-md-4 col-lg-4 col-sm-6 col-12">
-                      <Link to='/admin/student-management/student-list'>
-                        <div className="card" style={{ background: '#7889DA' }}>
-                          <div className="card-body">
-                            <div className="d-flex justify-content-between align-items-center">
-                              <div>
-                                <p className="m-b-0 text-white font-12 font-weight-semibold">Total Students</p>
-                                <h6 className="m-b-0 h6_new"><span className="text-white">{data?.total_students}</span></h6>
-                              </div>
-                              <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#fff' }}>
-                                <img src={studentImg} />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="col-md-4 col-lg-4 col-sm-6 col-12">
-                      <Link to='/admin/course'>
-                        <div className="card" style={{ background: '#21B6C8' }}>
-                          <div className="card-body">
-                            <div className="d-flex justify-content-between align-items-center">
-                              <div>
-                                <p className="m-b-0 text-white font-12 font-weight-semibold">Total Courses</p>
-                                <h6 className="m-b-0 h6_new"><span className="text-white">{data?.totalCourse}</span></h6>
-                              </div>
-                              <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#fff' }}>
-                                <img src={courseImg} />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                    <div className="col-md-4 col-lg-4 col-sm-6 col-12">
-                      <Link to='/admin/faculty-list'>
-                        <div className="card" style={{ background: '#E3A723' }}>
-                          <div className="card-body">
-                            <div className="d-flex justify-content-between align-items-center">
-                              <div>
-                                <p className="m-b-0 text-white font-12 font-weight-semibold">Total Employee</p>
-                                <h6 className="m-b-0 h6_new"><span className="text-white">{data?.totalFaculty}</span></h6>
-                              </div>
-                              <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#fff' }}>
-                                <img src={employeeImg} />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <img src={banners1} alt="icon" width="70" height="60" className="img-fluid shape-01" />
+                <img src={banners2} alt="icon" width="50" height="70" className="img-fluid shape-02" />
+                <img src={banners3} alt="icon" width="50" height="50" className="img-fluid shape-03" />
+                <img src={banners4} alt="icon" width="25" height="25" className="img-fluid shape-04" />
               </div>
             </div>
-            <div className="col-md-4 col-lg-4 col-sm-6 col-12">
-              <div className="card">
-                <div className="card-header d-flex justify-content-between align-items-center">
-                  <h5 className="card-title h6_new">Website Visitor</h5>
-                  <select
-                    className="selectpicker form-control"
-                    id="yearPicker"
-                    value={selectedYear}
-                    onChange={(e) =>
-                      setSelectedYear(Number(e.target.value))
-                    }
-                    style={{ width: "auto" }}
-                  >
-                    {availableYears.map((year) => (
-                      <option key={year} value={year}>
-                        {year}
-                      </option>
-                    ))}
-                  </select>
+          </div>
+
+
+          <div className="row mt-3 mb-1">
+            {/* Total Students */}
+            <div className="col-md-3 col-lg-3 col-12 ">
+              <div className="card id-card gradient-card1 animate-card">
+                <div className="id-total-record-wrapper d-flex justify-content-around align-items-center">
+                  <span className="id-total-record-student">
+                    <img src={StudentImg} alt="student-img" />
+                  </span>
+                  <div className="id-total-record-content">
+                    <div className="titleboxes">Total Students</div>
+                    <h5 className="id-counter-number">{data.total_students}</h5>
+                  </div>
                 </div>
+                {/* Wave Background */}
+                <div className="wave-bg">
+                  <svg viewBox="0 0 1440 320" className="w-full">
+                    <path
+                      fill="#8cb6f9"
+                      d="M0,256L48,245.3C96,235,192,213,288,202.7C384,192,480,192,576,176C672,160,768,128,864,133.3C960,139,1056,181,1152,192C1248,203,1344,181,1392,170.7L1440,160V320H0Z"
+                    ></path>
+                  </svg>
+                  {/* <svg viewBox="0 0 1440 320" className="w-full">
+    <path
+      fill="#8cb6f9"
+      fillOpacity="1"
+      d="M0,64L48,101.3C96,139,192,213,288,224C384,235,480,181,576,144C672,107,768,85,864,101.3C960,117,1056,171,1152,186.7C1248,203,1344,181,1392,170.7L1440,160V320H1392C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320H0Z"
+    ></path>
+  </svg> */}
+                </div>
+
+              </div>
+            </div>
+
+            {/* Total Courses */}
+            <div className="col-md-3 col-lg-3 col-12">
+              <div className="card id-card gradient-card2 animate-card">
+                <div className="id-total-record-wrapper d-flex justify-content-around align-items-center">
+                  <span className="id-total-record-student">
+                    <img src={CourseImg} alt="course-img" />
+                  </span>
+                  <div className="id-total-record-content">
+                    <h4 className="titleboxes">Total Courses</h4>
+                    <h5 className="id-counter-number">{data.totalCourse}</h5>
+                  </div>
+                </div>
+                <div className="wave-bg">
+                  <svg viewBox="0 0 1440 320" className="w-full">
+                    <path
+                      fill="#ff9a9e"
+                      d="M0,288L48,266.7C96,245,192,203,288,170.7C384,139,480,117,576,122.7C672,128,768,160,864,181.3C960,203,1056,213,1152,218.7C1248,224,1344,224,1392,224L1440,224V320H0Z"
+                    ></path>
+                  </svg>
+
+                </div>
+
+              </div>
+            </div>
+
+            {/* Total Employee */}
+            <div className="col-md-3 col-lg-3 col-12">
+              <div className="card id-card gradient-card3 animate-card">
+                <div className="id-total-record-wrapper d-flex justify-content-around align-items-center">
+                  <span className="id-total-record-student">
+                    <img src={FacultyImg} alt="faculty-img" />
+                  </span>
+                  <div className="id-total-record-content">
+                    <h4 className="titleboxes">Total Employee</h4>
+                    <h5 className="id-counter-number">{data.totalFaculty}</h5>
+                  </div>
+                </div>
+                <div className="wave-bg">
+
+
+                  <svg viewBox="0 0 1440 320" className="w-full">
+                    <path
+                      fill="#a8e063"
+                      d="M0,224L48,197.3C96,171,192,117,288,112C384,107,480,149,576,181.3C672,213,768,235,864,229.3C960,224,1056,192,1152,154.7C1248,117,1344,75,1392,53.3L1440,32V320H0Z"
+                    ></path>
+                  </svg>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Total Roles */}
+            <div className="col-md-3 col-lg-3 col-12">
+              <div className="card id-card gradient-card4 animate-card">
+                <div className="id-total-record-wrapper d-flex justify-content-around align-items-center">
+                  <span className="id-total-record-student">
+                    <img src={RolesImg2} alt="roles-img" />
+                  </span>
+                  <div className="id-total-record-content">
+                    <h4 className="titleboxes">Total Roles</h4>
+                    <h5 className="id-counter-number">{data.totalRoles}</h5>
+                  </div>
+                </div>
+                <div className="wave-bg">
+                  <svg viewBox="0 0 1440 320" className="w-full">
+                    <path
+                      fill="#66a6ff"
+                      d="M0,288L48,272C96,256,192,224,288,213.3C384,203,480,213,576,213.3C672,213,768,203,864,192C960,181,1056,171,1152,176C1248,181,1344,203,1392,213.3L1440,224V320H0Z"
+                    ></path>
+                  </svg>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-6">
+              <div className="card equalhight">
                 <div className="card-body">
+                  <div className="card-title">Monthly Visitor Analytics</div>
+                  <form action="" id="form2">
+                    <div className="mb-3 d-flex align-items-center">
+                      <label className="form-label mr-2" style={{ width: "auto" }}>
+                        Select Year
+                      </label>
+                      <select
+                        className="selectpicker form-control"
+                        id="yearPicker"
+                        value={selectedYear}
+                        onChange={(e) =>
+                          setSelectedYear(Number(e.target.value))
+                        }
+                        style={{ width: "auto" }}
+                      >
+                        {availableYears.map((year) => (
+                          <option key={year} value={year}>
+                            {year}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </form>
                   {visitorData.length > 0 && !isFetching ? (
                     <Line data={chartData} options={options} />
                   ) : data.length === 0 && !isFetching ? (
@@ -342,7 +452,8 @@ const Home = () => {
                             background: "transparent",
                             outline: "none",
                             border: "none",
-                            borderBottom: activeTab === tab ? "3px solid #007BFF" : "none",
+                            borderBottom:
+                              activeTab === tab ? "3px solid #007BFF" : "none",
                           }}
                         >
                           {capitalizeFirstLetter(tab == 'notice' ? "News" : tab)}
@@ -487,5 +598,3 @@ const Home = () => {
 };
 
 export default Home;
-
-

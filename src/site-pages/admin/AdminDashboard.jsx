@@ -13,11 +13,9 @@ import NoticeImg from "../../site-components/admin/assets/images/dashboard/notic
 import PublicationImg from "../../site-components/admin/assets/images/dashboard/publication.png";
 import { Link } from "react-router-dom";
 
-
 const AdminDashboard = () => {
   //   const [session, setSession] = useState(); // Session data: the fuel for exams.
   const [data, setData] = useState([]); // Session data: the fuel for exams.
-  
 
   // const sessionListDropdown = async () => {
   //     try {
@@ -145,11 +143,14 @@ const AdminDashboard = () => {
                   <div className="col-lg-12 col-12 mb-3">
                     <h4>Courses</h4>
                   </div>
-                  {data?.total_semester?.map((course,index) => (
-                    <div key={index} className="col-lg-12 col-md-12 col-12 mb-3">
+                  {data?.total_semester?.map((course, index) => (
+                    <div
+                      key={index}
+                      className="col-lg-12 col-md-12 col-12 mb-3"
+                    >
                       <div className="id-course-wrapper d-flex">
                         <span className="id-course-subject">
-                        <img src={CourseImg} alt="student-img" />
+                          <img src={CourseImg} alt="student-img" />
                         </span>
                         <div className="id-course-content">
                           <h4>{course.coursename}</h4>
@@ -171,7 +172,9 @@ const AdminDashboard = () => {
                   </span>
                   <div className="id-total-record-content">
                     <h4>Total Notice</h4>
-                    <h5 className="id-counter-number">{data?.total_notice?.total_notice}</h5>
+                    <h5 className="id-counter-number">
+                      {data?.total_notice?.total_notice}
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -184,7 +187,9 @@ const AdminDashboard = () => {
                   </span>
                   <div className="id-total-record-content">
                     <h4>Total Events</h4>
-                    <h5 className="id-counter-number">{data?.total_notice?.total_event}</h5>
+                    <h5 className="id-counter-number">
+                      {data?.total_notice?.total_event}
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -197,7 +202,9 @@ const AdminDashboard = () => {
                   </span>
                   <div className="id-total-record-content">
                     <h4>Total Publications</h4>
-                    <h5 className="id-counter-number">{data?.total_notice?.total_publication}</h5>
+                    <h5 className="id-counter-number">
+                      {data?.total_notice?.total_publication}
+                    </h5>
                   </div>
                 </div>
               </div>
@@ -210,19 +217,18 @@ const AdminDashboard = () => {
                   <div className="col-lg-12 col-12 mb-3">
                     <h4>Total Expence</h4>
                   </div>
-                    <div className="col-lg-12 col-md-12 col-12 mb-3">
-                     <table>
-                        <tr>
-                            <th>Category</th>
-                            <th>Total Expence</th>
-                        </tr>
-                        <tr>
-                            <td>furniture</td>
-                            <td>900</td>
-                        </tr>
-
-                     </table>
-                    </div>
+                  <div className="col-lg-12 col-md-12 col-12 mb-3">
+                    <table>
+                      <tr>
+                        <th>Category</th>
+                        <th>Total Expence</th>
+                      </tr>
+                      <tr>
+                        <td>furniture</td>
+                        <td>900</td>
+                      </tr>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>

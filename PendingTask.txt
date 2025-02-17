@@ -1,5 +1,8 @@
 
 
+Akshay --------
+book catalogue ui in student panel
+
 Today -------- 4 issue done 
 10. session wise student fetching dropdown
 11. Excel sheet in attendance chart 
@@ -15,9 +18,6 @@ Today -------- 4 issue done
 2. In all the process flow the next step is to be redirect on success
 3. Marks upload should be single time and can be edited within 24hr after that edit is required and history will be created for the edit for proper reasoning 
 7. Sidebar Option Rearrange
-
-
-
 
 
 -------issue list------

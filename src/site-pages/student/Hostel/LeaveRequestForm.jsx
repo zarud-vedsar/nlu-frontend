@@ -16,13 +16,13 @@ function LeaveRequestForm() {
   const { id: dbId } = useParams();
   const initialData = {
     dbId: "",
-    studentId: "",
+    studentId:secureLocalStorage.getItem("studentId"),
     reason: "",
     leaveType: "",
     startDate: "",
     endDate: "",
-    endTime:"",
-    startTime:"",
+   
+    leavingTime:"",
   };
   const [formData, setFormData] = useState(initialData);
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
@@ -52,16 +52,7 @@ function LeaveRequestForm() {
       toast.error("Start Date is required.");
       return setIsSubmit(false);
     }
-    if (!formData.startTime) {
-      errorMsg("startTime", "Start Time is required.");
-      toast.error("Start Time is required.");
-      return setIsSubmit(false);
-    }
-    if (!formData.endTime) {
-      errorMsg("endTime", "End Time is required.");
-      toast.error("End Time  is required.");
-      return setIsSubmit(false);
-    }
+   
     if (!formData.endDate) {
       errorMsg("endDate", "End Date is required.");
       toast.error("End Date is required.");
@@ -88,8 +79,8 @@ function LeaveRequestForm() {
           startDate: formData?.startDate,
           endDate: formData?.endDate,
           leaveType: formData?.leaveType,
-          startTime: formData?.startTime,
-          endTime: formData?.endTime,
+          leavingTime: formData?.leavingTime,
+          
         }
       );
       if (
@@ -98,7 +89,7 @@ function LeaveRequestForm() {
       ) {
         errorMsg("", "");
         toast.success(response.data.message);
-        setFormData(initialData);
+        //setFormData(initialData);
       } else {
         toast.error("An error occurred. Please try again.");
       }
@@ -118,12 +109,7 @@ function LeaveRequestForm() {
       setIsSubmit(false);
     }
   };
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      studentId: secureLocalStorage.getItem("studentId"),
-    }));
-  }, []);
+ 
 
   return (
     <>
@@ -168,17 +154,7 @@ function LeaveRequestForm() {
               <div className="card-body">
                 <form onSubmit={handleSubmit}>
                   <div className="row">
-                    {/* <FormField
-                      borderError={error.field === "studentId"}
-                      errorMessage={error.field === "studentId" && error.msg}
-                      label="Student ID"
-                      name="studentId"
-                      id="studentId"
-                      type="text"
-                      value={formData.studentId}
-                      column="col-md-2 col-lg-2"
-                      readOnly
-                    /> */}
+                    
                     <FormField
                       borderError={error.field === "startDate"}
                       errorMessage={error.field === "startDate" && error.msg}
@@ -187,7 +163,7 @@ function LeaveRequestForm() {
                       id="startDate"
                       type="date"
                       value={formData.startDate}
-                      column="col-md-4 col-lg-4 col-12"
+                      column="col-md-3 col-lg-3 col-12"
                       onChange={handleChange}
                       required
                     />
@@ -199,12 +175,12 @@ function LeaveRequestForm() {
                       id="endDate"
                       type="date"
                       value={formData.endDate}
-                      column="col-md-4 col-lg-4 col-12"
+                      column="col-md-3 col-lg-3 col-12"
                       onChange={handleChange}
                       required
                     />
                       
-                    <div className="col-md-4 col-lg-4 col-12 col-sm-12 form-group">
+                    <div className="col-md-3 col-lg-3 col-12 col-sm-12 form-group">
                       <label className="font-weight-semibold">
                         Select Leave Type:{" "}
                         <strong className="text-danger">*</strong>
@@ -236,30 +212,20 @@ function LeaveRequestForm() {
                       />
 
                     </div>
-                   <FormField
-                      borderError={error.field === "endTime"}
-                      errorMessage={error.field === "endTime" && error.msg}
-                      label="Departure"
-                      name="endTime"
-                      id="endTime"
+                    <FormField
+                     
+                      label="Leaving Time"
+                      name="leavingTime"
+                      id="leavingTime"
                       type="time"
-                      value={formData.endTime}
-                      column="col-md-4 col-lg-4 col-12"
+                      value={formData.leavingTime}
+                      column="col-md-3 col-lg-3 col-12"
                       onChange={handleChange}
-                      required
+                      
                     />
-                   <FormField
-                      borderError={error.field === "startTime"}
-                      errorMessage={error.field === "startTime" && error.msg}
-                      label="Arriving"
-                      name="startTime"
-                      id="startTime"
-                      type="time"
-                      value={formData.startTime}
-                      column="col-md-4 col-lg-4 col-12"
-                      onChange={handleChange}
-                      required
-                    />
+
+                   
+                   
                     <TextareaField
                       borderError={error.field === "reason"}
                       errorMessage={error.field === "reason" && error.msg}

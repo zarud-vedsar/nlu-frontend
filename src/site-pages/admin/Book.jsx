@@ -582,6 +582,7 @@ const Book = () => {
                             </div>
                           </div>
                         )}
+                        field="book_name"
                         sortable
                       />
                       <Column field="book_name" header="Book Name" sortable />

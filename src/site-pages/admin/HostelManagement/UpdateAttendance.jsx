@@ -326,42 +326,50 @@ function UpdateAttendance() {
                     <Column
                       body={(row) => capitalizeFirstLetter(row?.enrollmentNo)}
                       header="Enrollment No."
+                      field="enrollmentNo"
                       sortable
                     />
                     <Column field="studentId" header="Student ID" sortable />
                     <Column
                       body={(row) => capitalizeFirstLetter(row?.sname)}
                       header="Name"
+                      field="sname"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row?.coursename)}
                       header="Course"
+                      field="coursename"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row?.semtitle)}
                       header="Semester"
+                      field="semtitle"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row?.block)}
                       header="Block"
+                      field="block"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row?.roomNo)}
                       header="Room No"
+                      field="roomNo"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row?.sphone)}
                       header="Phone Number"
+                      field="sphone"
                       sortable
                     />
                     <Column
                       body={(row) => formatDate(row.attendance_date)}
                       header="Attendance Date"
+                      field="attendance_date"
                       sortable
                     />
                     <Column

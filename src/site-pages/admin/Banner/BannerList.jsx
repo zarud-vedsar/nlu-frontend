@@ -351,7 +351,7 @@ const BannerList = () => {
                                   }}
                                   className=" d-flex justify-content-center align-items-center"
                                 >
-                                  {rowData?.title[0].toUpperCase()}
+                                  {rowData?.btitle[0].toUpperCase()}
                                 </div>
                               )}
                             </div>

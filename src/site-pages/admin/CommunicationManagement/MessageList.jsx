@@ -180,11 +180,13 @@ function MessageList() {
                     <Column
                       header="Course"
                       body={(row) => validator.unescape(row.coursename)}
+                      field="coursename"
                       sortable
                     />
                     <Column
                       header="Semester"
                       body={(row) => validator.unescape(row.semtitle)}
+                      field="semtitle"
                       sortable
                     />
                     <Column

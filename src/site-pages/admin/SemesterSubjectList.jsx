@@ -406,35 +406,42 @@ function SemesterSubjectList() {
                       body={(row) => capitalizeFirstLetter(row.semtitle)}
                       header="Semester"
                       sortable
+                      field="semtitle"
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.subject)}
                       header="Subject"
                       sortable
+                      field="subject"
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.subjectType)}
                       header="Subject Type"
+                      field="subjectType"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.practNonPract)}
                       header="Practical"
+                      field="practNonPract"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.isGroup)}
                       header="Group"
+                      field="isGroup"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.groupName)}
                       header="Group Name"
+                      field="groupName"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.subGroupName)}
                       header="Sub Group Name"
+                      field="subGroupName"
                       sortable
                     />
                     <Column

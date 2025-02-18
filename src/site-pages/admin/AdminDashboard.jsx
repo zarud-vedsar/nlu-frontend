@@ -286,18 +286,42 @@ const AdminDashboard = () => {
                 </div>
               </div>
             </div>
+            <div className="col-md-4 col-lg-4 col-sm-6 col-12">
+              <div className="card">
+                <div className="card-header d-flex justify-content-between align-items-center">
+                  <h5 className="card-title h6_new">Website Visitor</h5>
+                  <select
+                    className="selectpicker form-control"
+                    id="yearPicker"
+                    value={selectedYear}
+                    onChange={(e) =>
+                      setSelectedYear(Number(e.target.value))
+                    }
+                    style={{ width: "auto" }}
+                  >
+                    {availableYears.map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+<<<<<<< HEAD
+              </div>
+            </div>
           </div>
           <div className="row">
             <div className="col-lg-4">
-              <div className="card " style={{ padding: "20px" }}>
-                <div className="row">
-                  <div className="col-lg-12 col-12 mb-3">
-                    <h4>Courses</h4>
-                  </div>
+              <div className="card">
+                <div className="card-header">
+                    <h4 className="card-title">Courses</h4>
+                    </div>
+                    <div className="" style={{padding:"10px 0px"}}>
                   {data?.total_semester?.map((course, index) => (
                     <div
                       key={index}
-                      className="col-lg-12 col-md-12 col-12 mb-3"
+                      className="col-lg-12 col-md-12 col-12 mb-3" 
+                     
                     >
                       <div className="id-course-wrapper d-flex">
                         <span className="id-course-subject">
@@ -310,9 +334,45 @@ const AdminDashboard = () => {
                       </div>
                     </div>
                   ))}
+                   </div>
                 </div>
+           
+            </div>
+            <div className="col-lg-4">
+              <div className="card ">
+                <div className="card-header "> 
+                    <h4 className="card-title">Total Expence</h4>
+=======
+                <div className="card-body">
+                  {visitorData.length > 0 && !isFetching ? (
+                    <Line data={chartData} options={options} />
+                  ) : data.length === 0 && !isFetching ? (
+                    <div className="text-center text-danger">
+                      Data is not available for year {selectedYear}
+                    </div>
+                  ) : (
+                    <div className="text-center">
+                      <Spinner animation="border" />
+                    </div>
+                  )}
+>>>>>>> 3f1861feea8487d5c03d46dc251d6e8f95cda00d
+                </div>
+                  <div className="col-lg-12 col-md-12 col-12" style={{padding:"15px"}}>
+                    <table>
+                      <tr>
+                        <th>Category</th>
+                        <th>Total Expence</th>
+                      </tr>
+                      <tr>
+                        <td>furniture</td>
+                        <td>900</td>
+                      </tr>
+                    </table>
+                  </div>
               </div>
             </div>
+<<<<<<< HEAD
+            
           </div>
           <div className="row">
             <div className="col-md-4 col-lg-4 col-12">
@@ -327,6 +387,12 @@ const AdminDashboard = () => {
                       {data?.total_notice?.total_notice}
                     </h5>
                   </div>
+=======
+            <div className="col-md-8 col-lg-8 col-sm-12">
+              <div className="card">
+                <div className="card-header">
+                  <div className="card-title h6_new">Announcements</div>
+>>>>>>> 3f1861feea8487d5c03d46dc251d6e8f95cda00d
                 </div>
                 <div className="card-body">
                   <div className="w-full py-0">
@@ -411,29 +477,77 @@ const AdminDashboard = () => {
                 <div className="card-header">
                   <h5 className="card-title h6_new">Quick Links</h5>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-4">
-              <div className="card " style={{ padding: "20px" }}>
-                <div className="row">
-                  <div className="col-lg-12 col-12 mb-3">
-                    <h4>Total Expence</h4>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-12 mb-3">
-                    <table>
-                      <tr>
-                        <th>Category</th>
-                        <th>Total Expence</th>
-                      </tr>
-                      <tr>
-                        <td>furniture</td>
-                        <td>900</td>
-                      </tr>
-                    </table>
+<<<<<<< HEAD
+=======
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-md-6 col-lg-6 col-sm-6 col-12">
+                      <Link to={'/admin/inventory/product/add-stock'} target="_blank">
+                        <div className="card" style={{ background: '#ffe7d3 ' }}>
+                          <div className="card-body">
+                            <div className="d-flex align-items-center flex-column">
+                              <div className="rounded-circle p-1" style={{ border: '1px solid #ffd5aa' }}>
+                                <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#ffd5aa' }}>
+                                  <img src={attendance} />
+                                </div>
+                              </div>
+                              <h6 className="m-b-0 h6_new font-14 mt-2" style={{ whiteSpace: 'nowrap' }}>Mark Attendance</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="col-md-6 col-lg-6 col-sm-6 col-12">
+                      <Link to={'/admin/inventory/product'} target="_blank">
+                        <div className="card" style={{ background: '#b6c93124' }}>
+                          <div className="card-body">
+                            <div className="d-flex align-items-center flex-column">
+                              <div className="rounded-circle p-1" style={{ border: '1px solid #b6c931' }}>
+                                <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#b6c931' }}>
+                                  <img src={product} />
+                                </div>
+                              </div>
+                              <h6 className="m-b-0 h6_new font-14 mt-2" style={{ whiteSpace: 'nowrap' }}>Inventory Product</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="col-md-6 col-lg-6 col-sm-6 col-12">
+                      <Link to={'/admin/inventory/product/add-stock'} target="_blank">
+                        <div className="card" style={{ background: '#dcd3ff ' }}>
+                          <div className="card-body">
+                            <div className="d-flex align-items-center flex-column">
+                              <div className="rounded-circle p-1" style={{ border: '1px solid #b7aaff' }}>
+                                <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#b7aaff' }}>
+                                  <img src={stockin} />
+                                </div>
+                              </div>
+                              <h6 className="m-b-0 h6_new font-14 mt-2" style={{ whiteSpace: 'nowrap' }}>Stock In</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                    <div className="col-md-6 col-lg-6 col-sm-6 col-12">
+                      <Link to={'/admin/inventory/product/add-stock'} target="_blank">
+                        <div className="card" style={{ background: '#ffe7d3 ' }}>
+                          <div className="card-body">
+                            <div className="d-flex align-items-center flex-column">
+                              <div className="rounded-circle p-1" style={{ border: '1px solid #ffd5aa' }}>
+                                <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#ffd5aa' }}>
+                                  <img src={stockout} />
+                                </div>
+                              </div>
+                              <h6 className="m-b-0 h6_new font-14 mt-2" style={{ whiteSpace: 'nowrap' }}>Stock Out</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
                   </div>
                 </div>
+>>>>>>> 3f1861feea8487d5c03d46dc251d6e8f95cda00d
               </div>
             </div>
           </div>

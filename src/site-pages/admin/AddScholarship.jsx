@@ -181,9 +181,11 @@ const AddScholarship = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/home" className="breadcrumb-item">
-                  <i className="fas fa-home m-r-5" /> Academic
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
+
+              <span className="breadcrumb-item active">Student Corner</span>
                 <span className="breadcrumb-item active">Scholarship</span>
               </nav>
             </div>
@@ -220,6 +222,7 @@ const AddScholarship = () => {
                         </label>
                         <input
                           type="text"
+                          placeholder="Enter Title"
                           className="form-control"
                           name="title"
                           value={formData.title}
@@ -234,6 +237,7 @@ const AddScholarship = () => {
                           type="text"
                           className="form-control"
                           name="eligibility"
+                          placeholder="Enter Eligibility"
                           value={formData.eligibility}
                           onChange={handleChange}
                         />
@@ -275,6 +279,7 @@ const AddScholarship = () => {
                           type="text"
                           className="form-control"
                           name="application_link"
+                          placeholder="Enter Link"
                           value={formData.application_link}
                           onChange={handleChange}
                         />

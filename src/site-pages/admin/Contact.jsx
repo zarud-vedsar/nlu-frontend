@@ -216,11 +216,12 @@ const Contact = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb">
-              <a href="/" className="breadcrumb-item">
-                Inquery
-              </a>
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
 
-              <span className="breadcrumb-item active">Contact</span>
+              <span className="breadcrumb-item active">Inquiry</span>
+              <span className="breadcrumb-item ">Contact</span>
             </nav>
           </div>
           <div className="card bg-transparent mb-2">

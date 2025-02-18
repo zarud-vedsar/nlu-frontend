@@ -6,7 +6,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useParams , Link} from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import {
@@ -501,18 +501,18 @@ const FacultyForm = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb">
-              <a href="/" className="breadcrumb-item">
-                Department
-              </a>
-              <a className="breadcrumb-item ">Faculty</a>
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
+              <a className="breadcrumb-item ">HR Management</a>
+              <a className="breadcrumb-item ">Employee</a>
 
-              <span className="breadcrumb-item active">Add New Faculty</span>
             </nav>
           </div>
 
           <div className="card bg-transparent mb-2">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
-              <h5 className="card-title h6_new">Add New Faculty</h5>
+              <h5 className="card-title h6_new">{id ? "Update Employee" : "Add New Employee"}</h5>
               <div className="ml-auto">
                 <Button
                   variant="light"
@@ -524,6 +524,11 @@ const FacultyForm = () => {
                   </i>{" "}
                   Go Back
                 </Button>
+                 <Link to="/admin/faculty-list"
+                                                    className="ml-2 btn-md btn border-0 btn-secondary"
+                                                  >
+                                                    <i className="fas fa-list" /> Employee List
+                                                  </Link>
               </div>
             </div>
           </div>
@@ -617,6 +622,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="first_name"
+                          placeholder="Enter Your First Name"
                           value={formData.first_name}
                           onChange={handleChange}
                         />
@@ -635,6 +641,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="middle_name"
+                            placeholder="Enter Your Middle Name"
                           value={formData.middle_name}
                           onChange={handleChange}
                         />
@@ -650,6 +657,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="last_name"
+                            placeholder="Enter Your Last Name"
                           value={formData.last_name}
                           onChange={handleChange}
                         />
@@ -687,6 +695,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="c_phone"
+                          placeholder="0123456789"
                           value={formData.c_phone}
                           onChange={handleChange}
                         />
@@ -702,6 +711,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="c_alter_phone"
+                          placeholder="0123456789"
                           value={formData.c_alter_phone}
                           onChange={handleChange}
                         />
@@ -758,6 +768,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="qualification"
+                          placeholder="Enter Highest Qualification"
                           value={formData.qualification}
                           onChange={handleChange}
                         />
@@ -841,6 +852,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="father_name"
+                          placeholder="Enter Father's Name"
                           value={formData.father_name}
                           onChange={handleChange}
                         />
@@ -857,6 +869,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="mother_name"
+                          placeholder="Enter Mother's Name"
                           value={formData.mother_name}
                           onChange={handleChange}
                         />
@@ -873,6 +886,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="gphone"
+                          placeholder="0123456789"
                           value={formData.gphone}
                           onChange={handleChange}
                         />
@@ -889,6 +903,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="galterphone"
+                          placeholder="0123456789"
                           value={formData.galterphone}
                           onChange={handleChange}
                         />
@@ -911,6 +926,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="p_address"
+                          placeholder="Enter Address"
                           value={formData.p_address}
                           onChange={handleChange}
                         />
@@ -927,6 +943,7 @@ const FacultyForm = () => {
                           type="number"
                           className="form-control"
                           name="p_pincode"
+                          placeholder="012345"
                           value={formData.p_pincode}
                           onChange={handleChange}
                         />
@@ -943,6 +960,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="p_country"
+                          placeholder="Enter Your Country"
                           value={formData.p_country}
                           onChange={handleChange}
                         />
@@ -959,6 +977,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="p_state"
+                          placeholder="Enter Your State"
                           value={formData.p_state}
                           onChange={handleChange}
                         />
@@ -975,6 +994,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="p_district"
+                          placeholder="Enter Your District"
                           value={formData.p_district}
                           onChange={handleChange}
                         />
@@ -1017,6 +1037,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="c_address"
+                          placeholder="Enter Address"
                           value={formData.c_address}
                           onChange={handleChange}
                         />
@@ -1033,6 +1054,7 @@ const FacultyForm = () => {
                           type="number"
                           className="form-control"
                           name="c_pincode"
+                          placeholder="012345"
                           value={formData.c_pincode}
                           onChange={handleChange}
                         />
@@ -1049,6 +1071,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="c_country"
+                          placeholder="Enter Your Country"
                           value={formData.c_country}
                           onChange={handleChange}
                         />
@@ -1063,8 +1086,10 @@ const FacultyForm = () => {
                         </label>
                         <input
                           type="text"
+                          placeholder="Enter Your State"
                           className="form-control"
                           name="c_state"
+
                           value={formData.c_state}
                           onChange={handleChange}
                         />
@@ -1081,6 +1106,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="c_district"
+                          placeholder="Enter Your District"
                           value={formData.c_district}
                           onChange={handleChange}
                         />
@@ -1103,12 +1129,13 @@ const FacultyForm = () => {
                           type="number"
                           className="form-control"
                           name="emergency_contact"
+                          placeholder="0123456789"
                           value={formData.emergency_contact}
                           onChange={handleChange}
                         />
                       </div>
 
-                      <div className="form-group col-md-6">
+                      <div className="form-group col-md-4">
                         <label
                           className="font-weight-semibold"
                           htmlFor="specialization"
@@ -1119,11 +1146,12 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="specialization"
+                          placeholder="Enter Specialization"
                           value={formData.specialization}
                           onChange={handleChange}
                         />
                       </div>
-                      <div className="form-group col-md-2">
+                      <div className="form-group col-md-4">
                         <label
                           className="font-weight-semibold"
                           htmlFor="joining_date"
@@ -1168,12 +1196,13 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="exp_yrs"
+                          placeholder="Enter Experience"
                           value={formData.exp_yrs}
                           onChange={handleChange}
                         />
                       </div>
 
-                      <div className="form-group col-md-2 d-flex align-items-center">
+                      <div className="form-group col-md-4 d-flex align-items-center">
                         <input
                           className="form-check-input"
                           type="checkbox"
@@ -1219,7 +1248,7 @@ const FacultyForm = () => {
                           Show content on website{" "}
                         </label>
                       </div>
-                      <div className="form-group col-md-2 d-flex align-items-center">
+                      <div className="form-group col-md-4 d-flex align-items-center">
                         <input
                           className="form-check-input"
                           type="checkbox"
@@ -1253,6 +1282,7 @@ const FacultyForm = () => {
                           type="text"
                           className="form-control"
                           name="c_discription"
+                          placeholder="Enter Your description here..."
                           value={formData.c_discription}
                           onChange={handleChange}
                         />

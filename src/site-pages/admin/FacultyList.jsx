@@ -329,16 +329,17 @@ const FacultyList = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb">
-              <a href="/" className="breadcrumb-item">
-                Department
-              </a>
-
-              <span className="breadcrumb-item active">Faculty</span>
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
+               
+              <span className="breadcrumb-item active">HR Management</span>
+              <span className="breadcrumb-item active">Employee</span>
             </nav>
           </div>
           <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new">Faculty List</h5>
+                <h5 className="card-title h6_new">Employee List</h5>
                 <div className="ml-auto">
                 <Button
                 variant="light"

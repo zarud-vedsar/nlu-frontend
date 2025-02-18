@@ -80,7 +80,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Add New Category
+         {id ? "Update Job Category " : "Add New Job Category"} 
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -89,9 +89,10 @@ const MyVerticallyCenteredModal = (props = {}) => {
             Category
           </label>
           <input
-            type="text"
+            type="text" 
             className="form-control"
             name="content"
+            placeholder="Enter Job Category"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             disabled={loading}
@@ -292,17 +293,20 @@ const JobCategory = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb">
-              <a href="/" className="breadcrumb-item">
-                Recruitment
-              </a>
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
 
-              <span className="breadcrumb-item active">Category </span>
+              <span className="breadcrumb-item active">Recruitment</span>
+
+
+              <span className="breadcrumb-item active"> Job Category </span>
             </nav>
           </div>
 
           <div className="card bg-transparent mb-2">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
-              <h5 className="card-title h6_new"> Category</h5>
+              <h5 className="card-title h6_new">Job Category List</h5>
               <div className="ml-auto">
                 <Button
                   variant="light"

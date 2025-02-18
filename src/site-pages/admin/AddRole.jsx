@@ -187,10 +187,11 @@ function AddRole() {
                 <Link to="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </Link>
-                <span className="breadcrumb-item">Academic</span>
+             
                 <span className="breadcrumb-item active">
                   Role & Permission
                 </span>
+                <span className="breadcrumb-item">Add New</span>
               </nav>
             </div>
           </div>
@@ -223,6 +224,7 @@ function AddRole() {
                     label="Title"
                     name="roleName"
                     id="roleName"
+                    placeholder="Enter Role Title"
                     value={formData.roleName}
                     column="col-md-12"
                     onChange={handleChange}

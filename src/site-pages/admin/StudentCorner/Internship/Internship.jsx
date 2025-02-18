@@ -329,9 +329,11 @@ const Internship = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb breadcrumb-dash">
-              <a href="/" className="breadcrumb-item">
-                Student Corner
-              </a>
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
+
+              <span className="breadcrumb-item active">Student Corner</span>
 
               <span className="breadcrumb-item active"> Internship</span>
             </nav>
@@ -376,7 +378,7 @@ const Internship = () => {
           <div className="card">
             <div className="card-body">
               <div className="row">
-                <div className="col-md-8 col-lg-8 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                <div className="col-md-9 col-lg-9 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
                   <div className="search-icon">
                     <i className="pi pi-search" />
                   </div>
@@ -388,7 +390,7 @@ const Internship = () => {
                     className="form-control dtsearch-input"
                   />
                 </div>
-                <div className="col-md-4 col-lg-4 col-10 col-sm-4">
+                <div className="col-md-3 col-lg-3 col-10 col-sm-4">
                   <button
                     className={`btn ${
                       recycleTitle === "Show Recycle Bin"

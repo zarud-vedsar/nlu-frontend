@@ -140,7 +140,7 @@ useEffect(() => {
                     Dashboard
                   </Link>
                   <span className="breadcrumb-item">Role & Permission</span>
-                  <span className="breadcrumb-item active">List</span>
+                  <span className="breadcrumb-item active">Role List</span>
                 </nav>
               </div>
             </div>

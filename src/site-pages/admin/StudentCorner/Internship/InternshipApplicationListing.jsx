@@ -135,10 +135,11 @@ const InternshipApplicationListing = () => {
           <div className="container-fluid">
             <div className="">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/" className="breadcrumb-item">
-                  Internship
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
+              <span className="breadcrumb-item active">Student Corner</span>
                 <span className="breadcrumb-item active">Internship Application</span>
               </nav>
             </div>
@@ -173,7 +174,7 @@ const InternshipApplicationListing = () => {
             <div className="card">
               <div className="card-body">
                 <div className="row">
-                  <div className="col-md-8 col-lg-8 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                  <div className="col-md-12 col-lg-12 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
                     <div className="search-icon">
                       <i className="pi pi-search" />
                     </div>

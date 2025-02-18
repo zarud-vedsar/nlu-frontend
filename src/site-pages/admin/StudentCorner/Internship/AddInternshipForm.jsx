@@ -39,7 +39,7 @@ const AddInternshipForm = () => {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter your description here...',
     spellcheck: true,
     language: 'pt_br',
     defaultMode: '1',
@@ -232,16 +232,18 @@ const AddInternshipForm = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb breadcrumb-dash">
-              <a href="./" className="breadcrumb-item">
-                Student Corner
-              </a>
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
+
+              <span className="breadcrumb-item active">Student Corner</span>
 
               <span className="breadcrumb-item active">Internship</span>
             </nav>
           </div>
           <div className="card bg-transparent mb-2">
             <div className="card-header d-flex justify-content-between align-items-center px-0">
-              <h5 className="card-title h6_new">Add New Internship</h5>
+              <h5 className="card-title h6_new"> {id ? "Update Internship" : "Add New Internship"}</h5>
               <div className="ml-auto">
                 <Button
                   variant="light"
@@ -282,6 +284,7 @@ const AddInternshipForm = () => {
                         type="text"
                         className="form-control"
                         name="position"
+                        placeholder="Enter Position"
                         value={formData.position}
                         onChange={handleChange}
                       />
@@ -300,6 +303,7 @@ const AddInternshipForm = () => {
                         type="number"
                         className="form-control"
                         name="vacancy"
+                        placeholder="10"
                         value={formData.vacancy}
                         onChange={handleChange}
                       />
@@ -381,6 +385,7 @@ const AddInternshipForm = () => {
                         type="number"
                         className="form-control"
                         name="salary_starting"
+                        placeholder="Enter Minimum Salary"
                         value={formData.salary_starting}
                         onChange={handleChange}
                       />
@@ -399,6 +404,7 @@ const AddInternshipForm = () => {
                         type="number"
                         className="form-control"
                         name="salary_to"
+                        placeholder="Enter Maximum Salary"
                         value={formData.salary_to}
                         onChange={handleChange}
                       />
@@ -418,6 +424,7 @@ const AddInternshipForm = () => {
                         type="text"
                         className="form-control"
                         name="education_level"
+                        placeholder="Enter Education Requirment"
                         value={formData.education_level}
                         onChange={handleChange}
                       />
@@ -434,6 +441,7 @@ const AddInternshipForm = () => {
                         type="text"
                         className="form-control"
                         name="state"
+                        placeholder="Enter State"
                         value={formData.state}
                         onChange={handleChange}
                       />
@@ -449,6 +457,7 @@ const AddInternshipForm = () => {
                         type="text"
                         className="form-control"
                         name="city"
+                         placeholder="Enter City"
                         value={formData.city}
                         onChange={handleChange}
                       />
@@ -465,6 +474,7 @@ const AddInternshipForm = () => {
                         type="text"
                         className="form-control"
                         name="address"
+                         placeholder="Enter Addressx"
                         value={formData.address}
                         onChange={handleChange}
                       />

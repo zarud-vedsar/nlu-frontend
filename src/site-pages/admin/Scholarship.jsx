@@ -237,16 +237,17 @@ const Scholarship = () => {
         <div className="container-fluid">
           <div className=" mt-0">
             <nav className="breadcrumb">
-              <a href="/" className="breadcrumb-item">
-                Academic
-              </a>
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
 
+              <span className="breadcrumb-item active">Student Corner</span>
               <span className="breadcrumb-item active">Scholarship</span>
             </nav>
           </div>
           <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new"> Scholarships</h5>
+                <h5 className="card-title h6_new"> Scholarships List</h5>
                 <div className="ml-auto">
                 <Button
                 variant="light"

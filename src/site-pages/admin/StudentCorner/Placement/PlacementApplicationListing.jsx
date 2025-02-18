@@ -134,9 +134,11 @@ const PlacementApplicationListing = () => {
           <div className="container-fluid">
             <div className="">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/" className="breadcrumb-item">
-                  Placement
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
+
+              <span className="breadcrumb-item active">Student Corner</span>
 
                 <span className="breadcrumb-item active">Placement Application</span>
               </nav>

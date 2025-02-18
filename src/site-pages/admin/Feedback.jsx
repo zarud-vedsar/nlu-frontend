@@ -188,9 +188,11 @@ const Feedback = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb">
-              <a href="/" className="breadcrumb-item">
-                Inquery
-              </a>
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
+
+              <span className="breadcrumb-item active">Inquiry</span>
 
               <span className="breadcrumb-item active">Feedback</span>
             </nav>

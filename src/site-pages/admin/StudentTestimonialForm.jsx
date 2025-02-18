@@ -195,9 +195,11 @@ const StudentTestimonialForm = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/home" className="breadcrumb-item">
-                  <i className="fas fa-home m-r-5" /> CMS
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
+
+              <span className="breadcrumb-item active">Student Corner</span>
                 <span className="breadcrumb-item active">
                   Student Testimonial
                 </span>
@@ -241,6 +243,7 @@ const StudentTestimonialForm = () => {
                           type="text"
                           className="form-control"
                           name="test_name"
+                          placeholder="Enter Name"
                           value={formData.test_name}
                           onChange={handleChange}
                         />
@@ -253,6 +256,7 @@ const StudentTestimonialForm = () => {
                           type="number"
                           className="form-control"
                           name="phone"
+                          placeholder="0123456789"
                           value={formData.phone}
                           onChange={handleChange}
                         />
@@ -265,6 +269,7 @@ const StudentTestimonialForm = () => {
                           type="email"
                           className="form-control"
                           name="email"
+                          placeholder="Enter Email"
                           value={formData.email}
                           onChange={handleChange}
                         />
@@ -277,6 +282,7 @@ const StudentTestimonialForm = () => {
                           type="text"
                           className="form-control"
                           name="test_company"
+                          placeholder="Enter Company"
                           value={formData.test_company}
                           onChange={handleChange}
                         />
@@ -308,6 +314,7 @@ const StudentTestimonialForm = () => {
                           type="text"
                           className="form-control"
                           name="test_occupation"
+                          placeholder="Enter Occupation"
                           value={formData.test_occupation}
                           onChange={handleChange}
                         />
@@ -342,6 +349,7 @@ const StudentTestimonialForm = () => {
                           type="text"
                           className="form-control"
                           name="test_content"
+                          placeholder="Enter your content"
                           value={formData.test_content}
                           onChange={handleChange}
                         ></textarea>

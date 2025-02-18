@@ -218,9 +218,10 @@ const BrandSetting = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a className="breadcrumb-item">
-                  <i className="fas fa-home m-r-5" /> Setting
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
+
                 <a href="" className="breadcrumb-item">
                   <i className="fas " /> University Settings
                 </a>

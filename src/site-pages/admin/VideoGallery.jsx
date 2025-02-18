@@ -256,9 +256,12 @@ const VideoGallery = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb">
-              <a href="/" className="breadcrumb-item">
-                CMS
-              </a>
+            <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
+                </a>
+
+              <span className="breadcrumb-item active">Media</span>
+
 
               <span className="breadcrumb-item active">Gallery Video</span>
             </nav>

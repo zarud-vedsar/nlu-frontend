@@ -8,6 +8,7 @@ import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import validator from "validator";
+import { FaFacebookF } from "react-icons/fa";
 import rpnl_logo from '../assets/Images/rpnl_logo.png';
 const Footer = () => {
   const [visitorData, setVisitorData] = useState([]);
@@ -108,33 +109,63 @@ const Footer = () => {
                 <p className="footer-para">
                   Dr. Rajendra Prasad National Law University, Prayagraj, established in 2020, fosters legal excellence and diversity.
                 </p>
-                <div className="footer-social-icon">
-                  {iconLink.facebook && (
-                    <Link to={iconLink.facebook} target="_blank">
-                      <FaFacebookSquare className="fticon fbfticon" />
+                <div className="id-icon-wrapper mb-2">
+                {iconLink.facebook && (
+                <Link to={iconLink.facebook} target="_blank" className="mb-2">
+                      <div className="d-flex justify-content-center align-items-center">
+                       <span className="id-fb-icon" style={{background:"#145dbf"}}>
+                       <FaFacebookF  className="fticon fbfticon" />
+                       </span>
+                        <h6 className="id-fb-title" style={{background:"rgb(20 93 191 / 95%)"}}>Facebook</h6>
+                      </div>
                     </Link>
-                  )}
-                  {iconLink.twitter && (
-                    <Link to={iconLink.twitter} target="_blank">
-                      <FaXTwitter className="fticon twfticon" />
+                     )}
+                      {iconLink.linkedin && (
+                <Link to={iconLink.linkedin} target="_blank" className="mb-2">
+                      <div className="d-flex justify-content-center align-items-center">
+                       <span className="id-fb-icon" style={{background:"rgb(8 88 170 / 98%)"}}>
+                       <FaLinkedin className="fticon linkedfticon" />
+                       </span>
+                        <h6 className="id-fb-title" style={{background:"#0a66c2"}}>Linked in</h6>
+                      </div>
                     </Link>
-                  )}
-                  {iconLink.instagram && (
-                    <Link to={iconLink.instagram} target="_blank">
-                      <FaInstagram className="fticon insfticon" />
+)}
+
+
+ {iconLink.instagram && (
+                <Link to={iconLink.instagram} target="_blank" className="mb-2">
+                      <div className="d-flex justify-content-center align-items-center">
+                       <span className="id-fb-icon">
+                       <FaInstagram className="fticon insfticon" />
+                       </span>
+                        <h6 className="id-fb-title id-icon-insta-gred">Instagram</h6>
+                      </div>
                     </Link>
-                  )}
-                  {iconLink.youtube && (
-                    <Link to={iconLink.youtube} target="_blank">
-                      <FaYoutube className="fticon youfticon" />
+)}
+ {iconLink.youtube && (
+                <Link to={iconLink.instagram} target="_blank" className="mb-2">
+                      <div className="d-flex justify-content-center align-items-center">
+                       <span className="id-fb-icon">
+                       <FaYoutube className="fticon youfticon" />
+                       </span>
+                        <h6 className="id-fb-title" style={{background:"#FF0000"}}>Youtube</h6>
+                      </div>
                     </Link>
-                  )}
-                  {iconLink.linkedin && (
-                    <Link to={iconLink.linkedin} target="_blank">
-                      <FaLinkedin className="fticon linkedfticon" />
+)}
+   {iconLink.twitter && (
+                <Link to={iconLink.twitter} target="_blank" className="mb-2">
+                      <div className="d-flex justify-content-center align-items-center">
+                       <span className="id-fb-icon" style={{background:"#00000033"}}>
+                       <FaXTwitter className="fticon twfticon" />
+                       </span>
+                        <h6 className="id-fb-title" style={{background:"#000000"}}>Twitter</h6>
+                      </div>
                     </Link>
-                  )}
+)}
                 </div>
+
+              
+               
               </div>
             </div>
 

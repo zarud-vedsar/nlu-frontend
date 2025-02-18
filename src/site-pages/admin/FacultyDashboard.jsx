@@ -66,7 +66,7 @@ const PieChart = ({ dataValues }) => {
 const FacultyDashboard = () => {
   const [facultyListing, setFacultyListing] = useState([]);
   const [facultyId, setFacultyId] = useState(
-    null
+    secureLocalStorage.getItem("login_id")
   );
   const loadFacultyData = async () => {
     try {
@@ -506,21 +506,20 @@ const FacultyDashboard = () => {
                       <style>{keyframesStyle}</style>
                       <div style={containerStyle}>
                         {productIssued &&
-                          productIssued.map((product, index) => {
-                            <div style={boxStyle}>
-                              <p className="text-danger mb-0 font-14">
-                                {formatDate(product?.stockOutDate)}
-                              </p>
-                              <p className="text-danger mb-0 font-14">
-                                {formatDate(product?.stockOutDate)}
-                              </p>
-                              <p className="text-muted font-15">
-                                {product?.pname
-                                  ? validator.unescape(product?.pname)
-                                  : ""}
-                              </p>
-                            </div>;
-                          })}
+                          productIssued.map((product, index) => (
+                            <>
+                              <div style={boxStyle}>
+                                <p className="text-danger mb-0 font-14">
+                                  {formatDate(product?.stockOutDate)}
+                                </p>
+                                <p className="text-muted font-15">
+                                  {product?.pname
+                                    ? validator.unescape(product?.pname)
+                                    : ""}
+                                </p>
+                              </div>
+                            </>
+                          ))}
                       </div>
                     </div>
                   </div>

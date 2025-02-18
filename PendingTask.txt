@@ -47,4 +47,3 @@ Today -------- 4 issue done
 changes 
 -------------
 6.  Addition of "Leaving time" and "Return time" in Hostel Leave Request
-7. inventory listing in admin dashboard

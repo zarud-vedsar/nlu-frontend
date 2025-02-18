@@ -1368,9 +1368,9 @@ table tbody th {
   object-fit: fill;
 }
 
-.footer-social-icon {
+/* .footer-social-icon {
   display: flex;
-}
+} */
 
 .footer-social-icon a {
   margin-right: 10px;
@@ -1387,7 +1387,7 @@ table tbody th {
 
 /* Facebook Icon */
 .fbfticon {
-  color: #1877f2;
+  color: white;
   /* Facebook Blue */
 }
 
@@ -1398,7 +1398,7 @@ table tbody th {
 
 /* Twitter Icon */
 .twfticon {
-  color: #1da1f2;
+  color: #000000;
   /* Twitter Blue */
 }
 
@@ -1431,7 +1431,7 @@ table tbody th {
 
 /* LinkedIn Icon */
 .linkedfticon {
-  color: #0077b5;
+  color: white;
   /* LinkedIn Blue */
 }
 
@@ -3618,4 +3618,27 @@ table tbody th {
     .headermain {
       padding: 8px 15px !important;
     }
+}
+
+.id-fb-icon{
+  background: #f3f3f3;
+  padding: 7px 10px 7px 5px;
+}
+
+.id-fb-title{
+  background: white;
+  padding: 9px 10px 10px 5px;
+
+}
+.id-icon-wrapper{
+  display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+}
+.id-fb-title{
+  color:white;
+}
+.id-icon-insta-gred{
+  background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+
 }

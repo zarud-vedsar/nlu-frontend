@@ -138,15 +138,16 @@ const AdminDashboard = () => {
           </div>
           <div className="row">
             <div className="col-lg-4">
-              <div className="card " style={{ padding: "20px" }}>
-                <div className="row">
-                  <div className="col-lg-12 col-12 mb-3">
-                    <h4>Courses</h4>
-                  </div>
+              <div className="card">
+                <div className="card-header">
+                    <h4 className="card-title">Courses</h4>
+                    </div>
+                    <div className="" style={{padding:"10px 0px"}}>
                   {data?.total_semester?.map((course, index) => (
                     <div
                       key={index}
-                      className="col-lg-12 col-md-12 col-12 mb-3"
+                      className="col-lg-12 col-md-12 col-12 mb-3" 
+                     
                     >
                       <div className="id-course-wrapper d-flex">
                         <span className="id-course-subject">
@@ -159,9 +160,30 @@ const AdminDashboard = () => {
                       </div>
                     </div>
                   ))}
+                   </div>
                 </div>
+           
+            </div>
+            <div className="col-lg-4">
+              <div className="card ">
+                <div className="card-header "> 
+                    <h4 className="card-title">Total Expence</h4>
+                </div>
+                  <div className="col-lg-12 col-md-12 col-12" style={{padding:"15px"}}>
+                    <table>
+                      <tr>
+                        <th>Category</th>
+                        <th>Total Expence</th>
+                      </tr>
+                      <tr>
+                        <td>furniture</td>
+                        <td>900</td>
+                      </tr>
+                    </table>
+                  </div>
               </div>
             </div>
+            
           </div>
           <div className="row">
             <div className="col-md-4 col-lg-4 col-12">
@@ -205,29 +227,6 @@ const AdminDashboard = () => {
                     <h5 className="id-counter-number">
                       {data?.total_notice?.total_publication}
                     </h5>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-4">
-              <div className="card " style={{ padding: "20px" }}>
-                <div className="row">
-                  <div className="col-lg-12 col-12 mb-3">
-                    <h4>Total Expence</h4>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-12 mb-3">
-                    <table>
-                      <tr>
-                        <th>Category</th>
-                        <th>Total Expence</th>
-                      </tr>
-                      <tr>
-                        <td>furniture</td>
-                        <td>900</td>
-                      </tr>
-                    </table>
                   </div>
                 </div>
               </div>

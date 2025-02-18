@@ -87,6 +87,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
             type="text"
             className="form-control"
             name="content"
+            placeholder="Enter Expense Category"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             disabled={loading}
@@ -287,11 +288,13 @@ const ExpenseCategory = () => {
           <div className="container-fluid">
             <div className="">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/" className="breadcrumb-item">
-                  <i className="fas fa-home m-r-5" />
-                  Expense Management
-                </a>
-
+              <a href="/admin/" className="breadcrumb-item">
+                                     <i className="fas fa-home m-r-5" />
+                                    Dashboard
+                                   </a>
+                                   <span className="breadcrumb-item active">
+                                   Expense Management
+                                   </span>
                 <span className="breadcrumb-item active">
                   Expense Category{" "}
                 </span>

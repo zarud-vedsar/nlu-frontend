@@ -25,7 +25,7 @@ const AddSpeciality = () => {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter your description here...',
     spellcheck: true,
     language: 'pt_br',
     defaultMode: '1',
@@ -222,6 +222,7 @@ const AddSpeciality = () => {
                       type="text"
                       className="form-control"
                       name="title"
+                      placeholder="Enter Title"
                       value={formData.title}
                       onChange={handleChange}
                     />

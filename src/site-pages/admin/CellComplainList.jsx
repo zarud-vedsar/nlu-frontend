@@ -206,7 +206,7 @@ function CellComplainList() {
               <div className={`card-body px-3 ${showFilter ? "" : "d-none"}`}>
                 <form onSubmit={handleSubmit}>
                   <div className="row">
-                    <div className="col-md-3 col-lg-3 col-12 form-group">
+                    <div className="col-md-4 col-lg-4 col-12 form-group">
                       <label className="font-weight-semibold">
                         Select Cell
                       </label>
@@ -239,7 +239,7 @@ function CellComplainList() {
                       id="from_date"
                       type="date"
                       value={formData.from_date}
-                      column="col-md-2 col-lg-2"
+                      column="col-md-4 col-lg-4"
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,
@@ -254,7 +254,7 @@ function CellComplainList() {
                       id="to_date"
                       type="date"
                       value={formData.to_date}
-                      column="col-md-2 col-lg-2"
+                      column="col-md-4 col-lg-4"
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,

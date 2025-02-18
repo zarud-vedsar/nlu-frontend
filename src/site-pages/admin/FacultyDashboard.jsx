@@ -21,7 +21,7 @@ import { FaCalendar } from "react-icons/fa";
 import subjectpng from "./dashboard-img/subject.png";
 import coursepng from "./dashboard-img/coursepng.png";
 import exampng from "./dashboard-img/exampng.png";
-import validator from 'validator';
+import validator from "validator";
 import { toast } from "react-toastify";
 // Register necessary components for Chart.js
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -66,7 +66,7 @@ const PieChart = ({ dataValues }) => {
 const FacultyDashboard = () => {
   const [facultyListing, setFacultyListing] = useState([]);
   const [facultyId, setFacultyId] = useState(
-    secureLocalStorage.getItem("login_id")
+    null
   );
   const loadFacultyData = async () => {
     try {
@@ -105,7 +105,9 @@ const FacultyDashboard = () => {
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
       bformData.append("session", localStorage.getItem("session"));
       bformData.append("data", "faculty_dashboard");
-      bformData.append("faculty_id", facultyId);
+      if (facultyId) {
+        bformData.append("faculty_id", facultyId);
+      }
       bformData.append("year", year || currentYear);
       const response = await axios.post(
         `${PHP_API_URL}/dashboard.php`,
@@ -156,7 +158,12 @@ const FacultyDashboard = () => {
       const dateOptions = { day: "2-digit", month: "short", year: "numeric" };
       const formattedDate = today.toLocaleDateString("en-GB", dateOptions);
       // Format Time (e.g., "10:30:45 AM")
-      const timeOptions = { hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true };
+      const timeOptions = {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      };
       const formattedTime = today.toLocaleTimeString("en-US", timeOptions);
       // Combine Date & Time
       setCurrentDate(`${formattedDate}, ${formattedTime}`);
@@ -181,14 +188,18 @@ const FacultyDashboard = () => {
     const tempGroupedData = [];
 
     subjectList.forEach(({ course, semester, subject }) => {
-      let courseObj = tempGroupedData.find(item => item.courseName === course);
+      let courseObj = tempGroupedData.find(
+        (item) => item.courseName === course
+      );
 
       if (!courseObj) {
         courseObj = { courseName: course, semester: [] };
         tempGroupedData.push(courseObj);
       }
 
-      let semesterObj = courseObj.semester.find(item => item.semester === semester);
+      let semesterObj = courseObj.semester.find(
+        (item) => item.semester === semester
+      );
 
       if (!semesterObj) {
         semesterObj = { semester, subjects: [] };
@@ -203,47 +214,62 @@ const FacultyDashboard = () => {
   const groupAttendanceData = (attendanceList) => {
     const groupedData = [];
 
-    attendanceList.forEach(({ course, semester, subject, total_students, present_count, total_onduty, total_absent }) => {
-      let courseObj = groupedData.find(item => item.courseName === course);
-
-      if (!courseObj) {
-        courseObj = { courseName: course, semesters: [] };
-        groupedData.push(courseObj);
-      }
-
-      let semesterObj = courseObj.semesters.find(item => item.semester === semester);
-
-      if (!semesterObj) {
-        semesterObj = { semester, subjects: [] };
-        courseObj.semesters.push(semesterObj);
-      }
-
-      semesterObj.subjects.push({
+    attendanceList.forEach(
+      ({
+        course,
+        semester,
         subject,
         total_students,
         present_count,
         total_onduty,
         total_absent,
-      });
-    });
+      }) => {
+        let courseObj = groupedData.find((item) => item.courseName === course);
+
+        if (!courseObj) {
+          courseObj = { courseName: course, semesters: [] };
+          groupedData.push(courseObj);
+        }
+
+        let semesterObj = courseObj.semesters.find(
+          (item) => item.semester === semester
+        );
+
+        if (!semesterObj) {
+          semesterObj = { semester, subjects: [] };
+          courseObj.semesters.push(semesterObj);
+        }
+
+        semesterObj.subjects.push({
+          subject,
+          total_students,
+          present_count,
+          total_onduty,
+          total_absent,
+        });
+      }
+    );
 
     return groupedData;
   };
-  const groupedAttendance = useMemo(() => groupAttendanceData(selfSubjectDailyAttendance), [selfSubjectDailyAttendance]);
+  const groupedAttendance = useMemo(
+    () => groupAttendanceData(selfSubjectDailyAttendance),
+    [selfSubjectDailyAttendance]
+  );
   const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    width: '100%',
+    display: "flex",
+    flexDirection: "column",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    width: "100%",
   };
 
   const boxStyle = {
-    animation: 'marquee 10s linear infinite',
-    fontSize: '15px',
-    color: '#111111',
-    borderBottom: '1px solid #555',
-    marginBottom: '10px'
+    animation: "marquee 10s linear infinite",
+    fontSize: "15px",
+    color: "#111111",
+    borderBottom: "1px solid #555",
+    marginBottom: "10px",
   };
 
   const keyframesStyle = `
@@ -287,57 +313,91 @@ const FacultyDashboard = () => {
                 value={
                   facultyListing.find((faculty) => faculty.id === facultyId)
                     ? {
-                      value: facultyId,
-                      label: `${facultyListing.find(
-                        (faculty) => faculty.id === facultyId
-                      ).first_name
-                        } ${facultyListing.find(
-                          (faculty) => faculty.id === facultyId
-                        ).last_name
+                        value: facultyId,
+                        label: `${
+                          facultyListing.find(
+                            (faculty) => faculty.id === facultyId
+                          ).first_name
+                        } ${
+                          facultyListing.find(
+                            (faculty) => faculty.id === facultyId
+                          ).last_name
                         }`,
-                    }
+                      }
                     : {
-                      value: facultyId,
-                      label: "Select Faculty",
-                    }
+                        value: facultyId,
+                        label: "Select Faculty",
+                      }
                 }
               />
             </div>
             <div className="col-md-8">
               <div className="row">
                 <div className="col-md-12">
-                  <div className="text-white py-4 px-3 mb-3 border_10" style={{ background: '#274C77', overflow: 'hidden' }}>
-                    <div className="banneradmins" style={{
-                      backgroundImage: `url(${bg})`,
-                      backgroundPosition: "right center",
-                      backgroundSize: "contain",
-                      backgroundRepeat: "no-repeat"
-                    }}>
+                  <div
+                    className="text-white py-4 px-3 mb-3 border_10"
+                    style={{ background: "#274C77", overflow: "hidden" }}
+                  >
+                    <div
+                      className="banneradmins"
+                      style={{
+                        backgroundImage: `url(${bg})`,
+                        backgroundPosition: "right center",
+                        backgroundSize: "contain",
+                        backgroundRepeat: "no-repeat",
+                      }}
+                    >
                       <div>
                         <div className="banerheadings mt-3 h5_new font-18">
-                          <span className="text-white">Hello, {" "}
-                            {facultyDataList?.first_name}{" "}
+                          <span className="text-white">
+                            Hello, {facultyDataList?.first_name}{" "}
                             {facultyDataList?.middle_name}{" "}
-                            {facultyDataList?.last_name}</span>
+                            {facultyDataList?.last_name}
+                          </span>
                         </div>
-                        <div className="h6_new font-15 mt-2"><span className="text-white">{greeting}!</span></div>
-                        <div className="mt-2 font-14"><FaCalendar /> {" "}{currentDate}</div>
+                        <div className="h6_new font-15 mt-2">
+                          <span className="text-white">{greeting}!</span>
+                        </div>
+                        <div className="mt-2 font-14">
+                          <FaCalendar /> {currentDate}
+                        </div>
                       </div>
                     </div>
-                    <img src={banners2} alt="icon" width="50" height="70" className="img-fluid shape-02" />
-                    <img src={banners4} alt="icon" width="25" height="25" className="img-fluid shape-04" />
+                    <img
+                      src={banners2}
+                      alt="icon"
+                      width="50"
+                      height="70"
+                      className="img-fluid shape-02"
+                    />
+                    <img
+                      src={banners4}
+                      alt="icon"
+                      width="25"
+                      height="25"
+                      className="img-fluid shape-04"
+                    />
                   </div>
                 </div>
                 <div className="col-md-5 px-0">
                   <div className="col-md-12 col-lg-12 col-sm-12 col-12">
-                    <div className="card" style={{ background: '#f0bd37' }}>
+                    <div className="card" style={{ background: "#f0bd37" }}>
                       <div className="card-body">
                         <div className="d-flex justify-content-between align-items-center">
                           <div>
-                            <p className="m-b-0 text-white font-14 font-weight-semibold">Assigned Subjects</p>
-                            <h6 className="m-b-0 h6_new"><span className="text-white">{subjectList?.length}</span></h6>
+                            <p className="m-b-0 text-white font-14 font-weight-semibold">
+                              Assigned Subjects
+                            </p>
+                            <h6 className="m-b-0 h6_new">
+                              <span className="text-white">
+                                {subjectList?.length}
+                              </span>
+                            </h6>
                           </div>
-                          <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#fff' }}>
+                          <div
+                            className="avatar avatar-lg avatar-image p-2"
+                            style={{ background: "#fff" }}
+                          >
                             <img src={subjectpng} />
                           </div>
                         </div>
@@ -345,14 +405,23 @@ const FacultyDashboard = () => {
                     </div>
                   </div>
                   <div className="col-md-12 col-lg-12 col-sm-12 col-12">
-                    <div className="card" style={{ background: '#9084c2' }}>
+                    <div className="card" style={{ background: "#9084c2" }}>
                       <div className="card-body">
                         <div className="d-flex justify-content-between align-items-center">
                           <div>
-                            <p className="m-b-0 text-white font-14 font-weight-semibold">Scheduled Classes</p>
-                            <h6 className="m-b-0 h6_new"><span className="text-white">{scheduleClass?.length}</span></h6>
+                            <p className="m-b-0 text-white font-14 font-weight-semibold">
+                              Scheduled Classes
+                            </p>
+                            <h6 className="m-b-0 h6_new">
+                              <span className="text-white">
+                                {scheduleClass?.length}
+                              </span>
+                            </h6>
                           </div>
-                          <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#fff' }}>
+                          <div
+                            className="avatar avatar-lg avatar-image p-2"
+                            style={{ background: "#fff" }}
+                          >
                             <img src={coursepng} />
                           </div>
                         </div>
@@ -360,14 +429,23 @@ const FacultyDashboard = () => {
                     </div>
                   </div>
                   <div className="col-md-12 col-lg-12 col-sm-12 col-12">
-                    <div className="card" style={{ background: '#CD417E' }}>
+                    <div className="card" style={{ background: "#CD417E" }}>
                       <div className="card-body">
                         <div className="d-flex justify-content-between align-items-center">
                           <div>
-                            <p className="m-b-0 text-white font-14 font-weight-semibold">Upcoming Exams</p>
-                            <h6 className="m-b-0 h6_new"><span className="text-white">{upcomingExamList?.length}</span></h6>
+                            <p className="m-b-0 text-white font-14 font-weight-semibold">
+                              Upcoming Exams
+                            </p>
+                            <h6 className="m-b-0 h6_new">
+                              <span className="text-white">
+                                {upcomingExamList?.length}
+                              </span>
+                            </h6>
                           </div>
-                          <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#fff' }}>
+                          <div
+                            className="avatar avatar-lg avatar-image p-2"
+                            style={{ background: "#fff" }}
+                          >
                             <img src={exampng} />
                           </div>
                         </div>
@@ -375,14 +453,23 @@ const FacultyDashboard = () => {
                     </div>
                   </div>
                   <div className="col-md-12 col-lg-12 col-sm-12 col-12">
-                    <div className="card" style={{ background: '#6096BA' }}>
+                    <div className="card" style={{ background: "#6096BA" }}>
                       <div className="card-body">
                         <div className="d-flex justify-content-between align-items-center">
                           <div>
-                            <p className="m-b-0 text-white font-14 font-weight-semibold">Pending Assignments</p>
-                            <h6 className="m-b-0 h6_new"><span className="text-white">{pendingAssignment?.length}</span></h6>
+                            <p className="m-b-0 text-white font-14 font-weight-semibold">
+                              Pending Assignments
+                            </p>
+                            <h6 className="m-b-0 h6_new">
+                              <span className="text-white">
+                                {pendingAssignment?.length}
+                              </span>
+                            </h6>
                           </div>
-                          <div className="avatar avatar-lg avatar-image p-2" style={{ background: '#fff' }}>
+                          <div
+                            className="avatar avatar-lg avatar-image p-2"
+                            style={{ background: "#fff" }}
+                          >
                             <img src={exampng} />
                           </div>
                         </div>
@@ -391,9 +478,14 @@ const FacultyDashboard = () => {
                   </div>
                 </div>
                 <div className="col-md-7">
-                  <div className="card" style={{ height: '450px', overflowY: 'auto' }}>
+                  <div
+                    className="card"
+                    style={{ height: "450px", overflowY: "auto" }}
+                  >
                     <div className="card-header d-flex justify-content-between align-items-center">
-                      <h5 className="card-title h6_new">Inventory: Product Issued</h5>
+                      <h5 className="card-title h6_new">
+                        Inventory: Product Issued
+                      </h5>
                       <select
                         className="selectpicker form-control"
                         id="yearPicker"
@@ -413,16 +505,22 @@ const FacultyDashboard = () => {
                     <div className="card-body">
                       <style>{keyframesStyle}</style>
                       <div style={containerStyle}>
-
-                        {
-                          productIssued && productIssued.map((product, index) => {
-                            <div style={boxStyle} >
-                              <p className="text-danger mb-0 font-14">{formatDate(product?.stockOutDate)}</p>
-                              <p className="text-danger mb-0 font-14">{formatDate(product?.stockOutDate)}</p>
-                              <p className="text-muted font-15">{product?.pname ? validator.unescape(product?.pname) : ''}</p>
-                            </div>
-                          })
-                        }
+                        {productIssued &&
+                          productIssued.map((product, index) => {
+                            <div style={boxStyle}>
+                              <p className="text-danger mb-0 font-14">
+                                {formatDate(product?.stockOutDate)}
+                              </p>
+                              <p className="text-danger mb-0 font-14">
+                                {formatDate(product?.stockOutDate)}
+                              </p>
+                              <p className="text-muted font-15">
+                                {product?.pname
+                                  ? validator.unescape(product?.pname)
+                                  : ""}
+                              </p>
+                            </div>;
+                          })}
                       </div>
                     </div>
                   </div>
@@ -430,7 +528,10 @@ const FacultyDashboard = () => {
               </div>
             </div>
             <div className="col-md-4 col-lg-4">
-              <div className="card" style={{ height: '600px', overflowY: 'auto' }}>
+              <div
+                className="card"
+                style={{ height: "600px", overflowY: "auto" }}
+              >
                 <div className="card-header">
                   <h5 className="card-title h6_new">Assigned Subject</h5>
                 </div>
@@ -443,18 +544,37 @@ const FacultyDashboard = () => {
                           <div className="col-md-12" key={index}>
                             <div className="list-group list-group-flush">
                               <div className="list-group-item p-0">
-                                <h6 className="h6_new mb-1 font-16 border-bottom">{data?.courseName}</h6>
+                                <h6 className="h6_new mb-1 font-16 border-bottom">
+                                  {data?.courseName}
+                                </h6>
                                 <p className="mb-0">
-                                  {data.semester.map((semester, semesterIndex) => (
-                                    <div key={semesterIndex} className="d-flex">
-                                      <div className="font-14 mr-2">{capitalizeAllLetters(semester?.semester)}</div>
-                                      <div>
-                                        {semester.subjects.map((subject, subjectIndex) => (
-                                          <strong key={subjectIndex} className="text-primary font-14 mr-2">{subjectIndex + 1}. {" "}{subject}<br /></strong>
-                                        ))}
+                                  {data.semester.map(
+                                    (semester, semesterIndex) => (
+                                      <div
+                                        key={semesterIndex}
+                                        className="d-flex"
+                                      >
+                                        <div className="font-14 mr-2">
+                                          {capitalizeAllLetters(
+                                            semester?.semester
+                                          )}
+                                        </div>
+                                        <div>
+                                          {semester.subjects.map(
+                                            (subject, subjectIndex) => (
+                                              <strong
+                                                key={subjectIndex}
+                                                className="text-primary font-14 mr-2"
+                                              >
+                                                {subjectIndex + 1}. {subject}
+                                                <br />
+                                              </strong>
+                                            )
+                                          )}
+                                        </div>
                                       </div>
-                                    </div>
-                                  ))}
+                                    )
+                                  )}
                                 </p>
                               </div>
                             </div>
@@ -513,43 +633,91 @@ const FacultyDashboard = () => {
                         <div className="col-md-12" key={index}>
                           <div className="row">
                             <div className="col-12">
-                              <div className="list-group list-group-flush px-3 py-3 border_10" style={{ border: '1px solid #b82650' }}>
+                              <div
+                                className="list-group list-group-flush px-3 py-3 border_10"
+                                style={{ border: "1px solid #b82650" }}
+                              >
                                 <div className="list-group-item p-0">
-                                  <h6 className="h6_new mb-1 font-16 border-bottom">{data?.courseName}</h6>
-                                  {data.semesters.map((semester, semesterIndex) => (
-                                    <div key={semesterIndex}>
-                                      <h6 className="font-14 text-primary mr-2">{capitalizeAllLetters(semester?.semester)}</h6>
-                                      <div className="row">
-                                        {semester.subjects.map((subject, subjectIndex) => (
-                                          <div key={subjectIndex} className="col-md-3">
-                                            <div className="card bg_light">
-                                              <div className="card-header">
-                                                <h6 className="my-1 h6_new font-14 mb-0">{subject?.subject}</h6>
-                                                <p>Total Student: {subject?.total_students}</p>
-                                                <p className="mb-0" style={{ color: '#63BE17' }}>Present: {subject?.present_count}</p>
-                                                <p className="mb-0" style={{ color: '#CD417E' }}>Absent: {subject?.total_absent}</p>
-                                                <p className="mb-0" style={{ color: '#E3A723' }}>On Duty: {subject?.total_onduty}</p>
+                                  <h6 className="h6_new mb-1 font-16 border-bottom">
+                                    {data?.courseName}
+                                  </h6>
+                                  {data.semesters.map(
+                                    (semester, semesterIndex) => (
+                                      <div key={semesterIndex}>
+                                        <h6 className="font-14 text-primary mr-2">
+                                          {capitalizeAllLetters(
+                                            semester?.semester
+                                          )}
+                                        </h6>
+                                        <div className="row">
+                                          {semester.subjects.map(
+                                            (subject, subjectIndex) => (
+                                              <div
+                                                key={subjectIndex}
+                                                className="col-md-3"
+                                              >
+                                                <div className="card bg_light">
+                                                  <div className="card-header">
+                                                    <h6 className="my-1 h6_new font-14 mb-0">
+                                                      {subject?.subject}
+                                                    </h6>
+                                                    <p>
+                                                      Total Student:{" "}
+                                                      {subject?.total_students}
+                                                    </p>
+                                                    <p
+                                                      className="mb-0"
+                                                      style={{
+                                                        color: "#63BE17",
+                                                      }}
+                                                    >
+                                                      Present:{" "}
+                                                      {subject?.present_count}
+                                                    </p>
+                                                    <p
+                                                      className="mb-0"
+                                                      style={{
+                                                        color: "#CD417E",
+                                                      }}
+                                                    >
+                                                      Absent:{" "}
+                                                      {subject?.total_absent}
+                                                    </p>
+                                                    <p
+                                                      className="mb-0"
+                                                      style={{
+                                                        color: "#E3A723",
+                                                      }}
+                                                    >
+                                                      On Duty:{" "}
+                                                      {subject?.total_onduty}
+                                                    </p>
+                                                  </div>
+                                                  <div className="card-body">
+                                                    <PieChart
+                                                      dataValues={[
+                                                        subject?.present_count ||
+                                                          0,
+                                                        subject?.total_onduty ||
+                                                          0,
+                                                        subject?.total_absent ||
+                                                          0,
+                                                      ]}
+                                                      dataColors={[
+                                                        "#63BE17", // Present
+                                                        "#CD417E", // Absent
+                                                        "#E3A723", // On Duty
+                                                      ]}
+                                                    />
+                                                  </div>
+                                                </div>
                                               </div>
-                                              <div className="card-body">
-                                                <PieChart
-                                                  dataValues={[
-                                                    subject?.present_count || 0,
-                                                    subject?.total_onduty || 0,
-                                                    subject?.total_absent || 0,
-                                                  ]}
-                                                  dataColors={[
-                                                    '#63BE17', // Present
-                                                    '#CD417E', // Absent
-                                                    '#E3A723', // On Duty
-                                                  ]}
-                                                />
-                                              </div>
-                                            </div>
-                                          </div>
-                                        ))}
+                                            )
+                                          )}
+                                        </div>
                                       </div>
-                                    </div>
-                                  ))}
+                                    )
+                                  )}
                                 </div>
                               </div>
                             </div>
@@ -639,9 +807,27 @@ const FacultyDashboard = () => {
                               <tr key={index}>
                                 <td>{capitalizeFirstLetter(data?.course)}</td>
                                 <td>{capitalizeFirstLetter(data?.semester)}</td>
-                                <td>{capitalizeFirstLetter(data?.subject ? validator.unescape(data?.subject) : '')}</td>
-                                <td>{capitalizeAllLetters(data?.paperCode ? validator.unescape(data?.paperCode) : '')}</td>
-                                <td>{capitalizeFirstLetter(data?.examType ? validator.unescape(data?.examType) : '')}</td>
+                                <td>
+                                  {capitalizeFirstLetter(
+                                    data?.subject
+                                      ? validator.unescape(data?.subject)
+                                      : ""
+                                  )}
+                                </td>
+                                <td>
+                                  {capitalizeAllLetters(
+                                    data?.paperCode
+                                      ? validator.unescape(data?.paperCode)
+                                      : ""
+                                  )}
+                                </td>
+                                <td>
+                                  {capitalizeFirstLetter(
+                                    data?.examType
+                                      ? validator.unescape(data?.examType)
+                                      : ""
+                                  )}
+                                </td>
                                 <td>{data?.exam_date}</td>
                                 <td>{data?.startTime}</td>
                                 <td>{data?.endTime}</td>

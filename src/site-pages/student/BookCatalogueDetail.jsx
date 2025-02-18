@@ -49,7 +49,7 @@ const BookCatalogueDetail = () => {
                 <a href="/" className="breadcrumb-item">
                   Library
                 </a>
-                <a href="/" className="breadcrumb-item">
+                <a href="/student/book-catalogue" className="breadcrumb-item">
                   Book Catalogue
                 </a>
 
@@ -62,7 +62,7 @@ const BookCatalogueDetail = () => {
                 <h5 className="card-title h6_new">Book Catalogue Details</h5>
                 <div className="ml-auto">
                   <button
-                    className="ml-auto btn-md btn border-0 btn-light "
+                    className="ml-auto btn-md btn border-0 skybluesbackground "
                     onClick={() => window.history.back()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back
@@ -72,27 +72,30 @@ const BookCatalogueDetail = () => {
             </div>
 
             <div className="card">
-              <div className="card-body">
-                <div className="row">
+              <div className="card-body hovershadows">
+                <div className="row ">
                   <div className="col-md-5 col-lg-5 col-12 col-sm-12 p-input-icon-left mb-3 ">
-                    <img
+                    <div className="id-book-img">
+                       <img
                       src={
                         book.image
                           ? `${FILE_API_URL}/books/${book.image}`
                           : `${BookImage}`
                       }
                       alt=".."
-                      style={{ height: "300px", width: "auto" }}
+                      style={{ height: "300px", width: "100%" }}
                     />
+                    </div>
+                   
                   </div>
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12 p-input-icon-left mb-3 ">
                     <div className="details">
                       <h5 className="card-title ">
                         {" "}
                         <strong
-                          style={{ width: "110px", display: "inline-block" }}
+                         
                         >
-                          Book Name:{" "}
+                        Book Name:{" "}
                         </strong>{" "}
                         {book.book_name}
                       </h5>
@@ -106,7 +109,7 @@ const BookCatalogueDetail = () => {
                               margin: "0px",
                             }}
                           >
-                            Author Name:{" "}
+                           <span className="booktexts">Author Name:{" "}</span> 
                           </strong>{" "}
                           {book.author}
                         </p>
@@ -121,7 +124,7 @@ const BookCatalogueDetail = () => {
                               margin: "0px",
                             }}
                           >
-                            Publisher:{" "}
+                            <span className="booktexts">Publisher:{" "}</span>
                           </strong>{" "}
                           {book.publisher}
                         </p>
@@ -135,7 +138,7 @@ const BookCatalogueDetail = () => {
                               margin: "0px",
                             }}
                           >
-                            Language:{" "}
+                          <span className="booktexts">Language:{" "}</span>  
                           </strong>{" "}
                           {book.language}
                         </p>
@@ -149,7 +152,7 @@ const BookCatalogueDetail = () => {
                               margin: "0px",
                             }}
                           >
-                            Edition:{" "}
+                         <span className="booktexts">Edition:{" "}</span>   
                           </strong>{" "}
                           {book.edition}
                         </p>
@@ -178,7 +181,7 @@ const BookCatalogueDetail = () => {
                               margin: "0px",
                             }}
                           >
-                            Block:{" "}
+                          <span className="booktexts">Block:{" "}</span>  
                           </strong>{" "}
                           {book.block}
                         </p>
@@ -192,7 +195,7 @@ const BookCatalogueDetail = () => {
                               margin: "0px",
                             }}
                           >
-                            Section:{" "}
+                         <span className="booktexts"> Section:{" "}</span>  
                           </strong>{" "}
                           {book.section}
                         </p>
@@ -206,20 +209,17 @@ const BookCatalogueDetail = () => {
                               margin: "0px",
                             }}
                           >
-                            Row:{" "}
+                          <span className="booktexts">Row:{" "}</span>  
                           </strong>{" "}
                           {book.row}
                         </p>
                       )}
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            {book.des && (
-              <div className="card">
-                <div className="card-body">
-                  <div className="row">
+                   {book.des && (
+              <div className="mt-2">
+                <div className="">
+                  <div className="">
                     <div className="col-md-12 col-lg-12 col-12 col-sm-12 p-input-icon-left mb-3 ">
                       <p>{book.des}</p>
                     </div>
@@ -227,8 +227,55 @@ const BookCatalogueDetail = () => {
                 </div>
               </div>
             )}
+                </div>
+              </div>
+            </div>
+           
           </div>
         </div>
+        <style jsx>
+        {`
+            /* books page css  before https://prnt.sc/hAro1S1EbQkN */
+//  .card-title {
+//     font-weight: 600;
+//     font-size: 20px;
+//     color: #2a2a2a;
+//     margin-top: 0px;
+//     margin-bottom: 15px;
+// }
+    .booktexts{
+    color:#2e3e50;
+     font-weight: 500;
+     font-size:14px;
+    }
+  
+      .hovershadows {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.01); /* Normal shadow */
+}
+
+.hovershadows:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
+}
+   .id-book-img img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hovershadows:hover .id-book-img img {
+  transform: scale(1.05); /* Slight zoom out effect */
+}
+     
+        .skybluesbackground{
+      background: #30a4dc !important;
+      margin-bottom:10px;
+          font-size: 14px !important;
+          color:white;
+        }
+      .skybluesbackground:hover{
+       color:white;
+        }
+          `}
+        </style>
       </div>
     </>
   );

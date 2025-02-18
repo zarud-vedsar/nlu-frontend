@@ -3,7 +3,7 @@ import { NODE_API_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
 import {
   formatDate,
-  goBack,
+  goBack, formatTime
 } from "../../../site-components/Helper/HelperFunction";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
@@ -160,9 +160,15 @@ function LeaveRequestList() {
 
   const updateReturnStatus = async (dbId) => {
     try {
+      
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, "0");
+        const minutes = now.getMinutes().toString().padStart(2, "0");
+        const returnTime = `${hours}:${minutes}`;
+        
       const response = await dataFetchingPost(
         `${NODE_API_URL}/api/hostel-management/student/leave-request-set-return-by-student`,
-        { studentId: secureLocalStorage.getItem("studentId"), dbId }
+        { studentId: secureLocalStorage.getItem("studentId"), dbId ,returnTime:returnTime}
       );
       if (response?.statusCode === 200 || response?.statusCode === 201) {
         toast.success(response.message);
@@ -283,8 +289,18 @@ function LeaveRequestList() {
                       sortable
                     />
                     <Column
+                      body={(row) => row.leavingTime? formatTime(row.leavingTime) :row.leavingTime}
+                      header="Leaving Time"
+                      sortable
+                    />
+                    <Column
                       body={(row) => formatDate(row?.endDate)}
                       header="End Date"
+                      sortable
+                    />
+                    <Column
+                      body={(row) => row.returnTime? formatTime(row.returnTime) : row.returnTime}
+                      header="Return Time"
                       sortable
                     />
                     <Column

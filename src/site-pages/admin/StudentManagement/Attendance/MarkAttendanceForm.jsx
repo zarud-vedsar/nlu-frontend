@@ -348,17 +348,7 @@ function MarkAttendanceForm() {
     }
   };
 
-  // useEffect(() => {
-  //   if (assignmentId) {
-  //     updateFetchData(assignmentId).then((response) => {
-  //       if (response?.statusCode === 200 && response.data.length > 0) {
-  //         const { courseid, semesterid } = response.data[0];
-  //         fetchSemesterBasedOnCourse(courseid);
-  //         fetchSubjectBasedOnCourseAndSemeter(courseid, semesterid);
-  //       }
-  //     });
-  //   }
-  // }, [assignmentId]);
+ 
 
   const markAll = (value) => {
     const updatedAttendanceList = studentListWithAttendance.map((student) => ({
@@ -582,9 +572,25 @@ function MarkAttendanceForm() {
                                 : ""
                             }
                             onChange={(e) => {
+
+                              const selectedDate = e.target.value;
+
+                        const today = new Date();
+                        const yesterday = new Date();
+
+                        yesterday.setDate(yesterday.getDate() - 1);
+
+                        const minDate = yesterday.toISOString().split("T")[0];
+                        const maxDate = today.toISOString().split("T")[0];
+
+                        const validDate =
+                          selectedDate >= minDate && selectedDate <= maxDate
+                            ? selectedDate
+                            : maxDate;
+
                               setFormData({
                                 ...formData,
-                                date: e.target.value,
+                                date: validDate,
                               });
                             }}
                           />

@@ -29,7 +29,7 @@ const About = () => {
                 fostering intellectual diversity, mentorship, and professional growth. With a focus on justice, knowledge, and collaboration,
                 it nurtures well-rounded legal professionals equipped to impact society meaningfully.
               </p>
-              <Link to={'/introduction'} className='btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more'>Read More &nbsp; <FaArrowRightLong /></Link>
+              <Link to={'/about'} className='btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more'>Read More &nbsp; <FaArrowRightLong /></Link>
             </div>
             <div className='col-md-6 col-lg-6 col-12 col-sm-12 order-md-2 order-sm-1 order-1' data-aos="fade-left">
               <div className='about-img-bx'>

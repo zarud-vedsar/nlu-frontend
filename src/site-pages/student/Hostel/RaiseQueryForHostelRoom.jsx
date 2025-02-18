@@ -23,7 +23,7 @@ function RaiseQueryForHostelRoom() {
   const [currentCourse, setCurrentCourse] = useState(initialData);
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
-
+const [isSelectedCourseApproved,setIsSelectedCourseApproved] = useState(false);
   const errorMsg = (field, msg) => {
     setError((prev) => ({
       ...prev,
@@ -106,6 +106,7 @@ function RaiseQueryForHostelRoom() {
       );
       if (response.data?.statusCode === 200) {
         if (response?.data?.data?.approved === 1) {
+          setIsSelectedCourseApproved(true);
           setCurrentCourse((prev) => ({
             ...prev,
             coursename: response?.data?.data?.coursename,
@@ -196,6 +197,7 @@ function RaiseQueryForHostelRoom() {
             </div>
             <div className="card ">
               <div className="card-body">
+              {isSelectedCourseApproved ?
                 <form onSubmit={handleSubmit}>
                   <div className="row">
                     
@@ -212,8 +214,9 @@ function RaiseQueryForHostelRoom() {
                       column="col-md-12 col-lg-12"
                       required
                     />
-
+                    
                     <div className="col-md-12 col-lg-12 col-12">
+                   
                       <button
                         disabled={isSubmit}
                         className="btn btn-dark col-12 d-flex justify-content-center"
@@ -227,8 +230,9 @@ function RaiseQueryForHostelRoom() {
                         )}
                       </button>
                     </div>
+
                   </div>
-                </form>
+                </form>  : <span className="text-danger">Currentlty your are not registered for semeter</span>}
               </div>
             </div>
           </div>

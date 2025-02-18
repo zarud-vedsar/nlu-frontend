@@ -70,7 +70,7 @@ function Designation() {
         try {
             const response = await dataFetchingGet(`${NODE_API_URL}/api/designation/retrieve-all-designation-with-department/${deleteStatus}`);
             if (response?.statusCode === 200 && response.data.length > 0) {
-                console.log(response.data);
+               
 
                 setDesignationList(response.data);
             } else {

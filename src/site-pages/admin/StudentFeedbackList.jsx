@@ -14,10 +14,30 @@ const FeedbackList = () => {
     const [filterText, setFilterText] = useState(""); // State for filtering
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState("");
+    
+    const formatDateForMonth = (date) => {
+        return new Intl.DateTimeFormat("en-CA", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+        }).format(date);
+      };
+      
+        
+      const getFirstDayOfMonth = () => {
+        const now = new Date();
+        return formatDateForMonth(new Date(now.getFullYear(), now.getMonth(), 1));
+      };
+      
+      const getLastDayOfMonth = () => {
+        const now = new Date();
+        return formatDateForMonth(new Date(now.getFullYear(), now.getMonth() + 1, 0));
+      };
     const initialData = {
-        fromDate: '',
-        toDate: ''
+        fromDate: getFirstDayOfMonth(),
+        toDate: getLastDayOfMonth()
     }
+
     const [formData, setFormData] = useState(initialData);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -128,11 +148,11 @@ const FeedbackList = () => {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <label className="font-weight-semibold">From</label>
-                                        <input type="date" className="form-control" name="fromDate" id="fromDate" onChange={handleChange} />
+                                        <input type="date" className="form-control" name="fromDate" id="fromDate" value={formData.fromDate} onChange={handleChange} />
                                     </div>
                                     <div className="col-md-4">
                                         <label className="font-weight-semibold">To</label>
-                                        <input type="date" className="form-control" name="toDate" id="toDate" onChange={handleChange} />
+                                        <input type="date" className="form-control" name="toDate" id="toDate" value={formData.toDate} onChange={handleChange} />
                                     </div>
                                     <div className="col-md-4 d-flex justify-content-start align-items-center">
                                         <button className="btn btn-info mt-4" onClick={filterList}>Search</button>

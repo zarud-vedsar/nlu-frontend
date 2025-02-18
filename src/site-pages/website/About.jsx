@@ -76,7 +76,7 @@ const About = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-9 col-md-9 col-12 col-sm-12 col-xs-12 rightpart">
+            <div className="col-lg-9 col-md-9 col-12 col-sm-12 col-xs-12">
               <div className="section-title-wrapper">
                 <div className="section-title">
                   <h3 className="heading-primary3 butler-regular">{aboutData.atitle}</h3>

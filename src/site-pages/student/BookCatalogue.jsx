@@ -62,7 +62,7 @@ const BookCatalogue = () => {
                 <h5 className="card-title h6_new">Book Catalogue</h5>
                 <div className="ml-auto">
                   <button
-                    className="ml-auto btn-md btn border-0 btn-light "
+                    className="ml-auto btn-md btn border-0 backbtn btn skybluesbackground "
                     onClick={() => window.history.back()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back
@@ -96,7 +96,7 @@ const BookCatalogue = () => {
                   key={index}
                 >
                   <div
-                    className="d-flex position-relative"
+                    className="d-flex position-relative hovershadows"
                     style={{
                       backgroundColor: "white",
                       padding: "14px",
@@ -114,26 +114,26 @@ const BookCatalogue = () => {
                         }
                         className="card-img-top"
                         alt="..."
-                        style={{ height: "200px" }}
+                        style={{ height: "180px",width:"210px" }}
                       />
                     </div>
                     <div className="px-3">
                       <h5 className="card-title mb-1">{book?.book_name}</h5>
-                     {book?.author && <p className="card-text mb-1">Author : {book?.author}</p> }
-                     {book?.edition && <p className="card-text mb-1">Edition : {book?.edition}</p>}
-                     {book?.language && <p className="card-text mb-1">Language : {book?.language}</p>}
-                     {book?.publisher && <p className="card-text mb-1">Publisher : {book?.publisher}</p>}
+                     {book?.author && <p className="card-text mb-1 "><span className="booktexts">Author</span> : {book?.author}</p> }
+                     {book?.edition && <p className="card-text mb-1"><span className="booktexts">Edition</span> : {book?.edition}</p>}
+                     {book?.language && <p className="card-text mb-1"><span className="booktexts">Language</span> : {book?.language}</p>}
+                     {book?.publisher && <p className="card-text mb-1"><span className="booktexts">Publisher</span> : {book?.publisher}</p>}
                       <Link
                         to={`/student/book-catalogue-detail/${book.id}`}
-                        className="ml-auto btn-md btn border-0 btn-light "
+                        className="viewsdetailsbtn "
                         style={{
                           position: "absolute",
                           bottom: "14px",
-                          right: "13px",
+                          // right: "13px",
                         }}
                       >
                         View Details &nbsp;
-                        <FaArrowRight />
+                        <FaArrowRight style={{fontWeight:"600"}}/>
                       </Link>
                     </div>
                   </div>
@@ -142,6 +142,53 @@ const BookCatalogue = () => {
             </div>
           </div>
         </div>
+        <style jsx>
+        {`
+            /* books page css  before https://prnt.sc/8j4wAJbKV-LX */
+  .viewsdetailsbtn{
+
+    background-color: #B81365;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding:5px 14px;
+    border-radius:6px;
+  }
+    .booktexts{
+    color:#2e3e50;
+     font-weight: 500;
+     font-size:14px;
+    }
+    .viewsdetailsbtn:hover{
+       color: white;
+    }
+      .hovershadows {
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Normal shadow */
+}
+
+.hovershadows:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+   .id-book-img img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hovershadows:hover .id-book-img img {
+  transform: scale(1.05); /* Slight zoom out effect */
+}
+    button.btn.btn-secondary {
+    background: #2e3e50 !important;
+        padding: 9px 14px !important;
+}      
+        .skybluesbackground{
+      background: #30a4dc !important;
+      margin-bottom:30px;
+          font-size: 14px !important;
+        }
+    
+          `}
+        </style>
       </div>
     </>
   );

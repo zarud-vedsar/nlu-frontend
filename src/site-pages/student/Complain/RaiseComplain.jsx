@@ -21,6 +21,7 @@ function RaiseComplain() {
   const [currentCourse, setCurrentCourse] = useState(initialData);
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
+const [isSelectedCourseApproved,setIsSelectedCourseApproved] = useState(false);
 
   const errorMsg = (field, msg) => {
     setError((prev) => ({
@@ -105,6 +106,7 @@ function RaiseComplain() {
 
       if (response.data?.statusCode === 200) {
         if (response?.data?.data?.approved === 1) {
+          setIsSelectedCourseApproved(true);
           setCurrentCourse((prev) => ({
             ...prev,
             coursename: response?.data?.data?.coursename,
@@ -191,6 +193,7 @@ function RaiseComplain() {
             </div>
             <div className="card border-0">
               <div className="card-body">
+              {isSelectedCourseApproved ?
                 <form onSubmit={handleSubmit}>
                   <div className="row">
                     {/* <FormField
@@ -248,7 +251,7 @@ function RaiseComplain() {
                       </button>
                     </div>
                   </div>
-                </form>
+                </form>  : <span className="text-danger">Currentlty your are not registered for semeter</span>}
               </div>
             </div>
           </div>

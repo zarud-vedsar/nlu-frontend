@@ -3,6 +3,7 @@ import { FILE_API_URL, NODE_API_URL } from "../../../site-components/Helper/Cons
 import { toast } from "react-toastify";
 import {
   formatDate,
+  formatTime,
   goBack,
 } from "../../../site-components/Helper/HelperFunction";
 import { DataTable } from "primereact/datatable";
@@ -341,6 +342,11 @@ function LeaveRequestList() {
     // Toggle the status (currentStatus is the current checkbox state)
     const newStatus = currentStatus === 1 ? 0 : 1;
     try {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, "0");
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+      const returnTime = `${hours}:${minutes}`;
+
       const loguserid = secureLocalStorage.getItem("login_id");
       const login_type = secureLocalStorage.getItem("loginType");
       const response = await axios.post(
@@ -350,13 +356,14 @@ function LeaveRequestList() {
           loguserid,
           dbId,
           returnStatus: newStatus,
+          returnTime:newStatus ? returnTime : "",
         }
       );
       if (response?.data?.statusCode === 200) {
         toast.success(response?.data?.message);
         setRaisedRoomQueries((prevList) =>
           prevList.map((item) =>
-            item.id === dbId ? { ...item, returnStatus: newStatus } : item
+            item.id === dbId ? { ...item, returnStatus: newStatus ,returnTime: newStatus?returnTime:""} : item
           )
         );
       } else {
@@ -519,9 +526,20 @@ function LeaveRequestList() {
                       header="Start Date"
                       sortable
                     />
+                    
+                    <Column
+                      body={(row) => row.leavingTime? formatTime(row.leavingTime) : row.leavingTime}
+                      header="Leaving Time"
+                      sortable
+                    />
                     <Column
                       body={(row) => formatDate(row.endDate)}
                       header="End Date"
+                      sortable
+                    />
+                    <Column
+                      body={(row) => row.returnTime? formatTime(row.returnTime) : row.returnTime}
+                      header="Return Time"
                       sortable
                     />
                     <Column

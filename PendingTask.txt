@@ -44,6 +44,4 @@ Today -------- 4 issue done
 6.  Warden assignment Hostel Wise.
 7.  Substitute System in Class Timetable.This Gave need of taking multiple attendace of same class on same day.
 
-changes 
--------------
-6.  Addition of "Leaving time" and "Return time" in Hostel Leave Request
+

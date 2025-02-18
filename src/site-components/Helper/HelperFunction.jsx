@@ -100,6 +100,24 @@ export const formatDate = (dateInput) => {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
 }
+
+export const formatTime = (time) => {
+    if (!time) return ''; // Handle empty values
+    const [hour, minute] = time.split(':');
+    let period = 'AM';
+    let formattedHour = parseInt(hour, 10);
+  
+    if (formattedHour >= 12) {
+      period = 'PM';
+      if (formattedHour > 12) {
+        formattedHour -= 12;
+      }
+    } else if (formattedHour === 0) {
+      formattedHour = 12;
+    }
+  
+    return `${formattedHour}:${minute} ${period}`;
+  };
 // POST request - Create
 export const dataFetchingPost = async (url, data) => {
     try {

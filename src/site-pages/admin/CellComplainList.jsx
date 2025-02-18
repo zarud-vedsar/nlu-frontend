@@ -319,12 +319,7 @@ function CellComplainList() {
                       tableStyle={{ minWidth: "50rem" }}
                       sortMode="multiple"
                       globalFilter={globalFilter}
-                      filters={{
-                        global: {
-                          value: globalFilter,
-                          matchMode: "contains",
-                        },
-                      }}
+                      
                     >
                       <Column
                         body={(row, { rowIndex }) => rowIndex + 1}
@@ -343,7 +338,7 @@ function CellComplainList() {
                           }`;
                         }}
                         header="Name"
-                        filterField="fname"
+                        field="fname"
                         sortable
                       />
 
@@ -351,34 +346,35 @@ function CellComplainList() {
                         body={(row) => capitalizeFirstLetter(row.email)}
                         header="Email"
                         sortable
-                        filterField="email"
+                        field="email"
                       />
                       <Column
                         body={(row) => row.phone}
                         header="Phone"
                         sortable
-                        filterField="phone"
+                        field="phone"
                       />
                       <Column
                         body={(row) => row.batch}
                         header="Batch"
                         sortable
-                        filterField="batch"
+                        field="batch"
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.semester)}
                         header="Semester"
                         sortable
-                        filterField="semester"
+                        field="semester"
                       />
                       <Column
                         body={(row) => formatDate(row.created_at)}
                         header="Date"
                         sortable
-                        filterField="created_at"
+                        
+                        field="created_at"
                       />
                       
-                      <Column body={(row) => row.cell} header="Cell" sortable  filterField="cell" />
+                      <Column body={(row) => row.cell} header="Cell" sortable  field="cell" />
                       <Column
                         header="View Complain"
                         body={(row) => (

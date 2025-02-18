@@ -17,6 +17,7 @@ import secureLocalStorage from "react-secure-storage";
 import { FormField } from "../../site-components/admin/assets/FormField";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Modal, Button, Spinner } from "react-bootstrap";
+import { InputText } from "primereact/inputtext";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -57,6 +58,7 @@ function CellComplainList() {
 
   const [modalShow, setModalShow] = useState(false);
   const [modalMessage, setModalMessage] = useState();
+  const [globalFilter, setGlobalFilter] = useState("");
 
   const viewMessage = (data) => {
    
@@ -289,6 +291,20 @@ function CellComplainList() {
             <div className="card">
               <div className="card-body">
                 {/* Search Box */}
+                <div className="row align-items-center">
+                                <div className="col-md-12 col-lg-12 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                                  <div className="search-icon">
+                                    <i className="pi pi-search" />
+                                  </div>
+                                  <InputText
+                                    type="search"
+                                    value={globalFilter}
+                                    onChange={(e) => setGlobalFilter(e.target.value)}
+                                    placeholder="Search"
+                                    className="form-control dtsearch-input"
+                                  />
+                                </div>
+                              </div>
 
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   {cellList.length > 0 ? (
@@ -302,6 +318,13 @@ function CellComplainList() {
                       className="p-datatable-custom"
                       tableStyle={{ minWidth: "50rem" }}
                       sortMode="multiple"
+                      globalFilter={globalFilter}
+                      filters={{
+                        global: {
+                          value: globalFilter,
+                          matchMode: "contains",
+                        },
+                      }}
                     >
                       <Column
                         body={(row, { rowIndex }) => rowIndex + 1}
@@ -320,6 +343,7 @@ function CellComplainList() {
                           }`;
                         }}
                         header="Name"
+                        filterField="fname"
                         sortable
                       />
 
@@ -327,29 +351,34 @@ function CellComplainList() {
                         body={(row) => capitalizeFirstLetter(row.email)}
                         header="Email"
                         sortable
+                        filterField="email"
                       />
                       <Column
                         body={(row) => row.phone}
                         header="Phone"
                         sortable
+                        filterField="phone"
                       />
                       <Column
                         body={(row) => row.batch}
                         header="Batch"
                         sortable
+                        filterField="batch"
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.semester)}
                         header="Semester"
                         sortable
+                        filterField="semester"
                       />
                       <Column
                         body={(row) => formatDate(row.created_at)}
                         header="Date"
                         sortable
+                        filterField="created_at"
                       />
                       
-                      <Column body={(row) => row.cell} header="Cell" sortable />
+                      <Column body={(row) => row.cell} header="Cell" sortable  filterField="cell" />
                       <Column
                         header="View Complain"
                         body={(row) => (

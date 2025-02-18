@@ -11,6 +11,8 @@ function AssignmentSubject() {
   const [subjectList, setSubjectList] = useState([]);
   const [apiHit, setApiHit] = useState(false);
   const [currentCourse, setCurrentCourse] = useState();
+  const [isSelectedCourseApproved,setIsSelectedCourseApproved] = useState(false);
+
   const inititalData = {
     courseId: "",
     semesterId: "",
@@ -72,6 +74,7 @@ function AssignmentSubject() {
         response.data?.statusCode === 200 &&
         response?.data?.data?.approved === 1
       ) {
+        setIsSelectedCourseApproved(true);
         const {
           id,
           coursename,

@@ -494,6 +494,7 @@
 .mmllg {
     display: flex;
     width: 100%;
+    padding: 10px 0px;
 }
 .page-mine-header.is-sticky .logosec {
     padding:10px 0;
@@ -506,7 +507,7 @@
     }
 
     .page-mine-header.is-sticky>.logosec {
-        width: 78%;
+        width: 100%;
     }
     .page-mine-header.is-sticky .logosec {
         padding:0;
@@ -516,7 +517,7 @@
         max-width: 55px;
     }
     .page-mine-header.is-sticky {
-        justify-content: start;
+        justify-content: space-between;
     }
     .header-heading2 {
         font-size: 10px;

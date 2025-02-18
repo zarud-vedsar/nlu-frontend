@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import rpnl_logo from '../assets/Images/rpnlu.png';
 import './header.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { PHP_API_URL } from '../../Helper/Constant';
 import axios from 'axios';
 function Header() {
+  const location = useLocation();
+
   const [menuVisible, setMenuVisible] = useState(false);
   const [message, setMessages] = useState([]);
   const [courseName, setCourseNames] = useState([]);
@@ -65,6 +67,11 @@ function Header() {
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
   };
+
+
+  useEffect(() => {
+    toggleMenu(); 
+  }, [location.pathname]);
 
   return (
     <>

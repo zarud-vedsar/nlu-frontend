@@ -468,8 +468,11 @@ function AddExam() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <Link to="/admin/" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                    Exam Management
+                   Dashboard
                   </Link>
+                  <span className="breadcrumb-item active">
+                  Exam Management
+                  </span>
                   <span className="breadcrumb-item active">
                     {dbId ? "Update Exam Paper" : "Add Exam Paper"}
                   </span>

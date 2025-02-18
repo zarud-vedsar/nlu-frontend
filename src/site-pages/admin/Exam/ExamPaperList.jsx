@@ -690,10 +690,13 @@ function ExamList() {
             <div className="page-header mb-0">
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
-                  <Link to="/admin/" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" />
-                    Exam Management
-                  </Link>
+                 <Link to="/admin/" className="breadcrumb-item">
+                                    <i className="fas fa-home m-r-5" />
+                                   Dashboard
+                                  </Link>
+                                  <span className="breadcrumb-item active">
+                                  Exam Management
+                                  </span>
                   <span className="breadcrumb-item active">Exam Paper List</span>
                 </nav>
               </div>

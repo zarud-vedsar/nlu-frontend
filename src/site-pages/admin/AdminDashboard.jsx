@@ -319,6 +319,18 @@ const AdminDashboard = () => {
                     </div>
                   )}
                 </div>
+                  <div className="col-lg-12 col-md-12 col-12" style={{padding:"15px"}}>
+                    <table>
+                      <tr>
+                        <th>Category</th>
+                        <th>Total Expence</th>
+                      </tr>
+                      <tr>
+                        <td>furniture</td>
+                        <td>900</td>
+                      </tr>
+                    </table>
+                  </div>
               </div>
             </div>
             <div className="col-md-8 col-lg-8 col-sm-12">

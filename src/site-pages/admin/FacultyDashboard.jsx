@@ -123,6 +123,7 @@ const FacultyDashboard = () => {
       setSubjectList(response?.data?.data?.facultysubjects);
       setPendingAssignment(response?.data?.data?.pendingAssignment);
       setProductIssued(response?.data?.data?.inventoryIssue);
+     
       setSelfSubjectDailyAttendance(
         response?.data?.data?.selfSubjectDailyAttendance
       );
@@ -262,20 +263,32 @@ const FacultyDashboard = () => {
     whiteSpace: "nowrap",
     overflow: "hidden",
     width: "100%",
+    minHeight: "335px",
   };
 
   const boxStyle = {
     animation: "marquee 10s linear infinite",
     fontSize: "15px",
     color: "#111111",
-    borderBottom: "1px solid #555",
+    // borderBottom: "1px solid #555",
     marginBottom: "10px",
+    background: "rgb(17 112 228 / 5%)",
+    padding: "13px",
+  };
+  const quantityStyle = {
+    background: "rgb(39 76 119)",
+    color:"white",
+    padding:"2px 5px",
+    borderRadius:"5px",
+    fontSize:"13px",
+    fontWeight:"800"
+   
   };
 
   const keyframesStyle = `
     @keyframes marquee {
       0% {
-        transform: translateY(100%);
+        transform: translateY(320%);
       }
       100% {
         transform: translateY(-100%);
@@ -502,21 +515,56 @@ const FacultyDashboard = () => {
                         ))}
                       </select>
                     </div>
-                    <div className="card-body">
+                    <div className="card-body ">
                       <style>{keyframesStyle}</style>
                       <div style={containerStyle}>
                         {productIssued &&
                           productIssued.map((product, index) => (
                             <>
-                              <div style={boxStyle}>
+                              <div style={boxStyle} className="rounded">
                                 <p className="text-danger mb-0 font-14">
                                   {formatDate(product?.stockOutDate)}
                                 </p>
-                                <p className="text-muted font-15">
+                                <h4 className="font-15 mb-0">
                                   {product?.pname
                                     ? validator.unescape(product?.pname)
                                     : ""}
+                                </h4>
+                                <div className="d-flex justify-content-between mb-0">
+                                <p className="font-15 mb-0">
+                               <span className="text-dark">Brand: </span>  <span className="id-product-brand" style={{background: "#6096ba",
+    padding:"0px 5px",
+    borderRadius: "2px",
+    color: "white",}}>{product?.pbrand
+                                    ? validator.unescape(product?.pbrand)
+                                    : ""} </span>
                                 </p>
+                                <p className="font-15 mb-0">
+                                 <span className="text-dark">Code: </span> 
+                                  {product?.pcode
+                                    ? product?.pcode
+                                    : ""}
+                                </p>
+
+                                </div>
+                               
+                                <div className="d-flex justify-content-between mb-0">
+                                   <p className="mb-0">
+                                   <span className="text-dark">Unit: </span>{product?.punit
+                                    ? product?.punit
+                                    : ""}
+                                    
+                                    </p>
+
+                                    <p className="mb-0">
+
+                                     <span className="text-dark"> Quantity: </span><span style={quantityStyle}>{product?.quantity
+                                    ? product?.quantity
+                                    : ""} </span>
+                                       </p> 
+                                    
+                                     </div>
+                                
                               </div>
                             </>
                           ))}

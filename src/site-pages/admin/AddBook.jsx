@@ -9,7 +9,7 @@ import {
 } from "../../site-components/Helper/Constant";
 import Select from "react-select";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import { dataFetchingPost } from "../../site-components/Helper/HelperFunction";
 import validator from "validator";
@@ -27,7 +27,7 @@ const qtyRef = useRef(null);
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: "",
+    placeholder: "Enter your description here...",
     spellcheck: true,
     language: "pt_br",
     defaultMode: "1",
@@ -336,9 +336,13 @@ const qtyRef = useRef(null);
             <div className="page-header mb-0">
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
-                  <a href="./" className="breadcrumb-item">
-                    Library
-                  </a>
+                <a href="/admin/" className="breadcrumb-item">
+                                     <i className="fas fa-home m-r-5" />
+                                    Dashboard
+                                   </a>
+                                   <span className="breadcrumb-item active">
+                                   Learning Management
+                                   </span>
 
                   <span className="breadcrumb-item active">Add Book</span>
                 </nav>
@@ -360,6 +364,12 @@ const qtyRef = useRef(null);
                     </i>{" "}
                     Go Back
                   </Button>
+                   <Link
+                                          to="/admin/book"
+                                          className="ml-2 btn-md btn border-0 btn-secondary"
+                                        >
+                                          <i className="fas fa-list" /> Books List
+                                        </Link>
                 </div>
               </div>
             </div>
@@ -447,6 +457,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="isbn_no"
+                          placeholder="Enter ISBN Number"
                           value={formData.isbn_no}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -466,6 +477,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="book_name"
+                           placeholder="Enter Book Name"
                           value={formData.book_name}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -486,6 +498,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="edition"
+                           placeholder="Enter Editor"
                           value={formData.edition}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -505,6 +518,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="publisher"
+                           placeholder="Enter Publisher"
                           value={formData.publisher}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -524,6 +538,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="author"
+                          placeholder="Enter Author"
                           value={formData.author}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -544,6 +559,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="language"
+                          placeholder="Enter Language"
                           value={formData.language}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -561,6 +577,7 @@ const qtyRef = useRef(null);
                           type="number"
                           className="form-control"
                           name="qty"
+                          placeholder="Enter Quantity"
                           value={formData.qty}
                           ref={qtyRef}
                           
@@ -578,6 +595,7 @@ const qtyRef = useRef(null);
                           type="number"
                           className="form-control"
                           name="price"
+                          placeholder="Enter Price"
                           value={formData.price}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -597,6 +615,7 @@ const qtyRef = useRef(null);
                           type="number"
                           className="form-control"
                           name="number_of_pages"
+                          placeholder="Enter No Pages"
                           value={formData.number_of_pages}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -635,6 +654,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="vendor"
+                          placeholder="Enter Vendor"
                           value={formData.vendor}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -669,6 +689,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="block"
+                          placeholder="Enter Block"
                           value={formData.block}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -685,6 +706,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="section"
+                          placeholder="Enter Section"
                           value={formData.section}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -698,6 +720,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="row"
+                          placeholder="Enter Row"
                           value={formData.row}
                           onChange={handleChange}
                           disabled={isbnValid}

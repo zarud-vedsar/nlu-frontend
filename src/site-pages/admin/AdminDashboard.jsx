@@ -306,43 +306,6 @@ const AdminDashboard = () => {
                     ))}
                   </select>
                 </div>
-<<<<<<< HEAD
-              </div>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-lg-4">
-              <div className="card">
-                <div className="card-header">
-                    <h4 className="card-title">Courses</h4>
-                    </div>
-                    <div className="" style={{padding:"10px 0px"}}>
-                  {data?.total_semester?.map((course, index) => (
-                    <div
-                      key={index}
-                      className="col-lg-12 col-md-12 col-12 mb-3" 
-                     
-                    >
-                      <div className="id-course-wrapper d-flex">
-                        <span className="id-course-subject">
-                          <img src={CourseImg} alt="student-img" />
-                        </span>
-                        <div className="id-course-content">
-                          <h4>{course.coursename}</h4>
-                          <h5 className="mb-0">Total Sem: {course.totalSem}</h5>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                   </div>
-                </div>
-           
-            </div>
-            <div className="col-lg-4">
-              <div className="card ">
-                <div className="card-header "> 
-                    <h4 className="card-title">Total Expence</h4>
-=======
                 <div className="card-body">
                   {visitorData.length > 0 && !isFetching ? (
                     <Line data={chartData} options={options} />
@@ -355,7 +318,6 @@ const AdminDashboard = () => {
                       <Spinner animation="border" />
                     </div>
                   )}
->>>>>>> 3f1861feea8487d5c03d46dc251d6e8f95cda00d
                 </div>
                   <div className="col-lg-12 col-md-12 col-12" style={{padding:"15px"}}>
                     <table>
@@ -371,28 +333,10 @@ const AdminDashboard = () => {
                   </div>
               </div>
             </div>
-<<<<<<< HEAD
-            
-          </div>
-          <div className="row">
-            <div className="col-md-4 col-lg-4 col-12">
-              <div className="card id-card">
-                <div className="id-total-record-wrapper d-flex justify-content-around align-items-center">
-                  <span className="id-total-record-student">
-                    <img src={NoticeImg} alt="student-img" />
-                  </span>
-                  <div className="id-total-record-content">
-                    <h4>Total Notice</h4>
-                    <h5 className="id-counter-number">
-                      {data?.total_notice?.total_notice}
-                    </h5>
-                  </div>
-=======
             <div className="col-md-8 col-lg-8 col-sm-12">
               <div className="card">
                 <div className="card-header">
                   <div className="card-title h6_new">Announcements</div>
->>>>>>> 3f1861feea8487d5c03d46dc251d6e8f95cda00d
                 </div>
                 <div className="card-body">
                   <div className="w-full py-0">
@@ -477,8 +421,6 @@ const AdminDashboard = () => {
                 <div className="card-header">
                   <h5 className="card-title h6_new">Quick Links</h5>
                 </div>
-<<<<<<< HEAD
-=======
                 <div className="card-body">
                   <div className="row">
                     <div className="col-md-6 col-lg-6 col-sm-6 col-12">
@@ -547,7 +489,6 @@ const AdminDashboard = () => {
                     </div>
                   </div>
                 </div>
->>>>>>> 3f1861feea8487d5c03d46dc251d6e8f95cda00d
               </div>
             </div>
           </div>

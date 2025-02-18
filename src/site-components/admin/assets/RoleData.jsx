@@ -698,6 +698,16 @@ export const RoleData = [
     ],
   },
   {
+    title: "Cell Complain",
+    items: [
+      {
+        label: "Cell Complain",
+        value: "Cell Complain",
+        crud: ["list"], // CRUD operations
+      },
+    ],
+  },
+  {
     title: "University Settings",
     items: [
       {

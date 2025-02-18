@@ -66,7 +66,7 @@ const PieChart = ({ dataValues }) => {
 const FacultyDashboard = () => {
   const [facultyListing, setFacultyListing] = useState([]);
   const [facultyId, setFacultyId] = useState(
-    secureLocalStorage.getItem("login_id")
+    
   );
   const loadFacultyData = async () => {
     try {

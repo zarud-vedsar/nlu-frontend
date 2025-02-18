@@ -805,6 +805,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       ],
     },
     {
+      title: "Cell Complain",
+      icon: <IoIosSettings />, // Icon for settings
+      url: "cell-complain-list",
+      dropdownMenus: [],
+    },
+    {
       title: "University Settings",
       icon: <IoIosSettings />, // Icon for settings
       url: "brand-setting",

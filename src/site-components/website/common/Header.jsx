@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import rpnl_logo from '../assets/Images/rpnlu.png';
 import './header.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { PHP_API_URL } from '../../Helper/Constant';
 import axios from 'axios';
 function Header() {
+  const location = useLocation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const [menuVisible, setMenuVisible] = useState(false);
   const [message, setMessages] = useState([]);
   const [courseName, setCourseNames] = useState([]);
@@ -63,8 +72,15 @@ function Header() {
 
   /* Toggle Menu Visibility */
   const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
+    if(!isMobile) return;
+    setMenuVisible(()=>!menuVisible);
   };
+
+
+
+  useEffect(() => {
+    toggleMenu(); 
+  }, [location.pathname]);
 
   return (
     <>

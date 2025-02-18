@@ -497,7 +497,7 @@ function LeaveRequestList() {
                                                   )}
                                                 </div>
                                                 <div>
-                                                  <div className="info-name">
+                                                  <div className="info-name" style={{width:"15em"}}>
                                                     <span>{`${rowData.sname}`}</span>
                                                   </div>
                     

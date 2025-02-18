@@ -15,12 +15,57 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
 import secureLocalStorage from "react-secure-storage";
 import { FormField } from "../../site-components/admin/assets/FormField";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Modal, Button, Spinner } from "react-bootstrap";
+import { InputText } from "primereact/inputtext";
 
-function UserLogList() {
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header>Complain</Modal.Header>
+      <Modal.Body>
+        <span className="badge badge-secondary">Subject </span>{" "}
+        <div className="ml-2">
+          {" "}
+          {capitalizeFirstLetter(props?.modalMessage?.subject)}
+        </div>
+        <br />
+        <span className="badge badge-primary">Message </span>
+        <div
+          className="table-responsive d-flex flex-wrap ml-2"
+          dangerouslySetInnerHTML={{ __html: props?.modalMessage?.message }}
+        ></div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide} className="mx-auto">
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+function CellComplainList() {
   const [showFilter, setShowFilter] = useState(true);
-  const [logList, setLogList] = useState([]);
+  const [cellList, setCellList] = useState([]);
+  const [cellTypeList, setCellTypeList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [facultyListing, setFacultyListing] = useState([]);
+
+  const [modalShow, setModalShow] = useState(false);
+  const [modalMessage, setModalMessage] = useState();
+  const [globalFilter, setGlobalFilter] = useState("");
+
+  const viewMessage = (data) => {
+   
+    setModalMessage(data);
+    setModalShow(true);
+  };
+
   const formatDateForMonth = (date) => {
     return new Intl.DateTimeFormat("en-CA", {
       year: "numeric",
@@ -31,7 +76,7 @@ function UserLogList() {
 
   const getFirstDayOfMonth = () => {
     const now = new Date();
-    return formatDateForMonth(new Date(now.getFullYear(), now.getMonth(), 1));
+    return formatDateForMonth(new Date(now.getFullYear(), now.getMonth()-2, 1));
   };
 
   const getLastDayOfMonth = () => {
@@ -42,26 +87,26 @@ function UserLogList() {
   };
 
   const initialData = {
-    log_type: "",
-    userid: "",
-    start_date: getFirstDayOfMonth(),
-    end_date: getLastDayOfMonth(),
+    cell: "",
+
+    from_date: getFirstDayOfMonth(),
+    to_date: getLastDayOfMonth(),
   };
 
   const [formData, setFormData] = useState(initialData);
 
   useEffect(() => {
-    loadFacultyData();
+    loadCellTypeList();
     handleSubmit();
   }, []);
 
-  const loadFacultyData = async () => {
+  const loadCellTypeList = async () => {
     setIsFetching(true);
     try {
       const bformData = new FormData();
-      bformData.append("data", "load_userPage");
+      bformData.append("data", "cell_list");
       const response = await axios.post(
-        `${PHP_API_URL}/faculty.php`,
+        `${PHP_API_URL}/cell_messages.php`,
         bformData,
         {
           headers: {
@@ -69,10 +114,10 @@ function UserLogList() {
           },
         }
       );
-     
-      setFacultyListing(response.data.data);
+
+      setCellTypeList(response.data.data);
     } catch (error) {
-      setFacultyListing([]);
+      setCellTypeList([]);
       console.error("Error fetching faculty data:", error);
     } finally {
       setIsFetching(false);
@@ -81,11 +126,11 @@ function UserLogList() {
 
   const handleSubmit = async (e = false) => {
     if (e) e.preventDefault();
-    setLogList([]);
+    setCellList([]);
     setIsFetching(true);
     try {
       const bformData = new FormData();
-      bformData.append("data", "load_log");
+      bformData.append("data", "load_complain_messages");
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
 
@@ -93,16 +138,19 @@ function UserLogList() {
         bformData.append(key, value);
       });
 
-      const response = await axios.post(`${PHP_API_URL}/log.php`, bformData);
-      
+      const response = await axios.post(
+        `${PHP_API_URL}/cell_messages.php`,
+        bformData
+      );
+
       if (response.data?.status === 200 && response.data.data.length > 0) {
-        toast.success(response?.data?.msg);
-        setLogList(response?.data?.data);
+        toast.success(response?.data?.msg || "Fetched");
+        setCellList(response?.data?.data);
       } else {
-        setLogList([]);
+        setCellList([]);
       }
     } catch (error) {
-      setLogList([]);
+      setCellList([]);
     } finally {
       setIsFetching(false);
     }
@@ -124,13 +172,13 @@ function UserLogList() {
                   <a href="./" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" /> Dashboard
                   </a>
-                  <span className="breadcrumb-item active">User Log</span>
+                  <span className="breadcrumb-item active">Cell Complain</span>
                 </nav>
               </div>
             </div>
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new"> User Log</h5>
+                <h5 className="card-title h6_new"> Complain List</h5>
                 <div className="ml-auto">
                   <button
                     className="ml-auto btn-md btn border-0 btn-light mr-2"
@@ -160,70 +208,25 @@ function UserLogList() {
                   <div className="row">
                     <div className="col-md-3 col-lg-3 col-12 form-group">
                       <label className="font-weight-semibold">
-                        Select User
+                        Select Cell
                       </label>
 
                       <Select
-                        options={facultyListing.map((faculty) => ({
-                          value: faculty.id, // Use faculty id as the value
-                          label: `${faculty.first_name} ${faculty.last_name}`, // Assuming faculty has first_name and last_name fields
-                        }))}
-                        onChange={(selectedOption) => {
-                          setFormData({
-                            ...formData,
-                            userid: selectedOption.value, // Save selected faculty id
-                          });
-                        }}
-                        value={
-                          facultyListing.find(
-                            (faculty) => faculty.id === formData.userid
-                          )
-                            ? {
-                                value: formData.userid,
-                                label: `${
-                                  facultyListing.find(
-                                    (faculty) => faculty.id === formData.userid
-                                  ).first_name
-                                } ${
-                                  facultyListing.find(
-                                    (faculty) => faculty.id === formData.userid
-                                  ).last_name
-                                }`,
-                              }
-                            : {
-                                value: formData.userid,
-                                label: "Select",
-                              }
-                        }
-                      />
-                    </div>
-                    <div className="col-md-3 col-lg-3 col-12 form-group">
-                      <label className="font-weight-semibold">Log Type</label>
-
-                      <Select
-                        options={[
-                          "login",
-                          "create",
-                          "update",
-                          "delete",
-                          "status",
-                          "failed",
-                        ].map((log) => ({
-                          value: log,
-                          label: capitalizeEachLetter(log),
+                        options={cellTypeList.map((cell) => ({
+                          value: cell,
+                          label: capitalizeEachLetter(cell),
                         }))}
                         onChange={(e) => {
-                          
                           setFormData((prev) => ({
                             ...prev,
-                            log_type: e.value,
+                            cell: e.value,
                           }));
                         }}
                         value={
-                          formData.log_type
+                          formData.cell
                             ? {
-                                value: formData.log_type,
-                                label: capitalizeEachLetter(formData.log_type),
+                                value: formData.cell,
+                                label: capitalizeEachLetter(formData.cell),
                               }
                             : { value: "", label: "Select" }
                         }
@@ -232,31 +235,33 @@ function UserLogList() {
 
                     <FormField
                       label="From Date"
-                      name="start_date"
-                      id="start_date"
+                      name="from_date"
+                      id="from_date"
                       type="date"
-                      value={formData.start_date}
+                      value={formData.from_date}
                       column="col-md-2 col-lg-2"
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,
-                          start_date: e.target.value,
+                          from_date: e.target.value,
                         }))
                       }
+                      required
                     />
                     <FormField
                       label="To Date"
-                      name="end_date"
-                      id="end_date"
+                      name="to_date"
+                      id="to_date"
                       type="date"
-                      value={formData.end_date}
+                      value={formData.to_date}
                       column="col-md-2 col-lg-2"
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,
-                          end_date: e.target.value,
+                          to_date: e.target.value,
                         }))
                       }
+                      required
                     />
 
                     <div className="col-12 d-flex  mt-2">
@@ -286,11 +291,25 @@ function UserLogList() {
             <div className="card">
               <div className="card-body">
                 {/* Search Box */}
+                <div className="row align-items-center">
+                                <div className="col-md-12 col-lg-12 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                                  <div className="search-icon">
+                                    <i className="pi pi-search" />
+                                  </div>
+                                  <InputText
+                                    type="search"
+                                    value={globalFilter}
+                                    onChange={(e) => setGlobalFilter(e.target.value)}
+                                    placeholder="Search"
+                                    className="form-control dtsearch-input"
+                                  />
+                                </div>
+                              </div>
 
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
-                  {logList.length > 0 ? (
+                  {cellList.length > 0 ? (
                     <DataTable
-                      value={logList}
+                      value={cellList}
                       removableSort
                       paginator
                       rows={50}
@@ -299,6 +318,13 @@ function UserLogList() {
                       className="p-datatable-custom"
                       tableStyle={{ minWidth: "50rem" }}
                       sortMode="multiple"
+                      globalFilter={globalFilter}
+                      filters={{
+                        global: {
+                          value: globalFilter,
+                          matchMode: "contains",
+                        },
+                      }}
                     >
                       <Column
                         body={(row, { rowIndex }) => rowIndex + 1}
@@ -307,29 +333,74 @@ function UserLogList() {
                       />
 
                       <Column
-                        body={(row) => capitalizeFirstLetter(row.username)}
-                        header="User"
+                        body={(row) => {
+                          return `${
+                            row.fname
+                              ? capitalizeFirstLetter(row.fname)
+                              : row.fname
+                          }  ${
+                            row.lname ? capitalizeFirstLetter(row.lname) : ""
+                          }`;
+                        }}
+                        header="Name"
+                        filterField="fname"
                         sortable
                       />
+
                       <Column
-                        body={(row) => capitalizeFirstLetter(row.user_type)}
-                        header="User Type"
+                        body={(row) => capitalizeFirstLetter(row.email)}
+                        header="Email"
                         sortable
+                        filterField="email"
                       />
                       <Column
-                        body={(row) => capitalizeFirstLetter(row.log_type)}
-                        header="Log Type"
+                        body={(row) => row.phone}
+                        header="Phone"
                         sortable
+                        filterField="phone"
                       />
                       <Column
-                        body={(row) => formatDate(row.date_time)}
+                        body={(row) => row.batch}
+                        header="Batch"
+                        sortable
+                        filterField="batch"
+                      />
+                      <Column
+                        body={(row) => capitalizeFirstLetter(row.semester)}
+                        header="Semester"
+                        sortable
+                        filterField="semester"
+                      />
+                      <Column
+                        body={(row) => formatDate(row.created_at)}
                         header="Date"
                         sortable
+                        filterField="created_at"
                       />
                       
+                      <Column body={(row) => row.cell} header="Cell" sortable  filterField="cell" />
                       <Column
-                        header="Log Detail"
-                        body={(row) => capitalizeFirstLetter(row.log_details)}
+                        header="View Complain"
+                        body={(row) => (
+                          <div className="d-flex justify-content-center">
+                            <OverlayTrigger
+                              placement="bottom"
+                              overlay={
+                                <Tooltip id="button-tooltip-2">
+                                  View Complain
+                                </Tooltip>
+                              }
+                            >
+                              <div className="avatar avatar-icon avatar-md avatar-orange">
+                                <i
+                                  className="fa-solid fa-eye"
+                                  onClick={() => viewMessage(row)}
+                                ></i>
+                              </div>
+                            </OverlayTrigger>{" "}
+                            
+                          </div>
+                        )}
                       />
                     </DataTable>
                   ) : (
@@ -345,7 +416,13 @@ function UserLogList() {
           </div>
         </div>
       </div>
+
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => {setModalShow(false); setModalMessage(null)}}
+        modalMessage={modalMessage}
+      />
     </>
   );
 }
-export default UserLogList;
+export default CellComplainList;

@@ -7,6 +7,13 @@ import { PHP_API_URL } from '../../Helper/Constant';
 import axios from 'axios';
 function Header() {
   const location = useLocation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const [menuVisible, setMenuVisible] = useState(false);
   const [message, setMessages] = useState([]);
@@ -65,8 +72,10 @@ function Header() {
 
   /* Toggle Menu Visibility */
   const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
+    if(!isMobile) return;
+    setMenuVisible(()=>!menuVisible);
   };
+
 
 
   useEffect(() => {

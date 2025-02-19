@@ -48,7 +48,6 @@ Today -------- 4 issue done
 ------------- 19/February ---------------
 1. Filter in book listing variable (isbn no, block , section, row , quantity(low - high range))
 2. Quantity add features in every book with remark 
-3. List of record of every quantity update
 4. Issue book id add from backend instead of frontend
 5. Filter in issue list variable (student id , issue date, return date , issue date range, return date range , status , fine imposed student), default listing show pending book
 6. Report of lost book

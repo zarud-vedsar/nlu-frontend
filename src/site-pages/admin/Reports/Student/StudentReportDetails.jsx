@@ -22,7 +22,7 @@ function StudentReportDetails() {
   const [isFetching, setIsFetching] = useState(false);
 
   const initialData = {
-    session: null,
+    session:  localStorage.getItem("session"),
     courseid: null,
     semesterid: null,
   };
@@ -235,11 +235,11 @@ function StudentReportDetails() {
                             setFormData({ ...formData, session: value });
                           }}
                           value={
-                            session.find(({ id }) => id === formData.session)
+                            session.find(({ id }) => id === +formData.session)
                               ? {
                                   value: formData.session,
                                   label: session.find(
-                                    ({ id }) => id === formData.session
+                                    ({ id }) => id === +formData.session
                                   ).dtitle,
                                 }
                               : { value: formData.session, label: "Select" }

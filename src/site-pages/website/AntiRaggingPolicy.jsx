@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { PHP_API_URL } from '../../site-components/Helper/Constant';
-
+import validator from 'validator';
 const AntiRaggingPolicy = () => {
   const [getContent, setGetContent] = useState([]);
   const [pcontent, setpcontent] = useState('');
@@ -59,7 +59,7 @@ const AntiRaggingPolicy = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className='copyright-wrapper'>
-                <p dangerouslySetInnerHTML={{ __html: pcontent }}></p>
+                <p dangerouslySetInnerHTML={{ __html: pcontent ? validator.unescape(validator.unescape(pcontent)) : '' }}></p>
               </div>
             </div>
           </div>

@@ -70,7 +70,7 @@ function AddExam() {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: "",
+    placeholder: "Enter your instructions here...",
     spellcheck: true,
     language: "pt_br",
     defaultMode: "1",
@@ -837,10 +837,7 @@ function AddExam() {
                             ? validator.unescape(formData.instruction)
                             : ""
                         }
-                        config={{
-                          config,
-                          placeholder: "Enter your instructions here...",
-                        }}
+                        config={config}
                         onBlur={handleEditorChange}
                       />
                     </div>

@@ -13,7 +13,7 @@ function CellForm({ type }) {
     email: "",
     phone: "",
     subject: "",
-    message: "",
+    message: "", 
     batch: "",
     semester: "",
     upload_file: "",

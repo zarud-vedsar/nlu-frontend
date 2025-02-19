@@ -45,3 +45,4 @@ Today -------- 4 issue done
 7.  Substitute System in Class Timetable.This Gave need of taking multiple attendace of same class on same day.
 
 
+19 - February ---------------

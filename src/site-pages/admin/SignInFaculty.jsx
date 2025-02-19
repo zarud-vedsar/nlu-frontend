@@ -11,6 +11,7 @@ import secureLocalStorage from "react-secure-storage";
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import IsAdminLoggedIn from "./IsAdminLoggedIn";
 import { Link } from "react-router-dom";
+import rpnl_logo from "../../site-components/website/assets/Images/rpnl_logo.png";
 
 const SignInFaculty = () => {
 
@@ -172,7 +173,7 @@ const SignInFaculty = () => {
                         className="img-fluid rounded-5"
                         style={{ maxWidth: "30%" }}
                         alt="NLU Logo"
-                        src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+                        src={rpnl_logo}
                       />
                       <h2 className="h4_new">Sign In</h2>
                     </div>

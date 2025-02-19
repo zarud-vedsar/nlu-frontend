@@ -121,12 +121,15 @@ const Footer = () => {
                   Dr. Rajendra Prasad National Law University, Prayagraj,
                   established in 2020, fosters legal excellence and diversity.
                 </p>
-                <div className="id-icon-wrapper mb-2">
+              </div>
+              
+                <div className="mb-2 row">
                   {iconLink.facebook && (
                     <Link
                       to={iconLink.facebook}
                       target="_blank"
-                      className="mb-2"
+                      className="mb-3 col-6"
+                      
                     >
                       <div className="d-flex justify-content-center align-items-center">
                         <span
@@ -148,7 +151,7 @@ const Footer = () => {
                     <Link
                       to={iconLink.linkedin}
                       target="_blank"
-                      className="mb-2"
+                      className="mb-3 col-6"
                     >
                       <div className="d-flex justify-content-center align-items-center">
                         <span
@@ -171,7 +174,7 @@ const Footer = () => {
                     <Link
                       to={iconLink.instagram}
                       target="_blank"
-                      className="mb-2"
+                      className="mb-3 col-6"
                     >
                       <div className="d-flex justify-content-center align-items-center">
                         <span className="id-fb-icon">
@@ -187,7 +190,7 @@ const Footer = () => {
                     <Link
                       to={iconLink.instagram}
                       target="_blank"
-                      className="mb-2"
+                      className="mb-3 col-6"
                     >
                       <div className="d-flex justify-content-center align-items-center">
                         <span className="id-fb-icon">
@@ -206,7 +209,7 @@ const Footer = () => {
                     <Link
                       to={iconLink.twitter}
                       target="_blank"
-                      className="mb-2"
+                      className="mb-3 col-6"
                     >
                       <div className="d-flex justify-content-center align-items-center">
                         <span
@@ -225,7 +228,7 @@ const Footer = () => {
                     </Link>
                   )}
                 </div>
-              </div>
+            
             </div>
 
             <div className="col-md-3 hidden-sm">

@@ -225,7 +225,7 @@ const BrandSetting = () => {
                 <a href="" className="breadcrumb-item">
                   <i className="fas " /> University Settings
                 </a>
-                <span className="breadcrumb-item active">Brand Setting</span>
+                <span className="breadcrumb-item active">Email Setting</span>
               </nav>
             </div>
           </div>

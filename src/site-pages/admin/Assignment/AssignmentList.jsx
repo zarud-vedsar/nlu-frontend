@@ -464,16 +464,19 @@ function AssignmentList() {
                         capitalizeFirstLetter(row.assignment_title)
                       }
                       header="Assignment Name"
+                      field="assignment_title"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.subjectname)}
                       header="Subject"
+                      field="subjectname"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.semtitle)}
                       header="Semester"
+                      field="semtitle"
                       sortable
                     />
 

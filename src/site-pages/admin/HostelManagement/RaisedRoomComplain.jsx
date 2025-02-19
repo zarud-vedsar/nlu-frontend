@@ -353,6 +353,7 @@ function RaisedRoomComplain() {
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   <DataTable
                     value={raisedRoomQueries}
+                    
                     paginator
                     rows={10}
                     rowsPerPageOptions={[10, 25, 50]}
@@ -414,6 +415,7 @@ function RaisedRoomComplain() {
                             </div>
                           </div>
                         )}
+                        field="sname"
                         sortable
                       />
                     <Column

@@ -447,6 +447,7 @@ function LeaveRequestList() {
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   <DataTable
                     value={raisedRoomQueries}
+                    globalFilter={globalFilter}
                     paginator
                     rows={10}
                     rowsPerPageOptions={[10, 25, 50]}
@@ -508,48 +509,57 @@ function LeaveRequestList() {
                                                 </div>
                                               </div>
                                             )}
+                                            field="sname"
                                             sortable
                                           />
                     
                     <Column
                       body={(row) => row.block}
                       header="Block"
+                      field="block"
                       sortable
                     />
                     <Column
                       body={(row) => row.roomNo}
                       header="Room No"
+                      field="roomNo"
                       sortable
                     />
                     <Column
                       body={(row) => formatDate(row.startDate)}
                       header="Start Date"
+                      field="startDate"
                       sortable
                     />
                     
                     <Column
                       body={(row) => row.leavingTime? formatTime(row.leavingTime) : row.leavingTime}
                       header="Leaving Time"
+                      field="leavingTime"
                       sortable
                     />
                     <Column
                       body={(row) => formatDate(row.endDate)}
                       header="End Date"
+                      field="endDate"
                       sortable
                     />
                     <Column
                       body={(row) => row.returnTime? formatTime(row.returnTime) : row.returnTime}
                       header="Return Time"
+                      field="returnTime"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.leaveType)}
                       header="Leave Type"
+                      field="leaveType"
                       sortable
                     />
                     <Column
                       body={(row) => formatDate(row.requested_date)}
                       header="Requested Date"
+                      field="requested_date"
                       sortable
                     />
                     <Column

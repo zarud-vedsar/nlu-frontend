@@ -682,6 +682,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       icon: <AiOutlineRead />, // Icon for library/books
       url: "",
       dropdownMenus: [
+        { subtitle: "Add Book", url: "add-book", icon: <FaBookReader /> }, // Book reader icon for books
         { subtitle: "Books", url: "book", icon: <FaBookReader /> }, // Book reader icon for books
         {
           subtitle: "Issue New Book",

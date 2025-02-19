@@ -338,6 +338,7 @@ const Vendor = () => {
                           </div>
                         </div>
                       )}
+                      field="name"
                       sortable
                     />
                     <Column field="city" header="City" sortable />

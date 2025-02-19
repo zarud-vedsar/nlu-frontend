@@ -20,6 +20,7 @@ import Select from "react-select";
 import { Modal, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { studentRecordById } from "../../site-components/student/GetData"; // Importing components and data-fetching functions.
+import rpnl_logo from "../../site-components/website/assets/Images/rpnl_logo.png";
 
 const MyVerticallyCenteredModal = (props = {}) => {
   const [selectedStudent, setSelectedStudent] = useState();
@@ -405,13 +406,13 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           <Link to="/student/">
             <img
               style={{ width: "35%" }}
-              src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+              src={rpnl_logo}
               alt="Logo"
             />
             <img
               style={{ width: "35%" }}
               className="logo-fold"
-              src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+              src={rpnl_logo}
               alt="Logo Folded"
             />
           </Link>
@@ -420,13 +421,13 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           <Link href="/student/">
             <img
               style={{ width: "35%" }}
-              src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+              src={rpnl_logo}
               alt="Logo White"
             />
             <img
               style={{ width: "35%" }}
               className="logo-fold"
-              src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+              src={rpnl_logo}
               alt="Logo Folded White"
             />
           </Link>

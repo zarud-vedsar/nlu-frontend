@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./Index.css";
 import "./assets/TempNavbar.css";
+import rpnl_logo from "../../site-components/website/assets/Images/rpnl_logo.png";
 
 function HeaderPanel() {
   const location = useLocation();
@@ -16,7 +17,7 @@ function HeaderPanel() {
       <div className="col-md-7 col-12 col-sm-12 text-start d-flex align-self-end">
         <div className="d-flex justify-content-center align-items-center logo-container">
           <img
-            src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+            src={rpnl_logo}
             alt="logo"
             className="img-fluid logo-img"
           />

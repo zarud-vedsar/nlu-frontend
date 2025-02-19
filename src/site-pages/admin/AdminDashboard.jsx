@@ -592,7 +592,7 @@ const AdminDashboard = () => {
                   <div className="row">
                     <div className="col-md-6 col-lg-6 col-sm-6 col-12">
                       <Link
-                        to={"/admin/inventory/product/add-stock"}
+                        to={"/admin/student-management/student-list"}
                         target="_blank"
                       >
                         <div
@@ -616,7 +616,7 @@ const AdminDashboard = () => {
                                 className="m-b-0 h6_new font-14 mt-2"
                                 style={{ whiteSpace: "nowrap" }}
                               >
-                                Mark Attendance
+                                Academic Student
                               </h6>
                             </div>
                           </div>
@@ -688,7 +688,7 @@ const AdminDashboard = () => {
                     </div>
                     <div className="col-md-6 col-lg-6 col-sm-6 col-12">
                       <Link
-                        to={"/admin/inventory/product/add-stock"}
+                        to={"/admin/inventory/product/add-stockout"}
                         target="_blank"
                       >
                         <div

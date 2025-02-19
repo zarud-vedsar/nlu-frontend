@@ -420,16 +420,19 @@ function Topic() {
                     sortMode="multiple"
                   >
                     <Column
+                    field="topic_name"
                       body={(row) => capitalizeFirstLetter(row.topic_name)}
                       header="Topic Name"
                       sortable
                     />
                     <Column
+                    field="subjectname"
                       body={(row) => capitalizeFirstLetter(row.subjectname)}
                       header="Subject"
                       sortable
                     />
                     <Column
+                    field="semtitle"
                       body={(row) => capitalizeFirstLetter(row.semtitle)}
                       header="Semester"
                       sortable

@@ -379,6 +379,7 @@ function ApprovedStudentList() {
                         }
                         header="Enrollment No."
                         sortable
+                        field="enrollmentNo"
                       />
 
                       <Column
@@ -437,21 +438,25 @@ function ApprovedStudentList() {
                         body={(row) => formatDate(row.sdob)}
                         header="DOB"
                         sortable
+                        field="sdob"
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.sgender)}
                         header="Gender"
                         sortable
+                        field="sgender"
                       />
                       <Column
                         header="Category"
                         body={(row) => capitalizeEachLetter(row.scategory)}
                         sortable
+                        field="scategory"
                       />
                       <Column
                         header="Reg Date"
                         body={(row) => formatDate(row.created_at)}
                         sortable
+                        field="created_at"
                       />
 
                       <Column
@@ -463,6 +468,7 @@ function ApprovedStudentList() {
                         body={(row) => capitalizeFirstLetter(row.semtitle)}
                         header="Semester"
                         sortable
+                        field="semtitle"
                       />
                       <Column
                         body={(row) => (

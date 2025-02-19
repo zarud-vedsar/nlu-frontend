@@ -534,8 +534,8 @@ const Book = () => {
                     <DataTable
                       value={messages}
                       paginator
-                      rows={10}
-                      rowsPerPageOptions={[10, 25, 50]}
+                      rows={500}
+                      rowsPerPageOptions={[500, 800,1000]}
                       globalFilter={globalFilter}
                       emptyMessage="No records found"
                       className="p-datatable-custom"
@@ -586,6 +586,7 @@ const Book = () => {
                             </div>
                           </div>
                         )}
+                        field="book_name"
                         sortable
                       />
                       <Column field="book_name" header="Book Name" sortable />

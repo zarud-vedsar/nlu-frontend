@@ -226,13 +226,13 @@ function ProductList() {
                                         tableStyle={{ minWidth: '50rem' }}
                                         sortMode="multiple"
                                     >
-                                        <Column header="Issued To" sortable body={(rowData) => validator.unescape(rowData.facultyName)} />
-                                        <Column header="Product" sortable body={(rowData) => validator.unescape(rowData.pname)} />
-                                        <Column header="Unit" sortable body={(rowData) => rowData?.punit ? validator.unescape(rowData.punit) : rowData.punit} />
-                                        <Column header="Brand" sortable body={(rowData) => rowData.pbrand ? validator.unescape(rowData.pbrand) : rowData.pbrand} />
-                                        <Column header="Quantity" sortable body={(rowData) => rowData.quantity} />
-                                        <Column body={(row) => row.stockOutDate ? formatDate(row.stockOutDate) : row.stockOutDate} header="Stock In Date" sortable />
-                                        <Column body={(row) => row.created_at ? formatDate(row.created_at) : row.created_at} header="Created At" sortable />
+                                        <Column field='facultyName' header="Issued To" sortable body={(rowData) => validator.unescape(rowData.facultyName)} />
+                                        <Column field='pname' header="Product" sortable body={(rowData) => validator.unescape(rowData.pname)} />
+                                        <Column field='punit' header="Unit" sortable body={(rowData) => rowData?.punit ? validator.unescape(rowData.punit) : rowData.punit} />
+                                        <Column field='pbrand' header="Brand" sortable body={(rowData) => rowData.pbrand ? validator.unescape(rowData.pbrand) : rowData.pbrand} />
+                                        <Column field='quantity' header="Quantity" sortable body={(rowData) => rowData.quantity} />
+                                        <Column field='stockOutDate' body={(row) => row.stockOutDate ? formatDate(row.stockOutDate) : row.stockOutDate} header="Stock In Date" sortable />
+                                        <Column field='created_at' body={(row) => row.created_at ? formatDate(row.created_at) : row.created_at} header="Created At" sortable />
                                         <Column
                                             header="Action"
                                             body={(rowData) => (

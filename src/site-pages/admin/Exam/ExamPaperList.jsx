@@ -758,6 +758,7 @@ function ExamList() {
                   >
                     <Column
                       header="Created By"
+                      field="full_name"
                       sortable
                       body={(rowData) =>
                         rowData.full_name
@@ -767,6 +768,7 @@ function ExamList() {
                     />
                     <Column
                       header="Course Name"
+                      field="coursename"
                       sortable
                       body={(rowData) =>
                         rowData.coursename
@@ -776,6 +778,7 @@ function ExamList() {
                     />
                     <Column
                       header="Semester"
+                      field="semtitle"
                       sortable
                       body={(rowData) =>
                         rowData.semtitle
@@ -787,6 +790,7 @@ function ExamList() {
                     />
                     <Column
                       header="Subject"
+                      field="subject"
                       sortable
                       body={(rowData) =>
                         rowData.subject
@@ -798,6 +802,7 @@ function ExamList() {
                     />
                     <Column
                       header="Exam Type"
+                      field="examType"
                       sortable
                       body={(rowData) =>
                         rowData.examType
@@ -811,6 +816,7 @@ function ExamList() {
                     />
                     <Column
                       header="Paper Code"
+                      field="paperCode"
                       sortable
                       body={(rowData) =>
                         rowData.paperCode
@@ -820,16 +826,19 @@ function ExamList() {
                     />
                     <Column
                       header="Max Marks"
+                      field="maxMarks"
                       sortable
                       body={(rowData) => rowData.maxMarks}
                     />
                     <Column
                       header="Time Duration"
+                      field="timeDuration"
                       sortable
                       body={(rowData) => rowData.timeDuration}
                     />
                     <Column
                       header="Exam Date"
+                      field="examDate"
                       sortable
                       body={(rowData) =>
                         rowData.examDate ? formatDate(rowData.examDate) : ""
@@ -837,6 +846,7 @@ function ExamList() {
                     />
                     <Column
                       header="Created At"
+                      field="created_at"
                       sortable
                       body={(rowData) =>
                         rowData.created_at ? formatDate(rowData.created_at) : ""

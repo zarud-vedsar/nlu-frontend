@@ -388,6 +388,7 @@ const PopupNotice = () => {
                         header="Link"
                         body={(rowData) => validator.unescape(rowData.link)}
                         sortable
+                        field="link"
                       />
 
                       <Column

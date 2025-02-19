@@ -333,21 +333,25 @@ function VisitorRegistrationHistory() {
                       body={(row) => validator.unescape(row.visitorType)}
                       header="Visitor Type"
                       sortable
+                      field="visitorType"
                     />
                     <Column
                       body={(row) => validator.unescape(row.visitorName)}
                       header="Name"
                       sortable
+                      field="visitorName"
                     />
                     <Column
                       body={(row) => validator.unescape(row.visitorPhone)}
                       header="Phone No"
                       sortable
+                      field="visitorPhone"
                     />
                     <Column
                       body={(row) => formatDate(row.dateOfArrival)}
                       header="Date of Arrival"
                       sortable
+                      field="dateOfArrival"
                     />
                     <Column
                       body={(row) =>
@@ -357,16 +361,19 @@ function VisitorRegistrationHistory() {
                       }
                       header="Date Of Departure"
                       sortable
+                      field="dateOfDeparture"
                     />
                     <Column
                       body={(row) => row.timeOfArrival}
                       header="Time of Arrival"
                       sortable
+                      field="timeOfArrival"
                     />
                     <Column
                       body={(row) => row.timeOfDeparture}
                       header="Time of Departure"
                       sortable
+                      field="timeOfDeparture"
                     />
                     <Column
                       field="created_at"

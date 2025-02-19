@@ -229,19 +229,22 @@ function NoticeList() {
                                         tableStyle={{ minWidth: '50rem' }}
                                         sortMode="multiple"
                                     >
-                                        <Column body={(row) => capitalizeFirstLetter(row.notice_type)} header="Notice Type" sortable />
+                                        <Column field='notice_type' body={(row) => capitalizeFirstLetter(row.notice_type)} header="Notice Type" sortable />
                                         <Column field="title" header="Title" sortable
                                             body={(rowData) => validator.unescape(rowData.title)}
                                         />
                                         <Column
+                                        field='notice_date'
                                             body={(row) => formatDate(row.notice_date)}
                                             header="Notice Date" sortable />
                                         <Column
+                                        field='created_at'
                                             body={(row) => formatDate(row.created_at)}
                                             header="Created At" sortable />
                                         {
                                             recycleTitle !== "Show Recycle Bin" && (
                                                 <Column field="deleted_at"
+                                                
                                                     body={(row) => row.deleted_at && row.deleted_at != '0000-00-00' && formatDate(row.deleted_at)}
                                                     header="Deleted At" sortable />
                                             )

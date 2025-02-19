@@ -210,9 +210,11 @@ function UseFulLinks() {
                                         sortMode="multiple"
                                     >
                                         <Column
+                                        field='link_title'
                                             body={(row) => capitalizeFirstLetter(row.link_title)}
                                             header="Title" sortable />
                                         <Column
+                                        field='link_other_link'
                                             body={(row) => row.link_other_link === '' ? 'Page' : 'External Links'}
                                             header="Link Type" sortable />
                                         <Column field="created_at"

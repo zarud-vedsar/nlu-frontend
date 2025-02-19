@@ -259,6 +259,8 @@ function ExpenseList() {
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   <DataTable
                     value={expenseList}
+                    globalFilter={globalFilter}
+
                     paginator
                     rows={10}
                     rowsPerPageOptions={[10, 25, 50]}
@@ -275,31 +277,37 @@ function ExpenseList() {
                     <Column
                       body={(row) => capitalizeFirstLetter(expenseCategory?.find((category) => category?.id === row?.cat_id)?.cat_title)}
                       header="Category"
+                      field="cat_id"
                       sortable
                     />
                     <Column
                       body={(row) => row.amount}
                       header="Amount"
+                      field="amount"
                       sortable
                     />
                     <Column
                       body={(row) => formatDate(row.date)}
                       header="Date"
+                      field="date"
                       sortable
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.creditto || "")}
                       header="Creditor Name"
+                      field="creditto"
                       sortable
                     />
                     <Column
                       body={(row) => row.mobileno}
                       header="Creditor Phone"
+                      field="mobileno"
                       sortable
                     />
                     <Column
                       body={(row) => formatDate(row.created_at)}
                       header="Created Date"
+                      field="created_at"
                       sortable
                     />
          

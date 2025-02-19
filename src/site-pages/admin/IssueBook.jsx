@@ -225,6 +225,7 @@ const IssueBook = () => {
 
                       <Column
                         header="Return Book"
+                        
                         body={(rowData, { rowIndex }) => (
                           <div className="d-flex justify-content-around">
                             {rowData?.issue_books_status == 1 ? (

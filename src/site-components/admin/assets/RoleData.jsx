@@ -556,6 +556,11 @@ export const RoleData = [
         crud: ["create", "update", "status", "list", "delete", "recycle bin"], // CRUD operations
       },
       {
+        label: "Add Book",
+        value: "Add Book",
+        crud: ["create", "update"], // CRUD operations
+      },
+      {
         label: "Issue Book",
         value: "Issue Book",
         crud: ["list"], // CRUD operations

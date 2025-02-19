@@ -390,6 +390,7 @@ function VisitorRegistrationHistory() {
                     sortMode="multiple"
                   >
                     <Column
+                    field="visitorType"
                       body={(row) => validator.unescape(row.visitorType)}
                       header="Visitor Type"
                       sortable
@@ -398,29 +399,35 @@ function VisitorRegistrationHistory() {
                       body={(row) => validator.unescape(row.passType)}
                       header="Pass Type"
                       sortable
+                      field="passType"
                     />
 
                     <Column
                       body={(row) => validator.unescape(row.visitorPhone)}
                       header="Phone No"
                       sortable
+                      field="visitorPhone"
                     />
                     <Column
                       body={(row) => validator.unescape(row.hostDetails)}
                       header="Host Details"
                       sortable
+                      field="hostDetails"
                     />
                     <Column
                       body={(row) => formatDate(row.fromDate)}
                       header="From date"
                       sortable
+                      field="fromDate"
                     />
                     <Column
                       body={(row) =>
                         row.toDate ? formatDate(row.toDate) : row.toDate
                       }
                       header="To date"
+                      field="toDate"
                       sortable
+                      field="toDate"
                     />
 
                     <Column

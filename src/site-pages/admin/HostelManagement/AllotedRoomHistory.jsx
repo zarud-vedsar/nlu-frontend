@@ -373,6 +373,7 @@ function AllotedRoomHistory() {
                           </div>
                         </div>
                       )}
+                      field="sname"
                       sortable
                     />
                     <Column field="block" header="Block" sortable />
@@ -408,6 +409,7 @@ function AllotedRoomHistory() {
                     <Column
                       body={(row) => formatDate(row.allotDate)}
                       header="Alloted Date"
+                      field="allotDate"
                       sortable
                     />
 
@@ -432,6 +434,7 @@ function AllotedRoomHistory() {
                             </Link>
                           } </div>
                       )}
+                      field="vacate_date"
                     />
                     <Column
                       header="Action"

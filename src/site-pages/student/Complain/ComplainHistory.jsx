@@ -303,8 +303,10 @@ function ComplainHistory() {
                       body={(row, { rowIndex }) => ++rowIndex}
                       header="#"
                       sortable
+
                     />
                     <Column
+                    field="courseid"
                       body={(row) =>
                         courseListing?.find(
                           (item) => item.id === parseInt(row?.courseid)
@@ -318,6 +320,7 @@ function ComplainHistory() {
                       sortable
                     />
                     <Column
+                    field="semesterid"
                       body={(row) =>
                         semesterListing?.find(
                           (item) => item.id === parseInt(row?.semesterid)

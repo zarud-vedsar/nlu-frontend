@@ -224,12 +224,12 @@ function ProductList() {
                                         tableStyle={{ minWidth: '50rem' }}
                                         sortMode="multiple"
                                     >
-                                        <Column header="Category" sortable body={(rowData) => validator.unescape(rowData.ctitle)} />
-                                        <Column header="Product" sortable body={(rowData) => validator.unescape(rowData.pname)} />
-                                        <Column header="Unit" sortable body={(rowData) => validator.unescape(rowData.punit)} />
-                                        <Column header="Brand" sortable body={(rowData) => rowData.pbrand ? validator.unescape(rowData.pbrand) : rowData.pbrand} />
-                                        <Column header="Available Stock" sortable body={(rowData) => rowData.total_available_qty} />
-                                        <Column header="Threshold Limit" sortable body={(rowData) => rowData.threshhold_limit} />
+                                        <Column field='ctitle' header="Category" sortable body={(rowData) => validator.unescape(rowData.ctitle)} />
+                                        <Column field='pname' header="Product" sortable body={(rowData) => validator.unescape(rowData.pname)} />
+                                        <Column field='punit' header="Unit" sortable body={(rowData) => validator.unescape(rowData.punit)} />
+                                        <Column field='pbrand' header="Brand" sortable body={(rowData) => rowData.pbrand ? validator.unescape(rowData.pbrand) : rowData.pbrand} />
+                                        <Column field='total_available_qty' header="Available Stock" sortable body={(rowData) => rowData.total_available_qty} />
+                                        <Column field='threshhold_limit' header="Threshold Limit" sortable body={(rowData) => rowData.threshhold_limit} />
                                         <Column header="Action" body={(rowData) => (
                                             <Link to={`/admin/inventory/product/threshold/raised-query/${rowData.id}`} className="btn btn-primary">
                                                 <i className="fas fa-bell"></i> Notify for Restock

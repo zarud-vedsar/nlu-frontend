@@ -478,6 +478,7 @@ const FacultyList = () => {
                           </div>
                         </div>
                       )}
+                      field="first_name"
                       sortable
                     />
                     <Column field="p_district" header="District" sortable />

@@ -250,21 +250,25 @@ function VisitorHistory() {
                       body={(row) => validator.unescape(row.visitorType)}
                       header="Visitor Type"
                       sortable
+                      field="visitorType"
                     />
                     <Column
                       body={(row) => validator.unescape(row.name)}
                       header="Name"
                       sortable
+                      field="name"
                     />
                     <Column
                       body={(row) => validator.unescape(row.contact_number)}
                       header="Contact No"
                       sortable
+                      field="contact_number"
                     />
                     <Column
                       body={(row) => formatDate(row.visit_in_date)}
                       header="Visit In Date"
                       sortable
+                      field="visit_in_date"
                     />
                     <Column
                       body={(row) =>
@@ -274,16 +278,19 @@ function VisitorHistory() {
                       }
                       header="Visit Out Date"
                       sortable
+                      field="visit_out_date"
                     />
                     <Column
                       body={(row) => row.time_in}
                       header="Visit In Time"
                       sortable
+                      field="time_in"
                     />
                     <Column
                       body={(row) => row.time_out}
                       header="Visit Out Time"
                       sortable
+                      field="time_out"
                     />
                     <Column field="blockId" header="Block" sortable />
                     <Column field="roomNo" header="Room No" sortable />

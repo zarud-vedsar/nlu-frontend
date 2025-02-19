@@ -274,41 +274,49 @@ function LeaveRequestList() {
                       sortable
                     />
                     <Column
+                    field="block"
                       body={(row) => row?.block}
                       header="Block"
                       sortable
                     />
                     <Column
+                    field="roomNo"
                       body={(row) => row?.roomNo}
                       header="Room No"
                       sortable
                     />
                     <Column
+                    field="startDate"
                       body={(row) => formatDate(row?.startDate)}
                       header="Start Date"
                       sortable
                     />
                     <Column
+                    field="leavingTime"
                       body={(row) => row.leavingTime? formatTime(row.leavingTime) :row.leavingTime}
                       header="Leaving Time"
                       sortable
                     />
                     <Column
+                    field="endDate"
                       body={(row) => formatDate(row?.endDate)}
                       header="End Date"
                       sortable
                     />
                     <Column
+                    field="returnTime"
                       body={(row) => row.returnTime? formatTime(row.returnTime) : row.returnTime}
                       header="Return Time"
                       sortable
                     />
                     <Column
+                    field="leaveType"
                       body={(row) => capitalizeFirstLetter(row?.leaveType)}
                       header="Leave Type"
                       sortable
                     />
                     <Column
+                    field="requested_date"
                       body={(row) => formatDate(row?.requested_date)}
                       header="Requested Date"
                       sortable

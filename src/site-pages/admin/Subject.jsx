@@ -281,6 +281,7 @@ function Subject() {
                                         <Column field="subname" header="Subject Name" sortable />
                                         <Column field="subcode" header="Code" sortable />
                                         <Column
+                                        field='created_at'
                                             body={(row) => formatDate(row.created_at)}
                                             header="Created At" sortable />
                                         {

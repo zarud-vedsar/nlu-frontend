@@ -333,11 +333,13 @@ function SemesterSubjectList() {
                   >
                     <Column field="coursename" header="Course" sortable />
                     <Column
+                    field="semtitle"
                       body={(row) => capitalizeFirstLetter(row.semtitle)}
                       header="Semester"
                       sortable
                     />
                     <Column
+                    field="subject"
                       body={(row) =>
                         // Map through subjectList and join subjects with commas
                         row.subjectList.map((subject, index) => (
@@ -353,6 +355,7 @@ function SemesterSubjectList() {
                     />
 
                     <Column
+                    field="first_name"
                       body={(row) =>
                         capitalizeFirstLetter(
                           `${row.first_name} ${row.last_name}`
@@ -363,6 +366,7 @@ function SemesterSubjectList() {
                     />
 
                     <Column
+                    field="u_phone"
                       body={(row) => row.u_phone}
                       header="Phone"
                       sortable

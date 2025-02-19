@@ -334,8 +334,8 @@ function ResourcePdfList() {
                     sortMode="multiple"
                   >
                     <Column field="coursename" header="Course" sortable />
-                    <Column body={(row) => capitalizeFirstLetter(row.semtitle)} header="Semester" sortable />
-                    <Column body={(row) => capitalizeFirstLetter(row.subject)} header="Subject" sortable />
+                    <Column field='semtitle' body={(row) => capitalizeFirstLetter(row.semtitle)} header="Semester" sortable />
+                    <Column field='subject' body={(row) => capitalizeFirstLetter(row.subject)} header="Subject" sortable />
                     <Column
                       body={(row) => {
                         return (

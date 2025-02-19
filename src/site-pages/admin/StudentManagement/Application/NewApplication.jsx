@@ -397,6 +397,7 @@ function NewApplication() {
                         sortable
                       />
                       <Column
+                      field="enrollmentNo"
                         body={(row) =>
                           capitalizeFirstLetter(row.enrollmentNo)
                         }
@@ -405,6 +406,7 @@ function NewApplication() {
                       />
 
                       <Column
+                      field="spic"
                         header="Student"
                         body={(rowData) => (
                           <div
@@ -460,32 +462,38 @@ function NewApplication() {
                         body={(row) => formatDate(row.sdob)}
                         header="DOB"
                         sortable
+                        field="sdob"
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.sgender)}
                         header="Gender"
                         sortable
+                        field="sgender"
                       />
                       <Column
                         header="Category"
                         body={(row) => capitalizeEachLetter(row.scategory)}
                         sortable
+                        field="scategory"
                       />
                       <Column
                         header="Reg Date"
                         body={(row) => formatDate(row.created_at)}
                         sortable
+                        field="created_at"
                       />
 
                       <Column
                         body={(row) => capitalizeFirstLetter(row.coursename)}
                         header="Course"
                         sortable
+                        field="coursename"
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.semtitle)}
                         header="Semester"
                         sortable
+                        field="semtitle"
                       />
                       <Column
                         body={(row) => (

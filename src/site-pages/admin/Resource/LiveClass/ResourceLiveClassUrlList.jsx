@@ -540,6 +540,7 @@ function ResourceLiveClassUrlList() {
                         sortable
                       />
                       <Column
+                      field="avtar"
                         header="Thumbnail"
                         body={(rowData) => (
                           <div
@@ -584,49 +585,58 @@ function ResourceLiveClassUrlList() {
                         body={(row) => capitalizeFirstLetter(row.title)}
                         header="Title"
                         sortable
+                        field="title"
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.coursename)}
                         header="Course"
                         sortable
+                        field="coursename"
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.semtitle)}
                         header="Semester"
                         sortable
+                        field="semtitle"
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.subject)}
                         header="Subject"
                         sortable
+                        field="subject"
                       />
 
                       <Column
                         body={(row) => capitalizeFirstLetter(row.liveUrl)}
                         header="Live Url"
                         sortable
+                        field="liveUrl"
                       />
                       <Column
                         header="Live Date"
                         body={(row) => formatDate(row.liveDate)}
                         sortable
+                        field="liveDate"
                       />
 
                       <Column
                         body={(row) => row.endTime}
                         header="End Time"
                         sortable
+                        field="endTime"
                       />
                       <Column
                         body={(row) => row.startTime}
                         header="Start Time"
                         sortable
+                        field="startTime"
                       />
 
                       <Column
                         header="Created At"
                         body={(row) => formatDate(row.created_at)}
                         sortable
+                        field="created_at"
                       />
 
                       <Column

@@ -207,6 +207,7 @@ function SessionWiseSemesterList() {
                   >
                     <Column field="coursename" header="Course" sortable />
                     <Column
+                    field="semtitle"
                       body={(row) => capitalizeFirstLetter(row.semtitle)}
                       header="Semester"
                       sortable

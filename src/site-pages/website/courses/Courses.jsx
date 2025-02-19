@@ -150,7 +150,10 @@ const Courses = () => {
             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 leftpart">
               <h3 className="heading-primary2 butler-regular">Course Details</h3>
               <div className="heading-divider mb-3"></div>
-              <ul className="mcd-menu">
+              <ul className="mcd-menu " style={{position:"relative"}}>
+                  <div className='borderbottomdiveder'>
+                    <hr></hr>
+                  </div>
                 {content &&
                   content.map((post, index) => (
                     <li key={index}>
@@ -164,7 +167,9 @@ const Courses = () => {
                       </Link>
                     </li>
                   ))}
+                
               </ul>
+
             </div>
             <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12 rightpart">
               <div className="section-title-wrapper">
@@ -271,6 +276,8 @@ const Courses = () => {
 .leftpart::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
+
+
             `
           }
         </style>

@@ -453,9 +453,11 @@ function QuizResponse() {
                         }
                         header="Enrollment No."
                         sortable
+                        field="enrollmentNo"
                       />
 
                       <Column
+                      field="spic"
                         header="Student Info"
                         body={(rowData) => (
                           <div
@@ -514,22 +516,26 @@ function QuizResponse() {
                         }
                         header="Assingment Title"
                         sortable
+                        field="quiz_title"
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.question_type)}
                         header="Assingment Type"
                         sortable
+                        field="question_type"
                       />
 
                       <Column
                         header="Submission Date"
                         body={(row) => formatDate(row.submission_date)}
                         sortable
+                        field="submission_date"
                       />
                       <Column
                         body={(row) => parseInt(row.marks)}
                         header="Marks"
                         sortable
+                        field="marks"
                       />
 
                       <Column

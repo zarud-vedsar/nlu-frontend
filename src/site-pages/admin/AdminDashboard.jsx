@@ -6,6 +6,12 @@ import {
   dataFetchingPost,
   formatDate
 } from "../../site-components/Helper/HelperFunction";
+
+import { FaAngleRight } from "react-icons/fa6";
+import { MdEventAvailable } from "react-icons/md";
+import { HiOutlineSpeakerphone } from "react-icons/hi";
+import { TbReportMoney } from "react-icons/tb";
+import { FiEdit } from "react-icons/fi";
 import validator from 'validator';
 import { Line } from "react-chartjs-2"; // Import Line chart component from react-chartjs-2
 import {
@@ -319,18 +325,18 @@ const AdminDashboard = () => {
                     </div>
                   )}
                 </div>
-                  <div className="col-lg-12 col-md-12 col-12" style={{padding:"15px"}}>
-                    <table>
-                      <tr>
-                        <th>Category</th>
-                        <th>Total Expence</th>
-                      </tr>
-                      <tr>
-                        <td>furniture</td>
-                        <td>900</td>
-                      </tr>
-                    </table>
-                  </div>
+                <div className="col-lg-12 col-md-12 col-12" style={{ padding: "15px" }}>
+                  <table>
+                    <tr>
+                      <th>Category</th>
+                      <th>Total Expence</th>
+                    </tr>
+                    <tr>
+                      <td>furniture</td>
+                      <td>900</td>
+                    </tr>
+                  </table>
+                </div>
               </div>
             </div>
             <div className="col-md-8 col-lg-8 col-sm-12">
@@ -493,7 +499,119 @@ const AdminDashboard = () => {
             </div>
           </div>
         </div>
+
+        <div className="px-3">
+          <div className="row">
+            <div className="col-md-3">
+              <div className="card p-1 animate-card ">
+              <Link to='/admin/add-notice' className="cust_box1">
+                <div className="viewAttendance">
+                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
+                
+                </div>
+                <div className="boxTitles" >Add Notice</div>
+                <FaAngleRight className="rightICons"/>
+              </Link>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <Link to='/admin/brand-setting' className="card p-1 animate-card">
+              <div className="cust_box1 events">
+                <div className="viewAttendance1">
+                <HiOutlineSpeakerphone size={24} className="viewAttendanceIcon1"  style={{color:"white"}} />
+              
+                
+                </div>
+                <div className="boxTitles" >University Setting</div>
+                <FaAngleRight className="rightICons"/>
+              </div>
+              </Link>
+            </div>
+            <div className="col-md-3">
+              <Link to='/admin/expense/add-new' className="card p-1 animate-card">
+              <div className="cust_box1 memberplane">
+                <div className="viewAttendance memb">
+                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
+                
+                </div>
+                <div className="boxTitles " >Add Expense</div>
+                <FaAngleRight className="rightICons"/>
+              </div>
+              </Link>
+            </div>
+            <div className="col-md-3">
+              <Link to='/admin/expense/list' className="card p-1 animate-card">
+              <div className="cust_box1 accounut">
+                <div className="viewAttendance">
+                <TbReportMoney size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
+         
+                
+                </div>
+                <div className="boxTitles" >Expense List</div>
+                
+                <FaAngleRight className="rightICons"/>
+              </div>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <style jsx>
+        {`
+
+.cust_box1 {
+  background: #fef8ea;
+  padding: 20px 10px;
+  border-radius: 4px;
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  justify-content: space-between;
+}
+.viewAttendance {
+  background: #eeb101;
+  padding: 10px;
+
+  border-radius: 4px;
+
+}
+.accounut .viewAttendance {
+background:#6fcdd5;
+}
+.cust_box1.events {
+  background: #eaf8e9;
+}
+.cust_box1.memberplane {
+  background: #faeaed;
+}
+.viewAttendance.memb {
+  background: #e42547;
+}
+.cust_box1.accounut {
+background:#e8fbff;
+}
+.viewAttendance1 {
+  background: #1fbb1a;
+  padding: 10px;
+
+  border-radius: 4px;
+
+}
+.boxTitles {
+  color: #71717b;
+  font-weight: 700;
+font-size: 15px;
+}
+.rightICons {
+  background: white;
+  border-radius: 100%;
+  padding: 5px;
+  font-size: 24px;
+}
+  
+        `}
+        </style>
     </div>
   );
 };

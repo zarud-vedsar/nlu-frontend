@@ -230,11 +230,13 @@ function ProductList() {
                     sortMode="multiple"
                   >
                     <Column
+                    field="pname"
                       header="Product"
                       sortable
                       body={(rowData) => validator.unescape(rowData.pname)}
                     />
                     <Column
+                    field="punit"
                       header="Unit"
                       sortable
                       body={(rowData) =>
@@ -244,6 +246,7 @@ function ProductList() {
                       }
                     />
                     <Column
+                    field="pbrand"
                       header="Brand"
                       sortable
                       body={(rowData) =>
@@ -253,11 +256,13 @@ function ProductList() {
                       }
                     />
                     <Column
+                    field="quantity"
                       header="Quantity"
                       sortable
                       body={(rowData) => rowData.quantity}
                     />
                     <Column
+                    field="stockInDate"
                       body={(row) =>
                         row.stockInDate
                           ? formatDate(row.stockInDate)
@@ -267,6 +272,7 @@ function ProductList() {
                       sortable
                     />
                     <Column
+                    field="created_at"
                       body={(row) =>
                         row.created_at
                           ? formatDate(row.created_at)

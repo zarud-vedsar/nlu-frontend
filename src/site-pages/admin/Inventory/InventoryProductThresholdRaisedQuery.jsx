@@ -233,12 +233,12 @@ function Registration() {
                                         tableStyle={{ minWidth: '50rem' }}
                                         sortMode="multiple"
                                     >
-                                        <Column header="Category" sortable body={(rowData) => validator.unescape(rowData.ctitle)} />
-                                        <Column header="Product" sortable body={(rowData) => validator.unescape(rowData.pname)} />
-                                        <Column header="Unit" sortable body={(rowData) => validator.unescape(rowData.punit)} />
-                                        <Column header="Brand" sortable body={(rowData) => rowData.pbrand ? validator.unescape(rowData.pbrand) : rowData.pbrand} />
-                                        <Column header="Available Stock" sortable body={(rowData) => rowData.total_available_qty} />
-                                        <Column header="Threshold Limit" sortable body={(rowData) => rowData.threshhold_limit} />
+                                        <Column field="ctitle" header="Category" sortable body={(rowData) => validator.unescape(rowData.ctitle)} />
+                                        <Column field="pname" header="Product" sortable body={(rowData) => validator.unescape(rowData.pname)} />
+                                        <Column field="punit" header="Unit" sortable body={(rowData) => validator.unescape(rowData.punit)} />
+                                        <Column field="pbrand" header="Brand" sortable body={(rowData) => rowData.pbrand ? validator.unescape(rowData.pbrand) : rowData.pbrand} />
+                                        <Column field="total_available_qty" header="Available Stock" sortable body={(rowData) => rowData.total_available_qty} />
+                                        <Column field="threshhold_limit" header="Threshold Limit" sortable body={(rowData) => rowData.threshhold_limit} />
                                     </DataTable>
                                 </div>
                             </div>
@@ -308,41 +308,49 @@ function Registration() {
                                         sortMode="multiple"
                                     >
                                         <Column
+                                        field="facultyName"
                                             header="Request By"
                                             sortable
                                             body={(rowData) => rowData.facultyName ? validator.unescape(rowData.facultyName) : 'N/A'}
                                         />
                                         <Column
+                                        field="pname"
                                             header="Product"
                                             sortable
                                             body={(rowData) => rowData.pname ? validator.unescape(rowData.pname) : 'N/A'}
                                         />
                                         <Column
+                                        field="punit"
                                             header="Unit"
                                             sortable
                                             body={(rowData) => rowData.punit ? validator.unescape(rowData.punit) : 'N/A'}
                                         />
                                         <Column
+                                        field="pbrand"
                                             header="Brand"
                                             sortable
                                             body={(rowData) => rowData.pbrand ? validator.unescape(rowData.pbrand) : 'N/A'}
                                         />
                                         <Column
+                                        field="total_available_qty"
                                             header="Avl. Stock"
                                             sortable
                                             body={(rowData) => rowData?.total_available_qty}
                                         />
                                         <Column
+                                        field="threshhold_limit"
                                             header="Threshold"
                                             sortable
                                             body={(rowData) => rowData.threshhold_limit || 'N/A'}
                                         />
                                         <Column
+                                        field="currentStock"
                                             header="Current Stock"
                                             sortable
                                             body={(rowData) => rowData?.currentStock}
                                         />
                                         <Column
+                                        field="created_at"
                                             header="Request Date"
                                             sortable
                                             body={(rowData) => rowData?.created_at ? formatDate(rowData?.created_at) : rowData?.created_at}

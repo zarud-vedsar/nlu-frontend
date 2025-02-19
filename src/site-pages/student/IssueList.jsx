@@ -108,6 +108,7 @@ const IssueList = () => {
                       field="issue_books_no"
                       header="Issued No"
                       sortable
+                      
                     />
                     <Column
                       field="issue_books_date"

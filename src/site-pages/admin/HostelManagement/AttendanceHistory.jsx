@@ -319,7 +319,7 @@ function AttendanceHIstory() {
             <div className="page-header mb-0">
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/" className="breadcrumb-item">
+                  <a href="/admin/" className="breadcrumb-item">
                                      <i className="fas fa-home m-r-5" />
                                     Dashboard
                                    </a>
@@ -350,7 +350,7 @@ function AttendanceHIstory() {
                     onClick={handleShow}
                   >
                     <span>
-                      <FaFilter /> Filter
+                      <FaFilter />
                     </span>
                   </Button>
                   <Link to="/admin/hostel-management/mark-attendance">

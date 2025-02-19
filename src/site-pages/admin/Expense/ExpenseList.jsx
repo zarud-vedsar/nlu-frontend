@@ -217,6 +217,15 @@ function ExpenseList() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                    <Button
+                      variant="primary"
+                      className=" mb-2 mb-md-0"
+                      onClick={handleShow}
+                    >
+                      <span>
+                        <FaFilter /> 
+                      </span>
+                    </Button>
                    
                   <Link
                     to="/admin/expense/add-new"
@@ -243,17 +252,7 @@ function ExpenseList() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="">
-                    <Button
-                      variant="primary"
-                      className=" mb-2 mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> Filter
-                      </span>
-                    </Button>
-                  </div>
+                  
                 </div>
 
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>

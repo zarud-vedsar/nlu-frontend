@@ -390,6 +390,15 @@ function QuizList() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                    <Button
+                      variant="primary"
+                      className=" mb-2 mb-md-0"
+                      onClick={handleShow}
+                    >
+                      <span>
+                        <FaFilter /> 
+                      </span>
+                    </Button>
                   {
                     hasPermission("Quiz", "create") && (
                       <Link
@@ -419,17 +428,7 @@ function QuizList() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="">
-                    <Button
-                      variant="primary"
-                      className=" mb-2 mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> Filter
-                      </span>
-                    </Button>
-                  </div>
+                 
                   <div className="col-md-4 col-lg-4 col-10 col-sm-4">
                     {
                       hasPermission("Quiz", "recycle bin") && (

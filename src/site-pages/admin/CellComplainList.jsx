@@ -18,37 +18,8 @@ import { FormField } from "../../site-components/admin/assets/FormField";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Modal, Button, Spinner } from "react-bootstrap";
 import { InputText } from "primereact/inputtext";
+import { Link } from "react-router-dom";
 
-function MyVerticallyCenteredModal(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header>Complain</Modal.Header>
-      <Modal.Body>
-        <span className="badge badge-secondary">Subject </span>{" "}
-        <div className="ml-2">
-          {" "}
-          {capitalizeFirstLetter(props?.modalMessage?.subject)}
-        </div>
-        <br />
-        <span className="badge badge-primary">Message </span>
-        <div
-          className="table-responsive d-flex flex-wrap ml-2"
-          dangerouslySetInnerHTML={{ __html: props?.modalMessage?.message }}
-        ></div>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide} className="mx-auto">
-          Close
-        </Button>
-      </Modal.Footer>
-    </Modal>
-  );
-}
 
 function CellComplainList() {
   const [showFilter, setShowFilter] = useState(true);
@@ -375,6 +346,7 @@ function CellComplainList() {
                       />
                       
                       <Column body={(row) => row.cell} header="Cell" sortable  field="cell" />
+                      <Column body={(row) => row.subject} header="Subject" sortable  field="subject" />
                       <Column
                         header="View Complain"
                         body={(row) => (
@@ -387,12 +359,11 @@ function CellComplainList() {
                                 </Tooltip>
                               }
                             >
-                              <div className="avatar avatar-icon avatar-md avatar-orange">
+                              <Link to={`/admin/cell-complain-details/${row.id}`} className="avatar avatar-icon avatar-md avatar-orange">
                                 <i
                                   className="fa-solid fa-eye"
-                                  onClick={() => viewMessage(row)}
                                 ></i>
-                              </div>
+                              </Link>
                             </OverlayTrigger>{" "}
                             
                           </div>
@@ -413,11 +384,6 @@ function CellComplainList() {
         </div>
       </div>
 
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => {setModalShow(false); setModalMessage(null)}}
-        modalMessage={modalMessage}
-      />
     </>
   );
 }

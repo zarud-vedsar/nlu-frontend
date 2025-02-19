@@ -506,13 +506,26 @@ body {
 	}
 	
 }
+.borderbottomdiveder{
+  display: none;
+}
 
 @media only screen and (max-width: 479px) {
   .mcd-menu { 
   width: 100%;
   /* margin-bottom: 40px; */
 }
-
+.borderbottomdiveder {
+  background: #a59595;
+  width: 200%;
+  height: 1px;
+  border-bottom: 1px solid #7e7676;
+  display: flex;
+  position: absolute;
+  top: 40px;
+  overflow-y: hidden;
+  left: 0;
+}
 .mcd-menu li a small { 
   display: none;
 }
@@ -578,7 +591,7 @@ padding: 0px !important;
   display: none;
 }
 .mcd-menu li a.active {
-border-bottom: 3px solid skyblue;
+border-bottom: 3px solid #2e3e50;
 border-left: none;
 border-right: none;
 }

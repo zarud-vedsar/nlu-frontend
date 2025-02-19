@@ -25,8 +25,14 @@ function CellForm({ type }) {
   const [filePreview, setFilePreview] = useState(null);
   // Handle form submit
   const handleUploadFile = (e) => {
-    const { file } = e.target.files[0];
+    const file = e.target.files[0];
+
     if (file && file.type === "application/pdf") {
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("File size must be less than 5MB!");
+        e.target.value = null;
+        return;
+      }
       const filelink = URL.createObjectURL(file);
       setFilePreview(filelink);
       setFormData((prev) => ({ ...prev, upload_file: file }));
@@ -90,7 +96,7 @@ function CellForm({ type }) {
         setFormData(initialData);
       }
     } catch (error) {
-      const status = error.response?.data?.statusCode;
+      const status = error.response?.data?.status;
       if ([400, 401, 500].includes(status)) {
         toast.error(error.response.data?.msg || "A server error occurred.");
       } else {
@@ -257,11 +263,11 @@ function CellForm({ type }) {
                 <span className="form-custom-icon">
                   <GiCalendarHalfYear />
                 </span>
+
                 <input
-                  name="upload_file"
                   type="file"
+                  name="upload_file"
                   className="form-custom-input"
-                  value={formData.upload_file}
                   accept="application/pdf"
                   onChange={handleUploadFile}
                 />

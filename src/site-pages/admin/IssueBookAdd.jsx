@@ -9,7 +9,7 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import Select from "react-select";
 import { Link } from "react-router-dom";
-
+import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert";
 import secureLocalStorage from "react-secure-storage";
 
 const IssueBookAdd = () => {
@@ -138,7 +138,10 @@ const IssueBookAdd = () => {
         setErrorMessage("");
         setErrorKey("");
       }
+      const deleteAlert = await DeleteSweetAlert(" ");
+            if (!deleteAlert) { return}
       if (isValid) {
+
         const bformData = new FormData();
 
         bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
@@ -301,7 +304,10 @@ const IssueBookAdd = () => {
     }
     setIssueBookList([...issueBookList, initialization]);
   };
-  const removeField = (index) => {
+
+  const removeField = async(index) => {
+    const deleteAlert = await DeleteSweetAlert(" ");
+    if (!deleteAlert) { return}
     const values = [...issueBookList];
     values.splice(index, 1);
     setIssueBookList(values);
@@ -538,7 +544,7 @@ const IssueBookAdd = () => {
                         className="font-weight-semibold"
                         htmlFor="issue_books_date"
                       >
-                        Issue Book Date <span className="text-danger">*</span>
+                        Date of Issue <span className="text-danger">*</span>
                       </label>
                       <input
                         type="date"

@@ -729,19 +729,7 @@ const AdminDashboard = () => {
         </div>
         <div className="px-3">
           <div className="row">
-            <div className="col-md-3">
-              <div className="card p-1 animate-card ">
-              <Link to='/admin/add-notice' className="cust_box1">
-                <div className="viewAttendance">
-                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
-                
-                </div>
-                <div className="boxTitles" >Add Notice</div>
-                <FaAngleRight className="rightICons"/>
-              </Link>
-              </div>
-            </div>
-            <div className="col-md-3">
+             <div className="col-md-3">
               <Link to='/admin/email-setting' className="card p-1 animate-card">
               <div className="cust_box1 events">
                 <div className="viewAttendance1">
@@ -754,6 +742,19 @@ const AdminDashboard = () => {
               </div>
               </Link>
             </div>
+            <div className="col-md-3">
+              <div className="card p-1 animate-card ">
+              <Link to='/admin/add-notice' className="cust_box1">
+                <div className="viewAttendance">
+                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
+                
+                </div>
+                <div className="boxTitles" >Add Notice</div>
+                <FaAngleRight className="rightICons"/>
+              </Link>
+              </div>
+            </div>
+           
             <div className="col-md-3">
               <Link to='/admin/expense/add-new' className="card p-1 animate-card">
               <div className="cust_box1 memberplane">

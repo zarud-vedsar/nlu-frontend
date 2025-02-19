@@ -401,6 +401,7 @@ function AssignmentResponse() {
                           )
                         }
                         header="Enrollment No."
+                        field="enrollmentNo"
                         sortable
                       />
 
@@ -454,6 +455,7 @@ function AssignmentResponse() {
                             </div>
                           </div>
                         )}
+                        field="sname"
                         sortable
                       />
 
@@ -462,21 +464,25 @@ function AssignmentResponse() {
                           capitalizeFirstLetter(row.assignment_title)
                         }
                         header="Assingment Title"
+                        field="assignment_title"
                         sortable
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.question_type)}
                         header="Assingment Type"
+                        field="question_type"
                         sortable
                       />
 
                       <Column
                         header="Submission Date"
                         body={(row) => formatDate(row.submission_date)}
+                        field="submission_date"
                         sortable
                       />
                       <Column
                         body={(row) => parseInt(row.marks)}
+                        field="marks"
                         header="Marks"
                         sortable
                       />

@@ -193,8 +193,8 @@ function SemesterList() {
                                         sortMode="multiple"
                                     >
                                         <Column field="coursename" header="Course" sortable />
-                                        <Column body={(row) => `${row.courseyearid} Years`} header="Year" sortable />
-                                        <Column body={(row) => capitalizeFirstLetter(row.semtitle)} header="Semester" sortable />
+                                        <Column field='courseyearid' body={(row) => `${row.courseyearid} Years`} header="Year" sortable />
+                                        <Column  field='semtitle' body={(row) => capitalizeFirstLetter(row.semtitle)} header="Semester" sortable />
                                         <Column field="created_at"
                                             body={(row) => formatDate(row.created_at)}
                                             header="Created At" sortable />

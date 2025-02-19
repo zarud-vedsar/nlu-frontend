@@ -282,6 +282,7 @@ function Achievement() {
 
                     <Column
                       header="Image"
+                      field="title"
                       body={(rowData) => (
                         <div
                           className="info-column d-flex align-items-center
@@ -312,7 +313,7 @@ function Achievement() {
                                 }}
                                 className=" d-flex justify-content-center align-items-center"
                               >
-                                {rowData?.book_name[0].toUpperCase()}
+                                {rowData?.title[0].toUpperCase()}
                               </div>
                             )}
                           </div>

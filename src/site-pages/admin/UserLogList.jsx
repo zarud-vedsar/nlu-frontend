@@ -309,26 +309,31 @@ function UserLogList() {
                       <Column
                         body={(row) => capitalizeFirstLetter(row.username)}
                         header="User"
+                        field="username"
                         sortable
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.user_type)}
                         header="User Type"
+                        field="user_type"
                         sortable
                       />
                       <Column
                         body={(row) => capitalizeFirstLetter(row.log_type)}
+                        filter="log_type"
                         header="Log Type"
                         sortable
                       />
                       <Column
                         body={(row) => formatDate(row.date_time)}
                         header="Date"
+                        filter="date_time"
                         sortable
                       />
                       
                       <Column
                         header="Log Detail"
+                        field="log_details"
                         body={(row) => capitalizeFirstLetter(row.log_details)}
                       />
                     </DataTable>

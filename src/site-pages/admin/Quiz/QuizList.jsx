@@ -465,16 +465,19 @@ function QuizList() {
                       }
                       header="Quiz Name"
                       sortable
+                      field="quiz_title"
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.subjectname)}
                       header="Subject"
                       sortable
+                      field="subjectname"
                     />
                     <Column
                       body={(row) => capitalizeFirstLetter(row.semtitle)}
                       header="Semester"
                       sortable
+                      field="semtitle"
                     />
 
                     <Column field="coursename" header="Course" sortable />

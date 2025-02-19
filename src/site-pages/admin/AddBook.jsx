@@ -21,9 +21,12 @@ const AddBook = () => {
   const [errorKey, setErrorKey] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const [subjectList, setSubjectList] = useState([]);
-  const [subject, setSubject] = useState({value:"",label:"Select Subject"});
+  const [subject, setSubject] = useState({
+    value: "",
+    label: "Select Subject",
+  });
   const [isbnValid, setIsbnValid] = useState(false);
-const qtyRef = useRef(null);
+  const qtyRef = useRef(null);
   // Jodit editor configuration
   const config = {
     readonly: false,
@@ -49,14 +52,13 @@ const qtyRef = useRef(null);
   const fetchSubject = async (deleteStatus = 0) => {
     try {
       const bformData = new FormData();
-      bformData.append("data","load_subjects");
+      bformData.append("data", "load_subjects");
       const response = await dataFetchingPost(
         `${PHP_API_URL}/lib_books.php`,
-        bformData,
+        bformData
       );
-      
+
       if (response?.status === 200 && response?.data?.length > 0) {
-       
         const tempSubjectList = response.data.map((subject) => ({
           value: subject.id,
           label: subject.subject,
@@ -67,12 +69,10 @@ const qtyRef = useRef(null);
       }
     } catch (error) {
       setSubjectList([]);
-      
     }
   };
 
   const initialization = {
-   
     image: "",
     des: "",
     qty: "",
@@ -114,9 +114,7 @@ const qtyRef = useRef(null);
       });
       const result = res.data.data;
       if (res?.data?.status == 200) {
-        
         setFormData({
-          
           image: result[0]?.image,
           des: result[0]?.des ? validator.unescape(result[0]?.des) : "",
           qty: 0,
@@ -137,7 +135,7 @@ const qtyRef = useRef(null);
           row: result[0]?.row || "",
         });
         setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
-        
+
         setIsbnValid(true);
         if (qtyRef.current) {
           qtyRef.current.focus();
@@ -154,14 +152,14 @@ const qtyRef = useRef(null);
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     const selSubject = subjectList?.find(
       (sub) => sub.value === formData.subject_id
     );
     if (selSubject) {
       setSubject(selSubject);
     }
-  },[formData])
+  }, [formData]);
 
   const getBookDetailById = async () => {
     try {
@@ -178,7 +176,6 @@ const qtyRef = useRef(null);
       });
       const result = res.data.data;
       setFormData({
-       
         image: result[0]?.image,
         des: result[0]?.des ? validator.unescape(result[0]?.des) : "",
         qty: result[0]?.qty,
@@ -198,12 +195,9 @@ const qtyRef = useRef(null);
         section: result[0]?.section || "",
         row: result[0]?.row || "",
       });
-      
+
       setPreviewImage(`${FILE_API_URL}/books/${result[0].image}`);
-     
-    } catch (error) {
-     
-    }
+    } catch (error) {}
   };
 
   const handleChange = async (e) => {
@@ -222,33 +216,31 @@ const qtyRef = useRef(null);
     if (formData.isbn_no == "") {
       setErrorMessage("Please enter ISBN number");
       setErrorKey(".isbn_no");
-      toast.error("Please enter ISBN number")
+      toast.error("Please enter ISBN number");
       isValid = false;
     } else if (formData.book_name == "") {
       setErrorMessage("Please enter book name");
       setErrorKey(".book_name");
-      toast.error("Please enter book name")
+      toast.error("Please enter book name");
       isValid = false;
     } else if (formData.qty == "" || formData.qty < 1) {
       setErrorMessage("Quantity must be greater than and equal to 1");
       setErrorKey(".qty");
-      toast.error("Quantity must be greater than and equal to 1")
+      toast.error("Quantity must be greater than and equal to 1");
       isValid = false;
     } else if (formData.price == "" || formData.price < 0) {
       setErrorMessage("Price valid price");
       setErrorKey(".price");
-      toast.error("Price valid price")
+      toast.error("Price valid price");
       isValid = false;
     }
 
     if (isValid) {
-       
       setErrorMessage("");
       setErrorKey("");
     }
 
     if (isValid) {
-     
       const bformData = new FormData();
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
@@ -257,7 +249,6 @@ const qtyRef = useRef(null);
       Object.keys(formData).forEach((key) => {
         const value = formData[key];
         bformData.append(key, value);
-       
       });
       if (id) {
         bformData.append("update_id", id);
@@ -282,7 +273,6 @@ const qtyRef = useRef(null);
           toast.error("An error occurred. Please try again.");
         }
       } catch (error) {
-        
         const status = error.response?.data?.status;
 
         if (status === 500) {
@@ -299,7 +289,7 @@ const qtyRef = useRef(null);
       }
     }
   };
- 
+
   const updateSubject = (e) => {
     setSubject(e);
     setFormData((prevState) => ({
@@ -328,6 +318,15 @@ const qtyRef = useRef(null);
       des: newContent,
     }));
   };
+
+  const handleKeyUp = (e) => {
+    const value = e.target.value;
+
+    clearTimeout(window.isbnTimeout);
+    window.isbnTimeout = setTimeout(() => {
+      handleBlur(value);
+    }, 500);
+  };
   return (
     <>
       <div className="page-container ">
@@ -336,13 +335,13 @@ const qtyRef = useRef(null);
             <div className="page-header mb-0">
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/" className="breadcrumb-item">
-                                     <i className="fas fa-home m-r-5" />
-                                    Dashboard
-                                   </a>
-                                   <span className="breadcrumb-item active">
-                                   Learning Management
-                                   </span>
+                  <a href="/admin/" className="breadcrumb-item">
+                    <i className="fas fa-home m-r-5" />
+                    Dashboard
+                  </a>
+                  <span className="breadcrumb-item active">
+                    Learning Management
+                  </span>
 
                   <span className="breadcrumb-item active">Add Book</span>
                 </nav>
@@ -364,12 +363,12 @@ const qtyRef = useRef(null);
                     </i>{" "}
                     Go Back
                   </Button>
-                   <Link
-                                          to="/admin/book"
-                                          className="ml-2 btn-md btn border-0 btn-secondary"
-                                        >
-                                          <i className="fas fa-list" /> Books List
-                                        </Link>
+                  <Link
+                    to="/admin/book"
+                    className="ml-2 btn-md btn border-0 btn-secondary"
+                  >
+                    <i className="fas fa-list" /> Books List
+                  </Link>
                 </div>
               </div>
             </div>
@@ -460,7 +459,7 @@ const qtyRef = useRef(null);
                           placeholder="Enter ISBN Number"
                           value={formData.isbn_no}
                           onChange={handleChange}
-                          onBlur={handleBlur}
+                          onKeyUp={handleKeyUp}
                         />
                         {errorKey === ".isbn_no" && (
                           <span className="text-danger">{errorMessage}</span>
@@ -477,7 +476,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="book_name"
-                           placeholder="Enter Book Name"
+                          placeholder="Enter Book Name"
                           value={formData.book_name}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -498,7 +497,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="edition"
-                           placeholder="Enter Editor"
+                          placeholder="Enter Editor"
                           value={formData.edition}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -518,7 +517,7 @@ const qtyRef = useRef(null);
                           type="text"
                           className="form-control"
                           name="publisher"
-                           placeholder="Enter Publisher"
+                          placeholder="Enter Publisher"
                           value={formData.publisher}
                           onChange={handleChange}
                           disabled={isbnValid}
@@ -580,7 +579,6 @@ const qtyRef = useRef(null);
                           placeholder="Enter Quantity"
                           value={formData.qty}
                           ref={qtyRef}
-                          
                           onChange={handleChange}
                         />
                         {errorKey === ".qty" && (
@@ -669,10 +667,10 @@ const qtyRef = useRef(null);
                           className="font-weight-semibold"
                           htmlFor="vendor"
                         >
-                          Subject 
+                          Subject
                         </label>
                         <Select
-                          value={subject }
+                          value={subject}
                           options={subjectList}
                           onChange={updateSubject}
                           disabled={isbnValid}

@@ -233,19 +233,19 @@ const IssueBook = () => {
                                 className="btn  btn-primary"
                                 to={`/admin/return-book/${rowData.id}`}
                               >
-                                Return Book
+                                Collect Book
                               </Link>
                             ) : (
                               <span
                                 className="text-success"
 
                               >
-                                All book are returned
+                                Returned
                               </span>
                             )}
                           </div>
                         )}
-                      />All Book are Return
+                      />
 
                       <Column
                         header="Action"

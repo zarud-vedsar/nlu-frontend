@@ -814,7 +814,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
     {
       title: "University Settings",
       icon: <IoIosSettings />, // Icon for settings
-      url: "brand-setting",
+      url: "email-setting",
       dropdownMenus: [],
     },
   ];

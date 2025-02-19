@@ -742,7 +742,7 @@ const AdminDashboard = () => {
               </div>
             </div>
             <div className="col-md-3">
-              <Link to='/admin/brand-setting' className="card p-1 animate-card">
+              <Link to='/admin/email-setting' className="card p-1 animate-card">
               <div className="cust_box1 events">
                 <div className="viewAttendance1">
                 <HiOutlineSpeakerphone size={24} className="viewAttendanceIcon1"  style={{color:"white"}} />

@@ -705,9 +705,15 @@ function ExamList() {
               <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
                 <h5 className="card-title h6_new font-16">Exam Paper List</h5>
                 <div className="ml-auto">
-                  <button className="btn goback" onClick={goBack}>
+                  <button className="btn goback mr-2" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                    <button
+                      className="btn btn-info text-white"
+                      onClick={handleShow}
+                    >
+                      <i className="fa fa-filter"></i>
+                    </button>
                   {
                     hasPermission("Add Exam Paper", "create") && (
                       <Link to={"/admin/exam-paper/add-update"}>
@@ -735,14 +741,7 @@ function ExamList() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="col-md-1 col-lg-1 col-10 mb-3 col-sm-4 d-flex justify-content-between align-items-center">
-                    <button
-                      className="btn btn-info text-white"
-                      onClick={handleShow}
-                    >
-                      <i className="fa fa-filter"></i>
-                    </button>
-                  </div>
+                 
                 </div>
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   <DataTable

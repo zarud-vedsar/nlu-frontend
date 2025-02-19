@@ -192,6 +192,15 @@ function VisitorHistory() {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                    <Button
+                      variant="primary"
+                      className=" mb-2 mb-md-0"
+                      onClick={handleShow}
+                    >
+                      <span>
+                        <FaFilter /> 
+                      </span>
+                    </Button>
                   <Link to="/admin/visitor-entry">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-plus"></i> Add New Entry
@@ -216,17 +225,7 @@ function VisitorHistory() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="">
-                    <Button
-                      variant="primary"
-                      className=" mb-2 mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> Filter
-                      </span>
-                    </Button>
-                  </div>
+                 
                 </div>
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   <DataTable

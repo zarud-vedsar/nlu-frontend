@@ -390,6 +390,15 @@ function AssignmentList() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                  <Button
+                      variant="primary"
+                      className=" mb-2 mb-md-0"
+                      onClick={handleShow}
+                    >
+                      <span>
+                        <FaFilter />
+                      </span>
+                    </Button>
                   {
                     hasPermission("Assignment", "create") && (
                       <Link
@@ -419,17 +428,7 @@ function AssignmentList() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="">
-                    <Button
-                      variant="primary"
-                      className=" mb-2 mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> Filter
-                      </span>
-                    </Button>
-                  </div>
+                  
                   <div className="col-md-4 col-lg-4 col-10 col-sm-4">
                     {
                       hasPermission("Assignment", "recycle bin") && (

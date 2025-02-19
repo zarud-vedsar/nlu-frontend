@@ -116,6 +116,9 @@ function MessageList() {
                   <button className="btn btn-secondary mr-2" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+
+                    <button className="btn btn-info text-white mr-2" onClick={handleShow}><i className="fa fa-filter"></i></button>
+
                   <Link to="/admin/cmn-mng-message">
                     <button className="btn btn-secondary">
                       <i className="fas fa-plus"></i> Add New
@@ -139,9 +142,7 @@ function MessageList() {
                       className="form-control"
                     />
                   </div>
-                  <div className='col-md-1 col-lg-1 col-2 mb-3 col-sm-2 d-flex justify-content-between align-items-center'>
-                    <button className="btn btn-info text-white" onClick={handleShow}><i className="fa fa-filter"></i></button>
-                  </div>
+                 
                 </div>
 
                 {/* Data Table */}

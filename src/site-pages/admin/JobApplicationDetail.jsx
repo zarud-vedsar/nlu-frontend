@@ -382,9 +382,10 @@ const JobApplicationDetail = () => {
       <div className="">
               <nav className="breadcrumb breadcrumb-dash">
                 <a href="/" className="breadcrumb-item">
-                  Recruitment
+                 Dashboard
                 </a>
 
+                <span className="breadcrumb-item active">Recruitment</span>
                 <span className="breadcrumb-item active">Job Applications</span>
               </nav>
             </div>

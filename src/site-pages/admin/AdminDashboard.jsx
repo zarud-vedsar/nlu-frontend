@@ -727,62 +727,7 @@ const AdminDashboard = () => {
        
           </div>
         </div>
-        <div className="px-3">
-          <div className="row">
-             <div className="col-md-3">
-              <Link to='/admin/email-setting' className="card p-1 animate-card">
-              <div className="cust_box1 events">
-                <div className="viewAttendance1">
-                <HiOutlineSpeakerphone size={24} className="viewAttendanceIcon1"  style={{color:"white"}} />
-              
-                
-                </div>
-                <div className="boxTitles" >University Setting</div>
-                <FaAngleRight className="rightICons"/>
-              </div>
-              </Link>
-            </div>
-            <div className="col-md-3">
-              <div className="card p-1 animate-card ">
-              <Link to='/admin/add-notice' className="cust_box1">
-                <div className="viewAttendance">
-                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
-                
-                </div>
-                <div className="boxTitles" >Add Notice</div>
-                <FaAngleRight className="rightICons"/>
-              </Link>
-              </div>
-            </div>
-           
-            <div className="col-md-3">
-              <Link to='/admin/expense/add-new' className="card p-1 animate-card">
-              <div className="cust_box1 memberplane">
-                <div className="viewAttendance memb">
-                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
-                
-                </div>
-                <div className="boxTitles " >Add Expense</div>
-                <FaAngleRight className="rightICons"/>
-              </div>
-              </Link>
-            </div>
-            <div className="col-md-3">
-              <Link to='/admin/expense/list' className="card p-1 animate-card">
-              <div className="cust_box1 accounut">
-                <div className="viewAttendance">
-                <TbReportMoney size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
-         
-                
-                </div>
-                <div className="boxTitles" >Expense List</div>
-                
-                <FaAngleRight className="rightICons"/>
-              </div>
-              </Link>
-            </div>
-          </div>
-        </div>
+       
             <div className="col-md-12">
               <div className="card">
                 <div className="card-header d-flex justify-content-between align-items-center">
@@ -910,7 +855,62 @@ const AdminDashboard = () => {
               </div>
             </div>
 
-
+            <div className="px-3">
+          <div className="row">
+             <div className="col-md-3">
+              <Link to='/admin/email-setting' className="card p-1 animate-card">
+              <div className="cust_box1 events">
+                <div className="viewAttendance1">
+                <HiOutlineSpeakerphone size={24} className="viewAttendanceIcon1"  style={{color:"white"}} />
+              
+                
+                </div>
+                <div className="boxTitles" >University Setting</div>
+                <FaAngleRight className="rightICons"/>
+              </div>
+              </Link>
+            </div>
+            <div className="col-md-3">
+              <div className="card p-1 animate-card ">
+              <Link to='/admin/add-notice' className="cust_box1">
+                <div className="viewAttendance">
+                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
+                
+                </div>
+                <div className="boxTitles" >Add Notice</div>
+                <FaAngleRight className="rightICons"/>
+              </Link>
+              </div>
+            </div>
+           
+            <div className="col-md-3">
+              <Link to='/admin/expense/add-new' className="card p-1 animate-card">
+              <div className="cust_box1 memberplane">
+                <div className="viewAttendance memb">
+                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
+                
+                </div>
+                <div className="boxTitles " >Add Expense</div>
+                <FaAngleRight className="rightICons"/>
+              </div>
+              </Link>
+            </div>
+            <div className="col-md-3">
+              <Link to='/admin/expense/list' className="card p-1 animate-card">
+              <div className="cust_box1 accounut">
+                <div className="viewAttendance">
+                <TbReportMoney size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
+         
+                
+                </div>
+                <div className="boxTitles" >Expense List</div>
+                
+                <FaAngleRight className="rightICons"/>
+              </div>
+              </Link>
+            </div>
+          </div>
+        </div>
        
       </div>
 

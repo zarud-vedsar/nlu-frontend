@@ -119,6 +119,7 @@ function MessageList() {
                                             sortable
                                         />
                                         <Column
+                                        field="sentBy"
                                             header="Sender Type"
                                             body={(row) =>
                                                 row.sentBy === "student" ? (

@@ -78,7 +78,7 @@ function AssignmentAddNew() {
   // Jodit editor configuration
   const config = {
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter your description here...',
     spellcheck: true,
     language: 'pt_br',
     defaultMode: '1',
@@ -400,10 +400,13 @@ function AssignmentAddNew() {
             <div className="page-header mb-0">
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
-                  <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" /> Exam Managemnt
-                  </a>
-                  <span className="breadcrumb-item">Assignment</span>
+                <a href="/admin/" className="breadcrumb-item">
+                                     <i className="fas fa-home m-r-5" />
+                                    Dashboard
+                                   </a>
+                                   <span className="breadcrumb-item active">
+                                   Exam Management
+                                   </span>
                   <span className="breadcrumb-item active">
                     {assignmentId ? "Update Assignment" : "Add New Assignment"}
                   </span>
@@ -783,9 +786,7 @@ function AssignmentAddNew() {
                           <label className='font-weight-semibold'>Description</label>
                           <JoditEditor
                             value={formData?.description || ''}
-                            config={{config,
-                              placeholder: 'Enter your description here...'
-                            }}
+                            config={config}
                             onBlur={handleEditorChange}
                           />
                         </div>

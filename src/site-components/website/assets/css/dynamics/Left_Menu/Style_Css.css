@@ -41,7 +41,7 @@ body {
         text-align: left;
         height: 56px;
         position: relative;
-        border-bottom: 1px solid #abaaaa;
+        /* border-bottom: 1px solid #abaaaa; */
         line-height: 15px;
         /* font-family: merienda one!important; */
         font-size: 1rem;
@@ -510,11 +510,81 @@ body {
 @media only screen and (max-width: 479px) {
   .mcd-menu { 
   width: 100%;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
+}
+
+.mcd-menu li a small { 
+  display: none;
+}
+.mcd-menu {
+  width: 100%;
+  /* margin-bottom: 40px; */
+
+  padding:20px 20px 0px 20px;
+  display: flex;
+  gap: 29px;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+
+  justify-content: flex-start; /* Align the items to the start */
+  align-items: center;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+.mcd-menu::-webkit-scrollbar {
+  height: 7px; /* Set scrollbar height */
+}
+/* Track */
+.mcd-menu::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.mcd-menu::-webkit-scrollbar-thumb {
+  background: #890c25; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.mcd-menu::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
+.mcd-menu li a{
+  padding: 0px;
+  height: 20px;
+}
+.mcd-menu li a {
+  box-shadow: none;
+padding: 0px !important;
+}
+.mcd-menu li a.active {
+  box-shadow: none;
+
 }
 .mcd-menu li a.active small { 
+  display: none;
   margin-top: 18px;
   text-align: left;
+}
+.mcd-menu li a.active:after {
+  display: none;
+}
+.mcd-menu li a.active:before {
+  display: none;
+}
+.mcd-menu li a.active {
+border-bottom: 3px solid skyblue;
+border-left: none;
+border-right: none;
+}
+
+i.fa.fa-university {
+  display: none;
 }
 .mcd-menu li a small { 
 
@@ -522,14 +592,12 @@ body {
 }
 .mcd-menu li a.active { 
   position: relative;
-  padding: 18px 16px;
-  height:50px;
+  padding: 18px 0px;
+  /* height:50px; */
 }
 .mcd-menu li a { 
   position: relative;
-  padding: 18px 16px;
-  height:50px;
-  text-align: left;
+
 }
 .mcd-menu li a small{
   margin: 4px 0px;
@@ -541,10 +609,15 @@ body {
 .mcd-menu li a strong {
   text-align: start;
   font-size: 14px;
+  margin-bottom: 10px;
 }
 .mcd-menu li a.active strong {
   text-align: start !important;
   font-size: 14px;
+}
+
+.section-title h3 {
+  padding-top: 30px;
 }
 /* .mcd-menu li a strong { 
   display: none;
@@ -552,10 +625,10 @@ body {
 .mcd-menu li a:hover strong,.mcd-menu li a.active strong {
   display:block;
   font-size:15px;
-  padding:15px 0;
-  position:absolute;
-  bottom:0px;
-  left:45px;
+  /* padding:15px 0; */
+  /* position:absolute; */
+  /* bottom:0px; */
+  /* left:45px; */
   /* background:#FFC0CB; */
   color:#000 !important;
   min-width:100%;
@@ -578,6 +651,7 @@ body {
   min-width:180px;
   left:50px;
 }
+
 .mcd-menu li ul li > ul, .mcd-menu li ul li ul li > ul {
   min-width:150px;
 }
@@ -604,10 +678,16 @@ body {
   min-width:150px;
   top: 35px;
 }
+.mcd-menu li{
+  padding-bottom: 10px;
+}
 .mcd-menu li ul a {
   font-size:12px;
 }
+.mcd-menu{
+  /* border-bottom: 1px solid #ccc; */
 
+}
 
 
 }

@@ -178,6 +178,7 @@ function AllotedRoomHistory() {
                     <Column field="roomNo" header="Room No" sortable />
 
                     <Column
+                    field="courseid"
                       body={(row) =>
                         courseListing?.find(
                           (item) => item.id === parseInt(row?.courseid)
@@ -191,6 +192,7 @@ function AllotedRoomHistory() {
                       sortable
                     />
                     <Column
+                    field="semesterid"
                       body={(row) =>
                         semesterListing?.find(
                           (item) => item.id === parseInt(row?.semesterid)
@@ -205,6 +207,7 @@ function AllotedRoomHistory() {
                     />
 
                     <Column
+                    field="allotDate"
                       body={(row) => formatDate(row.allotDate)}
                       header="Alloted Date"
                       sortable

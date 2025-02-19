@@ -195,9 +195,13 @@ const IssuedBookStatus = () => {
           <div className="container-fluid">
             <div className="">
               <nav className="breadcrumb">
-                <a href="/" className="breadcrumb-item">
-                  Library
-                </a>
+              <a href="/admin/" className="breadcrumb-item">
+                                     <i className="fas fa-home m-r-5" />
+                                    Dashboard
+                                   </a>
+                                   <span className="breadcrumb-item active">
+                                   Library Management
+                                   </span>
 
                 <span className="breadcrumb-item active">Book Status</span>
               </nav>

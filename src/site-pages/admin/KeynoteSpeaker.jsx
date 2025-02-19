@@ -213,9 +213,11 @@ const KeynoteSpeaker = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/home" className="breadcrumb-item">
-                  <i className="fas fa-home m-r-5" /> CMS
+              <a href="/admin/home" className="breadcrumb-item">
+                  <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
+
+                <span className="breadcrumb-item active">CMS</span>
                 <span className="breadcrumb-item active">Keynote Speaker</span>
               </nav>
             </div>
@@ -263,6 +265,7 @@ const KeynoteSpeaker = () => {
                           type="text"
                           className="form-control"
                           name="keynote_name"
+                          placeholder="Enter Name"
                           value={formData.keynote_name}
                           onChange={handleChange}
                         />
@@ -276,6 +279,7 @@ const KeynoteSpeaker = () => {
                           type="text"
                           className="form-control"
                           name="keynote_link"
+                          placeholder="Enter Link"
                           value={formData.keynote_link}
                           onChange={handleChange}
                         />
@@ -310,6 +314,7 @@ const KeynoteSpeaker = () => {
                           type="text"
                           className="form-control"
                           name="keynote_content"
+                          placeholder="Enter Content"
                           value={formData.keynote_content}
                           onChange={handleChange}
                         ></textarea>

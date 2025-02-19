@@ -407,7 +407,7 @@ function AssignmentList() {
               <div className="card-body">
                 {/* Search Box */}
                 <div className="row">
-                  <div className="col-md-7 col-lg-7 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                  <div className="col-md-10 col-lg-10 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
                     <div className="search-icon">
                       <i className="pi pi-search" />
                     </div>

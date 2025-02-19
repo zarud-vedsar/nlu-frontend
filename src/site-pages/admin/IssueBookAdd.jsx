@@ -8,6 +8,7 @@ import {
 } from "../../site-components/Helper/Constant";
 import { toast, ToastContainer } from "react-toastify";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 
 import secureLocalStorage from "react-secure-storage";
 
@@ -424,9 +425,13 @@ const IssueBookAdd = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb">
-              <a href="/" className="breadcrumb-item">
-                Library
-              </a>
+            <a href="/admin/" className="breadcrumb-item">
+                                     <i className="fas fa-home m-r-5" />
+                                    Dashboard
+                                   </a>
+                                   <span className="breadcrumb-item active">
+                                   Library Management
+                                   </span>
               <span className="breadcrumb-item active">Add Issue Book</span>
             </nav>
           </div>
@@ -446,6 +451,12 @@ const IssueBookAdd = () => {
                   </i>{" "}
                   Go Back
                 </Button>
+                  <Link
+                                                          to="/admin/issue-book"
+                                                          className="ml-2 btn-md btn border-0 btn-secondary"
+                                                        >
+                                                          <i className="fas fa-list" /> Issued List
+                                                        </Link>
               </div>
             </div>
           </div>

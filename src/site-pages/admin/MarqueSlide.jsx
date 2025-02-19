@@ -94,6 +94,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
             type="text"
             className="form-control"
             name="content"
+            placeholder="Enter Content"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             disabled={loading}

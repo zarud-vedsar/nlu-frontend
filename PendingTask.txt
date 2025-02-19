@@ -45,4 +45,5 @@ Today -------- 4 issue done
 7.  Substitute System in Class Timetable.This Gave need of taking multiple attendace of same class on same day.
 
 
-19 - February ---------------
+------------- 19/February ---------------
+1. Filter in book listing variable (isbn no, block , section, row , quantity(low - high range))

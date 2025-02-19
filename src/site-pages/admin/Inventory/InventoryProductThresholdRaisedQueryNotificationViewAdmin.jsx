@@ -102,6 +102,12 @@ function Registration() {
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back
                                     </button>
+                                     <Link
+                                                        to="/admin/inventory/product/threshold/restock/notification"
+                                                        className="ml-2 btn-md btn border-0 btn-secondary"
+                                                      >
+                                                        <i className="fas fa-list" /> Notification List
+                                                      </Link>
                                 </div>
                             </div>
                         </div>

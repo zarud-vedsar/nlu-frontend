@@ -22,7 +22,6 @@ function CellForm({ type }) {
 
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({}); // To store specific field errors
-  const [filePreview, setFilePreview] = useState(null);
   // Handle form submit
   const handleUploadFile = (e) => {
     const file = e.target.files[0];
@@ -34,7 +33,7 @@ function CellForm({ type }) {
         return;
       }
       const filelink = URL.createObjectURL(file);
-      setFilePreview(filelink);
+      
       setFormData((prev) => ({ ...prev, upload_file: file }));
     } else {
       toast.error("Only PDF files are allowed!");

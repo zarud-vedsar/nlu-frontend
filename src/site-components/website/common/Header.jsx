@@ -79,7 +79,7 @@ function Header() {
 
 
   useEffect(() => {
-    toggleMenu(); 
+    setMenuVisible(false);
   }, [location.pathname]);
 
   return (

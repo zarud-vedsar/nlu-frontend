@@ -412,7 +412,7 @@ const Home = () => {
                 <div className="card-body">
                   <div className="row">
                     <div className="col-md-6 col-lg-6 col-sm-6 col-12">
-                      <Link to={'/admin/inventory/product/add-stock'} target="_blank">
+                      <Link to={'/admin/student-management/mark-attendance'} target="_blank">
                         <div className="card" style={{ background: '#ffe7d3 ' }}>
                           <div className="card-body">
                             <div className="d-flex align-items-center flex-column">
@@ -460,7 +460,7 @@ const Home = () => {
                       </Link>
                     </div>
                     <div className="col-md-6 col-lg-6 col-sm-6 col-12">
-                      <Link to={'/admin/inventory/product/add-stock'} target="_blank">
+                      <Link to={'/admin/inventory/product/add-stockout'} target="_blank">
                         <div className="card" style={{ background: '#ffe7d3 ' }}>
                           <div className="card-body">
                             <div className="d-flex align-items-center flex-column">

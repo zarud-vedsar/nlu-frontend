@@ -592,7 +592,7 @@ const AdminDashboard = () => {
                   <div className="row">
                     <div className="col-md-6 col-lg-6 col-sm-6 col-12">
                       <Link
-                        to={"/admin/inventory/product/add-stock"}
+                        to={"/admin/student-management/student-list"}
                         target="_blank"
                       >
                         <div
@@ -616,7 +616,7 @@ const AdminDashboard = () => {
                                 className="m-b-0 h6_new font-14 mt-2"
                                 style={{ whiteSpace: "nowrap" }}
                               >
-                                Mark Attendance
+                                Academic Student
                               </h6>
                             </div>
                           </div>
@@ -688,7 +688,7 @@ const AdminDashboard = () => {
                     </div>
                     <div className="col-md-6 col-lg-6 col-sm-6 col-12">
                       <Link
-                        to={"/admin/inventory/product/add-stock"}
+                        to={"/admin/inventory/product/add-stockout"}
                         target="_blank"
                       >
                         <div
@@ -729,6 +729,19 @@ const AdminDashboard = () => {
         </div>
         <div className="px-3">
           <div className="row">
+             <div className="col-md-3">
+              <Link to='/admin/email-setting' className="card p-1 animate-card">
+              <div className="cust_box1 events">
+                <div className="viewAttendance1">
+                <HiOutlineSpeakerphone size={24} className="viewAttendanceIcon1"  style={{color:"white"}} />
+              
+                
+                </div>
+                <div className="boxTitles" >University Setting</div>
+                <FaAngleRight className="rightICons"/>
+              </div>
+              </Link>
+            </div>
             <div className="col-md-3">
               <div className="card p-1 animate-card ">
               <Link to='/admin/add-notice' className="cust_box1">
@@ -741,19 +754,7 @@ const AdminDashboard = () => {
               </Link>
               </div>
             </div>
-            <div className="col-md-3">
-              <Link to='/admin/brand-setting' className="card p-1 animate-card">
-              <div className="cust_box1 events">
-                <div className="viewAttendance1">
-                <HiOutlineSpeakerphone size={24} className="viewAttendanceIcon1"  style={{color:"white"}} />
-              
-                
-                </div>
-                <div className="boxTitles" >University Setting</div>
-                <FaAngleRight className="rightICons"/>
-              </div>
-              </Link>
-            </div>
+           
             <div className="col-md-3">
               <Link to='/admin/expense/add-new' className="card p-1 animate-card">
               <div className="cust_box1 memberplane">

@@ -6,11 +6,11 @@ const SettingSideBar = () => {
   return (
     <>
     <ul className="nav flex-column bg-white mb-0 py-3">
-      <li className={`nav-item ${id=='brand-setting'?'mark':''}`}>
+      {/* <li className={`nav-item ${id=='brand-setting'?'mark':''}`}>
         <Link to="/admin/brand-setting" className="nav-link text-dark ">
           Brand Setting
         </Link>
-      </li>
+      </li> */}
       <li className={`nav-item ${id=='email-setting'?'mark':''}`}>
         <Link to="/admin/email-setting"  className="nav-link text-dark ">
           Email Setting

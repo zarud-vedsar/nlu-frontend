@@ -6,7 +6,7 @@ import {
   PHP_API_URL,
   NODE_API_URL,
 } from "../../site-components/Helper/Constant";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert";
@@ -18,6 +18,15 @@ const IssueBookAdd = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const [studentListing, setStudentListing] = useState([]);
   const [FetchBook, setFetchBook] = useState(false);
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const convertToStructuredArray = (finalbooks) => {
     const result = {};
 
@@ -44,6 +53,7 @@ const IssueBookAdd = () => {
         setStudentListing(response?.data?.data);
       } else {
         toast.error("Data not found.");
+        
         setStudentListing([]);
       }
     } catch (error) {
@@ -129,6 +139,7 @@ const IssueBookAdd = () => {
             toast.error(
               `Please enter valid ISBN Number of Serial Number ${index + 1}`
             );
+            
             isValid = false;
           }
         });
@@ -138,9 +149,12 @@ const IssueBookAdd = () => {
         setErrorMessage("");
         setErrorKey("");
       }
-      const deleteAlert = await DeleteSweetAlert(" ");
-            if (!deleteAlert) { return}
+
       if (isValid) {
+        const deleteAlert = await DeleteSweetAlert(" ");
+        if (!deleteAlert) {
+          return;
+        }
 
         const bformData = new FormData();
 
@@ -162,8 +176,6 @@ const IssueBookAdd = () => {
           const value = issue[key];
           bformData.append(key, value);
         });
-
-       
 
         const response = await axios.post(
           `${PHP_API_URL}/lib_books.php`,
@@ -305,9 +317,11 @@ const IssueBookAdd = () => {
     setIssueBookList([...issueBookList, initialization]);
   };
 
-  const removeField = async(index) => {
+  const removeField = async (index) => {
     const deleteAlert = await DeleteSweetAlert(" ");
-    if (!deleteAlert) { return}
+    if (!deleteAlert) {
+      return;
+    }
     const values = [...issueBookList];
     values.splice(index, 1);
     setIssueBookList(values);
@@ -431,13 +445,11 @@ const IssueBookAdd = () => {
         <div className="container-fluid">
           <div className="">
             <nav className="breadcrumb">
-            <a href="/admin/" className="breadcrumb-item">
-                                     <i className="fas fa-home m-r-5" />
-                                    Dashboard
-                                   </a>
-                                   <span className="breadcrumb-item active">
-                                   Library Management
-                                   </span>
+              <a href="/admin/" className="breadcrumb-item">
+                <i className="fas fa-home m-r-5" />
+                Dashboard
+              </a>
+              <span className="breadcrumb-item active">Library Management</span>
               <span className="breadcrumb-item active">Add Issue Book</span>
             </nav>
           </div>
@@ -457,12 +469,12 @@ const IssueBookAdd = () => {
                   </i>{" "}
                   Go Back
                 </Button>
-                  <Link
-                                                          to="/admin/issue-book"
-                                                          className="ml-2 btn-md btn border-0 btn-secondary"
-                                                        >
-                                                          <i className="fas fa-list" /> Issued List
-                                                        </Link>
+                <Link
+                  to="/admin/issue-book"
+                  className="ml-2 btn-md btn border-0 btn-secondary"
+                >
+                  <i className="fas fa-list" /> Issued List
+                </Link>
               </div>
             </div>
           </div>
@@ -736,14 +748,25 @@ const IssueBookAdd = () => {
                           <span className="text-danger">{errorMessage}</span>
                         )}
                       </div>
-                      <div className="col-md-1 me-auto d-flex justify-content-between align-items-center">
-                        <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
-                          <i
-                            className="fas fa-trash-alt"
-                            onClick={() => removeField(index)}
-                          ></i>
+                      {isMobile ? (
+                        <div className="col-12 ">
+                          <div className="btn btn-danger btn-block">
+                            <i
+                              className="fas fa-trash-alt"
+                              onClick={() => removeField(index)}
+                            ></i>
+                          </div>
                         </div>
-                      </div>
+                      ) : (
+                        <div className="col-md-1 me-auto d-flex justify-content-between align-items-center">
+                          <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
+                            <i
+                              className="fas fa-trash-alt"
+                              onClick={() => removeField(index)}
+                            ></i>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
 
@@ -763,6 +786,7 @@ const IssueBookAdd = () => {
                         <div className="btn btn-dark btn-block">Saving</div>
                       ) : (
                         <button
+                          type="button"
                           className="btn btn-dark btn-block"
                           onClick={handleSubmit}
                         >

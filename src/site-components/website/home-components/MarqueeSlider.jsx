@@ -35,10 +35,19 @@ const MarqueeSlider = () => {
     fetchData();
   }, [items]);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
   return (
     <div className="container">
       <div className="row">
-        <div className="col-lg-9 id-marquee-wrapper overflow-hidden">
+        <div className={`col-lg-9  id-marquee-wrapper overflow-hidden ${isMobile?"mb-3":""}`}>
           <div className="id-mrq-content">
             <div className="marquee-wrapper">
               <div className="marquee">
@@ -94,6 +103,8 @@ const MarqueeSlider = () => {
           from { transform: translateX(0); }
           to { transform: translateX(-100%); }
         }
+
+        
       `}</style>
     </div>
   );

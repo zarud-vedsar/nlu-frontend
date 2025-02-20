@@ -442,6 +442,14 @@ const Book = () => {
     }
   };
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth <= 768);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
   return (
     <>
       <div className="page-container">
@@ -504,24 +512,27 @@ const Book = () => {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="col-md-5 col-lg-5 col-5 col-sm-2  ">
+                  <div className="col-md-5 col-lg-5 col-12 col-sm-12  mb-3 d-flex ">
+
                     <button
-                      className={`btn mr-2 ${recycleTitle === "Show Recycle Bin"
+                      className={`btn mr-2 py-2  ${recycleTitle === "Show Recycle Bin"
                           ? "btn-secondary"
                           : "btn-danger"
-                        }`}
+                        } `}
                       onClick={showRecyleBin}
+                      
                     >
-                      {recycleTitle} <i className="fa fa-recycle"></i>
+                      {recycleTitle} {!isMobile && <i className="fa fa-recycle"></i>}
                     </button>
                     <button
-                      className="btn btn-success"
+                      className="btn btn-success py-2"
                       onClick={() => setModalShow(true)}
                     >
                       {" "}
                       Import Books{" "}
                       <i className="fa fa-upload" aria-hidden="true"></i>
                     </button>
+
                   </div>
                 </div>
 

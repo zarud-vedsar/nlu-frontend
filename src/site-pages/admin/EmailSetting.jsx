@@ -8,6 +8,8 @@ import {
 import secureLocalStorage from "react-secure-storage";
 
 import SettingSideBar from "./SettingSideBar";
+import { useParams } from "react-router-dom";
+import ContactIconSetting from "./ContactIconSetting";
 
 const EmailSetting = () => {
   const initialForm = {
@@ -20,7 +22,9 @@ const EmailSetting = () => {
   };
   const [formData, setFormData] = useState(initialForm);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [selectedPage, setSelectedPage] = useState(<ContactIconSetting />);
 
+const { '*' : id } = useParams();
   const handleChange = (e) => {
     const { type, value, name } = e.target;
 
@@ -186,9 +190,9 @@ const EmailSetting = () => {
             </div>
           </div>
 
-          <div className="d-flex col-12 mx-auto mt-5">
-            <div className="col-md-2 mr-2">
-              <SettingSideBar />
+          <div className="d-flex row mt-5">
+            <div className="col-md-2 col-12 col-sm-12 mb-2">
+              <SettingSideBar setPage={setSelectedPage}/>
             </div>
 
             <form onSubmit={handleSubmit} className="col-md-10 col-12">

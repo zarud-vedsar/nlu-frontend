@@ -8,12 +8,8 @@ import secureLocalStorage from "react-secure-storage";
 import { capitalizeFirstLetter, formatDate } from "../../site-components/Helper/HelperFunction";
 import {
   PHP_API_URL,
-  NODE_API_URL,
   FILE_API_URL,
 } from "../../site-components/Helper/Constant";
-import { Modal, Spinner } from "react-bootstrap";
-import { InputText } from "primereact/inputtext";
-import { DataTable } from "primereact/datatable";
 
 const CellComplainDetails = () => {
   const [loading, setLoading] = useState(false);

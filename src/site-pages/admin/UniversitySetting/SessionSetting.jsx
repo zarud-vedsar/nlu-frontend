@@ -143,18 +143,17 @@ const SessionSetting = () => {
             </div>
           </div>
 
-          <div className="d-flex col-12 mx-auto mt-5">
-            <div className="col-md-2 mr-2">
+          <div className="d-flex row mt-5">
+            <div className="col-md-2 col-12 col-sm-12 mb-2">
               <SettingSideBar />
             </div>
 
             <form onSubmit={handleSubmit} className="col-md-5 col-12">
-              <div className="row">
-                <div className="col-md-12">
+              
                   <div className="card">
                     <div className="card-body">
                       <div className="row">
-                        <div className="form-group col-md-12">
+                        <div className=" col-md-12 col-lg-12 col-12 mb-2">
                           <label className="font-weight-semibold">
                             Select Session
                           </label>
@@ -186,8 +185,6 @@ const SessionSetting = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
             </form>
           </div>
         </div>

@@ -213,7 +213,7 @@ const IssuedBookStatus = () => {
                 <div className="ml-auto">
                   <Button
                     variant="light"
-                    className="mb-2 mb-md-0"
+                    className=" mb-md-0"
                     onClick={() => window.history.back()}
                   >
                     <i className="fas">
@@ -288,7 +288,7 @@ const IssuedBookStatus = () => {
                 <div className="container-fluid d-flex flex-wrap">
                   {issueBookList.map((formData, index) => (
                     <div
-                      className="card mr-4 mb-4"
+                      className="card mr-md-4 mr-lg-4 mb-4"
                       key={index}
                       style={{ width: "350px" }}
                     >

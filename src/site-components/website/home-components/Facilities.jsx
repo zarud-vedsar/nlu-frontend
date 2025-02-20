@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import classroom from "../assets/Images/classroom.png";
 import lib from "../assets/Images/library-64.png";
@@ -17,6 +17,14 @@ const Facilities = () => {
     });
   }, []);
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth <= 768);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
   return (
     <>
       <section className="facilities-sec" data-aos="fade-up" data-aos-delay="100">
@@ -30,7 +38,7 @@ const Facilities = () => {
           <div className="faccontainer">
             <div className="facitems-sec">
               <ul className="facitems">
-                <li className="facitem" data-aos="fade-right" data-aos-delay="100">
+                <li className="facitem" data-aos= {`${isMobile?"fade-up":"fade-right"}`} data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={classroom} />
@@ -71,7 +79,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem" data-aos="fade-left" data-aos-delay="100">
+                <li className="facitem" data-aos= {`${isMobile?"fade-up":"fade-right"}`}  data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={hostel} />
@@ -118,7 +126,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem" data-aos="fade-left" data-aos-delay="100">
+                <li className="facitem" data-aos= {`${isMobile?"fade-up":"fade-right"}`}  data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={dance} />

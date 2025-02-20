@@ -257,7 +257,7 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             <Route path="/" element={<Navigate to="/admin/signin" />} />
             <Route path="/compoundv" element={<components.SignIn />} />
             <Route path="/signin" element={<components.SignInFaculty />} />
-            <Route path="/library-managementList" element={<LibraryListing  />} />
+            <Route path="/book-stock-history" element={<LibraryListing  />} />
             <Route
               path="/forget-password"
               element={<components.ForgetPassword />}

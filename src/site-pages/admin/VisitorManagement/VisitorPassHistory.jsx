@@ -346,6 +346,17 @@ function VisitorRegistrationHistory() {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+
+                    <Button
+                      variant="primary"
+                      className=" mb-2 mb-md-0"
+                      onClick={handleShow}
+                    >
+                      <span>
+                        <FaFilter /> 
+                      </span>
+                    </Button>
+
                 </div>
               </div>
             </div>
@@ -365,17 +376,7 @@ function VisitorRegistrationHistory() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="">
-                    <Button
-                      variant="primary"
-                      className=" mb-2 mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> Filter
-                      </span>
-                    </Button>
-                  </div>
+                 
                 </div>
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   <DataTable

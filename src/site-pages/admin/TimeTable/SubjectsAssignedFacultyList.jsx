@@ -280,6 +280,15 @@ function SemesterSubjectList() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                    <Button
+                      variant="primary"
+                      className=" mb-2 mb-md-0"
+                      onClick={handleShow}
+                    >
+                      <span>
+                        <FaFilter /> 
+                      </span>
+                    </Button>
                   <Link
                     to={"/admin/subjects-assinged-faculty"}
                     className="ml-2 btn-md btn border-0 btn-secondary"
@@ -304,17 +313,6 @@ function SemesterSubjectList() {
                       placeholder="Search"
                       className="form-control dtsearch-input"
                     />
-                  </div>
-                  <div className="">
-                    <Button
-                      variant="primary"
-                      className=" mb-2 mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> Filter
-                      </span>
-                    </Button>
                   </div>
                  
                 </div>

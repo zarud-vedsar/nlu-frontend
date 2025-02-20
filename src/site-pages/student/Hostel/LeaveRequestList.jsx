@@ -218,6 +218,15 @@ function LeaveRequestList() {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                    <Button
+                      variant="primary"
+                      className=" mb-2 mb-md-0"
+                      onClick={handleShow}
+                    >
+                      <span>
+                        <FaFilter /> 
+                      </span>
+                    </Button>
                   {!secureLocalStorage.getItem("sguardianemail") &&
                   <Link to="/student/leave-request">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
@@ -244,17 +253,7 @@ function LeaveRequestList() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="">
-                    <Button
-                      variant="primary"
-                      className=" mb-2 mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> Filter
-                      </span>
-                    </Button>
-                  </div>
+                 
                 </div>
 
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>

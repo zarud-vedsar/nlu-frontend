@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { PHP_API_URL } from '../../site-components/Helper/Constant';
 import { FaAngleRight } from 'react-icons/fa6';
-
+import validator from 'validator';
 const TermCondition = () => {
   const [termConData, setTermConData] = useState([]);
   const [pcontent, setpcontent] = useState('');
@@ -60,7 +60,7 @@ const TermCondition = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className='copyright-wrapper'>
-                <p dangerouslySetInnerHTML={{ __html: pcontent }}></p>
+                <p dangerouslySetInnerHTML={{ __html: pcontent ? validator.unescape(validator.unescape(pcontent)) : '' }}></p>
               </div>
             </div>
           </div>

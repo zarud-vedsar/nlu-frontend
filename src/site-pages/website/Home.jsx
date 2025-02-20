@@ -24,7 +24,7 @@ import OurSociety from "./OurSociety";
 function Home() {
   return (
     <>
-      <PopupNotice />
+        <PopupNotice />
       <Banner />
       <MarqueeSlider />
       <About />
@@ -34,12 +34,12 @@ function Home() {
       <HomeVideo />
       <WhyChoose />
       <FacultySlider />
-      <CampusLife />
+     <CampusLife /> 
       <Speciality />
       <ContactFeatures />
       <Achivement />
       <Facilities />
-      <Gallery />
+     <Gallery />
       <SocialMedia />
       <ContactIcon />
       <UserTestimonials />

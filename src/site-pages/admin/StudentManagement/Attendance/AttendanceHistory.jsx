@@ -442,7 +442,7 @@ function AttendanceHIstory() {
                     onClick={handleShow}
                   >
                     <span>
-                      <FaFilter /> Filter
+                      <FaFilter /> 
                     </span>
                   </Button>
                   <Link to="/admin/student-management/mark-attendance">

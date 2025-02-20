@@ -11,6 +11,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import secureLocalStorage from "react-secure-storage";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import IsAdminLoggedIn from "./IsAdminLoggedIn";
+import rpnl_logo from "../../site-components/website/assets/Images/rpnl_logo.png";
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -117,7 +118,7 @@ const SignIn = () => {
                         className="img-fluid rounded-5"
                         style={{ maxWidth: "30%" }}
                         alt="NLU Logo"
-                        src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+                        src={rpnl_logo}
                       />
                       <h2 className="h4_new">Sign In</h2>
                     </div>

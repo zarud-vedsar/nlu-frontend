@@ -282,6 +282,15 @@ function ResourcePdfList() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                    <Button
+                      variant="primary"
+                      className=" mb-2 mb-md-0"
+                      onClick={handleShow}
+                    >
+                      <span>
+                        <FaFilter /> 
+                      </span>
+                    </Button>
                   <Link
                     to={'/admin/add-resource-pdf'}
                     className="ml-2 btn-md btn border-0 btn-secondary"
@@ -305,17 +314,7 @@ function ResourcePdfList() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="">
-                    <Button
-                      variant="primary"
-                      className=" mb-2 mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> Filter
-                      </span>
-                    </Button>
-                  </div>
+                  
                   <div className='col-md-4 col-lg-4 col-10 col-sm-4'>
                     <button className={`btn ${recycleTitle === "Show Recycle Bin" ? 'btn-secondary' : 'btn-danger'}`} onClick={showRecyleBin}>{recycleTitle} <i className="fa fa-recycle"></i></button>
                   </div>

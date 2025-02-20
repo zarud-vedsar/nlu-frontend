@@ -174,7 +174,7 @@ const AdminDashboard = () => {
         }
       );
       setData(response.data.data);
-    } catch (error) {}
+    } catch (error) { }
   };
   useEffect(() => {
     getAdminDashboardData();
@@ -284,7 +284,7 @@ const AdminDashboard = () => {
     // After fetching data, force a hard reload of the page
     navigate(window.location.pathname, { replace: false });
   }, []);
- 
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -484,11 +484,10 @@ const AdminDashboard = () => {
                         <button
                           key={tab}
                           onClick={() => setActiveTab(tab)}
-                          className={`fs-5 fw-bold pb-2 px-4 text-start transition-all duration-300 rounded-3 ${
-                            activeTab === tab
-                              ? "text-custom-actives border-b-4 border-blue-500"
-                              : "text-muted hover:text-primary"
-                          }`}
+                          className={`fs-5 fw-bold pb-2 px-4 text-start transition-all duration-300 rounded-3 ${activeTab === tab
+                            ? "text-custom-actives border-b-4 border-blue-500"
+                            : "text-muted hover:text-primary"
+                            }`}
                           style={{
                             cursor: "pointer",
                             background: "transparent",
@@ -592,7 +591,7 @@ const AdminDashboard = () => {
                   <div className="row">
                     <div className="col-md-6 col-lg-6 col-sm-6 col-12">
                       <Link
-                        to={"/admin/inventory/product/add-stock"}
+                        to={"/admin/student-management/student-list"}
                         target="_blank"
                       >
                         <div
@@ -616,7 +615,7 @@ const AdminDashboard = () => {
                                 className="m-b-0 h6_new font-14 mt-2"
                                 style={{ whiteSpace: "nowrap" }}
                               >
-                                Mark Attendance
+                                Academic Student
                               </h6>
                             </div>
                           </div>
@@ -688,7 +687,7 @@ const AdminDashboard = () => {
                     </div>
                     <div className="col-md-6 col-lg-6 col-sm-6 col-12">
                       <Link
-                        to={"/admin/inventory/product/add-stock"}
+                        to={"/admin/inventory/product/add-stockout"}
                         target="_blank"
                       >
                         <div
@@ -724,194 +723,194 @@ const AdminDashboard = () => {
               </div>
             </div>
 
-       
+
           </div>
         </div>
-       
-            <div className="col-md-12">
-              <div className="card">
-                <div className="card-header d-flex justify-content-between align-items-center">
-                  <div className="card-title h6_new">Restock Notification</div>
-                  <Link
-                    to="/admin/inventory/product/threshold/restock/notification"
-                    className="ml-2 btn-md btn border-0"
-                    style={{ background: "#274c77", color: "white" }}
-                  >
-                    <i className="fas fa-list" /> View All
-                  </Link>
-                </div>
-                <div className="card-body">
-                  <div className="d-flex justify-content-center">
-                    <div className="table-responsive">
-                      <table className="table">
-                        <thead>
-                          <tr>
-                            <th>Category</th>
-                            <th>Product</th>
-                            <th>Unit</th>
-                            <th>Brand</th>
-                            <th>Available Stock</th>
-                            <th>Threshold Limit</th>
-                            <th>Current Stock</th>
-                            <th>Request Date</th>
-                            <th>Status</th>
-                            <th>View</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {ProductList?.length > 0 ? (
-                            ProductList.slice(0, 10).map((data, index) => (
-                              <tr key={index}>
-                                <td>
-                                  {capitalizeFirstLetter(
-                                    data?.ctitle
-                                      ? validator.unescape(data?.ctitle)
-                                      : ""
-                                  )}
-                                </td>
-
-                                <td>
-                                  {capitalizeFirstLetter(
-                                    data?.pname
-                                      ? validator.unescape(data?.pname)
-                                      : ""
-                                  )}
-                                </td>
-
-                                <td>
-                                  {capitalizeFirstLetter(
-                                    data?.punit
-                                      ? validator.unescape(data?.punit)
-                                      : ""
-                                  )}
-                                </td>
-                                <td>
-                                  {capitalizeAllLetters(
-                                    data?.pbrand
-                                      ? validator.unescape(data?.pbrand)
-                                      : ""
-                                  )}
-                                </td>
-                                <td>{data?.total_available_qty}</td>
-
-                                <td>{data?.threshhold_limit}</td>
-                                <td>{data?.currentStock}</td>
-                                <td>{data?.created_at}</td>
-                                <td>
-                                  {" "}
-                                  <div>
-                                    {data.status === 0 && (
-                                      <span className="badge badge-warning">
-                                        New Request
-                                      </span>
-                                    )}
-                                    {data.status === 1 && (
-                                      <span className="badge badge-danger">
-                                        Request Cancelled
-                                      </span>
-                                    )}
-                                    {data.status === 2 && (
-                                      <span className="badge badge-info">
-                                        Order To Vendor
-                                      </span>
-                                    )}
-                                    {data.status === 3 && (
-                                      <span className="badge badge-success">
-                                        Order Received
-                                      </span>
-                                    )}
-                                  </div>
-                                </td>
-                                <td>
-                                  <Link
-                                    to={`/admin/inventory/product/threshold/raised-query-notification-view/${data.id}`}
-                                    className="avatar avatar-icon avatar-md avatar-orange"
-                                  >
-                                    <i
-                                      className="fa-solid fa-eye"
-                                      onClick={() =>
-                                        navigate(
-                                          `/admin/update-course-content/${rowData.id}`,
-                                          { replace: false }
-                                        )
-                                      }
-                                    ></i>
-                                  </Link>
-                                </td>
-                              </tr>
-                            ))
-                          ) : (
-                            <tr>
-                              <td colSpan="8">
-                                No Restock Notification Available
-                              </td>
-                            </tr>
-                          )}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="px-3">
+        <div className="px-3">
           <div className="row">
-             <div className="col-md-3">
+            <div className="col-md-3">
               <Link to='/admin/email-setting' className="card p-1 animate-card">
-              <div className="cust_box1 events">
-                <div className="viewAttendance1">
-                <HiOutlineSpeakerphone size={24} className="viewAttendanceIcon1"  style={{color:"white"}} />
-              
-                
+                <div className="cust_box1 events">
+                  <div className="viewAttendance1">
+                    <HiOutlineSpeakerphone size={24} className="viewAttendanceIcon1" style={{ color: "white" }} />
+
+
+                  </div>
+                  <div className="boxTitles" >University Setting</div>
+                  <FaAngleRight className="rightICons" />
                 </div>
-                <div className="boxTitles" >University Setting</div>
-                <FaAngleRight className="rightICons"/>
-              </div>
               </Link>
             </div>
             <div className="col-md-3">
               <div className="card p-1 animate-card ">
-              <Link to='/admin/add-notice' className="cust_box1">
-                <div className="viewAttendance">
-                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
-                
-                </div>
-                <div className="boxTitles" >Add Notice</div>
-                <FaAngleRight className="rightICons"/>
-              </Link>
+                <Link to='/admin/add-notice' className="cust_box1">
+                  <div className="viewAttendance">
+                    <MdEventAvailable size={24} className="viewAttendanceIcon" style={{ color: "white" }} />
+
+                  </div>
+                  <div className="boxTitles" >Add Notice</div>
+                  <FaAngleRight className="rightICons" />
+                </Link>
               </div>
             </div>
-           
+
             <div className="col-md-3">
               <Link to='/admin/expense/add-new' className="card p-1 animate-card">
-              <div className="cust_box1 memberplane">
-                <div className="viewAttendance memb">
-                <MdEventAvailable size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
-                
+                <div className="cust_box1 memberplane">
+                  <div className="viewAttendance memb">
+                    <MdEventAvailable size={24} className="viewAttendanceIcon" style={{ color: "white" }} />
+
+                  </div>
+                  <div className="boxTitles " >Add Expense</div>
+                  <FaAngleRight className="rightICons" />
                 </div>
-                <div className="boxTitles " >Add Expense</div>
-                <FaAngleRight className="rightICons"/>
-              </div>
               </Link>
             </div>
             <div className="col-md-3">
               <Link to='/admin/expense/list' className="card p-1 animate-card">
-              <div className="cust_box1 accounut">
-                <div className="viewAttendance">
-                <TbReportMoney size={24} className="viewAttendanceIcon"  style={{color:"white"}}/>
-         
-                
+                <div className="cust_box1 accounut">
+                  <div className="viewAttendance">
+                    <TbReportMoney size={24} className="viewAttendanceIcon" style={{ color: "white" }} />
+
+
+                  </div>
+                  <div className="boxTitles" >Expense List</div>
+
+                  <FaAngleRight className="rightICons" />
                 </div>
-                <div className="boxTitles" >Expense List</div>
-                
-                <FaAngleRight className="rightICons"/>
-              </div>
               </Link>
             </div>
           </div>
         </div>
-       
+        <div className="col-md-12">
+          <div className="card">
+            <div className="card-header d-flex justify-content-between align-items-center">
+              <div className="card-title h6_new">Restock Notification</div>
+              <Link
+                to="/admin/inventory/product/threshold/restock/notification"
+                className="ml-2 btn-md btn border-0"
+                style={{ background: "#274c77", color: "white" }}
+              >
+                <i className="fas fa-list" /> View All
+              </Link>
+            </div>
+            <div className="card-body">
+              <div className="d-flex justify-content-center">
+                <div className="table-responsive">
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>Category</th>
+                        <th>Product</th>
+                        <th>Unit</th>
+                        <th>Brand</th>
+                        <th>Available Stock</th>
+                        <th>Threshold Limit</th>
+                        <th>Current Stock</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                        <th>View</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {ProductList?.length > 0 ? (
+                        ProductList.slice(0, 10).map((data, index) => (
+                          <tr key={index}>
+                            <td>
+                              {capitalizeFirstLetter(
+                                data?.ctitle
+                                  ? validator.unescape(data?.ctitle)
+                                  : ""
+                              )}
+                            </td>
+
+                            <td>
+                              {capitalizeFirstLetter(
+                                data?.pname
+                                  ? validator.unescape(data?.pname)
+                                  : ""
+                              )}
+                            </td>
+
+                            <td>
+                              {capitalizeFirstLetter(
+                                data?.punit
+                                  ? validator.unescape(data?.punit)
+                                  : ""
+                              )}
+                            </td>
+                            <td>
+                              {capitalizeAllLetters(
+                                data?.pbrand
+                                  ? validator.unescape(data?.pbrand)
+                                  : ""
+                              )}
+                            </td>
+                            <td>{data?.total_available_qty}</td>
+
+                            <td>{data?.threshhold_limit}</td>
+                            <td>{data?.currentStock}</td>
+                            <td>{data?.created_at}</td>
+                            <td>
+                              {" "}
+                              <div>
+                                {data.status === 0 && (
+                                  <span className="badge badge-warning">
+                                    New Request
+                                  </span>
+                                )}
+                                {data.status === 1 && (
+                                  <span className="badge badge-danger">
+                                    Request Cancelled
+                                  </span>
+                                )}
+                                {data.status === 2 && (
+                                  <span className="badge badge-info">
+                                    Order To Vendor
+                                  </span>
+                                )}
+                                {data.status === 3 && (
+                                  <span className="badge badge-success">
+                                    Order Received
+                                  </span>
+                                )}
+                              </div>
+                            </td>
+                            <td>
+                              <Link
+                                to={`/admin/inventory/product/threshold/raised-query-notification-view/${data.id}`}
+                                className="avatar avatar-icon avatar-md avatar-orange"
+                              >
+                                <i
+                                  className="fa-solid fa-eye"
+                                  onClick={() =>
+                                    navigate(
+                                      `/admin/update-course-content/${rowData.id}`,
+                                      { replace: false }
+                                    )
+                                  }
+                                ></i>
+                              </Link>
+                            </td>
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td colSpan="8">
+                            No Restock Notification Available
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
       </div>
 
       <style jsx>
@@ -968,7 +967,7 @@ font-size: 15px;
 }
   
         `}
-        </style>
+      </style>
     </div>
   );
 };

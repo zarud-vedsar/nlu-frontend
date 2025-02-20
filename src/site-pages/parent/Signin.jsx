@@ -10,8 +10,8 @@ import {
   PHP_API_URL,
 } from "../../site-components/Helper/Constant";
 import IsStudentoggedIn from "../student/IsStudentoggedIn";
-
 import secureLocalStorage from "react-secure-storage";
+import rpnl_logo from "../../site-components/website/assets/Images/rpnl_logo.png";
 
 const Signin = () => {
   const [seconds, setSeconds] = useState();
@@ -171,7 +171,7 @@ const Signin = () => {
                         className="img-fluid rounded-5"
                         style={{ maxWidth: "30%" }}
                         alt="NLU Logo"
-                        src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+                        src={rpnl_logo}
                       />
                       <h2 className="h4_new">
                         Parent <br />

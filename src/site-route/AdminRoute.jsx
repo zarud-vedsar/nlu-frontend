@@ -233,6 +233,7 @@ components.UserLogList = lazy(() => import("../site-pages/admin/UserLogList.jsx"
 components.FacultyDashboard = lazy(() => import("../site-pages/admin/FacultyDashboard.jsx"));
 components.ViewCompiledAttendance = lazy(() => import("../site-pages/admin/Attendance/ViewCompiledAttendance.jsx"));
 components.CellComplainList = lazy(() => import("../site-pages/admin/CellComplainList.jsx"));
+components.CellComplainDetails = lazy(() => import("../site-pages/admin/CellComplainDetails.jsx"));
 
 // eslint-disable-next-line react/prop-types
 function AdminRoute({ toggleExpand, toggleFolded }) {
@@ -2051,6 +2052,10 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             <Route
               path="/cell-complain-list/"
               element={<ProtectedRoute element={<components.CellComplainList />} />}
+            />
+            <Route
+              path="/cell-complain-details/:id"
+              element={<ProtectedRoute element={<components.CellComplainDetails />} />}
             />
             <Route
               path="/exam-paper/add-question"

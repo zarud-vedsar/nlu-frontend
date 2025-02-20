@@ -190,6 +190,7 @@ function NoticeList() {
                                     >
                                         <i className="fas fa-arrow-left" /> Go Back
                                     </button>
+                                    <button className="btn btn-info text-white" onClick={handleShow}><i className="fa fa-filter"></i></button>
                                     <button onClick={() => navigate("/admin/add-notice", { replace: false })}
                                         className="ml-2 btn border-0 btn-secondary"
                                     >
@@ -214,7 +215,7 @@ function NoticeList() {
                                     </div>
                                     <div className='col-md-4 col-lg-4 col-10 mb-3 col-sm-4 d-flex justify-content-between align-items-center'>
                                         <button className={`btn ${recycleTitle === "Show Recycle Bin" ? 'btn-secondary' : 'btn-danger'}`} onClick={showRecyleBin}>{recycleTitle} <i className="fa fa-recycle"></i></button>
-                                        <button className="btn btn-info text-white" onClick={handleShow}><i className="fa fa-filter"></i></button>
+
                                     </div>
                                 </div>
                                 <div className={`table-responsive ${isFetching ? 'form' : ''}`}>

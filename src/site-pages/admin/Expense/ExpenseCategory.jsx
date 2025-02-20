@@ -281,6 +281,14 @@ const ExpenseCategory = () => {
     }
   };
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
       <div className="page-container">
@@ -301,13 +309,13 @@ const ExpenseCategory = () => {
               </nav>
             </div>
             <div className="card bg-transparent mb-2">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new"> Expense Category</h5>
-                <div className="ml-auto">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
+                <h5 className="card-title h6_new pt-2"> Expense Category</h5>
+                <div className="mr-auto id-mobile-go-back">
                   <Button
                     variant="light"
                     onClick={() => window.history.back()}
-                    className="mb-2 mb-md-0"
+                    className="mb-2 mb-md-0 mr-2"
                   >
                     <i className="fas">
                       <FaArrowLeft />
@@ -319,13 +327,14 @@ const ExpenseCategory = () => {
                       recycleTitle === "Show Recycle Bin"
                         ? "btn-secondary"
                         : "btn-danger"
-                    }`}
+                        
+                    } ml-auto`}
                     onClick={showRecyleBin}
                   >
-                    {recycleTitle} <i className="fa fa-recycle"></i>
+                    {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
                   </Button>
                   <Button
-                    className="ml-2 mb-2 mb-md-0 btn btn-secondaary"
+                    className="ml-2  mb-md-0 btn btn-secondaary"
                     onClick={() => setModalShow(true)}
                   >
                     <i className="fas">

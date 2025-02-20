@@ -481,10 +481,12 @@ function AddExam() {
             </div>
             {/* Main Content Starts Here */}
             <div className="card border-0 bg-transparent mb-0">
-              <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
-                <h5 className="card-title h6_new font-16">
+              <div className="card-header bg-transparent mb-0 px-0 id-pc-divices-header px-0 id-mobile-divice-d-block">
+                <h5 className="card-title h6_new font-16 pt-0">
                   {dbId ? "Update Exam Paper" : "Add Exam Paper"}
                 </h5>
+                <div className="ml-auto id-mobile-go-back mb-2">
+
                 {/* The almighty 'Go Back' button */}
                 <button className="btn goback" onClick={goBack}>
                   <i className="fas fa-arrow-left"></i> Go Back
@@ -494,6 +496,7 @@ function AddExam() {
                     <i className="fas fa-list"></i> Exam Paper List
                   </button>
                 </Link>
+                </div>
               </div>
             </div>
             <div className="card border-0">

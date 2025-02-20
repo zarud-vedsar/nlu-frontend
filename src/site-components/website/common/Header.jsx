@@ -14,7 +14,7 @@ function Header() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
+ 
   const [menuVisible, setMenuVisible] = useState(false);
   const [message, setMessages] = useState([]);
   const [courseName, setCourseNames] = useState([]);
@@ -156,6 +156,7 @@ function Header() {
                     <Link className="navigation__item_link arr-true">About </Link>
                     <div className="navigation__item_dropdown-content">
                       <Link to="/about" className="navigation__item_drop_link">Introduction</Link>
+                      
                       <Link to="/dr-rajendra-prasad" className="navigation__item_drop_link">About Dr. Rajendra Prasad</Link>
                       <Link to="/emblem-motto" className="navigation__item_drop_link">Emblem and Motto</Link>
                       <Link to="/vision-mission" className="navigation__item_drop_link">Vision &amp; Mission</Link>
@@ -166,7 +167,7 @@ function Header() {
                     <Link className="navigation__item_link arr-true">Governance </Link>
                     <div className="navigation__item_dropdown-content">
                       {message && message.map((post, index) => (
-                        <Link to={`/message/${post.id}`} key={`${index}-message`} className="navigation__item_drop_link">{post.msg_from}</Link>
+                        <Link to={`/message/${post.id}`} key={`${index}-message`} className="navigation__item_drop_link ">{post.msg_from}</Link>
                       ))}
                     </div>
                   </li>

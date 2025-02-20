@@ -703,6 +703,11 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           url: "library-setting",
           icon: <FaCogs />,
         }, // Plural for consistency
+        {
+          subtitle: "Book Stock History",
+          url: "book-stock-history",
+          icon: <FaCogs />,
+        }, // Plural for consistency
       ],
     },
     {

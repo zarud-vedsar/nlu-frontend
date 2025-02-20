@@ -40,6 +40,7 @@ function LibraryListing() {
       );
       if (response.data?.statusCode === 200) {
         const data = response.data.data;
+        
         setTableData(data);
         setFilteredData(data);
         processDropdownOptions(data);

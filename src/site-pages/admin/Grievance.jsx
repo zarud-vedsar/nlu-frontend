@@ -194,7 +194,7 @@ const Grievance = () => {
           <div className="card">
             <div className="card-body">
               <div className="row">
-                <div className="col-md-7 col-lg-7 col-7 col-sm-7 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                <div className="col-md-7 col-lg-7 col-12 col-sm-12 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
                   <div className="search-icon">
                     <i className="pi pi-search" />
                   </div>
@@ -206,7 +206,7 @@ const Grievance = () => {
                     className="form-control dtsearch-input"
                   />
                 </div>
-                <div className="col-md-2 col-lg-2 col-10 col-sm-4 mr-3 d-flex align-items-center">
+                <div className="col-md-2 col-lg-2 col-12 col-sm-4 mr-3 d-flex align-items-center">
                   <label htmlFor="start-date" className="mr-2">
                     Start Date
                   </label>
@@ -219,7 +219,7 @@ const Grievance = () => {
                   />
                 </div>
 
-                <div className="col-md-2 col-lg-2 col-10 col-sm-4 d-flex align-items-center">
+                <div className="col-md-2 col-lg-2 col-12 col-sm-4 d-flex align-items-center">
                   <label htmlFor="end-date" className="mr-2">
                     End Date
                   </label>

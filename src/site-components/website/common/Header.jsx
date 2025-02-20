@@ -72,8 +72,8 @@ function Header() {
 
   /* Toggle Menu Visibility */
   const toggleMenu = () => {
-    if(!isMobile) return;
-    setMenuVisible(()=>!menuVisible);
+    if (!isMobile) return;
+    setMenuVisible(() => !menuVisible);
   };
 
 
@@ -149,7 +149,7 @@ function Header() {
               </div>
 
               <nav
-                className={`page-mine-header__bottom`} style={{padding:`${isMobile?"15px 0px 0px 120px":"0px"}`}}>
+                className={`page-mine-header__bottom`} style={{ padding: `${isMobile ? "15px 0px 0px 120px" : "0px"}` }}>
                 <ul className={`${menuVisible ? 'navigation--visible' : 'navigation'}`}>
                   <li className="navigation__item"><Link to={'/'} className='navigation__item_link'>Home</Link></li>
                   <li className="navigation__item arr-li">
@@ -196,17 +196,17 @@ function Header() {
                   </li>
                   <li className="navigation__item"><Link to={'/student/book-issued'} target='_blank' className='navigation__item_link'>Library</Link></li>
                   <li className="navigation__item arr-li">
-                    <Link className="navigation__item_link arr-true">Cells</Link>
-                    <div className="navigation__item_dropdown-content">
-                      <Link to="/equal-opportunity-cell" className="navigation__item_drop_link">Equal Opportunity Cell</Link>
-                    </div>
-                  </li>
-                  <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">Contact </Link>
                     <div className="navigation__item_dropdown-content">
                       <Link to="/contact-us" className="navigation__item_drop_link">Contact Us</Link>
                       <Link to="/feedback" className="navigation__item_drop_link">Feedback</Link>
                       <Link to="/grievance" className="navigation__item_drop_link">Grievance</Link>
+                    </div>
+                  </li>
+                  <li className="navigation__item arr-li">
+                    <Link className="navigation__item_link arr-true">More Links</Link>
+                    <div className="navigation__item_dropdown-content">
+                      <Link to="/equal-opportunity-cell" className="navigation__item_drop_link">Equal Opportunity Cell</Link>
                     </div>
                   </li>
                 </ul>

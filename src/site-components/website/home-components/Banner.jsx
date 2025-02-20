@@ -40,7 +40,7 @@ const Banner = () => {
                       alt="#"
                       className="sliderimg"
                       title=""
-                      id={`wows1_1`}
+                      id={`wows1_${index}`}
                     />
                     <div className="banner-text-sec">
                       <div className="banner-text">

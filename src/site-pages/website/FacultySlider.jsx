@@ -96,9 +96,9 @@ const FacultySlider = () => {
             </div>
             <div className="row">
               <div className="col-md-3 col-lg-3">
-                <div class="faculty-slide mt-3">
+                <div className="faculty-slide mt-3">
                   <div className="facslider">
-                    <Link to={`/faculty/1`} target="_blank">
+                    <Link to={`/faculty/1`} target="_blank" >
                       <div className="facimg-bx">
                         <img
                           src="https://www.spaceshineone.co.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"
@@ -106,16 +106,16 @@ const FacultySlider = () => {
                           className="facimg"
                         />
                       </div>
-
-                      <div className="facpost">
-                        <h3 className="sldnn mb-1 mt-2">
-                          Sr. Prof. Dr. Usha Tandon
-                        </h3>
-                        <p className="facdesti">Vice Chancellor</p>
-                      </div>
                     </Link>
+                    <div className="facpost">
+                      <Link to={`/faculty/1`} target="_blank" >
+                        <h3 className="sldnn mb-1 mt-2">Sr. Prof. Dr. Usha Tandon</h3>
+                        <p className="facdesti">Vice Chancellor</p>
+                      </Link>
+                    </div>
                   </div>
                 </div>
+
               </div>
               <div className="col-md-9 col-lg-9">
                 <div className="faculty-slider-container">
@@ -144,14 +144,13 @@ const FacultySlider = () => {
                                   }
                                 />
                               </div>
-
-                              <div className="facpost">
-                                <h3 className="sldnn mb-1 mt-2">{`${faculty.first_name} ${faculty.middle_name} ${faculty.last_name}`}</h3>
-                                <p className="facdesti">
-                                  {faculty?.designation}
-                                </p>
-                              </div>
                             </Link>
+                            <div className="facpost">
+                              <h3 className="sldnn mb-1 mt-2">{`${(
+                                faculty.first_name
+                              )} ${faculty.middle_name} ${faculty.last_name}`}</h3>
+                              <p className="facdesti">{faculty?.designation}</p>
+                            </div>
                           </div>
                         </div>
                       ))}
@@ -166,6 +165,7 @@ const FacultySlider = () => {
                 </div>
               </div>
             </div>
+
           </div>
         </section>
       )}

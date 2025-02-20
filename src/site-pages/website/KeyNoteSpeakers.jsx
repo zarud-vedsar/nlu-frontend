@@ -150,7 +150,7 @@ function KeyNoteSpeakers() {
                                     <div className='ms-3'>
                                         <h5 className="card-title mt-0 gorditas">{note.name}</h5>
                                         <p className="card-text" style={{ textAlign: 'start' }}>{note.contactDetails}</p>
-                                        <Link target='' className="btn btn-primary border-primary" to={note.link}>View Profile &nbsp;<FaArrowRightLong /> </Link>
+                                        <Link target='_blank' className="btn btn-primary border-primary" to={note.link}>View Profile &nbsp;<FaArrowRightLong /> </Link>
                                     </div>
                                 </div>
                             </div>

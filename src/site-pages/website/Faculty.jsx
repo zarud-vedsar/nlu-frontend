@@ -100,7 +100,7 @@ const Faculty = () => {
                       <div className="col-lg-4">
                         <div className="staf-info">
                           <h5 className="title">
-                            {`${faculty?.first_name} ${faculty?.middle_name} ${faculty?.last_name}`}
+                            {`${faculty?.first_name} ${faculty?.last_name}`}
                           </h5>
 
                           <a

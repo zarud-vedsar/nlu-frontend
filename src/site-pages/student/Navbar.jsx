@@ -7,7 +7,7 @@ import {
   AiOutlineLogout,
 } from "react-icons/ai";
 import { RiMenuFold4Fill } from "react-icons/ri";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import studentAvatar from "./assets/img/studentAvatar.png";
 import axios from "axios";
@@ -21,7 +21,6 @@ import { Modal, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { studentRecordById } from "../../site-components/student/GetData"; // Importing components and data-fetching functions.
 import rpnl_logo from "../../site-components/website/assets/Images/rpnl_logo.png";
-
 const MyVerticallyCenteredModal = (props = {}) => {
   const [selectedStudent, setSelectedStudent] = useState();
   const [studentList, setStudentList] = useState([]);
@@ -110,15 +109,17 @@ const MyVerticallyCenteredModal = (props = {}) => {
                 (item) => item.stid === parseInt(selectedStudent)
               )
                 ? {
-                  value: parseInt(selectedStudent),
-                  label: `${studentList.find(
-                    (item) => item.stid == parseInt(selectedStudent)
-                  ).sname
-                    }( ${studentList.find(
-                      (item) => item.stid == parseInt(selectedStudent)
-                    ).registrationNo
+                    value: parseInt(selectedStudent),
+                    label: `${
+                      studentList.find(
+                        (item) => item.stid == parseInt(selectedStudent)
+                      ).sname
+                    }( ${
+                      studentList.find(
+                        (item) => item.stid == parseInt(selectedStudent)
+                      ).registrationNo
                     })`,
-                }
+                  }
                 : { value: selectedStudent, label: "Select" }
             }
           ></Select>
@@ -151,16 +152,23 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
   const [guardian, setGuardian] = useState(false);
 
   const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    setExpand(false);
+    toggleExpand(false);
+  }, [location.pathname]);
 
   const sideBarMenu = [
     ...(!secureLocalStorage.getItem("sguardianemail")
       ? [
-        {
-          title: "Home",
-          icon: <AiOutlineDashboard />,
-          url: "home",
-          dropdownMenus: [],
-        }] : []),
+          {
+            title: "Home",
+            icon: <AiOutlineDashboard />,
+            url: "home",
+            dropdownMenus: [],
+          },
+        ]
+      : []),
   ];
 
   const fetchList = async () => {
@@ -266,17 +274,17 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         url: "",
         dropdownMenus: [
           ...(!secureLocalStorage.getItem("sguardianemail")
-            ? [
-              { subtitle: "Raise Room Query", url: "raise-query" }] : []),
+            ? [{ subtitle: "Raise Room Query", url: "raise-query" }]
+            : []),
           { subtitle: "Raised Room Queries", url: "raised-room-queries" },
           { subtitle: "Alloted Room History", url: "alloted-room-history" },
           ...(!secureLocalStorage.getItem("sguardianemail")
-            ? [
-              { subtitle: "Raise Complain", url: "raise-complain" }] : []),
+            ? [{ subtitle: "Raise Complain", url: "raise-complain" }]
+            : []),
           { subtitle: "Complain History", url: "complain-history" },
           ...(!secureLocalStorage.getItem("sguardianemail")
-            ? [
-              { subtitle: "New Leave Request", url: "leave-request" }] : []),
+            ? [{ subtitle: "New Leave Request", url: "leave-request" }]
+            : []),
           { subtitle: "Leave Request History", url: "leave-request-list" },
         ],
       },
@@ -304,8 +312,8 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         url: "",
         dropdownMenus: [
           ...(!secureLocalStorage.getItem("sguardianemail")
-            ? [
-              { subtitle: "New Message", url: "new-message" }] : []),
+            ? [{ subtitle: "New Message", url: "new-message" }]
+            : []),
           { subtitle: "Message List", url: "message-list" },
         ],
       }
@@ -330,7 +338,6 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
     await studentRecordById(secureLocalStorage.getItem("studentId")).then(
       (res) => {
         if (res.length > 0) {
-
           secureLocalStorage.setItem("sname", res[0]?.sname);
           setStudentPersonalDetail({
             name: res[0]?.sname,
@@ -354,20 +361,21 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         formData
       );
 
-
       if (response.data?.statusCode === 200) {
         if (
           response?.data?.data?.semtitle !== "semester 1" ||
           (response?.data?.data?.semtitle === "semester 1" &&
             response?.data?.data?.approved === 1)
         ) {
-          secureLocalStorage.setItem("selectedCourseId", response?.data?.data?.id)
+          secureLocalStorage.setItem(
+            "selectedCourseId",
+            response?.data?.data?.id
+          );
 
           setApprovedStudent(true);
         }
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   function toggleSidebar() {
@@ -404,11 +412,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       <div className="header bg-white border-none shadow-head-sm">
         <div className="logo logo-dark d-flex justify-content-center align-items-center">
           <Link to="/student/">
-            <img
-              style={{ width: "35%" }}
-              src={rpnl_logo}
-              alt="Logo"
-            />
+            <img style={{ width: "35%" }} src={rpnl_logo} alt="Logo" />
             <img
               style={{ width: "35%" }}
               className="logo-fold"
@@ -419,11 +423,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
         </div>
         <div className="logo logo-white">
           <Link href="/student/">
-            <img
-              style={{ width: "35%" }}
-              src={rpnl_logo}
-              alt="Logo White"
-            />
+            <img style={{ width: "35%" }} src={rpnl_logo} alt="Logo White" />
             <img
               style={{ width: "35%" }}
               className="logo-fold"
@@ -510,7 +510,6 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       <div className={`side-nav ${expand ? "expanded" : ""}`}>
         <div className="side-nav-inner">
           <ul className="side-nav-menu scrollable">
-
             {sideBarMenu.map((option, index) =>
               option.url ? (
                 <li key={index} className="nav-item dropdown cursor">
@@ -522,8 +521,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
               ) : (
                 <li
                   key={index}
-                  className={`nav-item dropdown cursor ${activeSidebarMenu === index ? "open" : ""
-                    }`}
+                  className={`nav-item dropdown cursor ${
+                    activeSidebarMenu === index ? "open" : ""
+                  }`}
                   onClick={() =>
                     setActiveSidebarMenu(
                       activeSidebarMenu === index ? null : index
@@ -541,8 +541,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                     {option.dropdownMenus.map((subOption, subIndex) => (
                       <li
                         key={subIndex}
-                        className={`${activeSubSidebarMenu === subIndex ? "active" : ""
-                          }`}
+                        className={`${
+                          activeSubSidebarMenu === subIndex ? "active" : ""
+                        }`}
                         onClick={() => setActiveSubSidebarMenu(subIndex)}
                       >
                         <Link
@@ -557,7 +558,6 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                 </li>
               )
             )}
-
           </ul>
         </div>
       </div>
@@ -571,9 +571,9 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
           }, 500);
         }}
       />
-      { secureLocalStorage.getItem("sguardianemail") &&
-       <p className="id-parent-panel-position-fixed">Parent Panel</p>
-      }
+      {secureLocalStorage.getItem("sguardianemail") && (
+        <p className="id-parent-panel-position-fixed">Parent Panel</p>
+      )}
     </>
   );
 };

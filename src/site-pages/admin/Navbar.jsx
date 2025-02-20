@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { RiMenuFold3Fill } from "react-icons/ri";
 import rpnl_logo from "../../site-components/website/assets/Images/rpnl_logo.png";
+
 import {
   FILE_API_URL,
   PHP_API_URL,
@@ -88,6 +89,9 @@ import axios from "axios";
 const MyVerticallyCenteredModal = (props = {}) => {
   const [sessionList, setSessionList] = useState([]);
   const [selectedSession, setSelectSession] = useState({});
+
+  
+
   useEffect(() => {
     fetchList();
   }, []);
@@ -818,6 +822,11 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       dropdownMenus: [],
     },
   ];
+  
+  useEffect(() => {
+    setExpand(false);
+    toggleExpand(false);
+  }, [location.pathname]);
 
   function toggleSidebar() {
     setExpand(!expand);

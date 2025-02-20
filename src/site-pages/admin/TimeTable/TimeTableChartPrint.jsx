@@ -62,12 +62,12 @@ function TimeTableChartPrint() {
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2">
+            <div className="card bg-transparent mb-2 px-0">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">Time Table Chart Print</h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back">
                   <button
-                    className="ml-auto btn-md btn border-0 goback mr-2"
+                    className="mr-auto btn-md btn border-0 goback mr-2"
                     onClick={goBack}
                   >
                     <i className="fas fa-arrow-left"></i> Go Back

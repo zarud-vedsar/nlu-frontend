@@ -44,7 +44,7 @@ const FacultySlider = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true, // Enable auto-scroll
@@ -91,8 +91,29 @@ const FacultySlider = () => {
                 <div className="heading-divider"></div>
               </div>
             </div>
+            <div className="row">
+              <div className="col-md-3 col-lg-3">
+              <div class="faculty-slide mt-3">
+  <div className="facslider">
+    <Link target="_blank">
+      <div className="facimg-bx">
+        <img
+          src="https://www.spaceshineone.co.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"
+          alt=""
+          className="facimg"
+        />
+      </div>
+    </Link>
+    <div className="facpost">
+      <h3 className="sldnn mb-1 mt-2">Sr. Prof. Dr. Usha Tandon</h3>
+      <p className="facdesti">Vice Chancellor</p>
+    </div>
+  </div>
+</div>
 
-            <div className="faculty-slider-container ">
+              </div>
+              <div className="col-md-9 col-lg-9">
+              <div className="faculty-slider-container">
               <button
                 className="prev-button"
                 onClick={prevSlide}
@@ -129,7 +150,6 @@ const FacultySlider = () => {
                     </div>
                   ))}
               </Slider>
-
               <button
                 className="next-button"
                 onClick={nextSlide}
@@ -138,6 +158,9 @@ const FacultySlider = () => {
                 &#10095;
               </button>
             </div>
+              </div>
+            </div>
+            
           </div>
         </section>
       )}

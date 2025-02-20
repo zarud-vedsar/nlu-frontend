@@ -127,14 +127,14 @@ const Message = () => {
                         <img src={Authority} className="vicemsgsec-img" />
                       </div>
                       <div className="postname text-center">
-                        <h6>Senior Prof. Usha Tandon</h6>
-                        <p className="prsn-designation">Vice-Chancellor</p>
+                        <h6>Sr. Prof. Dr. Usha Tandon</h6>
+                        <p className="prsn-designation">Vice Chancellor</p>
                       </div>
                     </div>
                   </div>
                   <div className="col-md-8">
                     <div className="vicmsg-bx">
-                      <h3 className="message-heading mb-3 mt-3">Vice-Chancellor Message</h3>
+                      <h3 className="message-heading mb-3 mt-3">Vice Chancellor Message</h3>
                       <p className="gorditas-regular">Hon’ble Justice Arun Bhansali was appointed Chief Justice of the Allahabad High Court, the largest High Court in India, on February 5, 2024. He began his judicial career with his elevation to the Rajasthan High Court on January 8, 2013.</p>
                       <p className="gorditas-regular">With over eleven years of experience and authorship of more than 1230 reported judgments, Justice Bhansali demonstrates expertise in civil, company, constitutional, and taxation law. He is widely respected for his competence and sound legal acumen.</p>
                       <p className="gorditas-regular">Hon’ble Justice Arun Bhansali was appointed Chief Justice of the Allahabad High Court, the largest High Court in India, on February 5, 2024. He began his judicial career with his elevation to the Rajasthan High Court on January 8, 2013.</p>

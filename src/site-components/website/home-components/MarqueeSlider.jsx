@@ -54,9 +54,9 @@ const MarqueeSlider = () => {
           </div>
         </div>
         <div className="col-lg-3">
-          <div className="card border-0 shadow-none cardimlink imp-link-card">
+          <div className="card border-0 shadow-none cardimlik imp-link-card">
             <div className="card-body imp-card-body id-imp-card-body" style={{ padding: "0" }}>
-              <div className="imlink id-imp-link" style={{ justifyContent: "flex-start", paddingLeft: "20px" }}>
+              <div className="imlink id-imp-ink" style={{ justifyContent: "flex-start", paddingLeft: "20px" }}>
                 <div className="imimg">
                   <img src={AboutBg} className="img-fluid" style={{ width: "60%", marginRight: "0" }} />
                 </div>

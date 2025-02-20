@@ -570,6 +570,11 @@ export const RoleData = [
         value: "Library Setting",
         crud: ["update"], // CRUD operations
       },
+      {
+        label: "Book Stock History",
+        value: "Book Stock History",
+        crud: ["list"], // CRUD operations
+      },
     ],
   },
   {

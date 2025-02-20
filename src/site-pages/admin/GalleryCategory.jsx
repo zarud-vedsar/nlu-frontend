@@ -280,6 +280,14 @@ const GalleryCategory = () => {
     }
   };
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth <= 768);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
   return (
     <>
       <div className="page-container">
@@ -297,13 +305,13 @@ const GalleryCategory = () => {
               </nav>
             </div>
             <div className="card bg-transparent mb-2">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new"> Media Category List</h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back">
                   <Button
                     variant="light"
                     onClick={() => window.history.back()}
-                    className="mb-2 mb-md-0"
+                    className="mb-2 mb-md-0 mr-2"
                   >
                     <i className="fas">
                       <FaArrowLeft />
@@ -311,14 +319,14 @@ const GalleryCategory = () => {
                     Go Back
                   </Button>
                   <Button
-                    className={`btn ${
+                    className={`btn mb-2 ${
                       recycleTitle === "Show Recycle Bin"
                         ? "btn-secondary"
                         : "btn-danger"
-                    }`}
+                    } ml-auto `}
                     onClick={showRecyleBin}
                   >
-                    {recycleTitle} <i className="fa fa-recycle"></i>
+                    {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
                   </Button>
                   <Button
                     className="ml-2 mb-2 mb-md-0 btn btn-secondaary"

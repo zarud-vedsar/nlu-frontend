@@ -148,12 +148,31 @@
 .navigation--visible .navigation__item {
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
+.navigation--visible .navigation__nested_item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
 
 .navigation__item_dropdown-content {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
+    min-width: 180px;
+    border: 1px solid #ededed;
+    background-color: #fff;
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+.navigation__nested_item_dropdown-content {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 102%;
+
     min-width: 180px;
     border: 1px solid #ededed;
     background-color: #fff;
@@ -210,6 +229,9 @@
 .navigation__item:hover .navigation__item_dropdown-content {
     display: block;
 }
+.navigation__nested_item:hover .navigation__nested_item_dropdown-content {
+    display: block;
+}
 
 .id-college-name {
     padding: 9px 0px;
@@ -234,7 +256,12 @@
     .floating_btn1 {
         bottom: 220px;
     }
+
+    
+
 }
+
+
 
 .page-mine-header {
     display: flex;
@@ -311,6 +338,24 @@
 
 /* Adjust font size for smaller screens */
 @media (max-width: 768px) {
+
+    .navigation__nested_item_dropdown-content {
+        display: none;
+        position: absolute;
+        top: 102%;
+        left: 0%;
+    
+        min-width: 180px;
+        border: 1px solid #ededed;
+        background-color: #fff;
+        -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
+        -moz-box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.12);
+        z-index: 1000;
+        border-radius: 3px;
+        margin-bottom: 10px;
+    }
+
     .page-header-logo-title h2 {
         font-size: 14px;
     }

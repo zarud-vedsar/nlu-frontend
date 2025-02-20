@@ -100,7 +100,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
             disabled={loading}
           />
         </div>
-        <div className="form-group col-md-12 d-none">
+        <div className="form-group col-md-12">
           <label className="font-weight-semibold" htmlFor="link">
             Link
           </label>

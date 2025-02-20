@@ -709,7 +709,7 @@ function ExamList() {
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
                     <button
-                      className="btn btn-info text-white"
+                      className="btn btn-info text-white ml-2"
                       onClick={handleShow}
                     >
                       <i className="fa fa-filter"></i>

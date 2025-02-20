@@ -104,15 +104,37 @@ function UserTestimonials() {
               <div key={index} className="px-3 my-4">
                 <div className="testimonial-card">
                   <div className="testi-name-review-bx">
+                 
                     <h5 className="fw-semibold mb-1 py-1">{testimonial.test_name}</h5>
                     <div className="ratee">{renderStars(parseInt(testimonial.test_rating))}</div>
                   </div>
+                  <div className="d-flex">
+                  <div className="testibx-left">
+                      {testimonial.test_photo && (
+                        <img
+                          src={`${FILE_API_URL}/testimonial/${testimonial.test_photo}`}
+                          alt={testimonial.test_name}
+                          className="rounded-circle border border-2 border-secondary"
+                          style={{
+                            width: "100px",
+                            height: "60px",
+                            objectFit: "cover",
+                            flexShrink: 0,
+                          }}
+                        />
+
+                      )}
+
+                    </div>
                   <p className="testimonial-text mb-0 py-1">
                     "{testimonial.test_content.split(" ").slice(0, 10).join(" ")}
                     {testimonial.test_content.split(" ").length > 10 ? "..." : ""}"
                   </p>
 
-                  <div className="testibx">
+                  </div>
+                 
+
+                  {/* <div className="testibx">
                     <div className="testibx-left">
                       {testimonial.test_photo && (
                         <img
@@ -131,15 +153,14 @@ function UserTestimonials() {
 
                     </div>
 
-                    <div className="testibx-right">
+                  <div className="testibx-right">
                       <p className="text-muted small mb-0">
                         {testimonial.test_occupation} at {testimonial.test_company}
                       </p>
                       <p className="text-muted small mb-0">{testimonial.email}</p>
                       <p className="text-muted small mb-0">{testimonial.phone}</p>
                     </div>
-                  </div>
-
+                  </div> */}
                 </div>
               </div>
             ))}
@@ -163,7 +184,7 @@ function UserTestimonials() {
             padding: 20px;
             text-align: center;
             position: relative;
-            min-height: 230px;
+            min-height: 164px;
           }
 
           .testimonial-text {

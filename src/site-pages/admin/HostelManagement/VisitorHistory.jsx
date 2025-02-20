@@ -523,8 +523,88 @@ function VisitorHistory() {
           .modal-right.show .modal-dialog {
             transform: translateX(0);
           }
+
+          @media screen and (max-width:768px) {
+button.btn.btn-dark.mt-3.d-flex.justify-content-center.align-items-center {
+    font-size: 14px !important;
+}
+.adjustspacing{
+margin-top:12px;
+}
+input#block {
+    font-size: 14px;
+}
+    select#roomType {
+    font-size: 14px;
+}
+    input.rti--input {
+    font-size: 14px;
+}
+    element.style {
+    font-size: 13px !important;
+}
+.font-weight-semibold{
+font-size:14px;
+}
+nav.breadcrumb.breadcrumb-dash {
+font-size:13px;
+}
+button.ml-auto.btn-md.btn.border-0.goBack.mr-2 {
+    font-size: 13px !important;
+}
+h5.card-title.h6_new {
+    font-size: 14px !important;
+}
+    button.ml-auto.btn-md.btn.border-0.btn-light.mr-2 {
+    font-size: 14px !important;
+}
+    button.ml-2.btn-md.btn.border-0.btn-secondary {
+    font-size: 12px !important;
+}
+    button.mb-2.mb-md-0.btn.btn-primary {
+    font-size: 12px !important;
+    /* padding: 3px !important; */
+    margin: 0px !important;
+}
+
+   button.p-paginator-page.p-paginator-element.p-link.p-paginator-page-start.p-highlight {
+    font-size: 13px;
+    padding: 0px !important;
+}
+  .p-paginator {
+    flex-wrap: no-wrap !important; /* Allow pagination buttons to wrap */
+    justify-content: center; /* Center pagination controls */
+  }
+  .p-paginator .p-dropdown {
+    width: 70px; /* Adjust dropdown width */
+  }
+    .p-dropdown.p-component.p-inputwrapper.p-inputwrapper-filled {
+    padding: 0px;
+    height: 31px;
+    font-size: 13px !important;
+}
+
+    button.p-paginator-page.p-paginator-element.p-link.p-paginator-page-end.p-highlight {
+    height: 30px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+    span.p-dropdown-label.p-inputtext {
+    font-size: 13px;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+    button.p-paginator-page.p-paginator-element.p-link.p-paginator-page-start.p-highlight {
+    height: 30px !important;
+}
+    .p-paginator-element {
+     margin: 0 !important; 
+}
+        }
         `}
       </style>
+
+  
     </>
   );
 }

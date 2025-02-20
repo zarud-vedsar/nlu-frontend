@@ -353,6 +353,7 @@ function AddNewRoom() {
                                 <h6 className='card-title h6_new'>Sample Data</h6>
                             </div>
                             <div className='card-body'>
+                            <div className="overflow-x-auto">
                                 <table className='table'>
                                     <thead>
                                         <tr>
@@ -399,10 +400,48 @@ function AddNewRoom() {
                                         </tr>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <style jsx>{
+
+
+`
+@media screen and (max-width:768px) {
+input#block {
+    font-size: 14px;
+}
+    select#roomType {
+    font-size: 14px;
+}
+    input.rti--input {
+    font-size: 14px;
+}
+    element.style {
+    font-size: 13px !important;
+}
+.font-weight-semibold{
+font-size:14px;
+}
+nav.breadcrumb.breadcrumb-dash {
+font-size:13px;
+}
+h5.card-title.h6_new {
+    font-size: 14px !important;
+}
+    button.ml-auto.btn-md.btn.border-0.btn-light.mr-2 {
+    font-size: 14px !important;
+}
+    button.ml-2.btn-md.btn.border-0.btn-secondary {
+    font-size: 12px !important;
+}
+        }
+
+`
+        }
+        </style>
             </div>
         </>
     )

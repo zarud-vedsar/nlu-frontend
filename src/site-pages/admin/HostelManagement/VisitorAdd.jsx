@@ -298,7 +298,7 @@ function AddNewRoom() {
                                             placeholder='Enter Visitor Name'
                                             value={formData.name}
                                             onChange={handleChange}
-                                            column="col-md-6 col-lg-6"
+                                            column="col-md-6 col-lg-6 adjustspacing"
                                             required
                                         />
                                         {/* Contact No */}
@@ -513,6 +513,52 @@ function AddNewRoom() {
                         </div>
                     </div>
                 </div>
+                      <style jsx>{
+
+
+`
+@media screen and (max-width:768px) {
+button.btn.btn-dark.mt-3.d-flex.justify-content-center.align-items-center {
+    font-size: 14px !important;
+}
+.adjustspacing{
+margin-top:12px;
+}
+input#block {
+    font-size: 14px;
+}
+    select#roomType {
+    font-size: 14px;
+}
+    input.rti--input {
+    font-size: 14px;
+}
+    element.style {
+    font-size: 13px !important;
+}
+.font-weight-semibold{
+font-size:14px;
+}
+nav.breadcrumb.breadcrumb-dash {
+font-size:13px;
+}
+button.ml-auto.btn-md.btn.border-0.goBack.mr-2 {
+    font-size: 13px !important;
+}
+h5.card-title.h6_new {
+    font-size: 14px !important;
+}
+    button.ml-auto.btn-md.btn.border-0.btn-light.mr-2 {
+    font-size: 14px !important;
+}
+    button.ml-2.btn-md.btn.border-0.btn-secondary {
+    font-size: 12px !important;
+}
+        }
+
+`
+        }
+        </style>
             </div>
         </>
     )

@@ -408,6 +408,21 @@ function Message() {
 
 
 `
+@media screen and (max-width:768px) {
+nav.breadcrumb.breadcrumb-dash {
+font-size:13px;
+}
+h5.card-title.h6_new {
+    font-size: 14px !important;
+}
+    button.ml-auto.btn-md.btn.border-0.btn-light.mr-2 {
+    font-size: 14px !important;
+}
+    button.ml-2.btn-md.btn.border-0.btn-secondary {
+    font-size: 12px !important;
+}
+        }
+
 `
         }
         </style>

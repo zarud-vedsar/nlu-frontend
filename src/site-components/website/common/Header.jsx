@@ -294,17 +294,16 @@ function Header() {
                       >
                         Scholarship
                       </Link>
-                    </div>
-                  </li>
-                  <li className="navigation__item">
-                    <Link
+                      <Link
                       to={"/student/book-issued"}
                       target="_blank"
-                      className="navigation__item_link"
+                      className="navigation__item_drop_link"
                     >
                       Library
                     </Link>
+                    </div>
                   </li>
+                
                   
                   <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">
@@ -331,7 +330,7 @@ function Header() {
                       </Link>
                     </div>
                   </li>
-                  <li className="navigation__item arr-li">
+                  <li className="navigation__item arr-li ">
                     <Link className="navigation__item_link arr-true">
                       More Link
                     </Link>

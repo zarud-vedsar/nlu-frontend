@@ -199,8 +199,8 @@ function Header() {
                     </Link>
                     <div className="navigation__item_dropdown-content">
                       <span className="navigation__nested_item">
-                        <Link className="navigation__item_drop_link ">
-                        Faculty And Staf
+                        <Link to="/faculty" className="navigation__item_drop_link ">
+                        Faculty
                         </Link>
                        
                          
@@ -332,7 +332,7 @@ function Header() {
                   </li>
                   <li className="navigation__item arr-li ">
                     <Link className="navigation__item_link arr-true">
-                      More Link
+                      More Links
                     </Link>
                     <div className="navigation__item_dropdown-content">
                       <Link

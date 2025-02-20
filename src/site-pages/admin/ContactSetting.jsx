@@ -170,8 +170,8 @@ const ContactSetting = () => {
             </div>
           </div>
 
-          <div className="d-flex col-12 mx-auto mt-5">
-            <div className="col-md-2 mr-2">
+          <div className="d-flex row mt-5">
+            <div className="col-md-2 col-12 col-sm-12 mb-2">
               <SettingSideBar />
             </div>
 
@@ -241,24 +241,15 @@ const ContactSetting = () => {
                             onChange={handleChange}
                           />
                         </div>
-                        {map ? (
-                          <>
-                            <br /> <br />{" "}
-                            <div
-                              className="map-preview"
-                              dangerouslySetInnerHTML={{
-                                __html: map,
-                              }}
-                            />
-                          </>
-                        ) : (
-                          <div
-                            className="map-preview"
-                            dangerouslySetInnerHTML={{
-                              __html: decodeHtmlEntities(formData.c_map),
-                            }}
-                          />
-                        )}
+                        <div className="map-preview col-12">
+  {map ? (
+    <div dangerouslySetInnerHTML={{ __html: map }} />
+  ) : formData?.c_map ? (
+    <div dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(formData.c_map) }} />
+  ) : (
+    <p>No map available</p>
+  )}
+</div>
                       </div>
                     </div>
                   </div>
@@ -281,6 +272,22 @@ const ContactSetting = () => {
           </div>
         </div>
       </div>
+      <style jsx>{`
+    .map-preview-container {
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .map-preview {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box; 
+      overflow: hidden; 
+    }
+    .map-preview iframe {
+      width: 100%;
+      max-width: 100%; 
+    }
+  `}</style>
     </div>
   );
 };

@@ -236,7 +236,7 @@ function UserLogList() {
                       id="start_date"
                       type="date"
                       value={formData.start_date}
-                      column="col-md-2 col-lg-2"
+                      column="col-md-3 col-lg-3"
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,
@@ -250,7 +250,7 @@ function UserLogList() {
                       id="end_date"
                       type="date"
                       value={formData.end_date}
-                      column="col-md-2 col-lg-2"
+                      column="col-md-3 col-lg-3"
                       onChange={(e) =>
                         setFormData((prev) => ({
                           ...prev,

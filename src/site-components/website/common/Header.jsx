@@ -149,7 +149,7 @@ function Header() {
               </div>
 
               <nav
-                className={`page-mine-header__bottom`}>
+                className={`page-mine-header__bottom`} style={{padding:`${isMobile?"15px 0px 0px 120px":"0px"}`}}>
                 <ul className={`${menuVisible ? 'navigation--visible' : 'navigation'}`}>
                   <li className="navigation__item"><Link to={'/'} className='navigation__item_link'>Home</Link></li>
                   <li className="navigation__item arr-li">

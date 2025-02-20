@@ -65,9 +65,7 @@ const PieChart = ({ dataValues }) => {
 
 const FacultyDashboard = () => {
   const [facultyListing, setFacultyListing] = useState([]);
-  const [facultyId, setFacultyId] = useState(
-    
-  );
+  const [facultyId, setFacultyId] = useState();
   const loadFacultyData = async () => {
     try {
       const bformData = new FormData();
@@ -123,7 +121,7 @@ const FacultyDashboard = () => {
       setSubjectList(response?.data?.data?.facultysubjects);
       setPendingAssignment(response?.data?.data?.pendingAssignment);
       setProductIssued(response?.data?.data?.inventoryIssue);
-     
+
       setSelfSubjectDailyAttendance(
         response?.data?.data?.selfSubjectDailyAttendance
       );
@@ -277,12 +275,11 @@ const FacultyDashboard = () => {
   };
   const quantityStyle = {
     background: "rgb(39 76 119)",
-    color:"white",
-    padding:"2px 5px",
-    borderRadius:"5px",
-    fontSize:"13px",
-    fontWeight:"800"
-   
+    color: "white",
+    padding: "2px 5px",
+    borderRadius: "5px",
+    fontSize: "13px",
+    fontWeight: "800",
   };
 
   const keyframesStyle = `
@@ -531,40 +528,46 @@ const FacultyDashboard = () => {
                                     : ""}
                                 </h4>
                                 <div className="d-flex justify-content-between mb-0">
-                                <p className="font-15 mb-0">
-                               <span className="text-dark">Brand: </span>  <span className="id-product-brand" style={{background: "#6096ba",
-    padding:"0px 5px",
-    borderRadius: "2px",
-    color: "white",}}>{product?.pbrand
-                                    ? validator.unescape(product?.pbrand)
-                                    : ""} </span>
-                                </p>
-                                <p className="font-15 mb-0">
-                                 <span className="text-dark">Code: </span> 
-                                  {product?.pcode
-                                    ? product?.pcode
-                                    : ""}
-                                </p>
-
+                                  <p className="font-15 mb-0">
+                                    <span className="text-dark">Brand: </span>{" "}
+                                    <span
+                                      className="id-product-brand"
+                                      style={{
+                                        background: "#6096ba",
+                                        padding: "0px 5px",
+                                        borderRadius: "2px",
+                                        color: "white",
+                                      }}
+                                    >
+                                      {product?.pbrand
+                                        ? validator.unescape(product?.pbrand)
+                                        : ""}{" "}
+                                    </span>
+                                  </p>
+                                  <p className="font-15 mb-0">
+                                    <span className="text-dark">Code: </span>
+                                    {product?.pcode ? product?.pcode : ""}
+                                  </p>
                                 </div>
-                               
+
                                 <div className="d-flex justify-content-between mb-0">
-                                   <p className="mb-0">
-                                   <span className="text-dark">Unit: </span>{product?.punit
-                                    ? product?.punit
-                                    : ""}
-                                    
-                                    </p>
+                                  <p className="mb-0">
+                                    <span className="text-dark">Unit: </span>
+                                    {product?.punit ? product?.punit : ""}
+                                  </p>
 
-                                    <p className="mb-0">
-
-                                     <span className="text-dark"> Quantity: </span><span style={quantityStyle}>{product?.quantity
-                                    ? product?.quantity
-                                    : ""} </span>
-                                       </p> 
-                                    
-                                     </div>
-                                
+                                  <p className="mb-0">
+                                    <span className="text-dark">
+                                      {" "}
+                                      Quantity:{" "}
+                                    </span>
+                                    <span style={quantityStyle}>
+                                      {product?.quantity
+                                        ? product?.quantity
+                                        : ""}{" "}
+                                    </span>
+                                  </p>
+                                </div>
                               </div>
                             </>
                           ))}
@@ -638,35 +641,46 @@ const FacultyDashboard = () => {
                   <div className="card-title h6_new">Scheduled Classes</div>
                 </div>
                 <div className="card-body">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Course</th>
-                        <th>Semester</th>
-                        <th>Subject</th>
-                        <th>Class Room</th>
-                        <th>Time Slot</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {scheduleClass &&
-                        scheduleClass?.length > 0 &&
-                        scheduleClass.map((data, index) => (
-                          <tr key={index}>
-                            <td>{capitalizeFirstLetter(data?.course)}</td>
-                            <td>{capitalizeFirstLetter(data?.semester)}</td>
-                            <td>{capitalizeFirstLetter(data?.subject)}</td>
-                            <td>{capitalizeFirstLetter(data?.classroom)}</td>
-                            <td className="text-success">
-                              {capitalizeFirstLetter(data?.timeSlot)}
-                            </td>
+                  <div className="d-flex justify-content-center">
+                    <div className="table-responsive">
+                      <table className="table">
+                        <thead>
+                          <tr>
+                            <th>Course</th>
+                            <th>Semester</th>
+                            <th>Subject</th>
+                            <th>Class Room</th>
+                            <th>Time Slot</th>
                           </tr>
-                        ))}
-                    </tbody>
-                  </table>
+                        </thead>
+                        <tbody>
+                          {scheduleClass && scheduleClass.length > 0 ? (
+                            scheduleClass.map((data, index) => (
+                              <tr key={index}>
+                                <td>{capitalizeFirstLetter(data?.course)}</td>
+                                <td>{capitalizeFirstLetter(data?.semester)}</td>
+                                <td>{capitalizeFirstLetter(data?.subject)}</td>
+                                <td>
+                                  {capitalizeFirstLetter(data?.classroom)}
+                                </td>
+                                <td className="text-success">
+                                  {capitalizeFirstLetter(data?.timeSlot)}
+                                </td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan="5">No Scheduled Classes</td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
             <div className="col-md-12">
               <div className="card">
                 <div className="card-header">

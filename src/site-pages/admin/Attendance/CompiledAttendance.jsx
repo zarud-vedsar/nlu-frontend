@@ -195,13 +195,10 @@ function AddExam() {
               <div className="header-sub-title">
                 {/* Breadcrumbs: because getting lost is easy */}
                 <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/" className="breadcrumb-item">
-                                     <i className="fas fa-home m-r-5" />
-                                    Dashboard
-                                   </a>
-                                   <span className="breadcrumb-item active">
-                                   Attendance Management
-                                   </span>
+                  <Link to="/admin/" className="breadcrumb-item">
+                    <i className="fas fa-home m-r-5" />
+                    Attendance Management
+                  </Link>
 
                   <span className="breadcrumb-item active">
                     Compile Class Attendance
@@ -213,18 +210,19 @@ function AddExam() {
               <div className="col-md-6 ">
             {/* Main Content Starts Here */}
             <div className="card border-0 bg-transparent mb-0">
-              <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
-                <h5 className="card-title h6_new font-16">
+              <div className="card-header bg-transparent mb-0 px-0 id-pc-divices-header id-mobile-divice-d-block">
+                <h5 className="card-title h6_new font-16 pt-2">
                   Compile Class Attendance
                 </h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back mb-2">
                   {/* The almighty 'Go Back' button */}
-                  <button className="btn goback" onClick={goBack}>
+                  <button className="mr-auto btn goback" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+
                   <Link to="/admin/attendance-management/view-compile-attendance">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
-                      <i className="fas fa-list"></i> Compile Class Attendance
+                      <i className="fas fa-list"></i> Compile Attendance
                     </button>
                   </Link>
                 </div>

@@ -345,6 +345,7 @@ background-color: #f3b719;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  display: block;
 }
 
 .bg-dark {
@@ -2652,3 +2653,21 @@ color: white;
 font-size: 18px;
 }
   }
+  .id-pc-divices-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media only screen and (max-width: 767px) {
+
+    .id-mobile-divice-d-block {
+      display: block !important;
+    }
+    .id-mobile-go-back{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  

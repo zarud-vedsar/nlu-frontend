@@ -92,19 +92,19 @@ const IssueBook = () => {
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">Issue List</h5>
                 <div className="ml-auto">
-                  <Button
-                    variant="light"
+                  <button
+                   
                     onClick={() => window.history.back()}
-                    className="mb-2 mb-md-0"
+                    className="mb-2 btn"
                   >
                     <i className="fas">
                       <FaArrowLeft />
                     </i>{" "}
                     Go Back
-                  </Button>
+                  </button>
 
                   <Link
-                    className="ml-2 mb-2 mb-md-0 btn btn-secondary"
+                    className="ml-2 mb-2  btn btn-secondary"
                     to="/admin/issue-book-add"
                   >
                     <i className="fas">
@@ -206,6 +206,7 @@ const IssueBook = () => {
                             </div>
                           </div>
                         )}
+                        field="sname"
                         sortable
                       />
 
@@ -283,7 +284,7 @@ const IssueBook = () => {
                             </div>
                           </div>
                         )}
-                        sortable
+                        
                       />
                     </DataTable>
                   </div>

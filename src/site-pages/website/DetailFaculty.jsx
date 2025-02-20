@@ -155,9 +155,9 @@ const DetailFaculty = () => {
                   </p>
                 )}
 
-                {facultyData.departmentid && (
+                {/* {facultyData.departmentid && (
                   <p style={{ marginTop: "5px" }}>{facultyData.departmentid}</p>
-                )}
+                )} */}
                 {facultyData.qualification && (
                   <div style={{ marginTop: "7px" }}>
                     <span>Qualification</span>

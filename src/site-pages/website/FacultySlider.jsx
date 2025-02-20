@@ -93,74 +93,76 @@ const FacultySlider = () => {
             </div>
             <div className="row">
               <div className="col-md-3 col-lg-3">
-              <div class="faculty-slide mt-3">
-  <div className="facslider">
-    <Link to={`/faculty/1`} target="_blank" >
-      <div className="facimg-bx">
-        <img
-          src="https://www.spaceshineone.co.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"
-          alt=""
-          className="facimg"
-        />
-      </div>
-    </Link>
-    <div className="facpost">
-      <h3 className="sldnn mb-1 mt-2">Sr. Prof. Dr. Usha Tandon</h3>
-      <p className="facdesti">Vice Chancellor</p>
-    </div>
-  </div>
-</div>
+                <div className="faculty-slide mt-3">
+                  <div className="facslider">
+                    <Link to={`/faculty/1`} target="_blank" >
+                      <div className="facimg-bx">
+                        <img
+                          src="https://www.spaceshineone.co.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"
+                          alt=""
+                          className="facimg"
+                        />
+                      </div>
+                    </Link>
+                    <div className="facpost">
+                      <Link to={`/faculty/1`} target="_blank" >
+                        <h3 className="sldnn mb-1 mt-2">Sr. Prof. Dr. Usha Tandon</h3>
+                        <p className="facdesti">Vice Chancellor</p>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
 
               </div>
               <div className="col-md-9 col-lg-9">
-              <div className="faculty-slider-container">
-              <button
-                className="prev-button"
-                onClick={prevSlide}
-                aria-label="Previous Faculty"
-              >
-                &#10094;
-              </button>
+                <div className="faculty-slider-container">
+                  <button
+                    className="prev-button"
+                    onClick={prevSlide}
+                    aria-label="Previous Faculty"
+                  >
+                    &#10094;
+                  </button>
 
-              <Slider ref={sliderRef} {...sliderSettings}>
-                {facultyList.length > 0 &&
-                  facultyList.map((faculty, index) => (
-                    <div key={index} className="faculty-slide">
-                      <div className="facslider">
-                        <Link to={`/faculty/${faculty.id}`} target="_blank">
-                          <div className="facimg-bx">
-                            <img
-                              src={`${FILE_API_URL}/user/${faculty.uid}/${faculty.avtar}`}
-                              alt={faculty.firstname}
-                              className="facimg"
-                              loading="lazy"
-                              onError={(e) =>
-                                (e.target.src = `${FILE_API_URL}/user/dummy.webp`)
-                              }
-                            />
+                  <Slider ref={sliderRef} {...sliderSettings}>
+                    {facultyList.length > 0 &&
+                      facultyList.map((faculty, index) => (
+                        <div key={index} className="faculty-slide">
+                          <div className="facslider">
+                            <Link to={`/faculty/${faculty.id}`} target="_blank">
+                              <div className="facimg-bx">
+                                <img
+                                  src={`${FILE_API_URL}/user/${faculty.uid}/${faculty.avtar}`}
+                                  alt={faculty.firstname}
+                                  className="facimg"
+                                  loading="lazy"
+                                  onError={(e) =>
+                                    (e.target.src = `${FILE_API_URL}/user/dummy.webp`)
+                                  }
+                                />
+                              </div>
+                            </Link>
+                            <div className="facpost">
+                              <h3 className="sldnn mb-1 mt-2">{`${(
+                                faculty.first_name
+                              )} ${faculty.middle_name} ${faculty.last_name}`}</h3>
+                              <p className="facdesti">{faculty?.designation}</p>
+                            </div>
                           </div>
-                        </Link>
-                        <div className="facpost">
-                          <h3 className="sldnn mb-1 mt-2">{`${(
-                            faculty.first_name
-                          )} ${faculty.middle_name} ${faculty.last_name}`}</h3>
-                          <p className="facdesti">{faculty?.designation}</p>
                         </div>
-                      </div>
-                    </div>
-                  ))}
-              </Slider>
-              <button
-                className="next-button"
-                onClick={nextSlide}
-                aria-label="Next Faculty"
-              >
-                &#10095;
-              </button>
-            </div>
+                      ))}
+                  </Slider>
+                  <button
+                    className="next-button"
+                    onClick={nextSlide}
+                    aria-label="Next Faculty"
+                  >
+                    &#10095;
+                  </button>
+                </div>
               </div>
             </div>
-            
+
           </div>
         </section>
       )}

@@ -336,13 +336,13 @@ function AddNew() {
                             </div>
                         </div>
                         <div className="card bg-transparent mb-2">
-                            <div className="card-header d-flex justify-content-between align-items-center px-0">
-                                <h5 className="card-title h6_new">
+                            <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
+                                <h5 className="card-title h6_new pt-2">
                                     {dbId ? 'Update Time Table' : 'Add New Time Table'}
                                 </h5>
-                                <div className="ml-auto">
+                                <div className="ml-auto id-mobile-go-back">
                                     <button
-                                        className="ml-auto btn-md btn border-0 btn-light mr-2"
+                                        className="mr-auto btn-md btn border-0 btn-light mr-2"
                                         onClick={goBack}
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back

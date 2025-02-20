@@ -91,13 +91,13 @@ function Registration() {
                             </div>
                         </div>
                         <div className="card bg-transparent mb-2">
-                            <div className="card-header d-flex justify-content-between align-items-center px-0">
+                            <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                                 <h5 className="card-title h6_new">
                                     Restock Notification Detail
                                 </h5>
-                                <div className="ml-auto">
+                                <div className="ml-auto id-mobile-go-back">
                                     <button
-                                        className="ml-auto btn-md btn border-0 goBack mr-2"
+                                        className="mr-auto btn-md btn border-0 goBack mr-2"
                                         onClick={goBack}
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back
@@ -173,7 +173,7 @@ function Registration() {
                             </div>
                             <div className="card-body pt-3">
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md-5 col-5">
                                         <select name="status" value={status.status} id="status" className="form-control" onChange={(e) => setStatus({ status: e.target.value })}>
                                             <option value="">Select Status</option>
                                             <option value="1">Request Cancelled</option>
@@ -181,7 +181,7 @@ function Registration() {
                                             <option value="3">Order Received</option>
                                         </select>
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-7 col-7">
                                         <button onClick={changeStatusOfStock} type="button" className="btn btn-dark py-2">Update Status</button>
                                     </div>
                                 </div>

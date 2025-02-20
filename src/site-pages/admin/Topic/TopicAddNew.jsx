@@ -318,14 +318,14 @@ function TopicAddNew() {
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2 col-md-10 m-auto">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new">
+            <div className="card bg-transparent mb-2 col-md-10 m-auto px-0">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
+                <h5 className="card-title h6_new pt-2">
                   {topicId ? "Update Topic" : "Add New Topic"}
                 </h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back mb-2">
                   <button
-                    className="ml-auto btn-md btn border-0 btn-light mr-2"
+                    className="mr-auto btn-md btn border-0 btn-light mr-2"
                     onClick={goBack}
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
@@ -344,7 +344,7 @@ function TopicAddNew() {
                   <div className="card-body">
                     <form onSubmit={handleSubmit}>
                       <div className="row">
-                        <div className="col-md-3 col-12 form-group">
+                        <div className="col-md-4 col-12 form-group">
                           <label className="font-weight-semibold">
                             Course <span className="text-danger">*</span>
                           </label>
@@ -385,7 +385,7 @@ function TopicAddNew() {
                           )}
                         </div>
 
-                        <div className="col-md-3 col-12 form-group">
+                        <div className="col-md-4 col-12 form-group">
                           <label className="font-weight-semibold">
                             Semester <span className="text-danger">*</span>
                           </label>
@@ -429,7 +429,7 @@ function TopicAddNew() {
                           )}
                         </div>
 
-                        <div className="col-md-6 col-12 form-group">
+                        <div className="col-md-4 col-12 form-group">
                           <label className="font-weight-semibold">
                             Subject <span className="text-danger">*</span>
                           </label>

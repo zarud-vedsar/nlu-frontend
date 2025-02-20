@@ -376,13 +376,13 @@ function ViewCompiledAttendance() {
             </div>
             {/* Main Content Starts Here */}
             <div className="card border-0 bg-transparent mb-0">
-              <div className="card-header bg-transparent mb-0 px-0 d-flex justify-content-between align-items-center">
-                <h5 className="card-title h6_new font-16">
+              <div className="card-header bg-transparent mb-0 px-0 id-pc-divices-header id-mobile-divice-d-block">
+                <h5 className="card-title h6_new font-16 pt-2">
                   View Compiled Attendance
                 </h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back mb-2">
                   {/* The almighty 'Go Back' button */}
-                  <button className="btn goback" onClick={goBack}>
+                  <button className="mr-auto btn goback" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
                   <Link to={"/admin/attendance/compiled-attendance"}>
@@ -505,7 +505,7 @@ function ViewCompiledAttendance() {
               <div className="col-md-12 mx-auto">
                 <div className="card">
                   <div className="card-body">
-                    <div className="row">
+                    <div className="row table-responsive">
                       <table className="table">
                         <thead>
                           <tr>

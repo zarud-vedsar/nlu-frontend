@@ -9,6 +9,7 @@ import ProtectedRoute from "../site-pages/admin/ProtectedRoute";
 import IsAdminLoggedIn from "../site-pages/admin/IsAdminLoggedIn";
 import ErrorBoundary from "./ErrorBoundary.jsx";
 import SuspensionLoader from "../SuspensionLoader.jsx";
+import LibraryListing from "../site-pages/admin/LibraryManagement/LibraryListing.jsx";
 const MessageForm = lazy(() => import("../site-pages/admin/MessageForm"));
 const Gallery = lazy(() => import("../site-pages/admin/Gallery"));
 const GalleryForm = lazy(() => import("../site-pages/admin/GalleryForm"));
@@ -255,6 +256,7 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             <Route path="/" element={<Navigate to="/admin/signin" />} />
             <Route path="/compoundv" element={<components.SignIn />} />
             <Route path="/signin" element={<components.SignInFaculty />} />
+            <Route path="/library-managementList" element={<LibraryListing  />} />
             <Route
               path="/forget-password"
               element={<components.ForgetPassword />}

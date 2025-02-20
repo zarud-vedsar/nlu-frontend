@@ -131,7 +131,7 @@ const Footer = () => {
                       className="mb-3 col-6"
                       
                     >
-                      <div className="d-flex justify-content-center align-items-center">
+                      <div className="d-flex justify-content-start align-items-center">
                         <span
                           className="id-fb-icon"
                           style={{ background: "#145dbf" }}
@@ -153,7 +153,7 @@ const Footer = () => {
                       target="_blank"
                       className="mb-3 col-6"
                     >
-                      <div className="d-flex justify-content-center align-items-center">
+                      <div className="d-flex justify-content-start align-items-center">
                         <span
                           className="id-fb-icon"
                           style={{ background: "rgb(8 88 170 / 98%)" }}
@@ -176,7 +176,7 @@ const Footer = () => {
                       target="_blank"
                       className="mb-3 col-6"
                     >
-                      <div className="d-flex justify-content-center align-items-center">
+                      <div className="d-flex justify-content-start align-items-center">
                         <span className="id-fb-icon">
                           <FaInstagram className="fticon insfticon" />
                         </span>
@@ -192,7 +192,7 @@ const Footer = () => {
                       target="_blank"
                       className="mb-3 col-6"
                     >
-                      <div className="d-flex justify-content-center align-items-center">
+                      <div className="d-flex justify-content-start align-items-center">
                         <span className="id-fb-icon">
                           <FaYoutube className="fticon youfticon" />
                         </span>
@@ -211,7 +211,7 @@ const Footer = () => {
                       target="_blank"
                       className="mb-3 col-6"
                     >
-                      <div className="d-flex justify-content-center align-items-center">
+                      <div className="d-flex justify-content-start align-items-center">
                         <span
                           className="id-fb-icon"
                           style={{ background: "#00000033" }}

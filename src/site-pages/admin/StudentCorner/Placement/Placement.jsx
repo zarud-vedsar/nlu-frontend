@@ -339,9 +339,9 @@ const Placement = () => {
             </nav>
           </div>
           <div className="card bg-transparent mb-2">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">Placement List</h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back">
                 <Button
                 variant="light"
                 onClick={() => window.history.back()}
@@ -354,7 +354,7 @@ const Placement = () => {
               </Button>
               <Button
                 variant="primary"
-                className="ml-2 mb-2 mb-md-0"
+                className="ml-auto mb-2 mb-md-0"
                 onClick={handleShow}
               >
                 <i className="fas">
@@ -390,7 +390,7 @@ const Placement = () => {
                     className="form-control dtsearch-input"
                   />
                 </div>
-                <div className="col-md-4 col-lg-4 col-10 col-sm-4">
+                <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-3">
                   <button
                     className={`btn ${
                       recycleTitle === "Show Recycle Bin"

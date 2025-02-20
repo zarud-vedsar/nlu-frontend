@@ -95,7 +95,7 @@ const FacultySlider = () => {
               <div className="col-md-3 col-lg-3">
               <div class="faculty-slide mt-3">
   <div className="facslider">
-    <Link target="_blank">
+    <Link to={`/faculty/1`} target="_blank" >
       <div className="facimg-bx">
         <img
           src="https://www.spaceshineone.co.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"

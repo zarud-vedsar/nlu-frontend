@@ -142,8 +142,8 @@ const SocialMediaSetting = () => {
             </div>
           </div>
 
-          <div className="d-flex col-12 mx-auto mt-5">
-            <div className="col-md-2 mr-2">
+          <div className="d-flex row mt-5">
+            <div className="col-md-2 col-12 col-sm-12 mb-2">
               <SettingSideBar />
             </div>
 

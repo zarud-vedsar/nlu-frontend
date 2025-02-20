@@ -4,7 +4,7 @@ import axios from "axios";
 import Slider from "react-slick";
 import {
   PHP_API_URL,
-  FILE_API_URL
+  FILE_API_URL,
 } from "../../site-components/Helper/Constant";
 import { Link } from "react-router-dom";
 const FacultySlider = () => {
@@ -77,11 +77,14 @@ const FacultySlider = () => {
     }
   };
 
-
   return (
     <>
       {facultyList && facultyList.length > 0 && (
-        <section className="section bg-" data-aos="fade-up" data-aos-delay="100">
+        <section
+          className="section bg-"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           <div className="container">
             <div className="row">
               <div className="col-md-12 mb-3 text-center">

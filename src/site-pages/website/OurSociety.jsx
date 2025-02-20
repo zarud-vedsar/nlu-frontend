@@ -13,6 +13,7 @@ import HumarRights from '../../site-components/website/assets/society/Human-Righ
 import Corporate from '../../site-components/website/assets/society/Corporate-Business-Law-Society.png';
 import CyberLaw from '../../site-components/website/assets/society/Cyber-Law-Technology-Forum.png';
 import Environmental from '../../site-components/website/assets/society/Environmental-Law-Sustainability-Society.png';
+import rpnl_logo from "../../site-components/website/assets/Images/rpnl_logo.png";
 
 const OurSociety = () => {
     useEffect(() => {
@@ -71,52 +72,58 @@ const OurSociety = () => {
     const society = [
         {
             id: 1,
-            title: "Legal Excellence Society",
+            title: "Cultural Society",
             link: "https://www.aimoaiko.com",
-            image_file: LegalExcellence,
+            image_file: rpnl_logo,
         },
         {
             id: 2,
-            title: "Justice & Advocacy Forum",
+            title: "Sports Society",
             link: "https://www.justiceforum.com",
-            image_file: JusticeAdvocasy,
+            image_file: rpnl_logo,
         },
         {
             id: 3,
-            title: "Constitutional Law Society",
-            link: "https://www.constitutionalsociety.com",
-            image_file: Constitutional,
+            title: "Moot Court Society",
+            link: "https://www.mootcourtadr.com",
+            image_file: rpnl_logo,
         },
         {
             id: 4,
-            title: "Moot Court & ADR Society",
+            title: "Legal Aid Society",
             link: "https://www.mootcourtadr.com",
-            image_file: MootCourt,
+            image_file: rpnl_logo,
         },
         {
             id: 5,
-            title: "Human Rights & Legal Aid Society",
-            link: "https://www.humanrightslegal.com",
-            image_file: HumarRights,
+            title: "Internship and Externship Society",
+            link: "https://www.mootcourtadr.com",
+            image_file: rpnl_logo,
         },
         {
             id: 6,
-            title: "Corporate & Business Law Society",
-            link: "https://www.corporatelawsociety.com",
-            image_file: Corporate,
+            title: "Debate and Discussion Society",
+            link: "https://www.humanrightslegal.com",
+            image_file: rpnl_logo,
         },
-        {
-            id: 7,
-            title: "Cyber Law & Technology Forum",
-            link: "https://www.cyberlawforum.com",
-            image_file: CyberLaw,
-        },
-        {
-            id: 8,
-            title: "Environmental Law & Sustainability Society",
-            link: "https://www.environmentallawsociety.com",
-            image_file: Environmental,
-        }
+        // {
+        //     id: 6,
+        //     title: "Corporate & Business Law Society",
+        //     link: "https://www.corporatelawsociety.com",
+        //     image_file: Corporate,
+        // },
+        // {
+        //     id: 7,
+        //     title: "Cyber Law & Technology Forum",
+        //     link: "https://www.cyberlawforum.com",
+        //     image_file: CyberLaw,
+        // },
+        // {
+        //     id: 8,
+        //     title: "Environmental Law & Sustainability Society",
+        //     link: "https://www.environmentallawsociety.com",
+        //     image_file: Environmental,
+        // }
     ];
 
     return (
@@ -126,7 +133,7 @@ const OurSociety = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 col-12 text-center">
-                                <h2 className="heading-primary2">Our Society</h2>
+                                <h2 className="heading-primary2">Our Societies</h2>
                                 <div className="heading-divider"></div>
                             </div>
                         </div>

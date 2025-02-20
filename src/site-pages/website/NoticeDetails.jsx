@@ -42,11 +42,10 @@ const NoticeDetails = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumb-text">
-                <h1 className="text-center">Notice Details</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li>
-                      <a href="default.html">Home</a>
+                      <Link to="/">Home</Link>
                     </li>
                     <li>Notice Details</li>
                   </ul>

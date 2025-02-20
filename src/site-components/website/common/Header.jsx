@@ -199,7 +199,7 @@ function Header() {
                     </Link>
                     <div className="navigation__item_dropdown-content">
                       <span className="navigation__nested_item">
-                        <Link className="navigation__item_drop_link">
+                        <Link className="navigation__item_drop_link ">
                         Governance
                         </Link>
                        

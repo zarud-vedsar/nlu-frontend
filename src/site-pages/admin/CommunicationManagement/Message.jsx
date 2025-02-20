@@ -404,6 +404,13 @@ function Message() {
             </div>
           </div>
         </div>
+        <style jsx>{
+
+
+`
+`
+        }
+        </style>
       </div>
     </>
   );

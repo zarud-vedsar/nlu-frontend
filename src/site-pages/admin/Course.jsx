@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
@@ -133,7 +132,6 @@ function Course() {
         }
       }
     } catch (error) {
-      
       const statusCode = error.response?.data?.statusCode;
 
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
@@ -163,14 +161,14 @@ function Course() {
             <div className="page-header mb-0">
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/" className="breadcrumb-item">
-                                     <i className="fas fa-home m-r-5" />
-                                    Dashboard
-                                   </a>
-                                   <span className="breadcrumb-item active">
-                                   Learning Management
-                                   </span>
-                  
+                  <a href="/admin/" className="breadcrumb-item">
+                    <i className="fas fa-home m-r-5" />
+                    Dashboard
+                  </a>
+                  <span className="breadcrumb-item active">
+                    Learning Management
+                  </span>
+
                   <span className="breadcrumb-item active">Course</span>
                 </nav>
               </div>
@@ -194,6 +192,7 @@ function Course() {
                 </div>
               </div>
             </div>
+           
             <div className="card">
               <div className="card-body">
                 {/* Search Box */}
@@ -212,10 +211,11 @@ function Course() {
                   </div>
                   <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-3">
                     <button
-                      className={`btn ${recycleTitle === "Show Recycle Bin"
-                        ? "btn-secondary"
-                        : "btn-danger"
-                        }`}
+                      className={`btn ${
+                        recycleTitle === "Show Recycle Bin"
+                          ? "btn-secondary"
+                          : "btn-danger"
+                      }`}
                       onClick={showRecyleBin}
                     >
                       {recycleTitle} <i className="fa fa-recycle"></i>
@@ -279,15 +279,18 @@ function Course() {
                             <OverlayTrigger
                               placement="bottom"
                               overlay={
-                                <Tooltip id="button-tooltip-2">
-                                  View
-                                </Tooltip>
+                                <Tooltip id="button-tooltip-2">View</Tooltip>
                               }
                             >
                               <div className="avatar avatar-icon avatar-md avatar-orange">
                                 <i
                                   className="fa-solid fa-eye"
-                                  onClick={() => navigate(`/admin/update-course-content/${rowData.id}`, { replace: false })}
+                                  onClick={() =>
+                                    navigate(
+                                      `/admin/update-course-content/${rowData.id}`,
+                                      { replace: false }
+                                    )
+                                  }
                                 ></i>
                               </div>
                             </OverlayTrigger>

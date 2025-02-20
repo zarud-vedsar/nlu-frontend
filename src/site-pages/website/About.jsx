@@ -85,23 +85,18 @@ const About = () => {
               <div className="about-text-container">
                 <div className="row">
                   <div className="col-sm-12">
-                    <p>
-                      <img
-                        src={`${FILE_API_URL}/about/${aboutData.image_file}`}
-                        className="rounded-3"
-                        style={{
-                          float: "right",
-                          marginLeft: 10,
-                          marginBottom: 10,
-                        }}
-                      />
-                      {/* Render decoded HTML here */}
-                      <p className="heading-para gorditas-regular"
-                        dangerouslySetInnerHTML={{
-                          __html: decodedMessages,
-                        }}
-                      />
-                    </p>
+                    <img
+                      src={`${FILE_API_URL}/about/${aboutData.image_file}`}
+                      className="rounded-3"
+                      style={{
+                        float: "right",
+                        marginLeft: 10,
+                        marginBottom: 10,
+                      }}
+                    />
+                    <p className='heading-para gorditas-regular'>Uttar Pradesh National Law University, Prayagraj, established in 2020 by Uttar Pradesh National Law University Act, 2020 (U.P. Act no 26 of 2020) and renamed as Dr Rajendra Prasad National Law University by the amendment in August 2023 (U.P. Act no. 11 of 2023), is the newest law institution dedicated to legal excellence that meets an unparalleled environment for aspiring lawyers, judges, academia and other professionals.</p>
+                    <p className='heading-para gorditas-regular'>Nested in the Prayagraj, a city which has been known for her academic legacy and where knowledge, aspiration and justice confluence like the three rivers, NLU, Prayagraj offers extraordinary opportunities for students to embark on a transformative journey into the world of law. It is dedicated to nurturing the legal minds of tomorrow through inter-disciplinary and innovative curriculum designed to provide comprehensive understanding of the law and its implications in contemporary society.</p>
+                    <p className='heading-para gorditas-regular'>The University aims to have students from diverse backgrounds, each bringing unique perspectives and experiences in classrooms. This diversity fosters an environment of intellectual vitality, encouraging lively debates and discussions both inside and outside the classroom. It aspires to culminate in a conducive environment where Professors, students, and industry share a strong sense of camaraderie, creating lasting connections that extend beyond graduation. Its commitment to mentorship and professional development ensures that every student is well-prepared for the legal profession and is a useful member of the society.</p>
                   </div>
                 </div>
               </div>

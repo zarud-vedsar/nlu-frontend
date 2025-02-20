@@ -134,7 +134,7 @@ const Testimonial = () => {
                               alt="Profile Image"
                               className="profile-img"
                             />
-                            <div>
+                            {/* <div>
                               <h2 className="tname" style={{ marginTop: "10px" }}>
                                 {testimonial.test_name}
                               </h2>
@@ -142,7 +142,7 @@ const Testimonial = () => {
                               <div className="id-ttml-contact-img-wrapper">
                                 <p className="id-ttml-company mb-0">{testimonial.test_company}</p>
                               </div>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>

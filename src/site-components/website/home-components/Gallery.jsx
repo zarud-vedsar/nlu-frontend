@@ -98,7 +98,7 @@ const Gallery = () => {
       <div className="container  my-4 py-2">
         <div className="row">
           <div className="col-md-12 col-12 col-sm-12 text-start" style={{position:"relative"}}>
-          <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Our Gallery</h2>
+          <h2 className="heading-primary2 source-font">Our Gallery</h2>
             <div className="heading-divider"></div>
           </div>
         </div>

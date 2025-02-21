@@ -123,13 +123,7 @@ const DetailFaculty = () => {
         <section className="container section-padding">
           <div className="content">
             <div className="information">
-              <div
-                className="image"
-                style={{
-                  width: "250px",
-                  borderRadius: "20px",
-                }}
-              >
+              <div className="imagecont">
                 <img
                   src={
                     facultyData.avtar
@@ -140,11 +134,13 @@ const DetailFaculty = () => {
                   style={{
                     width: "100%",
                     height: "auto",
-                    borderRadius: "20px",
+                    borderRadius: "2px",
                   }}
                 />
               </div>
-              <div className="information" style={{ marginTop: "20px" }}>
+              
+            </div>
+            <div className="informationttx">
                 {facultyData?.first_name && (
                   <p className="heading-primary2">{`${facultyData?.first_name}  ${facultyData?.last_name}`}</p>
                 )}
@@ -177,8 +173,8 @@ const DetailFaculty = () => {
                   </div>
                 )}
               </div>
-            </div>
-            <div className="description">
+          </div>
+          <div className="description">
               {facultyData.discription && (
                 <div
                   dangerouslySetInnerHTML={{
@@ -201,7 +197,6 @@ const DetailFaculty = () => {
                 ) : null}
               </div>
             </div>
-          </div>
         </section>
       )}
       <style jsx>{`

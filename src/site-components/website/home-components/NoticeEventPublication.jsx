@@ -222,7 +222,7 @@ const NoticeEventPublication = () => {
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mt-sm-50">
               <div className="row">
                 <div
-                  className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage"
+                  className="col-md-12 d-flex justify-content-between align-items-end my-4 textManage"
                   style={{ position: "relative" }}
                 >
                   <div>

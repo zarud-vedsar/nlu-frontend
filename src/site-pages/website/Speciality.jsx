@@ -47,10 +47,10 @@ const HarukiTabs = () => {
       title: 'Hostel Accommodation',
       img: hostel
     },
-    {
-      title: 'Sports Complex',
-      img: football
-    },
+    // {
+    //   title: 'Sports Complex',
+    //   img: football
+    // },
     {
       title: 'Wi-Fi Connectivity',
       img: wifi
@@ -67,7 +67,7 @@ const HarukiTabs = () => {
         {["Specialities", "Facilities", "Academic Calendar"].map((tab, index) => (
           <button
             key={index}
-            className={`haruki_tab-button transition-all ${activeTab === index
+            className={`haruki_tab-button source-font transition-all ${activeTab === index
               ? "active"
               : ""
               }`}
@@ -83,7 +83,7 @@ const HarukiTabs = () => {
             <div className="row">
               {speciality &&
                 speciality.map((item, index) => (
-                  <div className="col-md-3" key={index}>
+                  <div className="col-md-4 col-lg-4" key={index}>
                     <div className="speciality-img-card">
                       <img
                         src={item.image}
@@ -103,7 +103,7 @@ const HarukiTabs = () => {
             <div className="row">
               {facilities &&
                 facilities.map((item, index) => (
-                  <div className="col-md-3" key={index}>
+                  <div className="col-md-4 col-lg-4" key={index}>
                     <div className="speciality-img-card">
                       <img
                         src={item.img}

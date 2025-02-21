@@ -79,53 +79,6 @@ const Message = () => {
     getMessage();
   }, []);
 
-  // Function to limit the message to the first 200 words
-  const getTruncatedMessage = (message) => {
-    const words = message.split(' ');
-    if (words.length > 200) {
-      return words.slice(0, 200).join(' ') + '...'; // Add ellipsis after 200 words
-    }
-    return message; // Return the original message if it's less than 200 words
-  };
-
-  const sliderSettings = {
-    dots: true,
-    infinite: true, // Set to true for looping, false if you want to stop at the last message
-    speed: 500,
-    slidesToShow: 1, // Show only one message at a time
-    slidesToScroll: 1, // Scroll by one message at a time
-    arrows: true, // Show next/prev arrows
-    autoplay: true, // Enable autoplay
-    autoplaySpeed: 2000, // Time between each slide transition
-    vertical: true,  // This setting makes it vertical, change to false for horizontal
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
-  const nextSlide = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickNext();
-    }
-  };
-
-  const prevSlide = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev();
-    }
-  };
-
   return (
     <>
       <section className="vicemsgsec" data-aos="fade-up" data-aos-delay="100">
@@ -137,7 +90,7 @@ const Message = () => {
                 <div className="vicmsg-bx">
                   <div className="vicmsg-top">
 
-                    <h3 className="message-heading mb-3 mt-3">MESSAGE FROM THE <br />
+                    <h3 className="message-heading source-font mb-3 mt-3">MESSAGE FROM THE <br />
                       Vice-Chancellor</h3>
                     <div className="postname">
                       <h6>Sr. Prof. Dr. Usha Tandon</h6>
@@ -145,12 +98,12 @@ const Message = () => {
                     </div>
                   </div>
                   <div className="msg-contentbx">
-                  <p className="mb-3" style={{ textAlign: 'justify' }}>I extend a warm welcome to the aspiring students at Dr. Rajendra Prasad National Law University, Prayagraj, an institution dedicated to fostering the next generation of legal professionals poised to shape the future of the legal landscape and contribute significantly to societal improvement.</p> 
-                  <p className="mb-3" style={{ textAlign: 'justify' }}>Our university aspires to establish a distinguished tradition of academic excellence, an unwavering commitment to the highest ethical standards, and an ardent dedication to the pursuit of justice. Prayagraj, often referred to as the Judicial Capital of the State, stands as a guiding light for legal education, scholarly pursuit, and ethical leadership. With a rich heritage and a resolute commitment to academic brilliance, the city has once earned the fame of 'Oxford of the East' and has produced erudite legal scholars of national and international renown.</p>
-                  <p className="mb-3" style={{ textAlign: 'justify' }}> Dr. Rajendra Prasad National Law University, Prayagraj is steadfast in its mission to revive this illustrious legacy and uphold the zenith of legal education, ensuring the cultivation of astute legal professionals...</p>
+                    <p className="mb-3" style={{ textAlign: 'justify' }}>I extend a warm welcome to the aspiring students at Dr. Rajendra Prasad National Law University, Prayagraj, an institution dedicated to fostering the next generation of legal professionals poised to shape the future of the legal landscape and contribute significantly to societal improvement.</p>
+                    <p className="mb-3" style={{ textAlign: 'justify' }}>Our university aspires to establish a distinguished tradition of academic excellence, an unwavering commitment to the highest ethical standards, and an ardent dedication to the pursuit of justice. Prayagraj, often referred to as the Judicial Capital of the State, stands as a guiding light for legal education, scholarly pursuit, and ethical leadership. With a rich heritage and a resolute commitment to academic brilliance, the city has once earned the fame of 'Oxford of the East' and has produced erudite legal scholars of national and international renown.</p>
+                    <p className="mb-3" style={{ textAlign: 'justify' }}> Dr. Rajendra Prasad National Law University, Prayagraj is steadfast in its mission to revive this illustrious legacy and uphold the zenith of legal education, ensuring the cultivation of astute legal professionals...</p>
                     <Link className="btn-vc-readmore" to="/faculty/1"><i class="fa-solid fa-circle-chevron-right"></i> Read More</Link>
                   </div>
-                  
+
                 </div>
               </div>
               <div className="col-md-5">

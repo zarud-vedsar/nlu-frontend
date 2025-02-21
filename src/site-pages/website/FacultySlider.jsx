@@ -6,7 +6,7 @@ import {
   PHP_API_URL,
   FILE_API_URL,
 } from "../../site-components/Helper/Constant";
-import { FaArrowRightLong, FaAnglesDown } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const FacultySlider = () => {
   const [facultyList, setFacultyList] = useState([]);
@@ -42,7 +42,6 @@ const FacultySlider = () => {
   }, []);
 
   const sliderSettings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -82,18 +81,18 @@ const FacultySlider = () => {
     <>
       {facultyList && facultyList.length > 0 && (
         <section
-          className="section bg-"
+          className="section"
           data-aos="fade-up"
           data-aos-delay="100"
         >
           <div className="container">
-          <div className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage" style={{ position: "relative" }}>
-                           <div>
-                           <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Faculty & Staff</h2>
-                             <div className="heading-divider"></div>
-                           </div>
-                           <Link to="/faculty" className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>All Faculty <FaArrowRightLong /></Link>
-                         </div>
+            <div className="col-md-12 d-flex justify-content-center align-items-center my-4 textManage" style={{ position: "relative" }}>
+              <div>
+                <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Faculty & Staff</h2>
+                <div className="heading-divider text-center"></div>
+              </div>
+              <Link to="/faculty" className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaArrowRightLong /></Link>
+            </div>
             <div className="row">
               <div className="col-md-3 col-lg-3">
                 <div className="faculty-slide mt-3">
@@ -109,8 +108,8 @@ const FacultySlider = () => {
                     </Link>
                     <div className="facpost">
                       <Link to={`/faculty/1`} target="_blank" >
-                        <h3 className="sldnn mb-1 mt-2">Sr. Prof. Dr. Usha Tandon</h3>
-                        <p className="facdesti">Vice Chancellor</p>
+                        <h3 className="sldnn source-font mb-1 mt-2">Sr. Prof. Dr. Usha Tandon</h3>
+                        <p className="facdesti source-font">Vice Chancellor</p>
                       </Link>
                     </div>
                   </div>
@@ -146,10 +145,10 @@ const FacultySlider = () => {
                               </div>
                             </Link>
                             <div className="facpost">
-                              <h3 className="sldnn mb-1 mt-2">{`${(
+                              <h3 className="sldnn mb-1 mt-2 source-font">{`${(
                                 faculty.first_name
                               )} ${faculty.middle_name} ${faculty.last_name}`}</h3>
-                              <p className="facdesti">{faculty?.designation}</p>
+                              <p className="facdesti source-font">{faculty?.designation}</p>
                             </div>
                           </div>
                         </div>

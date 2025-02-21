@@ -117,7 +117,7 @@ const AllNotice = () => {
 
                     </div>
                   ))} */}
-                     {id === "event" &&
+                     {id === "event" || id==="publication" &&
                    AllNotice.map((notice, index) => (
                                         <div key={index} className="col-lg-3">
                                           <div className="card border-0 soft-shadow  ">

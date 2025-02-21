@@ -240,7 +240,7 @@ const NoticeEventPublication = () => {
                 <div className="col-md-12">
                   <div
                     className="card border-0 rounded-0 border-bottom-2 soft-shadow mx-auto border-bottom border-primary"
-                    style={{ minHeight: "300px" }}
+                    style={{ minHeight: "383px" }}
                   >
                     <div className="card-body pb-0">
                       <div className="rightconten">
@@ -400,7 +400,7 @@ const NoticeEventPublication = () => {
   overflow: hidden; 
 }
   .marquee-container {
-  height: 200px; 
+  height: 320px; 
   overflow: hidden;
   position: relative;
 }

@@ -121,86 +121,83 @@ const DetailFaculty = () => {
 
       {facultyData && (
         <section className="container section-padding">
-          <div className="content">
-            <div className="information">
-              <div
-                className="image"
+          <div className="contentttr">
+            <div className="imagecont">
+              <img
+                src={
+                  facultyData.avtar
+                    ? `${FILE_API_URL}/user/${facultyData.uid}/${facultyData.avtar}`
+                    : `${FILE_API_URL}/user/dummy.webp`
+                }
+                alt="faculty image"
                 style={{
-                  width: "250px",
-                  borderRadius: "20px",
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "2px",
                 }}
-              >
-                <img
-                  src={
-                    facultyData.avtar
-                      ? `${FILE_API_URL}/user/${facultyData.uid}/${facultyData.avtar}`
-                      : `${FILE_API_URL}/user/dummy.webp`
-                  }
-                  alt="faculty image"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    borderRadius: "20px",
-                  }}
-                />
-              </div>
-              <div className="information" style={{ marginTop: "20px" }}>
-                {facultyData?.first_name && (
-                  <p className="heading-primary2">{`${facultyData?.first_name}  ${facultyData?.last_name}`}</p>
-                )}
-                {facultyData.designationid && (
-                  <p className="heading-primary3">
-                    {facultyData.designationid}
-                  </p>
-                )}
+              />
+            </div>
+            <div className="informationttx">
+              {facultyData?.first_name && (
+                <p className="fac-del-heading">{`${facultyData?.first_name}  ${facultyData?.last_name}`}</p>
+              )}
+              {facultyData.designationid && (
+                <p className="fac-del-heading1">
+                  {facultyData.designationid}
+                </p>
+              )}
 
-                {/* {facultyData.departmentid && (
+              {/* {facultyData.departmentid && (
                   <p style={{ marginTop: "5px" }}>{facultyData.departmentid}</p>
                 )} */}
-                {facultyData.qualification && (
-                  <div style={{ marginTop: "7px" }}>
-                    <span>Qualification</span>
-                    <p>{`${facultyData.qualification}`}</p>
-                  </div>
-                )}
+              {facultyData.qualification && (
+                <div className="exitem mt-3">
+                  <span className="facddt">Qualification</span>
+                  <p>{`${facultyData.qualification}`}</p>
+                </div>
+              )}
 
-                {facultyData.specialization && (
-                  <div style={{ marginTop: "7px" }}>
-                    <span>Specialization</span>
-                    <p>{`${facultyData.specialization}`}</p>
-                  </div>
-                )}
+              {facultyData.specialization && (
+                <div className="exitem">
+                  <span className="facddt">Specialization</span>
+                  <p>{`${facultyData.specialization}`}</p>
+                </div>
+              )}
+              <div className="secdev topbr">
                 {facultyData.exp_yrs && (
-                  <div style={{ marginTop: "7px" }}>
-                    <span>Experience</span>
+                  <div className="exitem borright">
+                    <span className="facddt">Experience</span>
                     <p>{`${facultyData.exp_yrs}`}</p>
                   </div>
                 )}
+                <div className="phhbx">
+                  {facultyData?.show_email_on_website && facultyData.u_email ? (
+                    <p style={{ color: "#fff" }}>
+                      Email : {facultyData.u_email}
+                    </p>
+                  ) : null}
+
+                  {facultyData?.show_contact_on_website && facultyData.u_phone ? (
+                    <p style={{ color: "#fff" }}>
+                      Phone : {facultyData.u_phone}
+                    </p>
+                  ) : null}
+                </div>
               </div>
             </div>
-            <div className="description">
-              {facultyData.discription && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: validator.unescape(validator.unescape(facultyData.discription)),
-                  }}
-                ></div>
-              )}
+          </div>
+          <div className="description">
 
-              <div>
-                {facultyData?.show_email_on_website && facultyData.u_email ? (
-                  <p style={{ color: "#383838" }}>
-                    Email : {facultyData.u_email}
-                  </p>
-                ) : null}
+            <div className="profhdd">Profile</div>
+            {facultyData.discription && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: validator.unescape(validator.unescape(facultyData.discription)),
+                }}
+              ></div>
+            )}
 
-                {facultyData?.show_contact_on_website && facultyData.u_phone ? (
-                  <p style={{ color: "#383838" }}>
-                    Phone Number : {facultyData.u_phone}
-                  </p>
-                ) : null}
-              </div>
-            </div>
+
           </div>
         </section>
       )}

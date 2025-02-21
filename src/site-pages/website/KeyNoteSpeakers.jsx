@@ -1,8 +1,5 @@
 import React, { useRef } from 'react';
-import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
-import { FaChevronRight } from "react-icons/fa";
-import { FaChevronLeft } from "react-icons/fa";
 import P1 from '../../site-components/website/assets/Images/keynote/P1.jpg';
 import P2 from '../../site-components/website/assets/Images/keynote/P2.jpg';
 import P3 from '../../site-components/website/assets/Images/keynote/P3.jpg';
@@ -16,8 +13,6 @@ import P10 from '../../site-components/website/assets/Images/keynote/P10.jpg';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 function KeyNoteSpeakers() {
-    const sliderRef = useRef(null);
-
     // Define an array of keynote data
     const keyNotes = [
         {
@@ -90,67 +85,29 @@ function KeyNoteSpeakers() {
             contactDetails: 'Professor, College of Law, Soongsil University, Seoul, Korea',
             link: 'https://law.ssu.ac.kr/web/sub1/sub1_prof_detail02.do'
         },
-
     ];
-
-    const sliderSettings = {
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        dots: false,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                    centerMode: true,
-                    centerPadding: '20px',
-                },
-            },
-        ],
-    };
-
-    const nextSlide = () => {
-        if (sliderRef.current) {
-            sliderRef.current.slickNext();
-        }
-    };
-
-    const prevSlide = () => {
-        if (sliderRef.current) {
-            sliderRef.current.slickPrev();
-        }
-    };
-
     return (
-        <div className="latest-area section-padding-20 kn-position-realative" style={{ background: '#F2F2F2' }}>
+        <div className="section-padding py-4 kn-position-realative" style={{ background: '#F2F2F2' }}>
             <div className="container">
                 <div className="row">
                     <div className='col-md-12 mb-3 text-center'>
-                        <h2 className="heading-primary2">Keynote Speakers</h2>
+                        <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Keynote Speakers</h2>
                         <div className='heading-divider'></div>
-                        <p className='heading-para text-center mt-4'>International Conference on "Law, Technology and Sustainable Development"</p>
+                        <p className="text-center mt-3 mb-1 id-campus-life-mobile-view" style={{ fontSize: '28px' }}>
+                            International Conference on "Law, Technology and Sustainable Development"
+                        </p>
                     </div>
                 </div>
-                <div className="row mt-3">
+                <div className="row mt-2">
                     {keyNotes.map((note) => (
                         <div className="col-md-4 mb-3 col-lg-4 col-12 col-sm-12" key={note.id}>
-                            <div className="card border-0 soft-shadow" style={{ width: '90%', borderRadius: '10px', margin: '0 auto', minHeight: '180px' }}>
+                            <div className="card border-0 soft-shadow" style={{ width: '90%', borderRadius: '10px', margin: '0 auto', minHeight: '160px' }}>
                                 <div className="card-body d-flex justify-content-start align-items-start">
-                                    <img src={note.imageUrl} className="card-img-top" style={{ maxWidth: '300px', aspectRatio: '1/1', borderRadius: '10px 10px 0 0' }} />
+                                    <img src={note.imageUrl} className="card-img-top" style={{ maxWidth: '300px', aspectRatio: '1/1', borderRadius: '5px' }} />
                                     <div className='ms-3'>
-                                        <h5 className="card-title mt-0 gorditas">{note.name}</h5>
-                                        <p className="card-text" style={{ textAlign: 'start' }}>{note.contactDetails}</p>
-                                        <Link target='_blank' className="btn btn-primary border-primary" to={note.link}>View Profile &nbsp;<FaArrowRightLong /> </Link>
+                                        <h5 className="card-title mt-0 source-font" style={{ fontSize: '18px' }}>{note.name}</h5>
+                                        <p className="card-text source-font" style={{ textAlign: 'start' }}>{note.contactDetails}</p>
+                                        <Link target='_blank' className="btn btn-primary border-primary source-font" to={note.link}>View Profile &nbsp;<FaArrowRightLong /> </Link>
                                     </div>
                                 </div>
                             </div>

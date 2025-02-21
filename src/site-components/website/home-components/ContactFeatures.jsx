@@ -22,7 +22,7 @@ const ContactFeatures = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-8 col-12 col-sm-12 cf-content p-4">
-              <h2 className='butler-regular heading-primary3 text-white'>Contact & Support</h2>
+              <h2 className='butler-regular heading-primary3 text-white source-font' style={{ fontSize: '55px' }}>Contact & Support</h2>
               <Link className="ed-btn-yellow" target='_blank' to="/contact-us">
                 <span className='gorditas-regular'>
                   Contact With us

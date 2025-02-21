@@ -17,7 +17,6 @@ import HomeVideo from "../../site-components/website/home-components/HomeVideo";
 import Achivement from "../../site-components/website/home-components/Achivement";
 import ContactIcon from "../../site-components/website/home-components/ContactIcon";
 import PopupNotice from "../../site-components/website/home-components/PopupNotice";
-import Facilities from "../../site-components/website/home-components/Facilities";
 import UserTestimonials from "./UserTestimoinals";
 import OurSociety from "./OurSociety";
 import KeyNoteSpeakers from "./KeyNoteSpeakers";
@@ -33,14 +32,13 @@ function Home() {
       <Message />
       <NoticeEventPublication />
       <Courses />
-      <HomeVideo />
+      {/* <HomeVideo /> */}
       <WhyChoose />
       <FacultySlider />
       <CampusLife />
       <Speciality />
-      <ContactFeatures />
+      {/* <ContactFeatures /> */}
       <Achivement />
-      <Facilities />
       <Gallery />
       <SocialMedia />
       <ContactIcon />

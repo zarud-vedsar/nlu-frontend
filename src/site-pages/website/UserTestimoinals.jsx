@@ -94,7 +94,7 @@ function UserTestimonials() {
 
         <div className="row">
           <div className="col-md-12 mb-3 text-center">
-            <h2 className="heading-primary2">What Our Students Are Saying</h2>
+          <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>What Our Students Are Saying</h2>
             <div className="heading-divider"></div>
           </div>
         </div>

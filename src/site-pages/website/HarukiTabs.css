@@ -1,0 +1,89 @@
+.haruki_tabs-container {
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.haruki_tabs-header {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.haruki_tab-button {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 28px;
+    font-weight: 600;
+    color: #555;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.haruki_tab-button.active {
+    color: #B81365;
+    border-bottom: 3px solid #B81365;
+}
+
+.haruki_tabs-content {
+    padding: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.speciality-sec {
+    margin-top: 20px;
+}
+
+.speciality-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.speciality-item {
+    flex: 1 1 calc(33.333% - 15px);
+    background: #f9f9f9;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.speciality-item:hover {
+    transform: translateY(-5px);
+}
+
+.spec-imgbx img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.spec-title {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+.speciality-img-card{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid #F5F5F5;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+.speciality-img-card img{
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+.speciality-img-card h3{
+    font-size: 16px;
+    margin-left: 10px;   
+}

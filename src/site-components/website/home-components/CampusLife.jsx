@@ -24,8 +24,8 @@ const CampusLife = () => {
             </p>
           </div>
         </div>
-        <div className="row">
-          <div className="col-md-4 col-lg-4">
+        <div className="row mt-3">
+          <div className="col-md-4 col-lg-4 mb-3">
             <figcaption>
               <picture>
                 <img src={Hostelbg} className="img-fluid w-100" />
@@ -39,7 +39,7 @@ const CampusLife = () => {
               sense of community while ensuring personal space.
             </p>
           </div>
-          <div className="col-md-4 col-lg-4">
+          <div className="col-md-4 col-lg-4 mb-3">
             <figcaption>
               <picture>
                 <img src={HealthBg} className="img-fluid w-100" />
@@ -53,7 +53,7 @@ const CampusLife = () => {
               their academic journey.
             </p>
           </div>
-          <div className="col-md-4 col-lg-4">
+          <div className="col-md-4 col-lg-4 mb-3">
             <figcaption>
               <picture>
                 <img src={SportBg} className="img-fluid w-100" />

@@ -40,45 +40,21 @@ const Courses = () => {
             <div className="heading-divider"></div>
           </div>
           <div className="row mt-2">
-            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 text-center">
-              <Link to={`/courses/1`}>
-                <div className="course-img-container">
-                  <img src={"https://mymindgreatone.co.in/public/upload/f4c64fda-e1e2-4ad9-97bb-2421676d4aa7.jpg"} className="course-image" alt="Course Image" />
-                </div>
-                <div className="course-detail-link text-center">
-                  <h3 className="butler-regular course-detail-title heading-primary3">
-                    B.A. LL.B. (Hons.)
-                  </h3>
-                  <h4 className="course-learn-more">Learn More <FaArrowRightLong /></h4>
-                </div>
-              </Link>
-            </div>
-            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 text-center">
-              <Link to={`/courses/3`}>
-                <div className="course-img-container">
-                  <img src={"https://mymindgreatone.co.in/public/upload/d7964460-36dd-4091-ba7e-c26f7fc2f387.jpg"} className="course-image" alt="Course Image" />
-                </div>
-                <div className="course-detail-link text-center">
-                  <h3 className="butler-regular course-detail-title heading-primary3">
-                    LL.M.
-                  </h3>
-                  <h4 className="course-learn-more">Learn More <FaArrowRightLong /></h4>
-                </div>
-              </Link>
-            </div>
-            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 text-center">
-              <Link to={`/courses/2`}>
-                <div className="course-img-container">
-                  <img src={"https://mymindgreatone.co.in/public/upload/a8886d4e-d6ec-4ed0-935f-0178027d39fb.jpg"} className="course-image" alt="Course Image" />
-                </div>
-                <div className="course-detail-link text-center">
-                  <h3 className="butler-regular course-detail-title heading-primary3">
-                    Ph.D.
-                  </h3>
-                  <h4 className="course-learn-more">Learn More <FaArrowRightLong /></h4>
-                </div>
-              </Link>
-            </div>
+            {course.map((course, index) => (
+              <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 text-center" key={index}>
+                <Link to={`/courses/${course.id}`}>
+                  <div className="course-img-container">
+                    <img src={course.thumbnail || placeholder} className="course-image" alt="Course Image" />
+                  </div>
+                  <div className="course-detail-link text-center">
+                    <h3 className="butler-regular course-detail-title heading-primary3">
+                      {validator.unescape(course.coursename)}
+                    </h3>
+                    <h4 className="course-learn-more">Learn More <FaArrowRightLong /></h4>
+                  </div>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </div>

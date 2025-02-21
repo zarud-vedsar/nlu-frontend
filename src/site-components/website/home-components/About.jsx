@@ -21,9 +21,14 @@ const About = () => {
               <h2 className="heading-primary butler-regular">
                 Welcome to Dr. Rajendra Prasad National Law University, Prayagraj
               </h2>
-              <p className='heading-para gorditas-regular'>Uttar Pradesh National Law University, Prayagraj, established in 2020 by Uttar Pradesh National Law University Act, 2020 (U.P. Act no 26 of 2020) and renamed as Dr Rajendra Prasad National Law University by the amendment in August 2023 (U.P. Act no. 11 of 2023), is the newest law institution dedicated to legal excellence that meets an unparalleled environment for aspiring lawyers, judges, academia and other professionals.</p>
-              <p className='heading-para gorditas-regular'>Nested in the Prayagraj, a city which has been known for her academic legacy and where knowledge, aspiration and justice confluence like the three rivers, NLU, Prayagraj offers extraordinary opportunities for students to embark on a transformative journey into the world of law. It is dedicated to nurturing the legal minds of tomorrow through inter-disciplinary and innovative curriculum designed to provide comprehensive understanding of the law and its implications in contemporary society.</p>
-              <p className='heading-para gorditas-regular'>The University aims to have students from diverse backgrounds, each bringing unique perspectives and experiences in classrooms. This diversity fosters an environment of intellectual vitality, encouraging lively debates and discussions both inside and outside the classroom. It aspires to culminate in a conducive environment where Professors, students, and industry share a strong sense of camaraderie, creating lasting connections that extend beyond graduation. Its commitment to mentorship and professional development ensures that every student is well-prepared for the legal profession and is a useful member of the society.</p>
+              <p className='heading-para gorditas-regular'> Dr. Rajendra Prasad National Law University (est. 2020), Prayagraj, stands as a beacon of legal education and excellence.
+                Renowned for its innovative and interdisciplinary curriculum, the University is dedicated to shaping future leaders in law,
+                judiciary, and academia.
+              </p>
+              <p className='heading-para gorditas-regular'>Situated in Prayagraj, a city celebrated for its academic heritage, the University provides a transformative learning environment,
+                fostering intellectual diversity, mentorship, and professional growth. With a focus on justice, knowledge, and collaboration,
+                it nurtures well-rounded legal professionals equipped to impact society meaningfully.
+              </p>
               <Link to={'/about'} className='btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more'>Read More &nbsp; <FaArrowRightLong /></Link>
             </div>
             <div className='col-md-6 col-lg-6 col-12 col-sm-12 order-md-2 order-sm-1 order-1' data-aos="fade-left">

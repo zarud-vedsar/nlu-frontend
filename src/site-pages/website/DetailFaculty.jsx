@@ -7,8 +7,7 @@ import {
 } from "../../site-components/Helper/Constant";
 import { useParams } from "react-router-dom";
 import { dataFetchingGet } from "../../site-components/Helper/HelperFunction";
-import DOMPurify from "dompurify";
-import validator from 'validator';
+
 const DetailFaculty = () => {
   const [facultyData, setFacultyData] = useState();
   const { id } = useParams();
@@ -35,7 +34,7 @@ const DetailFaculty = () => {
         }));
       } else {
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const fetchDesignationList = async (id) => {
@@ -88,7 +87,7 @@ const DetailFaculty = () => {
 
       fetchDepartment(response.data.data[0].departmentid);
       fetchDesignationList(response.data.data[0].designationid);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -146,10 +145,12 @@ const DetailFaculty = () => {
               </div>
               <div className="information" style={{ marginTop: "20px" }}>
                 {facultyData?.first_name && (
-                  <p className="heading-primary2">{`${facultyData?.first_name}  ${facultyData?.last_name}`}</p>
+                  <p style={{ fontSize: "30px" }}>{`${
+                    facultyData.first_name
+                  } ${facultyData.middle_name} ${facultyData.last_name}`}</p>
                 )}
                 {facultyData.designationid && (
-                  <p className="heading-primary3">
+                  <p style={{ marginTop: "5px", fontSize: "20px" }}>
                     {facultyData.designationid}
                   </p>
                 )}
@@ -180,11 +181,7 @@ const DetailFaculty = () => {
             </div>
             <div className="description">
               {facultyData.discription && (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: validator.unescape(validator.unescape(facultyData.discription)),
-                  }}
-                ></div>
+                <p style={{ marginBottom: "8px" }}>{facultyData.discription}</p>
               )}
 
               <div>

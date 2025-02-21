@@ -199,16 +199,27 @@ function Header() {
                     </Link>
                     <div className="navigation__item_dropdown-content">
                       <span className="navigation__nested_item">
-                        <Link to="/faculty" className="navigation__item_drop_link ">
-                        Faculty
+                        <Link className="navigation__item_drop_link">
+                        Governance
                         </Link>
                        
-                         
+                          <div className="navigation__nested_item_dropdown-content">
+                            {message &&
+                              message.map((post, index) => (
+                                <Link
+                                  to={`/message/${post.id}`}
+                                  key={`${index}-message`}
+                                  className="navigation__item_drop_link"
+                                >
+                                  {post.msg_from}
+                                </Link>
+                              ))}
+                          </div>
                         
                       </span>
                       <span className="navigation__nested_item">
                       <Link className="navigation__item_drop_link">
-                        Governance 
+                        Governance 2
                       </Link>
                       <div className="navigation__nested_item_dropdown-content">
                             {message &&
@@ -294,17 +305,30 @@ function Header() {
                       >
                         Scholarship
                       </Link>
-                      <Link
+                    </div>
+                  </li>
+                  <li className="navigation__item">
+                    <Link
                       to={"/student/book-issued"}
                       target="_blank"
-                      className="navigation__item_drop_link"
+                      className="navigation__item_link"
                     >
                       Library
                     </Link>
+                  </li>
+                  <li className="navigation__item arr-li">
+                    <Link className="navigation__item_link arr-true">
+                      Cells
+                    </Link>
+                    <div className="navigation__item_dropdown-content">
+                      <Link
+                        to="/equal-opportunity-cell"
+                        className="navigation__item_drop_link"
+                      >
+                        Equal Opportunity Cell
+                      </Link>
                     </div>
                   </li>
-                
-                  
                   <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">
                       Contact{" "}
@@ -327,19 +351,6 @@ function Header() {
                         className="navigation__item_drop_link"
                       >
                         Grievance
-                      </Link>
-                    </div>
-                  </li>
-                  <li className="navigation__item arr-li ">
-                    <Link className="navigation__item_link arr-true">
-                      More Links
-                    </Link>
-                    <div className="navigation__item_dropdown-content">
-                      <Link
-                        to="/equal-opportunity-cell"
-                        className="navigation__item_drop_link"
-                      >
-                        Equal Opportunity Cell
                       </Link>
                     </div>
                   </li>

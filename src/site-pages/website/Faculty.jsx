@@ -10,23 +10,59 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 const Faculty = () => {
-  const [facultyList, setFacultyList] = useState([
-    {
-      avtar: "avtar_user20250743159805701738762483.jpg",
-      uid: "RPNLUP",
-      first_name: "Sr. Prof. Dr. Usha ",
-      last_name: "Tandon",
-      designation: "Vice Chancellor",
-      id:1
-    },
-  ]);
-
+  const [facultyList, setFacultyList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const capitalizeFirstLetter = (str) => {
+    if (!str) return "";
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
+
+  const fetchDesignationList = async () => {
+    const deleteStatus = 0;
+
+    try {
+      const response = await dataFetchingGet(
+        `${NODE_API_URL}/api/designation/retrieve-all-designation-with-department/${deleteStatus}`
+      );
+
+      if (response?.statusCode === 200 && response.data.length > 0) {
+        const result = response.data;
+
+        const designationMap = result.reduce((acc, designation) => {
+          acc[designation.id] = designation.title;
+          return acc;
+        }, {});
+
+        if (facultyList && facultyList.length > 0) {
+          const tempData = facultyList.map((faculty) => {
+            const designationTitle = designationMap[faculty.designationid];
+            return {
+              ...faculty,
+              designationName: designationTitle || " ",
+            };
+          });
+          setFacultyList(tempData);
+        } else {
+        }
+      } else {
+      }
+    } catch (error) {
+      const statusCode = error.response?.data?.statusCode;
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+      } else {
+       
+      }
+    } finally {
+    }
+  };
 
   const loadFacultyData = async () => {
     try {
       const bformData = new FormData();
-      bformData.append("data", "load_faculty_front");
+      bformData.append("data", "load_userPage");
 
       const response = await axios.post(
         `${PHP_API_URL}/faculty.php`,
@@ -37,10 +73,13 @@ const Faculty = () => {
           },
         }
       );
+      setFacultyList(response.data.data);
+      fetchDesignationList();
 
-      setFacultyList((prev) => [...prev, ...response.data.data]);
+      setLoading(false);
     } catch (error) {
-      // Handle errors (empty for now)
+      setError("Error fetching faculty data.");
+      setLoading(false);
     }
   };
 
@@ -49,7 +88,7 @@ const Faculty = () => {
   }, []);
 
   const moreDetail = (id) => {
-    console.log(id)
+    
     navigate(`/faculty/${id}`);
   };
 
@@ -89,18 +128,16 @@ const Faculty = () => {
                       >
                         <img
                           style={{ width: "300px", height: "300px" }}
-                          src={
-                            faculty.avtar
-                              ? `${FILE_API_URL}/user/${faculty.uid}/${faculty.avtar}`
-                              : `${FILE_API_URL}/user/dummy.webp`
-                          }
+                          src={faculty.avtar?`${FILE_API_URL}/user/${faculty.uid}/${faculty.avtar}`:`${FILE_API_URL}/user/dummy.webp`}
                           alt=""
                         />
                       </div>
                       <div className="col-lg-4">
                         <div className="staf-info">
                           <h5 className="title">
-                            {`${faculty?.first_name} ${faculty?.middle_name} ${faculty?.last_name}`}
+                            {`${capitalizeFirstLetter(faculty.first_name)} ${
+                              faculty.middle_name
+                            } ${faculty.last_name}`}
                           </h5>
 
                           <a
@@ -113,28 +150,23 @@ const Faculty = () => {
                             </span>
                             {faculty.u_email}
                           </a>
-                          {faculty && faculty?.u_phone && (
-                            <a
-                              aria-label="team phone"
-                              href="https://themewant.com/products/wordpress/unipix/teams/michael-mcgarvey/"
-                              className="phone-contact"
-                            >
-                              <span>
-                                <i className="rt-phone-flip" />
-                              </span>
-                              +91 {faculty.u_phone}
-                            </a>
-                          )}
+                          <a
+                            aria-label="team phone"
+                            href="https://themewant.com/products/wordpress/unipix/teams/michael-mcgarvey/"
+                            className="phone-contact"
+                          >
+                            <span>
+                              <i className="rt-phone-flip" />
+                            </span>
+                            +91 {faculty.u_phone}
+                          </a>
                           <div className="staf-info__speciality">
-                            <p>{`${
-                              faculty.designation ? faculty.designation : " "
-                            }`}</p>
+                            <p>{`${faculty.designationName?faculty.designationName:" "}`}</p>
                           </div>
                           <button
                             className="team-btn react_button"
                             onClick={() => moreDetail(faculty.id)}
                           >
-                            {console.log(faculty.id)}
                             More Details
                           </button>
                         </div>

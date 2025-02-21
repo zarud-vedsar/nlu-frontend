@@ -20,15 +20,13 @@ import PopupNotice from "../../site-components/website/home-components/PopupNoti
 import Facilities from "../../site-components/website/home-components/Facilities";
 import UserTestimonials from "./UserTestimoinals";
 import OurSociety from "./OurSociety";
-import KeyNoteSpeakers from "./KeyNoteSpeakers";
 
 function Home() {
   return (
     <>
-      <PopupNotice />
+        <PopupNotice />
       <Banner />
       <MarqueeSlider />
-      <KeyNoteSpeakers />
       <About />
       <Message />
       <NoticeEventPublication />
@@ -36,12 +34,12 @@ function Home() {
       <HomeVideo />
       <WhyChoose />
       <FacultySlider />
-      <CampusLife />
+     <CampusLife /> 
       <Speciality />
       <ContactFeatures />
       <Achivement />
       <Facilities />
-      <Gallery />
+     <Gallery />
       <SocialMedia />
       <ContactIcon />
       <UserTestimonials />

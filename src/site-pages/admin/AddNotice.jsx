@@ -67,7 +67,7 @@ function NoticeList() {
     if (id === "image") {
       if (file.type.startsWith("image/")) {
         setPreviewImage(URL.createObjectURL(file));
-
+        
         setFormData((formData) => ({ ...formData, image: file }));
       } else {
         toast.error(
@@ -98,14 +98,14 @@ function NoticeList() {
           notice_type: response?.data[0]?.notice_type,
           notice_date: response?.data[0]?.notice_date,
           description: validator.unescape(response?.data[0]?.description || ""),
-          pdf_file: validator.unescape(response?.data[0]?.pdf_file || ""),
-          image: validator.unescape(response?.data[0]?.image || ""),
+          pdf_file: validator.unescape(response?.data[0]?.pdf_file),
+          image: validator.unescape(response?.data[0]?.image),
         }));
         if (response?.data[0]?.pdf_file) {
-          setPreviewPdf(validator.unescape(response?.data[0]?.pdf_file || ""));
+          setPreviewPdf(validator.unescape(response?.data[0]?.pdf_file));
         }
         if (response?.data[0]?.image) {
-          setPreviewImage(validator.unescape(response?.data[0]?.image || ""));
+          setPreviewImage(validator.unescape(response?.data[0]?.image));
         }
       } else {
         toast.error("Data not found.");
@@ -180,7 +180,7 @@ function NoticeList() {
         response.data?.statusCode === 200 ||
         response.data?.statusCode === 201
       ) {
-
+        
         if (response.data?.statusCode === 201) {
           setFormData(initialData);
         } else if (response.data?.statusCode === 200) {

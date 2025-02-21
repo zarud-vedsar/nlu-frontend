@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import AOS from "aos";
 import { GoArrowUpRight } from "react-icons/go";
 import CampusBg from "../assets/Images/campus-life/cl-1.webp";
-import Hostelbg from "../assets/Images/campus-life/hostel.jpg";
-import SportBg from "../assets/Images/campus-life/health.webp";
+import Hostelbg from "../assets/Images/campus-life/h-life.webp";
+import SportBg from "../assets/Images/campus-life/sport.webp";
 import FacilitiesBg from "../assets/Images/campus-life/facilities.jpg";
 
 const CampusLife = () => {

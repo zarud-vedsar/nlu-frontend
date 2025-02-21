@@ -232,9 +232,9 @@ const AddPlacementForm = () => {
             </nav>
           </div>
           <div className="card bg-transparent mb-2">
-            <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
+            <div className="card-header d-flex justify-content-between align-items-center px-0">
               <h5 className="card-title h6_new">{id ? "Update Placement" : "Add New Placement"} </h5>
-              <div className="ml-auto id-mobile-go-back">
+              <div className="ml-auto">
                 <Button
                   variant="light"
                   className="mb-2 mb-md-0"

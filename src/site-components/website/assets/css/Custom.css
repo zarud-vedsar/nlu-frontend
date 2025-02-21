@@ -2673,7 +2673,6 @@ table tbody th {
 .gal-image {
   border-radius: 10px;
   width: 100%;
-  aspect-ratio: 1/1;
   transition: transform 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -3464,6 +3463,11 @@ table tbody th {
 }
 
 .lg-react-element a {
+	width: 25%;
+	display: block;
+	padding: 10px;
+}
+.iimmggbx {
 	width: 100%;
 	display: block;
 	height: 150px;
@@ -3475,8 +3479,7 @@ table tbody th {
   .lg-react-element {
     flex-wrap: wrap;
   }
-
-  .lg-react-element a {
+  .iimmggbx {
     height: 100px;
   }
 
@@ -3487,7 +3490,9 @@ table tbody th {
     flex-direction: column;
     /* Vertical tabs on mobile */
   }
-
+  .lg-react-element a {
+    width: 50%;
+  }
   .react-tabs__tab {
     width: 100%;
   }

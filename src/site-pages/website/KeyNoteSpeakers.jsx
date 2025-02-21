@@ -93,10 +93,12 @@ function KeyNoteSpeakers() {
                     <div className='col-md-12 mb-3 text-center'>
                         <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Keynote Speakers</h2>
                         <div className='heading-divider'></div>
-                        <p className='heading-para text-center mt-4'>International Conference on "Law, Technology and Sustainable Development"</p>
+                        <p className="text-center mt-3 mb-1 id-campus-life-mobile-view" style={{ fontSize: '28px' }}>
+                            International Conference on "Law, Technology and Sustainable Development"
+                        </p>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mt-2">
                     {keyNotes.map((note) => (
                         <div className="col-md-4 mb-3 col-lg-4 col-12 col-sm-12" key={note.id}>
                             <div className="card border-0 soft-shadow" style={{ width: '90%', borderRadius: '10px', margin: '0 auto', minHeight: '160px' }}>

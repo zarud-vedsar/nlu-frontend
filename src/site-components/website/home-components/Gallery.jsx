@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import { FILE_API_URL, PHP_API_URL } from "../../Helper/Constant";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; 
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import axios from "axios";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -48,7 +48,7 @@ const Gallery = () => {
   };
   const CustomArrow = ({ onClick, direction }) => {
     const isMobile = window.innerWidth <= 768; // Check for mobile view
-  
+
     return (
       <div
         onClick={onClick}
@@ -97,9 +97,12 @@ const Gallery = () => {
     <div className="gallery-section" data-aos="fade-up" data-aos-delay="100">
       <div className="container  my-4 py-2">
         <div className="row">
-          <div className="col-md-12 col-12 col-sm-12 text-start" style={{position:"relative"}}>
-          <h2 className="heading-primary2 source-font">Our Gallery</h2>
+          <div className="col-md-12 col-12 col-sm-12 text-center" style={{ position: "relative" }}>
+            <h2 className="heading-primary2 source-font">Visual Highlights</h2>
             <div className="heading-divider"></div>
+            <p className="text-center mt-3 mb-1 id-campus-life-mobile-view" style={{ fontSize: '28px' }}>
+              Explore our gallery and experience the highlights in pictures.
+            </p>
           </div>
         </div>
         <Link to="/image-gallery" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaLongArrowAltRight /></Link>
@@ -107,46 +110,46 @@ const Gallery = () => {
           <Slider {...sliderSettings}>
             {image.map((img, index) => (
               <div key={index} className="slider-item col-12">
-              <LightGallery
-               speed={500}
-               plugins={[
-                 lgThumbnail,
-                 lgZoom,
-                 lgAutoplay,
-                 lgFullscreen,
-                 lgShare,
-                 lgVideo,
-                 lgPager,
-               ]}
-               mode="lg-fade"
-             >
-                
-                <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" className="col-" rel="noopener noreferrer">
-                <img
-  className="gallery-img1 col-12"
-  src={`${FILE_API_URL}/gallery/${img}`}
-  alt={`Gallery Image ${index + 1}`}
-  style={{ 
-    width: "100%", 
-    maxWidth: "100%", 
-   
-    height: "200px", 
-    objectFit: "cover", 
-    borderRadius: "10px" 
-  }}
-/>
-                </a>
+                <LightGallery
+                  speed={500}
+                  plugins={[
+                    lgThumbnail,
+                    lgZoom,
+                    lgAutoplay,
+                    lgFullscreen,
+                    lgShare,
+                    lgVideo,
+                    lgPager,
+                  ]}
+                  mode="lg-fade"
+                >
+
+                  <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" className="col-" rel="noopener noreferrer">
+                    <img
+                      className="gallery-img1 col-12"
+                      src={`${FILE_API_URL}/gallery/${img}`}
+                      alt={`Gallery Image ${index + 1}`}
+                      style={{
+                        width: "100%",
+                        maxWidth: "100%",
+
+                        height: "200px",
+                        objectFit: "cover",
+                        borderRadius: "10px"
+                      }}
+                    />
+                  </a>
                 </LightGallery>
               </div>
- 
+
             ))}
           </Slider>
         </div>
       </div>
 
-  
 
-<style>
+
+      <style>
         {`
  
   .addtextoverlap{
@@ -182,7 +185,7 @@ const Gallery = () => {
       top: 20px;
     }
         `}
-        </style>
+      </style>
     </div>
   );
 };

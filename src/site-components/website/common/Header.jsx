@@ -102,12 +102,12 @@ function Header() {
                     <div className="enn">Dr. Rajendra Prasad</div>
                   </h2>
                   <h3 className="header-heading3">
-                  <div className="hinn">राष्ट्रीय विधि विश्वविद्यालय</div>
-                  <div className="enn">National Law University</div>
+                    <div className="hinn">राष्ट्रीय विधि विश्वविद्यालय</div>
+                    <div className="enn">National Law University</div>
                   </h3>
                   <h4 className="hd4">
-                  <div className="hinn">प्रयागराज</div>
-                  <div className="enn">Prayagraj</div>
+                    <div className="hinn">प्रयागराज</div>
+                    <div className="enn">Prayagraj</div>
                   </h4>
                 </Link>
               </div>

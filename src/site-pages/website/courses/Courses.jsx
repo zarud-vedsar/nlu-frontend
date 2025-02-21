@@ -114,7 +114,6 @@ const Courses = () => {
       }
     } catch (error) {
       console.error("Error:", error);
-      const statusCode = error.response?.data?.statusCode;
     }
   };
 
@@ -132,11 +131,11 @@ const Courses = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumb-text">
-                <h1 className="heading-primary2 butler-regular text-white text-center">{activeSidebar == 'about' ? courseData.coursename : pageTitle}</h1>
+                <p className="heading-primary2 butler-regular text-white text-center">{activeSidebar == 'about' ? courseData.coursename : pageTitle}</p>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li><Link to="/">Home</Link></li> <FaAngleRight />
-                    <li>{activeSidebar == 'about' ? courseData.coursename : pageTitle}</li>
+                    <li>Course Details</li>
                   </ul>
                 </div>
               </div>

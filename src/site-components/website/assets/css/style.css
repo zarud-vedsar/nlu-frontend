@@ -4798,14 +4798,42 @@ a:hover {
 }
 video.vidmsg {
 	width: 100%;
-	height: 600px;
+	height: 595px;
 	-o-object-fit: cover;
 	object-fit: cover;
   }
 .vicemsgsec-img-sec1 {
 	position: relative;
 }
+.navigation__item_drop_link {
+	position:relative;
+}
+.navigation__nested_item:has(.navigation__nested_item_dropdown-content)>.navigation__item_drop_link:first-child::after {
+	position: absolute;
+	content: "+";
+	color: #000;
+	font-weight:400;
+	font-size:18px;
+	right: 5px;
+	top:5px;
+}
 
+.navigation__nested_item:has(.navigation__nested_item_dropdown-content):hover>.navigation__item_drop_link:first-child::after {
+	content: "-";
+}
+.btn-vc-readmore {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: inline-flex;
+	gap: 10px;
+	color: #fff !important;
+	text-decoration: none;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 8px 15px;
+	border:solid 1px #fff;
+}
 button.control-icon {
 	position: absolute;
 	width: 85px;

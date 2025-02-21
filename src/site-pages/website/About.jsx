@@ -56,7 +56,7 @@ const About = () => {
       <div className="about-page-area section-padding">
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-sm-none d-md-block d-lg-block leftpart">
+            {/* <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-sm-none d-md-block d-lg-block leftpart">
               <h3 className="heading-primary2 butler-regular">About Us</h3>
               <div className="heading-divider mb-3"></div>
               <ul className="mcd-menu">
@@ -75,8 +75,8 @@ const About = () => {
                   </Link>
                 </li>
               </ul>
-            </div>
-            <div className="col-lg-9 col-md-9 col-12 col-sm-12 col-xs-12">
+            </div> */}
+            <div className="col-lg-12 col-md-9 col-12 col-sm-12 col-xs-12">
               <div className="section-title-wrapper">
                 <div className="section-title">
                   <h3 className="heading-primary3 butler-regular">{aboutData.atitle}</h3>
@@ -89,8 +89,6 @@ const About = () => {
                       src={`${FILE_API_URL}/about/${aboutData.image_file}`}
                       className="rounded-3"
                       style={{
-                        float: "right",
-                        marginLeft: 10,
                         marginBottom: 10,
                       }}
                     />

@@ -27,7 +27,7 @@ const EmblemMotto = () => {
       <div className="about-page-area section-padding">
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-sm-none d-md-block d-lg-block leftpart">
+            {/* <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-sm-none d-md-block d-lg-block leftpart">
               <h3 className="heading-primary2 butler-regular text-white">About Us</h3>
               <div className="heading-divider mb-3"></div>
               <ul className="mcd-menu">
@@ -46,8 +46,8 @@ const EmblemMotto = () => {
                   </Link>
                 </li>
               </ul>
-            </div>
-            <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12 rightpart">
+            </div> */}
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 rightpart">
               <div className="section-title-wrapper">
                 <div className="section-title">
                   <h3 className="heading-primary3 butler-regular">Emblem and Motto</h3>

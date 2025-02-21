@@ -103,7 +103,9 @@
     font-weight: 700;
     display: block;
 }
-
+.navigation__item a{
+    color: #fff;
+}
 .navigation__item_link::before {
     content: "";
     position: absolute;
@@ -287,7 +289,7 @@
 }
 
 .navigation__item {
-    opacity: 0.8;
+    opacity: 1;
 }
 
 .navigation__item:hover {
@@ -317,7 +319,7 @@
     }
 
     .navigation__item {
-        opacity: 0.8;
+        opacity: 1;
     }
 
     .navigation__item:hover {

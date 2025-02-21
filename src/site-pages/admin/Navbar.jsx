@@ -621,6 +621,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       dropdownMenus: [
         { subtitle: "Achievement", url: "achievement-list" },
         { subtitle: "Announcement", url: "notice-list" },
+        { subtitle: "Calendar", url: "calendar" },
       ],
     },
 

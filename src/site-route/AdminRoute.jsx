@@ -31,6 +31,8 @@ const lazyLoadPlacement = (path) =>
   lazy(() => import(`../site-pages/admin/StudentCorner/Placement/${path}.jsx`));
 const lazyLoadVisitorManagement = (path) =>
   lazy(() => import(`../site-pages/admin/VisitorManagement/${path}.jsx`));
+const lazyLoadAnnouncements = (path) =>
+  lazy(() => import(`../site-pages/admin/Announcements/${path}.jsx`));
 
 const Navbar = lazy(() => import("../site-pages/admin/Navbar"));
 const lazyLoadHostelManagement = (path) => lazy(() => import(`../site-pages/admin/HostelManagement/${path}.jsx`));
@@ -183,6 +185,8 @@ const components = {
   AddExpense: lazyLoadExpense("AddExpense"),
   ExpenseList: lazyLoadExpense("ExpenseList"),
   SessionSetting: lazyLoadUniversitySetting("SessionSetting"),
+  AddCalendar:lazyLoadAnnouncements('AddCalendar'),
+  CalendarList:lazyLoadAnnouncements('CalendarList')
 };
 components.AddResourcePdf = lazy(() => import("../site-pages/admin/Resource/Pdf/AddPdfResource.jsx"));
 components.ResourcePdfList = lazy(() => import("../site-pages/admin/Resource/Pdf/PdfResourceList.jsx"));
@@ -412,6 +416,18 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             <Route
               path="/vendor"
               element={<ProtectedRoute element={<components.Vendor />} />}
+            />
+            <Route
+              path="/calendar"
+              element={<ProtectedRoute element={<components.CalendarList />} />}
+            />
+            <Route
+              path="/calendar/add-new"
+              element={<ProtectedRoute element={<components.AddCalendar />} />}
+            />
+            <Route
+              path="/calendar/edit/:dbId"
+              element={<ProtectedRoute element={<components.AddCalendar />} />}
             />
             <Route
               path="/add-vendor"

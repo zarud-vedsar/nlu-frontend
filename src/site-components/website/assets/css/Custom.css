@@ -1,4 +1,5 @@
-﻿@font-face {
+﻿@import url('https://fonts.googleapis.com/css2?family=Gorditas:wght@400;700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@font-face {
   font-family: Butler;
   src: url(../butler/Butler/Butler_Regular.otf) format("truetype");
   font-style: normal;
@@ -212,7 +213,9 @@ body {
   margin-bottom: 20px;
   border-radius: 0.4rem;
 }
-
+.source-font{
+  font-family: "Source Sans 3", serif;
+}
 .text-justify {
   text-align: justify !important;
 }
@@ -823,13 +826,13 @@ table tbody th {
 }
 
 .about-btn {
-  color: #B81365;
+  color: #7A0F45;
   padding: 0;
   text-decoration: underline;
 }
 
 .rts-circle {
-  background: #B81365;
+  background: #7A0F45;
   width: 170px;
   height: 168px;
   line-height: 165px;
@@ -1064,7 +1067,7 @@ table tbody th {
 
 .staf-info__speciality {
   margin-top: 25px;
-  border-left: 2px solid #B81365;
+  border-left: 2px solid #7A0F45;
   margin-bottom: 30px;
 }
 
@@ -1075,8 +1078,8 @@ table tbody th {
 
 .staf-info .team-btn {
   background: rgba(0, 0, 0, 0);
-  border: 1px solid #B81365;
-  color: #B81365;
+  border: 1px solid #7A0F45;
+  color: #7A0F45;
   padding: 10px 30px;
 }
 
@@ -2081,7 +2084,7 @@ table tbody th {
 
 .id-top-header-increase-font-size a:hover {
   background-color: white;
-  color: #B81365;
+  color: #7A0F45;
   text-decoration: none;
 }
 
@@ -2198,7 +2201,7 @@ table tbody th {
 }
 
 .id-imp-card-body {
-  background-color: #B81365 !important;
+  background-color: #7A0F45 !important;
   padding: 20px 0px;
   border-radius: 4px;
   margin-top: 5px;
@@ -2384,7 +2387,7 @@ table tbody th {
 
 .prev-button:hover,
 .next-button:hover {
-  background-color: #B81365;
+  background-color: #7A0F45;
   color: #fff;
 }
 
@@ -2788,7 +2791,7 @@ table tbody th {
 }
 
 .btn-primary {
-  background-color: #B81365;
+  background-color: #7A0F45;
 }
 
 .btn-primary:hover,
@@ -2805,15 +2808,15 @@ table tbody th {
 }
 
 .text-primary {
-  color: #B81365 !important;
+  color: #7A0F45 !important;
 }
 
 .bg-primary {
-  background-color: #B81365 !important;
+  background-color: #7A0F45 !important;
 }
 
 .border-primary {
-  border-color: #B81365 !important;
+  border-color: #7A0F45 !important;
 }
 
 .border-bottom-2 {
@@ -2821,7 +2824,7 @@ table tbody th {
 }
 
 .custom-link {
-  color: #B81365;
+  color: #7A0F45;
   text-decoration: none;
   font-size: 15px !important;
   font-weight: 700 !important;
@@ -2837,7 +2840,7 @@ table tbody th {
   display: grid;
   place-content: center;
   background: #fff;
-  color: #B81365;
+  color: #7A0F45;
   font-size: 30px;
 }
 
@@ -2896,7 +2899,7 @@ table tbody th {
   display: inline-block;
   font-size: 30px;
   line-height: 1;
-  color: #B81365;
+  color: #7A0F45;
   height: 52px;
   min-width: 52px;
 }
@@ -3053,7 +3056,7 @@ table tbody th {
   display: block;
   -webkit-transition: max-height 0.5s ease-in;
   transition: max-height 0.5s ease-in;
-  color: #B81365;
+  color: #7A0F45;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0em;
@@ -3143,7 +3146,7 @@ table tbody th {
 }
 
 .event-hover-container:hover .event-hover-title {
-  color: #B81365;
+  color: #7A0F45;
 }
 
 .heading-divider {
@@ -3157,7 +3160,7 @@ table tbody th {
   content: "";
   width: 66px;
   height: 3px;
-  background: #B81365;
+  background: #7A0F45;
 }
 
 .soft-shadow {
@@ -3169,7 +3172,7 @@ table tbody th {
   font-size: 16px !important;
   margin-bottom: 20px;
   font-weight: 400;
-  color: rgb(105, 105, 105);
+  color: rgb(0, 0, 0);
   text-align: justify;
 }
 
@@ -3517,7 +3520,7 @@ table tbody th {
 
 .contact-icon .faicon {
   font-size: 34px;
-  color: #B81365;
+  color: #7A0F45;
   margin-right: 15px;
 }
 
@@ -3558,7 +3561,7 @@ table tbody th {
 }
 
 .form-group-custom:hover {
-  border: 1px solid #B81365;
+  border: 1px solid #7A0F45;
 }
 
 .form-custom-icon {

@@ -85,7 +85,6 @@ function KeyNoteSpeakers() {
             contactDetails: 'Professor, College of Law, Soongsil University, Seoul, Korea',
             link: 'https://law.ssu.ac.kr/web/sub1/sub1_prof_detail02.do'
         },
-
     ];
     return (
         <div className="section-padding py-4 kn-position-realative" style={{ background: '#F2F2F2' }}>

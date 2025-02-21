@@ -291,6 +291,7 @@ const NoticeEventPublication = () => {
                                   </div>
                                 </Link>
                               ))}
+                           
                           </div>
                         </div>
                         {events && events.length > 0 && (
@@ -314,13 +315,25 @@ const NoticeEventPublication = () => {
       </section>
       <section className="public bg-white">
         <div className="container" data-aos="fade-up" data-aos-delay="50">
-           <div className="col-md-12 d-flex justify-content-between align-items-bottom my-4 textManage" style={{ position: "relative" }}>
-                                     <div>
-                                     <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Publications</h2>
-                                       <div className="heading-divider"></div>
-                                     </div>
-                                     <Link to="/view-all/publication" className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>More Publications <FaArrowRightLong /></Link>
-                                   </div>
+          <div className="row">
+          <div
+                  className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage"
+                  style={{ position: "relative" }}
+                >
+                  <div>
+                    <h2 className="heading-primary2 ">Publications</h2>
+                    <div className="heading-divider"></div>
+                  </div>
+                  <Link
+                    to="/view-all/publication"
+                    target="_blank"
+                    className="text-primary custom-link gorditas-regular ms-5 addtextoverlap"
+                  >
+                   More Publications <FaArrowRightLong />
+                  </Link>
+                </div>
+           
+          </div>
           <div className="row">
             <div className="col-md-12">
               <Slider {...settings2}>

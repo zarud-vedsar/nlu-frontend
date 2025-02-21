@@ -37,7 +37,7 @@ function Home() {
       <FacultySlider />
       <CampusLife />
       <Speciality />
-      <ContactFeatures />
+      {/* <ContactFeatures /> */}
       <Achivement />
       <Gallery />
       <SocialMedia />

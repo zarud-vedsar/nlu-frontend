@@ -6,10 +6,13 @@ import { useParams } from 'react-router-dom';
 import validator from "validator";
 import { FaArrowRightLong, FaAnglesDown } from "react-icons/fa6";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+
 const AllNotice = () => {
   const [AllNotice, setAllNotice] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams()
+  console.log(useParams)
   // Fetch data when component mounts
   useEffect(() => {
 
@@ -77,9 +80,9 @@ const AllNotice = () => {
           </div>
 
           {/* Display loading indicator while data is being fetched */}
-          {/* {loading ? (
+          {loading ? (
             <div>Loading...</div>
-          ) : ( */}
+          ) : (
             <div className="row">
               {/* <div className="col-md-12">
                 <div className="notic-container">
@@ -114,8 +117,8 @@ const AllNotice = () => {
 
                     </div>
                   ))} */}
-
-                   {AllNotice.map((notice, index) => (
+                     {id === "event" &&
+                   AllNotice.map((notice, index) => (
                                         <div key={index} className="col-lg-3">
                                           <div className="card border-0 soft-shadow  ">
                                             <div className="new-img-container">
@@ -173,8 +176,8 @@ const AllNotice = () => {
                 </div>
              
             
-          {/* )} */}
-        </div>
+         )}       
+           </div>
       </div>
     </>
   );

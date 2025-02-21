@@ -27,14 +27,17 @@ const SocialMedia = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">
-            <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Our Social Media</h2>
+              <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Follow Us on Social Media</h2>
               <div className="heading-divider"></div>
+              <p className="text-center mt-3 mb-1 id-campus-life-mobile-view" style={{ fontSize: '28px' }}>
+                Stay connected with us! Follow us on social media for the latest updates, exclusive content, and more.
+              </p>
             </div>
           </div>
           <div className="row mt-4">
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-5 px-4">
               <div className="social-icon fb">
-                <img src={facebook} alt="Facebook" style={{height:"30px"}}/>
+                <img src={facebook} alt="Facebook" style={{ height: "30px" }} />
                 Facebook
               </div>
               <div className="social-media-col">

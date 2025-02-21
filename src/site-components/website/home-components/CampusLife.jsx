@@ -3,7 +3,8 @@ import AOS from "aos";
 import { GoArrowUpRight } from "react-icons/go";
 import CampusBg from "../assets/Images/campus-life/cl-1.webp";
 import Hostelbg from "../assets/Images/campus-life/hostel.jpg";
-import SportBg from "../assets/Images/campus-life/health.webp";
+import HealthBg from "../assets/Images/campus-life/health.webp";
+import SportBg from "../assets/Images/campus-life/sport.webp";
 import FacilitiesBg from "../assets/Images/campus-life/facilities.jpg";
 
 const CampusLife = () => {
@@ -72,7 +73,7 @@ const CampusLife = () => {
               <div className="col-lg-6 mb-3" data-aos="fade-up" data-aos-delay="100">
                 <div className="campus__life--single item_box">
                   <div className="campus__life--single--bg">
-                    <img decoding="async" src={SportBg} alt="Campus" />
+                    <img decoding="async" src={HealthBg} alt="Campus" />
                   </div>
                   <div className="campus__life--single--flex">
                     <div className="campus__life--single--content">

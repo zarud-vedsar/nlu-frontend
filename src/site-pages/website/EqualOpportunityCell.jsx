@@ -128,7 +128,7 @@ function EqualOpportunityCell() {
 
                                                 ul.custom-list li::before {
                                                     content: "✔"; /* Custom checkmark icon */
-                                                color: #7A0F45;
+                                                color: #B81365;
                                                 font-weight: bold;
                                                 margin-right: 10px;
   }`}
@@ -154,8 +154,8 @@ function EqualOpportunityCell() {
   }
 
                                                 .procedure-container h2 {
-                                                    color: #7A0F45;
-                                                border-bottom: 2px solid #7A0F45;
+                                                    color: #B81365;
+                                                border-bottom: 2px solid #B81365;
                                                 padding-bottom: 5px;
                                                 font-size: 1.4em;
   }
@@ -183,7 +183,7 @@ function EqualOpportunityCell() {
 
                                                 .procedure-container li::before {
                                                     content: "✔";
-                                                color: #7A0F45;
+                                                color: #B81365;
                                                 font-weight: bold;
                                                 position: absolute;
                                                 left: 10px;

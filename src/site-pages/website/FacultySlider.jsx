@@ -89,7 +89,7 @@ const FacultySlider = () => {
           <div className="container">
           <div className="col-md-12 d-flex justify-content-center align-items-center my-4 textManage" style={{ position: "relative" }}>
                            <div>
-                             <h2 className="heading-primary2 ">Faculty & Staff</h2>
+                           <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Faculty & Staff</h2>
                              <div className="heading-divider text-center"></div>
                            </div>
                            <Link to="/faculty" className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaArrowRightLong /></Link>

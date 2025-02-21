@@ -115,7 +115,7 @@ function Header() {
             <nav
               className={`page-mine-header__bottom`}
               style={{
-                padding: `${isMobile ? "0px 35px" : "0px"}`,
+                padding: `${isMobile ? "0px 47px" : "0px"}`,
               }}
             >
               <ul

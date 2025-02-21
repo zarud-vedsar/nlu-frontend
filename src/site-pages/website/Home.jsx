@@ -33,7 +33,7 @@ function Home() {
       <Message />
       <NoticeEventPublication />
       <Courses />
-      <HomeVideo />
+      {/* <HomeVideo /> */}
       <WhyChoose />
       <FacultySlider />
       <CampusLife />

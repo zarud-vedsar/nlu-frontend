@@ -4785,10 +4785,48 @@ a:hover {
 }
 
 .message-heading {
-	font-size: 22px;
-	color: #000;
+	font-size: 2rem;
+  color: #000;
+  text-transform: uppercase;
+  margin-top: 0 !important;
+}
+.msg-contentbx {
+	padding: 25px;
+	background: #b81365;
+	color:#fff;
+}
+video.vidmsg {
+	width: 100%;
+	height: 600px;
+	-o-object-fit: cover;
+	object-fit: cover;
+  }
+.vicemsgsec-img-sec1 {
+	position: relative;
 }
 
+button.control-icon {
+	position: absolute;
+	width: 85px;
+	height: 85px;
+	font-size: 3rem;
+	color: #fff;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	background-color: rgba(0,0,0,0);
+	border: 2px solid #fff;
+	border-radius: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
 .messanger-name {
 	font-size: 16px;
 	color: #000;

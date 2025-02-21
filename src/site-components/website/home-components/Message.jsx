@@ -21,7 +21,20 @@ const Message = () => {
   const [messageData, setMessageData] = useState([]);
   const [decodedMessages, setDecodedMessages] = useState({});
   const sliderRef = useRef(null);
-
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const togglePlayPause = () => {
+    const video = videoRef.current;
+    if (video) {
+      if (video.paused) {
+        video.play();
+        setIsPlaying(true);
+      } else {
+        video.pause();
+        setIsPlaying(false);
+      }
+    }
+  };
   const getMessage = async () => {
     try {
       const bformData = new FormData();
@@ -118,29 +131,53 @@ const Message = () => {
       <section className="vicemsgsec" data-aos="fade-up" data-aos-delay="100">
         <div className="container">
           <div className="row justify-content-center">
-            <div className="col-md-10">
-              <div className="vicemsgsec-bx">
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="image-post">
-                      <div className="vicemsgsec-img-sec">
-                        <img src={Authority} className="vicemsgsec-img" />
-                      </div>
-                      <div className="postname text-center">
-                        <h6>Sr. Prof. Dr. Usha Tandon</h6>
-                        <p className="prsn-designation">Vice Chancellor</p>
-                      </div>
+
+            <div className="row">
+              <div className="col-md-7">
+                <div className="vicmsg-bx">
+                  <div className="vicmsg-top">
+
+                    <h3 className="message-heading mb-3 mt-3">MESSAGE FROM THE <br />
+                      Vice-Chancellor</h3>
+                    <div className="postname">
+                      <h6>Sr. Prof. Dr. Usha Tandon</h6>
+                      <p className="prsn-designation">Vice Chancellor</p>
                     </div>
                   </div>
-                  <div className="col-md-8">
-                    <div className="vicmsg-bx">
-                      <h3 className="message-heading mb-3 mt-3">Vice Chancellor Message</h3>
-                      <p className="gorditas-regular" style={{ textAlign: 'justify' }}>I extend a warm welcome to the aspiring students at Dr. Rajendra Prasad National Law University, Prayagraj, an institution dedicated to fostering the next generation of legal professionals poised to shape the future of the legal landscape and contribute significantly to societal improvement. Our university aspires to establish a distinguished tradition of academic excellence, an unwavering commitment to the highest ethical standards, and an ardent dedication to the pursuit of justice. Prayagraj, often referred to as the Judicial Capital of the State, stands as a guiding light for legal education, scholarly pursuit, and ethical leadership. With a rich heritage and a resolute commitment to academic brilliance, the city has once earned the fame of 'Oxford of the East' and has produced erudite legal scholars of national and international renown. Dr. Rajendra Prasad National Law University, Prayagraj is steadfast in its mission to revive this illustrious legacy and uphold the zenith of legal education, ensuring the cultivation of astute legal professionals. In navigating the ever-evolving realm of legal discourse, it is paramount that the students equip themselves not only with legal knowledge but also with the skills and wisdom to judiciously apply it. Our objective is to instill in our students a profound sense of justice, empathy, and an unwavering commitment to the principles of the rule of law. We firmly believe that the study of law transcends the mere mastery of statutes and cases; it involves a deep understanding of the profound impact that the law has on individuals, communities, and nations. We are dedicated to updated curriculum and integrated cutting-edge technology to ensure our students receive a world-class legal education. We earnestly encourage our students to engage in critical thinking, participate in rigorous and innovative research, and actively involve themselves in legal clinics and moot court competitions to gain invaluable practical experience. Our university places a strong emphasis on holistic education, extending beyond the confines of textbooks and courtrooms.</p>
-                    </div>
-                  </div>
+                  <p className="msg-contentbx" style={{ textAlign: 'justify' }}>I extend a warm welcome to the aspiring students at Dr. Rajendra Prasad National Law University, Prayagraj, an institution dedicated to fostering the next generation of legal professionals poised to shape the future of the legal landscape and contribute significantly to societal improvement. Our university aspires to establish a distinguished tradition of academic excellence, an unwavering commitment to the highest ethical standards, and an ardent dedication to the pursuit of justice. Prayagraj, often referred to as the Judicial Capital of the State, stands as a guiding light for legal education, scholarly pursuit, and ethical leadership. With a rich heritage and a resolute commitment to academic brilliance, the city has once earned the fame of 'Oxford of the East' and has produced erudite legal scholars of national and international renown. Dr. Rajendra Prasad National Law University, Prayagraj is steadfast in its mission to revive this illustrious legacy and uphold the zenith of legal education, ensuring the cultivation of astute legal professionals. In navigating the ever-evolving realm of legal discourse, it is paramount that the students equip themselves not only with legal knowledge but also with the skills and wisdom to judiciously apply it. Our objective is to instill in our students a profound sense of justice, empathy, and an unwavering commitment to the principles of the rule of law. We firmly believe that the study of law transcends the mere mastery of statutes and cases; it involves a deep understanding of the profound impact that the law has on individuals, communities, and nations. We are dedicated to updated curriculum and integrated cutting-edge technology to ensure our students receive a world-class legal education. We earnestly encourage our students to engage in critical thinking, participate in rigorous and innovative research, and actively involve themselves in legal clinics and moot court competitions to gain invaluable practical experience. Our university places a strong emphasis on holistic education, extending beyond the confines of textbooks and courtrooms.</p>
                 </div>
               </div>
+              <div className="col-md-5">
+                <div className="image-post1">
+                  <div className="vicemsgsec-img-sec1">
+                    <video className="vidmsg"
+                      id="vc-video"
+                      width="100%"
+                      height="100%"
+                      ref={videoRef}
+                      poster={Authority}
+                    >
+                      <source
+                        src="https://nlumeg.ac.in/public/design/front/assets/video/VC-WEB.mp4"
+                        type="video/mp4"
+                      />
+                      Your browser does not support the video tag.
+                    </video>
+                    <button
+                      type="button"
+                      id="playPauseBtn"
+                      className="control-icon"
+                      onClick={togglePlayPause}
+                    >
+                      <i className={`fa-solid ${isPlaying ? "fa-circle-pause" : "fa-circle-play"}`}></i>
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+
             </div>
+
           </div>
         </div>
       </section>

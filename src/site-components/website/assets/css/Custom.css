@@ -3180,6 +3180,9 @@ table tbody th {
   .mt-sm-50 {
     margin-top: 50px;
   }
+  .id-campus-life-mobile-view{
+    font-size: 25px !important;
+  }
 }
 
 /* Extra small devices (phones, less than 576px) */

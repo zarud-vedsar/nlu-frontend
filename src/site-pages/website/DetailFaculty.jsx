@@ -146,7 +146,7 @@ const DetailFaculty = () => {
               </div>
               <div className="information" style={{ marginTop: "20px" }}>
                 {facultyData?.first_name && (
-                  <p className="heading-primary2">{`${facultyData.first_name} ${facultyData.middle_name} ${facultyData.last_name}`}</p>
+                  <p className="heading-primary2">{`${facultyData?.first_name}  ${facultyData?.last_name}`}</p>
                 )}
                 {facultyData.designationid && (
                   <p className="heading-primary3">

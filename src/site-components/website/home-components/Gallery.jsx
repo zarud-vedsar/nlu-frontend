@@ -98,7 +98,7 @@ const Gallery = () => {
       <div className="container  my-4 py-2">
         <div className="row">
           <div className="col-md-12 col-12 col-sm-12 text-center" style={{ position: "relative" }}>
-            <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Visual Highlights</h2>
+            <h2 className="heading-primary2 source-font">Visual Highlights</h2>
             <div className="heading-divider"></div>
             <p className="text-center mt-3 mb-1 id-campus-life-mobile-view" style={{ fontSize: '28px' }}>
               Explore our gallery and experience the highlights in pictures.

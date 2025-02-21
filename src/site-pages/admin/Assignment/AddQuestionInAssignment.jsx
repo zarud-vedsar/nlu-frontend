@@ -1139,6 +1139,7 @@ const AddQuestionInAssignment = () => {
                       />
                     </div>
                   ))}
+                  
                 {questionType === "scq" &&
                   questionList &&
                   questionList.length > 0 &&

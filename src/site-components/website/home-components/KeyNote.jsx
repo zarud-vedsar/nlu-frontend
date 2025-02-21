@@ -110,7 +110,7 @@ const KeyNote = () => {
           </div>
           <div className="row mt-3">
             {keyNoteData && keyNoteData.map((note) => (
-              <div className="col-md-4 mt-3" key={note.id} style={{ margin: "auto" }}>
+              <div className="col-md-4 mt-3 mb-5" key={note.id} style={{ margin: "auto" }}>
                 <div
                   className="sldrcard card border-0 soft-shadow"
                   style={{

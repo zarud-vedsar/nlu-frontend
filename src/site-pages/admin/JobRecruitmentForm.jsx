@@ -22,6 +22,19 @@ const JobRecruitmentForm = () => {
   const [jobTypes, setJobTypes] = useState([]);
   const [minExperienceList, setMinExperienceList] = useState([]);
   const [loading, setLoading] = useState();
+  const config = {
+    readonly: false,
+    placeholder: "Enter your content here...",
+    spellcheck: true,
+    language: "pt_br",
+    defaultMode: "1",
+    minHeight: 400,
+    maxHeight: -1,
+    defaultActionOnPaste: "insert_as_html",
+    defaultActionOnPasteFromWord: "insert_as_html",
+    askBeforePasteFromWord: false,
+    askBeforePasteHTML: false,
+  };
   const initialization = {
     data: "savejobpost",
     job_category: "",
@@ -42,19 +55,7 @@ const JobRecruitmentForm = () => {
   };
   const [formData, setFormData] = useState(initialization);
   // Jodit editor configuration
-  const config = {
-    readonly: false,
-    placeholder: "",
-    spellcheck: true,
-    language: "pt_br",
-    defaultMode: "1",
-    minHeight: 400,
-    maxHeight: -1,
-    defaultActionOnPaste: "insert_as_html",
-    defaultActionOnPasteFromWord: "insert_as_html",
-    askBeforePasteFromWord: false,
-    askBeforePasteHTML: false,
-  };
+ 
   const updateCategory = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -644,17 +645,25 @@ const JobRecruitmentForm = () => {
                         <span className="text-danger">{errorMessage}</span>
                       )}
                     </div>
-                    <div className="form-group col-md-12">
-                      <div className="col-md-12 px-0">
-                        <label className="font-weight-semibold">
-                          Description
-                        </label>
-                        <textarea id="editor1" name="description">
-                          {formData.description &&
-                            validator.unescape(formData.description)}
-                        </textarea>
-                      </div>
-                    </div>
+                    
+
+
+                    <div className="col-md-12">
+                    {/* JoditEditor component */}
+                    <label className="font-weight-semibold">
+                      Description <span className="text-danger">*</span>
+                    </label>
+                    <JoditEditor
+                      value={validator.unescape(formData?.description) || ""}
+                      config={config}
+                      onBlur={(newContent) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          description: newContent,
+                        }));
+                      }}
+                    />
+                  </div>
 
                     <div className="col-md-12 me-auto d-flex justify-content-between align-items-center">
                       <button type="submit" className="btn btn-dark btn-block">

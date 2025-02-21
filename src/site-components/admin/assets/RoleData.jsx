@@ -434,6 +434,11 @@ export const RoleData = [
         value: "Announcement",
         crud: ["create", "update", "status", "list", "delete", "recycle bin"], // CRUD operations
       },
+      {
+        label: "Calendar",
+        value: "Calendar",
+        crud: ["create", "update", "status", "list", "delete", "recycle bin"], // CRUD operations
+      },
     ],
   },
   {

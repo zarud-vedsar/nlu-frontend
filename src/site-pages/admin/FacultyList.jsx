@@ -466,7 +466,7 @@ const FacultyList = () => {
                           </div>
                           <div>
                             <div className="info-name">
-                              <span>{`${rowData.first_name} ${rowData.middle_name} ${rowData.last_name}`}</span>
+                              <span>{`${rowData.first_name} ${rowData.last_name}`}</span>
                             </div>
 
                             <div className="info-email">

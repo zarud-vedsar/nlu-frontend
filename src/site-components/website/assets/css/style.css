@@ -4879,13 +4879,20 @@ a:hover {
 	background: #ffffff;
 	padding: 10px;
 	border-radius: 10px;
-	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .sldnn.mb-1.mt-2 {
 	font-size: 17px;
+	font-weight: 600;
+	color: #b81365;
+}
+.testibx-left{
+	flex-shrink: 0;
+	height: 60px;
+	width: 60px;
+}
+.facdesti{
 	font-weight: 500;
-	color: #7A0F45;
 }
 
 .speciality-items {
@@ -4916,7 +4923,7 @@ a:hover {
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 1.2;
-	color: #7A0F45;
+	color: #B81365;
 	text-align: center;
 	margin-top: 15px;
 	height: 50px;
@@ -5052,8 +5059,8 @@ ul.facitems li {
 	padding: 15px;
 	background: #fff;
 	border-radius: 10px;
-	border-left: solid 2px #7A0F45;
-	border-bottom: solid 2px #7A0F45;
+	border-left: solid 2px #B81365;
+	border-bottom: solid 2px #B81365;
 	box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -5066,7 +5073,7 @@ ul.facitems li {
 }
 
 .facttx h6 {
-	color: #7A0F45;
+	color: #B81365;
 }
 
 .oursos {
@@ -5238,7 +5245,7 @@ table.table.tblpad-10>tbody>tr>td {
 
 #news-head {
 	width: 100%;
-	background-color: #7A0F45;
+	background-color: #B81365;
 	line-height: 1;
 	color: #fff;
 	text-align: center;
@@ -5286,7 +5293,7 @@ table.table.tblpad-10>tbody>tr>td {
 	width: 24px;
 	height: 24px;
 	border-radius: 20px;
-	background: #7A0F45;
+	background: #B81365;
 	display: inline-flex;
 	color: #fff;
 	align-items: center;

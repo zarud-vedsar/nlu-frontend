@@ -147,7 +147,7 @@ const BookCatalogue = () => {
             /* books page css  before https://prnt.sc/8j4wAJbKV-LX */
   .viewsdetailsbtn{
 
-    background-color: #7A0F45;
+    background-color: #B81365;
     color: white;
     font-size: 13px;
     font-weight: 500;

@@ -8,6 +8,23 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom';
 import { FaLongArrowAltRight } from "react-icons/fa";
+import LightGallery from "lightgallery/react";
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-thumbnail.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-autoplay.css";
+import "lightgallery/css/lg-fullscreen.css";
+import "lightgallery/css/lg-share.css";
+import "lightgallery/css/lg-video.css";
+import "lightgallery/css/lg-pager.css";
+// Import all plugins
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
+import lgAutoplay from "lightgallery/plugins/autoplay";
+import lgFullscreen from "lightgallery/plugins/fullscreen";
+import lgShare from "lightgallery/plugins/share";
+import lgVideo from "lightgallery/plugins/video";
+import lgPager from "lightgallery/plugins/pager";
 const Gallery = () => {
   const [image, setImage] = useState([]);
 
@@ -90,6 +107,20 @@ const Gallery = () => {
           <Slider {...sliderSettings}>
             {image.map((img, index) => (
               <div key={index} className="slider-item col-12">
+              <LightGallery
+               speed={500}
+               plugins={[
+                 lgThumbnail,
+                 lgZoom,
+                 lgAutoplay,
+                 lgFullscreen,
+                 lgShare,
+                 lgVideo,
+                 lgPager,
+               ]}
+               mode="lg-fade"
+             >
+                
                 <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" className="col-" rel="noopener noreferrer">
                 <img
   className="gallery-img1 col-12"
@@ -105,7 +136,9 @@ const Gallery = () => {
   }}
 />
                 </a>
+                </LightGallery>
               </div>
+ 
             ))}
           </Slider>
         </div>

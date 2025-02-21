@@ -6,6 +6,7 @@ import {
   PHP_API_URL,
   FILE_API_URL,
 } from "../../site-components/Helper/Constant";
+import { FaArrowRightLong, FaAnglesDown } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const FacultySlider = () => {
   const [facultyList, setFacultyList] = useState([]);
@@ -86,14 +87,13 @@ const FacultySlider = () => {
           data-aos-delay="100"
         >
           <div className="container">
-            <div className="row">
-              <div className="col-md-12 mb-3 text-center">
-                <h2 className="heading-primary2 butler-regular">
-                  Faculty & Staffs
-                </h2>
-                <div className="heading-divider"></div>
-              </div>
-            </div>
+          <div className="col-md-12 d-flex justify-content-center align-items-center my-4 textManage" style={{ position: "relative" }}>
+                           <div>
+                             <h2 className="heading-primary2 ">Faculty & Staff</h2>
+                             <div className="heading-divider text-center"></div>
+                           </div>
+                           <Link to="/faculty" className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaArrowRightLong /></Link>
+                         </div>
             <div className="row">
               <div className="col-md-3 col-lg-3">
                 <div className="faculty-slide mt-3">

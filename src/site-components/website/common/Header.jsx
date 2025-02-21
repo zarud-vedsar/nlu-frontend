@@ -150,9 +150,8 @@ function Header() {
                 }}
               >
                 <ul
-                  className={`${
-                    menuVisible ? "navigation--visible" : "navigation"
-                  }`}
+                  className={`${menuVisible ? "navigation--visible" : "navigation"
+                    }`}
                 >
                   <li className="navigation__item">
                     <Link to={"/"} className="navigation__item_link">
@@ -200,28 +199,28 @@ function Header() {
                     <div className="navigation__item_dropdown-content">
                       <span className="navigation__nested_item">
                         <Link to="/faculty" className="navigation__item_drop_link ">
-                        Faculty
+                          Faculty
                         </Link>
-                       
-                         
-                        
+
+
+
                       </span>
                       <span className="navigation__nested_item">
-                      <Link className="navigation__item_drop_link">
-                        Governance 
-                      </Link>
-                      <div className="navigation__nested_item_dropdown-content">
-                            {message &&
-                              message.map((post, index) => (
-                                <Link
-                                  to={`/message/${post.id}`}
-                                  key={`${index}-message`}
-                                  className="navigation__item_drop_link"
-                                >
-                                  {post.msg_from}
-                                </Link>
-                              ))}
-                          </div>
+                        <Link className="navigation__item_drop_link">
+                          Governance
+                        </Link>
+                        <div className="navigation__nested_item_dropdown-content">
+                          {message &&
+                            message.map((post, index) => (
+                              <Link
+                                to={`/message/${post.id}`}
+                                key={`${index}-message`}
+                                className="navigation__item_drop_link"
+                              >
+                                {post.msg_from}
+                              </Link>
+                            ))}
+                        </div>
                       </span>
                     </div>
                   </li>
@@ -295,16 +294,16 @@ function Header() {
                         Scholarship
                       </Link>
                       <Link
-                      to={"/student/book-issued"}
-                      target="_blank"
-                      className="navigation__item_drop_link"
-                    >
-                      Library
-                    </Link>
+                        to={"/student/book-issued"}
+                        target="_blank"
+                        className="navigation__item_drop_link"
+                      >
+                        Library
+                      </Link>
                     </div>
                   </li>
-                
-                  
+
+
                   <li className="navigation__item arr-li">
                     <Link className="navigation__item_link arr-true">
                       Contact{" "}

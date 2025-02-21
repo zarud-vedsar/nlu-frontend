@@ -87,7 +87,6 @@ function KeyNoteSpeakers() {
         },
 
     ];
-
     return (
         <div className="section-padding py-4 kn-position-realative" style={{ background: '#F2F2F2' }}>
             <div className="container">

@@ -319,7 +319,7 @@ const NoticeEventPublication = () => {
                                      <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Publications</h2>
                                        <div className="heading-divider"></div>
                                      </div>
-                                     <Link to="/view-all/publication" className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>More Publications<FaArrowRightLong /></Link>
+                                     <Link to="/view-all/publication" className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>More Publications <FaArrowRightLong /></Link>
                                    </div>
           <div className="row">
             <div className="col-md-12">

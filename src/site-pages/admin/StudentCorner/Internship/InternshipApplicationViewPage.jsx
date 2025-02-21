@@ -394,9 +394,9 @@ const InternshipApplicationViewPage = () => {
        
 
         <div className="card bg-transparent mb-2">
-            <div className="card-header d-flex justify-content-between align-items-center px-0">
+            <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
               <h5 className="card-title h6_new">Internship Application Detail</h5>
-              <div className="ml-auto">
+              <div className="ml-auto id-mobile-go-back">
               <Button
               variant="light"
               className="mb-2 mb-md-0"

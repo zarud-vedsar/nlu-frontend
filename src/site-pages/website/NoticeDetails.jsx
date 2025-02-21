@@ -5,7 +5,7 @@ import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import validator from "validator";
 
 const NoticeDetails = () => {
-  const [noticeDetails, setNoticeDetails] = useState(null);
+  const [noticeDetails, setNoticeDetails] = useState([]);
   const [loading, setLoading] = useState(true); // Start with loading true
   const { id } = useParams();
   const [html, setHtml] = useState("");
@@ -42,11 +42,10 @@ const NoticeDetails = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumb-text">
-                <h1 className="text-center">Notice Details</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li>
-                      <a href="default.html">Home</a>
+                      <Link to="/">Home</Link>
                     </li>
                     <li>Notice Details</li>
                   </ul>
@@ -61,20 +60,48 @@ const NoticeDetails = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <div className="section-title-wrapper">
-                <div className="section-title">
-                  <h3>Notice Details</h3>
-                </div>
+              <h2 className="heading-primary2">{
+                noticeDetails?.title || "Notice Title"
+              }</h2>
+              {
+                noticeDetails?.notice_date && (
+                  <>
+                    <p>  {new Date(noticeDetails.notice_date).toLocaleDateString('en-GB', {
+                      month: 'short'
+                    })} {" "} {new Date(noticeDetails.notice_date).toLocaleDateString('en-GB', {
+                      day: '2-digit'
+                    })} {", "}
+                      {new Date(noticeDetails.notice_date).toLocaleDateString('en-GB', {
+                        year: 'numeric' // "2021"
+                      })}</p>
+                  </>
+                )
+              }
+
+            </div>
+            <div className="col-md-12">
+              <div className="about-text-container">
+                {noticeDetails?.description && (
+                  <div className="events-wrapper" style={{ width: '100%', overflow: 'auto' }}>
+                    {/* Render description directly */}
+                    <div
+                      className="nfullmain-container"
+                      dangerouslySetInnerHTML={{ __html: html }}
+                    >
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
-
           <div className="row">
+
+
             {
-              noticeDetails && noticeDetails.length > 0 && (
+              noticeDetails?.pdf_file && (
                 <div className="col-md-12">
                   <iframe
-                    src={noticeDetails?.pdf_file || ""}
+                    src={noticeDetails?.pdf_file ? validator.unescape(validator.unescape(noticeDetails?.pdf_file)) : ''}
                     width="100%"
                     height="600px"
                     title="Notice PDF"
@@ -84,49 +111,8 @@ const NoticeDetails = () => {
             }
           </div>
 
-          <div className="row">
-            <div className="col-md-12">
-              <div className="about-text-container">
-                {noticeDetails?.description && (
-                  <div className="events-wrapper">
-                    {/* Render description directly */}
-                    <table style={{ width: "100%" }}>
-                      <tbody>
-                        <tr>
-                          <td style={{ textAlign: "left" }}>
-                            <table
-                              id="ctl00_ctl00_CPH_MainContent_CPH_MainContent_DataList1"
-                              cellSpacing={0}
-                              style={{
-                                width: "100%",
-                                borderCollapse: "collapse",
-                              }}
-                            >
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    <div
-                                      className="nfullmain-container"
-                                      dangerouslySetInnerHTML={{ __html: html }}
-                                      style={{ padding: "30px" }}
-                                    >
-                                      {/* Directly render the description */}
-                                    </div>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

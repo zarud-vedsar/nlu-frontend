@@ -9,7 +9,7 @@ import wifi from "../assets/Images/wi-fi-64.png";
 import research from "../assets/Images/research-64.png";
 import dance from "../assets/Images/dance-64.png";
 
-const Facilities = () => {
+const | Facilities = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -17,13 +17,13 @@ const Facilities = () => {
     });
   }, []);
 
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  
-    useEffect(() => {
-      const handleResize = () => setIsMobile(window.innerWidth <= 768);
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, []);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -38,7 +38,7 @@ const Facilities = () => {
           <div className="faccontainer">
             <div className="facitems-sec">
               <ul className="facitems">
-                <li className="facitem" data-aos= {`${isMobile?"fade-up":"fade-right"}`} data-aos-delay="100">
+                <li className="facitem" data-aos={`${isMobile ? "fade-up" : "fade-right"}`} data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={classroom} />
@@ -79,7 +79,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem" data-aos= {`${isMobile?"fade-up":"fade-right"}`}  data-aos-delay="100">
+                <li className="facitem" data-aos={`${isMobile ? "fade-up" : "fade-right"}`} data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={hostel} />
@@ -126,7 +126,7 @@ const Facilities = () => {
                     </div>
                   </div>
                 </li>
-                <li className="facitem" data-aos= {`${isMobile?"fade-up":"fade-right"}`}  data-aos-delay="100">
+                <li className="facitem" data-aos={`${isMobile ? "fade-up" : "fade-right"}`} data-aos-delay="100">
                   <div className="item-cont">
                     <div className="ico-bx">
                       <img className="icoimg" src={dance} />

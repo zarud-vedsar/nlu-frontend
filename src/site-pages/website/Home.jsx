@@ -38,9 +38,9 @@ function Home() {
       <FacultySlider />
       <CampusLife />
       <Speciality />
+      <Facilities />
       <ContactFeatures />
       <Achivement />
-      <Facilities />
       <Gallery />
       <SocialMedia />
       <ContactIcon />

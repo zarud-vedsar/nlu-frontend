@@ -5324,6 +5324,11 @@ table.table.tblpad-10>tbody>tr>td {
 	width:100%
   }
 @media (max-width:768px) {
+	body {
+		width:100%;
+		overflow: hidden;
+		overflow-y: auto;
+	}
 	.homesliderbx>.slick-slider>.slick-list>.slick-track{
 		height:300px;
 	}

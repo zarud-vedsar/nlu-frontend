@@ -4802,6 +4802,11 @@ video.vidmsg {
 	-o-object-fit: cover;
 	object-fit: cover;
   }
+
+  .abthead {
+	font-size: 24px;
+	text-transform: uppercase;
+  }
 .vicemsgsec-img-sec1 {
 	position: relative;
 }
@@ -5015,11 +5020,19 @@ button.control-icon {
 }
 
 .about-img-bx {
-	border-radius: 14px;
+	border-radius: 3px;
 	border: solid 10px #fff;
-	box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, .2);
+	box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, .1);
+}
+.imagecont {
+	width: 300px;
 }
 
+.informationttx {
+	background: #b81365;
+	padding: 25px;
+	width: 100%;
+}
 .sldrbx {
 	padding-top: 80px;
 }

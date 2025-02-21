@@ -136,7 +136,7 @@ function KeyNoteSpeakers() {
             <div className="container">
                 <div className="row">
                     <div className='col-md-12 mb-3 text-center'>
-                        <h2 className="heading-primary2">Keynote Speakers</h2>
+                    <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Keynote Speakers</h2>
                         <div className='heading-divider'></div>
                         <p className='heading-para text-center mt-4'>International Conference on "Law, Technology and Sustainable Development"</p>
                     </div>

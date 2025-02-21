@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
-import { GoArrowUpRight } from "react-icons/go";
 import Hostelbg from "../assets/campus/hostel.png";
 import HealthBg from "../assets/campus//health.png";
 import SportBg from "../assets/campus//sport.png";

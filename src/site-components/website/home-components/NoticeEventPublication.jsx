@@ -316,7 +316,7 @@ const NoticeEventPublication = () => {
         <div className="container" data-aos="fade-up" data-aos-delay="50">
           <div className="row">
             <div className="col-md-12 mb-3 d-flex align-items-center justify-content-between">
-              <h2 className="heading-primary2 m-0">Publications</h2>
+              <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Publications</h2>
               <Link
                 to="/view-all/publication"
                 className="text-primary custom-link gorditas-regular"

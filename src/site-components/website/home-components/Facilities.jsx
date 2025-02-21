@@ -9,7 +9,7 @@ import wifi from "../assets/Images/wi-fi-64.png";
 import research from "../assets/Images/research-64.png";
 import dance from "../assets/Images/dance-64.png";
 
-const | Facilities = () => {
+const Facilities = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -31,7 +31,7 @@ const | Facilities = () => {
         <div className="container id-position-relative">
           <div className="row">
             <div className="col-md-12 mb-3 text-center">
-            <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Our Facilities</h2>
+              <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Our Facilities</h2>
               <div className="heading-divider"></div>
             </div>
           </div>

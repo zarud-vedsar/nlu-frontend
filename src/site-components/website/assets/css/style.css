@@ -5310,6 +5310,12 @@ table.table.tblpad-10>tbody>tr>td {
 .homeNav {
 	right: 0 !important;
   }
+
+  .header-section1 {
+	position: absolute;
+	z-index: 11;
+	width:100%
+  }
 @media (max-width:768px) {
 	.homesliderbx>.slick-slider>.slick-list>.slick-track{
 		height:300px;

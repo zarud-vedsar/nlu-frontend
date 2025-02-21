@@ -16,19 +16,21 @@ function HeaderPanel() {
     <div className="row header-top py-2 align-items-center custon-navbar opacity-0 alingItem">
       <div className="col-md-7 col-12 col-sm-12 text-start d-flex align-self-end">
         <div className="d-flex justify-content-center align-items-center logo-container">
-          <img
+          <Link to='/'> <img
             src={rpnl_logo}
             alt="logo"
             className="img-fluid logo-img"
-          />
+          /></Link>
         </div>
         <div className="text-start fs-3 align-self-center justify-content-start">
-          <p className="university-name">
-            Dr. Rajendra Prasad National Law University
-          </p>
-          <p className="university-address">
-            Gaddopur, Phaphamau, Prayagraj, Uttar Pradesh 211013
-          </p>
+          <Link to='/'>
+            <p className="university-name">
+              Dr. Rajendra Prasad National Law University
+            </p>
+            <p className="university-address">
+              Gaddopur, Phaphamau, Prayagraj, Uttar Pradesh 211013
+            </p>
+          </Link>
         </div>
       </div>
 

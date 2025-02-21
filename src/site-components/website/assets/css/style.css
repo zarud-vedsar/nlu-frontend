@@ -4879,13 +4879,20 @@ a:hover {
 	background: #ffffff;
 	padding: 10px;
 	border-radius: 10px;
-	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .sldnn.mb-1.mt-2 {
 	font-size: 17px;
+	font-weight: 600;
+	color: #b81365;
+}
+.testibx-left{
+	flex-shrink: 0;
+	height: 60px;
+	width: 60px;
+}
+.facdesti{
 	font-weight: 500;
-	color: #B81365;
 }
 
 .speciality-items {
@@ -5310,7 +5317,19 @@ table.table.tblpad-10>tbody>tr>td {
 .homeNav {
 	right: 0 !important;
   }
+
+  .header-section1 {
+	position: absolute;
+	z-index: 11;
+	width:100%
+  }
 @media (max-width:768px) {
+	.container {
+		width:100%;
+		max-width: 100%;
+		overflow: hidden;
+		overflow-y: auto;
+	}
 	.homesliderbx>.slick-slider>.slick-list>.slick-track{
 		height:300px;
 	}

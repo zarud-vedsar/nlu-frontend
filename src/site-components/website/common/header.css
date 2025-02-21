@@ -130,8 +130,6 @@
     opacity: 1;
     min-height: 200px;
     background-color: #89064B;
-    padding: 5px 20px;
-    margin: 2px 12px 17px;
 }
 
 .navigation--visible .navigation__item_link {
@@ -428,7 +426,7 @@
 
     .page-mine-header__bottom {
         position: absolute;
-        top: 55px;
+        top: 71px;
         right: -12px;
         left: -12px;
         z-index: 99;
@@ -452,7 +450,7 @@
 }
 
 .header-section {
-    position: absolute;
+    position: fixed;
     z-index: 991;
     width: 100%;
 }
@@ -470,6 +468,9 @@
     bottom: 0;
     background-color: rgba(0,0,0,0.123);
     z-index: -1;
+}
+.header-section.is-sticky .headermain::before{
+    display: none;
 }
 .headermain-content {
     display: flex;
@@ -494,13 +495,21 @@
     font-size: 16px;
     text-shadow: 1px 1px 1px #000;
 }
-
+.logotext .hinn {
+    display: none;
+}
+.header-section.is-sticky .logotext .hinn {
+    display: block;
+}
+.header-section.is-sticky .logotext .enn {
+    display: none;
+}
 .header-heading3 {
     color: #fff;
-    font-size: 32px;
+    font-size: 30px;
     text-shadow: 1px 1px 1px #000;
-    letter-spacing: -1px;
-    line-height: 1;
+    letter-spacing: -2px;
+    line-height: 1.2;
 }
 
 .page-mine-header>.logosec {
@@ -512,14 +521,16 @@
     justify-content: space-between;
 }
 
-.page-mine-header.is-sticky>.logosec .header-heading3 {
+.header-section.is-sticky .logotext .header-heading3 {
     color: #000;
     line-height: 1.4;
+    font-size:24px;
     text-shadow: none;
+    letter-spacing: 0px;
 }
 
-.page-mine-header.is-sticky>.logosec .header-heading2,
-.page-mine-header.is-sticky>.logosec .hd4 {
+.header-section.is-sticky .logotext .header-heading2,
+.header-section.is-sticky .logotext .hd4 {
     color: #000;
     text-shadow: none;
 }
@@ -534,6 +545,10 @@
     top: 10px;
     content: "+";
     font-weight: 400;
+    color: #fff;
+}
+.header-section.is-sticky .navigation__item.arr-li::after {
+    color: #000;
 }
 
 .navigation__item.arr-li:hover::after {
@@ -558,7 +573,13 @@
 }
 
 @media (max-width: 768px) {
-
+    .headermain::before{
+        display: none;
+    }
+    .navigation__item.arr-li::after {
+        right: 15px;
+        top: 5px;
+    }
     .hamb {
         display: block;
     }
@@ -585,9 +606,10 @@
     }
 
     .header-heading3 {
-        font-size: 24px;
+        font-size: 18px;
         color: #000;
         text-shadow: none;
+        letter-spacing: -1px;
     }
 
     .hd4 {

@@ -136,7 +136,7 @@ const Footer = () => {
                           className="id-fb-icon"
                           style={{ background: "#145dbf" }}
                         >
-                          <FaFacebookF className="fticon fbfticon" />
+                          <FaFacebookSquare className="fticon fbfticon" />
                         </span>
                         <h6
                           className="id-fb-title"

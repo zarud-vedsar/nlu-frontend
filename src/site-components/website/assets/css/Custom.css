@@ -1318,7 +1318,7 @@ table tbody th {
 }
 
 .social-icon {
-  font-size: 22px;
+  font-size: 20px;
   color: #fff;
   display: flex;
   justify-content: flex-start;
@@ -1328,8 +1328,8 @@ table tbody th {
 }
 
 .social-icon img {
-  width: 50px;
-  height: 50px;
+  width: 38px;
+  height: 38px;
   margin-right: 10px;
 }
 
@@ -3132,7 +3132,7 @@ table tbody th {
 }
 
 .date-event {
-  font-size: 34px;
+  font-size: 26px;
   line-height: 1;
 }
 
@@ -3625,12 +3625,13 @@ table tbody th {
 
 .id-fb-icon{
   background: #f3f3f3;
-  padding: 7px 10px 7px 5px;
+  padding: 7px 5px 7px 5px;
 }
 
 .id-fb-title{
   background: white;
-  padding: 9px 10px 10px 5px;
+  font-size: 13px;
+  padding: 11px 10px 11px 10px;
 
 }
 .id-icon-wrapper{

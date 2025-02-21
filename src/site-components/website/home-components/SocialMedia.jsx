@@ -32,9 +32,9 @@ const SocialMedia = () => {
             </div>
           </div>
           <div className="row mt-4">
-            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-5">
+            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-5 px-4">
               <div className="social-icon fb">
-                <img src={facebook} alt="Facebook" />
+                <img src={facebook} alt="Facebook" style={{height:"30px"}}/>
                 Facebook
               </div>
               <div className="social-media-col">
@@ -52,7 +52,7 @@ const SocialMedia = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-5">
+            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-5 px-4">
               <div className="social-icon insta">
                 <img src={instagram} alt="Instagram" />
                 Instagram
@@ -70,7 +70,7 @@ const SocialMedia = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-5">
+            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-5 px-4">
               <div className="social-icon you">
                 <img src={youtube} alt="Youtube" />
                 Youtube

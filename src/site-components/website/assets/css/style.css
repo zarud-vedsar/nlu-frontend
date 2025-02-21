@@ -5293,8 +5293,30 @@ table.table.tblpad-10>tbody>tr>td {
 	justify-content: center;
 	margin-right: 8px;
 }
-
+.homesliderbx>.slick-slider>.slick-list>.slick-track{
+	height:700px;
+}
+.homesliderbx>.slick-slider>.slick-list>.slick-track>.slick-slide>div>.home-slider-item{
+	height:700px;
+}
+.homesliderbx>.slick-slider>.slick-list>.slick-track {
+	gap:0;
+}
+.home-sliderimg {
+	height: 100%;
+	width: 100%;
+	object-fit:cover;
+}
+.homeNav {
+	right: 0 !important;
+  }
 @media (max-width:768px) {
+	.homesliderbx>.slick-slider>.slick-list>.slick-track{
+		height:300px;
+	}
+	.homesliderbx>.slick-slider>.slick-list>.slick-track>.slick-slide>div>.home-slider-item{
+		height:300px;
+	}
 	.socicard-bx {
 		padding: 15px 30px 15px 45px;
 	}

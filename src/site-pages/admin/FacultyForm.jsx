@@ -14,6 +14,8 @@ import {
   dataFetchingGet,
 } from "../../site-components/Helper/HelperFunction";
 import { Spinner } from "react-bootstrap";
+import JoditEditor from "jodit-react"; // Import Jodit editor
+import validator from "validator";
 const FacultyForm = () => {
   const { id } = useParams();
   const [previewImage, setPreviewImage] = useState();
@@ -31,6 +33,19 @@ const FacultyForm = () => {
     setCorrespondingAddressSameAsPermanent,
   ] = useState(false);
 
+  const config = {
+    readonly: false,
+    placeholder: "Enter your content here...",
+    spellcheck: true,
+    language: "pt_br",
+    defaultMode: "1",
+    minHeight: 400,
+    maxHeight: -1,
+    defaultActionOnPaste: "insert_as_html",
+    defaultActionOnPasteFromWord: "insert_as_html",
+    askBeforePasteFromWord: false,
+    askBeforePasteHTML: false,
+  };
   const initilization = {
     data: "user_add",
     user_update_id: "",
@@ -190,7 +205,7 @@ const FacultyForm = () => {
         c_state: result[0]?.c_state,
         p_address: result[0]?.p_address,
         p_country: result[0]?.p_country,
-        c_discription: result[0]?.discription,
+        c_discription: validator.unescape(result[0]?.discription),
         p_district: result[0]?.p_district,
         p_pincode: result[0]?.p_pincode,
         p_state: result[0]?.p_state,
@@ -1245,7 +1260,7 @@ const FacultyForm = () => {
                           className="form-check-label"
                           htmlFor="show_contact_on_website"
                         >
-                          Show content on website{" "}
+                          Show contact on website{" "}
                         </label>
                       </div>
                       <div className="form-group col-md-4 d-flex align-items-center">
@@ -1268,25 +1283,28 @@ const FacultyForm = () => {
                           className="form-check-label"
                           htmlFor="show_content_on_website"
                         >
-                          Show contentt on website{" "}
+                          Show content on website{" "}
                         </label>
                       </div>
-                      <div className="form-group col-md-12">
-                        <label
-                          className="font-weight-semibold"
-                          htmlFor="c_discription"
-                        >
-                          Description
-                        </label>
-                        <textarea
-                          type="text"
-                          className="form-control"
-                          name="c_discription"
-                          placeholder="Enter Your description here..."
-                          value={formData.c_discription}
-                          onChange={handleChange}
-                        />
-                      </div>
+                      
+                      
+
+                      <div className="col-md-12">
+                    {/* JoditEditor component */}
+                    <label className="font-weight-semibold">
+                      Description <span className="text-danger">*</span>
+                    </label>
+                    <JoditEditor
+                      value={validator.unescape(formData?.c_discription) || ""}
+                      config={config}
+                      onBlur={(newContent) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          c_discription: newContent,
+                        }));
+                      }}
+                    />
+                  </div>
 
                       <div className="col-md-12 me-auto d-flex justify-content-between align-items-center">
                         {isSubmit ? (

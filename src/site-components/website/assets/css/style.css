@@ -5324,8 +5324,9 @@ table.table.tblpad-10>tbody>tr>td {
 	width:100%
   }
 @media (max-width:768px) {
-	body {
+	.container {
 		width:100%;
+		max-width: 100%;
 		overflow: hidden;
 		overflow-y: auto;
 	}

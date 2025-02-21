@@ -458,7 +458,7 @@
 }
 
 .headermain {
-    padding: 0 15px;
+    padding: 10px 15px;
     position: relative;
 }
 .headermain::before{

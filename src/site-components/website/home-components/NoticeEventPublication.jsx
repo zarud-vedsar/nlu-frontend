@@ -156,7 +156,7 @@ const NoticeEventPublication = () => {
                     target="_blank"
                     className="text-primary custom-link gorditas-regular ms-5 addtextoverlap"
                   >
-                    View All <FaArrowRightLong />
+                    More Events <FaArrowRightLong />
                   </Link>
                 </div>
                 <div className="col-md-12">
@@ -234,13 +234,13 @@ const NoticeEventPublication = () => {
                     target="_blank"
                     className="text-primary custom-link gorditas-regular ms-5 addtextoverlap"
                   >
-                    View All <FaArrowRightLong />
+                    More News <FaArrowRightLong />
                   </Link>
                 </div>
                 <div className="col-md-12">
                   <div
                     className="card border-0 rounded-0 border-bottom-2 soft-shadow mx-auto border-bottom border-primary"
-                    style={{ minHeight: "300px" }}
+                    style={{ minHeight: "383px" }}
                   >
                     <div className="card-body pb-0">
                       <div className="rightconten">
@@ -291,7 +291,9 @@ const NoticeEventPublication = () => {
                                   </div>
                                 </Link>
                               ))}
-                            {events && events.length > 0 && (
+                          </div>
+                        </div>
+                        {events && events.length > 0 && (
                               <div className="box-footer">
                                 <Link
                                   to="/view-all/notice"
@@ -301,8 +303,6 @@ const NoticeEventPublication = () => {
                                 </Link>
                               </div>
                             )}
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -314,17 +314,13 @@ const NoticeEventPublication = () => {
       </section>
       <section className="public bg-white">
         <div className="container" data-aos="fade-up" data-aos-delay="50">
-          <div className="row">
-            <div className="col-md-12 mb-3 d-flex align-items-center justify-content-between">
-              <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Publications</h2>
-              <Link
-                to="/view-all/publication"
-                className="text-primary custom-link gorditas-regular"
-              >
-                More Publications &nbsp; <FaArrowRightLong />
-              </Link>
-            </div>
-          </div>
+           <div className="col-md-12 d-flex justify-content-between align-items-bottom my-4 textManage" style={{ position: "relative" }}>
+                                     <div>
+                                     <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Publications</h2>
+                                       <div className="heading-divider"></div>
+                                     </div>
+                                     <Link to="/view-all/publication" className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>More Publications <FaArrowRightLong /></Link>
+                                   </div>
           <div className="row">
             <div className="col-md-12">
               <Slider {...settings2}>
@@ -400,7 +396,7 @@ const NoticeEventPublication = () => {
   overflow: hidden; 
 }
   .marquee-container {
-  height: 200px; 
+  height: 320px; 
   overflow: hidden;
   position: relative;
 }

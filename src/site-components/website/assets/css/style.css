@@ -4708,13 +4708,14 @@ span.c-text {
 .newsttl {
 	font-weight: 600;
 	line-height: 1;
-	height: 30px;
+	height: 44px;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
-	-webkit-line-clamp: 2;
+	-webkit-line-clamp: 3;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	margin-bottom: 6px;
+	margin-top: 20px;
 }
 
 a:hover {
@@ -5161,7 +5162,7 @@ table.table.tblpad-10>tbody>tr>td {
 
 .pubtextbx {
 	line-height: 1.2 !important;
-	height: 36px;
+	height: 56px;
 }
 
 .title-img-bx {

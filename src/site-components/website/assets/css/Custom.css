@@ -2978,13 +2978,13 @@ table tbody th {
 
 .two-line-text {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   /* Limit to 2 lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   /* Add '...' at the end */
-  max-height: 3em;
+  max-height: 4em;
   /* Approx height for 2 lines */
   line-height: 1.5em;
   /* Line height adjustment */
@@ -2994,7 +2994,7 @@ table tbody th {
 
 .new-img-container {
   position: relative;
-  height: 140px;
+  min-height: 185px;
   overflow: hidden;
   border-radius: 8px 8px 0 0;
 }
@@ -3643,4 +3643,13 @@ gap: 10px;
 .id-icon-insta-gred{
   background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
 
+}
+
+.id-event-date{
+  background: #282828;
+  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+  position: relative;
+margin-top: -59px;
 }

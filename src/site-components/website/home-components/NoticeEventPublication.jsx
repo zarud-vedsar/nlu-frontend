@@ -85,7 +85,11 @@ const NoticeEventPublication = () => {
           zIndex: 10,
         }}
       >
-        {direction === "left" ? <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
+        {direction === "left" ? (
+          <FaChevronLeft color="white" />
+        ) : (
+          <FaChevronRight color="white" />
+        )}
       </div>
     );
   };
@@ -134,17 +138,26 @@ const NoticeEventPublication = () => {
   };
   return (
     <>
-      <section className='public bg-f5' data-aos="fade-up" data-aos-delay="50">
-        <div className='container'>
-          <div className='row'>
+      <section className="public bg-f5" data-aos="fade-up" data-aos-delay="50">
+        <div className="container">
+          <div className="row">
             <div className="col-md-8 col-lg-8 col-12 col-sm-12">
               <div className="row">
-                <div className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage" style={{ position: "relative" }}>
+                <div
+                  className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage"
+                  style={{ position: "relative" }}
+                >
                   <div>
                     <h2 className="heading-primary2 ">Upcoming Events</h2>
                     <div className="heading-divider"></div>
                   </div>
-                  <Link to="/view-all/event" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaArrowRightLong /></Link>
+                  <Link
+                    to="/view-all/event"
+                    target="_blank"
+                    className="text-primary custom-link gorditas-regular ms-5 addtextoverlap"
+                  >
+                    View All <FaArrowRightLong />
+                  </Link>
                 </div>
                 <div className="col-md-12">
                   <Slider {...settings}>
@@ -153,23 +166,51 @@ const NoticeEventPublication = () => {
                         <div className="card border-0 soft-shadow  ">
                           <div className="new-img-container">
                             <Link to={`/notice-details/${notice.id}`}>
-                              <img src={notice.image || placeholder} className="news-image" alt="News Image" />
+                              <img
+                                src={notice.image || placeholder}
+                                className="news-image"
+                                alt="News Image"
+                              />
                             </Link>
                           </div>
                           <div className="card-body">
+                            <div className="card-text gorditas-regular text-center id-event-date">
+                              <p className="date-month mb-0">
+                                {new Date(
+                                  notice.notice_date
+                                ).toLocaleDateString("en-US", {
+                                  month: "short",
+                                })}{" "}
+                                {/* Month */}
+                              </p>
+                              <h5 className="date-day">
+                                {new Date(
+                                  notice.notice_date
+                                ).toLocaleDateString("en-US", {
+                                  day: "2-digit",
+                                })}{" "}
+                                {/* Day */}
+                              </h5>
+                              <p className="date-year mb-0">
+                                {new Date(
+                                  notice.notice_date
+                                ).toLocaleDateString("en-US", {
+                                  year: "numeric",
+                                })}{" "}
+                                {/* Year */}
+                              </p>
+                            </div>
                             <div className="newsttl">
                               {validator.unescape(notice.title)}
                             </div>
-                            <p className="card-text gorditas-regular">
-                              {new Date(notice.notice_date).toLocaleDateString('en-US', {
-                                month: 'short', // "Jan"
-                                day: '2-digit', // "22"
-                                year: 'numeric' // "2021"
-                              })}
-                            </p>
                           </div>
                           <div className="cardftr">
-                            <Link className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more" to={`/notice-details/${notice.id}`}>Read More &nbsp; <FaArrowRightLong /></Link>
+                            <Link
+                              className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more"
+                              to={`/notice-details/${notice.id}`}
+                            >
+                              Read More &nbsp; <FaArrowRightLong />
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -180,50 +221,82 @@ const NoticeEventPublication = () => {
             </div>
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mt-sm-50">
               <div className="row">
-                <div className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage" style={{ position: "relative" }}>
+                <div
+                  className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage"
+                  style={{ position: "relative" }}
+                >
                   <div>
                     <h2 className="heading-primary2 ">Latest News</h2>
                     <div className="heading-divider"></div>
                   </div>
-                  <Link to="/view-all/notice" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaArrowRightLong /></Link>
+                  <Link
+                    to="/view-all/notice"
+                    target="_blank"
+                    className="text-primary custom-link gorditas-regular ms-5 addtextoverlap"
+                  >
+                    View All <FaArrowRightLong />
+                  </Link>
                 </div>
                 <div className="col-md-12">
-                  <div className="card border-0 rounded-0 border-bottom-2 soft-shadow mx-auto border-bottom border-primary" style={{ minHeight: '300px' }}>
+                  <div
+                    className="card border-0 rounded-0 border-bottom-2 soft-shadow mx-auto border-bottom border-primary"
+                    style={{ minHeight: "300px" }}
+                  >
                     <div className="card-body pb-0">
                       <div className="rightconten">
                         <div className="marquee-container">
                           <div className="eventdiv marquee-content">
-                            {events && events.length > 0 && events.map((event, index) => (
-                              <Link to={`/notice-details/${event.id}`} key={index} className="text-decoration-none event-hover-container">
-                                <div className={`row ${(events.length - 1) !== index && 'border-bottom'} eventrow`}>
-                                  <div className="col-md-2 col-lg-2 col-2 col-sm-2 d-flex justify-content-center align-items-center flex-column">
-                                    <h4 className="date-event butler-regular text-primary">
-                                      {new Date(event.notice_date).toLocaleDateString('en-GB', {
-                                        day: '2-digit'
-                                      })}
-                                    </h4>
-                                    <h5 className="date-event-month gorditas-regular">
-                                      {new Date(event.notice_date).toLocaleDateString('en-GB', {
-                                        month: 'short'
-                                      })}
-                                    </h5>
-                                  </div>
-                                  <div className="col-md-10 col-lg-10 col-10 col-sm-10">
-                                    <div className="rightnews">
-                                      {`${validator.unescape(event.title)}`}
+                            {events &&
+                              events.length > 0 &&
+                              events.map((event, index) => (
+                                <Link
+                                  to={`/notice-details/${event.id}`}
+                                  key={index}
+                                  className="text-decoration-none event-hover-container"
+                                >
+                                  <div
+                                    className={`row ${
+                                      events.length - 1 !== index &&
+                                      "border-bottom"
+                                    } eventrow`}
+                                  >
+                                    <div className="col-md-2 col-lg-2 col-2 col-sm-2 d-flex justify-content-center align-items-center flex-column">
+                                      <h4 className="date-event butler-regular text-primary">
+                                        {new Date(
+                                          event.notice_date
+                                        ).toLocaleDateString("en-GB", {
+                                          day: "2-digit",
+                                        })}
+                                      </h4>
+                                      <h5 className="date-event-month gorditas-regular">
+                                        {new Date(
+                                          event.notice_date
+                                        ).toLocaleDateString("en-GB", {
+                                          month: "short",
+                                        })}
+                                      </h5>
                                     </div>
-                                    <p className="card-text gorditas-regular">
-                                      {new Date(event.notice_date).toLocaleDateString('en-GB', {
-                                        year: 'numeric'
-                                      })}
-                                    </p>
+                                    <div className="col-md-10 col-lg-10 col-10 col-sm-10">
+                                      <div className="rightnews">
+                                        {`${validator.unescape(event.title)}`}
+                                      </div>
+                                      <p className="card-text gorditas-regular">
+                                        {new Date(
+                                          event.notice_date
+                                        ).toLocaleDateString("en-GB", {
+                                          year: "numeric",
+                                        })}
+                                      </p>
+                                    </div>
                                   </div>
-                                </div>
-                              </Link>
-                            ))}
+                                </Link>
+                              ))}
                             {events && events.length > 0 && (
                               <div className="box-footer">
-                                <Link to="/view-all/notice" className="btn-view-more">
+                                <Link
+                                  to="/view-all/notice"
+                                  className="btn-view-more"
+                                >
                                   <FaAnglesDown className="scroll-icon" />
                                 </Link>
                               </div>
@@ -239,12 +312,17 @@ const NoticeEventPublication = () => {
           </div>
         </div>
       </section>
-      <section className='public bg-white'>
-        <div className='container' data-aos="fade-up" data-aos-delay="50">
+      <section className="public bg-white">
+        <div className="container" data-aos="fade-up" data-aos-delay="50">
           <div className="row">
-            <div className='col-md-12 mb-3 d-flex align-items-center justify-content-between'>
+            <div className="col-md-12 mb-3 d-flex align-items-center justify-content-between">
               <h2 className="heading-primary2 m-0">Publications</h2>
-              <Link to="/view-all/publication" className="text-primary custom-link gorditas-regular">More Publications &nbsp; <FaArrowRightLong /></Link>
+              <Link
+                to="/view-all/publication"
+                className="text-primary custom-link gorditas-regular"
+              >
+                More Publications &nbsp; <FaArrowRightLong />
+              </Link>
             </div>
           </div>
           <div className="row">
@@ -255,26 +333,52 @@ const NoticeEventPublication = () => {
                     <div className="card-custom">
                       <div className="new-img-container">
                         <Link to={`/notice-details/${publication.id}`}>
-                          <img src={publication.image || placeholder} className="news-image" alt="News Image" />
+                          <img
+                            src={publication.image || placeholder}
+                            className="news-image"
+                            alt="News Image"
+                          />
                         </Link>
                       </div>
 
                       <div className="card-fttr p-3">
-                        <div className="news-read-more-pub bg-primary mb-2">
-                          <Link className="text-white" to={`/notice-details/${publication.id}`}>
-                            {new Date(publication.notice_date).toLocaleDateString('en-GB', {
-                              month: 'short'
-                            })} {" "} {new Date(publication.notice_date).toLocaleDateString('en-GB', {
-                              day: '2-digit'
-                            })} {", "}
-                            {new Date(publication.notice_date).toLocaleDateString('en-GB', {
-                              year: 'numeric' // "2021"
-                            })}
-                          </Link>
-                        </div>
-                        <h3 className="butler-regular heading-primary3 pubtextbx two-line-text">
+                      <div className="card-text gorditas-regular text-center id-event-date">
+                              <p className="date-month mb-0">
+                                {new Date(
+                                  publication.notice_date
+                                ).toLocaleDateString("en-US", {
+                                  month: "short",
+                                })}{" "}
+                                {/* Month */}
+                              </p>
+                              <h5 className="date-day">
+                                {new Date(
+                                  publication.notice_date
+                                ).toLocaleDateString("en-US", {
+                                  day: "2-digit",
+                                })}{" "}
+                                {/* Day */}
+                              </h5>
+                              <p className="date-year mb-0">
+                                {new Date(
+                                  publication.notice_date
+                                ).toLocaleDateString("en-US", {
+                                  year: "numeric",
+                                })}{" "}
+                                {/* Year */}
+                              </p>
+                            </div>
+                        <h3 className="butler-regular heading-primary3 pubtextbx two-line-text mt-3">
                           {validator.unescape(publication.title)}
                         </h3>
+                        <div className="mt-3">
+                            <Link
+                              className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more"
+                              to={`/notice-details/${publication.id}`}
+                            >
+                              Read More &nbsp; <FaArrowRightLong />
+                            </Link>
+                          </div>
                       </div>
                     </div>
                   </div>
@@ -283,9 +387,7 @@ const NoticeEventPublication = () => {
             </div>
           </div>
           <style>
-
-            {
-              `
+            {`
 
 
 .slick-track {
@@ -348,8 +450,7 @@ const NoticeEventPublication = () => {
 }
 
 
-`
-            }
+`}
           </style>
         </div>
       </section>

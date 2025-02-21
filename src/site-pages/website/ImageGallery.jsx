@@ -134,15 +134,15 @@ const ImageGallery = () => {
                                       lgPager,
                                     ]}
                                     mode="lg-fade"
-                                    className="col-12 col-sm-4 col-md-4 col-lg-3"
+                                    className="gall11"
                                   >
                                     {item.gallery_images.map(
                                       (image, imageIndex) => (
-                                        <>
+                                        <div  className="galbbxx">
                                           {/* <div key={imageIndex} className="col-12 col-sm-4 col-md-4 col-lg-3 gallery-col"> */}
                                           <a
                                             href={`${FILE_API_URL}/gallery/${image}`}
-                                            className="col-12 col-sm-4 col-md-4 col-lg-3 gallery-col"
+                                            className="galll-itm gallery-col"
                                           >
                                             <img
                                               src={`${FILE_API_URL}/gallery/${image}`}
@@ -151,7 +151,7 @@ const ImageGallery = () => {
                                             />
                                           </a>
                                           {/* </div> */}
-                                        </>
+                                        </div>
                                       )
                                     )}
                                   </LightGallery>
@@ -217,14 +217,13 @@ const ImageGallery = () => {
                                             lgPager,
                                           ]}
                                           mode="lg-fade"
-                                          className="col-12 col-sm-12 col-md-12 col-lg-12"
                                         >
                                           {item.gallery_images.map(
                                             (image, imageIndex) => (
-                                              <>
+                                              <div className="galbbxx">
                                                 <a
                                                   href={`${FILE_API_URL}/gallery/${image}`}
-                                                  className="col-12 col-sm-6 col-md-6 col-lg-6 gallery-col" // Adjusted column classes
+                                                  className="galll-itm gallery-col" // Adjusted column classes
                                                 >
                                                   <img
                                                     src={`${FILE_API_URL}/gallery/${image}`}
@@ -232,7 +231,7 @@ const ImageGallery = () => {
                                                     className="gallery-image"
                                                   />
                                                 </a>
-                                              </>
+                                              </div>
                                             )
                                           )}
                                         </LightGallery>
@@ -253,14 +252,7 @@ const ImageGallery = () => {
 
       <style jsx>
         {`
-        .gallery-image {
-  border-radius: 10px;
-  width: 70%;
-  aspect-ratio: 1/1;
-  transition: transform 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
+       
           .mobile{
         display:none
       }

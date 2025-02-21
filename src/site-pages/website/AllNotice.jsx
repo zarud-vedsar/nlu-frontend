@@ -61,7 +61,7 @@ const AllNotice = () => {
       </div>
 
 
-      <div className="about-page-area section-padding ">
+      <div className="about-page-area section-padding" style={{background:"#f5f5f5"}}>
         <div className="container">
           <div className="row">
             <div className="col-md-12">

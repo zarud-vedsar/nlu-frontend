@@ -237,6 +237,7 @@ const NoticeEventPublication = () => {
                     More News <FaArrowRightLong />
                   </Link>
                 </div>
+                
                 <div className="col-md-12">
                   <div
                     className="card border-0 rounded-0 border-bottom-2 soft-shadow mx-auto border-bottom border-primary"

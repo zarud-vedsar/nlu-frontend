@@ -4879,13 +4879,20 @@ a:hover {
 	background: #ffffff;
 	padding: 10px;
 	border-radius: 10px;
-	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .sldnn.mb-1.mt-2 {
 	font-size: 17px;
-	font-weight: 500;
+	font-weight: 600;
 	color: #b81365;
+}
+.testibx-left{
+	flex-shrink: 0;
+	height: 60px;
+	width: 60px;
+}
+.facdesti{
+	font-weight: 500;
 }
 
 .speciality-items {

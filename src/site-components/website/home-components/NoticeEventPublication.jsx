@@ -112,18 +112,25 @@ const NoticeEventPublication = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    arrows: false,
+    arrows: true,
     autoplay: true, // Enable auto-scroll
+    centerMode: false,
     autoplaySpeed: 2800, // Change slides every 3 seconds
+    prevArrow: <CustomArrow direction="left" />,
+    nextArrow: <CustomArrow direction="right" />,
     responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 2, centerMode: false } },
+      { breakpoint: 768, settings: { slidesToShow: 1, centerMode: false } },
     ],
+    // responsive: [
+    //   {
+    //     breakpoint: 768,
+    //     settings: {
+    //       slidesToShow: 1,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    // ],
   };
   return (
     <>
@@ -290,7 +297,7 @@ const NoticeEventPublication = () => {
   margin: 0 !important;
   overflow: hidden; 
 }
-   .marquee-container {
+  .marquee-container {
   height: 200px; 
   overflow: hidden;
   position: relative;
@@ -303,6 +310,11 @@ const NoticeEventPublication = () => {
   animation: marquee-scroll 20s linear infinite; 
 }
 
+/* Stop the marquee animation on hover */
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
 @keyframes marquee-scroll {
   0% { transform: translateY(0%); }
   25% { transform: translateY(-25%); } 
@@ -310,6 +322,7 @@ const NoticeEventPublication = () => {
   75% { transform: translateY(-75%); }
   100% { transform: translateY(-100%); }
 }
+
 
 /* Optional: Bouncing icon */
 .scroll-icon {

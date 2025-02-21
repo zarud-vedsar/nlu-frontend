@@ -76,10 +76,18 @@ function SideChipkaHuaTag() {
                 <div className='socialiconsize'>
                     <div onClick={() => setToggleSocial(!toggleSocial)} className='text-white heading-primary3'><IoShareSocialOutline /></div>
                     <div className={`itemSocial ${toggleSocial ? '' : 'd-none'}`}>
+                    {iconLink.facebook && (
                         <Link to={iconLink?.facebook} target="_blank"><img src={FacebookPng} alt="" style={{ height: "25px" }} /></Link>
+                    )}
+                     {iconLink.twitter && (
                         <Link to={iconLink?.twitter} target="_blank"><img src={TwitterPng} alt="" style={{ height: "25px" }} /></Link>
+                     )}
+                      {iconLink.instagram && (
                         <Link to={iconLink?.instagram} target="_blank"><img src={InstaIcon} alt="" style={{ height: "25px" }} /></Link>
+                      )}
+                       {iconLink.youtube && (
                         <Link to={iconLink?.youtube} target="_blank"><img src={YouTubePng} alt="" style={{ height: "25px" }} /></Link>
+                       )}
                     </div>
                 </div>
                 {/* <div className='socialiconsize'>

@@ -347,9 +347,6 @@ const NoticeEventPublication = () => {
     left: 15px !important;
 }
 
-.slick-initialized > div + .slick-list + div {
-    right: -15px !important;
-}
 
 `
             }

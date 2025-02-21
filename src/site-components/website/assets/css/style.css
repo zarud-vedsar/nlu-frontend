@@ -4923,7 +4923,7 @@ a:hover {
 	font-size: 16px;
 	font-weight: 600;
 	line-height: 1.2;
-	color: #b81365;
+	color: #B81365;
 	text-align: center;
 	margin-top: 15px;
 	height: 50px;
@@ -5059,8 +5059,8 @@ ul.facitems li {
 	padding: 15px;
 	background: #fff;
 	border-radius: 10px;
-	border-left: solid 2px #b81365;
-	border-bottom: solid 2px #b81365;
+	border-left: solid 2px #B81365;
+	border-bottom: solid 2px #B81365;
 	box-shadow: 2px -2px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -5073,7 +5073,7 @@ ul.facitems li {
 }
 
 .facttx h6 {
-	color: #b81365;
+	color: #B81365;
 }
 
 .oursos {
@@ -5245,7 +5245,7 @@ table.table.tblpad-10>tbody>tr>td {
 
 #news-head {
 	width: 100%;
-	background-color: #b81365;
+	background-color: #B81365;
 	line-height: 1;
 	color: #fff;
 	text-align: center;
@@ -5293,15 +5293,37 @@ table.table.tblpad-10>tbody>tr>td {
 	width: 24px;
 	height: 24px;
 	border-radius: 20px;
-	background: #b81365;
+	background: #B81365;
 	display: inline-flex;
 	color: #fff;
 	align-items: center;
 	justify-content: center;
 	margin-right: 8px;
 }
-
+.homesliderbx>.slick-slider>.slick-list>.slick-track{
+	height:700px;
+}
+.homesliderbx>.slick-slider>.slick-list>.slick-track>.slick-slide>div>.home-slider-item{
+	height:700px;
+}
+.homesliderbx>.slick-slider>.slick-list>.slick-track {
+	gap:0;
+}
+.home-sliderimg {
+	height: 100%;
+	width: 100%;
+	object-fit:cover;
+}
+.homeNav {
+	right: 0 !important;
+  }
 @media (max-width:768px) {
+	.homesliderbx>.slick-slider>.slick-list>.slick-track{
+		height:300px;
+	}
+	.homesliderbx>.slick-slider>.slick-list>.slick-track>.slick-slide>div>.home-slider-item{
+		height:300px;
+	}
 	.socicard-bx {
 		padding: 15px 30px 15px 45px;
 	}

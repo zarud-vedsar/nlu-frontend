@@ -83,7 +83,7 @@ const BookCatalogue = () => {
                       className="form-control dtsearch-input"
                     />
                     <button className="btn btn-secondary" onClick={fetchData}>
-                      <IoSearch  />
+                      <IoSearch />
                     </button>
                   </div>
                 </div>
@@ -114,15 +114,15 @@ const BookCatalogue = () => {
                         }
                         className="card-img-top"
                         alt="..."
-                        style={{ height: "180px",width:"210px" }}
+                        style={{ height: "180px", width: "210px" }}
                       />
                     </div>
                     <div className="px-3">
                       <h5 className="card-title mb-1">{book?.book_name}</h5>
-                     {book?.author && <p className="card-text mb-1 "><span className="booktexts">Author</span> : {book?.author}</p> }
-                     {book?.edition && <p className="card-text mb-1"><span className="booktexts">Edition</span> : {book?.edition}</p>}
-                     {book?.language && <p className="card-text mb-1"><span className="booktexts">Language</span> : {book?.language}</p>}
-                     {book?.publisher && <p className="card-text mb-1"><span className="booktexts">Publisher</span> : {book?.publisher}</p>}
+                      {book?.author && <p className="card-text mb-1 "><span className="booktexts">Author</span> : {book?.author}</p>}
+                      {book?.edition && <p className="card-text mb-1"><span className="booktexts">Edition</span> : {book?.edition}</p>}
+                      {book?.language && <p className="card-text mb-1"><span className="booktexts">Language</span> : {book?.language}</p>}
+                      {book?.publisher && <p className="card-text mb-1"><span className="booktexts">Publisher</span> : {book?.publisher}</p>}
                       <Link
                         to={`/student/book-catalogue-detail/${book.id}`}
                         className="viewsdetailsbtn "
@@ -133,7 +133,7 @@ const BookCatalogue = () => {
                         }}
                       >
                         View Details &nbsp;
-                        <FaArrowRight style={{fontWeight:"600"}}/>
+                        <FaArrowRight style={{ fontWeight: "600" }} />
                       </Link>
                     </div>
                   </div>
@@ -143,11 +143,11 @@ const BookCatalogue = () => {
           </div>
         </div>
         <style jsx>
-        {`
+          {`
             /* books page css  before https://prnt.sc/8j4wAJbKV-LX */
   .viewsdetailsbtn{
 
-    background-color: #B81365;
+    background-color: #7A0F45;
     color: white;
     font-size: 13px;
     font-weight: 500;

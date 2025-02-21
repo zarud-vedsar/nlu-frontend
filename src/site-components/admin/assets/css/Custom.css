@@ -2165,7 +2165,7 @@ li.headingt {
   }
 }
 .id-h6_new{
-  color: #890c25;
+  color: #7A0F45;
   font-size: 17px;
 }
 .id-strong-d{
@@ -2343,7 +2343,7 @@ font-size: 16px;
   font-weight: bold;
   margin-bottom: 15px;
   text-align: start;
-  color: #B81365;
+  color: #7A0F45;
 }
 
 .instructions-list {
@@ -2380,7 +2380,7 @@ display: none; /* Chrome, Safari */
 }
 button.submitsbutton {
 cursor: pointer;
-  background: #B81365;
+  background: #7A0F45;
   width: 100%;
   color: #fff;
   padding: 8px 50px;
@@ -2401,7 +2401,7 @@ font-size: 500;
   border-radius: 4px;
 }
 .backbtn1 {
-  background: #B81365;
+  background: #7A0F45;
   color: #fff;
   border: none;
   padding: 3px 10px;

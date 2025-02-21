@@ -58,7 +58,7 @@ function SideChipkaHuaTag() {
     }, []);
     return (
         <>
-            <div className="side-chipka-hua-tag" style={{ background: '#B81365' }}>
+            <div className="side-chipka-hua-tag" style={{ background: '#7A0F45' }}>
                 <div className='fontsize'>
                     <div onClick={() => setToggleSize(!toggleSize)} className='text-white heading-primary3'><RiFontSize /></div>
                     <div className={`itemfont ${toggleSize ? '' : 'd-none'}`}>

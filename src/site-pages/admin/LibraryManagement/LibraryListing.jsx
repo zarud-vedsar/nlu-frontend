@@ -275,23 +275,24 @@ function LibraryListing() {
                               alt=""
                               style={{
                                 width: "40px",
-                                height: "40px",
+                                
+                                maxHeight:"50px",
                                 backgroundColor: "#e6fff3",
                                 fontSize: "20px",
                                 color: "#00a158",
                               }}
-                              className="rounded-circle d-flex justify-content-center align-items-center"
+                              className=" d-flex justify-content-center align-items-center"
                             />
                           ) : (
                             <div
                               style={{
                                 width: "40px",
-                                height: "40px",
+                                height: "50px",
                                 backgroundColor: "#e6fff3",
                                 fontSize: "20px",
                                 color: "#00a158",
                               }}
-                              className="rounded-circle d-flex justify-content-center align-items-center"
+                              className=" d-flex justify-content-center align-items-center"
                             >
                               {rowData?.book_name[0]}
                             </div>

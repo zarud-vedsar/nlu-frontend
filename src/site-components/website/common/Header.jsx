@@ -305,7 +305,7 @@ function Header() {
                     </Link>
                   </div>
                 </li>
-                <li className="navigation__item arr-li ">
+                <li className="navigation__item arr-li " style={{marginRight:"60px"}}>
                   <Link className="navigation__item_link arr-true">
                     More Links
                   </Link>

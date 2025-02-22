@@ -212,7 +212,7 @@ function AcademicCalendar() {
             align-items: center;
             gap: 10px;
             padding: 10px;
-            background-color: #f8f9fa;
+            
             border-radius: 8px;
             margin-bottom: 10px;
           }

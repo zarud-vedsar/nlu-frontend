@@ -18,10 +18,10 @@ const Courses = () => {
       fun: "about", title: "about"
     },
     {
-      fun: "load_sllaybus", title: "syllabus"
+      fun: "load_sllaybus", title: "Syllabus"
     },
     {
-      fun: "load_seminar", title: "seminar/workshop"
+      fun: "load_seminar", title: "Seminar/Workshop"
     },
     {
       fun: "load_timetable", title: "Time Table"
@@ -71,7 +71,7 @@ const Courses = () => {
         const field = fieldMapping[data];
         if (field) {
           const decodedHtml = await decodeHtml(response.data.data[0][field]);
-          setCoursePage(decodedHtml)
+          setTimeout(() => setCoursePage(decodedHtml), 400);
         }
       }
     } catch (error) {
@@ -109,7 +109,7 @@ const Courses = () => {
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
         const decodedHtml = await decodeHtml(validator.unescape(response.data[0].description));
-        setCoursePage(decodedHtml)
+        setTimeout(() => setCoursePage(decodedHtml), 400);
         setCourseData(response.data[0])
       }
     } catch (error) {
@@ -355,7 +355,9 @@ const Courses = () => {
               </>) : (
                 <>
                   <div className='row'>
-
+                    <div className="col-md-12">
+                      <div className="heading-para gorditas-regular text-justify w-100" dangerouslySetInnerHTML={{ __html: validator.unescape(coursePage) }}></div>
+                    </div>
                   </div>
                 </>
               )}
@@ -386,8 +388,6 @@ const Courses = () => {
 .leftpart::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
-
-
             `
           }
         </style>

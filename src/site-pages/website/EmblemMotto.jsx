@@ -16,6 +16,7 @@ const EmblemMotto = () => {
                     <li>
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
+                     <li><span>About</span>  <FaAngleRight /></li> 
                     <li>Emblem and Motto</li>
                   </ul>
                 </div>

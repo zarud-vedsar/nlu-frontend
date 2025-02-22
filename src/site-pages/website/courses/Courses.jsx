@@ -15,22 +15,22 @@ const Courses = () => {
 
   const content = [
     {
-      fun: "about", title: "about"
+      fun: "about", title: "ABOUT"
     },
     {
-      fun: "load_sllaybus", title: "syllabus"
+      fun: "load_sllaybus", title: "SYLLABUS"
     },
     {
-      fun: "load_seminar", title: "seminar/workshop"
+      fun: "load_seminar", title: "SEMINAR/WORKSHOP"
     },
     {
-      fun: "load_timetable", title: "Time Table"
+      fun: "load_timetable", title: "TIME TABLE"
     },
     {
-      fun: "load_activity", title: "Activity"
+      fun: "load_activity", title: "ACTIVITY"
     },
     {
-      fun: "load_feestructure", title: "Fee Structure"
+      fun: "load_feestructure", title: "FEE STRUCTURE"
     },
   ];
 
@@ -71,7 +71,7 @@ const Courses = () => {
         const field = fieldMapping[data];
         if (field) {
           const decodedHtml = await decodeHtml(response.data.data[0][field]);
-          setCoursePage(decodedHtml)
+          setTimeout(() => setCoursePage(decodedHtml), 400);
         }
       }
     } catch (error) {
@@ -109,7 +109,7 @@ const Courses = () => {
       );
       if (response?.statusCode === 200 && response.data.length > 0) {
         const decodedHtml = await decodeHtml(validator.unescape(response.data[0].description));
-        setCoursePage(decodedHtml)
+        setTimeout(() => setCoursePage(decodedHtml), 400);
         setCourseData(response.data[0])
       }
     } catch (error) {
@@ -134,7 +134,8 @@ const Courses = () => {
                 <p className="heading-primary2 butler-regular text-white text-center">{activeSidebar == 'about' ? courseData.coursename : pageTitle}</p>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                    <li><Link to="/">Home</Link></li> <FaAngleRight />
+                    <li><Link to="/">Home</Link> <FaAngleRight /></li> 
+                    <li><span>Courses</span> <FaAngleRight /></li>
                     <li>Course Details</li>
                   </ul>
                 </div>
@@ -355,7 +356,9 @@ const Courses = () => {
               </>) : (
                 <>
                   <div className='row'>
-
+                    <div className="col-md-12">
+                      <div className="heading-para gorditas-regular text-justify w-100" dangerouslySetInnerHTML={{ __html: validator.unescape(coursePage) }}></div>
+                    </div>
                   </div>
                 </>
               )}
@@ -386,8 +389,6 @@ const Courses = () => {
 .leftpart::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
-
-
             `
           }
         </style>

@@ -5,14 +5,13 @@ import {
   NODE_API_URL,
   FILE_API_URL,
 } from "../../site-components/Helper/Constant";
-import { useParams } from "react-router-dom";
+import { FaAngleRight } from 'react-icons/fa6'
+import { useParams, Link } from "react-router-dom";
 import { dataFetchingGet } from "../../site-components/Helper/HelperFunction";
-import DOMPurify from "dompurify";
 import validator from 'validator';
 const DetailFaculty = () => {
   const [facultyData, setFacultyData] = useState();
   const { id } = useParams();
-
   const fetchDepartment = async (id) => {
     try {
       const bformData = new FormData();
@@ -33,7 +32,6 @@ const DetailFaculty = () => {
           ...prevData,
           departmentid: department.dtitle,
         }));
-      } else {
       }
     } catch (e) { }
   };
@@ -59,17 +57,9 @@ const DetailFaculty = () => {
       const statusCode = error.response?.data?.statusCode;
       if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
         console(error.response.message || "A server error occurred.");
-      } else {
       }
-    } finally {
     }
   };
-
-  const capitalizeFirstLetter = (str) => {
-    if (!str) return "";
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-  };
-
   const loadFacultyData = async () => {
     try {
       const bformData = new FormData();
@@ -85,7 +75,6 @@ const DetailFaculty = () => {
         }
       );
       setFacultyData(response.data.data[0]);
-
       fetchDepartment(response.data.data[0].departmentid);
       fetchDesignationList(response.data.data[0].designationid);
     } catch (error) { }
@@ -107,10 +96,12 @@ const DetailFaculty = () => {
                 <h1 className="text-center">Our Faculty</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                    <li>
-                      <a href="default.html">Home</a>
-                    </li>
-                    <li>Faculty</li>
+                   <li>
+                                        <Link to="/">Home</Link> <FaAngleRight />
+                                      </li>
+                                      <li><span>People</span> <FaAngleRight /></li> 
+                                      <li> <Link to='/faculty'>Faculty</Link> <FaAngleRight /> </li>
+                                      <li><span>Our Faculty</span></li> 
                   </ul>
                 </div>
               </div>
@@ -196,8 +187,6 @@ const DetailFaculty = () => {
                 }}
               ></div>
             )}
-
-
           </div>
         </section>
       )}

@@ -75,6 +75,7 @@ const ImageGallery = () => {
                     <li>
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
+                    <li><span>Media</span> <FaAngleRight /> </li>
                     <li>Photo Gallery</li>
                   </ul>
                 </div>

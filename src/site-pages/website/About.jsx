@@ -38,13 +38,14 @@ const About = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumb-text">
-                <h1 className="text-center heading-primary butler-regular text-white">About Us</h1>
+                <h1 className="text-center heading-primary butler-regular text-white">Introduction</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li>
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
-                    <li>About Us</li>
+                    <li>About <FaAngleRight /></li> 
+                    <li>Introduction</li>
                   </ul>
                 </div>
               </div>

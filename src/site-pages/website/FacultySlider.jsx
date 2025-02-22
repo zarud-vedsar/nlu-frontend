@@ -88,9 +88,9 @@ const FacultySlider = () => {
           <div className="container">
             <div className="col-md-10 mx-auto text-center my-4" style={{ position: "relative" }}>
               <div>
-                <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Meet Our Faculty & Staff</h2>
+                <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Meet Our Faculty & Staff</h2>
                 <div className='heading-divider'></div>
-                <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+                <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
                   Meet the dedicated educators and professionals shaping our institution.
                 </p>
               </div>

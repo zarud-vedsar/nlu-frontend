@@ -18,9 +18,9 @@ const WhyChoose = () => {
         <div className="container">
           <div className="row">
             <div className='col-md-10 mx-auto mb-3 text-center'>
-              <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Why Choose Us</h2>
+              <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Why Choose Us</h2>
               <div className='heading-divider'></div>
-              <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+              <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
                 Excellence in legal education with a legacy of academic brilliance and professional success.
               </p>
             </div>

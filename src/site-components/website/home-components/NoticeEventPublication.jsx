@@ -148,9 +148,9 @@ const NoticeEventPublication = () => {
                   style={{ position: "relative" }}
                 >
                   <div>
-                    <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Upcoming Events</h2>
+                    <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Upcoming Events</h2>
                     <div className='heading-divider'></div>
-                    <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+                    <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
                       Stay updated with our latest events, workshops, and special gatherings.
                     </p>
                   </div>
@@ -236,9 +236,9 @@ const NoticeEventPublication = () => {
                   style={{ position: "relative" }}
                 >
                   <div>
-                    <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Latest News</h2>
+                    <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Latest News</h2>
                     <div className='heading-divider'></div>
-                    <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+                    <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
                       Stay updated with the latest news and announcements.
                     </p>
                   </div>
@@ -336,9 +336,9 @@ const NoticeEventPublication = () => {
               style={{ position: "relative" }}
             >
               <div>
-                <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Publications</h2>
+                <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Publications</h2>
                 <div className='heading-divider'></div>
-                <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+                <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
                   Explore our latest research, articles, and publications.
                 </p>
               </div>

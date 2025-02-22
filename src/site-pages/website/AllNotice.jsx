@@ -100,7 +100,62 @@ const AllNotice = () => {
           ) : (
             <div className="row">
                   {/* Dynamically map over AllNotice array */}
-                  {id === "event" || id == "publication" &&
+                  {id === "event" &&
+                   AllNotice.map((notice, index) => (
+                                       <div key={index} className="col-lg-3">
+                                         <div className="card border-0 soft-shadow  ">
+                                           <div className="new-img-container">
+                                             <Link to={`/notice-details/${notice.id}`}>
+                                               <img
+                                                 src={notice.image || placeholder}
+                                                 className="news-image"
+                                                 alt="News Image"
+                                               />
+                                             </Link>
+                                           </div>
+                                           <div className="card-body">
+                                             <div className="card-text gorditas-regular text-center id-event-date">
+                                               <p className="date-month mb-0">
+                                                 {new Date(
+                                                   notice.notice_date
+                                                 ).toLocaleDateString("en-US", {
+                                                   month: "short",
+                                                 })}{" "}
+                                                 {/* Month */}
+                                               </p>
+                                               <h5 className="date-day">
+                                                 {new Date(
+                                                   notice.notice_date
+                                                 ).toLocaleDateString("en-US", {
+                                                   day: "2-digit",
+                                                 })}{" "}
+                                                 {/* Day */}
+                                               </h5>
+                                               <p className="date-year mb-0">
+                                                 {new Date(
+                                                   notice.notice_date
+                                                 ).toLocaleDateString("en-US", {
+                                                   year: "numeric",
+                                                 })}{" "}
+                                                 {/* Year */}
+                                               </p>
+                                             </div>
+                                             <div className="newsttl">
+                                               {validator.unescape(notice.title)}
+                                             </div>
+                                           </div>
+                                           <div className="cardftr">
+                                             <Link
+                                               className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more"
+                                               to={`/notice-details/${notice.id}`}
+                                             >
+                                               Read More &nbsp; <FaArrowRightLong />
+                                             </Link>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     ))}
+                  {id === "publication" &&
                    AllNotice.map((notice, index) => (
                                        <div key={index} className="col-lg-3">
                                          <div className="card border-0 soft-shadow  ">

@@ -22,7 +22,7 @@ const About = () => {
                 <img src={nluPrayagraj} className='img-fluid nlu-prayagraj about-img' alt='Dr. Rajendra Prasad National Law University campus in Prayagraj, with modern architecture and lush greenery.' />
               </div>
             </div>
-            <div className='col-md-6 col-lg-6 col-12 col-sm-12 order-md-1 order-sm-2 order-2' data-aos="fade-right" data-aos-delay="50">
+            <div className='col-md-6 col-lg-6 col-12 col-sm-12 order-md-1 order-sm-2 order-2 mt-2' data-aos="fade-right" data-aos-delay="50">
               <h2 className="abthead butler-regular mb-3">
                 Welcome to Dr. Rajendra Prasad National Law University, Prayagraj
               </h2>

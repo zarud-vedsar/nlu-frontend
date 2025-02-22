@@ -4,7 +4,6 @@ import { NODE_API_URL } from "../../Helper/Constant";
 import axios from "axios";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import placeholder from "../assets/Images/placeholder-image.jpg";
 import validator from 'validator';
 const Courses = () => {
   const [course, setCourse] = useState([]);
@@ -36,7 +35,7 @@ const Courses = () => {
       <div className='container'>
         <div className="row">
           <div className='col-md-12 mb-3 text-center'>
-          <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Our Courses</h2>
+            <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Our Courses</h2>
             <div className="heading-divider"></div>
           </div>
           <div className="row mt-2">

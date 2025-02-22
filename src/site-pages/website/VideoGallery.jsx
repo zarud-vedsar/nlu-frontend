@@ -72,6 +72,7 @@ const VideoGallery = () => {
                     <li>
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
+                    <li><span>Media</span> <FaAngleRight /> </li>
                     <li>Video Gallery</li>
                   </ul>
                 </div>

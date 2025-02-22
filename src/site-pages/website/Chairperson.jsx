@@ -118,6 +118,8 @@ const Chairperson = () => {
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li><Link to="/">Home</Link></li> <FaAngleRight />
+                    <li><span>People</span> <FaAngleRight /></li> 
+                    <li><span>Governance</span> <FaAngleRight /></li> 
                     <li>{formData?.from}</li>
                   </ul>
                 </div>

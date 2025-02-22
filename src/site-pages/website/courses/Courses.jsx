@@ -134,7 +134,8 @@ const Courses = () => {
                 <p className="heading-primary2 butler-regular text-white text-center">{activeSidebar == 'about' ? courseData.coursename : pageTitle}</p>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                    <li><Link to="/">Home</Link></li> <FaAngleRight />
+                    <li><Link to="/">Home</Link> <FaAngleRight /></li> 
+                    <li><span>Courses</span> <FaAngleRight /></li>
                     <li>Course Details</li>
                   </ul>
                 </div>

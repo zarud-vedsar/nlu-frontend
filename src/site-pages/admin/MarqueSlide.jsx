@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert";
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
-
+import validator from 'validator';
 const MyVerticallyCenteredModal = (props = {}) => {
   const [content, setContent] = useState("");
   const [link, setLink] = useState("");
@@ -95,7 +95,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
             className="form-control"
             name="content"
             placeholder="Enter Content"
-            value={content}
+            value={validator.unescape(content || "")}
             onChange={(e) => setContent(e.target.value)}
             disabled={loading}
           />
@@ -108,7 +108,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
             type="text"
             className="form-control"
             name="link"
-            value={link}
+            value={validator.unescape(link || "")}
             onChange={(e) => setLink(e.target.value)}
             disabled={loading}
           />
@@ -306,7 +306,7 @@ const MarqueSlide = () => {
           <div className="container-fluid">
             <div className="mt-0">
               <nav className="breadcrumb">
-              <a href="/admin/home" className="breadcrumb-item">
+                <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
@@ -390,7 +390,7 @@ const MarqueSlide = () => {
                         sortable
                       />
 
-                      <Column field="content" header="Marque" sortable />
+                      <Column body={(row) => validator.unescape(row?.content || "")} header="Marque" sortable />
 
                       <Column
                         style={{ width: "15%" }}

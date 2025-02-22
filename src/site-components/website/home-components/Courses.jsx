@@ -15,9 +15,7 @@ const Courses = () => {
   }, []);
 
   useEffect(() => {
-
     const fetchData = async () => {
-
       try {
         const response = await axios.post(
           `${NODE_API_URL}/api/course/course-data`,

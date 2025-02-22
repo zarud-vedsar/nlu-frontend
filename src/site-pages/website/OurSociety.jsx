@@ -135,7 +135,7 @@ const OurSociety = () => {
                             <div className="col-md-12 col-12 text-center">
                                 <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Our Societies</h2>
                                 <div className='heading-divider'></div>
-                                <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+                                <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
                                     Explore our vibrant student societies fostering learning, leadership, and collaboration.
                                 </p>
                             </div>

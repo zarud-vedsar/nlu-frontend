@@ -138,20 +138,21 @@ const ImageGallery = () => {
                                   >
                                     {item.gallery_images.map(
                                       (image, imageIndex) => (
-                                        <div  className="galbbxx">
+                                        <>
                                           {/* <div key={imageIndex} className="col-12 col-sm-4 col-md-4 col-lg-3 gallery-col"> */}
                                           <a
                                             href={`${FILE_API_URL}/gallery/${image}`}
                                             className="galll-itm gallery-col"
                                           >
+                                          <div className="iimmggbx">
                                             <img
                                               src={`${FILE_API_URL}/gallery/${image}`}
                                               alt={image}
                                               className="gal-image"
-                                            />
+                                            /></div>
                                           </a>
                                           {/* </div> */}
-                                        </div>
+                                        </>
                                       )
                                     )}
                                   </LightGallery>
@@ -220,18 +221,20 @@ const ImageGallery = () => {
                                         >
                                           {item.gallery_images.map(
                                             (image, imageIndex) => (
-                                              <div className="galbbxx">
+                                              <>
                                                 <a
                                                   href={`${FILE_API_URL}/gallery/${image}`}
                                                   className="galll-itm gallery-col" // Adjusted column classes
                                                 >
+                                                <div className="iimmggbx">
                                                   <img
                                                     src={`${FILE_API_URL}/gallery/${image}`}
                                                     alt={image}
                                                     className="gallery-image"
                                                   />
+                                                  </div>
                                                 </a>
-                                              </div>
+                                              </>
                                             )
                                           )}
                                         </LightGallery>

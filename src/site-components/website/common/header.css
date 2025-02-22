@@ -434,12 +434,13 @@
         z-index: 99;
     }
 
+
     .header-section {
         position: relative !important;
     }
 
-    .header-section {
-        position: relative !important;
+    .header-section.is-sticky {
+        position: fixed !important;
     }
 }
 
@@ -574,7 +575,27 @@
     padding:10px 0;
 }
 
+@media (max-width: 1200px) {
+    .navigation__item {
+        font-size: 12px;
+    }
+    .header-heading3 {
+        font-size: 20px;
+    }
+    
+    .header-heading2, .hd4 {
+        font-size: 12px;
+    }
+    .page-header-logo-img {
+        max-width: 65px;
+    }
+}
+
+
 @media (max-width: 768px) {
+    .abthead {
+        margin-top: 20px;
+      }
     .headermain::before{
         display: none;
     }

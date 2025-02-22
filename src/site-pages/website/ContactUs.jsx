@@ -107,7 +107,8 @@ const ContactUs = () => {
                 <h1 className="heading-primary2 butler-regular text-white text-center">Contact Us</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                    <li><Link to="/">Home</Link></li> <FaAngleRight />
+                    <li><Link to="/">Home</Link> <FaAngleRight /></li> 
+                    <li><span>Contact</span> <FaAngleRight /></li>
                     <li>Contact Us</li>
                   </ul>
                 </div>

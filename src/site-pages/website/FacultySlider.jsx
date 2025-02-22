@@ -91,7 +91,7 @@ const FacultySlider = () => {
                 <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Meet Our Faculty & Staff</h2>
                 <div className='heading-divider'></div>
                 <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                  Meet the dedicated educators and professionals shaping our institution.
+                  Meet the Inspiring Minds Driving Our Institution's Success and Empowering our Students
                 </p>
               </div>
             </div>

@@ -5,7 +5,7 @@ import axios from "axios";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import validator from 'validator';
-import LlmCourseImg from '../assets/Images/course-llm.jpg';
+import LlmCourseImg from '../assets/Images/llm.png';
 import PhdCourseImg from '../assets/Images/phd.png';
 import BaLlbCourseImg from '../assets/Images/ba-llb.png';
 const Courses = () => {

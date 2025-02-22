@@ -130,7 +130,7 @@ const Speciality = () => {
       <div className="container">
         <div className="row">
           <div className='col-md-12 mb-3 text-center'>
-            <h2 className="heading-primary2 source-font id-sub-title id-title-font-size  id-title-font-size-mobile-device">Why Study at RPNLU?</h2>
+            <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Why Study at RPNLU?</h2>
             <div className='heading-divider'></div>
             <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
               Experience excellence in legal education with expert faculty, modern infrastructure, and career-focused learning.

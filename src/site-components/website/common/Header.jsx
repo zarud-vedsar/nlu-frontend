@@ -305,7 +305,7 @@ function Header() {
                     </Link>
                   </div>
                 </li>
-                <li className="navigation__item arr-li ">
+                <li className="navigation__item arr-li " style={{marginRight:"60px"}}>
                   <Link className="navigation__item_link arr-true">
                     More Links
                   </Link>
@@ -315,6 +315,12 @@ function Header() {
                       className="navigation__item_drop_link"
                     >
                       Equal Opportunity Cell
+                    </Link>
+                    <Link
+                      to="/academic-calendar"
+                      className="navigation__item_drop_link"
+                    >
+                      Academic Calendar
                     </Link>
                   </div>
                 </li>

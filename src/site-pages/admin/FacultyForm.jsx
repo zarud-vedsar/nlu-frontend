@@ -1283,7 +1283,7 @@ const FacultyForm = () => {
                           className="form-check-label"
                           htmlFor="show_content_on_website"
                         >
-                          Show content on website{" "}
+                          Show faculty on website{" "}
                         </label>
                       </div>
                       

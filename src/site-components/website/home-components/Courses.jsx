@@ -5,6 +5,7 @@ import axios from "axios";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import validator from 'validator';
+import LlmCourseImg from '../assets/Images/course-llm.jpg'
 const Courses = () => {
   const [course, setCourse] = useState([]);
   useEffect(() => {
@@ -56,7 +57,7 @@ const Courses = () => {
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 mt-1 text-center">
               <Link to={`/courses/3`}>
                 <div className="course-img-container">
-                  <img src={"https://mymindgreatone.co.in/public/upload/d7964460-36dd-4091-ba7e-c26f7fc2f387.jpg"} className="course-image" alt="Course Image" style={{ height: '230px' }} />
+                  <img src={LlmCourseImg} className="course-image" alt="Course Image" style={{ height: '230px' }} />
                 </div>
                 <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
                   <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>

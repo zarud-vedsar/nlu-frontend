@@ -85,7 +85,7 @@ const Achivement = () => {
               <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Our Achievements</h2>
               <div className='heading-divider'></div>
               <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                Celebrating our Journey of Excellence, Awards, and Recognitions.
+                Celebrating our Journey of Excellence, Awards, and Recognitions
               </p>
             </div>
           </div>

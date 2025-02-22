@@ -177,7 +177,7 @@ const Footer = () => {
                       className="mb-3 col-2"
                     >
                       <div className="d-flex justify-content-start align-items-center">
-                        <span className="id-fb-icon">
+                        <span className="id-fb-icon id-icon-insta-gred">
                           <FaInstagram className="fticon insfticon" />
                         </span>
                         {/* <h6 className="id-fb-title id-icon-insta-gred">

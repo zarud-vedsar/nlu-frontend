@@ -27,9 +27,9 @@ const SocialMedia = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">
-              <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Follow Us on Social Media</h2>
+              <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device ">Follow Us on Social Media</h2>
               <div className="heading-divider"></div>
-              <p className="text-center mt-3 mb-1 id-campus-life-mobile-view" style={{ fontSize: '28px' }}>
+              <p className="text-center mt-3 mb-1 id-sub-title id-sub-title-mobile-view">
                 Stay connected with us! Follow us on social media for the latest updates, exclusive content, and more.
               </p>
             </div>

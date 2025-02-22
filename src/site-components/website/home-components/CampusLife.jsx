@@ -16,9 +16,9 @@ const CampusLife = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-10 col-lg-10 col-12 col-sm-12 mx-auto mb-3 text-center">
-            <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Campus Life</h2>
+            <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Campus Life</h2>
             <div className="heading-divider"></div>
-            <p className="text-center mt-3 mb-1 id-campus-life-mobile-view" style={{ fontSize: '28px' }}>
+            <p className="text-center mt-3 mb-1 id-sub-title id-sub-title-mobile-view">
               Bringing together a dynamic network of talented and innovative individuals from every corner of the globe.
             </p>
           </div>

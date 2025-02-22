@@ -98,14 +98,14 @@ const Gallery = () => {
       <div className="container  my-4 py-2">
         <div className="row">
           <div className="col-md-12 col-12 col-sm-12 text-center" style={{ position: "relative" }}>
-            <h2 className="heading-primary2 source-font">Visual Highlights</h2>
+            <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Visual Highlights</h2>
             <div className="heading-divider"></div>
-            <p className="text-center mt-3 mb-1 id-campus-life-mobile-view" style={{ fontSize: '28px' }}>
+            <p className="text-center mt-3 mb-1 id-sub-title id-sub-title-mobile-view">
               Explore our gallery and experience the highlights in pictures.
             </p>
           </div>
         </div>
-        <Link to="/image-gallery" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaLongArrowAltRight /></Link>
+        {/* <Link to="/image-gallery" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaLongArrowAltRight /></Link> */}
         <div className="gallery-container col-sm-12 mt-4 ">
           <Slider {...sliderSettings}>
             {image.map((img, index) => (

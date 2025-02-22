@@ -3185,6 +3185,9 @@ table tbody th {
   .id-title-font-size-mobile-device{
     font-size: 48px !important;
   }
+  .smt-12{
+    margin-top: 20px;
+  }
 }
 
 /* Extra small devices (phones, less than 576px) */

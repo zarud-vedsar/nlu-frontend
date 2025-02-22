@@ -91,21 +91,15 @@ const KeyNote = () => {
           </div>
         </div>
       </div>
-      <div className='container'>
-        <div className="row">
-          <div className="col-md-12 pt-2 text-center">
-            <h2 className="heading-primary3">{marqueeTitle?.content}</h2>
-          </div>
-        </div>
-      </div>
       <div
-        className="latest-area kn-position-realative"
+        className="section"
         style={{ background: "#F5F5F5" }} data-aos="fade-up" data-aos-delay="100">
         <div className="container">
           <div className="row">
             <div className="col-md-12 mb-5 text-center">
-              <h2 className="heading-primary2">Keynote Speakers</h2>
+              <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Keynote Speakers</h2>
               <div className="heading-divider"></div>
+              <p className='text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view'>{marqueeTitle?.content ? validator.unescape(validator.unescape(marqueeTitle?.content)) : ''}</p>
             </div>
           </div>
           <div className="row mt-3">
@@ -125,17 +119,17 @@ const KeyNote = () => {
                     </div>
 
                     <div className="ms-3">
-                      <h5 className="card-title mt-0 xtitle kn-title text-center">
+                      <h5 className="card-title mt-0 source-font text-center">
                         {note?.keynote_name ? validator.unescape(note.keynote_name) : ''}
                       </h5>
                       <p
-                        className="card-text threeeclips"
+                        className="card-text source-font"
                         style={{ textAlign: "center" }}
                       >
                         {note?.keynote_content ? validator.unescape(note.keynote_content) : ''}
                       </p>
                       <div className="text-center">
-                        <Link target="" className="btn-link" to={note?.keynote_link ? validator.unescape(note.keynote_link) : ''}>
+                        <Link target="_blank" className="btn-link source-font" to={note?.keynote_link ? validator.unescape(note.keynote_link) : ''}>
                           Read More &nbsp;
                           <FaArrowRightLong />{" "}
                         </Link>

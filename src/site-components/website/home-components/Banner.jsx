@@ -6,7 +6,6 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 const Banner = () => {
   const [banner, setBanner] = useState([]);
   const fetchBanner = async () => {
@@ -59,7 +58,7 @@ const Banner = () => {
     );
   };
   const settings = {
-    dots: false,
+    // dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,

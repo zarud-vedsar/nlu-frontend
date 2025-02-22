@@ -102,7 +102,7 @@ const FacultySlider = () => {
                     <Link to={`/faculty/1`} target="_blank" >
                       <div className="facimg-bx">
                         <img
-                          src="https://www.spaceshineone.co.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"
+                          src="https://www.rpnlup.ac.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"
                           alt=""
                           className="facimg"
                         />

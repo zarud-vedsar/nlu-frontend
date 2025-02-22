@@ -128,7 +128,7 @@ const Footer = () => {
                     <Link
                       to={iconLink.facebook}
                       target="_blank"
-                      className="mb-3 col-6"
+                      className="mb-3 col-2"
                       
                     >
                       <div className="d-flex justify-content-start align-items-center">
@@ -138,12 +138,12 @@ const Footer = () => {
                         >
                           <FaFacebookSquare className="fticon fbfticon" />
                         </span>
-                        <h6
+                        {/* <h6
                           className="id-fb-title"
                           style={{ background: "rgb(20 93 191 / 95%)" }}
                         >
                           Facebook
-                        </h6>
+                        </h6> */}
                       </div>
                     </Link>
                   )}
@@ -151,7 +151,7 @@ const Footer = () => {
                     <Link
                       to={iconLink.linkedin}
                       target="_blank"
-                      className="mb-3 col-6"
+                      className="mb-3 col-2"
                     >
                       <div className="d-flex justify-content-start align-items-center">
                         <span
@@ -160,12 +160,12 @@ const Footer = () => {
                         >
                           <FaLinkedin className="fticon linkedfticon" />
                         </span>
-                        <h6
+                        {/* <h6
                           className="id-fb-title"
                           style={{ background: "#0a66c2" }}
                         >
                           Linked in
-                        </h6>
+                        </h6> */}
                       </div>
                     </Link>
                   )}
@@ -174,15 +174,15 @@ const Footer = () => {
                     <Link
                       to={iconLink.instagram}
                       target="_blank"
-                      className="mb-3 col-6"
+                      className="mb-3 col-2"
                     >
                       <div className="d-flex justify-content-start align-items-center">
                         <span className="id-fb-icon">
                           <FaInstagram className="fticon insfticon" />
                         </span>
-                        <h6 className="id-fb-title id-icon-insta-gred">
+                        {/* <h6 className="id-fb-title id-icon-insta-gred">
                           Instagram
-                        </h6>
+                        </h6> */}
                       </div>
                     </Link>
                   )}
@@ -190,18 +190,18 @@ const Footer = () => {
                     <Link
                       to={iconLink.instagram}
                       target="_blank"
-                      className="mb-3 col-6"
+                      className="mb-3 col-2"
                     >
                       <div className="d-flex justify-content-start align-items-center">
                         <span className="id-fb-icon">
                           <FaYoutube className="fticon youfticon" />
                         </span>
-                        <h6
+                        {/* <h6
                           className="id-fb-title"
                           style={{ background: "#FF0000" }}
                         >
                           Youtube
-                        </h6>
+                        </h6> */}
                       </div>
                     </Link>
                   )}
@@ -209,7 +209,7 @@ const Footer = () => {
                     <Link
                       to={iconLink.twitter}
                       target="_blank"
-                      className="mb-3 col-6"
+                      className="mb-3 col-2"
                     >
                       <div className="d-flex justify-content-start align-items-center">
                         <span
@@ -218,12 +218,12 @@ const Footer = () => {
                         >
                           <FaXTwitter className="fticon twfticon" />
                         </span>
-                        <h6
+                        {/* <h6
                           className="id-fb-title"
                           style={{ background: "#000000" }}
                         >
                           Twitter
-                        </h6>
+                        </h6> */}
                       </div>
                     </Link>
                   )}

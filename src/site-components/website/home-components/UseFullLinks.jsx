@@ -92,7 +92,7 @@ const UseFullLinks = () => {
                 <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Useful Links</h2>
                 <div className='heading-divider'></div>
                 <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                  Access essential resources and important links in one place.
+                  Access Essential Resources and Important Links in One Place
                 </p>
               </div>
             </div>

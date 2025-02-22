@@ -136,7 +136,7 @@ const OurSociety = () => {
                                 <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Our Societies</h2>
                                 <div className='heading-divider'></div>
                                 <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                                    Explore our vibrant student societies fostering learning, leadership, and collaboration.
+                                    Explore Our Vibrant Student Societies Fostering Learning, Leadership, and Collaboration
                                 </p>
                             </div>
                         </div>

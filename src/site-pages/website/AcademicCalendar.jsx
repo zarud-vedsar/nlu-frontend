@@ -1,25 +1,141 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaAngleRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import axios from "axios";
+import { NODE_API_URL } from "../../site-components/Helper/Constant";
+import { toast } from "react-toastify";
+import { Modal, Button, Spinner } from "react-bootstrap";
+import validator from "validator";
 
 const localizer = momentLocalizer(moment);
 
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal {...props} size="lg" centered>
+      <Modal.Body>
+        <div
+          className="mt-4"
+          dangerouslySetInnerHTML={{
+            __html: props?.modalMessage?.content
+              ? validator.unescape(props?.modalMessage?.content)
+              : "",
+          }}
+        ></div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide} className="mx-auto">
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+const CustomToolbar = ({ label, onNavigate }) => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return (
+    <div className="custom-toolbar d-flex justify-content-between align-items-center">
+      <button className="btn btn-primary" onClick={() => onNavigate("PREV")}>
+      <i class="fa-solid fa-arrow-left"></i> {!isMobile &&  `Previous` }
+      </button>
+      <h6 className="mb-0">{label}</h6>
+      <div className="d-flex align-items-center">
+        <button
+          className="btn btn-secondary ms-2"
+          style={{ marginRight: "10px" }}
+          onClick={() => onNavigate("TODAY")}
+        >
+          Today
+        </button>
+        <button className="btn btn-primary" onClick={() => onNavigate("NEXT")}>
+         {!isMobile && `Next` } <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 function AcademicCalendar() {
-  const [events, setEvents] = useState([
-    {
-      title: "Exam Date",
-      start: new Date(2025, 1, 1), 
-      end: new Date(2025, 1, 3),
-    },
-    {
-      title: "Holidays Begin",
-      start: new Date(2024, 2, 20), 
-      end: new Date(2024, 2, 30),
-    },
-  ]);
+  const [isFetching, setIsFetching] = useState();
+  const [events, setEvents] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [modalMessage, setModalMessage] = useState();
+
+  
+  const EventComponent = ({ event }) => (
+    <div
+      onClick={() => {
+        setModalMessage(event);
+        setModalShow(true);
+      }}
+    >
+      {event.title}
+    </div>
+  );
+
+  const handleNavigate = (date = false) => {
+    const selectedDate = date ? moment(date) : moment();
+
+    const currentMonth = selectedDate.format("MMMM");
+    const currentYear = selectedDate.format("YYYY");
+
+    const firstDate = selectedDate.startOf("month").format("YYYY-MM-DD");
+    const lastDate = selectedDate.endOf("month").format("YYYY-MM-DD");
+
+    console.log(`Navigated to: ${currentMonth} ${currentYear}`);
+    console.log(`First Date: ${firstDate}, Last Date: ${lastDate}`);
+
+    fetchCalendarListing(firstDate, lastDate);
+  };
+  const fetchCalendarListing = async (fromDate, toDate) => {
+    setIsFetching(true);
+    try {
+      const response = await axios.post(`${NODE_API_URL}/api/calendar/fetch`, {
+        deleteStatus: 0,
+        listing: "yes",
+        fromDate,
+        toDate,
+      });
+
+      console.log(response.data.data);
+      if (response?.data?.statusCode === 200 && response.data.data.length > 0) {
+        console.log(response.data.data);
+        setEvents(
+          response?.data?.data.map((data) => ({
+            title: data?.title,
+            content: validator.unescape(data?.content),
+            start: new Date(data?.date),
+            end: new Date(data?.date),
+          }))
+        );
+      } else {
+        setEvents([]);
+      }
+    } catch (error) {
+      setEvents([]);
+      const statusCode = error.response?.data?.statusCode;
+      if (statusCode === 400 || statusCode === 401 || statusCode === 500) {
+        toast.error(error.response.message || "A server error occurred.");
+      } else {
+        toast.error(
+          "An error occurred. Please check your connection or try again."
+        );
+      }
+    } finally {
+      setIsFetching(false);
+    }
+  };
+
+  useEffect(() => handleNavigate(), []);
 
   return (
     <>
@@ -34,7 +150,7 @@ function AcademicCalendar() {
                     <li>
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
-                    <li>Cells</li> <FaAngleRight />
+                    <li>More Links</li> <FaAngleRight />
                     <li>Academic Calendar</li>
                   </ul>
                 </div>
@@ -58,7 +174,13 @@ function AcademicCalendar() {
                       events={events}
                       startAccessor="start"
                       endAccessor="end"
+                      views={["month"]}
                       style={{ height: 500 }}
+                      onNavigate={handleNavigate} // Capture navigation
+                      components={{
+                        toolbar: CustomToolbar,
+                        event: EventComponent,
+                      }} //
                     />
                   </div>
                 </div>
@@ -68,13 +190,31 @@ function AcademicCalendar() {
         </div>
       </section>
 
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+        }}
+        modalMessage={modalMessage}
+      />
       <style jsx>
         {`
           .rbc-event {
-            background-color: #007bff !important;
+            background-color: #559be6 !important;
             color: white !important;
             border-radius: 5px !important;
             padding: 5px !important;
+          }
+          /* Custom Toolbar */
+          .custom-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
           }
         `}
       </style>

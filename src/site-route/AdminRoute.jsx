@@ -261,7 +261,6 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             <Route path="/" element={<Navigate to="/admin/signin" />} />
             <Route path="/compoundv" element={<components.SignIn />} />
             <Route path="/signin" element={<components.SignInFaculty />} />
-            <Route path="/book-stock-history" element={<LibraryListing  />} />
             <Route
               path="/forget-password"
               element={<components.ForgetPassword />}
@@ -270,6 +269,8 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
               path="/home"
               element={<ProtectedRoute element={<components.Home />} />}
             />
+                        <Route path="/book-stock-history" element={<ProtectedRoute element={<LibraryListing  />} />} />
+
             <Route
               path="/admin-dashboard"
               element={<ProtectedRoute element={<components.AdminDashboard />} />}

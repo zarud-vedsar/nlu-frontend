@@ -426,7 +426,7 @@ function VisitorRegistrationHistory() {
                         row.toDate ? formatDate(row.toDate) : row.toDate
                       }
                       header="To date"
-                      field="toDate"
+                      
                       sortable
                       field="toDate"
                     />

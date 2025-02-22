@@ -132,7 +132,7 @@ const Chairperson = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-sm-none d-md-block d-lg-block">
-              <h3 className="heading-primary2 butler-regular">Governance</h3>
+              <h3 className="heading-primary2 butler-regular source-font">Governance</h3>
               <div className="heading-divider mb-3"></div>
               <ul className="mcd-menu">
                 {message &&
@@ -153,7 +153,7 @@ const Chairperson = () => {
             <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
               <div className="section-title-wrapper">
                 <div className="section-title">
-                  <h3 className="heading-primary2 butler-regulary mt-3">From the {formData?.from} Desk</h3>
+                  <h3 className="heading-primary2 butler-regulary mt-3 source-font">From the {formData?.from} Desk</h3>
                 </div>
               </div>
               <div className="row">

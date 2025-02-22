@@ -90,7 +90,10 @@ const UseFullLinks = () => {
             <div className="row">
               <div className="col-md-12 col-12 text-center">
                 <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Useful Links</h2>
-                <div className="heading-divider"></div>
+                <div className='heading-divider'></div>
+                <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+                  Access essential resources and important links in one place.
+                </p>
               </div>
             </div>
             <div className="usefullcontainer mt-4">

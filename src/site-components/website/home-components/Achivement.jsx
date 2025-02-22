@@ -36,7 +36,6 @@ const Achivement = () => {
       setData([]);
     }
   };
-
   useEffect(() => {
     fetchAchivement();
   }, []);

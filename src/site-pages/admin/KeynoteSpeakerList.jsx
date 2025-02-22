@@ -20,7 +20,7 @@ import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert"
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
-
+import validator from 'validator';
 const KeynoteSpeakerList = () => {
   const navigate = useNavigate();
   const { mrq_slider_id } = useParams();
@@ -193,7 +193,7 @@ const KeynoteSpeakerList = () => {
           <div className="container-fluid">
             <div className="">
               <nav className="breadcrumb">
-              <a href="/admin/home" className="breadcrumb-item">
+                <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
@@ -252,11 +252,10 @@ const KeynoteSpeakerList = () => {
                   </div>
                   <div className="col-md-3 col-lg-3 col-10 col-sm-4">
                     <button
-                      className={`btn ${
-                        recycleTitle === "Show Recycle Bin"
-                          ? "btn-secondary"
-                          : "btn-danger"
-                      }`}
+                      className={`btn ${recycleTitle === "Show Recycle Bin"
+                        ? "btn-secondary"
+                        : "btn-danger"
+                        }`}
                       onClick={showRecyleBin}
                     >
                       {recycleTitle} <i className="fa fa-recycle"></i>
@@ -287,7 +286,7 @@ const KeynoteSpeakerList = () => {
                         sortable
                       />
 
-                      <Column field="keynote_name" header="Name" sortable />
+                      <Column body={(row) => validator.unescape(row?.keynote_name || "")} header="Name" sortable />
                       <Column
                         header="Photo"
                         body={(rowData) => (

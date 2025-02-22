@@ -3,12 +3,10 @@ import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import {
-  PHP_API_URL,
-  NODE_API_URL,
-  CKEDITOR_URL
+  NODE_API_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
-import { useParams , Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
 const AddSpeciality = () => {
@@ -182,7 +180,7 @@ const AddSpeciality = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-              <a href="/admin/home" className="breadcrumb-item">
+                <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
                 <span className="breadcrumb-item active">CMS</span>
@@ -203,11 +201,11 @@ const AddSpeciality = () => {
                 >
                   <i className="fas fa-arrow-left" /> Go Back
                 </button>
-                 <Link to="/admin/specility">
-                                  <button className="ml-auto btn-md btn border-0 btn-primary mr-2">
-                                    <i className="fa-solid fa-list"></i> Speciality List
-                                  </button>
-                                </Link>
+                <Link to="/admin/specility">
+                  <button className="ml-auto btn-md btn border-0 btn-primary mr-2">
+                    <i className="fa-solid fa-list"></i> Speciality List
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -65,7 +65,6 @@ const Banner = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    centerMode: false,
     prevArrow: <CustomArrow direction="left" />,
     nextArrow: <CustomArrow direction="right" />,
   };
@@ -92,7 +91,6 @@ const Banner = () => {
               </div>
             ))
           }
-          <div className="ws_shadow" />
         </Slider>
       </div>
 

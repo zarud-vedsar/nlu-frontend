@@ -7,8 +7,7 @@ import { FaArrowLeft } from "react-icons/fa6";
 
 import { Link } from "react-router-dom";
 import {
-  NODE_API_URL,
-  PHP_API_URL,
+  NODE_API_URL
 } from "../../site-components/Helper/Constant";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
@@ -33,20 +32,24 @@ function MyVerticallyCenteredModal(props) {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {props?.selectedInternship?.title}
+          {validator.unescape(validator.unescape(props?.selectedInternship?.title || ""))}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div className="table-responsive d-flex flex-wrap">
-          {validator.unescape(props?.selectedInternship?.description || " ")}
-        </div>
+        <div
+          className="table-responsive d-flex flex-wrap"
+          dangerouslySetInnerHTML={{
+            __html: validator.unescape(validator.unescape(props?.selectedInternship?.description || ""))
+          }}
+        ></div>
+
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide} className="mx-auto">
           Close
         </Button>
       </Modal.Footer>
-    </Modal>
+    </Modal >
   );
 }
 
@@ -108,7 +111,6 @@ const Specility = () => {
           "An error occurred. Please check your connection or try again."
         );
       }
-    } finally {
     }
   };
 
@@ -145,7 +147,6 @@ const Specility = () => {
           "An error occurred. Please check your connection or try again."
         );
       }
-    } finally {
     }
   };
   const updateStatus = async (id) => {
@@ -162,12 +163,10 @@ const Specility = () => {
           faculty.id === id ? { ...faculty, status: !faculty.status } : faculty
         );
         toast.success(response.data.msg);
-
         setMessages(updatedFaculty);
       }
     } catch (error) {
       const status = error.response?.data?.status;
-
       if (status === 500) {
         toast.error(error.response.data.msg || "A server error occurred.");
       } else if (status == 400) {
@@ -177,7 +176,6 @@ const Specility = () => {
           "An error occurred. Please check your connection or try again."
         );
       }
-    } finally {
     }
   };
 
@@ -185,18 +183,16 @@ const Specility = () => {
     <>
       <div className="page-container">
         <div className="main-content">
-        <div className="container-fluid">
-
-          <div className="">
-            <nav className="breadcrumb">
-            <a href="/admin/home" className="breadcrumb-item">
+          <div className="container-fluid">
+            <div className="">
+              <nav className="breadcrumb">
+                <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
-
-              <span className="breadcrumb-item active">CMS</span>
-              <span className="breadcrumb-item active">Speciality</span>
-            </nav>
-          </div>
+                <span className="breadcrumb-item active">CMS</span>
+                <span className="breadcrumb-item active">Speciality</span>
+              </nav>
+            </div>
             <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
                 <h5 className="card-title h6_new">Speciality List</h5>
@@ -211,7 +207,6 @@ const Specility = () => {
                     </i>{" "}
                     Go Back
                   </Button>
-
                   <Link
                     variant="dark"
                     className="ml-2 mb-2 mb-md-0 btn btn-secondary"
@@ -225,7 +220,6 @@ const Specility = () => {
                 </div>
               </div>
             </div>
-
             <div className="card">
               <div className="card-body">
                 <div className="row">
@@ -243,18 +237,16 @@ const Specility = () => {
                   </div>
                   <div className="col-md-4 col-lg-4 col-5 col-sm-2">
                     <button
-                      className={`btn ${
-                        recycleTitle === "Show Recycle Bin"
-                          ? "btn-secondary"
-                          : "btn-danger"
-                      }`}
+                      className={`btn ${recycleTitle === "Show Recycle Bin"
+                        ? "btn-secondary"
+                        : "btn-danger"
+                        }`}
                       onClick={showRecyleBin}
                     >
                       {recycleTitle} <i className="fa fa-recycle"></i>
                     </button>
                   </div>
                 </div>
-
                 {loading ? (
                   <div className="text-center">
                     <Spinner animation="border" />
@@ -318,9 +310,7 @@ const Specility = () => {
                         )}
                         sortable
                       />
-
-                      <Column field="title" header="Title" sortable />
-
+                      <Column body={(row) => validator.unescape(validator.unescape(row?.title || ""))} header="Title" sortable />
                       <Column
                         style={{ width: "20%" }}
                         header="Action"

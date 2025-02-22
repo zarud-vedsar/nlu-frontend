@@ -5,6 +5,7 @@ import {
   NODE_API_URL,
   FILE_API_URL,
 } from "../../site-components/Helper/Constant";
+import { FaAngleRight } from 'react-icons/fa6'
 import { dataFetchingGet } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -64,13 +65,14 @@ const Faculty = () => {
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li>
-                      <Link to="/">Home</Link>
+                      <Link to="/">Home</Link> <FaAngleRight />
                     </li>
-                    <li>Faculty</li>
+                    <li><span>People</span> <FaAngleRight /></li> 
+                    <li><span>Faculty</span> <FaAngleRight /> </li>
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> 
           </div>
         </div>
       </div>

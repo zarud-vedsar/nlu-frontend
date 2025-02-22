@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import axios from "axios";
+import { FaAngleRight } from 'react-icons/fa6';
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 const Page = () => {
   const param = useParams();
@@ -54,6 +55,8 @@ const Page = () => {
                     <li>
                       <a href="Default-2.html">Home</a>
                     </li>
+                    <FaAngleRight />
+                     <li>About</li><FaAngleRight />
                     <li>{pageData?.ptitle}</li>
                   </ul>
                 </div>

@@ -14,6 +14,7 @@ function AboutDrRajendraPrasad() {
                                 <div className="breadcrumb-bar">
                                     <ul className="breadcrumb text-center">
                                         <li><Link to="/">Home</Link></li> <FaAngleRight />
+                                          <li>About</li><FaAngleRight />
                                         <li>About Dr. Rajendra Prasad</li>
                                     </ul>
                                 </div>

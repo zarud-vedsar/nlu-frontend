@@ -5,7 +5,8 @@ import {
   NODE_API_URL,
   FILE_API_URL,
 } from "../../site-components/Helper/Constant";
-import { useParams } from "react-router-dom";
+import { FaAngleRight } from 'react-icons/fa6'
+import { useParams, Link } from "react-router-dom";
 import { dataFetchingGet } from "../../site-components/Helper/HelperFunction";
 import DOMPurify from "dompurify";
 import validator from 'validator';
@@ -107,10 +108,12 @@ const DetailFaculty = () => {
                 <h1 className="text-center">Our Faculty</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                    <li>
-                      <a href="default.html">Home</a>
-                    </li>
-                    <li>Faculty</li>
+                   <li>
+                                        <Link to="/">Home</Link> <FaAngleRight />
+                                      </li>
+                                      <li><span>People</span> <FaAngleRight /></li> 
+                                      <li> <Link to='/faculty'>Faculty</Link> <FaAngleRight /> </li>
+                                      <li><span>Our Faculty</span></li> 
                   </ul>
                 </div>
               </div>

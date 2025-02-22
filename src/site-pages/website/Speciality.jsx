@@ -64,7 +64,7 @@ const HarukiTabs = () => {
   return (
     <div className="haruki_tabs-container mx-auto">
       <div className="haruki_tabs-header flex border-b">
-        {["Specialities", "Facilities", "Academic Calendar"].map((tab, index) => (
+        {["Specialities", "Facilities"].map((tab, index) => (
           <button
             key={index}
             className={`haruki_tab-button source-font transition-all ${activeTab === index
@@ -126,13 +126,24 @@ const HarukiTabs = () => {
 
 const Speciality = () => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-md-12">
-          <HarukiTabs />
+    <section className="section">
+      <div className="container">
+        <div className="row">
+          <div className='col-md-12 mb-3 text-center'>
+            <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Why Study at RPNLU?</h2>
+            <div className='heading-divider'></div>
+            <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+              Experience excellence in legal education with expert faculty, modern infrastructure, and career-focused learning.
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <HarukiTabs />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

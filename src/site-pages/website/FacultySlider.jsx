@@ -86,12 +86,14 @@ const FacultySlider = () => {
           data-aos-delay="100"
         >
           <div className="container">
-            <div className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage" style={{ position: "relative" }}>
+            <div className="col-md-10 mx-auto text-center my-4" style={{ position: "relative" }}>
               <div>
-                <h2 className="heading-primary2 source-font">Faculty & Staff</h2>
-                <div className="heading-divider"></div>
+                <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Meet Our Faculty & Staff</h2>
+                <div className='heading-divider'></div>
+                <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+                  Meet the dedicated educators and professionals shaping our institution.
+                </p>
               </div>
-              <Link to="/faculty" className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>All Faculty Members<FaArrowRightLong /></Link>
             </div>
             <div className="row">
               <div className="col-md-3 col-lg-3">

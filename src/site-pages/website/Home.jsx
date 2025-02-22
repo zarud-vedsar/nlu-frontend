@@ -35,6 +35,7 @@ function Home() {
       {/* <HomeVideo /> */}
       <WhyChoose />
       <FacultySlider />
+      {/* <HomeVideo /> */}
       <CampusLife />
       <Speciality />
       {/* <ContactFeatures /> */}

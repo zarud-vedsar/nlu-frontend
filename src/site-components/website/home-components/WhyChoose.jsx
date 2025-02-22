@@ -17,9 +17,12 @@ const WhyChoose = () => {
       <section className="section bg-white" data-aos="fade-right" data-aos-delay="100">
         <div className="container">
           <div className="row">
-            <div className='col-md-12 mb-3 text-center'>
+            <div className='col-md-10 mx-auto mb-3 text-center'>
               <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Why Choose Us</h2>
-              <div className="heading-divider"></div>
+              <div className='heading-divider'></div>
+              <p className="text-center mt-3 mb-1 source-font" style={{ fontSize: '28px' }}>
+                Excellence in legal education with a legacy of academic brilliance and professional success.
+              </p>
             </div>
           </div>
 
@@ -33,8 +36,8 @@ const WhyChoose = () => {
                   src={AcademicPng}
                   alt="Best Industry Leaders"
                 />
-                <h4 className="wc-title butler-regular">Academic Excellence</h4>
-                <p className="wc-text gorditas-regular">Our interdisciplinary curriculum and innovative teaching methodologies ensure a deep understanding of legal principles and their practical applications.</p>
+                <h4 className="wc-title text-center mt-3 mb-1 source-font">Academic Excellence</h4>
+                <p className="wc-text text-center mt-3 mb-1 source-font">Our interdisciplinary curriculum and innovative teaching methodologies ensure a deep understanding of legal principles and their practical applications.</p>
               </div>
             </div>
             {/* Column 2: Learn Courses Online */}
@@ -46,8 +49,8 @@ const WhyChoose = () => {
                   src={Distinguished}
                   alt="Learn Courses Online"
                 />
-                <h4 className="wc-title butler-regular">Distinguished Faculty</h4>
-                <p className="wc-text gorditas-regular">Learn from renowned legal scholars and industry experts who are committed to mentoring and guiding students.</p>
+                <h4 className="wc-title text-center mt-3 mb-1 source-font">Distinguished Faculty</h4>
+                <p className="wc-text text-center mt-3 mb-1 source-font">Learn from renowned legal scholars and industry experts who are committed to mentoring and guiding students.</p>
               </div>
             </div>
             {/* Column 3: Scholarship Facility */}
@@ -59,8 +62,8 @@ const WhyChoose = () => {
                   src={Holistic}
                   alt="Scholarship Facility"
                 />
-                <h4 className="wc-title butler-regular">Holistic Development</h4>
-                <p className="wc-text gorditas-regular">We provide numerous opportunities for moot courts, internships, debates, and workshops, fostering both professional and personal growth.</p>
+                <h4 className="wc-title text-center mt-3 mb-1 source-font">Holistic Development</h4>
+                <p className="wc-text text-center mt-3 mb-1 source-font">We provide numerous opportunities for moot courts, internships, debates, and workshops, fostering both professional and personal growth.</p>
               </div>
             </div>
           </div>

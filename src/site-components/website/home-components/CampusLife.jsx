@@ -19,7 +19,7 @@ const CampusLife = () => {
             <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Campus Life</h2>
             <div className="heading-divider"></div>
             <p className="text-center mt-3 mb-1 id-sub-title id-sub-title-mobile-view">
-              Experience a Fulfilling Campus Life with Vibrant Hostels, Exciting Sports, and Holistic Wellness.
+              Experience a Fulfilling Campus Life with Vibrant Hostels, Exciting Sports, and Holistic Wellness
             </p>
           </div>
         </div>

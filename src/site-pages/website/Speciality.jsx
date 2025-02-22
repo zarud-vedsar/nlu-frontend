@@ -133,7 +133,7 @@ const Speciality = () => {
             <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Why Study @ RPNLUP ?</h2>
             <div className='heading-divider'></div>
             <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-              Excellence in Legal Education with a Legacy of Academic Brilliance and Professional Success.
+              Excellence in Legal Education with a Legacy of Academic Brilliance and Professional Success
             </p>
           </div>
         </div>

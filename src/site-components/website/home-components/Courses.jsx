@@ -39,7 +39,7 @@ const Courses = () => {
             <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Courses We Offer</h2>
             <div className='heading-divider'></div>
             <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-              Explore Our Comprehensive Courses Crafted for Academic Achievement and Professional success
+              Explore Our Comprehensive Courses Crafted for Academic Achievement and Professional Success
             </p>
           </div>
           <div className="row mt-2 pr-0">

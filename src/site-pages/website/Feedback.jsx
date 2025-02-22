@@ -116,7 +116,7 @@ const Feedback = () => {
               />
             </div>
             <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-              <h4 className="heading-primary2 butler-regular">Share Your Thoughts With Us</h4>
+              <h4 className="heading-primary2 butler-regular source-font">Share Your Thoughts With Us</h4>
               <div className="contact-form">
                 <div className="card border-0">
                   <div className="card-body">

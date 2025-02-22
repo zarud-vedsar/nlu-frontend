@@ -115,7 +115,7 @@ const Grievance = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-              <h4 className="heading-primary2 butler-regular">Express Your Concerns or Complaints</h4>
+              <h4 className="heading-primary2 butler-regular source-font">Express Your Concerns or Complaints</h4>
               <div className="contact-form">
                 <div className="card border-0">
                   <div className='card-body'>

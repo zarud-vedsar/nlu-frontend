@@ -13,13 +13,13 @@ function EqualOpportunityCell() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="breadcrumb-text">
-                                <h1 className="text-center">Equal Opportunity Cell</h1>
+                                <h1 className="text-center source-font">Equal Opportunity Cell</h1>
                                 <div className="breadcrumb-bar">
                                     <ul className="breadcrumb text-center">
                                         <li>
                                             <Link to="/">Home</Link> <FaAngleRight />
                                         </li>
-                                        <li>Cells</li> <FaAngleRight />
+                                        <li>More Links</li> <FaAngleRight />
                                         <li>Equal Opportunity Cell</li>
                                     </ul>
                                 </div>
@@ -32,21 +32,21 @@ function EqualOpportunityCell() {
                 <div className='container'>
                     <div className='row'>
                         <div className='col-md-12 text-center'>
-                            <h1 className='heading-primary'>Equal Opportunity Cell</h1>
+                            <h1 className='heading-primary source-font'>Equal Opportunity Cell</h1>
                         </div>
                         <div className='col-md-12'>
                             <div className='card border-0'>
                                 <div className='card-body'>
                                     <div className='row'>
                                         <div className='col-md-12'>
-                                            <p className='text-justify'>
+                                            <p className='text-justify source-font'>
                                                 Dr. Rajendra Prasad National Law University, Prayagraj (RPNLU) is committed to fostering an
                                                 inclusive and equitable academic environment.
                                                 In consideration of the UGC (Promotion of Equity in Higher Educational Institutions),
                                                 Regulations, 2012 (notified vide GOI Notification dated 17th December, 2012),
                                                 Honourable Vice Chancellor has constituted the <strong>Equal Opportunity Cell (EOC)</strong>. To address concerns related to marginalization and exclusion, The EOC aims to ensure that students, faculty, and staff from diverse backgrounds, including those marginalized based on caste, creed, religion, language, ethnicity, sexual orientation, gender, and disability, receive the necessary support and protection against discrimination.
                                             </p>
-                                            <p>The advisory committee of RPNLU, Prayagraj comprises the following member(s):</p>
+                                            <p className='source-font'>The advisory committee of RPNLU, Prayagraj comprises the following member(s):</p>
                                         </div>
                                         <div className='col-md-3'>
                                             <div className="faculty-slide border-0">
@@ -109,7 +109,7 @@ function EqualOpportunityCell() {
                                             </div>
                                         </div>
                                         <div className='col-md-12'>
-                                            <h2 className='heading-primary2'>Mandate:</h2>
+                                            <h2 className='heading-primary2 source-font'>Mandate:</h2>
                                             <style jsx>
                                                 {` ul.custom-list {
                                                     list - style: none; /* Removes default bullets */
@@ -191,38 +191,38 @@ function EqualOpportunityCell() {
                                             </style>
 
                                             <div className="procedure-container">
-                                                <h2>Procedure for Filing and Addressing Complaints</h2>
+                                                <h2 className='source-font'>Procedure for Filing and Addressing Complaints</h2>
 
-                                                <h3>Filing a Complaint:</h3>
+                                                <h3 className='source-font'>Filing a Complaint:</h3>
                                                 <ul>
                                                     <li>Any student or staff member of RPNLU, Prayagraj may report a complaint by filling the form given below or by emailing to <a href="mailto:sonika@rpnlup.ac.in">sonika@rpnlup.ac.in</a>.</li>
                                                 </ul>
 
-                                                <h3>Preliminary Inquiry:</h3>
+                                                <h3 className='source-font'>Preliminary Inquiry:</h3>
                                                 <ul>
                                                     <li>Upon receiving a complaint, the Equal Opportunity Cell (EOC) will conduct an initial inquiry.</li>
                                                     <li>Within 10 days, the EOC will determine the necessary follow-up actions, ensuring due process is followed.</li>
                                                     <li>The nature of the complaint and the parties involved will be considered before recommending further steps.</li>
                                                 </ul>
 
-                                                <h3>Possible Courses of Action:</h3>
+                                                <h3 className='source-font'>Possible Courses of Action:</h3>
                                                 <ul>
                                                     <li>Counselling, Mediation, or Negotiation for an amicable resolution.</li>
                                                     <li>For complaints involving students, referral to the appropriate committee/authority under RPNLU, Prayagraj existing regulations.</li>
                                                     <li>For complaints involving faculty or staff, the Registrar will be requested to appoint a third member to the EOC, forming an Inquiry Committee. This committee will have the authority to enforce discipline and take appropriate disciplinary measures.</li>
                                                 </ul>
 
-                                                <h3>Appeal Process:</h3>
+                                                <h3 className='source-font'>Appeal Process:</h3>
                                                 <ul>
                                                     <li>In cases concerning faculty or staff, any person dissatisfied with the EOC’s recommendations may appeal to the Vice-Chancellor within 10 days from the date of the recommendation.</li>
                                                 </ul>
 
-                                                <h3>Timelines for Resolution:</h3>
+                                                <h3 className='source-font'>Timelines for Resolution:</h3>
                                                 <ul>
                                                     <li>The entire process, from complaint submission to resolution, shall be completed within 60 days.</li>
                                                 </ul>
 
-                                                <h3>Annual Reporting:</h3>
+                                                <h3 className='source-font'>Annual Reporting:</h3>
                                                 <ul>
                                                     <li>At the end of each academic year, the EOC will submit an Action Taken Report to the University administration.</li>
                                                     <li>This report will include the number of complaints received, actions taken, and policy recommendations for the upcoming academic year.</li>
@@ -231,7 +231,7 @@ function EqualOpportunityCell() {
 
                                         </div>
                                         <div className='col-md-6 mt-3 bg-f5 py-3 px-4'>
-                                            <h3 style={{ fontSize: '1.4em' }} className='heading-primary2 text-primary'>For grievance redressal or any concerns regarding discrimination, students, faculty, and staff can file complaint here-</h3>
+                                            <h3 style={{ fontSize: '1.4em' }} className='heading-primary2 text-primary source-font'>For grievance redressal or any concerns regarding discrimination, students, faculty, and staff can file complaint here-</h3>
                                             <CellForm type="equal-opportunity-cell" />
                                         </div>
                                     </div>

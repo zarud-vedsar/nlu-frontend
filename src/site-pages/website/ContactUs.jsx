@@ -122,7 +122,7 @@ const ContactUs = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12 text-center">
-              <h3 className="heading-primary2 butler-regular">General Contact Information</h3>
+              <h3 className="heading-primary2 butler-regular source-font">General Contact Information</h3>
               <div className="heading-divider mb-4"></div>
             </div>
             <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
@@ -196,7 +196,7 @@ const ContactUs = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h3 className="heading-primary2 butler-regular">Get In Touch with Us</h3>
+              <h3 className="heading-primary2 butler-regular source-font">Get In Touch with Us</h3>
               <div className="heading-divider mb-4"></div>
             </div>
             <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12">

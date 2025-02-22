@@ -309,6 +309,12 @@ function Header() {
                     >
                       Equal Opportunity Cell
                     </Link>
+                    <Link
+                      to="/academic-calendar"
+                      className="navigation__item_drop_link"
+                    >
+                      Academic Calendar
+                    </Link>
                   </div>
                 </li>
               </ul>

@@ -35,6 +35,7 @@ import '../site-components/website/assets/css/dynamics/dds_News.css';
 const KeyNote = lazy(() => import('../site-components/website/home-components/KeyNote.jsx'));
 const Home = lazy(() => import('../site-pages/website/Home'));
 const EqualOpportunityCell = lazy(() => import('../site-pages/website/EqualOpportunityCell'));
+const AcademicCalendar = lazy(() => import('../site-pages/website/AcademicCalendar'));
 const Header = lazy(() => import('../site-components/website/common/Header'));
 const SideChipkaHuaTag = lazy(() => import('../site-components/website/common/SideChipkaHuaTag'));
 const Footer = lazy(() => import('../site-components/website/common/Footer'));
@@ -136,6 +137,7 @@ function WebsiteRoute() {
           <Route path='/job/apply/:id' element={<JobDetailForm />} />
           <Route path='/marquee/:mrId' element={<KeyNote />} />
           <Route path='/equal-opportunity-cell' element={<EqualOpportunityCell />} />
+          <Route path='/academic-calendar' element={<AcademicCalendar />} />
           <Route path="*" element={<Navigate to="/page-not-found" />} />
         </Routes>
         <Footer />

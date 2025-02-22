@@ -335,13 +335,13 @@ const Footer = () => {
                     : ""}
                 </span>
                 <span className="visitor-counting">
-                  Visitor:{" "}
+                 Unique Visitor:{" "}
                   {visitorData?.data &&
                     visitorData.data
                       .toString()
                       .split("")
                       .map((data, index) => (
-                        <span className="id-visitor-data" key={index}>
+                        <span className="id-visitor-data mr-1" key={index}>
                           {data}
                         </span>
                       ))}

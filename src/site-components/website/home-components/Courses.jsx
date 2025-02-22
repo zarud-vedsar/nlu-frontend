@@ -5,7 +5,9 @@ import axios from "axios";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import validator from 'validator';
-import LlmCourseImg from '../assets/Images/course-llm.jpg'
+import LlmCourseImg from '../assets/Images/course-llm.jpg';
+import PhdCourseImg from '../assets/Images/phd-1.png';
+import BaLlbCourseImg from '../assets/Images/ba-llb.png';
 const Courses = () => {
   const [course, setCourse] = useState([]);
   useEffect(() => {
@@ -44,7 +46,7 @@ const Courses = () => {
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 mt-1 text-center">
               <Link to={`/courses/1`}>
                 <div className="course-img-container">
-                  <img src={"https://mymindgreatone.co.in/public/upload/f4c64fda-e1e2-4ad9-97bb-2421676d4aa7.jpg"} className="course-image" alt="Course Image" style={{ height: '230px' }} />
+                  <img src={BaLlbCourseImg} className="course-image" alt="Course Image" style={{ height: '230px' }} />
                 </div>
                 <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
                   <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
@@ -70,7 +72,7 @@ const Courses = () => {
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 mt-1 text-center">
               <Link to={`/courses/2`}>
                 <div className="course-img-container">
-                  <img src={"https://mymindgreatone.co.in/public/upload/a8886d4e-d6ec-4ed0-935f-0178027d39fb.jpg"} className="course-image" alt="Course Image" style={{ height: '230px' }} />
+                  <img src={PhdCourseImg} className="course-image" alt="Course Image" style={{ height: '230px' }} />
                 </div>
                 <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
                   <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>

@@ -2,10 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   PHP_API_URL,
-  NODE_API_URL,
-  FILE_API_URL,
+  FILE_API_URL
 } from "../../site-components/Helper/Constant";
-import { dataFetchingGet } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +15,7 @@ const Faculty = () => {
       first_name: "Sr. Prof. Dr. Usha ",
       last_name: "Tandon",
       designation: "Vice Chancellor",
-      id:1
+      id: 1
     },
   ]);
 
@@ -126,9 +124,8 @@ const Faculty = () => {
                             </a>
                           )}
                           <div className="staf-info__speciality">
-                            <p>{`${
-                              faculty.designation ? faculty.designation : " "
-                            }`}</p>
+                            <p>{`${faculty.designation ? faculty.designation : " "
+                              }`}</p>
                           </div>
                           <button
                             className="team-btn react_button"

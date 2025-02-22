@@ -8,6 +8,11 @@ import { useParams, Link } from "react-router-dom";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
 import { FormField } from "../../../site-components/admin/assets/FormField";
+import {
+  
+  formatDate,
+  
+} from "../../../site-components/Helper/HelperFunction";
 const AddCalendar = () => {
   const initialForm = {
     title: "",
@@ -53,11 +58,14 @@ const AddCalendar = () => {
       if (response.data.statusCode === 200) {
         setFormData((prev) => ({
           ...prev,
-          title: validator.unescape(response.data?.data[0].title || ""),
-          date: response?.data?.data[0]?.date?.split("T")[0],
-
-          content: validator.unescape(response.data?.data[0].content || ""),
+          title: validator.unescape(response.data?.data[0]?.title || ""),
+          date: response?.data?.data[0]?.date
+            ? new Date(response.data.data[0].date)
+                .toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" }) // Formats as YYYY-MM-DD
+            : "",
+          content: validator.unescape(response.data?.data[0]?.content || ""),
         }));
+      console.log()
       }
     } catch (error) {
       const status = error.response?.statusCode;

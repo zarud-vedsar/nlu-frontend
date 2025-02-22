@@ -6,7 +6,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import validator from 'validator';
 import LlmCourseImg from '../assets/Images/course-llm.jpg';
-import PhdCourseImg from '../assets/Images/phd-1.png';
+import PhdCourseImg from '../assets/Images/phd.png';
 import BaLlbCourseImg from '../assets/Images/ba-llb.png';
 const Courses = () => {
   const [course, setCourse] = useState([]);

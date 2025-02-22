@@ -177,8 +177,9 @@ function AcademicCalendar() {
                       startAccessor="start"
                       endAccessor="end"
                       views={["month"]}
-                      style={{ height: 500 }}
+                      style={{ height: 700 }}
                       onNavigate={handleNavigate} // Capture navigation
+                      
                       components={{
                         toolbar: CustomToolbar,
                         event: EventComponent,
@@ -206,13 +207,18 @@ function AcademicCalendar() {
     
     max-width: 100%;
     overflow: auto;
+    
         }
           .rbc-event {
             background-color: #559be6 !important;
             color: white !important;
             border-radius: 5px !important;
             padding: 5px !important;
+         
           }
+            .rbc-day-bg{
+               height:300px !important;
+            }
           /* Custom Toolbar */
           .custom-toolbar {
             display: flex;

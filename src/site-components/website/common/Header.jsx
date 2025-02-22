@@ -242,6 +242,13 @@ function Header() {
                       Registration
                     </Link>
                     <Link
+                      to="/student/login"
+                      target="_blank"
+                      className="navigation__item_drop_link"
+                    >
+                      Login
+                    </Link>
+                    <Link
                       to="/student/internship"
                       target="_blank"
                       className="navigation__item_drop_link"

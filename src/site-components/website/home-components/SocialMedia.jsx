@@ -30,7 +30,7 @@ const SocialMedia = () => {
               <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device ">Follow Us on Social Media</h2>
               <div className="heading-divider"></div>
               <p className="text-center mt-3 mb-1 id-sub-title id-sub-title-mobile-view">
-                Stay connected with us! Follow us on social media for the latest updates, exclusive content, and more.
+                Stay Connected! Follow Us for the Latest Updates, Exclusive Content, and More
               </p>
             </div>
           </div>

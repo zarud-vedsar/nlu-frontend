@@ -97,7 +97,7 @@ function UserTestimonials() {
             <h2 className="heading-primary2 source-font id-title-font-size id-title-font-size-mobile-device">What Our Students Have to Say</h2>
             <div className="heading-divider"></div>
             <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-              Discover what our students say about their journey at RPNLU.
+              Discover What Students Say About Their Journey at RPNLUP
             </p>
           </div>
         </div>

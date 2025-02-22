@@ -66,7 +66,7 @@ const Faculty = () => {
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
                     <li><span>People</span> <FaAngleRight /></li> 
-                    <li><span>Faculty</span> <FaAngleRight /> </li>
+                    <li><span>Faculty</span></li>
                   </ul>
                 </div>
               </div>

@@ -86,7 +86,7 @@ const VisionMission = () => {
                   <div className="col-md-12 col-lg-12 col-12 col-sm-12">
                     <div className="section-title-wrapper">
                       <div className="section-title">
-                        <h3 className="heading-primary3 butler-regular">{vision.title}</h3>
+                        <h3 className="heading-primary3 butler-regular source-font">{vision.title}</h3>
                       </div>
                     </div>
                   </div>
@@ -95,7 +95,7 @@ const VisionMission = () => {
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
                     <div className="d-flex h-100 align-items-center">
-                      <p className="heading-para gorditas-regular m-0" dangerouslySetInnerHTML={{ __html: decodedMessagesVision }} />
+                      <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesVision }} />
                     </div>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ const VisionMission = () => {
                   <div className="col-md-12 col-lg-12 col-12 col-sm-12">
                     <div className="section-title-wrapper">
                       <div className="section-title">
-                        <h3 className="heading-primary3 butler-regular">{mission.title}</h3>
+                        <h3 className="heading-primary3 butler-regular source-font">{mission.title}</h3>
                       </div>
                     </div>
                   </div>
@@ -112,7 +112,7 @@ const VisionMission = () => {
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
                     <div className="d-flex h-100 align-items-center">
-                      <p className="heading-para gorditas-regular m-0" dangerouslySetInnerHTML={{ __html: decodedMessagesMission }} />
+                      <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesMission }} />
                     </div>
                   </div>
                 </div>

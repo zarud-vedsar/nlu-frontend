@@ -93,7 +93,7 @@ const DetailFaculty = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumb-text">
-                <h1 className="text-center">Our Faculty</h1>
+                <h1 className="text-center">Faculty Profile</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                    <li>
@@ -101,7 +101,7 @@ const DetailFaculty = () => {
                                       </li>
                                       <li><span>People</span> <FaAngleRight /></li> 
                                       <li> <Link to='/faculty'>Faculty</Link> <FaAngleRight /> </li>
-                                      <li><span>Our Faculty</span></li> 
+                                      <li><span>Faculty Profile</span></li> 
                   </ul>
                 </div>
               </div>
@@ -130,7 +130,7 @@ const DetailFaculty = () => {
             </div>
             <div className="informationttx">
               {facultyData?.first_name && (
-                <p className="fac-del-heading">{`${facultyData?.first_name}  ${facultyData?.last_name}`}</p>
+                <p className="fac-del-heading source-font">{`${facultyData?.first_name}  ${facultyData?.last_name}`}</p>
               )}
               {facultyData.designationid && (
                 <p className="fac-del-heading1">
@@ -179,7 +179,7 @@ const DetailFaculty = () => {
           </div>
           <div className="description">
 
-            <div className="profhdd">Profile</div>
+            <div className="profhdd source-font">Profile</div>
             {facultyData.discription && (
               <div
                 dangerouslySetInnerHTML={{

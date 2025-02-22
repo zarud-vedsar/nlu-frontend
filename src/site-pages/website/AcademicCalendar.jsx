@@ -15,6 +15,8 @@ const localizer = momentLocalizer(moment);
 function MyVerticallyCenteredModal(props) {
   return (
     <Modal {...props} size="lg" centered>
+              <Modal.Header>{props?.modalMessage?.title}</Modal.Header>
+        
       <Modal.Body>
         <div
           className="mt-4"
@@ -26,9 +28,9 @@ function MyVerticallyCenteredModal(props) {
         ></div>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide} className="mx-auto">
+        <button onClick={props.onHide} className="mx-auto border-0 btn btn-secondary">
           Close
-        </Button>
+        </button>
       </Modal.Footer>
     </Modal>
   );
@@ -44,19 +46,19 @@ const CustomToolbar = ({ label, onNavigate }) => {
   }, []);
   return (
     <div className="custom-toolbar d-flex justify-content-between align-items-center">
-      <button className="btn btn-primary" onClick={() => onNavigate("PREV")}>
+      <button className="btn btn-primary border-0" onClick={() => onNavigate("PREV")}>
       <i class="fa-solid fa-arrow-left"></i> {!isMobile &&  `Previous` }
       </button>
       <h6 className="mb-0">{label}</h6>
       <div className="d-flex align-items-center">
         <button
-          className="btn btn-secondary ms-2"
+          className="btn btn-secondary ms-2 border-0"
           style={{ marginRight: "10px" }}
           onClick={() => onNavigate("TODAY")}
         >
           Today
         </button>
-        <button className="btn btn-primary" onClick={() => onNavigate("NEXT")}>
+        <button className="btn btn-primary border-0" onClick={() => onNavigate("NEXT")}>
          {!isMobile && `Next` } <i class="fa-solid fa-arrow-right"></i>
         </button>
       </div>
@@ -199,6 +201,12 @@ function AcademicCalendar() {
       />
       <style jsx>
         {`
+        .modal-body {
+    max-height: 600px;
+    
+    max-width: 100%;
+    overflow: auto;
+        }
           .rbc-event {
             background-color: #559be6 !important;
             color: white !important;
@@ -212,7 +220,7 @@ function AcademicCalendar() {
             align-items: center;
             gap: 10px;
             padding: 10px;
-            
+            padding-bottom:20px;
             border-radius: 8px;
             margin-bottom: 10px;
           }

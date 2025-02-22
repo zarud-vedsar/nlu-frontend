@@ -45,11 +45,11 @@ const Courses = () => {
                 <div className="course-img-container">
                   <img src={"https://mymindgreatone.co.in/public/upload/f4c64fda-e1e2-4ad9-97bb-2421676d4aa7.jpg"} className="course-image" alt="Course Image" style={{ height: '230px' }} />
                 </div>
-                <div className="course-detail d-flex justify-content-between align-items-center text-center pt-3">
-                  <h3 className="course-detail-title heading-primary2 source-font">
-                    B.A. LL.B. (Hons.)
+                <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
+                  <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
+                    Bachelor of Arts and Bachelor of Laws with Honours (B.A. LL.B. (Hons.))
                   </h3>
-                  <h4 className="course-learn-more">Read More <FaArrowRightLong /></h4>
+                  <h4 className="course-learn-more mt-3">Read More <FaArrowRightLong /></h4>
                 </div>
               </Link>
             </div>
@@ -58,11 +58,11 @@ const Courses = () => {
                 <div className="course-img-container">
                   <img src={"https://mymindgreatone.co.in/public/upload/d7964460-36dd-4091-ba7e-c26f7fc2f387.jpg"} className="course-image" alt="Course Image" style={{ height: '230px' }} />
                 </div>
-                <div className="course-detail d-flex justify-content-between align-items-center text-center pt-3">
-                  <h3 className="course-detail-title heading-primary2 source-font">
-                    LL.M.
+                <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
+                  <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
+                    Master of Laws (LL. M.)
                   </h3>
-                  <h4 className="course-learn-more">Read More <FaArrowRightLong /></h4>
+                  <h4 className="course-learn-more mt-3">Read More <FaArrowRightLong /></h4>
                 </div>
               </Link>
             </div>
@@ -71,11 +71,11 @@ const Courses = () => {
                 <div className="course-img-container">
                   <img src={"https://mymindgreatone.co.in/public/upload/a8886d4e-d6ec-4ed0-935f-0178027d39fb.jpg"} className="course-image" alt="Course Image" style={{ height: '230px' }} />
                 </div>
-                <div className="course-detail d-flex justify-content-between align-items-center text-center pt-3">
-                  <h3 className="course-detail-title heading-primary2 source-font">
-                    Ph.D.
+                <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
+                  <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
+                    Doctor of Philosophy in Law (Ph.D.)
                   </h3>
-                  <h4 className="course-learn-more">Read More <FaArrowRightLong /></h4>
+                  <h4 className="course-learn-more mt-3">Read More <FaArrowRightLong /></h4>
                 </div>
               </Link>
             </div>

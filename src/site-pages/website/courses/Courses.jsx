@@ -15,22 +15,22 @@ const Courses = () => {
 
   const content = [
     {
-      fun: "about", title: "about"
+      fun: "about", title: "ABOUT"
     },
     {
-      fun: "load_sllaybus", title: "syllabus"
+      fun: "load_sllaybus", title: "SYLLABUS"
     },
     {
-      fun: "load_seminar", title: "seminar/workshop"
+      fun: "load_seminar", title: "SEMINAR/WORKSHOP"
     },
     {
-      fun: "load_timetable", title: "Time Table"
+      fun: "load_timetable", title: "TIME TABLE"
     },
     {
-      fun: "load_activity", title: "Activity"
+      fun: "load_activity", title: "ACTIVITY"
     },
     {
-      fun: "load_feestructure", title: "Fee Structure"
+      fun: "load_feestructure", title: "FEE STRUCTURE"
     },
   ];
 

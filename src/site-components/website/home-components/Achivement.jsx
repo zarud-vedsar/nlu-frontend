@@ -36,13 +36,12 @@ const Achivement = () => {
       setData([]);
     }
   };
-
   useEffect(() => {
     fetchAchivement();
   }, []);
 
   const sliderSettings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,

@@ -82,9 +82,12 @@ const Achivement = () => {
       <section className="achivement" data-aos="fade-up" data-aos-delay="100">
         <div className="container id-position-relative">
           <div className="row">
-            <div className="col-md-12 mb-3 text-center">
-            <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>Our Achievements</h2>
-              <div className="heading-divider"></div>
+            <div className='col-md-12 mb-3 text-center'>
+              <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Our Achievements</h2>
+              <div className='heading-divider'></div>
+              <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
+                Celebrating our journey of excellence, awards, and recognitions.
+              </p>
             </div>
           </div>
           <div className="row">

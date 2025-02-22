@@ -5449,10 +5449,19 @@ table.table.tblpad-10>tbody>tr>td {
 	gap: 40px;
 
 }
+
+.galbbxx {
+	width: 25%;
+	padding: 10px;
+
+}
 @media (max-width:768px) {
 	.contentttr {
 		flex-direction:column;
 		gap:0;
+	}
+	.galbbxx {
+		width: 50%;
 	}
 	.imagecont {
 		width: 100%;

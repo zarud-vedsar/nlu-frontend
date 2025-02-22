@@ -106,7 +106,7 @@ const Message = () => {
 
                 </div>
               </div>
-              <div className="col-md-5">
+              <div className="col-md-5 mt-3">
                 <div className="image-post1">
                   <div className="vicemsgsec-img-sec1">
                     <video className="vidmsg"

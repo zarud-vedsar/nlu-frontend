@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import axios from "axios";
-import { NODE_API_URL } from "../../site-components/Helper/Constant";
 const Page = () => {
   const param = useParams();
   const [pageData, setPageData] = useState();
@@ -23,7 +22,7 @@ const Page = () => {
         }
       );
       sethtml(response.data);
-    } catch (error) { }
+    } catch (e) { /* empty */ }
   };
 
   useEffect(() => {
@@ -37,9 +36,8 @@ const Page = () => {
       const response = await axios.post(`${PHP_API_URL}/page.php`, bformData);
       decodeHtml(response?.data?.data[0].page_content);
       setPageData(response.data.data[0]);
-    } catch (e) {
-    } finally {
-    }
+      // eslint-disable-next-line no-unused-vars
+    } catch (e) { /* empty */ }
   };
   return (
     <>
@@ -65,94 +63,12 @@ const Page = () => {
       <div className="about-page-area section-padding">
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-              <div className="section-title-wrapper">
-                <div className="section-title">
-                  <h3>Governance</h3>
-                </div>
-              </div>
-              <ul className="mcd-menu">
-                <li>
-                  <Link to="/chairperson" className="active">
-                    <i className="fa fa-university" />
-                    <strong>Chairperson</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/visitor">
-                    <i className="fa fa-university" />
-                    <strong>Visitor</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/chancellor">
-                    <i className="fa fa-university" />
-                    <strong>Chancellor</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/vice-chancellor">
-                    <i className="fa fa-university" />
-                    <strong>Vice Chancellor</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/finance-controller">
-                    <i className="fa fa-university" />
-                    <strong>Finance Controller</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li>
-                {/* <li>
-                  <Link to="/registrar">
-                    <i className="fa fa-university" />
-                    <strong>Registrar</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/general-council">
-                    <i className="fa fa-university" />
-                    <strong>General Council</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/executive-council">
-                    <i className="fa fa-university" />
-                    <strong>Executive Council</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/academic-council">
-                    <i className="fa fa-university" />
-                    <strong>Academic Council</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li> */}
-                {/* <li>
-                  <Link to="/finance-committee">
-                    <i className="fa fa-university" />
-                    <strong>Finance Committee</strong>
-                    <small>National Law University Prayagraj</small>
-                  </Link>
-                </li> */}
-              </ul>
-            </div>
-
-            <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div className="section-title-wrapper">
                 <div className="section-title">
                   <h3>{pageData?.ptitle}</h3>
                 </div>
               </div>
-
-
               {pageData?.page_type != "pdf" && (
                 <div className="about-text-container">
                   <p>

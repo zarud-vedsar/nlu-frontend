@@ -94,18 +94,17 @@ const Gallery = () => {
   };
 
   return (
-    <div className="gallery-section" data-aos="fade-up" data-aos-delay="100">
-      <div className="container  my-4 py-2">
+    <div className="section" data-aos="fade-up" data-aos-delay="100">
+      <div className="container">
         <div className="row">
           <div className="col-md-12 col-12 col-sm-12 text-center" style={{ position: "relative" }}>
-            <h2 className="heading-primary2 source-font">Visual Highlights</h2>
+            <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Visual Highlights</h2>
             <div className="heading-divider"></div>
-            <p className="text-center mt-3 mb-1 id-campus-life-mobile-view" style={{ fontSize: '28px' }}>
+            <p className="text-center mt-3 mb-1 id-sub-title id-sub-title-mobile-view">
               Explore our gallery and experience the highlights in pictures.
             </p>
           </div>
         </div>
-        <Link to="/image-gallery" target='_blank' className='text-primary custom-link gorditas-regular ms-5 addtextoverlap'>View All <FaLongArrowAltRight /></Link>
         <div className="gallery-container col-sm-12 mt-4 ">
           <Slider {...sliderSettings}>
             {image.map((img, index) => (
@@ -124,7 +123,7 @@ const Gallery = () => {
                   mode="lg-fade"
                 >
 
-                  <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" className="col-" rel="noopener noreferrer">
+                  <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" style={{ width: '100%' }}>
                     <img
                       className="gallery-img1 col-12"
                       src={`${FILE_API_URL}/gallery/${img}`}
@@ -132,7 +131,6 @@ const Gallery = () => {
                       style={{
                         width: "100%",
                         maxWidth: "100%",
-
                         height: "200px",
                         objectFit: "cover",
                         borderRadius: "10px"
@@ -141,14 +139,22 @@ const Gallery = () => {
                   </a>
                 </LightGallery>
               </div>
-
             ))}
           </Slider>
         </div>
+        <div className="row">
+          <div className="col-md-12 text-center">
+            <Link
+              to="/image-gallery"
+              target="_blank"
+              style={{ minWidth: '230px' }}
+              className="btn btn-primary border-0 mt-4 px-4 py-2 source-font"
+            >
+              Explore Our Collection
+            </Link>
+          </div>
+        </div>
       </div>
-
-
-
       <style>
         {`
  

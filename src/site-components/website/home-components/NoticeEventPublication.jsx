@@ -148,74 +148,84 @@ const NoticeEventPublication = () => {
                   style={{ position: "relative" }}
                 >
                   <div>
-                    <h2 className="heading-primary2 ">Upcoming Events</h2>
-                    <div className="heading-divider"></div>
+                    <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Upcoming Events</h2>
+                    <div className='heading-divider'></div>
+                    <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
+                      Stay updated with our latest events, workshops, and special gatherings.
+                    </p>
                   </div>
-                  <Link
-                    to="/view-all/event"
-                    target="_blank"
-                    className="text-primary custom-link gorditas-regular ms-5 addtextoverlap"
-                  >
-                    More Events <FaArrowRightLong />
-                  </Link>
                 </div>
                 <div className="col-md-12">
-                  <Slider {...settings}>
-                    {notices.map((notice, index) => (
-                      <div key={index} className="">
-                        <div className="card border-0 soft-shadow  ">
-                          <div className="new-img-container">
-                            <Link to={`/notice-details/${notice.id}`}>
-                              <img
-                                src={notice.image || placeholder}
-                                className="news-image"
-                                alt="News Image"
-                              />
-                            </Link>
-                          </div>
-                          <div className="card-body">
-                            <div className="card-text gorditas-regular text-center id-event-date">
-                              <p className="date-month mb-0">
-                                {new Date(
-                                  notice.notice_date
-                                ).toLocaleDateString("en-US", {
-                                  month: "short",
-                                })}{" "}
-                                {/* Month */}
-                              </p>
-                              <h5 className="date-day">
-                                {new Date(
-                                  notice.notice_date
-                                ).toLocaleDateString("en-US", {
-                                  day: "2-digit",
-                                })}{" "}
-                                {/* Day */}
-                              </h5>
-                              <p className="date-year mb-0">
-                                {new Date(
-                                  notice.notice_date
-                                ).toLocaleDateString("en-US", {
-                                  year: "numeric",
-                                })}{" "}
-                                {/* Year */}
-                              </p>
+                  <div className="row">
+                    <div className="col-md-12">
+                      <Slider {...settings}>
+                        {notices.map((notice, index) => (
+                          <div key={index}>
+                            <div className="card border-0 soft-shadow  ">
+                              <div className="new-img-container">
+                                <Link to={`/notice-details/${notice.id}`}>
+                                  <img
+                                    src={notice.image || placeholder}
+                                    className="news-image"
+                                    alt="News Image"
+                                  />
+                                </Link>
+                              </div>
+                              <div className="card-body">
+                                <div className="card-text gorditas-regular text-center id-event-date">
+                                  <p className="date-month mb-0">
+                                    {new Date(
+                                      notice.notice_date
+                                    ).toLocaleDateString("en-US", {
+                                      month: "short",
+                                    })}{" "}
+                                    {/* Month */}
+                                  </p>
+                                  <h5 className="date-day">
+                                    {new Date(
+                                      notice.notice_date
+                                    ).toLocaleDateString("en-US", {
+                                      day: "2-digit",
+                                    })}{" "}
+                                    {/* Day */}
+                                  </h5>
+                                  <p className="date-year mb-0">
+                                    {new Date(
+                                      notice.notice_date
+                                    ).toLocaleDateString("en-US", {
+                                      year: "numeric",
+                                    })}{" "}
+                                    {/* Year */}
+                                  </p>
+                                </div>
+                                <div className="newsttl">
+                                  {validator.unescape(notice.title)}
+                                </div>
+                              </div>
+                              <div className="cardftr">
+                                <Link
+                                  className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more"
+                                  to={`/notice-details/${notice.id}`}
+                                >
+                                  Read More &nbsp; <FaArrowRightLong />
+                                </Link>
+                              </div>
                             </div>
-                            <div className="newsttl">
-                              {validator.unescape(notice.title)}
-                            </div>
                           </div>
-                          <div className="cardftr">
-                            <Link
-                              className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more"
-                              to={`/notice-details/${notice.id}`}
-                            >
-                              Read More &nbsp; <FaArrowRightLong />
-                            </Link>
-                          </div>
-                        </div>
+                        ))}
+                      </Slider>
+                      <div className="col-md-12 text-center mt-5">
+                        <Link
+                          to="/view-all/event"
+                          target="_blank"
+                          style={{ minWidth: '230px' }}
+                          className="btn btn-primary border-0 px-4 py-2 source-font"
+                        >
+                          More Events
+                        </Link>
                       </div>
-                    ))}
-                  </Slider>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -226,18 +236,14 @@ const NoticeEventPublication = () => {
                   style={{ position: "relative" }}
                 >
                   <div>
-                    <h2 className="heading-primary2 ">Latest News</h2>
-                    <div className="heading-divider"></div>
+                    <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Latest News</h2>
+                    <div className='heading-divider'></div>
+                    <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
+                      Stay updated with the latest news and announcements.
+                    </p>
                   </div>
-                  <Link
-                    to="/view-all/notice"
-                    target="_blank"
-                    className="text-primary custom-link gorditas-regular ms-5 addtextoverlap"
-                  >
-                    More News <FaArrowRightLong />
-                  </Link>
                 </div>
-                
+
                 <div className="col-md-12">
                   <div
                     className="card border-0 rounded-0 border-bottom-2 soft-shadow mx-auto border-bottom border-primary"
@@ -256,10 +262,9 @@ const NoticeEventPublication = () => {
                                   className="text-decoration-none event-hover-container"
                                 >
                                   <div
-                                    className={`row ${
-                                      events.length - 1 !== index &&
+                                    className={`row ${events.length - 1 !== index &&
                                       "border-bottom"
-                                    } eventrow`}
+                                      } eventrow`}
                                   >
                                     <div className="col-md-2 col-lg-2 col-2 col-sm-2 d-flex justify-content-center align-items-center flex-column">
                                       <h4 className="date-event butler-regular text-primary">
@@ -292,21 +297,30 @@ const NoticeEventPublication = () => {
                                   </div>
                                 </Link>
                               ))}
-                           
                           </div>
                         </div>
                         {events && events.length > 0 && (
-                              <div className="box-footer">
-                                <Link
-                                  to="/view-all/notice"
-                                  className="btn-view-more"
-                                >
-                                  <FaAnglesDown className="scroll-icon" />
-                                </Link>
-                              </div>
-                            )}
+                          <div className="box-footer">
+                            <Link
+                              to="/view-all/notice"
+                              className="btn-view-more"
+                            >
+                              <FaAnglesDown className="scroll-icon" />
+                            </Link>
+                          </div>
+                        )}
                       </div>
                     </div>
+                  </div>
+                  <div className="col-md-12 text-center">
+                    <Link
+                      to="/view-all/notice"
+                      target="_blank"
+                      style={{ minWidth: '230px' }}
+                      className="btn btn-primary border-0 mt-4 px-4 py-2 source-font"
+                    >
+                      More News
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -317,25 +331,20 @@ const NoticeEventPublication = () => {
       <section className="public bg-white">
         <div className="container" data-aos="fade-up" data-aos-delay="50">
           <div className="row">
-          <div
-                  className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage"
-                  style={{ position: "relative" }}
-                >
-                  <div>
-                    <h2 className="heading-primary2 ">Publications</h2>
-                    <div className="heading-divider"></div>
-                  </div>
-                  <Link
-                    to="/view-all/publication"
-                    target="_blank"
-                    className="text-primary custom-link gorditas-regular ms-5 addtextoverlap"
-                  >
-                   More Publications <FaArrowRightLong />
-                  </Link>
-                </div>
-           
+            <div
+              className="col-md-10 mx-auto text-center"
+              style={{ position: "relative" }}
+            >
+              <div>
+                <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Publications</h2>
+                <div className='heading-divider'></div>
+                <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
+                  Explore our latest research, articles, and publications.
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="row">
+          <div className="row mt-3">
             <div className="col-md-12">
               <Slider {...settings2}>
                 {publications.map((publication, index) => (
@@ -352,48 +361,58 @@ const NoticeEventPublication = () => {
                       </div>
 
                       <div className="card-fttr p-3">
-                      <div className="card-text gorditas-regular text-center id-event-date">
-                              <p className="date-month mb-0">
-                                {new Date(
-                                  publication.notice_date
-                                ).toLocaleDateString("en-US", {
-                                  month: "short",
-                                })}{" "}
-                                {/* Month */}
-                              </p>
-                              <h5 className="date-day">
-                                {new Date(
-                                  publication.notice_date
-                                ).toLocaleDateString("en-US", {
-                                  day: "2-digit",
-                                })}{" "}
-                                {/* Day */}
-                              </h5>
-                              <p className="date-year mb-0">
-                                {new Date(
-                                  publication.notice_date
-                                ).toLocaleDateString("en-US", {
-                                  year: "numeric",
-                                })}{" "}
-                                {/* Year */}
-                              </p>
-                            </div>
+                        <div className="card-text gorditas-regular text-center id-event-date">
+                          <p className="date-month mb-0">
+                            {new Date(
+                              publication.notice_date
+                            ).toLocaleDateString("en-US", {
+                              month: "short",
+                            })}{" "}
+                            {/* Month */}
+                          </p>
+                          <h5 className="date-day">
+                            {new Date(
+                              publication.notice_date
+                            ).toLocaleDateString("en-US", {
+                              day: "2-digit",
+                            })}{" "}
+                            {/* Day */}
+                          </h5>
+                          <p className="date-year mb-0">
+                            {new Date(
+                              publication.notice_date
+                            ).toLocaleDateString("en-US", {
+                              year: "numeric",
+                            })}{" "}
+                            {/* Year */}
+                          </p>
+                        </div>
                         <h3 className="butler-regular heading-primary3 pubtextbx two-line-text mt-3">
                           {validator.unescape(publication.title)}
                         </h3>
                         <div className="mt-3">
-                            <Link
-                              className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more"
-                              to={`/notice-details/${publication.id}`}
-                            >
-                              Read More &nbsp; <FaArrowRightLong />
-                            </Link>
-                          </div>
+                          <Link
+                            className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more"
+                            to={`/notice-details/${publication.id}`}
+                          >
+                            Read More &nbsp; <FaArrowRightLong />
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
                 ))}
               </Slider>
+            </div>
+            <div className="col-md-12 text-center">
+              <Link
+                to="/view-all/notice"
+                target="_blank"
+                style={{ minWidth: '230px' }}
+                className="btn btn-primary border-0 mt-4 px-4 py-2 source-font"
+              >
+                More Publications
+              </Link>
             </div>
           </div>
           <style>

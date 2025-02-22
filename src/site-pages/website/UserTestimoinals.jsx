@@ -94,8 +94,11 @@ function UserTestimonials() {
 
         <div className="row">
           <div className="col-md-12 mb-3 text-center">
-          <h2 className="heading-primary2 source-font" style={{ fontSize: '55px' }}>What Our Students Are Saying</h2>
+            <h2 className="heading-primary2 source-font id-title-font-size id-title-font-size-mobile-device">What Our Students Have to Say</h2>
             <div className="heading-divider"></div>
+            <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
+              Discover what our students say about their journey at RPNLU.
+            </p>
           </div>
         </div>
         {testimonials.length > 0 ? (
@@ -104,12 +107,12 @@ function UserTestimonials() {
               <div key={index} className="px-3 my-4">
                 <div className="testimonial-card">
                   <div className="testi-name-review-bx">
-                 
+
                     <h5 className="fw-semibold mb-1 py-1">{testimonial.test_name}</h5>
                     <div className="ratee">{renderStars(parseInt(testimonial.test_rating))}</div>
                   </div>
                   <div className="d-flex">
-                  <div className="testibx-left">
+                    <div className="testibx-left">
                       {testimonial.test_photo && (
                         <img
                           src={`${FILE_API_URL}/testimonial/${testimonial.test_photo}`}
@@ -126,13 +129,13 @@ function UserTestimonials() {
                       )}
 
                     </div>
-                  <p className="testimonial-text mb-0 py-1">
-                    "{testimonial.test_content.split(" ").slice(0, 10).join(" ")}
-                    {testimonial.test_content.split(" ").length > 10 ? "..." : ""}"
-                  </p>
+                    <p className="testimonial-text mb-0 py-1">
+                      "{testimonial.test_content.split(" ").slice(0, 10).join(" ")}
+                      {testimonial.test_content.split(" ").length > 10 ? "..." : ""}"
+                    </p>
 
                   </div>
-                 
+
 
                   {/* <div className="testibx">
                     <div className="testibx-left">

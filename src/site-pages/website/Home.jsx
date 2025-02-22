@@ -8,12 +8,10 @@ import Message from "../../site-components/website/home-components/Message";
 import UseFullLinks from "../../site-components/website/home-components/UseFullLinks";
 import SocialMedia from "../../site-components/website/home-components/SocialMedia";
 import WhyChoose from "../../site-components/website/home-components/WhyChoose";
-import ContactFeatures from "../../site-components/website/home-components/ContactFeatures";
 import MarqueeSlider from "../../site-components/website/home-components/MarqueeSlider";
 import Speciality from "./Speciality";
 import FacultySlider from "./FacultySlider";
 import Gallery from "../../site-components/website/home-components/Gallery";
-import HomeVideo from "../../site-components/website/home-components/HomeVideo";
 import Achivement from "../../site-components/website/home-components/Achivement";
 import ContactIcon from "../../site-components/website/home-components/ContactIcon";
 import PopupNotice from "../../site-components/website/home-components/PopupNotice";
@@ -32,12 +30,10 @@ function Home() {
       <Message />
       <NoticeEventPublication />
       <Courses />
-      {/* <HomeVideo /> */}
       <WhyChoose />
       <FacultySlider />
       <CampusLife />
       <Speciality />
-      {/* <ContactFeatures /> */}
       <Achivement />
       <Gallery />
       <SocialMedia />

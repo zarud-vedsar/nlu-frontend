@@ -10,6 +10,10 @@ import P7 from '../../site-components/website/assets/Images/keynote/P7.jpg';
 import P8 from '../../site-components/website/assets/Images/keynote/P8.jpg';
 import P9 from '../../site-components/website/assets/Images/keynote/P9.jpg';
 import P10 from '../../site-components/website/assets/Images/keynote/P10.jpg';
+import P11 from '../../site-components/website/assets/Images/keynote/P11.jpg';
+import P12 from '../../site-components/website/assets/Images/keynote/P12.jpg';
+import P13 from '../../site-components/website/assets/Images/keynote/P13.jpg';
+import P14 from '../../site-components/website/assets/Images/keynote/P14.jpg';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 function KeyNoteSpeakers() {
@@ -17,73 +21,101 @@ function KeyNoteSpeakers() {
     const keyNotes = [
         {
             id: 1,
+            name: 'Professor Dr. Usha Tandon',
+            imageUrl: P14,
+            contactDetails: 'Senior Professor, and Vice-Chancellor Dr. Rajendra Prasad National Law University Prayagraj',
+            link: 'https://www.rpnlup.ac.in/governance/officers-of-university/vice-chancellor/'
+        },
+        {
+            id: 2,
             name: 'Professor Klaus Bosselmann',
             imageUrl: P1,
             contactDetails: 'Faculty of Law, University of Auckland, New Zealand',
             link: 'https://profiles.auckland.ac.nz/k-bosselmann'
         },
         {
-            id: 2,
+            id: 3,
             name: 'Professor Philippe Cullet',
             imageUrl: P2,
             contactDetails: 'SOAS, University of London, England',
             link: 'https://www.soas.ac.uk/about/philippe-cullet'
         },
         {
-            id: 3,
+            id: 4,
             name: 'Dr. Ivano Alogna',
             imageUrl: P3,
             contactDetails: 'Senior Research Fellow in Environmental and Climate Change Law, BIICL, France',
             link: 'https://www.biicl.org/people/ivano-alogna'
         },
         {
-            id: 4,
+            id: 5,
             name: 'Dr. Robert Russo',
             imageUrl: P4,
             contactDetails: 'Peter Allard School of Law, University of British Columbia, Vancouver, Canada',
             link: 'https://allard.ubc.ca/about-us/our-people/robert-russo'
         },
         {
-            id: 5,
+            id: 6,
             name: 'Professor Leela Krishnan',
             imageUrl: P5,
             contactDetails: 'School of Legal Studies, Cochin University of Science and Technology',
             link: 'https://www.rpnlup.ac.in/wp-content/uploads/2024/11/Prof.-P.-Leelakrishnan.pdf'
         },
         {
-            id: 6,
+            id: 7,
             name: 'Justice Rinzin Penjor',
             imageUrl: P6,
             contactDetails: 'Judge, Supreme Court of Bhutan; Vice Chairman, Bar Council of Bhutan',
             link: 'blank'
         },
         {
-            id: 7,
+            id: 8,
             name: 'Professor K. Konasinghe',
             imageUrl: P7,
             contactDetails: 'Faculty of Law, University of Colombo, Sri Lanka',
             link: 'https://www.res.cmb.ac.lk/public.international.law/kokila/'
         },
         {
-            id: 8,
+            id: 9,
             name: 'Professor Amber Pant',
             imageUrl: P8,
             contactDetails: 'University of Tribhuvan, Nepal',
             link: 'https://www.iucnael.org/en/81-about-us/members-of-the-governing-board/501-professor-amber-prasad-pant'
         },
         {
-            id: 9,
+            id: 10,
             name: 'Michael D. Wilson',
             imageUrl: P9,
             contactDetails: 'Justice, Hawaii Supreme Court, USA',
             link: 'https://en.wikipedia.org/wiki/Michael_D._Wilson'
         },
         {
-            id: 10,
+            id: 11,
             name: 'Professor Moon-Hyun Koh',
             imageUrl: P10,
             contactDetails: 'Professor, College of Law, Soongsil University, Seoul, Korea',
             link: 'https://law.ssu.ac.kr/web/sub1/sub1_prof_detail02.do'
+        },
+        {
+            id: 12,
+            name: 'Prof Zozo Dyani-Mhango',
+            imageUrl: P11,
+            contactDetails: 'Chair, Internationalisation Centre for Environmental Justice in Africa University of Pretoria, South Africa',
+            link: 'https://www.up.ac.za/public-law/article/3001415/prof-ntombizozuko-zozo-dyani-mhango'
+        },
+        {
+            id: 13,
+            name: 'Professor Mrs. Erimma G. Orie',
+            imageUrl: P12,
+            contactDetails: 'Professor National Open University of Nigeria',
+            link: 'https://www.rpnlup.ac.in/wp-content/uploads/2025/01/DrErimmaGOrie.pdf'
+        },
+        {
+            id: 14,
+            name: 'Professor Jonathan O. Chimakonam',
+            imageUrl: P13,
+            contactDetails: 'Professor of Philosophy, University of Pretoria, South Africa',
+            link: 'https://www.rpnlup.ac.in/wp-content/uploads/2024/12/Jonathan-Profile.pdf'
         },
     ];
     return (

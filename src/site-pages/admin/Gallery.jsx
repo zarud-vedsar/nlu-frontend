@@ -278,7 +278,7 @@ const Gallery = () => {
                   <Button
                     variant="light"
                     onClick={() => window.history.back()}
-                    className="mb-2 mb-md-0"
+                    className="mb-2 mr-2 mb-md-0"
                   >
                     <i className="fas">
                       <FaArrowLeft />
@@ -291,7 +291,7 @@ const Gallery = () => {
                       recycleTitle === "Show Recycle Bin"
                         ? "btn-secondary"
                         : "btn-danger"
-                    } ml-auto mb-2`}
+                    } ml-auto `}
                     onClick={showRecyleBin}
                   >
                     {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
@@ -299,7 +299,7 @@ const Gallery = () => {
 
                   <Link
                     variant="dark"
-                    className="ml-2 mb-2 mb-md-0 btn btn-secondary"
+                    className="ml-2  mb-md-0 btn btn-secondary"
                     to="/admin/gallery-form"
                   >
                     <i className="fas">

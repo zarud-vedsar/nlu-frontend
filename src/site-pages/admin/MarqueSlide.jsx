@@ -315,11 +315,11 @@ const MarqueSlide = () => {
               </nav>
             </div>
             <div className="card bg-transparent mb-2">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">Important Update Sliders List</h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back">
                   <button
-                    className="ml-auto btn-md btn border-0 btn-light mr-2"
+                    className="mr-auto btn-md btn border-0 btn-light mr-2"
                     onClick={() => goBack()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back
@@ -353,7 +353,7 @@ const MarqueSlide = () => {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="col-md-4 col-lg-4 col-10 col-sm-4">
+                  <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-3">
                     <button
                       className={`btn ${recycleTitle === "Show Recycle Bin"
                         ? "btn-secondary"

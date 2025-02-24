@@ -117,7 +117,7 @@ const Visitor = () => {
               <div className="about-text-container">
                 <p>
                   <img
-                    src="https://www.rpnlup.ac.in/wp-content/uploads/2024/02/Manoj-Mishra.jpg"
+                    src="https://spaceshineone.co.in/wp-content/uploads/2024/02/Manoj-Mishra.jpg"
                     className="thumbnail msg_ReghtImg"
                   />
                  Hon’ble <br/> Mr. Justice Manoj Misra is a judge of the Supreme Court of India.<br/>

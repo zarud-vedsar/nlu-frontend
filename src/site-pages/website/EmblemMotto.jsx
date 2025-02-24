@@ -60,7 +60,7 @@ const EmblemMotto = () => {
                     <h6 className="heading-primary2 source-font" style={{ fontSize: '18px' }}>यान्ति न्यायप्रवृत्तस्य:</h6>
                     <p className="heading-para gorditas-regular">
                       <img
-                        src="https://www.rpnlup.ac.in/assets/rpnlu-CKt3DR8Z.png"
+                        src="https://spaceshineone.co.in/assets/rpnlu-CKt3DR8Z.png"
                         style={{
                           float: "right",
                           marginLeft: 10,

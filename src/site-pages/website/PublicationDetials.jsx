@@ -38,7 +38,7 @@ const PublicationDetials = () => {
           <div className="row">
             <div className="col-md-12">
                   <iframe
-                    src="https://www.rpnlup.ac.in/wp-content/uploads/2024/10/RPNLUP-Courses.pdf"
+                    src="https://spaceshineone.co.in/wp-content/uploads/2024/10/RPNLUP-Courses.pdf"
                     width="100%"
                     height="600px"
                   >

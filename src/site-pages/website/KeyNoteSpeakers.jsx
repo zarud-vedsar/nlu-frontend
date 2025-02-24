@@ -24,7 +24,7 @@ function KeyNoteSpeakers() {
             name: 'Professor Dr. Usha Tandon',
             imageUrl: P14,
             contactDetails: 'Senior Professor, and Vice-Chancellor Dr. Rajendra Prasad National Law University Prayagraj',
-            link: 'https://www.rpnlup.ac.in/governance/officers-of-university/vice-chancellor/'
+            link: 'https://spaceshineone.co.in/governance/officers-of-university/vice-chancellor/'
         },
         {
             id: 2,
@@ -59,7 +59,7 @@ function KeyNoteSpeakers() {
             name: 'Professor Leela Krishnan',
             imageUrl: P5,
             contactDetails: 'School of Legal Studies, Cochin University of Science and Technology',
-            link: 'https://www.rpnlup.ac.in/wp-content/uploads/2024/11/Prof.-P.-Leelakrishnan.pdf'
+            link: 'https://spaceshineone.co.in/wp-content/uploads/2024/11/Prof.-P.-Leelakrishnan.pdf'
         },
         {
             id: 7,
@@ -108,14 +108,14 @@ function KeyNoteSpeakers() {
             name: 'Professor Mrs. Erimma G. Orie',
             imageUrl: P12,
             contactDetails: 'Professor National Open University of Nigeria',
-            link: 'https://www.rpnlup.ac.in/wp-content/uploads/2025/01/DrErimmaGOrie.pdf'
+            link: 'https://spaceshineone.co.in/wp-content/uploads/2025/01/DrErimmaGOrie.pdf'
         },
         {
             id: 14,
             name: 'Professor Jonathan O. Chimakonam',
             imageUrl: P13,
             contactDetails: 'Professor of Philosophy, University of Pretoria, South Africa',
-            link: 'https://www.rpnlup.ac.in/wp-content/uploads/2024/12/Jonathan-Profile.pdf'
+            link: 'https://spaceshineone.co.in/wp-content/uploads/2024/12/Jonathan-Profile.pdf'
         },
     ];
     return (

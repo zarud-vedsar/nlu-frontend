@@ -49,8 +49,13 @@ const Faculty = () => {
   }, []);
 
   const moreDetail = (id) => {
-    navigate(`/faculty/${id}`);
+    if (id === 1) {
+      navigate(`/message-vice-chancellor/${id}`);
+    } else {
+      navigate(`/faculty/${id}`);
+    }
   };
+  
 
   return (
     <>

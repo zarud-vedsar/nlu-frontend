@@ -99,7 +99,7 @@ const FacultySlider = () => {
               <div className="col-md-3 col-lg-3">
                 <div className="faculty-slide mt-3">
                   <div className="facslider">
-                    <Link to={`/faculty/1`} target="_blank" >
+                    <Link to={`/message-vice-chancellor/1`} target="_blank" >
                       <div className="facimg-bx">
                         <img
                           src="https://www.rpnlup.ac.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"
@@ -109,7 +109,7 @@ const FacultySlider = () => {
                       </div>
                     </Link>
                     <div className="facpost">
-                      <Link to={`/faculty/1`} target="_blank" >
+                      <Link to={`/message-vice-chancellor/1`} target="_blank" >
                         <h3 className="sldnn source-font mb-1 mt-2">Sr. Prof. Dr. Usha Tandon</h3>
                         <p className="facdesti source-font">Vice Chancellor</p>
                       </Link>

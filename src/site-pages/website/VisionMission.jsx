@@ -74,7 +74,8 @@ const VisionMission = () => {
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 rightpart">
               <div className="about-text-container1">
-                <div className="row mb-4">
+                <div className="row">
+                <div className="col-6 mb-4">
                   <div className="col-md-12 col-lg-12 col-12 col-sm-12">
                     <div className="section-title-wrapper">
                       <div className="section-title">
@@ -91,7 +92,7 @@ const VisionMission = () => {
                     </div>
                   </div>
                 </div>
-                <div className="row mt-3">
+                <div className="col-6 mt-3">
                   <div className="col-md-12 col-lg-12 col-12 col-sm-12">
                     <div className="section-title-wrapper">
                       <div className="section-title">
@@ -107,6 +108,7 @@ const VisionMission = () => {
                       <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesMission }} />
                     </div>
                   </div>
+                </div>
                 </div>
               </div>
             </div>

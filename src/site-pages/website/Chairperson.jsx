@@ -182,10 +182,17 @@ const Chairperson = () => {
                         padding: "20px",
                       }}
                     />
-                    <h3 className="butler-regular mb-1 heading-primary3 mt-3 text-center">{`${formData.name}`}</h3>
-                    <p className="heading-para gorditas-regular text-primary text-center">
-                      {formData?.from}
-                    </p>
+                    {
+                      (id != 7 && id != 8 && id != 9 && id != 10) && (
+                        <>
+                          <h3 className="butler-regular mb-1 heading-primary3 mt-3 text-center">{`${formData.name}`}</h3>
+                          <p className="heading-para gorditas-regular text-primary text-center">
+                            {formData?.from}
+                          </p>
+
+                        </>
+                      )
+                    }
                   </div>
                   <p
                     className="heading-para gorditas-regular text-justify"

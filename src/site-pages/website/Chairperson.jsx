@@ -56,7 +56,7 @@ const Chairperson = () => {
         }
       );
       sethtml(response.data);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const getMessage = async () => {

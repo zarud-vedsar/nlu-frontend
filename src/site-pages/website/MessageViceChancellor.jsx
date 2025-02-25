@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa6";
-import ChancellorImg from "../../site-components/website/assets/Images/vice-chancellor.jpg";
+import ChancellorImg from "../../site-components/website/assets/Images/usha-tandon-message.jpg";
 
 const MessageViceChancellor = () => {
   return (
@@ -20,14 +20,7 @@ const MessageViceChancellor = () => {
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
                     <li>
-                      <span>People</span> <FaAngleRight />
-                    </li>
-                    <li>
-                      {" "}
-                      <Link to="/faculty">Faculty</Link> <FaAngleRight />{" "}
-                    </li>
-                    <li>
-                      <span>Vice Chancellor</span>
+                      <span>MESSAGE FROM THE Vice-Chancellor</span>
                     </li>
                   </ul>
                 </div>
@@ -57,22 +50,22 @@ const MessageViceChancellor = () => {
 
             <p className="fac-del-heading1">Vice Chancellor</p>
             <div className="secdev topbr">
-               
-                <div className="phhbx">
-                <p style={{ color: "#fff" }}>
-  Email:{" "}
-  <a href="mailto:usha@rpnlup.ac.in" style={{ color: "#fff" }}>
-    usha@rpnlup.ac.in
-  </a>
-  ,{" "}
-  <a href="mailto:vc@rpnlup.ac.in" style={{ color: "#fff" }}>
-    vc@rpnlup.ac.in
-  </a>
-</p>
 
-                 
-                </div>
+              <div className="phhbx">
+                <p style={{ color: "#fff" }}>
+                  Email:{" "}
+                  <a href="mailto:usha@rpnlup.ac.in" style={{ color: "#fff" }}>
+                    usha@rpnlup.ac.in
+                  </a>
+                  ,{" "}
+                  <a href="mailto:vc@rpnlup.ac.in" style={{ color: "#fff" }}>
+                    vc@rpnlup.ac.in
+                  </a>
+                </p>
+
+
               </div>
+            </div>
           </div>
         </div>
         <div className="description">

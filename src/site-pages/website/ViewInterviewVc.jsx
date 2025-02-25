@@ -14,7 +14,7 @@ function ViewInterviewVc() {
                                 <div className="breadcrumb-bar">
                                     <ul className="breadcrumb text-center">
                                         <li><Link to="/">Home</Link></li> <FaAngleRight />
-                                        <li>Interview with Senior Prof. (Dr.) Usha Tandon, Founding Vice-Chancellor</li>
+                                        <li>Exclusive Interview with the Founding Vice-Chancellor Senior Prof. (Dr.) Usha Tandon</li>
                                     </ul>
                                 </div>
                             </div>
@@ -28,8 +28,8 @@ function ViewInterviewVc() {
                         <div className='col-md-10 mx-auto mb-3 text-center'>
                             <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Why Study @ RPNLUP ?</h2>
                             <div className='heading-divider'></div>
-                            <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                                Interview with the Founding Vice-Chancellor Senior Prof. (Dr.) Usha Tandon
+                            <p className="text-center text-primary mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
+                                Exclusive Interview with the Founding Vice-Chancellor Senior Prof. (Dr.) Usha Tandon
                             </p>
                         </div>
                     </div>

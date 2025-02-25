@@ -84,12 +84,10 @@ const Message = () => {
       <section className="vicemsgsec" data-aos="fade-up" data-aos-delay="100">
         <div className="container">
           <div className="row justify-content-center">
-
             <div className="row">
               <div className="col-md-7">
                 <div className="vicmsg-bx">
                   <div className="vicmsg-top">
-
                     <h3 className="message-heading source-font mb-3 mt-3">MESSAGE FROM THE <br />
                       Vice-Chancellor</h3>
                     <div className="postname">
@@ -101,9 +99,8 @@ const Message = () => {
                     <p className="mb-3" style={{ textAlign: 'justify' }}>I extend a warm welcome to the aspiring students at Dr. Rajendra Prasad National Law University, Prayagraj, an institution dedicated to fostering the next generation of legal professionals poised to shape the future of the legal landscape and contribute significantly to societal improvement.</p>
                     <p className="mb-3" style={{ textAlign: 'justify' }}>Our university aspires to establish a distinguished tradition of academic excellence, an unwavering commitment to the highest ethical standards, and an ardent dedication to the pursuit of justice. Prayagraj, often referred to as the Judicial Capital of the State, stands as a guiding light for legal education, scholarly pursuit, and ethical leadership. With a rich heritage and a resolute commitment to academic brilliance, the city has once earned the fame of 'Oxford of the East' and has produced erudite legal scholars of national and international renown.</p>
                     <p className="mb-3" style={{ textAlign: 'justify' }}> Dr. Rajendra Prasad National Law University, Prayagraj is steadfast in its mission to revive this illustrious legacy and uphold the zenith of legal education, ensuring the cultivation of astute legal professionals...</p>
-                    <Link className="btn-vc-readmore" to="/message-vice-chancellor/1"><i className="fa-solid fa-circle-chevron-right"></i> Read More</Link>
+                    <Link className="btn-vc-readmore" to="/message-vice-chancellor"><i className="fa-solid fa-circle-chevron-right"></i> Read More</Link>
                   </div>
-
                 </div>
               </div>
               <div className="col-md-5 mt-3">

@@ -20,13 +20,6 @@ function KeyNoteSpeakers() {
     // Define an array of keynote data
     const keyNotes = [
         {
-            id: 1,
-            name: 'Professor Dr. Usha Tandon',
-            imageUrl: P14,
-            contactDetails: 'Senior Professor, and Vice-Chancellor Dr. Rajendra Prasad National Law University Prayagraj',
-            link: '/message-vice-chancellor'
-        },
-        {
             id: 2,
             name: 'Professor Klaus Bosselmann',
             imageUrl: P1,
@@ -116,6 +109,13 @@ function KeyNoteSpeakers() {
             imageUrl: P12,
             contactDetails: 'Professor National Open University of Nigeria',
             link: 'https://spaceshineone.co.in/wp-content/uploads/2025/01/DrErimmaGOrie.pdf'
+        },
+        {
+            id: 1,
+            name: 'Professor Dr. Usha Tandon',
+            imageUrl: P14,
+            contactDetails: 'Senior Professor, and Vice-Chancellor Dr. Rajendra Prasad National Law University Prayagraj',
+            link: '/message-vice-chancellor'
         },
     ];
     return (

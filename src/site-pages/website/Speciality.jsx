@@ -142,19 +142,13 @@ const Speciality = () => {
         <div className="row">
           <div className="col-md-6">
             <p className="text-start haruki_tab-button mt-3 mb-1 text-primary source-font ps-0">
-              Interview with the Founding Vice-Chancellor Senior Prof. (Dr.) Usha Tandon
+              Exclusive Interview with the Founding Vice-Chancellor Senior Prof. (Dr.) Usha Tandon
             </p>
             <h3 className="source-font">
               Q. What is your immediate priority as the first VC of NLU Prayagraj?
             </h3>
             <p className="source-font text-justify">
               As the founding vice-chancellor of Dr. Rajendra Prasad National Law University, Prayagraj, my priorities revolve around designing a comprehensive and innovative course curriculum and delineating the university’s goals, and overarching direction. A well-stocked library is important for any ambitious law university and we aspire to have a world-class collection of books.
-            </p>
-            <p className="source-font text-justify">
-              My immediate priority is to meet the university’s vision that resonates with educational excellence, research innovation, and societal impact, all encapsulated within a dynamic strategic blueprint. Another priority is the recruitment and cultivation of a diverse, talented faculty body, fostering an environment ripe for intellectual growth and scholarly pursuits. For this, we have advertised positions.
-            </p>
-            <p className="source-font text-justify">
-              Simultaneously, we are engaged with the recruitment of administrative and supporting staff as per the guidelines of the state government. This is necessary for establishing and upholding the university’s functioning that ensures compliance with regulatory requisites. I am committed to quality assurance and accreditation, ensuring that the university consistently upholds exemplary standards in education, research and administrative practices, thus cementing its reputation as a paragon of academic excellence.
             </p>
             <Link
               to="/view-interview-vc"

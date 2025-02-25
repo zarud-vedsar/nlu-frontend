@@ -5,8 +5,7 @@ import { Modal, Button, Spinner } from "react-bootstrap";
 import { IoMdAdd } from "react-icons/io";
 
 import {
-  NODE_API_URL,
-  PHP_API_URL,
+  NODE_API_URL
 } from "../../site-components/Helper/Constant";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
@@ -19,7 +18,7 @@ import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert"
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 import validator from "validator";
-import { dataFetchingDelete,dataFetchingPatch } from "../../site-components/Helper/HelperFunction";
+import { dataFetchingDelete, dataFetchingPatch } from "../../site-components/Helper/HelperFunction";
 const MyVerticallyCenteredModal = (props = {}) => {
   const [content, setContent] = useState("");
   const [link, setLink] = useState("");
@@ -31,7 +30,7 @@ const MyVerticallyCenteredModal = (props = {}) => {
 
     // Set content and link values
     setContent(title);
-    setLink(validator.unescape(rawLink) || ''); 
+    setLink(validator.unescape(rawLink) || '');
   }, [props.selectedmarque]);
 
   const handleSubmit = async () => {
@@ -250,7 +249,7 @@ const PopupNotice = () => {
       }
     }
   };
- 
+
   const handleToggleStatus = async (dbId, currentStatus) => {
     if (
       !dbId ||
@@ -289,7 +288,7 @@ const PopupNotice = () => {
       }
     }
   };
- 
+
 
   return (
     <>
@@ -298,7 +297,7 @@ const PopupNotice = () => {
           <div className="container-fluid">
             <div className="mt-0">
               <nav className="breadcrumb">
-              <a href="/admin/home" className="breadcrumb-item">
+                <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
@@ -347,11 +346,10 @@ const PopupNotice = () => {
                   </div>
                   <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-3">
                     <button
-                      className={`btn ${
-                        recycleTitle === "Show Recycle Bin"
-                          ? "btn-secondary"
-                          : "btn-danger"
-                      }`}
+                      className={`btn ${recycleTitle === "Show Recycle Bin"
+                        ? "btn-secondary"
+                        : "btn-danger"
+                        }`}
                       onClick={showRecyleBin}
                     >
                       {recycleTitle} <i className="fa fa-recycle"></i>
@@ -383,10 +381,10 @@ const PopupNotice = () => {
                         sortable
                       />
 
-                      <Column field="title" header="Title" sortable />
+                      <Column body={(row) => validator.unescape(validator.unescape(row?.title || ""))} header="Title" sortable />
                       <Column
                         header="Link"
-                        body={(rowData) => validator.unescape(rowData.link)}
+                        body={(rowData) => validator.unescape(validator.unescape(rowData.link))}
                         sortable
                         field="link"
                       />
@@ -400,7 +398,7 @@ const PopupNotice = () => {
                               <input
                                 type="checkbox"
                                 checked={rowData.status == 1 ? true : false}
-                                onChange={() => handleToggleStatus(rowData.id,rowData.status)}
+                                onChange={() => handleToggleStatus(rowData.id, rowData.status)}
                                 className="facultydepartment-checkbox"
                                 id={`switch${rowData.id}`}
                               />
@@ -463,8 +461,10 @@ const PopupNotice = () => {
       </div>
       <MyVerticallyCenteredModal
         show={modalShow}
-        close={() => {setModalShow(false);
-            setSelectedMarque(null)}
+        close={() => {
+          setModalShow(false);
+          setSelectedMarque(null)
+        }
         }
         submit={() => {
           loadMarqueList();

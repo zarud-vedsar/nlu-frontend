@@ -83,38 +83,10 @@ const Faculty = () => {
       id: 7
     },
   ]);
-
   const navigate = useNavigate();
-
-  const loadFacultyData = async () => {
-    try {
-      const bformData = new FormData();
-      bformData.append("data", "load_faculty_front");
-
-      const response = await axios.post(
-        `${PHP_API_URL}/faculty.php`,
-        bformData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      // setFacultyList((prev) => [...prev, ...response.data.data]);
-    } catch (error) {
-      // Handle errors (empty for now)
-    }
-  };
-
-  useEffect(() => {
-    // loadFacultyData();
-  }, []);
-
   const moreDetail = (id) => {
     navigate(`/faculty/${id}`);
   };
-
-
   return (
     <>
       <div className="breadcrumb-banner-area">

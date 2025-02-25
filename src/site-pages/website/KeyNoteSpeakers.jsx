@@ -119,7 +119,7 @@ function KeyNoteSpeakers() {
         },
     ];
     return (
-        <div className="section-padding py-4 kn-position-realative" style={{ background: '#F2F2F2' }}>
+        <div className="section-padding py-4 mt-2 kn-position-realative" style={{ background: '#F2F2F2' }}>
             <div className="container">
                 <div className="row">
                     <div className='col-md-12 mb-3 text-center'>

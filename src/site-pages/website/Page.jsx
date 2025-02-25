@@ -54,7 +54,7 @@ const Page = () => {
                       <a href="Default-2.html">Home</a>
                     </li>
                     <FaAngleRight />
-                     <li>About</li><FaAngleRight />
+                    <li>About</li><FaAngleRight />
                     <li>{pageData?.ptitle}</li>
                   </ul>
                 </div>
@@ -96,20 +96,9 @@ const Page = () => {
                   </p>
                 </div>
               )}
-              {/* {pageData?.page_type === "pdf" && (
-  <iframe
-    src={`https://docs.google.com/viewer?embedded=true&url=${encodeURIComponent(`https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf`)}`}
-    style={{height: '500px', border: 'none' }}
-    className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-
-    title="PDF Viewer"
-  ></iframe>
-)} */}
               {pageData?.page_type === "pdf" && (
                 <iframe
-                  src={`https://docs.google.com/viewer?embedded=true&url=${encodeURIComponent(
-                    `${FILE_API_URL}/${pageData?.pdf_file}`
-                  )}`}
+                  src={`${FILE_API_URL}/${pageData?.pdf_file}`}
                   className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
 
                   style={{ height: "500px", border: "none" }}

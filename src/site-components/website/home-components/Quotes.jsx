@@ -138,10 +138,10 @@ const Quotes = () => {
                 <Slider ref={sliderRef} {...settings2}>
                   {Quotes.map((quote, index) => (
                     <div className="id-quotes-wrapper py-3 " key={index}>
-                      <p className="source-font mb-3 text-center" style={{ fontSize: "18px" }}>
+                      <p className="source-font mb-3 text-center id-quote" style={{ fontSize: "18px" }}>
                         {quote.quotes}
                       </p>
-                      <h5 className="card-title source-font">
+                      <h5 className="card-title source-font id-quote-by-name ">
                         {quote.name}
                       </h5>
                     </div>

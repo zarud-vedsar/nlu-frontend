@@ -7,6 +7,9 @@ import { dataFetchingPost } from '../../../site-components/Helper/HelperFunction
 import { NODE_API_URL } from '../../../site-components/Helper/Constant';
 import secureLocalStorage from 'react-secure-storage';
 import { FaAngleRight } from 'react-icons/fa6';
+import LlmCourseImg from '../../../site-components/website/assets/Images/course/llm.png';
+import PhdCourseImg from '../../../site-components/website/assets/Images/course/phd.png';
+import BaLlbCourseImg from '../../../site-components/website/assets/Images/ba-llb.png';
 import validator from 'validator';
 const Courses = () => {
   const { id } = useParams();
@@ -205,7 +208,29 @@ const Courses = () => {
                   <div className="col-lg-12 mb-2">
                     <div className='row'>
                       <div className='col-md-12 col-lg-12 text-center'>
-                        <img src={courseData.thumbnail} className='img-fluid mx-auto rounded-3' />
+                      <>
+                          {
+                            id == 1 && (
+                              <img src={BaLlbCourseImg} className='img-fluid mx-auto rounded-3' />
+                              
+                            )
+                          }
+                          {
+                            id == 2 && (
+                              <img src={PhdCourseImg} className='img-fluid mx-auto rounded-3' />
+
+                            )
+                          }
+                          {
+                            id == 3 && (
+                              <img src={LlmCourseImg} className='img-fluid mx-auto rounded-3' />
+
+                            )
+                          }
+                        </>
+
+
+                       
                       </div>
                       <div className='col-md-12 col-lg-12'>
                         <div className="course-card-body">

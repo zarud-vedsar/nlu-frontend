@@ -3014,14 +3014,14 @@ table tbody th {
   width: 100%;
   border-radius: 10px;
   /* aspect-ratio: 1/1; */
-  object-fit: cover;
+  /* object-fit: cover;   */
   -webkit-transition: all 1.5s cubic-bezier(0, 0, 0.2, 1);
   transition: all 1.5s cubic-bezier(0, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .course-image:hover {
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
   /* Scale up and rotate slightly */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   /* Add a shadow effect on hover */
@@ -3680,7 +3680,7 @@ margin-top: -59px;
 
 .id-quotes-wrapper{
   /* background-color: #f9f9f9; */
-/* border: 1px solid #ddd; */
+border: 1px solid #ddd;
 border-radius: 8px;
 padding: 20px;
 text-align: center;
@@ -3691,11 +3691,12 @@ text-align: center;
 color: #000;
 font-weight: 600;
 font-size: 19px;
-padding: 20px 50px;
+padding: 10px ;
   margin: 10px auto;
 }
 .id-quote-by-name{
 font-style: italic;
+border-top: 1px solid #ddd;
 padding: 10px;
 color: #000;
   margin: 10px auto;

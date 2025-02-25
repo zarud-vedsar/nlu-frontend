@@ -217,7 +217,7 @@ const AllNotice = () => {
                       <div className="noticecontent">
                         <span className="ccntn">{`${index + 1}`}</span>
                         <Link to={`/notice-details/${notice.notice_type}`}>
-                          {notice.title}
+                          {validator.unescape(notice.title)}
                         </Link>
                       </div>
                       <div className="noticeftr">

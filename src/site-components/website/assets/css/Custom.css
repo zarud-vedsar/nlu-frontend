@@ -3680,7 +3680,7 @@ margin-top: -59px;
 
 .id-quotes-wrapper{
   /* background-color: #f9f9f9; */
-border: 1px solid #ddd;
+/* border: 1px solid #ddd; */
 border-radius: 8px;
 padding: 20px;
 text-align: center;
@@ -3691,12 +3691,11 @@ text-align: center;
 color: #000;
 font-weight: 600;
 font-size: 19px;
-padding: 10px;
+padding: 20px 50px;
   margin: 10px auto;
 }
 .id-quote-by-name{
 font-style: italic;
-  border-top: 1px solid #ccc;
 padding: 10px;
 color: #000;
   margin: 10px auto;

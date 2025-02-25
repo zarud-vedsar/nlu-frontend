@@ -56,7 +56,7 @@ const Chairperson = () => {
         }
       );
       sethtml(response.data);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const getMessage = async () => {
@@ -114,12 +114,21 @@ const Chairperson = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumb-text">
-                <h1 className="heading-primary2 butler-regular text-white text-center">{formData?.from}</h1>
+                <h1 className="heading-primary2 butler-regular text-white text-center">
+                  {formData?.from}
+                </h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                    <li><Link to="/">Home</Link></li> <FaAngleRight />
-                    <li><span>People</span> <FaAngleRight /></li>
-                    <li><span>Governance</span> <FaAngleRight /></li>
+                    <li>
+                      <Link to="/">Home</Link>
+                    </li>{" "}
+                    <FaAngleRight />
+                    <li>
+                      <span>People</span> <FaAngleRight />
+                    </li>
+                    <li>
+                      <span>Governance</span> <FaAngleRight />
+                    </li>
                     <li>{formData?.from}</li>
                   </ul>
                 </div>
@@ -132,7 +141,9 @@ const Chairperson = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 d-none d-sm-none d-md-block d-lg-block">
-              <h3 className="heading-primary2 butler-regular source-font">Governance</h3>
+              <h3 className="heading-primary2 butler-regular source-font">
+                Governance
+              </h3>
               <div className="heading-divider mb-3"></div>
               <ul className="mcd-menu">
                 {message &&
@@ -153,34 +164,34 @@ const Chairperson = () => {
             <div className="col-lg-9 col-md-9 col-sm-12 col-xs-12">
               <div className="section-title-wrapper">
                 <div className="section-title">
-                  <h3 className="heading-primary2 butler-regulary mt-3 source-font">From the {formData?.from} Desk</h3>
+                  <h3 className="heading-primary2 butler-regulary mt-3 source-font">
+                    From the {formData?.from} Desk
+                  </h3>
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-12 col-lg-12 col-12 col-sm-12">
-                <div  className="align-image-with-content " >
-                <img
-                         src={previewImage || placeholderPerson}
-                        style={{
-                          
-                         
-                          marginBottom: 3,
-                          background: "#fff",
-                          borderRadius: "10px",
-                          border: "2px solid #BFB9B7",
-                          padding: "20px",
-                       
-                        }}
-                      />
-                        <h3 className="butler-regular mb-1 heading-primary3 mt-3 text-center">{`${(formData.name)}`}</h3>
-                        <p className="heading-para gorditas-regular text-primary text-center">{formData?.from}</p>
-                        </div>
-                  <p className="heading-para gorditas-regular text-justify" dangerouslySetInnerHTML={{ __html: html }} ></p>
-                  <div>
-                    
-                   
-                  
+                  <div className="align-image-with-content ">
+                    <img
+                      src={previewImage || placeholderPerson}
+                      style={{
+                        marginBottom: 3,
+                        background: "#fff",
+                        borderRadius: "10px",
+                        border: "2px solid #BFB9B7",
+                        padding: "20px",
+                      }}
+                    />
+                    <h3 className="butler-regular mb-1 heading-primary3 mt-3 text-center">{`${formData.name}`}</h3>
+                    <p className="heading-para gorditas-regular text-primary text-center">
+                      {formData?.from}
+                    </p>
                   </div>
+                  <p
+                    className="heading-para gorditas-regular text-justify"
+                    dangerouslySetInnerHTML={{ __html: html }}
+                  ></p>
+                  <div></div>
                 </div>
               </div>
             </div>
@@ -189,24 +200,21 @@ const Chairperson = () => {
       </section>
 
       <style jsx>
-                      {
-                        `
-                        .align-image-with-content {
-  float: right;
-  margin-left: 25px;
-  width: 250px;
-}
+        {`
+          .align-image-with-content {
+            float: right;
+            margin-left: 25px;
+            width: 250px;
+          }
 
-@media only screen and (max-width: 767px) {
-  .align-image-with-content {
-    float: none;
-    display: block;
-    margin: 0 auto; /* Centers the image */
-  }
-}
-
-                      `
-                      }
+          @media only screen and (max-width: 767px) {
+            .align-image-with-content {
+              float: none;
+              display: block;
+              margin: 0 auto; /* Centers the image */
+            }
+          }
+        `}
       </style>
     </>
   );

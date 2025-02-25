@@ -5,8 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import "../site-components/admin/assets/css/App.min.css";
 import "../site-components/admin/assets/css/Custom.css";
 import IsStudentoggedIn from "../site-pages/student/IsStudentoggedIn";
-import ProtectedRouteStudent from "../site-pages/student/ProtectedRoute";
-import RouteGaurd from "../site-pages/student/RouteGaurd";
+// import ProtectedRouteStudent from "../site-pages/student/ProtectedRoute";
+const ProtectedRouteStudent = lazy(() => import("../site-pages/student/ProtectedRoute"));
+
+// import RouteGaurd from "../site-pages/student/RouteGaurd";
+const RouteGaurd = lazy(() => import("../site-pages/student/RouteGaurd"));
 import Navbar from "../site-pages/student/Navbar";
 import SuspensionLoader from "../SuspensionLoader.jsx";
 import ErrorBoundary from "./ErrorBoundary.jsx";

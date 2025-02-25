@@ -208,11 +208,11 @@ const Courses = () => {
                   <div className="col-lg-12 mb-2">
                     <div className='row'>
                       <div className='col-md-12 col-lg-12 text-center'>
-                      <>
+                        <>
                           {
                             id == 1 && (
                               <img src={BaLlbCourseImg} className='img-fluid mx-auto rounded-3' />
-                              
+
                             )
                           }
                           {
@@ -230,7 +230,7 @@ const Courses = () => {
                         </>
 
 
-                       
+
                       </div>
                       <div className='col-md-12 col-lg-12'>
                         <div className="course-card-body">

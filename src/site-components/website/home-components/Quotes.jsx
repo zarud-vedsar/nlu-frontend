@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import QuotesBg from '../assets/Images/quotesbg.png'
 
-
 const Quotes = () => {
   const sliderRef = useRef(null);
 
@@ -135,21 +134,22 @@ const Quotes = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-10 col-lg-10 mx-auto">
-              <div className="faculty-slider-container">
+              <div className="faculty-slider-container" style={{
+                background: `url(${QuotesBg})`,
+                backgroundSize: '100% 100%',
+                backgroundPosition: 'center',
+              }}>
                 <Slider ref={sliderRef} {...settings2}>
                   {Quotes.map((quote, index) => (
-                    <div className="id-quotes-wrapper" style={{
-                        backgroundImage: `url(${QuotesBg})`,
-
-                        backgroundSize:"cover",
-                        backgroundPosition:"center",
-                    }} key={index}>
-                      <p className="source-font text-center" style={{ fontSize: "18px" }}>
-                        {quote.quotes}
-                      </p>
-                      <h5 className="card-title mt-0 source-font">
-                        {quote.name}
-                      </h5>
+                    <div className="id-quotes-wrapper py-3" key={index}>
+                      <div>
+                        <p className="source-font text-center" style={{ fontSize: "18px" }}>
+                          {quote.quotes}
+                        </p>
+                        <h5 className="card-title mt-0 source-font">
+                          {quote.name}
+                        </h5>
+                      </div>
                     </div>
                   ))}
                 </Slider>

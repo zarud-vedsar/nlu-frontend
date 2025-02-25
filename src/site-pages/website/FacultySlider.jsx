@@ -6,6 +6,7 @@ import {
   PHP_API_URL,
   FILE_API_URL,
 } from "../../site-components/Helper/Constant";
+import f1 from './fimage/f1.jpg';
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const FacultySlider = () => {
@@ -102,9 +103,12 @@ const FacultySlider = () => {
                     <Link to={`/faculty/1`} target="_blank" >
                       <div className="facimg-bx">
                         <img
-                          src="https://spaceshineone.co.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"
+                          src={f1}
                           alt=""
                           className="facimg"
+                          style={{
+                            height:"300px"
+                          }}
                         />
                       </div>
                     </Link>

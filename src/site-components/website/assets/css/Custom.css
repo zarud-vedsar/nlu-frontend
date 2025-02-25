@@ -3698,6 +3698,11 @@ padding: 20px 50px;
 font-style: italic;
 padding: 10px;
 color: #000;
-
-
+  margin: 10px auto;
+  font-weight: bold;
+  font-size: 22px;
+}
+.id-quotes-wrapper{
+  /* background: url('https://freesvg.org/img/Copy-of-Copy-of-Leaf-Corner.png') left fixed !important; */
+  /* background-size: cover; */
 }

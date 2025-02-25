@@ -99,7 +99,7 @@ const FacultySlider = () => {
               <div className="col-md-3 col-lg-3">
                 <div className="faculty-slide mt-3">
                   <div className="facslider">
-                    <Link to={`/message-vice-chancellor`} target="_blank" >
+                    <Link to={`/faculty/1`} target="_blank" >
                       <div className="facimg-bx">
                         <img
                           src="https://spaceshineone.co.in/public/upload/user/RPNLUP/avtar_user20250743159805701738762483.jpg"

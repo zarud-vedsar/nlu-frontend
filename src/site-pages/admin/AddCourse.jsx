@@ -580,9 +580,8 @@ const config = useMemo(()=>({
                       <label className='font-weight-semibold'>Description</label>
                       <JoditEditor
                         value={formData?.description || ''}
-                        config={{config,
-                          placeholder: 'Enter your description here...'
-                        }}
+                        config={config
+                        }
                         onBlur={handleEditorChange}
                       />
                     </div>

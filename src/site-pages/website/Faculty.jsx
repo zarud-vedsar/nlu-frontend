@@ -10,15 +10,77 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiEnvelope, BiPhone } from "react-icons/bi";
 import validator from 'validator';
+import f1 from './fimage/f1.jpg';
+import f2 from './fimage/f2.jpg';
+import f3 from './fimage/f3.jpg';
+import f4 from './fimage/f4.jpg';
+import f5 from './fimage/f5.jpg';
+import f6 from './fimage/f6.jpg';
+import f7 from './fimage/f7.jpg';
 const Faculty = () => {
   const [facultyList, setFacultyList] = useState([
     {
-      avtar: "avtar_user20250743159805701738762483.jpg",
-      uid: "RPNLUP",
+      avtar: f1,
       first_name: "Sr. Prof. Dr. Usha ",
       last_name: "Tandon",
-      designation: "Vice Chancellor",
+      designation: "Vice-Chancellor",
+      email1: 'usha@rpnlup.ac.in',
+      email2: 'vc@rpnlup.ac.in',
       id: 1
+    },
+    {
+      avtar: f2,
+      first_name: "Dr. Deepak ",
+      last_name: "Sharma",
+      designation: "Assistant Professor of Law",
+      email1: 'deepak@rpnlup.ac.in',
+      email2: '',
+      id: 3
+    },
+    {
+      avtar: f3,
+      first_name: "Dr. Sonika",
+      last_name: "",
+      designation: "Assistant Professor of Law",
+      email1: 'sonika@rpnlup.ac.in',
+      email2: '',
+      id: 2
+    },
+    {
+      avtar: f4,
+      first_name: "Dr. Prakash ",
+      last_name: "Tripathi",
+      designation: "Assistant Professor of Sociology",
+      email1: 'prakash@rpnulp.ac.in',
+      email2: '',
+      id: 4
+    },
+    {
+      avtar: f5,
+      first_name: "Dr. Neha ",
+      last_name: "Dubey",
+      designation: "Assistant Professor of English",
+      email1: 'neha@rpnlup.ac.in',
+      email2: '',
+      id: 5
+    },
+    {
+      avtar: f6,
+      first_name: "Dr. Suchit ",
+      last_name: "Kumar Yadav",
+      designation: "Assistant Professor of Political Science",
+      email1: 'suchit@rpnlup.ac.in',
+      email2: '',
+      id: 6
+    },
+    {
+      avtar: f7,
+      first_name: "Dr. Akanshi ",
+      last_name: "Vidyarthi",
+      designation: "Assistant Professor of History",
+      email1: 'akanshi@rpnlup.ac.in',
+      email2: '',
+      id: 7
     },
   ]);
 
@@ -38,24 +100,20 @@ const Faculty = () => {
           },
         }
       );
-      setFacultyList((prev) => [...prev, ...response.data.data]);
+      // setFacultyList((prev) => [...prev, ...response.data.data]);
     } catch (error) {
       // Handle errors (empty for now)
     }
   };
 
   useEffect(() => {
-    loadFacultyData();
+    // loadFacultyData();
   }, []);
 
   const moreDetail = (id) => {
-    if (id === 1) {
-      navigate(`/message-vice-chancellor`);
-    } else {
-      navigate(`/faculty/${id}`);
-    }
+    navigate(`/faculty/${id}`);
   };
-  
+
 
   return (
     <>
@@ -70,12 +128,12 @@ const Faculty = () => {
                     <li>
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
-                    <li><span>People</span> <FaAngleRight /></li> 
+                    <li><span>People</span> <FaAngleRight /></li>
                     <li><span>Faculty</span></li>
                   </ul>
                 </div>
               </div>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
@@ -93,13 +151,9 @@ const Faculty = () => {
                         style={{ height: "300px" }}
                       >
                         <img
-                          style={{ width: "300px", height: "300px" }}
-                          className="mx-auto"
-                          src={
-                            faculty.avtar
-                              ? `${FILE_API_URL}/user/${faculty.uid}/${faculty.avtar}`
-                              : `${FILE_API_URL}/user/dummy.webp`
-                          }
+                          style={{ width: "300px", height: "270px" }}
+                          className="mx-auto rounded-3"
+                          src={faculty.avtar}
                           alt=""
                         />
                       </div>
@@ -108,40 +162,41 @@ const Faculty = () => {
                           <h5 className="heading-primary2 title source-font smt-12">
                             {`${faculty?.first_name} ${faculty?.last_name}`}
                           </h5>
-                          {faculty?.show_email_on_website && faculty?.u_email && (
-                            <p className="mb-1">
-                              <a
-                                aria-label="team mail"
-                                href={`mailto:${faculty?.u_email}`}
-                                className="emai-contact"
-                              >
-                                <span>
-                                  <BiEnvelope />
-                                </span> &nbsp;
-                                {faculty?.u_email}
-                              </a>
-                            </p>
-                          )}
-                          {faculty?.show_contact_on_website && faculty?.u_phone && (
-                            <p className="mb-1">
-                              <a
-                                aria-label="team phone"
-                                href={`tel:+91${faculty.u_phone}`}
-                                className="phone-contact"
-                              >
-                                <span>
-                                  <BiPhone />
-                                </span>
-                                +91 {faculty.u_phone}
-                              </a>
-                            </p>
-                          )}
-                          <div className="staf-info__speciality">
-                            <p>{faculty.designation ? validator.unescape(faculty.designation) : " "}</p>
-                            <p>{faculty?.qualification ? validator.unescape(faculty.qualification) : ""}</p>
-                          </div>
+                          <p className="source-font heading-primary3 mb-2">{faculty.designation ? validator.unescape(faculty.designation) : " "}</p>
+                          {
+                            faculty?.email1 && (
+                              <p className="mb-1">
+                                <a
+                                  aria-label="team mail"
+                                  href={`mailto:${faculty?.email1}`}
+                                  className="emai-contact"
+                                >
+                                  <span>
+                                    <BiEnvelope />
+                                  </span> &nbsp;
+                                  {faculty?.email1}
+                                </a>
+                              </p>
+                            )
+                          }
+                          {
+                            faculty?.email2 && (
+                              <p className="mb-1">
+                                <a
+                                  aria-label="team mail"
+                                  href={`mailto:${faculty?.email2}`}
+                                  className="emai-contact"
+                                >
+                                  <span>
+                                    <BiEnvelope />
+                                  </span> &nbsp;
+                                  {faculty?.email2}
+                                </a>
+                              </p>
+                            )
+                          }
                           <button
-                            className="team-btn react_button"
+                            className="team-btn react_button mt-3"
                             onClick={() => moreDetail(faculty.id)}
                           >
                             More Details

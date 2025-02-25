@@ -198,16 +198,24 @@ function Header() {
                     Courses{" "}
                   </Link>
                   <div className="navigation__item_dropdown-content">
-                    {courseName &&
-                      courseName.map((course_data, index) => (
-                        <Link
-                          to={`/courses/${course_data.id}`}
-                          key={`${index}-course`}
-                          className="navigation__item_drop_link"
-                        >
-                          {course_data.coursename}
-                        </Link>
-                      ))}
+                    <Link
+                      to={`/courses/1`}
+                      className="navigation__item_drop_link"
+                    >
+                      B.A. LL.B. (Hons.)
+                    </Link>
+                    <Link
+                      to={`/courses/3`}
+                      className="navigation__item_drop_link"
+                    >
+                      LL. M.
+                    </Link>
+                    <Link
+                      to={`/courses/2`}
+                      className="navigation__item_drop_link"
+                    >
+                      Ph.D.
+                    </Link>
                   </div>
                 </li>
                 <li className="navigation__item arr-li">
@@ -305,7 +313,7 @@ function Header() {
                     </Link>
                   </div>
                 </li>
-                <li className="navigation__item arr-li " style={{marginRight:"60px"}}>
+                <li className="navigation__item arr-li " style={{ marginRight: "60px" }}>
                   <Link className="navigation__item_link arr-true">
                     More Links
                   </Link>
@@ -316,6 +324,12 @@ function Header() {
                     >
                       Equal Opportunity Cell
                     </Link>
+                    <a
+                      href="https://spaceshineone.co.in/page/5/Information about Admission for the Academic Year 2025-26"
+                      className="navigation__item_drop_link"
+                    >
+                      Admission 2025-26
+                    </a>
                     <Link
                       to="/academic-calendar"
                       className="navigation__item_drop_link"

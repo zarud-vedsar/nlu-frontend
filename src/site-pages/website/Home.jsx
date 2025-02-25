@@ -28,7 +28,7 @@ function Home() {
       <Quotes/>
       <MarqueeSlider />
       <KeyNoteSpeakers />
-      <LawInstitution />
+      {/* <LawInstitution /> */}
       <About />
       <Message />
       <NoticeEventPublication />

@@ -26,7 +26,7 @@
         "chart.js": "^4.4.7",
         "ckeditor4-react": "^5.2.0",
         "ckeditor5": "^43.3.1",
-        "dom-to-pdf": "^0.3.2",
+        "dom-to-pdf": "^0.2.9",
         "dompurify": "^3.2.3",
         "exceljs": "^4.4.0",
         "fbjs": "^3.0.5",
@@ -57,7 +57,7 @@
         "react-nestable": "^3.0.2",
         "react-otp-input": "^3.1.1",
         "react-pdf": "^9.2.1",
-        "react-quill": "^2.0.0",
+        "react-quill": "^0.0.2",
         "react-router-dom": "^6.28.0",
         "react-scroll-to-bottom": "^4.2.0",
         "react-secure-storage": "^1.3.2",
@@ -84,6 +84,6 @@
         "eslint-plugin-react-hooks": "^5.0.0",
         "eslint-plugin-react-refresh": "^0.4.14",
         "globals": "^15.11.0",
-        "vite": "^5.4.10"
+        "vite": "^6.2.0"
     }
 }

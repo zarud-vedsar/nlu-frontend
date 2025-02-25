@@ -723,6 +723,16 @@ export const RoleData = [
     ],
   },
   {
+    title: "File Manager",
+    items: [
+      {
+        label: "File Manager",
+        value: "File Manager",
+        crud: ["list","create"], // CRUD operations
+      },
+    ],
+  },
+  {
     title: "University Settings",
     items: [
       {

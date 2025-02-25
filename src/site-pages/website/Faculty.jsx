@@ -50,7 +50,7 @@ const Faculty = () => {
 
   const moreDetail = (id) => {
     if (id === 1) {
-      navigate(`/message-vice-chancellor/${id}`);
+      navigate(`/message-vice-chancellor`);
     } else {
       navigate(`/faculty/${id}`);
     }

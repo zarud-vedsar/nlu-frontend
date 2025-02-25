@@ -116,8 +116,8 @@ function WebsiteRoute() {
           <Route path='/notice-details/:id' element={<NoticeDetails />} />
           <Route path='/all-event' element={<AllEvent />} />
           <Route path='/event-details' element={<EventDetails />} />
-          <Route path='/message-vice-chancellor/:id' element={<MessageViceChancellor />} />
-
+          <Route path='/message-vice-chancellor' element={<MessageViceChancellor />} />
+          
           <Route path='/all-publication' element={<AllPublication />} />
           <Route path='/publication-details' element={<PublicationDetials />} />
           <Route path='/contact-us' element={<ContactUs />} />

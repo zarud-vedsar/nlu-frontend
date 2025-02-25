@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { PHP_API_URL, FILE_API_URL } from '../../site-components/Helper/Constant';
+import { PHP_API_URL, FILE_API_URL, MAIN_URL } from '../../site-components/Helper/Constant';
 import { toast } from 'react-toastify';
 import { formatDate, goBack } from '../../site-components/Helper/HelperFunction';
 import { DeleteSweetAlert } from '../../site-components/Helper/DeleteSweetAlert';
@@ -18,6 +18,7 @@ function PageList() {
     const [isFetching, setIsFetching] = useState(false);
     const [globalFilter, setGlobalFilter] = useState(''); // State for the search box
     const [recycleTitle, setRecycleTitle] = useState("Show Recycle Bin");
+    const [copiedIndex,setCopiedIndex] = useState(null);
     const navigate = useNavigate();
 
     const fetchList = async (delete_status = 0) => {
@@ -136,6 +137,18 @@ function PageList() {
         }
         navigate(`/admin/add-page/${pageid}`, { replace: false });
     };
+
+
+    const copyToClipboard = (data, index) => {
+        const link = `${MAIN_URL}page/${data.id}/${data.ptitle}`
+        navigator.clipboard
+          .writeText(link)
+          .then(() => {
+            setCopiedIndex(index);
+            setTimeout(() => setCopiedIndex(null), 2000);
+          })
+          .catch((err) => console.error("Failed to copy:", err));
+      };
     return (
         <>
             <div className="page-container">
@@ -227,15 +240,36 @@ function PageList() {
                                         }
                                         <Column
                                             header="Action"
-                                            body={(rowData) => (
+                                            body={(rowData,{rowIndex}) => (
                                                 <div className="d-flex">
+                                                     
                                                     <div className="switch mt-1 w-auto">
                                                         <input type="checkbox" checked={rowData.status == 1 ? true : false} onChange={() => handleToggleStatus(rowData.id)} className="facultydepartment-checkbox" id={`switch${rowData.id}`} />
                                                         <label className="mt-0" htmlFor={`switch${rowData.id}`}></label>
                                                     </div>
                                                     <div onClick={() => updateDataFetch(rowData.id)} className="avatar avatar-icon avatar-md avatar-orange">
                                                         <i className="fas fa-edit"></i>
+
                                                     </div>
+                                                    {copiedIndex === rowIndex ? (
+                                <span className="text-success">Copied!</span>
+                              ) : (
+                                                     <OverlayTrigger
+                                                                    placement="bottom"
+                                                                    overlay={<Tooltip id="button-tooltip-2">Copy Page Link</Tooltip>}
+                                                                >
+                                                                    <div className="avatar ml-2 avatar-icon avatar-md avatar-lime text-warning">
+                              
+                                
+                            
+                          
+                                                                        <i className="fa-solid fa-copy" onClick={() =>copyToClipboard(rowData, rowIndex)}></i>
+                                                                    </div>
+                                                                    
+                                                                </OverlayTrigger>
+
+                                               
+                                            )}
                                                     {
                                                         rowData.delete_status == 0 ?
                                                             (
@@ -259,6 +293,7 @@ function PageList() {
                                                                 </OverlayTrigger>
                                                             )
                                                     }
+                                                    
 
                                                 </div>
                                             )}

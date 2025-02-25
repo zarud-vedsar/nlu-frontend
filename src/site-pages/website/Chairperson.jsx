@@ -118,8 +118,8 @@ const Chairperson = () => {
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li><Link to="/">Home</Link></li> <FaAngleRight />
-                    <li><span>People</span> <FaAngleRight /></li> 
-                    <li><span>Governance</span> <FaAngleRight /></li> 
+                    <li><span>People</span> <FaAngleRight /></li>
+                    <li><span>Governance</span> <FaAngleRight /></li>
                     <li>{formData?.from}</li>
                   </ul>
                 </div>
@@ -158,21 +158,21 @@ const Chairperson = () => {
               </div>
               <div className="row">
                 <div className="col-md-8 col-lg-8 col-12 col-sm-12">
-                  <div className="heading-para gorditas-regular text-justify" dangerouslySetInnerHTML={{ __html: html }}></div>
-                </div>
-                <div className="col-md-4 col-lg-4 col-12 col-sm-12 ps-4">
-                  <img
-                    src={previewImage || placeholderPerson}
-                    className="img-fluid rounded-3"
-                    style={{
-                      maxWidth: "300px",
-                      maxHeight: "300px",
-                      width: "100%",
-                      height: "auto",
-                    }}
-                  />
-                  <h3 className="butler-regular mb-1 heading-primary3 mt-3">{`${(formData.name)}`}</h3>
-                  <p className="heading-para gorditas-regular text-primary">{formData?.from}</p>
+                  <div className="heading-para gorditas-regular text-justify" dangerouslySetInnerHTML={{ __html: html }} style={{ float: 'left' }}></div>
+                  <div>
+                    <img
+                      src={previewImage || placeholderPerson}
+                      className="img-fluid rounded-3"
+                      style={{
+                        maxWidth: "300px",
+                        maxHeight: "300px",
+                        width: "100%",
+                        height: "auto",
+                      }}
+                    />
+                    <h3 className="butler-regular mb-1 heading-primary3 mt-3">{`${(formData.name)}`}</h3>
+                    <p className="heading-para gorditas-regular text-primary">{formData?.from}</p>
+                  </div>
                 </div>
               </div>
             </div>

@@ -822,6 +822,12 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
       dropdownMenus: [],
     },
     {
+      title: "File Manager",
+      icon: <IoIosSettings />, // Icon for settings
+      url: "file-manager",
+      dropdownMenus: [],
+    },
+    {
       title: "University Settings",
       icon: <IoIosSettings />, // Icon for settings
       url: "email-setting",

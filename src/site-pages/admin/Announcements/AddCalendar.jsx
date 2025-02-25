@@ -65,7 +65,7 @@ const AddCalendar = () => {
             : "",
           content: validator.unescape(response.data?.data[0]?.content || ""),
         }));
-      console.log()
+      
       }
     } catch (error) {
       const status = error.response?.statusCode;

@@ -56,7 +56,23 @@ const MessageViceChancellor = () => {
             </p>
 
             <p className="fac-del-heading1">Vice Chancellor</p>
-            <div className="secdev topbr"></div>
+            <div className="secdev topbr">
+               
+                <div className="phhbx">
+                <p style={{ color: "#fff" }}>
+  Email:{" "}
+  <a href="mailto:usha@rpnlup.ac.in" style={{ color: "#fff" }}>
+    usha@rpnlup.ac.in
+  </a>
+  ,{" "}
+  <a href="mailto:vc@rpnlup.ac.in" style={{ color: "#fff" }}>
+    vc@rpnlup.ac.in
+  </a>
+</p>
+
+                 
+                </div>
+              </div>
           </div>
         </div>
         <div className="description">

@@ -57,7 +57,7 @@ const KeyNote = () => {
       );
 
       if (response.data.status === 200 && response.data.data.length > 0) {
-        setMarqueeTitle(response.data.data[0]);
+        setMarqueeTitle({content:response.data.data[0].content ,description:validator.unescape(response.data.data[0].description || "")} );
       }
     } catch (error) {
       /** empty */
@@ -140,6 +140,14 @@ const KeyNote = () => {
               </div>
             ))}
           </div>
+          { marqueeTitle && marqueeTitle?.description && 
+          <div className="row mt-3">
+          <p
+                    className="heading-para gorditas-regular text-justify"
+                    dangerouslySetInnerHTML={{ __html: marqueeTitle?.description }}
+                  ></p>
+          </div>
+}
         </div>
       </div>
     </>

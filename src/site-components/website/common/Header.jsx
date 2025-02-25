@@ -328,7 +328,7 @@ function Header() {
                       href="https://spaceshineone.co.in/page/5/Information about Admission for the Academic Year 2025-26"
                       className="navigation__item_drop_link"
                     >
-                      Admission 2025-26
+                      Admission Details for 2025-26
                     </a>
                     <Link
                       to="/academic-calendar"

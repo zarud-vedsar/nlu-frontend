@@ -198,7 +198,6 @@ const Chairperson = () => {
                     className="heading-para gorditas-regular text-justify"
                     dangerouslySetInnerHTML={{ __html: html }}
                   ></p>
-                  <div></div>
                 </div>
               </div>
             </div>

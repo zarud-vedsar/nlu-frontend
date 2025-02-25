@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import {
-  NODE_API_URL,
+  
   PHP_API_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
@@ -98,6 +98,7 @@ const AddMarque = () => {
     const sendFormData = new FormData();
     sendFormData.append("loguserid", secureLocalStorage.getItem("login_id"));
     sendFormData.append("login_type", secureLocalStorage.getItem("loginType"));
+    sendFormData.append("data", "mrq_slider_add");
     if (id) {
       sendFormData.append("updateid", id);
     }

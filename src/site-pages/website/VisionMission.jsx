@@ -75,10 +75,10 @@ const VisionMission = () => {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 rightpart">
               <div className="about-text-container1">
                 <div className="row">
-                <div className="col-6 mb-4">
+                <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-4">
                   <div className="row">
                     <div className="col-md-4 col-lg-4 col-12 col-sm-12">
-                    <div className="section-title-wrapper img-fluid">
+                    <div className="section-title-wrapper ">
                       <div className="section-title" >
                         <h3 className="heading-primary3 butler-regular source-font">{vision.title}</h3>
                       </div>
@@ -91,7 +91,7 @@ const VisionMission = () => {
 
                   <div className="row">
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12">
-                    {vision.image && <img src={vision.image} alt={vision.title} className="img-fluid rounded-3" />}
+                    {vision.image && <img src={vision.image} alt={vision.title} className="img-fluid mb-3 rounded-3" />}
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
                     <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesVision }} />
@@ -100,7 +100,7 @@ const VisionMission = () => {
 
                   
                 </div>
-                <div className="col-6 ">
+                <div className="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div className="row">
                 <div className="col-md-4 col-lg-4 col-12 col-sm-12">
                     <div className="section-title-wrapper">
@@ -114,7 +114,7 @@ const VisionMission = () => {
                   </div>
                   <div className="row">
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12">
-                    {mission.image && <img src={mission.image} alt={mission.title} className="img-fluid rounded-3" />}
+                    {mission.image && <img src={mission.image} alt={mission.title} className="img-fluid mb-3 rounded-3" />}
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
                     <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesMission }} />
@@ -128,6 +128,7 @@ const VisionMission = () => {
         </div>
 
       </div>
+     
     </>
   );
 };

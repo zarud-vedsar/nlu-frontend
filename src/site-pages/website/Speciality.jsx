@@ -11,6 +11,8 @@ import hostel from "../../site-components/website/assets/Images/hostel-64.png";
 import football from "../../site-components/website/assets/Images/football-64.png";
 import wifi from "../../site-components/website/assets/Images/wi-fi-64.png";
 import research from "../../site-components/website/assets/Images/research-64.png";
+import { Link } from "react-router-dom";
+import { FaRightLong } from "react-icons/fa6";
 const HarukiTabs = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [speciality, setSpeciality] = useState([]);
@@ -83,13 +85,13 @@ const HarukiTabs = () => {
             <div className="row">
               {speciality &&
                 speciality.map((item, index) => (
-                  <div className="col-md-4 col-lg-4" key={index}>
+                  <div className="col-md-6 col-lg-6" key={index}>
                     <div className="speciality-img-card">
                       <img
                         src={item.image}
                         alt="Speciality"
                       />
-                      <h3 className="source-font" dangerouslySetInnerHTML={{
+                      <h3 className="source-font" style={{ fontSize: '15px' }} dangerouslySetInnerHTML={{
                         __html: validator.unescape(validator.unescape(item.title))
                       }}></h3>
                     </div>
@@ -103,13 +105,13 @@ const HarukiTabs = () => {
             <div className="row">
               {facilities &&
                 facilities.map((item, index) => (
-                  <div className="col-md-4 col-lg-4" key={index}>
+                  <div className="col-md-6 col-lg-6" key={index}>
                     <div className="speciality-img-card">
                       <img
                         src={item.img}
                         alt="Speciality"
                       />
-                      <h3 className="source-font" dangerouslySetInnerHTML={{
+                      <h3 className="source-font" style={{ fontSize: '15px' }} dangerouslySetInnerHTML={{
                         __html: validator.unescape(validator.unescape(item.title))
                       }}></h3>
                     </div>
@@ -138,7 +140,32 @@ const Speciality = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-12">
+          <div className="col-md-6">
+            <p className="text-start haruki_tab-button mt-3 mb-1 text-primary source-font ps-0">
+              Interview with the Founding Vice-Chancellor Senior Prof. (Dr.) Usha Tandon
+            </p>
+            <h3 className="source-font">
+              Q. What is your immediate priority as the first VC of NLU Prayagraj?
+            </h3>
+            <p className="source-font text-justify">
+              As the founding vice-chancellor of Dr. Rajendra Prasad National Law University, Prayagraj, my priorities revolve around designing a comprehensive and innovative course curriculum and delineating the university’s goals, and overarching direction. A well-stocked library is important for any ambitious law university and we aspire to have a world-class collection of books.
+            </p>
+            <p className="source-font text-justify">
+              My immediate priority is to meet the university’s vision that resonates with educational excellence, research innovation, and societal impact, all encapsulated within a dynamic strategic blueprint. Another priority is the recruitment and cultivation of a diverse, talented faculty body, fostering an environment ripe for intellectual growth and scholarly pursuits. For this, we have advertised positions.
+            </p>
+            <p className="source-font text-justify">
+              Simultaneously, we are engaged with the recruitment of administrative and supporting staff as per the guidelines of the state government. This is necessary for establishing and upholding the university’s functioning that ensures compliance with regulatory requisites. I am committed to quality assurance and accreditation, ensuring that the university consistently upholds exemplary standards in education, research and administrative practices, thus cementing its reputation as a paragon of academic excellence.
+            </p>
+            <Link
+              to="/view-interview-vc"
+              target="_blank"
+              style={{ minWidth: '230px' }}
+              className="btn btn-primary border-0 px-4 py-2 source-font"
+            >
+              Read More <FaRightLong />
+            </Link>
+          </div>
+          <div className="col-md-6">
             <HarukiTabs />
           </div>
         </div>

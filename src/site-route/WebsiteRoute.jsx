@@ -79,6 +79,8 @@ const AboutDrRajendraPrasad = lazy(() => import('../site-pages/website/AboutDrRa
 const MessageViceChancellor = lazy(() => import('../site-pages/website/MessageViceChancellor.jsx'))
 import SuspensionLoader from '../SuspensionLoader.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
+import ViewInterviewVc from '../site-pages/website/ViewInterviewVc.jsx';
+import LegalExcellence from '../site-pages/website/LegalExcellence.jsx';
 
 function WebsiteRoute() {
   return (
@@ -114,7 +116,7 @@ function WebsiteRoute() {
           <Route path='/notice-details/:id' element={<NoticeDetails />} />
           <Route path='/all-event' element={<AllEvent />} />
           <Route path='/event-details' element={<EventDetails />} />
-          <Route path='/message-vice-chancellor/:id' element={<MessageViceChancellor />} />
+          <Route path='/message-vice-chancellor' element={<MessageViceChancellor />} />
           
           <Route path='/all-publication' element={<AllPublication />} />
           <Route path='/publication-details' element={<PublicationDetials />} />
@@ -141,6 +143,8 @@ function WebsiteRoute() {
           <Route path='/marquee/:mrId' element={<KeyNote />} />
           <Route path='/equal-opportunity-cell' element={<EqualOpportunityCell />} />
           <Route path='/academic-calendar' element={<AcademicCalendar />} />
+          <Route path='/view-interview-vc' element={<ViewInterviewVc />} />
+          <Route path='/legal-excellence' element={<LegalExcellence />} />
           <Route path="*" element={<Navigate to="/page-not-found" />} />
         </Routes>
         <Footer />

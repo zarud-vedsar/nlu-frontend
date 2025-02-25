@@ -60,7 +60,7 @@ const VisionMission = () => {
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li><Link to="/">Home</Link></li> <FaAngleRight />
-                     <li>About</li><FaAngleRight />
+                    <li>About</li><FaAngleRight />
                     <li>{vision.title} & {mission.title}</li>
                   </ul>
                 </div>
@@ -72,14 +72,6 @@ const VisionMission = () => {
       <div className="about-page-area section-padding">
         <div className="container">
           <div className="row">
-            {/* <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 leftpart ">
-              <h3 className="heading-primary2 butler-regular">About Us</h3>
-              <div className="heading-divider mb-3"></div>
-              <ul className="mcd-menu">
-                <li><Link to="/about" className="active"><i className="fa fa-university" /><strong>Introduction</strong><small>National Law University Prayagraj</small></Link></li>
-                <li><Link to="/emblem-motto"><i className="fa fa-flag" /><strong>Emblem and Motto</strong><small>National Law University Prayagraj</small></Link></li>
-              </ul>
-            </div> */}
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 rightpart">
               <div className="about-text-container1">
                 <div className="row mb-4">
@@ -120,7 +112,7 @@ const VisionMission = () => {
             </div>
           </div>
         </div>
-        
+
       </div>
     </>
   );

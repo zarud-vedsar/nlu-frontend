@@ -7,6 +7,9 @@ import { dataFetchingPost } from '../../../site-components/Helper/HelperFunction
 import { NODE_API_URL } from '../../../site-components/Helper/Constant';
 import secureLocalStorage from 'react-secure-storage';
 import { FaAngleRight } from 'react-icons/fa6';
+import LlmCourseImg from '../../../site-components/website/assets/Images/course/llm.png';
+import PhdCourseImg from '../../../site-components/website/assets/Images/course/phd.png';
+import BaLlbCourseImg from '../../../site-components/website/assets/Images/ba-llb.png';
 import validator from 'validator';
 const Courses = () => {
   const { id } = useParams();
@@ -134,7 +137,7 @@ const Courses = () => {
                 <p className="heading-primary2 butler-regular text-white text-center">{activeSidebar == 'about' ? courseData.coursename : pageTitle}</p>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                    <li><Link to="/">Home</Link> <FaAngleRight /></li> 
+                    <li><Link to="/">Home</Link> <FaAngleRight /></li>
                     <li><span>Courses</span> <FaAngleRight /></li>
                     <li>Course Details</li>
                   </ul>
@@ -190,7 +193,8 @@ const Courses = () => {
                           }
                           {
                             id == 3 && (
-                              <span>LL.M. at Dr. Rajendra Prasad National Law University, Prayagraj</span>
+                              <span>LL.M. in PUBLIC LAW | AY 2025-26
+                                ONE YEAR LL.M. PROGRAMME</span>
                             )
                           }
                         </>
@@ -204,7 +208,29 @@ const Courses = () => {
                   <div className="col-lg-12 mb-2">
                     <div className='row'>
                       <div className='col-md-12 col-lg-12 text-center'>
-                        <img src={courseData.thumbnail} className='img-fluid mx-auto rounded-3' />
+                      <>
+                          {
+                            id == 1 && (
+                              <img src={BaLlbCourseImg} className='img-fluid mx-auto rounded-3' />
+                              
+                            )
+                          }
+                          {
+                            id == 2 && (
+                              <img src={PhdCourseImg} className='img-fluid mx-auto rounded-3' />
+
+                            )
+                          }
+                          {
+                            id == 3 && (
+                              <img src={LlmCourseImg} className='img-fluid mx-auto rounded-3' />
+
+                            )
+                          }
+                        </>
+
+
+                       
                       </div>
                       <div className='col-md-12 col-lg-12'>
                         <div className="course-card-body">
@@ -247,6 +273,66 @@ const Courses = () => {
                             )
                           }
                           {
+                            id == 2 && (
+                              <>
+                                <p className='source-font heading-para mb-2'>The University offers full time Ph.D. in Law.</p>
+                                <p className='source-font heading-para'>Total No of Seats- 3 (1- UR, 1- OBC_NCL of UP, 1- SC of UP)</p>
+                                <h2 className='heading-primary2 source-font id-font-weight-500'>Eligibility Criteria</h2>
+                                <p className='source-font heading-para'>⊙ Eligibility will be based on and in conformity with University Grants Commission (Minimum Standards and Procedures for the Award of Ph.D. Degree) Regulations, 2022 and No. F. 4-1 (UGC-NET Review Committee)/2024 (NET)/140648 dated 28th March 2024.</p>
+                                <p className='source-font heading-para'>⊙ Candidates who have completed: a Master’s degree in Law or a professional degree declared equivalent to the Master’s degree in Law by the corresponding statutory regulatory body, with at least 55% marks in aggregate or its equivalent grade ‘B’ in the UGC 7-point scale (or an equivalent grade in a point scale wherever grading system is followed) or an equivalent degree from a foreign educational institution accredited by an Assessment and Accreditation Agency which is approved, recognized or authorized by an authority, established or incorporated under a law in its home country or any other statutory authority in that country for the purpose of assessing, accrediting, or assuring quality and standards of educational institutions.</p>
+                                <p className='source-font heading-para'>⊙ A relaxation of 5% marks or its equivalent grade may be allowed for those belonging to SC/ST/OBC (non-creamy layer)/Differently-Abled, Economically Weaker Section (EWS) of Uttar Pradesh and other categories of candidates as per the decision of the Government of Uttar Pradesh from time to time.</p>
+                                <h2 className='heading-primary2 source-font id-font-weight-500'>Admission Process</h2>
+                                <p className='source-font heading-para'>⊙ Candidates, who have qualified NET/JRF or qualified for admission to Ph.D. based on the UGC NET examination are eligible for the Ph.D. Admission as per the UGC Guidelines.</p>
+                                <p className='source-font heading-para'>⊙ Those who are employed anywhere will submit No Objection Certificate (NOC) from their respective employer clearly mentioning that the Applicant/candidate will be granted/allowed leave for Ph.D. Course Work. Without such certificate, the application shall be rejected, and the fee shall not be refunded. Further if any candidate is found that the forged certificate has been submitted at any period before or after admission, his/her admission shall be cancelled at any time and penalised as well. The Candidates are advised not to call and embarrass on this issue before or after the admission process. The Ph.D. Course work is full-time program.</p>
+                                <h2 className='heading-primary2 source-font id-font-weight-500'>Duration of the Programme</h2>
+                                <p className='source-font heading-para'>⊙ The University offers full time Ph.D. in Law.</p>
+                                <p className='source-font heading-para'>⊙ Ph.D. Programme shall be for a minimum duration of three (3) years, including course work, and a maximum duration of six (6) years from the date of admission to the Ph.D. programme.</p>
+                                <p className='source-font heading-para'>⊙ A maximum of an additional two (2) years can be given through a process of re-registration as per the Statute/Ordinance of the University; provided, however, that the total period for completion of a Ph.D. programme should not exceed eight (8) years from the date of admission in the Ph.D. programme. Provided further that, female Ph.D. scholars and Persons with Disabilities (having more than 40% disability) may be allowed an additional relaxation of two (2) years; however, the total period for completion of a Ph.D. programme in such cases should not exceed ten (10) years from the date of admission in the Ph.D. programme.</p>
+                                <p className='source-font heading-para'>⊙ Female Ph.D. Scholars may be provided Maternity Leave/Child Care Leave for up to 240 days in the entire duration of the Ph.D. programme.</p>
+                                <h2 className='heading-primary2 source-font id-font-weight-500'>Duration of the Programme</h2>
+                                <table className='table-custom'>
+                                  <tr>
+                                    <thead>
+                                      <th>Sr. No</th>
+                                      <th>Details</th>
+                                      <th>Important Dates</th>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>1</td>
+                                        <td>Starting of Downloading Application Form</td>
+                                        <td>1st June 2025</td>
+                                      </tr>
+                                      <tr>
+                                        <td>2</td>
+                                        <td>Last date of Submission of Application form along with Synopsis</td>
+                                        <td>30th June 2025</td>
+                                      </tr>
+                                      <tr>
+                                        <td>3</td>
+                                        <td>Announcement of Short-listed candidates</td>
+                                        <td>15th July 2025</td>
+                                      </tr>
+                                      <tr>
+                                        <td>4</td>
+                                        <td>Date of Interview and Presentation</td>
+                                        <td>1st August 2025</td>
+                                      </tr>
+                                      <tr>
+                                        <td>5</td>
+                                        <td>Starting of Downloading Application Form</td>
+                                        <td>Academic Block, Dr. Rajendra Prasad National Law University, Prayagraj Gaddopur, Phaphamau, Prayagraj, UP- 211013</td>
+                                      </tr>
+                                    </tbody>
+                                  </tr>
+                                </table>
+                                <p className='source-font heading-para'>Admission to Ph.D in Law is subject to verification of all relevant original documents at the time of interview/interaction.</p>
+                                <p className='source-font heading-para'><strong>Contact us: </strong> Email: <a href='mailto: admission@rpnlup.ac.in'>admission@rpnlup.ac.in</a></p>
+                                <p>Sd/- <br />Registrar</p>
+                              </>
+                            )
+                          }
+                          {/* {
                             id == 2 && (
                               <>
                                 <h2 className='heading-primary2 source-font id-font-weight-500'>Overview of Ph.D. (Law) Program</h2>
@@ -298,43 +384,158 @@ const Courses = () => {
                                 <h3 className='heading-para source-font'><strong>Enroll today and shape the future of legal education and policy!</strong></h3>
                               </>
                             )
-                          }
+                          } */}
                           {
                             id == 3 && (
                               <>
                                 <h2 className='heading-primary2 source-font id-font-weight-500'>Overview of LL.M. Program</h2>
                                 <p className='heading-para'>Dr. Rajendra Prasad National Law University, Prayagraj, offers a distinguished Master of Laws (LL.M.) program designed for legal professionals and graduates seeking advanced knowledge and expertise in specialized areas of law. This one-year postgraduate program provides an in-depth understanding of legal principles, research methodologies, and contemporary legal issues, preparing students for leadership roles in academia, judiciary, corporate sectors, and international organizations.</p>
                                 <h2 className='heading-primary2 source-font id-font-weight-500'>Why Choose LL.M. at Dr. Rajendra Prasad National Law University?</h2>
-                                <p className='heading-para'> <strong>Specialized Curriculum:</strong> Choose from a wide range of specializations, including Constitutional Law, Corporate Law, Criminal Law, International Law, and Human Rights Law.</p>
+                                <p className='heading-para'> <strong>Specialized Curriculum:</strong> Choose from a wide range of specializations, including LL.M. in PUBLIC LAW.</p>
                                 <p className='heading-para'> <strong>Expert Faculty and Mentors:</strong> Learn from renowned legal scholars, experienced practitioners, and industry experts who provide practical insights and academic guidance.</p>
                                 <p className='heading-para'> <strong>Research Opportunities:</strong> Engage in rigorous legal research, participate in national and international conferences, and publish papers in reputed legal journals.</p>
                                 <p className='heading-para'> <strong>Interactive Learning Environment:</strong> Benefit from interactive lectures, case studies, moot courts, and workshops that enhance critical thinking and analytical skills.</p>
                                 <p className='heading-para'> <strong>Career Support and Placement Assistance:</strong> The university offers dedicated career counseling and placement support, helping students pursue successful careers in academia, legal practice, corporate sectors, and public services.</p>
 
-                                <h2 className='heading-primary2 source-font id-font-weight-500'>Course Structure and Specializations</h2>
-                                <p className='heading-para'> The LL.M. program is structured to provide both theoretical knowledge and practical experience. The course includes:</p>
-                                <p className='heading-para'> <strong>Core Subjects:</strong> Advanced Jurisprudence, Research Methodology, Comparative Public Law, and Legal Education.</p>
-                                <p className='heading-para'>
-                                  <strong>Specializations Offered:</strong>
-                                  <br />
-                                  <p className='heading-para' style={{ marginLeft: '20px' }}> <strong>Constitutional Law:</strong> In-depth study of constitutional principles, judicial review, and human rights.</p>
-                                  <p className='heading-para' style={{ marginLeft: '20px' }}> <strong>Corporate Law:</strong> Corporate governance, mergers and acquisitions, and international trade law.</p>
-                                  <p className='heading-para' style={{ marginLeft: '20px' }}> <strong>Criminal Law:</strong> Advanced criminology, criminal justice, and human rights in criminal proceedings.</p>
-                                  <p className='heading-para' style={{ marginLeft: '20px' }}> <strong>International Law:</strong> Public international law, international trade law, and human rights law.</p>
-                                  <p className='heading-para' style={{ marginLeft: '20px' }}> <strong>Human Rights Law:</strong> National and international human rights standards, advocacy, and enforcement mechanisms.</p>
-                                </p>
-                                <p className='heading-para'><strong>Dissertation and Research Work:</strong> Students undertake independent research under faculty supervision, culminating in a dissertation on a contemporary legal issue.</p>
                                 <h2 className='heading-primary2 source-font id-font-weight-500'>Eligibility Criteria & Admission Process</h2>
-                                <p className='heading-para'>Please refer the below displayed brochure.</p>
-                                <h2 className='heading-primary2 source-font id-font-weight-500'>Career Opportunities After LL.M.</h2>
-                                <p className='heading-para'>An LL.M. degree from Dr. Rajendra Prasad National Law University opens up diverse career opportunities in:</p>
-                                <p className='heading-para'><strong>Judiciary and Legal Practice:</strong> Pursuing careers as judges, advocates, or legal consultants.</p>
-                                <p className='heading-para'><strong>Corporate Sector:</strong> Working as legal advisors, compliance officers, or corporate counsels.</p>
-                                <p className='heading-para'><strong>International Organizations:</strong> Opportunities in United Nations agencies, international NGOs, and human rights organizations.</p>
-                                <p className='heading-para'><strong>Public Service and Civil Services: </strong>Joining governmental agencies, policy-making bodies, or public administration.</p>
-                                <h2 className='heading-primary2 source-font id-font-weight-500'>Conclusion</h2>
-                                <p className='heading-para'>Advance your legal career with the LL.M. program at Dr. Rajendra Prasad National Law University, Prayagraj. Develop specialized expertise, enhance your research capabilities, and build a successful career in the legal profession.</p>
-                                <p className='heading-para'><strong>Enroll today and shape the future of law and justice!</strong></p>
+                                <p className='heading-para source-font'><strong>The admission shall be based on the performance in the Common Law
+                                  Admission Test- Post Graduate (CLAT- PG)-2025 Examination.</strong></p>
+                                <p className='heading-para source-font'>To qualify for admission, the candidates: Must have completed Graduation in Law
+                                  (Either Three year or Five years Integrated Law, or an equivalent examination thereof,
+                                  securing in aggregate not less than 50% of marks or its equivalent grade (45% marks or
+                                  its equivalent grade in case of SC/ST/PwD candidates of U. P.).</p>
+                                <p className='heading-para source-font'>The Candidates, who have appeared in the qualifying examination in April or May, 2025
+                                  and are awaiting for their results, may also eligible for the admission which shall be
+                                  subject to the fulfilment of the above requirement at the time of admission.</p>
+                                <h3 className='heading-primary2 source-font id-font-weight-500'>Intake and Reservation:</h3>
+                                <p className='heading-para source-font'>The intake of students for LL.M. in Public Law for the academic year 2025 -26 is 10 (Ten)
+                                  seats with the following breakup:
+                                </p>
+                                <table className='table-custom'>
+                                  <thead>
+                                    <tr>
+                                      <th>Sr. No</th>
+                                      <th>Category</th>
+                                      <th>No. Of Seats</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>1</td>
+                                      <td>Unreserved</td>
+                                      <td>4</td>
+                                    </tr>
+                                    <tr>
+                                      <td>2</td>
+                                      <td>EWS*</td>
+                                      <td>1</td>
+                                    </tr>
+                                    <tr>
+                                      <td>3</td>
+                                      <td>OBC-NCL*</td>
+                                      <td>3</td>
+                                    </tr>
+                                    <tr>
+                                      <td>4</td>
+                                      <td>Scheduled Caste*</td>
+                                      <td>2</td>
+                                    </tr>
+                                    <tr>
+                                      <th></th>
+                                      <th>Total</th>
+                                      <th>10</th>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <p><strong>*Reservations are applicable to SC, OBC (NCL) and EWS of Uttar Pradesh Only.
+                                </strong></p>
+                                <table className='table-custom'>
+                                  <thead>
+                                    <tr>
+                                      <th>Sr. No</th>
+                                      <th>Category</th>
+                                      <th>No. Of Seats</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr>
+                                      <td>1</td>
+                                      <td>Female</td>
+                                      <td>20%</td>
+                                    </tr>
+                                    <tr>
+                                      <td>2</td>
+                                      <td>PwD of UP*</td>
+                                      <td>5%</td>
+                                    </tr>
+                                    <tr>
+                                      <td>3</td>
+                                      <td>Dependent of Freedom Fighters of UP</td>
+                                      <td>2%</td>
+                                    </tr>
+                                    <tr>
+                                      <td>4</td>
+                                      <td>Sons, Daughters of Defence Personnels deployed in UP either killed/retired/disabled in action</td>
+                                      <td>5%</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                                <p><strong>*Only the candidates having permanent disability certificate will consider for admission in
+                                  the RPNLU, Prayagraj, under this category as per the decision in the writ petiotion no.
+                                  3647/2024 Aakarsh Matta Vs Consortium of National Law Universities.
+
+                                </strong></p>
+                                <h2 className='heading-primary2 source-font id-font-weight-500'>Course Structure:</h2>
+                                <p className='heading-para source-font'>The one year LL.M. programme shall have 24 credits with three mandatory courses of 3
+                                  credits each (making a total of nine credits), six optional courses of 2 credits each (making a
+                                  total of 12 credits) and a dissertation of 3 credits. University may increase credits for
+                                  dissertation up to 5 credits as per UGC norms.</p>
+                                <p className='mb-1 heading-para source-font'><strong>A. Mandatory Papers (3 credits each)</strong></p>
+                                <p className='ps-2 source-font'><span className='fw-bold'>1. Research Methodology (Semester I)</span> <br />
+                                  <span className='fw-bold'>2. Comparative Public Law (Semester I)</span> <br />
+                                  <span className='fw-bold'>3. Law and Justice in a Globalizing World (Semester I)</span></p>
+                                <p className='mb-1 source-font'><strong>B. Optional Papers (2 credits each)</strong></p>
+                                <p className='ps-2 source-font'>
+                                  <span className='fw-bold'>1. Optional Paper 1 (Semester I)</span> <br />
+                                  <span className='fw-bold'>2. Optional Paper 2 (Semester I)</span> <br />
+                                  <span className='fw-bold'>3. Optional Paper 3 (Semester II)</span> <br />
+                                  <span className='fw-bold'>4. Optional Paper 4 (Semester II)</span> <br />
+                                  <span className='fw-bold'>5. Optional Paper 5 (Semester II)</span> <br />
+                                  <span className='fw-bold'>6. Optional Paper 6 (Semester II)</span>
+                                </p>
+                                <p className='heading-para source-font'><strong>Note:</strong> Students are free to choose any six optional papers from the subjects which are
+                                  offered by the University subject to the requirement of minimum number of students per
+                                  paper</p>
+                                <h2 className='heading-primary2 source-font id-font-weight-500'>Optional Papers:</h2>
+                                <p className='heading-para source-font mb-1'>The following papers are being offered to students in: Semester I (The students may choose any
+                                  two papers)
+                                </p>
+                                <p className='ps-2 source-font'>
+                                  <span className='fw-bold'>1. Comparative Constitutional Law (Semester-I)</span> <br />
+                                  <span className='fw-bold'>2. International Environmental Law & Policy (Semester-I)</span> <br />
+                                  <span className='fw-bold'>3. Criminal Law & Contemporary Issues (Semester-I)</span> <br />
+                                  <span className='fw-bold'>4. International Human Rights Law (Semester-I)</span>
+                                  <span className='fw-bold'>5. Media Law</span>
+                                </p>
+                                <p className='heading-para source-font'><strong>Note:</strong> The above-mentioned lists of optional papers are not exhaustive and may include other
+                                  public law papers as well. The paper will be offered subject to the requirement of minimum
+                                  students as prescribed by the University and the availability of teachers in that paper.</p>
+                                <p className='heading-para source-font mb-1'>Semester II (The students may choose any four papers)</p>
+                                <p className='ps-2 source-font'>
+                                  <span className='fw-bold'>1. Comparative Law (Semester-II)</span> <br />
+                                  <span className='fw-bold'>2. Alternative Dispute Resolution (Semester-II)</span> <br />
+                                  <span className='fw-bold'>3. Business and Human Rights (Semester-II)</span> <br />
+                                  <span className='fw-bold'>4.Transportation Law (Semester-II)</span>
+                                  <span className='fw-bold'>5. Constitutional Theory and Judicial Process (Semester-II)</span>
+                                  <span className='fw-bold'>6. International Humanitarian Law (Semester-II)</span>
+                                  <span className='fw-bold'>7. Gender Justice (Semester-II)</span>
+                                  <span className='fw-bold'>8. Constitutional Claims and Contemporary Issues under Personal Laws (Semester II)</span>
+                                  <span className='fw-bold'>9. Disability Law and Policy in India: Contemporary Issues and Challenges (Semester-II)</span>
+                                </p>
+                                <p className='heading-para source-font'>Note: The above-mentioned lists of optional papers are not exhaustive and may include other
+                                  public law papers as well. The paper will be offered subject to the requirement of minimum
+                                  students as prescribed by the University and the availability of teachers in that paper.
+                                </p>
                               </>
                             )
                           }
@@ -388,11 +589,11 @@ const Courses = () => {
 .rightpart::-webkit-scrollbar, 
 .leftpart::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
-}
+
             `
           }
         </style>
-      </div>
+      </div >
     </>
   )
 }

@@ -35,7 +35,7 @@ const Faculty = () => {
       designation: "Assistant Professor of Law",
       email1: 'deepak@rpnlup.ac.in',
       email2: '',
-      id: 2
+      id: 3
     },
     {
       avtar: f3,
@@ -44,7 +44,7 @@ const Faculty = () => {
       designation: "Assistant Professor of Law",
       email1: 'sonika@rpnlup.ac.in',
       email2: '',
-      id: 3
+      id: 2
     },
     {
       avtar: f4,
@@ -74,13 +74,13 @@ const Faculty = () => {
       id: 6
     },
     {
-      avtar: f6,
+      avtar: f7,
       first_name: "Dr. Akanshi ",
       last_name: "Vidyarthi",
       designation: "Assistant Professor of History",
       email1: 'akanshi@rpnlup.ac.in',
       email2: '',
-      id: 6
+      id: 7
     },
   ]);
 
@@ -111,11 +111,7 @@ const Faculty = () => {
   }, []);
 
   const moreDetail = (id) => {
-    if (id === 1) {
-      navigate(`/message-vice-chancellor`);
-    } else {
-      navigate(`/faculty/${id}`);
-    }
+    navigate(`/faculty/${id}`);
   };
 
 
@@ -155,8 +151,8 @@ const Faculty = () => {
                         style={{ height: "300px" }}
                       >
                         <img
-                          style={{ width: "300px", height: "260px" }}
-                          className="mx-auto"
+                          style={{ width: "300px", height: "270px" }}
+                          className="mx-auto rounded-3"
                           src={faculty.avtar}
                           alt=""
                         />
@@ -166,40 +162,41 @@ const Faculty = () => {
                           <h5 className="heading-primary2 title source-font smt-12">
                             {`${faculty?.first_name} ${faculty?.last_name}`}
                           </h5>
-                          {faculty?.show_email_on_website && faculty?.u_email && (
-                            <p className="mb-1">
-                              <a
-                                aria-label="team mail"
-                                href={`mailto:${faculty?.u_email}`}
-                                className="emai-contact"
-                              >
-                                <span>
-                                  <BiEnvelope />
-                                </span> &nbsp;
-                                {faculty?.u_email}
-                              </a>
-                            </p>
-                          )}
-                          {faculty?.show_contact_on_website && faculty?.u_phone && (
-                            <p className="mb-1">
-                              <a
-                                aria-label="team phone"
-                                href={`tel:+91${faculty.u_phone}`}
-                                className="phone-contact"
-                              >
-                                <span>
-                                  <BiPhone />
-                                </span>
-                                +91 {faculty.u_phone}
-                              </a>
-                            </p>
-                          )}
-                          <div className="staf-info__speciality">
-                            <p>{faculty.designation ? validator.unescape(faculty.designation) : " "}</p>
-                            <p>{faculty?.qualification ? validator.unescape(faculty.qualification) : ""}</p>
-                          </div>
+                          <p className="source-font heading-primary3 mb-2">{faculty.designation ? validator.unescape(faculty.designation) : " "}</p>
+                          {
+                            faculty?.email1 && (
+                              <p className="mb-1">
+                                <a
+                                  aria-label="team mail"
+                                  href={`mailto:${faculty?.email1}`}
+                                  className="emai-contact"
+                                >
+                                  <span>
+                                    <BiEnvelope />
+                                  </span> &nbsp;
+                                  {faculty?.email1}
+                                </a>
+                              </p>
+                            )
+                          }
+                          {
+                            faculty?.email2 && (
+                              <p className="mb-1">
+                                <a
+                                  aria-label="team mail"
+                                  href={`mailto:${faculty?.email2}`}
+                                  className="emai-contact"
+                                >
+                                  <span>
+                                    <BiEnvelope />
+                                  </span> &nbsp;
+                                  {faculty?.email2}
+                                </a>
+                              </p>
+                            )
+                          }
                           <button
-                            className="team-btn react_button"
+                            className="team-btn react_button mt-3"
                             onClick={() => moreDetail(faculty.id)}
                           >
                             More Details

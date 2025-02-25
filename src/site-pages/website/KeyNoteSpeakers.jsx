@@ -52,14 +52,14 @@ function KeyNoteSpeakers() {
             name: 'Professor Leela Krishnan',
             imageUrl: P5,
             contactDetails: 'School of Legal Studies, Cochin University of Science and Technology',
-            link: 'https://spaceshineone.co.in/wp-content/uploads/2024/11/Prof.-P.-Leelakrishnan.pdf'
+            link: 'https://spaceshineone.co.in/page/6/Prof.-P.-Leelakrishnan'
         },
         {
             id: 7,
             name: 'Justice Rinzin Penjor',
             imageUrl: P6,
             contactDetails: 'Judge, Supreme Court of Bhutan; Vice Chairman, Bar Council of Bhutan',
-            link: 'blank'
+            link: '#'
         },
         {
             id: 8,
@@ -94,7 +94,7 @@ function KeyNoteSpeakers() {
             name: 'Professor Jonathan O. Chimakonam',
             imageUrl: P13,
             contactDetails: 'Professor of Philosophy, University of Pretoria, South Africa',
-            link: 'https://spaceshineone.co.in/wp-content/uploads/2024/12/Jonathan-Profile.pdf'
+            link: 'https://spaceshineone.co.in/page/3/Jonathan-Profile'
         },
         {
             id: 12,
@@ -108,7 +108,7 @@ function KeyNoteSpeakers() {
             name: 'Professor Mrs. Erimma G. Orie',
             imageUrl: P12,
             contactDetails: 'Professor National Open University of Nigeria',
-            link: 'https://spaceshineone.co.in/wp-content/uploads/2025/01/DrErimmaGOrie.pdf'
+            link: 'https://www.spaceshineone.co.in/page/4/DrErimmaGOrie'
         },
         {
             id: 1,

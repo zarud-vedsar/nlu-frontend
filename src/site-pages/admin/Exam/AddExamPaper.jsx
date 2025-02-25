@@ -68,11 +68,11 @@ function AddExam() {
     pass: 0,
   };
   // Jodit editor configuration
-  const config = {
+  const config = useMemo(()=>({
     readonly: false,
     placeholder: "Enter your instructions here...",
     spellcheck: true,
-    language: "pt_br",
+    language: "en",
     defaultMode: "1",
     minHeight: 400,
     maxHeight: -1,
@@ -80,7 +80,7 @@ function AddExam() {
     defaultActionOnPasteFromWord: "insert_as_html",
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+  }),[]);
 
   // State variables: The true chaos handlers.
   const [formData, setFormData] = useState(initialFormData); // For holding all the exam data.

@@ -35,11 +35,11 @@ function AddResourceLiveClass() {
     const [error, setError] = useState({ field: "", msg: "" }); // Error state
     const { dbId } = useParams();
     // Jodit editor configuration
-    const config = {
+    const config = useMemo(()=>({
         readonly: false,
         placeholder: 'Enter your description here..',
         spellcheck: true,
-        language: 'pt_br',
+        language: 'en',
         defaultMode: '1',
         minHeight: 400,
         maxHeight: -1,
@@ -47,7 +47,7 @@ function AddResourceLiveClass() {
         defaultActionOnPasteFromWord: 'insert_as_html',
         askBeforePasteFromWord: false,
         askBeforePasteHTML: false,
-    };
+    }),[]);
     const handleEditorChange = (newContent) => {
         setFormData((prev) => ({
             ...prev,

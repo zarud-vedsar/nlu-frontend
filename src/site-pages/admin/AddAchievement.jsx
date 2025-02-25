@@ -30,11 +30,11 @@ function AddAchievement() {
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
   // Jodit editor configuration
-  const config = {
+  const config = useMemo(()=>({
     readonly: false,
     placeholder: 'Enter Your description here...',
     spellcheck: true,
-    language: 'pt_br',
+    language: 'en',
     defaultMode: '1',
     minHeight: 400,
     maxHeight: -1,
@@ -42,7 +42,7 @@ function AddAchievement() {
     defaultActionOnPasteFromWord: 'insert_as_html',
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+  }),[]);
   const updateFetchData = async (achievementId) => {
     if (
       !achievementId ||

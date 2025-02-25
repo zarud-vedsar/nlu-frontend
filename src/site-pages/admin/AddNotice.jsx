@@ -33,11 +33,11 @@ function NoticeList() {
   const [isSubmit, setIsSubmit] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
   // Jodit editor configuration
-  const config = {
+  const config = useMemo(()=>({
     readonly: false,
     placeholder: 'Enter Your description here...',
     spellcheck: true,
-    language: 'pt_br',
+    language: 'en',
     defaultMode: '1',
     minHeight: 400,
     maxHeight: -1,
@@ -45,7 +45,7 @@ function NoticeList() {
     defaultActionOnPasteFromWord: 'insert_as_html',
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+  }),[]);
   // handle Input fields data and stored them in the formData
   const handleChange = (event) => {
     const { name, value } = event.target;

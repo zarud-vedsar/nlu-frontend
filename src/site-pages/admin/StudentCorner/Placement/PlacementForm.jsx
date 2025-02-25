@@ -18,11 +18,11 @@ const AddPlacementForm = () => {
   const [errorKey, setErrorKey] = useState();
   const [errorMessage, setErrorMessage] = useState();
   // Jodit editor configuration
-  const config = {
+  const config = useMemo(()=>({
     readonly: false,
     placeholder: 'Enter your description here...',
     spellcheck: true,
-    language: 'pt_br',
+    language: 'en',
     defaultMode: '1',
     minHeight: 400,
     maxHeight: -1,
@@ -30,7 +30,7 @@ const AddPlacementForm = () => {
     defaultActionOnPasteFromWord: 'insert_as_html',
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+  }),[]);
 
   const initialization = {
     data: "savejobpost",

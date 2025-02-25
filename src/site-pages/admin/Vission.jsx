@@ -23,11 +23,10 @@ const Vission = () => {
     });
   };
   // Jodit editor configuration
-  const config = {
+const config = useMemo(()=>({
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter your description here...',
     spellcheck: true,
-    language: 'pt_br',
     defaultMode: '1',
     minHeight: 400,
     maxHeight: -1,
@@ -35,7 +34,8 @@ const Vission = () => {
     defaultActionOnPasteFromWord: 'insert_as_html',
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+    language: 'en',
+  }),[]);
 
   const getVissionData = async () => {
     try {

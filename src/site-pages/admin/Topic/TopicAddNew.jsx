@@ -38,11 +38,11 @@ function TopicAddNew() {
 
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
   // Jodit editor configuration
-  const config = {
+  const config = useMemo(()=>({
     readonly: false,
     placeholder: 'Enter your description here...',
     spellcheck: true,
-    language: 'pt_br',
+    language: 'en',
     defaultMode: '1',
     minHeight: 400,
     maxHeight: -1,
@@ -50,7 +50,7 @@ function TopicAddNew() {
     defaultActionOnPasteFromWord: 'insert_as_html',
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+  }),[]);
   const courseListDropdown = async () => {
     try {
       const response = await axios.get(`${NODE_API_URL}/api/course/dropdown`);

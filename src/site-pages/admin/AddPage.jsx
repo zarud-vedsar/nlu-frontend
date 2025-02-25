@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Select from "react-select";
 import { toast } from "react-toastify";
@@ -44,11 +44,10 @@ function AddPage() {
     });
   };
   // Jodit editor configuration
-  const config = {
+  const config = useMemo(()=>({
     readonly: false,
     placeholder: 'Enter your description here...',
     spellcheck: true,
-    language: 'pt_br',
     defaultMode: '1',
     minHeight: 400,
     maxHeight: -1,
@@ -56,7 +55,8 @@ function AddPage() {
     defaultActionOnPasteFromWord: 'insert_as_html',
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+    language: 'en',
+  }),[]);
   const updatfetchPageById = async (pageid) => {
     if (Number.isInteger(parseInt(pageid, 10)) && parseInt(pageid, 10) > 0) {
       try {

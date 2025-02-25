@@ -26,11 +26,10 @@ function AddExam() {
     section: [],
   });
   const [isSubmit, setIsSubmit] = useState(false);
-  const config = {
+const config = useMemo(()=>({
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter your description here...',
     spellcheck: true,
-    language: 'pt_br',
     defaultMode: '1',
     minHeight: 400,
     maxHeight: -1,
@@ -38,7 +37,8 @@ function AddExam() {
     defaultActionOnPasteFromWord: 'insert_as_html',
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+    language: 'en',
+  }),[]);
   // Fetch and set the session list
   const fetchSavedQuestion = async (paper_set) => {
     try {

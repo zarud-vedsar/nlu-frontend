@@ -324,6 +324,12 @@ function Header() {
                     >
                       Equal Opportunity Cell
                     </Link>
+                    <a
+                      href="https://spaceshineone.co.in/page/5/Information about Admission for the Academic Year 2025-26"
+                      className="navigation__item_drop_link"
+                    >
+                      Admission 2025-26
+                    </a>
                     <Link
                       to="/academic-calendar"
                       className="navigation__item_drop_link"

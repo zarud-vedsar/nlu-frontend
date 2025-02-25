@@ -26,7 +26,7 @@ function Home() {
       <PopupNotice />
       <Banner />
       <MarqueeSlider />
-      <Quotes/>
+      <Quotes />
       <KeyNoteSpeakers />
       <LawInstitution />
       <About />

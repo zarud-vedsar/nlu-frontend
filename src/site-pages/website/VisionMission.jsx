@@ -74,37 +74,44 @@ const VisionMission = () => {
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 rightpart">
               <div className="about-text-container1">
-                <div className="row mb-4">
+                <div className="row">
+                <div className="col-6 mb-4">
                   <div className="col-md-12 col-lg-12 col-12 col-sm-12">
                     <div className="section-title-wrapper">
-                      <div className="section-title">
+                      <div className="section-title" style={{textAlign:"left"}}>
                         <h3 className="heading-primary3 butler-regular source-font">{vision.title}</h3>
                       </div>
                     </div>
                   </div>
+
+                  <div className="row">
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12">
                     {vision.image && <img src={vision.image} alt={vision.title} className="img-fluid rounded-3" />}
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
-                    <div className="d-flex h-100 align-items-center">
-                      <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesVision }} />
-                    </div>
+                    <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesVision }} />
                   </div>
+                  </div>
+
+                  
                 </div>
-                <div className="row mt-3">
+                <div className="col-6 ">
                   <div className="col-md-12 col-lg-12 col-12 col-sm-12">
                     <div className="section-title-wrapper">
-                      <div className="section-title">
+                      <div className="section-title" style={{textAlign:"left"}}>
                         <h3 className="heading-primary3 butler-regular source-font">{mission.title}</h3>
                       </div>
                     </div>
                   </div>
+                  <div className="row">
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12">
                     {mission.image && <img src={mission.image} alt={mission.title} className="img-fluid rounded-3" />}
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
                     <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesMission }} />
                   </div>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>

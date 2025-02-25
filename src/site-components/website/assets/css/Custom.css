@@ -3706,3 +3706,22 @@ color: #000;
   /* background: url('https://freesvg.org/img/Copy-of-Copy-of-Leaf-Corner.png') left fixed !important; */
   /* background-size: cover; */
 }
+.table-custom {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.table-custom th {
+  background-color: #f2f2f2 !important;
+  color: #333 !important;
+  font-weight: 600;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+}
+.table-custom td {
+  color: #000 !important;
+  font-weight: 500;
+  padding: 5px 8px;
+  border: 1px solid #ccc;
+}

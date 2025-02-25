@@ -1772,10 +1772,7 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
             />{" "}
             {/* Resource Live Class URL List */}
             {/** POPUP AND SETTINGS */}
-            <Route
-              path="/popup-notice"
-              element={<ProtectedRoute element={<components.PopupNotice />} />}
-            />
+            
             <Route
               path="/library-setting"
               element={<ProtectedRoute element={<components.LibrarySetting />} />}

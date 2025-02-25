@@ -198,7 +198,21 @@ function Index() {
                                                 onChange={handleCaptchaInput}
                                             />
                                             <div>
-                                                <strong id="captcha-text1">
+                                                <strong id="captcha-text1"
+                                                 style={{
+                                                    userSelect: "none",
+                                                    WebkitUserSelect: "none",
+                                                    MozUserSelect: "none",
+                                                    msUserSelect: "none"
+                                                }}
+                                                onSelect={() => false}
+                                                onMouseDown={(e) => e.preventDefault()}
+                                                onCopy={(e) => {
+                                                    e.preventDefault();
+                                                    
+                                                }}
+                                                onContextMenu={(e) => e.preventDefault()}
+                                                >
                                                     {captcha}
                                                 </strong>
                                                 <button

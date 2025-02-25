@@ -94,7 +94,7 @@ function NoticeList() {
         setFormData((prev) => ({
           ...prev,
           dbId: response?.data[0]?.id,
-          title: response?.data[0]?.title,
+          title: validator.unescape( response?.data[0]?.title),
           notice_type: response?.data[0]?.notice_type,
           notice_date: response?.data[0]?.notice_date,
           description: validator.unescape(response?.data[0]?.description || ""),

@@ -91,7 +91,7 @@ const VisionMission = () => {
 
                   <div className="row">
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12">
-                    {vision.image && <img src={vision.image} alt={vision.title} className="img-fluid mb-3 rounded-3" />}
+                    {vision.image && <img src={vision.image} alt={vision.title} className="responsive-img mb-4 rounded-3" />}
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
                     <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesVision }} />
@@ -114,7 +114,7 @@ const VisionMission = () => {
                   </div>
                   <div className="row">
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12">
-                    {mission.image && <img src={mission.image} alt={mission.title} className="img-fluid mb-3 rounded-3" />}
+                    {mission.image && <img src={mission.image} alt={mission.title} className="responsive-img mb-4 rounded-3" />}
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
                     <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesMission }} />
@@ -128,7 +128,22 @@ const VisionMission = () => {
         </div>
 
       </div>
-     
+      <style jsx>
+        {`
+          .responsive-img{
+           max-width: 100%;
+  height: auto;
+          }
+
+          @media only screen and (max-width: 767px) {
+            .responsive-img {
+              width:50%;
+              display:block;
+              margin: 0 auto; 
+            }
+          }
+        `}
+      </style>
     </>
   );
 };

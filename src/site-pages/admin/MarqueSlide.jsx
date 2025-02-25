@@ -17,124 +17,7 @@ import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert"
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 import validator from 'validator';
-const MyVerticallyCenteredModal = (props = {}) => {
-  const [content, setContent] = useState("");
-  const [link, setLink] = useState("");
-  const [loading, setLoading] = useState(false);
-  const id = props?.selectedmarque?.id;
 
-  useEffect(() => {
-    setContent(props?.selectedmarque?.content || "");
-    setLink(props?.selectedmarque?.link || "");
-  }, [props.selectedmarque]);
-
-  const handleSubmit = async () => {
-    if (!content.trim()) {
-      toast.error("Content cannot be empty");
-      return;
-    }
-    if (!link.trim()) {
-      toast.error("Link cannot be empty");
-      return;
-    }
-    setLoading(true);
-    try {
-      const bformData = new FormData();
-      bformData.append("data", "mrq_slider_add");
-      bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
-      bformData.append("login_type", secureLocalStorage.getItem("loginType"));
-      bformData.append("content", content);
-      bformData.append("link", link);
-
-      if (id) {
-        bformData.append("updateid", id);
-      }
-
-      const response = await axios.post(
-        `${PHP_API_URL}/mrq_slider.php`,
-        bformData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      if (response?.data?.status === 200 || response?.data?.status === 201) {
-        toast.success(response?.data?.msg);
-        setContent("");
-        setLink("");
-        props.submit();
-      } else {
-        toast.error("Failed to submit");
-      }
-    } catch (error) {
-      toast.error("An error occurred. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">{id ? "Update Slider" : "Add New Slider"}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <div className="form-group col-md-12">
-          <label className="font-weight-semibold" htmlFor="content">
-            Content
-          </label>
-          <textarea
-            type="text"
-            className="form-control"
-            name="content"
-            placeholder="Enter Content"
-            value={validator.unescape(content || "")}
-            onChange={(e) => setContent(e.target.value)}
-            disabled={loading}
-          />
-        </div>
-        <div className="form-group col-md-12">
-          <label className="font-weight-semibold" htmlFor="link">
-            Link
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            name="link"
-            value={validator.unescape(link || "")}
-            onChange={(e) => setLink(e.target.value)}
-            disabled={loading}
-          />
-        </div>
-      </Modal.Body>
-      <Modal.Footer>
-        <div className="mx-auto">
-          <Button
-            onClick={props.close}
-            className="btn btn-danger"
-            disabled={loading}
-          >
-            Close
-          </Button>{" "}
-          <Button
-            onClick={handleSubmit}
-            className="btn btn-success"
-            disabled={loading}
-          >
-            {loading ? "Submitting..." : "Submit"}
-          </Button>
-        </div>
-      </Modal.Footer>
-    </Modal>
-  );
-};
 
 const MarqueSlide = () => {
   const navigate = useNavigate();
@@ -144,18 +27,9 @@ const MarqueSlide = () => {
   const [recycleTitle, setRecycleTitle] = useState("Show Recycle Bin");
 
   const [loading, setLoading] = useState(false);
-  const [selectedmarque, setSelectedMarque] = useState(null);
-  const [modalShow, setModalShow] = useState(false);
 
-  const editMarque = (index) => {
-    const currentLob = MarqueList[index];
-    setSelectedMarque(currentLob);
-  };
-  useEffect(() => {
-    if (selectedmarque != null) {
-      setModalShow(true);
-    }
-  }, [selectedmarque]);
+
+ 
 
   useEffect(() => {
     loadMarqueList();
@@ -324,16 +198,15 @@ const MarqueSlide = () => {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
-                  <Button
-                    variant="dark"
-                    className="ml-2 mb-2 mb-md-0 btn-secondary"
-                    onClick={() => setModalShow(true)}
+                  <Link
+                    className="ml-2 mb-2 mb-md-0 btn-secondary btn"
+                    to="/admin/add-marque"
                   >
                     <i className="fas">
                       <IoMdAdd />
                     </i>{" "}
                     Add New
-                  </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -426,12 +299,13 @@ const MarqueSlide = () => {
                                 htmlFor={`switch${rowData.id}`}
                               ></label>
                             </div>
-                            <div
-                              onClick={() => editMarque(rowIndex)}
+                            <Link
+                            to={`/admin/add-marque/${rowData.id}`}
+                            
                               className="avatar avatar-icon avatar-md avatar-orange"
                             >
                               <i className="fas fa-edit"></i>
-                            </div>
+                            </Link>
 
                             {rowData.delete_status == 0 ? (
                               <OverlayTrigger
@@ -493,15 +367,7 @@ const MarqueSlide = () => {
           </div>
         </div>
       </div>
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        close={() => setModalShow(false)}
-        submit={() => {
-          loadMarqueList();
-          setModalShow(false);
-        }}
-        selectedmarque={selectedmarque}
-      />
+      
     </>
   );
 };

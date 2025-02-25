@@ -61,6 +61,7 @@ const components = {
   CopyrightPolicy: lazyLoad("CopyrightPolicy"),
   TermsAndUse: lazyLoad("TermsAndUse"),
   MarqueSlide: lazyLoad("MarqueSlide"),
+  AddMarque: lazyLoad("AddMarque"),
   AddVendorForm: lazyLoad("AddVendorForm"),
   Vendor: lazyLoad("Vendor"),
   Book: lazyLoad("Book"),
@@ -723,6 +724,8 @@ function AdminRoute({ toggleExpand, toggleFolded }) {
               element={<components.TermsAndUse />}
             />
             <Route path="/marque-slide" element={<components.MarqueSlide />} />
+            <Route path="/add-marque" element={<components.AddMarque />} />
+            <Route path="/add-marque/:id" element={<components.AddMarque />} />
 
             <Route
               path="/session"

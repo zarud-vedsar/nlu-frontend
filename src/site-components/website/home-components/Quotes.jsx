@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import Slider from "react-slick";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import QuotesBg from '../assets/Images/quotesbg.png'
+
 
 const Quotes = () => {
   const sliderRef = useRef(null);
@@ -136,7 +138,12 @@ const Quotes = () => {
               <div className="faculty-slider-container">
                 <Slider ref={sliderRef} {...settings2}>
                   {Quotes.map((quote, index) => (
-                    <div className="id-quotes-wrapper" key={index}>
+                    <div className="id-quotes-wrapper" style={{
+                        backgroundImage: `url(${QuotesBg})`,
+
+                        backgroundSize:"cover",
+                        backgroundPosition:"center",
+                    }} key={index}>
                       <p className="source-font text-center" style={{ fontSize: "18px" }}>
                         {quote.quotes}
                       </p>

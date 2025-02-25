@@ -15,6 +15,7 @@ import Gallery from "../../site-components/website/home-components/Gallery";
 import Achivement from "../../site-components/website/home-components/Achivement";
 import ContactIcon from "../../site-components/website/home-components/ContactIcon";
 import PopupNotice from "../../site-components/website/home-components/PopupNotice";
+import Quotes from "../../site-components/website/home-components/Quotes";
 import UserTestimonials from "./UserTestimoinals";
 import OurSociety from "./OurSociety";
 import KeyNoteSpeakers from "./KeyNoteSpeakers";
@@ -24,6 +25,7 @@ function Home() {
       <PopupNotice />
       <Banner />
       <MarqueeSlider />
+      <Quotes/>
       <KeyNoteSpeakers />
       <About />
       <Message />

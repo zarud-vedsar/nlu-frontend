@@ -134,22 +134,16 @@ const Quotes = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-10 col-lg-10 mx-auto">
-              <div className="faculty-slider-container" style={{
-                background: `url(${QuotesBg})`,
-                backgroundSize: '100% 100%',
-                backgroundPosition: 'center',
-              }}>
+              <div className="faculty-slider-container">
                 <Slider ref={sliderRef} {...settings2}>
                   {Quotes.map((quote, index) => (
-                    <div className="id-quotes-wrapper py-3" key={index}>
-                      <div>
-                        <p className="source-font text-center" style={{ fontSize: "18px" }}>
-                          {quote.quotes}
-                        </p>
-                        <h5 className="card-title mt-0 source-font">
-                          {quote.name}
-                        </h5>
-                      </div>
+                    <div className="id-quotes-wrapper py-3 " key={index}>
+                      <p className="source-font mb-3 text-center" style={{ fontSize: "18px" }}>
+                        {quote.quotes}
+                      </p>
+                      <h5 className="card-title source-font">
+                        {quote.name}
+                      </h5>
                     </div>
                   ))}
                 </Slider>

@@ -115,7 +115,7 @@ function KeyNoteSpeakers() {
             name: 'Professor Dr. Usha Tandon',
             imageUrl: P14,
             contactDetails: 'Senior Professor, and Vice-Chancellor Dr. Rajendra Prasad National Law University Prayagraj',
-            link: '/message-vice-chancellor'
+            link: '/faculty/1'
         },
     ];
     return (

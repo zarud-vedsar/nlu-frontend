@@ -151,7 +151,6 @@ const Quotes = () => {
           </div>
         </div>
       </section>
-
     </>
   );
 };

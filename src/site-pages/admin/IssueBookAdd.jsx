@@ -454,11 +454,11 @@ const IssueBookAdd = () => {
             </nav>
           </div>
           <div className="card bg-transparent mb-2">
-            <div className="card-header d-flex justify-content-between align-items-center px-0">
+            <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
               <h2 className="card-title col-12 col-md-auto">
                 {"Add Issue Book"}{" "}
               </h2>
-              <div className="ml-auto">
+              <div className="ml-auto id-mobile-go-back">
                 <Button
                   variant="light"
                   className="mb-2 mb-md-0"

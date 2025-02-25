@@ -225,13 +225,13 @@ const Contact = () => {
             </nav>
           </div>
           <div className="card bg-transparent mb-2">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">Contact List</h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back">
                 <Button
                 variant="light"
                 onClick={() => window.history.back()}
-                className="mb-2 mb-md-0"
+                className="mb-2 mb-md-0 "
               >
                 <i className="fas">
                   <FaArrowLeft />
@@ -266,7 +266,7 @@ const Contact = () => {
                     className="form-control dtsearch-input"
                   />
                 </div>
-                <div className="col-md-4 col-lg-4 col-8 col-sm-2">
+                <div className="col-md-4 col-lg-4 col-8 col-sm-2 mb-3">
                   <button
                     className={`btn ${
                       recycleTitle === "Show Recycle Bin"

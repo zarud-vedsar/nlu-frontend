@@ -9,7 +9,7 @@ import {
 import secureLocalStorage from "react-secure-storage";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-
+import validator from 'validator';
 const KeynoteSpeaker = () => {
   const { mrq_slider_id, key_note_id } = useParams();
 
@@ -88,11 +88,11 @@ const KeynoteSpeaker = () => {
       );
       if (response.data.status === 200) {
         setFormData({
-          keynote_name: response.data.data[0].keynote_name,
-          keynote_link: response.data.data[0].keynote_link,
-          keynote_content: response.data.data[0].keynote_content,
-          keynote_photo: response.data.data[0].keynote_photo,
-          hiddenphoto: response.data.data[0].keynote_photo,
+          keynote_name: validator.unescape(response.data.data[0].keynote_name),
+          keynote_link: validator.unescape(response.data.data[0].keynote_link),
+          keynote_content: validator.unescape(response.data.data[0].keynote_content),
+          keynote_photo: validator.unescape(response.data.data[0].keynote_photo),
+          hiddenphoto: validator.unescape(response.data.data[0].keynote_photo),
         });
 
         if (response.data.data[0].keynote_photo) {
@@ -213,7 +213,7 @@ const KeynoteSpeaker = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-              <a href="/admin/home" className="breadcrumb-item">
+                <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
@@ -254,7 +254,7 @@ const KeynoteSpeaker = () => {
                         <label>
                           <strong>Import Update Title</strong>
                         </label>
-                        <div className="col-md-12 mb-3">{marquee?.content}</div>
+                        <div className="col-md-12 mb-3">{validator.unescape(marquee?.content || "")}</div>
                       </div>
 
                       <div className="form-group col-md-6">

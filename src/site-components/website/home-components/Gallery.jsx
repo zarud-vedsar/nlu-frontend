@@ -101,7 +101,7 @@ const Gallery = () => {
             <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Visual Highlights</h2>
             <div className="heading-divider"></div>
             <p className="text-center mt-3 mb-1 id-sub-title id-sub-title-mobile-view">
-              Explore our gallery and experience the highlights in pictures.
+              Explore our Gallery and Experience the Highlights in Pictures
             </p>
           </div>
         </div>

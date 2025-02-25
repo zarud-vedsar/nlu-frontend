@@ -151,7 +151,7 @@ const NoticeEventPublication = () => {
                     <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Upcoming Events</h2>
                     <div className='heading-divider'></div>
                     <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                      Stay updated with our latest events, workshops, and special gatherings.
+                      List of Upcoming Events, Workshops and Gatherings
                     </p>
                   </div>
                 </div>
@@ -232,14 +232,14 @@ const NoticeEventPublication = () => {
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mt-sm-50">
               <div className="row">
                 <div
-                  className="col-md-12 d-flex justify-content-between align-items-center my-4 textManage"
+                  className="col-md-12 px-0 d-flex justify-content-between align-items-center my-4 textManage"
                   style={{ position: "relative" }}
                 >
                   <div>
                     <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Latest News</h2>
                     <div className='heading-divider'></div>
                     <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                      Stay updated with the latest news and announcements.
+                      Our Latest News and Announcements
                     </p>
                   </div>
                 </div>
@@ -339,7 +339,7 @@ const NoticeEventPublication = () => {
                 <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Publications</h2>
                 <div className='heading-divider'></div>
                 <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                  Explore our latest research, articles, and publications.
+                  Explore the Latest Research Works, Articles, and Publications
                 </p>
               </div>
             </div>

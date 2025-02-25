@@ -203,6 +203,13 @@ const VideoGallery = () => {
     } finally {
     }
   };
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    
+      useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+      }, []);
 
   const loadCategory = async () => {
     try {
@@ -267,13 +274,13 @@ const VideoGallery = () => {
             </nav>
           </div>
           <div className="card bg-transparent mb-2">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">Gallery Video</h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back">
                 <Button
                 variant="light"
                 onClick={() => window.history.back()}
-                className="mb-2 mb-md-0"
+                className="mb-2 mr-2 mb-md-0"
               >
                 <i className="fas">
                   <FaArrowLeft />
@@ -282,17 +289,17 @@ const VideoGallery = () => {
               </Button>
 
               <Button
-                className={`btn ml-2 ${
+                className={`btn ml-auto ${
                   recycleTitle === "Show Recycle Bin"
                     ? "btn-secondary"
                     : "btn-danger"
                 }`}
                 onClick={showRecyleBin}
               >
-                {recycleTitle} <i className="fa fa-recycle"></i>
+                {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
               </Button>
 
-              <Link variant="dark" className="ml-2 mb-2 mb-md-0 btn btn-secondary" to='/admin/video-galleryform'>
+              <Link variant="dark" className="ml-2  mb-md-0 btn btn-secondary" to='/admin/video-galleryform'>
                   <i className="fas">
                     <IoMdAdd />
                   </i>{" "}

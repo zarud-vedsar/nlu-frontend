@@ -5432,7 +5432,6 @@ table.table.tblpad-10>tbody>tr>td {
 .home-sliderimg {
 	height: 100%;
 	width: 100%;
-	object-fit:cover;
 }
 .homeNav {
 	right: 0 !important;

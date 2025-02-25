@@ -18,7 +18,6 @@ import PopupNotice from "../../site-components/website/home-components/PopupNoti
 import UserTestimonials from "./UserTestimoinals";
 import OurSociety from "./OurSociety";
 import KeyNoteSpeakers from "./KeyNoteSpeakers";
-
 function Home() {
   return (
     <>

@@ -232,7 +232,7 @@ const Feedback = () => {
                     className="form-control dtsearch-input"
                   />
                 </div>
-                <div className="col-md-4 col-lg-4 col-10 col-sm-4">
+                <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-3">
                   <button
                     className={`btn ${
                       recycleTitle === "Show Recycle Bin"

@@ -5,10 +5,10 @@ import {
   NODE_API_URL,
   FILE_API_URL,
 } from "../../site-components/Helper/Constant";
-import { FaAngleRight } from 'react-icons/fa6'
+import { FaAngleRight } from "react-icons/fa6";
 import { useParams, Link } from "react-router-dom";
 import { dataFetchingGet } from "../../site-components/Helper/HelperFunction";
-import validator from 'validator';
+import validator from "validator";
 const DetailFaculty = () => {
   const [facultyData, setFacultyData] = useState();
   const { id } = useParams();
@@ -33,7 +33,7 @@ const DetailFaculty = () => {
           departmentid: department.dtitle,
         }));
       }
-    } catch (e) { }
+    } catch (e) {}
   };
 
   const fetchDesignationList = async (id) => {
@@ -77,7 +77,7 @@ const DetailFaculty = () => {
       setFacultyData(response.data.data[0]);
       fetchDepartment(response.data.data[0].departmentid);
       fetchDesignationList(response.data.data[0].designationid);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -96,12 +96,19 @@ const DetailFaculty = () => {
                 <h1 className="text-center">Faculty Profile</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                   <li>
-                                        <Link to="/">Home</Link> <FaAngleRight />
-                                      </li>
-                                      <li><span>People</span> <FaAngleRight /></li> 
-                                      <li> <Link to='/faculty'>Faculty</Link> <FaAngleRight /> </li>
-                                      <li><span>Faculty Profile</span></li> 
+                    <li>
+                      <Link to="/">Home</Link> <FaAngleRight />
+                    </li>
+                    <li>
+                      <span>People</span> <FaAngleRight />
+                    </li>
+                    <li>
+                      {" "}
+                      <Link to="/faculty">Faculty</Link> <FaAngleRight />{" "}
+                    </li>
+                    <li>
+                      <span>Faculty Profile</span>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -133,9 +140,7 @@ const DetailFaculty = () => {
                 <p className="fac-del-heading source-font">{`${facultyData?.first_name}  ${facultyData?.last_name}`}</p>
               )}
               {facultyData.designationid && (
-                <p className="fac-del-heading1">
-                  {facultyData.designationid}
-                </p>
+                <p className="fac-del-heading1">{facultyData.designationid}</p>
               )}
 
               {/* {facultyData.departmentid && (
@@ -168,7 +173,8 @@ const DetailFaculty = () => {
                     </p>
                   ) : null}
 
-                  {facultyData?.show_contact_on_website && facultyData.u_phone ? (
+                  {facultyData?.show_contact_on_website &&
+                  facultyData.u_phone ? (
                     <p style={{ color: "#fff" }}>
                       Phone : {facultyData.u_phone}
                     </p>
@@ -178,12 +184,13 @@ const DetailFaculty = () => {
             </div>
           </div>
           <div className="description">
-
             <div className="profhdd source-font">Profile</div>
             {facultyData.discription && (
               <div
                 dangerouslySetInnerHTML={{
-                  __html: validator.unescape(validator.unescape(facultyData.discription)),
+                  __html: validator.unescape(
+                    validator.unescape(facultyData.discription)
+                  ),
                 }}
               ></div>
             )}

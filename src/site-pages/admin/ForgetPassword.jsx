@@ -199,7 +199,7 @@ const ForgetPassword = () => {
                         className="img-fluid rounded-5"
                         style={{ maxWidth: "30%" }}
                         alt="NLU Logo"
-                        src="https://www.rpnlup.ac.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
+                        src="https://spaceshineone.co.in/wp-content/themes/rpnlup/assets/img/rpnlup_logo_glow.png"
                       />
                       <h2 className="h4_new">
                         Forget <br />

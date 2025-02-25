@@ -3,12 +3,10 @@ import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import {
-  PHP_API_URL,
-  NODE_API_URL,
-  CKEDITOR_URL
+  NODE_API_URL
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
-import { useParams , Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
 const AddSpeciality = () => {
@@ -182,7 +180,7 @@ const AddSpeciality = () => {
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-              <a href="/admin/home" className="breadcrumb-item">
+                <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
                 <span className="breadcrumb-item active">CMS</span>
@@ -191,23 +189,23 @@ const AddSpeciality = () => {
             </div>
           </div>
           <div className="card bg-transparent ">
-            <div className="card-header d-flex justify-content-between align-items-center px-0">
+            <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
               <h5 className="card-title h6_new">
                 {" "}
                 {id ? "Update Speciality" : "Add New Speciality"}
               </h5>
-              <div className="ml-auto">
+              <div className="ml-auto id-mobile-go-back">
                 <button
-                  className="ml-auto btn-md btn border-0 btn-light mr-2"
+                  className="mr-auto btn-md btn border-0 btn-light mr-2"
                   onClick={() => goBack()}
                 >
                   <i className="fas fa-arrow-left" /> Go Back
                 </button>
-                 <Link to="/admin/specility">
-                                  <button className="ml-auto btn-md btn border-0 btn-primary mr-2">
-                                    <i className="fa-solid fa-list"></i> Speciality List
-                                  </button>
-                                </Link>
+                <Link to="/admin/specility">
+                  <button className="ml-2 btn-md btn border-0 btn-primary mr-2">
+                    <i className="fa-solid fa-list"></i> Speciality List
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

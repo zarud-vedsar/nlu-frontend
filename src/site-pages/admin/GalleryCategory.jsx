@@ -311,7 +311,7 @@ const GalleryCategory = () => {
                   <Button
                     variant="light"
                     onClick={() => window.history.back()}
-                    className="mb-2 mb-md-0 mr-2"
+                    className="mb-md-0 mr-2"
                   >
                     <i className="fas">
                       <FaArrowLeft />
@@ -319,7 +319,7 @@ const GalleryCategory = () => {
                     Go Back
                   </Button>
                   <Button
-                    className={`btn mb-2 ${
+                    className={`btn  ${
                       recycleTitle === "Show Recycle Bin"
                         ? "btn-secondary"
                         : "btn-danger"
@@ -329,7 +329,7 @@ const GalleryCategory = () => {
                     {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
                   </Button>
                   <Button
-                    className="ml-2 mb-2 mb-md-0 btn btn-secondaary"
+                    className="ml-2  mb-md-0 btn btn-secondaary"
                     onClick={() => setModalShow(true)}
                   >
                     <i className="fas">

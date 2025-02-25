@@ -270,20 +270,20 @@ function VisitorRegistrationHistory() {
               </div>
             </div>
             <div className="card bg-transparent mb-2">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">
                   Visitor Registration History
                 </h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back">
                   <button
-                    className="ml-auto btn-md btn border-0 goBack mr-2"
+                    className="mr-auto btn-md btn border-0 goBack mr-2"
                     onClick={goBack}
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
                     <Button
                       variant="primary"
-                      className=" mb-2 mb-md-0"
+                      className="  mb-md-0"
                       onClick={handleShow}
                     >
                       <span>
@@ -292,7 +292,7 @@ function VisitorRegistrationHistory() {
                     </Button>
                   <Link to="/admin/visitor-registration">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
-                      <i className="fas fa-plus"></i> Add New Registration
+                      <i className="fas fa-plus"></i> Add New
                     </button>
                   </Link>
                 </div>

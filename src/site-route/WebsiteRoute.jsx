@@ -76,6 +76,7 @@ const ImageGallery = lazy(() => import('../site-pages/website/ImageGallery'));
 const ImageGalleryViewAll = lazy(() => import('../site-pages/website/ImageGalleryViewAll'));
 const ViewAllGalleryVideo = lazy(() => import('../site-pages/website/ViewAllGalleryVideo.jsx'));
 const AboutDrRajendraPrasad = lazy(() => import('../site-pages/website/AboutDrRajendraPrasad.jsx'))
+const MessageViceChancellor = lazy(() => import('../site-pages/website/MessageViceChancellor.jsx'))
 import SuspensionLoader from '../SuspensionLoader.jsx';
 import ErrorBoundary from './ErrorBoundary.jsx';
 
@@ -113,6 +114,8 @@ function WebsiteRoute() {
           <Route path='/notice-details/:id' element={<NoticeDetails />} />
           <Route path='/all-event' element={<AllEvent />} />
           <Route path='/event-details' element={<EventDetails />} />
+          <Route path='/message-vice-chancellor/:id' element={<MessageViceChancellor />} />
+          
           <Route path='/all-publication' element={<AllPublication />} />
           <Route path='/publication-details' element={<PublicationDetials />} />
           <Route path='/contact-us' element={<ContactUs />} />

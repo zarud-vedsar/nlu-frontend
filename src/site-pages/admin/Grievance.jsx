@@ -175,7 +175,7 @@ const Grievance = () => {
 
           <div className="card bg-transparent mb-2">
               <div className="card-header d-flex justify-content-between align-items-center px-0">
-                <h5 className="card-title h6_new">Course List</h5>
+                <h5 className="card-title h6_new">Grievance</h5>
                 <div className="ml-auto">
                 <Button
                 variant="light"
@@ -206,7 +206,7 @@ const Grievance = () => {
                     className="form-control dtsearch-input"
                   />
                 </div>
-                <div className="col-md-2 col-lg-2 col-10 col-sm-4 mr-3 d-flex align-items-center">
+                <div className="col-md-2 col-lg-2 col-10 col-sm-4 mr-3  d-flex align-items-center">
                   <label htmlFor="start-date" className="mr-2">
                     Start Date
                   </label>
@@ -219,7 +219,7 @@ const Grievance = () => {
                   />
                 </div>
 
-                <div className="col-md-2 col-lg-2 col-10 col-sm-4 d-flex align-items-center">
+                <div className="col-md-2 col-lg-2 col-10 col-sm-4  d-flex align-items-center">
                   <label htmlFor="end-date" className="mr-2">
                     End Date
                   </label>
@@ -238,7 +238,7 @@ const Grievance = () => {
                   <Spinner animation="border" />
                 </div>
               ) : (
-                <div className="table-responsive">
+                <div className="table-responsive mt-3">
                   <DataTable
                     value={grievanceList}
                     paginator

@@ -94,7 +94,7 @@ function LibraryListing() {
     <div className="page-container">
       <div className="main-content">
         <div className="page-header mb-0">
-          <div className="header-sub-title">
+          <div className="header-sub-title px-2">
             <nav className="breadcrumb breadcrumb-dash">
               <a href="./" className="breadcrumb-item">
                 <i className="fas fa-home m-r-5" /> Dashboard
@@ -108,7 +108,7 @@ function LibraryListing() {
         </div>
 
         <div className="card bg-transparent mb-2">
-          <div className="card-header d-flex justify-content-between align-items-center px-0">
+          <div className="card-header d-flex justify-content-between align-items-center px-2">
             <h5 className="card-title h6_new"> Book Stock History</h5>
             <div className="ml-auto">
               <button

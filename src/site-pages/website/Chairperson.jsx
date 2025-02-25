@@ -171,8 +171,7 @@ const Chairperson = () => {
               </div>
               <div className="row">
                 <div className="col-md-12 col-lg-12 col-12 col-sm-12">
-                  <div className="heading-para gorditas-regular text-justify" dangerouslySetInnerHTML={{ __html: html }} style={{ float: 'left' }}></div>
-                  <div>
+                  <div className="align-image-with-content ">
                     <img
                       src={previewImage || placeholderPerson}
                       style={{
@@ -198,7 +197,25 @@ const Chairperson = () => {
             </div>
           </div>
         </div>
-      </section >
+      </section>
+
+      <style jsx>
+        {`
+          .align-image-with-content {
+            float: right;
+            margin-left: 25px;
+            width: 250px;
+          }
+
+          @media only screen and (max-width: 767px) {
+            .align-image-with-content {
+              float: none;
+              display: block;
+              margin: 0 auto; /* Centers the image */
+            }
+          }
+        `}
+      </style>
     </>
   );
 };

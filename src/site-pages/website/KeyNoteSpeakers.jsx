@@ -97,6 +97,13 @@ function KeyNoteSpeakers() {
             link: 'https://law.ssu.ac.kr/web/sub1/sub1_prof_detail02.do'
         },
         {
+            id: 14,
+            name: 'Professor Jonathan O. Chimakonam',
+            imageUrl: P13,
+            contactDetails: 'Professor of Philosophy, University of Pretoria, South Africa',
+            link: 'https://spaceshineone.co.in/wp-content/uploads/2024/12/Jonathan-Profile.pdf'
+        },
+        {
             id: 12,
             name: 'Prof Zozo Dyani-Mhango',
             imageUrl: P11,
@@ -109,13 +116,6 @@ function KeyNoteSpeakers() {
             imageUrl: P12,
             contactDetails: 'Professor National Open University of Nigeria',
             link: 'https://spaceshineone.co.in/wp-content/uploads/2025/01/DrErimmaGOrie.pdf'
-        },
-        {
-            id: 14,
-            name: 'Professor Jonathan O. Chimakonam',
-            imageUrl: P13,
-            contactDetails: 'Professor of Philosophy, University of Pretoria, South Africa',
-            link: 'https://spaceshineone.co.in/wp-content/uploads/2024/12/Jonathan-Profile.pdf'
         },
     ];
     return (

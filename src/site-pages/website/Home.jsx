@@ -19,14 +19,16 @@ import Quotes from "../../site-components/website/home-components/Quotes";
 import UserTestimonials from "./UserTestimoinals";
 import OurSociety from "./OurSociety";
 import KeyNoteSpeakers from "./KeyNoteSpeakers";
+import LawInstitution from "./LawInstitution";
 function Home() {
   return (
     <>
       <PopupNotice />
       <Banner />
       <MarqueeSlider />
-      <Quotes/>
+      <Quotes />
       <KeyNoteSpeakers />
+      <LawInstitution />
       <About />
       <Message />
       <NoticeEventPublication />

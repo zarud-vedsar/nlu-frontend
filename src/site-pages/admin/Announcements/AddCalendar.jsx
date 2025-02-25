@@ -23,11 +23,11 @@ const AddCalendar = () => {
   const [isSubmit, setIsSubmit] = useState(false);
   const { dbId } = useParams();
   // Jodit editor configuration
-  const config = {
+  const config = useMemo(()=>({
     readonly: false,
     placeholder: "Enter your content here...",
     spellcheck: true,
-    language: "pt_br",
+    language: "en",
     defaultMode: "1",
     minHeight: 400,
     maxHeight: -1,
@@ -35,7 +35,7 @@ const AddCalendar = () => {
     defaultActionOnPasteFromWord: "insert_as_html",
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+  }),[]);
 
   const handleChange = (e) => {
     setFormData({

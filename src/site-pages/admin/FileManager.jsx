@@ -256,25 +256,25 @@ const FileManager = () => {
                             />
                           </div>
                         </div>
-                        <div className="row px-2">
-                          <div className="col-10">
+                        <div className="row px-2 d-flex justify-content-between">
+                          <div >
                             <h6 className="h6_new card-title mt-2 ">
                               {item.title || " "}
                             </h6>
                           </div>
-                          <div className="col-2">
+                       
                             <div className="">
                               {copiedIndex === index ? (
                                 <span className="text-success">Copied!</span>
                               ) : (
                                 <button
                                   className="btn btn-warning"
-                                  onClick={() => copyToClipboard(item, index)}
+                                  onClick={() => copyToClipboard(item.link, index)}
                                 >
                                   <i class="fa-solid fa-copy"></i>
                                 </button>
                               )}
-                            </div>
+                            
                           </div>
                         </div>
                       </div>

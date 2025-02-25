@@ -22,11 +22,11 @@ const JobRecruitmentForm = () => {
   const [jobTypes, setJobTypes] = useState([]);
   const [minExperienceList, setMinExperienceList] = useState([]);
   const [loading, setLoading] = useState();
-  const config = {
+  const config = useMemo(()=>({
     readonly: false,
     placeholder: "Enter your content here...",
     spellcheck: true,
-    language: "pt_br",
+    language: "en",
     defaultMode: "1",
     minHeight: 400,
     maxHeight: -1,
@@ -34,7 +34,7 @@ const JobRecruitmentForm = () => {
     defaultActionOnPasteFromWord: "insert_as_html",
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+  }),[]);
   const initialization = {
     data: "savejobpost",
     job_category: "",

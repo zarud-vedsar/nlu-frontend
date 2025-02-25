@@ -157,21 +157,29 @@ const Chairperson = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-8 col-lg-8 col-12 col-sm-12">
-                  <div className="heading-para gorditas-regular text-justify" dangerouslySetInnerHTML={{ __html: html }} style={{ float: 'left' }}></div>
+                <div className="col-md-12 col-lg-12 col-12 col-sm-12">
+                <div  className="align-image-with-content " >
+                <img
+                         src={previewImage || placeholderPerson}
+                        style={{
+                          
+                         
+                          marginBottom: 3,
+                          background: "#fff",
+                          borderRadius: "10px",
+                          border: "2px solid #BFB9B7",
+                          padding: "20px",
+                       
+                        }}
+                      />
+                        <h3 className="butler-regular mb-1 heading-primary3 mt-3 text-center">{`${(formData.name)}`}</h3>
+                        <p className="heading-para gorditas-regular text-primary text-center">{formData?.from}</p>
+                        </div>
+                  <p className="heading-para gorditas-regular text-justify" dangerouslySetInnerHTML={{ __html: html }} ></p>
                   <div>
-                    <img
-                      src={previewImage || placeholderPerson}
-                      className="img-fluid rounded-3"
-                      style={{
-                        maxWidth: "300px",
-                        maxHeight: "300px",
-                        width: "100%",
-                        height: "auto",
-                      }}
-                    />
-                    <h3 className="butler-regular mb-1 heading-primary3 mt-3">{`${(formData.name)}`}</h3>
-                    <p className="heading-para gorditas-regular text-primary">{formData?.from}</p>
+                    
+                   
+                  
                   </div>
                 </div>
               </div>
@@ -179,6 +187,27 @@ const Chairperson = () => {
           </div>
         </div>
       </section>
+
+      <style jsx>
+                      {
+                        `
+                        .align-image-with-content {
+  float: right;
+  margin-left: 25px;
+  width: 250px;
+}
+
+@media only screen and (max-width: 767px) {
+  .align-image-with-content {
+    float: none;
+    display: block;
+    margin: 0 auto; /* Centers the image */
+  }
+}
+
+                      `
+                      }
+      </style>
     </>
   );
 };

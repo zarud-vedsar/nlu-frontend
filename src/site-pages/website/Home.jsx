@@ -25,8 +25,8 @@ function Home() {
     <>
       <PopupNotice />
       <Banner />
-      <Quotes/>
       <MarqueeSlider />
+      <Quotes />
       <KeyNoteSpeakers />
       {/* <LawInstitution /> */}
       <About />

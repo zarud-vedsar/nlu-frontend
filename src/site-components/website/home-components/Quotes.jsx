@@ -134,16 +134,16 @@ const Quotes = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-10 col-lg-10 mx-auto">
-              <div className="faculty-slider-container">
+              <div className="faculty-slider-container shadow px-3" style={{ borderRadius: '20px' }}>
                 <Slider ref={sliderRef} {...settings2}>
                   {Quotes.map((quote, index) => (
                     <div className="id-quotes-wrapper py-3 " key={index}>
-                      <p className="source-font mb-3 text-center id-quote" style={{ fontSize: "18px" }}>
+                      <p className="source-font mb-3 text-center heading-para text-primary" style={{ fontSize: "18px" }}>
                         {quote.quotes}
                       </p>
-                      <h5 className="card-title source-font id-quote-by-name ">
+                      <h6 className="card-title source-font text-dark" style={{ fontSize: '20px' }}>
                         {quote.name}
-                      </h5>
+                      </h6>
                     </div>
                   ))}
                 </Slider>

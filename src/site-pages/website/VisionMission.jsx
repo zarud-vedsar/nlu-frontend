@@ -76,12 +76,17 @@ const VisionMission = () => {
               <div className="about-text-container1">
                 <div className="row">
                 <div className="col-6 mb-4">
-                  <div className="col-md-12 col-lg-12 col-12 col-sm-12">
-                    <div className="section-title-wrapper">
-                      <div className="section-title" style={{textAlign:"left"}}>
+                  <div className="row">
+                    <div className="col-md-4 col-lg-4 col-12 col-sm-12">
+                    <div className="section-title-wrapper img-fluid">
+                      <div className="section-title" >
                         <h3 className="heading-primary3 butler-regular source-font">{vision.title}</h3>
                       </div>
                     </div>
+                    </div>
+
+                    
+                    <div className="col-md-8 col-lg-8 col-12 col-sm-12"></div>
                   </div>
 
                   <div className="row">
@@ -96,12 +101,16 @@ const VisionMission = () => {
                   
                 </div>
                 <div className="col-6 ">
-                  <div className="col-md-12 col-lg-12 col-12 col-sm-12">
+                <div className="row">
+                <div className="col-md-4 col-lg-4 col-12 col-sm-12">
                     <div className="section-title-wrapper">
-                      <div className="section-title" style={{textAlign:"left"}}>
+                      <div className="section-title" >
                         <h3 className="heading-primary3 butler-regular source-font">{mission.title}</h3>
                       </div>
+                      </div>
                     </div>
+                    <div className="col-md-8 col-lg-8 col-12 col-sm-12"></div>
+
                   </div>
                   <div className="row">
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12">

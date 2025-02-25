@@ -83,13 +83,15 @@ const VisionMission = () => {
                     </div>
                   </div>
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12">
-                    {vision.image && <img src={vision.image} alt={vision.title} className="img-fluid rounded-3" style={{ height: '300px' }} />}
+                    {vision.image && <img src={vision.image} alt={vision.title} className="img-fluid rounded-3" />}
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
-                    <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesVision }} />
+                    <div className="d-flex h-100 align-items-center">
+                      <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesVision }} />
+                    </div>
                   </div>
                 </div>
-                <div className="row">
+                <div className="row mt-3">
                   <div className="col-md-12 col-lg-12 col-12 col-sm-12">
                     <div className="section-title-wrapper">
                       <div className="section-title">
@@ -98,7 +100,7 @@ const VisionMission = () => {
                     </div>
                   </div>
                   <div className="col-md-4 col-lg-4 col-12 col-sm-12">
-                    {mission.image && <img src={mission.image} alt={mission.title} className="img-fluid rounded-3" style={{ height: '300px' }} />}
+                    {mission.image && <img src={mission.image} alt={mission.title} className="img-fluid rounded-3" />}
                   </div>
                   <div className="col-md-8 col-lg-8 col-12 col-sm-12">
                     <p className="heading-para gorditas-regular m-0 source-font" dangerouslySetInnerHTML={{ __html: decodedMessagesMission }} />

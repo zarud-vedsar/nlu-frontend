@@ -303,6 +303,7 @@ const Courses = () => {
                                 </table>
                                 <p className='source-font heading-para'>Admission to Ph.D in Law is subject to verification of all relevant original documents at the time of interview/interaction.</p>
                                 <p className='source-font heading-para'><strong>Contact us: </strong> Email: <a href='mailto: admission@rpnlup.ac.in'>admission@rpnlup.ac.in</a></p>
+                                <p>Sd/- <br />Registrar</p>
                               </>
                             )
                           }

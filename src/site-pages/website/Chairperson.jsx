@@ -157,7 +157,7 @@ const Chairperson = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-8 col-lg-8 col-12 col-sm-12">
+                <div className="col-md-12 col-lg-12 col-12 col-sm-12">
                   <div className="heading-para gorditas-regular text-justify" dangerouslySetInnerHTML={{ __html: html }} style={{ float: 'left' }}></div>
                   <div>
                     <img
@@ -178,7 +178,7 @@ const Chairperson = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section >
     </>
   );
 };

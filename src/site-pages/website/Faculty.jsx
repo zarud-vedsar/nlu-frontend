@@ -10,10 +10,57 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BiEnvelope, BiPhone } from "react-icons/bi";
 import validator from 'validator';
+import f1 from './fimages/f1.jpg';
+import f2 from './fimages/f2.jpg';
+import f3 from './fimages/f3.jpg';
+import f4 from './fimages/f4.jpg';
+import f5 from './fimages/f5.jpg';
+import f6 from './fimages/f6.jpg';
+import f7 from './fimages/f7.jpg';
 const Faculty = () => {
   const [facultyList, setFacultyList] = useState([
     {
-      avtar: "avtar_user20250743159805701738762483.jpg",
+      avtar: f1,
+      uid: "RPNLUP",
+      first_name: "Sr. Prof. Dr. Usha ",
+      last_name: "Tandon",
+      designation: "Vice Chancellor",
+      id: 1
+    },
+    {
+      avtar: f1,
+      uid: "RPNLUP",
+      first_name: "Sr. Prof. Dr. Usha ",
+      last_name: "Tandon",
+      designation: "Vice Chancellor",
+      id: 1
+    },
+    {
+      avtar: f1,
+      uid: "RPNLUP",
+      first_name: "Sr. Prof. Dr. Usha ",
+      last_name: "Tandon",
+      designation: "Vice Chancellor",
+      id: 1
+    },
+    {
+      avtar: f1,
+      uid: "RPNLUP",
+      first_name: "Sr. Prof. Dr. Usha ",
+      last_name: "Tandon",
+      designation: "Vice Chancellor",
+      id: 1
+    },
+    {
+      avtar: f1,
+      uid: "RPNLUP",
+      first_name: "Sr. Prof. Dr. Usha ",
+      last_name: "Tandon",
+      designation: "Vice Chancellor",
+      id: 1
+    },
+    {
+      avtar: f1,
       uid: "RPNLUP",
       first_name: "Sr. Prof. Dr. Usha ",
       last_name: "Tandon",
@@ -55,7 +102,7 @@ const Faculty = () => {
       navigate(`/faculty/${id}`);
     }
   };
-  
+
 
   return (
     <>
@@ -70,12 +117,12 @@ const Faculty = () => {
                     <li>
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
-                    <li><span>People</span> <FaAngleRight /></li> 
+                    <li><span>People</span> <FaAngleRight /></li>
                     <li><span>Faculty</span></li>
                   </ul>
                 </div>
               </div>
-            </div> 
+            </div>
           </div>
         </div>
       </div>

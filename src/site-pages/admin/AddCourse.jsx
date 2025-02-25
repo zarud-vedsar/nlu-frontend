@@ -50,11 +50,10 @@ function CourseAdd() {
   const courseMedium = ["Hindi", "English", "Hindi + English"];
   const [previewPdf, setPreviewPdf] = useState(null);
   // Jodit editor configuration
-  const config = {
+const config = useMemo(()=>({
     readonly: false,
-    placeholder: '',
+    placeholder: 'Enter your description here...',
     spellcheck: true,
-    language: 'pt_br',
     defaultMode: '1',
     minHeight: 400,
     maxHeight: -1,
@@ -62,7 +61,8 @@ function CourseAdd() {
     defaultActionOnPasteFromWord: 'insert_as_html',
     askBeforePasteFromWord: false,
     askBeforePasteHTML: false,
-  };
+    language: 'en',
+  }),[]);
   // Fetch department list
   const fetchDepartmentList = async (deleteStatus = 0) => {
     try {

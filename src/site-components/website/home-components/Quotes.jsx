@@ -143,10 +143,10 @@ const Quotes = () => {
                   {Quotes.map((quote, index) => (
                     <div className="id-quotes-wrapper py-3" key={index}>
                       <div>
-                        <p className="source-font text-center" style={{ fontSize: "18px" }}>
+                        <p className="source-font text-center id-quote" style={{ fontSize: "18px" }}>
                           {quote.quotes}
                         </p>
-                        <h5 className="card-title mt-0 source-font">
+                        <h5 className="card-title mt-0 source-font id-quote-by-name">
                           {quote.name}
                         </h5>
                       </div>

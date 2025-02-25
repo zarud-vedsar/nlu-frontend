@@ -8,7 +8,7 @@ import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant
 import { FaStar, FaRegStar, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import validator from 'validator';
 function UserTestimonials() {
   const [testimonials, setTestimonials] = useState([]);
   useEffect(() => {
@@ -130,12 +130,9 @@ function UserTestimonials() {
 
                     </div>
                     <p className="testimonial-text mb-0 py-1">
-                      "{testimonial.test_content.split(" ").slice(0, 10).join(" ")}
-                      {testimonial.test_content.split(" ").length > 10 ? "..." : ""}"
+                      "{validator.unescape(validator.unescape(testimonial?.test_content || ""))}"
                     </p>
-
                   </div>
-
 
                   {/* <div className="testibx">
                     <div className="testibx-left">
@@ -242,6 +239,4 @@ function UserTestimonials() {
     </div>
   );
 }
-
 export default UserTestimonials;
-

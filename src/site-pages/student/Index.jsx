@@ -235,10 +235,7 @@ function Index() {
             <HeaderPanel />
             <div className="row fixedwidths">
                 <div className="col-md-12">
-                    <div className="backbtn btn" onClick={() => window.history.back()}>
-                        <IoMdArrowRoundBack /> Back
-                    </div>
-                    <Link to="/" className="backbtn1 btn" >
+                    <Link to="/" className="backbtn1 btn ml-0" >
                         <IoMdHome /> Home
                     </Link>
                 </div>
@@ -510,7 +507,7 @@ function Index() {
                                                         <>
                                                             &nbsp; <div className="loader-circle"></div>
                                                         </>
-                                                     )} 
+                                                    )}
                                                 </button>
                                                 <p className="mt-3 text-start">Already registered? Click <Link to="/student/login">here</Link> to Log In</p>
                                                 <ContactIcon />

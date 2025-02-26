@@ -135,6 +135,12 @@ const ImageGallery = () => {
                                       lgPager,
                                     ]}
                                     mode="lg-fade"
+                                    closable={true} // Ensure the close button is enabled
+                                    hideBarsDelay={0} // Prevent hiding UI elements too quickly
+                                    mobileSettings={{
+                                      controls: true, // Ensure controls are visible on mobile
+                                      showCloseButton: true, // Show close button on mobile
+                                    }}
                                     className="gall11"
                                   >
                                     {item.gallery_images.map(
@@ -145,12 +151,12 @@ const ImageGallery = () => {
                                             href={`${FILE_API_URL}/gallery/${image}`}
                                             className="galll-itm gallery-col"
                                           >
-                                          <div className="iimmggbx">
-                                            <img
-                                              src={`${FILE_API_URL}/gallery/${image}`}
-                                              alt={image}
-                                              className="gal-image"
-                                            /></div>
+                                            <div className="iimmggbx">
+                                              <img
+                                                src={`${FILE_API_URL}/gallery/${image}`}
+                                                alt={image}
+                                                className="gal-image"
+                                              /></div>
                                           </a>
                                           {/* </div> */}
                                         </>
@@ -219,6 +225,12 @@ const ImageGallery = () => {
                                             lgPager,
                                           ]}
                                           mode="lg-fade"
+                                          closable={true} // Ensure the close button is enabled
+                                          hideBarsDelay={0} // Prevent hiding UI elements too quickly
+                                          mobileSettings={{
+                                            controls: true, // Ensure controls are visible on mobile
+                                            showCloseButton: true, // Show close button on mobile
+                                          }}
                                         >
                                           {item.gallery_images.map(
                                             (image, imageIndex) => (
@@ -227,12 +239,12 @@ const ImageGallery = () => {
                                                   href={`${FILE_API_URL}/gallery/${image}`}
                                                   className="galll-itm gallery-col" // Adjusted column classes
                                                 >
-                                                <div className="iimmggbx">
-                                                  <img
-                                                    src={`${FILE_API_URL}/gallery/${image}`}
-                                                    alt={image}
-                                                    className="gallery-image"
-                                                  />
+                                                  <div className="iimmggbx">
+                                                    <img
+                                                      src={`${FILE_API_URL}/gallery/${image}`}
+                                                      alt={image}
+                                                      className="gallery-image"
+                                                    />
                                                   </div>
                                                 </a>
                                               </>

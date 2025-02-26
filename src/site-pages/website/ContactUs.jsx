@@ -195,6 +195,12 @@ const ContactUs = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <div className="row">
+                <div className="col-md-12">
+                  <h3 className="heading-primary2 butler-regular source-font">Get Directions on Google Maps</h3>
+                  <div className="heading-divider mb-4"></div>
+                </div>
+              </div>
               <div className="card border-0 p-3">
                 <div className="card-body contact-iframe">
                   <div

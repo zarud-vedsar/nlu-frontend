@@ -50,7 +50,7 @@ const NoticeDetails = () => {
                     : noticeDetails.notice_type === "event"
                     ? "Event Details"
                     : noticeDetails.notice_type === "publication"
-                    ? "Publications Details"
+                    ? "Publication Details"
                     : ""}
                 </h1>
                 <div className="breadcrumb-bar">

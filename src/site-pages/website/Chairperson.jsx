@@ -165,7 +165,7 @@ const Chairperson = () => {
               <div className="section-title-wrapper">
                 <div className="section-title">
                   <h3 className="heading-primary2 butler-regulary mt-3 source-font">
-                    From the {formData?.from} Desk
+                    From the {formData?.from}'s Desk
                   </h3>
                 </div>
               </div>

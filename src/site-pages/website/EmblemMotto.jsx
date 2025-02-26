@@ -17,7 +17,7 @@ const EmblemMotto = () => {
                     <li>
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
-                     <li><span>About</span>  <FaAngleRight /></li> 
+                    <li><span>About</span>  <FaAngleRight /></li>
                     <li>Emblem and Motto</li>
                   </ul>
                 </div>
@@ -70,8 +70,8 @@ const EmblemMotto = () => {
                           borderRadius: "10px",
                           border: "2px solid #BFB9B7",
                           padding: "20px",
-                          width: '30%'
                         }}
+                        className='w100-s'
                       />
                       <p className="heading-para gorditas-regular source-font">यान्ति न्यायप्रवृत्तस्य का शाब्दिक अर्थ है ‘न्याय मार्ग पर चलने वाला’ (the literal meaning of the phrase is – The One who is engaged in a virtuous way of life).</p>
                       <h6 className="heading-primary2 source-font" style={{ fontSize: '18px' }}>The complete Shloka from Ramayana is as follow-</h6>

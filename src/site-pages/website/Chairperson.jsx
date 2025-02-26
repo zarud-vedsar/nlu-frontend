@@ -166,8 +166,8 @@ const Chairperson = () => {
                 <div className="section-title">
                   <h3 className="heading-primary2 butler-regulary mt-3 source-font">
                     {
-                      formData?.from?.toLowerCase() !== "general council" || formData?.from?.toLowerCase() !== "executive council"
-                      || formData?.from?.toLowerCase() !== "academic council" || formData?.from?.toLowerCase() !== "academic council" && (
+                      formData?.from?.toLowerCase() !== "general council" && formData?.from?.toLowerCase() !== "executive council"
+                      && formData?.from?.toLowerCase() !== "academic council" && formData?.from?.toLowerCase() !== "finance committee" && (
                         <>
                           From the {formData?.from}'s Desk
                         </>

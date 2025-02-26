@@ -3808,3 +3808,11 @@ color: #000;
       calc(-5*var(--w)) 0 #000, calc(-6*var(--w)) 0 #000, calc(-7*var(--w)) 0 #000, calc(-8*var(--w)) 0 #000, calc(-9*var(--w)) -10px #000
   }
 }
+.w100-s{
+  width: 30% !important;
+}
+@media screen and (min-width: 0px) and (max-width: 800px){
+  .w100-s{
+    width: 100% !important;
+  }
+}

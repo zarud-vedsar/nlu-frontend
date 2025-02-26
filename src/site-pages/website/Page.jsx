@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { FILE_API_URL, PHP_API_URL } from "../../site-components/Helper/Constant";
 import { FaAngleRight } from "react-icons/fa6";
 import axios from "axios";
+import validator from 'validator';
 const Page = () => {
   const param = useParams();
   const [pageData, setPageData] = useState();
@@ -54,8 +54,7 @@ const Page = () => {
                       <a href="Default-2.html">Home</a>
                     </li>
                     <FaAngleRight />
-                    <li>About</li><FaAngleRight />
-                    <li>{pageData?.ptitle}</li>
+                    <li>{pageData?.ptitle ? validator.unescape(validator.unescape(pageData?.ptitle || "")) : ''}</li>
                   </ul>
                 </div>
               </div>
@@ -69,7 +68,7 @@ const Page = () => {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div className="section-title-wrapper">
                 <div className="section-title">
-                  <h3 className="source-font">{pageData?.ptitle}</h3>
+                  <h3 className="source-font">{pageData?.ptitle ? validator.unescape(validator.unescape(pageData?.ptitle || "")) : ''}</h3>
                 </div>
               </div>
               {pageData?.page_type != "pdf" && (

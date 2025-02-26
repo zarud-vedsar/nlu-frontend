@@ -13,7 +13,6 @@ import placeholder from "../assets/Images/noticeDefault.png";
 const NoticeEventPublication = () => {
   const [notices, setNotices] = useState([]);
   const [events, setEvents] = useState([]);
-  const [publications, setPublications] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     AOS.init({
@@ -44,15 +43,6 @@ const NoticeEventPublication = () => {
         );
         if (eventResponse.data?.statusCode === 200) {
           setNotices(eventResponse.data.data);
-        }
-
-        // Fetch publications
-        const publicationResponse = await axios.post(
-          `${NODE_API_URL}/api/notice/website-notice`,
-          { notice_type: "publication", limit: 20 }
-        );
-        if (publicationResponse.data?.statusCode === 200) {
-          setPublications(publicationResponse.data.data);
         }
       } catch (error) {
         console.error("Error fetching data: ", error);
@@ -232,10 +222,10 @@ const NoticeEventPublication = () => {
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mt-sm-50">
               <div className="row">
                 <div
-                  className="col-md-12 px-0 d-flex justify-content-between align-items-center my-4 textManage"
+                  className="col-md-12 px-2 d-flex justify-content-between align-items-center my-4 textManage"
                   style={{ position: "relative" }}
                 >
-                  <div>
+                  <div className="px-0">
                     <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Latest News</h2>
                     <div className='heading-divider'></div>
                     <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
@@ -328,95 +318,8 @@ const NoticeEventPublication = () => {
           </div>
         </div>
       </section>
-      <section className="public bg-white">
-        <div className="container" data-aos="fade-up" data-aos-delay="50">
-          <div className="row">
-            <div
-              className="col-md-10 mx-auto text-center"
-              style={{ position: "relative" }}
-            >
-              <div>
-                <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Publications</h2>
-                <div className='heading-divider'></div>
-                <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                  Explore the Latest Research Works, Articles, and Publications
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <Slider {...settings2}>
-                {publications.map((publication, index) => (
-                  <div key={index} className="sldr">
-                    <div className="card-custom">
-                      <div className="new-img-container">
-                        <Link to={`/notice-details/${publication.id}`}>
-                          <img
-                            src={publication.image || placeholder}
-                            className="news-image"
-                            alt="News Image"
-                          />
-                        </Link>
-                      </div>
-
-                      <div className="card-fttr p-3">
-                        <div className="card-text gorditas-regular text-center id-event-date">
-                          <p className="date-month mb-0">
-                            {new Date(
-                              publication.notice_date
-                            ).toLocaleDateString("en-US", {
-                              month: "short",
-                            })}{" "}
-                            {/* Month */}
-                          </p>
-                          <h5 className="date-day">
-                            {new Date(
-                              publication.notice_date
-                            ).toLocaleDateString("en-US", {
-                              day: "2-digit",
-                            })}{" "}
-                            {/* Day */}
-                          </h5>
-                          <p className="date-year mb-0">
-                            {new Date(
-                              publication.notice_date
-                            ).toLocaleDateString("en-US", {
-                              year: "numeric",
-                            })}{" "}
-                            {/* Year */}
-                          </p>
-                        </div>
-                        <h3 className="butler-regular heading-primary3 pubtextbx two-line-text mt-3">
-                          {validator.unescape(publication.title)}
-                        </h3>
-                        <div className="mt-3">
-                          <Link
-                            className="btn btn-primary border border-primary d-flex justify-content-center align-items-center w-fit about-read-more"
-                            to={`/notice-details/${publication.id}`}
-                          >
-                            Read More &nbsp; <FaArrowRightLong />
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </Slider>
-            </div>
-            <div className="col-md-12 text-center">
-              <Link
-                to="/view-all/publication"
-                target="_blank"
-                style={{ minWidth: '230px' }}
-                className="btn btn-primary border-0 mt-4 px-4 py-2 source-font"
-              >
-                More Publications
-              </Link>
-            </div>
-          </div>
-          <style>
-            {`
+      <style>
+        {`
 
 
 .slick-track {
@@ -480,9 +383,7 @@ const NoticeEventPublication = () => {
 
 
 `}
-          </style>
-        </div>
-      </section>
+      </style>
     </>
   );
 };

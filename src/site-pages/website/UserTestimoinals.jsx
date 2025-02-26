@@ -104,7 +104,7 @@ function UserTestimonials() {
         {testimonials.length > 0 ? (
           <Slider {...settings}>
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="px-3 my-4">
+              <div key={index} className="px-3 my-4 id-test-m-left">
                 <div className="testimonial-card">
                   <div className="testi-name-review-bx">
 

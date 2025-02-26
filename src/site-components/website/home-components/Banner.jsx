@@ -78,7 +78,7 @@ const Banner = () => {
                 <img
                   src={`${FILE_API_URL}/banner/${dData.banner}`}
                   alt="#"
-                  className="home-sliderimg"
+                  className="home-sliderimg id-banner-img-m-left"
                   title=""
                   id={`wows1_${index}`}
                 />

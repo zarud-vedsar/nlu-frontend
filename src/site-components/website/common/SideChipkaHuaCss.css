@@ -24,7 +24,7 @@
 .itemfont{
     position: absolute;
     top: 0;
-    left: -282%;
+    left: -335%;
     background-color: #fff;
     color: #383636;
 }
@@ -45,7 +45,7 @@
 .itemSocial {
     position: absolute;
     top: 0;
-    left: -418%;
+    left: -320%;
     background-color: #fff;
     color: #383636;
     width: max-content;

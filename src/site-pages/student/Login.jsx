@@ -134,7 +134,6 @@ function Index() {
     if (redirect) {
         return <Navigate to="/student/home" replace={true} />;  // Redirect to home page if logged in
     }
-    const hlength = window.history.length;
     return (
         <div className="container-fluid">
             <HeaderPanel />
@@ -142,15 +141,7 @@ function Index() {
 
                 <div className="col-md-12 col-12 col-sm-12 col-lg-12 order2 fixedwidthsLogin ">
                     <div className="col-md my-3">
-                        {
-                            hlength > 1 && (
-
-                                <div className="backbtn pointer ml-0 btn btn-primary" onClick={() => window.history.back()}>
-                                    <IoMdArrowRoundBack /> Back
-                                </div>
-                            )
-                        }
-                        <Link to="/" className="backbtn1 btn ml-2">
+                        <Link to="/" className="backbtn1 btn ml-0">
                             <IoMdHome /> Home
                         </Link>
                         <h2 className="font-18 mt-5">B.A. LLB. (Hons.) / LL.M. / Ph.D.</h2>

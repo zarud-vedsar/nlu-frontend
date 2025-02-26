@@ -48,7 +48,7 @@ function UserTestimonials() {
         style={{
           position: "absolute",
           top: "50%",
-          [direction]: isMobile ? "-15px" : "-40px", // Adjust based on screen width
+          [direction]: isMobile ? "-7px" : "-40px", // Adjust based on screen width
           transform: "translateY(-50%)",
           background: "#2e3e50",
           borderRadius: "50%",
@@ -104,7 +104,7 @@ function UserTestimonials() {
         {testimonials.length > 0 ? (
           <Slider {...settings}>
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="px-3 my-4">
+              <div key={index} className="px-3 my-4 id-test-m-left">
                 <div className="testimonial-card">
                   <div className="testi-name-review-bx">
 

@@ -44,7 +44,7 @@ const UseFullLinks = () => {
         style={{
           position: "absolute",
           top: "50%",
-          [direction]: isMobile ? "-15px" : "-40px",
+          [direction]: isMobile ? "-7px" : "-40px",
           transform: "translateY(-50%)",
           background: "#2e3e50",
           borderRadius: "50%",
@@ -101,7 +101,7 @@ const UseFullLinks = () => {
                 {usefulLinks
                   .filter((link) => link.status === 1 && link.delete_status === 0)
                   .map((link, index) => (
-                    <div className="usefbx" key={index}>
+                    <div className="usefbx id-mar-left-slider" key={index}>
                       <div className="usef text-center">
                         <div className="slider-item2" style={{ display: 'flex !important' }}>
                           <a

@@ -3850,11 +3850,11 @@ color: #000;
 
 }
 
-.id-quote-nxt-btn{
-  right: -10px !important;
+#id-quote-nxt-btn{
+  right: -5px !important;
 }
-.id-quote-prev-btn{
-  left: -10px !important;
+#id-quote-prev-btn{
+  left: -8px !important;
 
 }
 

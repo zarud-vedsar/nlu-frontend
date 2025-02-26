@@ -169,7 +169,7 @@ const FacultySlider = () => {
                   </button>
                 </div>
               </div>
-               <div className="col-md-12 text-center mt-5">
+               <div className="col-md-12 text-center">
                                       <Link
                                         to="/faculty"
                                         target="_blank"

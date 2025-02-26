@@ -222,10 +222,10 @@ const NoticeEventPublication = () => {
             <div className="col-md-4 col-lg-4 col-12 col-sm-12 mt-sm-50">
               <div className="row">
                 <div
-                  className="col-md-12 px-0 d-flex justify-content-between align-items-center my-4 textManage"
+                  className="col-md-12 px-2 d-flex justify-content-between align-items-center my-4 textManage"
                   style={{ position: "relative" }}
                 >
-                  <div>
+                  <div className="px-0">
                     <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Latest News</h2>
                     <div className='heading-divider'></div>
                     <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">

@@ -4,10 +4,9 @@ import axios from "axios";
 import Slider from "react-slick";
 import {
   PHP_API_URL,
-  FILE_API_URL,
+  FILE_API_URL
 } from "../../site-components/Helper/Constant";
 import f1 from './fimage/f1.jpg';
-import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const FacultySlider = () => {
   const [facultyList, setFacultyList] = useState([]);
@@ -107,8 +106,8 @@ const FacultySlider = () => {
                           alt=""
                           className="facimg"
                           style={{
-                            height:"100%",
-                            width:"100%"
+                            width: '100%',
+                            height: "300px"
                           }}
                         />
                       </div>

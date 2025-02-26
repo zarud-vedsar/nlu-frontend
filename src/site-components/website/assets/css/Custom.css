@@ -3868,3 +3868,11 @@ color: #000;
   margin-left: -14px !important;
 
 }
+.fdb{
+  height: 680px;
+}
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .fdb {
+      height: 430px;
+    }
+}

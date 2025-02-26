@@ -129,7 +129,6 @@ const Quotes = () => {
 
   return (
     <>
-
       <section className="section" data-aos="fade-up" data-aos-delay="100">
         <div className="container">
           <div className="row">

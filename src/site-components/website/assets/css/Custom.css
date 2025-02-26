@@ -3816,3 +3816,21 @@ color: #000;
     width: 100% !important;
   }
 }
+
+
+.id-note-khow-more-btn{
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 500;
+    background: #b81365;
+    color: white;
+    border: 3px solid white;
+    border-radius: 42px;
+}
+.id-note-khow-more-btn:hover{
+  background: #361224;
+  color: white;
+  border: 3px solid #b81365;
+
+
+}

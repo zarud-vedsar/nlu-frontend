@@ -68,7 +68,7 @@ const Page = () => {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div className="section-title-wrapper">
                 <div className="section-title">
-                  <h3 className="source-font">{pageData?.ptitle}</h3>
+                  <h3 className="source-font">{pageData?.ptitle ? validator.unescape(validator.unescape(pageData?.ptitle || "")) : ''}</h3>
                 </div>
               </div>
               {pageData?.page_type != "pdf" && (

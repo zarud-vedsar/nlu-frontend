@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { FaArrowCircleRight } from "react-icons/fa";
 import P1 from '../../site-components/website/assets/Images/keynote/P1.jpg';
 import P2 from '../../site-components/website/assets/Images/keynote/P2.jpg';
 import P3 from '../../site-components/website/assets/Images/keynote/P3.jpg';
@@ -145,6 +146,13 @@ function KeyNoteSpeakers() {
                             </div>
                         </div>
                     ))}
+                     <div className="col-lg-4 d-flex align-items-center">
+                        <div className='d-flex justify-content-around' style={{ width: '90%', }}>
+                            <Link to={'/marquee/5'} className='id-note-khow-more-btn'>
+                            <span style={{marginRight:"15px"}}>Know More</span> <FaArrowCircleRight />
+                            </Link>
+                            </div>
+                            </div>
                 </div>
             </div>
         </div>

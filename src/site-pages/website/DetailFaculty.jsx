@@ -33,7 +33,7 @@ const DetailFaculty = () => {
           departmentid: department.dtitle,
         }));
       }
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const fetchDesignationList = async (id) => {
@@ -77,7 +77,7 @@ const DetailFaculty = () => {
       setFacultyData(response.data.data[0]);
       fetchDepartment(response.data.data[0].departmentid);
       fetchDesignationList(response.data.data[0].designationid);
-    } catch (error) {}
+    } catch (error) { }
   };
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const DetailFaculty = () => {
       {facultyData && (
         <section className="container section-padding">
           <div className="contentttr">
-            <div className="imagecont">
+            <div className="imagecont" style={{ height: 'auto' }}>
               <img
                 src={
                   facultyData.avtar
@@ -174,7 +174,7 @@ const DetailFaculty = () => {
                   ) : null}
 
                   {facultyData?.show_contact_on_website &&
-                  facultyData.u_phone ? (
+                    facultyData.u_phone ? (
                     <p style={{ color: "#fff" }}>
                       Phone : {facultyData.u_phone}
                     </p>

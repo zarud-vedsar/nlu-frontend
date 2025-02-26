@@ -2347,6 +2347,10 @@ table tbody th {
 
 }
 
+.id-quotes-m-left{
+  margin-left: -15px;
+}
+
 .am-faculty-avatar {
   width: auto;
   max-width: 100%;
@@ -2387,7 +2391,7 @@ table tbody th {
 }
 
 .next-button {
-  right: 5px;
+  right: 10px;
 }
 
 .prev-button:hover,
@@ -3196,6 +3200,9 @@ table tbody th {
   .id-achiment-image-m-view{
     margin-left: -30px;
   }
+  .id-g-img-m-left{
+    margin-left: -13px;
+  }
 }
 
 /* Extra small devices (phones, less than 576px) */
@@ -3843,6 +3850,10 @@ color: #000;
 
 }
 
-.slick-initialized div:nth-child(1){
-  left: 0 !important;
+.id-quote-nxt-btn{
+  right: -10px !important;
+}
+.id-quote-prev-btn{
+  left: -10px !important;
+
 }

@@ -62,7 +62,8 @@ const NoticeEventPublication = () => {
         style={{
           position: "absolute",
           top: "50%",
-          [direction]: isMobile ? "-15px" : "0px", // Adjust based on screen width
+          left:"0px !impor",
+          [direction]: isMobile ? "0px" : "0px", // Adjust based on screen width
           transform: "translateY(-50%)",
           background: "#2e3e50",
           borderRadius: "50%",
@@ -77,6 +78,7 @@ const NoticeEventPublication = () => {
       >
         {direction === "left" ? (
           <FaChevronLeft color="white" />
+
         ) : (
           <FaChevronRight color="white" />
         )}
@@ -151,7 +153,7 @@ const NoticeEventPublication = () => {
                       <Slider {...settings}>
                         {notices.map((notice, index) => (
                           <div key={index}>
-                            <div className="card border-0 soft-shadow  ">
+                            <div className="card card-custom border-0 soft-shadow id-g-img-m-left ">
                               <div className="new-img-container">
                                 <Link to={`/notice-details/${notice.id}`}>
                                   <img

@@ -169,6 +169,16 @@ const FacultySlider = () => {
                   </button>
                 </div>
               </div>
+               <div className="col-md-12 text-center">
+                                      <Link
+                                        to="/faculty"
+                                        target="_blank"
+                                        style={{ minWidth: '230px' }}
+                                        className="btn btn-primary border-0 px-4 py-2 source-font"
+                                      >
+                                        All Faculty Members
+                                      </Link>
+                                    </div>
             </div>
 
           </div>

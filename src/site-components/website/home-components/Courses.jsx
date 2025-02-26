@@ -52,7 +52,7 @@ const Courses = () => {
                   <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
                     Bachelor of Arts and Bachelor of Laws with Honours (B.A. LL.B. (Hons.))
                   </h3>
-                  <h4 className="course-learn-more mt-3">Read More <FaArrowRightLong /></h4>
+                  <h4 className="course-learn-more mt-3">Know More <FaArrowRightLong /></h4>
                 </div>
               </Link>
             </div>
@@ -65,7 +65,7 @@ const Courses = () => {
                   <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
                     Master of Laws (LL. M.)
                   </h3>
-                  <h4 className="course-learn-more mt-3">Read More <FaArrowRightLong /></h4>
+                  <h4 className="course-learn-more mt-3">Know More <FaArrowRightLong /></h4>
                 </div>
               </Link>
             </div>
@@ -78,7 +78,7 @@ const Courses = () => {
                   <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
                     Doctor of Philosophy in Law (Ph.D.)
                   </h3>
-                  <h4 className="course-learn-more mt-3">Read More <FaArrowRightLong /></h4>
+                  <h4 className="course-learn-more mt-3">Know More <FaArrowRightLong /></h4>
                 </div>
               </Link>
             </div>

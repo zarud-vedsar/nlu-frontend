@@ -56,7 +56,7 @@ const Chairperson = () => {
         }
       );
       sethtml(response.data);
-    } catch (error) { }
+    } catch (error) {}
   };
 
   const getMessage = async () => {
@@ -165,32 +165,22 @@ const Chairperson = () => {
               <div className="section-title-wrapper">
                 <div className="section-title">
                   <h3 className="heading-primary2 butler-regulary mt-3 source-font">
-
-                    {
-                      !["general council", "executive council", "academic council", "finance committee"].includes(formData?.from?.toLowerCase()) && (
-                        <>From the {formData?.from}'s Desk</>
-                      )
-                    }
-                    {
-                      formData?.from?.toLowerCase() == "general council" && (
-                        "COMPOSITION OF THE GENERAL COUNCIL"
-                      )
-                    }
-                    {
-                      formData?.from?.toLowerCase() == "executive council" && (
-                        "COMPOSITION OF THE EXECUTIVE COUNCIL"
-                      )
-                    }
-                    {
-                      formData?.from?.toLowerCase() == "academic council" && (
-                        "COMPOSITION OF THE ACADEMIC COUNCIL"
-                      )
-                    }
-                    {
-                      formData?.from?.toLowerCase() == "finance committee" && (
-                        "COMPOSITION OF THE FINANCE COMMITTEE"
-                      )
-                    }
+                    {![
+                      "general council",
+                      "executive council",
+                      "academic council",
+                      "finance committee",
+                    ].includes(formData?.from?.toLowerCase()) && (
+                      <>From the {formData?.from}'s Desk</>
+                    )}
+                    {formData?.from?.toLowerCase() == "general council" &&
+                      "COMPOSITION OF THE GENERAL COUNCIL"}
+                    {formData?.from?.toLowerCase() == "executive council" &&
+                      "COMPOSITION OF THE EXECUTIVE COUNCIL"}
+                    {formData?.from?.toLowerCase() == "academic council" &&
+                      "COMPOSITION OF THE ACADEMIC COUNCIL"}
+                    {formData?.from?.toLowerCase() == "finance committee" &&
+                      "COMPOSITION OF THE FINANCE COMMITTEE"}
                   </h3>
                 </div>
               </div>
@@ -207,17 +197,14 @@ const Chairperson = () => {
                         padding: "20px",
                       }}
                     />
-                    {
-                      (id != 7 && id != 8 && id != 9 && id != 10) && (
-                        <>
-                          <h3 className="butler-regular mb-1 heading-primary3 mt-3 text-center">{`${formData.name}`}</h3>
-                          <p className="heading-para gorditas-regular text-primary text-center">
-                            {formData?.from}
-                          </p>
-
-                        </>
-                      )
-                    }
+                    {id != 7 && id != 8 && id != 9 && id != 10 && (
+                      <>
+                        <h3 className="butler-regular mb-1 heading-primary3 mt-3 text-center">{`${formData.name}`}</h3>
+                        <p className="heading-para gorditas-regular text-primary text-center">
+                          {formData?.from}
+                        </p>
+                      </>
+                    )}
                   </div>
                   <p
                     className="heading-para gorditas-regular text-justify"

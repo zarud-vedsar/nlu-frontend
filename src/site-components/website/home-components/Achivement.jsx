@@ -113,10 +113,11 @@ const Achivement = () => {
                       key={index}
                     >
                       <div className="col-xs-12 col-sm-12 col-lg-5 mb-3 id-achivement-position-relative d-flex justify-content-center">
-                        <div className="asldimgsec">
+                        <div className="asldimgsec ">
                           <div className="asldimg">
                             <img
                               src={`${data.image ? data.image : nluPrayagraj}`}
+                              className="id-achiment-image-m-view"
                             />
                           </div>
                         </div>
@@ -161,7 +162,7 @@ const Achivement = () => {
             left: 10px !important;
           }
            .nex-button{
-            right: 15px !important;
+            right: -15px !important;
           }
           `
         }

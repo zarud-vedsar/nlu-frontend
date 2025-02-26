@@ -51,24 +51,29 @@ function MyVerticallyCenteredModal(props) {
 
 const Grievance = () => {
   const [grievanceList, setGrievanceList] = useState([]);
-  const [allGrievanceList, setAllGrievanceList] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [modalShow, setModalShow] = useState(false);
 
   const [selectedGrievance, setSelectedGrievance] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({ startDate: "", endDate: "" });
 
-  useEffect(() => {
+  const getStartDate = () => {
     const today = new Date();
     const start = new Date(today);
     start.setDate(today.getDate() - 7);
-
-    const formattedStartDate = start.toISOString().split("T")[0];
-    const formattedEndDate = today.toISOString().split("T")[0];
-
-    setFormData({ startDate: formattedStartDate, endDate: formattedEndDate });
-  }, []);
+    return start.toISOString().split("T")[0];
+  };
+  
+  const getEndDate = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  };
+  
+  const [formData, setFormData] = useState({
+    startDate: getStartDate(),
+    endDate: getEndDate()
+  });
+ 
 
   useEffect(() => {
     loadGrievanceData();

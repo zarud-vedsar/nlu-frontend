@@ -48,7 +48,7 @@ function UserTestimonials() {
         style={{
           position: "absolute",
           top: "50%",
-          [direction]: isMobile ? "-15px" : "-40px", // Adjust based on screen width
+          [direction]: isMobile ? "-7px" : "-40px", // Adjust based on screen width
           transform: "translateY(-50%)",
           background: "#2e3e50",
           borderRadius: "50%",

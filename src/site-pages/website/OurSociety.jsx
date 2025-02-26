@@ -32,7 +32,7 @@ const OurSociety = () => {
                 style={{
                     position: "absolute",
                     top: "50%",
-                    [direction]: isMobile ? "-15px" : "-40px", // Adjust based on screen width
+                    [direction]: isMobile ? "-7px" : "-40px", // Adjust based on screen width
                     transform: "translateY(-50%)",
                     background: "#2e3e50",
                     borderRadius: "50%",
@@ -143,7 +143,7 @@ const OurSociety = () => {
                         <div className="usefullcontainer mt-4">
                             <Slider {...sliderSettings}>
                                 {society.map((link, index) => (
-                                    <div className="socicard-bx" key={index}>
+                                    <div className="socicard-bx id-mar-left-slider" key={index}>
                                         <div className="socicard-bx-item-bx text-center">
                                             <div className="socicard-bx-item" style={{ display: 'flex !important' }}>
                                                 <Link to={link.link}

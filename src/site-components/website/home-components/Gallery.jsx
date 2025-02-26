@@ -195,24 +195,6 @@ const Gallery = () => {
       right: 10%;
       top: 20px;
     }
-    .lg-toolbar{
-        width: 100% !important;
-    margin-right: auto;
-    }
-    #lg-close-6{
-    display:block;
-    }
-    .lg-toolbar .lg-close {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-.lg-toolbar {
-  display: flex !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
 
         `}
       </style>

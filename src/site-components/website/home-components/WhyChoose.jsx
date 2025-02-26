@@ -14,7 +14,7 @@ const WhyChoose = () => {
 
   return (
     <>
-      <section className="section bg-white" data-aos="fade-right" data-aos-delay="100">
+      <section className="section bg-f5" data-aos="fade-right" data-aos-delay="100">
         <div className="container">
           <div className="row">
             <div className='col-md-10 mx-auto mb-3 text-center'>
@@ -29,7 +29,7 @@ const WhyChoose = () => {
           <div className="row text-center mt-3">
             {/* Column 1: Industry Leaders */}
             <div className="col-md-4">
-              <div className="image-box-wrapper">
+              <div className="image-box-wrapper bg-white">
                 <img
                   className="img-fluid"
                   style={{ height: '170px' }}
@@ -42,7 +42,7 @@ const WhyChoose = () => {
             </div>
             {/* Column 2: Learn Courses Online */}
             <div className="col-md-4">
-              <div className="image-box-wrapper">
+              <div className="image-box-wrapper bg-white">
                 <img
                   className="img-fluid"
                   style={{ height: '170px' }}
@@ -55,7 +55,7 @@ const WhyChoose = () => {
             </div>
             {/* Column 3: Scholarship Facility */}
             <div className="col-md-4">
-              <div className="image-box-wrapper">
+              <div className="image-box-wrapper bg-white">
                 <img
                   className="img-fluid"
                   style={{ height: '170px' }}

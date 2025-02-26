@@ -98,12 +98,13 @@ function AcademicCalendar() {
 
     fetchCalendarListing(firstDate, lastDate);
   };
-  const fetchCalendarListing = async (fromDate, toDate) => {
+  const fetchCalendarListing = async (fromDate, toDate) => { 
     setIsFetching(true);
-    try {
+    try { 
       const response = await axios.post(`${NODE_API_URL}/api/calendar/fetch`, {
         deleteStatus: 0,
         listing: "yes",
+        status:1,
         fromDate,
         toDate,
       });

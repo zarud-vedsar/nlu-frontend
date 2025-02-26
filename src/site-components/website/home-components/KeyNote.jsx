@@ -76,14 +76,14 @@ const KeyNote = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumb-text">
-                <h1 className="text-center heading-primary butler-regular text-white">Keynote Speakers</h1>
+                <h1 className="text-center heading-primary butler-regular text-white">Details</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li>
                       <Link to="/">Home</Link><FaAngleRight />
                     </li>
                     <li>Important Updates <FaAngleRight /></li>
-                    <li>Keynote Speakers</li>
+                    <li>Details</li>
                   </ul>
                 </div>
               </div>

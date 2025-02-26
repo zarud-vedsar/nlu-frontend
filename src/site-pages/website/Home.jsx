@@ -20,6 +20,7 @@ import UserTestimonials from "./UserTestimoinals";
 import OurSociety from "./OurSociety";
 import KeyNoteSpeakers from "./KeyNoteSpeakers";
 import LawInstitution from "./LawInstitution";
+import PublicationsNotice from "../../site-components/website/home-components/Publication";
 function Home() {
   return (
     <>
@@ -38,6 +39,7 @@ function Home() {
       <Speciality />
       <Achivement />
       <Gallery />
+      <PublicationsNotice />
       <SocialMedia />
       <ContactIcon />
       <UserTestimonials />

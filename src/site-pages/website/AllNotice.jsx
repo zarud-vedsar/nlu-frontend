@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { FaCalendarAlt } from "react-icons/fa";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { useParams } from "react-router-dom";
 import validator from "validator";
 import { FaArrowRightLong, FaAnglesDown } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
+import { formatDate } from "../../site-components/Helper/HelperFunction";
 const AllNotice = () => {
   const [AllNotice, setAllNotice] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -221,9 +223,9 @@ const AllNotice = () => {
                         </Link>
                       </div>
                       <div className="noticeftr">
-                        <div className="dateon">
-                          Updated on:{" "}
-                          {new Date(notice.notice_date).toLocaleDateString()}
+                        <div className="dateon" style={{display: "flex", alignItems: "center", gap: "5px",}}>
+                        <FaCalendarAlt /> Updated on:{" "}
+                          {formatDate((notice.notice_date))}
                         </div>
                         <div>
                           <Link

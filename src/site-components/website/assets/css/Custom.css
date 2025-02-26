@@ -2340,6 +2340,11 @@ table tbody th {
   padding: 10px;
   text-align: center;
   cursor: pointer;
+  
+}
+.id-slide-m-left{
+  margin-left: -30px !important;
+
 }
 
 .am-faculty-avatar {
@@ -2382,7 +2387,7 @@ table tbody th {
 }
 
 .next-button {
-  right: -5px;
+  right: 5px;
 }
 
 .prev-button:hover,
@@ -3172,7 +3177,7 @@ table tbody th {
   margin-bottom: 20px;
   font-weight: 400;
   color: rgb(0, 0, 0);
-  text-align: justify;
+  text-align: start;
 }
 
 @media screen and (max-width: 768px) {
@@ -3187,6 +3192,9 @@ table tbody th {
   }
   .smt-12{
     margin-top: 20px;
+  }
+  .id-achiment-image-m-view{
+    margin-left: -30px;
   }
 }
 
@@ -3833,4 +3841,8 @@ color: #000;
   border: 3px solid #b81365;
 
 
+}
+
+.slick-initialized div:nth-child(1){
+  left: 0 !important;
 }

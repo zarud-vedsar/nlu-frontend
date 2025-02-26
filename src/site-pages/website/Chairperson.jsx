@@ -165,7 +165,34 @@ const Chairperson = () => {
               <div className="section-title-wrapper">
                 <div className="section-title">
                   <h3 className="heading-primary2 butler-regulary mt-3 source-font">
-                    From the {formData?.from}'s Desk
+                    {
+                      formData?.from?.toLowerCase() !== "general council" || formData?.from?.toLowerCase() !== "executive council"
+                      || formData?.from?.toLowerCase() !== "academic council" || formData?.from?.toLowerCase() !== "academic council" && (
+                        <>
+                          From the {formData?.from}'s Desk
+                        </>
+                      )
+                    }
+                    {
+                      formData?.from?.toLowerCase() == "general council" && (
+                        "COMPOSITION OF THE GENERAL COUNCIL"
+                      )
+                    }
+                    {
+                      formData?.from?.toLowerCase() == "executive council" && (
+                        "COMPOSITION OF THE EXECUTIVE COUNCIL"
+                      )
+                    }
+                    {
+                      formData?.from?.toLowerCase() == "academic council" && (
+                        "COMPOSITION OF THE ACADEMIC COUNCIL"
+                      )
+                    }
+                    {
+                      formData?.from?.toLowerCase() == "finance committee" && (
+                        "COMPOSITION OF THE FINANCE COMMITTEE"
+                      )
+                    }
                   </h3>
                 </div>
               </div>

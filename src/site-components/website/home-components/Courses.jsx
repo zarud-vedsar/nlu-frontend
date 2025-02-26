@@ -32,7 +32,7 @@ const Courses = () => {
     fetchData();
   }, []);
   return (
-    <section className="section" style={{ background: '#F5F5F5' }} data-aos="fade-up" data-aos-delay="100" >
+    <section className="section" style={{ background: '#fff' }} data-aos="fade-up" data-aos-delay="100" >
       <div className='container'>
         <div className="row">
           <div className='col-md-12 mb-3 text-center'>

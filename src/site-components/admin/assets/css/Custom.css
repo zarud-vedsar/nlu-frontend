@@ -2386,6 +2386,10 @@ cursor: pointer;
   padding: 8px 50px;
   border-radius: 5px;
   border: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  align-items: center;
 }
 .alingItem{
   align-items: center;

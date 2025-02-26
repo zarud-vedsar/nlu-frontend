@@ -510,7 +510,7 @@ function Index() {
                                                         <>
                                                             &nbsp; <div className="loader-circle"></div>
                                                         </>
-                                                    )}
+                                                     )} 
                                                 </button>
                                                 <p className="mt-3 text-start">Already registered? Click <Link to="/student/login">here</Link> to Log In</p>
                                                 <ContactIcon />

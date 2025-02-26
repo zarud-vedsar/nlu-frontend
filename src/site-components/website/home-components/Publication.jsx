@@ -56,7 +56,7 @@ const PublicationsNotice = () => {
         style={{
           position: "absolute",
           top: "50%",
-          [direction]: isMobile ? "-15px" : "0px", // Adjust based on screen width
+          [direction]: isMobile ? "0px" : "-40px", // Adjust based on screen width
           transform: "translateY(-50%)",
           background: "#2e3e50",
           borderRadius: "50%",
@@ -143,7 +143,7 @@ const PublicationsNotice = () => {
               <Slider {...settings2}>
                 {publications.map((publication, index) => (
                   <div key={index} className="sldr">
-                    <div className="card-custom">
+                    <div className="card-custom id-g-img-m-left">
                       <div className="new-img-container">
                         <Link to={`/notice-details/${publication.id}`}>
                           <img

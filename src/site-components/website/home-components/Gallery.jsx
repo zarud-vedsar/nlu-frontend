@@ -54,7 +54,7 @@ const Gallery = () => {
         style={{
           position: "absolute",
           top: "50%",
-          [direction]: isMobile ? "-15px" : "-40px", // Adjust based on screen width
+          [direction]: isMobile ? "0px" : "-40px", // Adjust based on screen width
           transform: "translateY(-50%)",
           background: "#2e3e50",
           borderRadius: "50%",
@@ -130,7 +130,7 @@ const Gallery = () => {
 
                   <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" style={{ width: '100%' }}>
                     <img
-                      className="gallery-img1 col-12"
+                      className="gallery-img1 col-12 id-g-img-m-left"
                       src={`${FILE_API_URL}/gallery/${img}`}
                       alt={`Gallery Image ${index + 1}`}
                       style={{

@@ -40,7 +40,7 @@ const Banner = () => {
         style={{
           position: "absolute",
           top: "50%",
-          [direction]: isMobile ? "-15px" : "0px", // Adjust based on screen width
+          [direction]: isMobile ? "15px" : "15px", // Adjust based on screen width
           transform: "translateY(-50%)",
           background: "#2e3e50",
           borderRadius: "50%",
@@ -53,7 +53,7 @@ const Banner = () => {
           zIndex: 10,
         }}
       >
-        {direction === "left" ? <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
+        {direction === "left" ?  <FaChevronLeft color="white" /> : <FaChevronRight color="white" />}
       </div>
     );
   };

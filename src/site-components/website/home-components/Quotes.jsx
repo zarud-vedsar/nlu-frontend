@@ -68,76 +68,93 @@ const Quotes = () => {
 
   ];
 
-  const CustomArrow = ({ onClick, direction }) => {
-    const isMobile = window.innerWidth <= 768; // Check for mobile view
+  // const CustomArrow = ({ onClick, direction }) => {
+  //   const isMobile = window.innerWidth <= 768; // Check for mobile view
 
-    return (
-      <div
-        onClick={onClick}
-        style={{
-          position: "absolute",
-          top: "50%",
-          [direction]: isMobile ? "-15px" : "0px", // Adjust based on screen width
-          transform: "translateY(-50%)",
-          background: "#2e3e50",
-          borderRadius: "50%",
-          width: "40px",
-          height: "40px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          zIndex: 10,
-        }}
-      >
-        {direction === "left" ? (
-          <FaChevronLeft color="white" />
-        ) : (
-          <FaChevronRight color="white" />
-        )}
-      </div>
-    );
-  };
+  //   return (
+  //     <div
+  //       onClick={onClick}
+  //       style={{
+  //         position: "absolute",
+  //         top: "50%",
+  //         [direction]: isMobile ? "-15px" : "0px", // Adjust based on screen width
+  //         transform: "translateY(-50%)",
+  //         background: "#2e3e50",
+  //         borderRadius: "50%",
+  //         width: "40px",
+  //         height: "40px",
+  //         display: "flex",
+  //         alignItems: "center",
+  //         justifyContent: "center",
+  //         cursor: "pointer",
+  //         zIndex: 10,
+  //       }}
+  //     >
+  //       {direction === "left" ? (
+  //         <FaChevronLeft color="white" />
+  //       ) : (
+  //         <FaChevronRight color="white" />
+  //       )}
+  //     </div>
+  //   );
+  // };
 
 
-  const settings2 = {
-    dots: false,
-    infinite: true,
+  const sliderSettings = {
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrows: true,
-    autoplay: true, // Enable auto-scroll
-    centerMode: false,
-    autoplaySpeed: 4000, // Change slides every 3 seconds
-    prevArrow: <CustomArrow direction="left" />,
-    nextArrow: <CustomArrow direction="right" />,
+    arrows: false,
+    autoplay: false, // Enable auto-scroll
+    autoplaySpeed: 2800, // Change slides every 3 seconds
     responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 1, centerMode: false } },
-      { breakpoint: 768, settings: { slidesToShow: 1, centerMode: false } },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
     ],
-    // responsive: [
-    //   {
-    //     breakpoint: 768,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    // ],
   };
+
+  const nextSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext();
+    }
+  };
+
+  const prevSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev();
+    }
+  };
+
 
   return (
     <>
-
       <section className="section" data-aos="fade-up" data-aos-delay="100">
         <div className="container">
           <div className="row">
             <div className="col-md-10 col-lg-10 mx-auto">
+           
               <div className="faculty-slider-container shadow px-3" style={{ borderRadius: '20px' }}>
-                <Slider ref={sliderRef} {...settings2}>
+              <button
+                    className="prev-button id-quote-prev-btn"
+                    onClick={prevSlide}
+                    aria-label="Previous Faculty"
+                  >
+                    &#10094;
+                  </button>
+                <Slider ref={sliderRef} {...sliderSettings}>
                   {Quotes.map((quote, index) => (
-                    <div className="id-quotes-wrapper py-3 " key={index}>
+                    <div className="id-quotes-wrapper id-quotes-m-left py-3 " key={index}>
                       <p className="source-font mb-3 text-center heading-para text-primary" style={{ fontSize: "18px" }}>
                         {quote.quotes}
                       </p>
@@ -147,7 +164,15 @@ const Quotes = () => {
                     </div>
                   ))}
                 </Slider>
+                <button
+                    className="next-button id-quote-nxt-btn"
+                    onClick={nextSlide}
+                    aria-label="Next Faculty"
+                  >
+                    &#10095;
+                  </button>
               </div>
+              
             </div>
           </div>
         </div>

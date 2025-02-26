@@ -161,161 +161,159 @@ const Grievance = () => {
           </div>
         </div>
       </div>
-      <section className="section bg-f5">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-              <h4 className="heading-primary2 butler-regular source-font">
-                Express Your Concerns or Complaints
-              </h4>
-              <div className="contact-form">
-                <div className="card border-0">
-                  <div className="card-body">
-                    <form onSubmit={handleSubmit}>
-                      <div className="row">
-                        <div className="col-md-12 mb-18">
-                          <label className="heading-para mb-1">Name</label>
-                          <div className="form-group-custom">
-                            <span className="form-custom-icon">
-                              <FaRegUser />
-                            </span>
-                            <input
-                              name="name"
-                              type="text"
-                              className="form-custom-input"
-                              placeholder="Name"
-                              value={formData.name}
-                              onChange={handleChange}
-                            />
-                          </div>
-                          {errors.name && (
-                            <span className="text-danger">{errors.name}</span>
-                          )}
-                        </div>
-                        <div className="col-md-12 mb-18">
-                          <label className="heading-para mb-1">Email</label>
-                          <div className="form-group-custom">
-                            <span className="form-custom-icon">
-                              <MdOutlineMailOutline />
-                            </span>
-                            <input
-                              name="email"
-                              type="email"
-                              className="form-custom-input"
-                              placeholder="Email"
-                              value={formData.email}
-                              onChange={handleChange}
-                            />
-                          </div>
-                          {errors.email && (
-                            <span className="text-danger">{errors.email}</span>
-                          )}
-                        </div>
-                        <div className="col-md-12 mb-18">
-                          <label className="heading-para mb-1">Phone No.</label>
-                          <div className="form-group-custom">
-                            <span className="form-custom-icon">
-                              <MdOutlinePhone />
-                            </span>
-                            <input
-                              name="phone"
-                              type="text"
-                              className="form-custom-input"
-                              placeholder="Phone No."
-                              value={formData.phone}
-                              onChange={handleChange}
-                            />
-                          </div>
-                          {errors.phone && (
-                            <span className="text-danger">{errors.phone}</span>
-                          )}
-                        </div>
-                        <div className="col-md-12 mb-18">
-                          <label className="heading-para mb-1">
-                            Year / Semester
-                          </label>
-                          <div className="form-group-custom">
-                            <span className="form-custom-icon">
-                              <GiCalendarHalfYear />
-                            </span>
-                            <input
-                              name="year_semester"
-                              type="text"
-                              className="form-custom-input"
-                              placeholder="Year / Semester"
-                              value={formData.year_semester}
-                              onChange={handleChange}
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-12 mb-18">
-                          <label className="heading-para mb-1">
-                            Upload File
-                          </label>
-                          <div className="form-group-custom">
-                            <span className="form-custom-icon">
-                              <GiCalendarHalfYear />
-                            </span>
-
-                            <input
-                              type="file"
-                              name="upload_file"
-                              className="form-custom-input"
-                              accept="application/pdf"
-                              onChange={handleUploadFile}
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-12 mb-18">
-                          <label className="heading-para mb-1">Message</label>
-                          <div className="form-group-custom align-items-start">
-                            <span className="form-custom-icon pt-3">
-                              <FaRegMessage />
-                            </span>
-                            <textarea
-                              name="message"
-                              className="form-custom-input pt-2"
-                              placeholder="Message"
-                              value={formData.message}
-                              onChange={handleChange}
-                              style={{ minHeight: "100px" }}
-                            />
-                          </div>
-                          {errors.message && (
-                            <span className="text-danger">
-                              {errors.message}
-                            </span>
-                          )}
-                        </div>
-                        <div className="col-md-12">
-                          <button
-                            type="submit"
-                            style={{ minHeight: "48px" }}
-                            className="btn btn-primary py-2 border-primary w-100"
-                            disabled={loading}
-                          >
-                            {loading ? "Submitting..." : "Submit Now"}
-                          </button>
-                        </div>
-                      </div>
-                    </form>
+    <section className="section bg-f5">
+  <div className="container">
+    <div className="row">
+      <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12 order-1 order-md-2 mt-5">
+        <img
+          className="img-fluid rounded-3"
+          src={ImgBg}
+          style={{
+            display: "block",
+            marginBottom:"15px"
+          }}
+          alt="Grievance"
+        />
+      </div>
+      <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12 order-2 order-md-1">
+        <h4 className="heading-primary2 butler-regular source-font">
+          Express Your Concerns or Complaints
+        </h4>
+        <div className="contact-form">
+          <div className="card border-0">
+            <div className="card-body">
+              <form onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="col-md-12 mb-18">
+                    <label className="heading-para mb-1">Name</label>
+                    <div className="form-group-custom">
+                      <span className="form-custom-icon">
+                        <FaRegUser />
+                      </span>
+                      <input
+                        name="name"
+                        type="text"
+                        className="form-custom-input"
+                        placeholder="Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    {errors.name && (
+                      <span className="text-danger">{errors.name}</span>
+                    )}
+                  </div>
+                  <div className="col-md-12 mb-18">
+                    <label className="heading-para mb-1">Email</label>
+                    <div className="form-group-custom">
+                      <span className="form-custom-icon">
+                        <MdOutlineMailOutline />
+                      </span>
+                      <input
+                        name="email"
+                        type="email"
+                        className="form-custom-input"
+                        placeholder="Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    {errors.email && (
+                      <span className="text-danger">{errors.email}</span>
+                    )}
+                  </div>
+                  <div className="col-md-12 mb-18">
+                    <label className="heading-para mb-1">Phone No.</label>
+                    <div className="form-group-custom">
+                      <span className="form-custom-icon">
+                        <MdOutlinePhone />
+                      </span>
+                      <input
+                        name="phone"
+                        type="text"
+                        className="form-custom-input"
+                        placeholder="Phone No."
+                        value={formData.phone}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    {errors.phone && (
+                      <span className="text-danger">{errors.phone}</span>
+                    )}
+                  </div>
+                  <div className="col-md-12 mb-18">
+                    <label className="heading-para mb-1">
+                      Year / Semester
+                    </label>
+                    <div className="form-group-custom">
+                      <span className="form-custom-icon">
+                        <GiCalendarHalfYear />
+                      </span>
+                      <input
+                        name="year_semester"
+                        type="text"
+                        className="form-custom-input"
+                        placeholder="Year / Semester"
+                        value={formData.year_semester}
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-12 mb-18">
+                    <label className="heading-para mb-1">Upload File</label>
+                    <div className="form-group-custom">
+                      <span className="form-custom-icon">
+                        <GiCalendarHalfYear />
+                      </span>
+                      <input
+                        type="file"
+                        name="upload_file"
+                        className="form-custom-input"
+                        accept="application/pdf"
+                        onChange={handleUploadFile}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-12 mb-18">
+                    <label className="heading-para mb-1">Message</label>
+                    <div className="form-group-custom align-items-start">
+                      <span className="form-custom-icon pt-3">
+                        <FaRegMessage />
+                      </span>
+                      <textarea
+                        name="message"
+                        className="form-custom-input pt-2"
+                        placeholder="Message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        style={{ minHeight: "100px" }}
+                      />
+                    </div>
+                    {errors.message && (
+                      <span className="text-danger">{errors.message}</span>
+                    )}
+                  </div>
+                  <div className="col-md-12">
+                    <button
+                      type="submit"
+                      style={{ minHeight: "48px" }}
+                      className="btn btn-primary py-2 border-primary w-100"
+                      disabled={loading}
+                    >
+                      {loading ? "Submitting..." : "Submit Now"}
+                    </button>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-              <img
-                className="img-fluid rounded-3 mt-5"
-                src={ImgBg}
-                style={{
-                  display: "block",
-                }}
-                alt="Grievance"
-              />
+              </form>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+
       <ToastContainer />{" "}
       {/* Toast container for displaying success/error messages */}
     </>

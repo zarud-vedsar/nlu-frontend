@@ -8,18 +8,15 @@ import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import validator from "validator";
-import { FaFacebookF } from "react-icons/fa";
 import rpnl_logo from "../assets/Images/rpnl_logo.png";
 const Footer = () => {
   const [visitorData, setVisitorData] = useState([]);
   const [iconLink, setIconLink] = useState([]);
   const [contactData, setContactData] = useState([]);
   const [brandData, setBrandData] = useState([]);
-
   const data = {
     site_url: window.location.href,
   };
-
   async function visitor() {
     try {
       await axios.post(`${NODE_API_URL}/api/visitor-website/visitor`, data);
@@ -335,13 +332,13 @@ const Footer = () => {
                     : ""}
                 </span>
                 <span className="visitor-counting">
-                 Unique Visitor:{" "}
+                  Unique Visitor:{" "}
                   {visitorData?.data &&
                     visitorData.data
                       .toString()
                       .split("")
                       .map((data, index) => (
-                        <span className="id-visitor-data mr-1" key={index}>
+                        <span className="id-visitor-data ms-1" key={index}>
                           {data}
                         </span>
                       ))}

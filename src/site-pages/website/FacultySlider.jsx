@@ -97,7 +97,7 @@ const FacultySlider = () => {
             </div>
             <div className="row">
               <div className="col-md-3 col-lg-3">
-                <div className="faculty-slide mt-3">
+                <div className="faculty-slide mt-3 ">
                   <div className="facslider">
                     <Link to={`/faculty/1`} target="_blank" >
                       <div className="facimg-bx">
@@ -135,7 +135,7 @@ const FacultySlider = () => {
                   <Slider ref={sliderRef} {...sliderSettings}>
                     {facultyList.length > 0 &&
                       facultyList.map((faculty, index) => (
-                        <div key={index} className="faculty-slide">
+                        <div key={index} className="faculty-slide id-slide-m-left">
                           <div className="facslider">
                             <Link to={`/faculty/${faculty.id}`} target="_blank">
                               <div className="facimg-bx">

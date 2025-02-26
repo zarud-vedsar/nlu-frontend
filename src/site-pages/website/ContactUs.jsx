@@ -3,9 +3,8 @@ import { useState } from "react";
 import axios from 'axios'; // Import axios
 import { PHP_API_URL } from '../../site-components/Helper/Constant';
 import { toast } from "react-toastify";
-import { IoIosCall } from "react-icons/io";
-import { MdEmail, MdOutlineMailOutline, MdOutlinePhone, MdOutlineSubject } from "react-icons/md";
-import { FaAngleRight, FaLocationDot, FaRegMessage, FaRegUser } from "react-icons/fa6";
+import { MdOutlineMailOutline, MdOutlinePhone, MdOutlineSubject } from "react-icons/md";
+import { FaAngleRight, FaRegMessage, FaRegUser } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { FiPhone } from "react-icons/fi";
 import { SlLocationPin } from "react-icons/sl";
@@ -107,7 +106,7 @@ const ContactUs = () => {
                 <h1 className="heading-primary2 butler-regular text-white text-center">Contact Us</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                    <li><Link to="/">Home</Link> <FaAngleRight /></li> 
+                    <li><Link to="/">Home</Link> <FaAngleRight /></li>
                     <li><span>Contact</span> <FaAngleRight /></li>
                     <li>Contact Us</li>
                   </ul>
@@ -195,10 +194,6 @@ const ContactUs = () => {
       <section className="section bg-f5">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              <h3 className="heading-primary2 butler-regular source-font">Get In Touch with Us</h3>
-              <div className="heading-divider mb-4"></div>
-            </div>
             <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12">
               <div className="card border-0 p-3">
                 <div className="card-body contact-iframe">
@@ -211,6 +206,12 @@ const ContactUs = () => {
               </div>
             </div>
             <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <div className="row">
+                <div className="col-md-12">
+                  <h3 className="heading-primary2 butler-regular source-font">Get In Touch with Us</h3>
+                  <div className="heading-divider mb-4"></div>
+                </div>
+              </div>
               <div className="card border-0">
                 <div className="card-body">
                   <h4 className="contact-title">Drop Us a Message</h4>

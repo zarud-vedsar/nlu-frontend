@@ -7,7 +7,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from 'react-router-dom';
-import { FaLongArrowAltRight } from "react-icons/fa";
 import LightGallery from "lightgallery/react";
 import "lightgallery/css/lightgallery.css";
 import "lightgallery/css/lg-thumbnail.css";
@@ -118,9 +117,15 @@ const Gallery = () => {
                     lgFullscreen,
                     lgShare,
                     lgVideo,
-                    lgPager,
+                    lgPager
                   ]}
                   mode="lg-fade"
+                  closable={true} // Ensure the close button is enabled
+                  hideBarsDelay={0} // Prevent hiding UI elements too quickly
+                  mobileSettings={{
+                    controls: true, // Ensure controls are visible on mobile
+                    showCloseButton: true, // Show close button on mobile
+                  }}
                 >
 
                   <a href={`${FILE_API_URL}/gallery/${img}`} target="_blank" style={{ width: '100%' }}>
@@ -190,6 +195,25 @@ const Gallery = () => {
       right: 10%;
       top: 20px;
     }
+    .lg-toolbar{
+        width: 100% !important;
+    margin-right: auto;
+    }
+    #lg-close-6{
+    display:block;
+    }
+    .lg-toolbar .lg-close {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.lg-toolbar {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
         `}
       </style>
     </div>

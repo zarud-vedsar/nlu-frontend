@@ -4,10 +4,9 @@ import axios from "axios";
 import Slider from "react-slick";
 import {
   PHP_API_URL,
-  FILE_API_URL,
+  FILE_API_URL
 } from "../../site-components/Helper/Constant";
 import f1 from './fimage/f1.jpg';
-import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const FacultySlider = () => {
   const [facultyList, setFacultyList] = useState([]);
@@ -107,13 +106,14 @@ const FacultySlider = () => {
                           alt=""
                           className="facimg"
                           style={{
-                            height:"300px"
+                            width: '100%',
+                            height: "300px"
                           }}
                         />
                       </div>
                     </Link>
                     <div className="facpost">
-                      <Link to={`/message-vice-chancellor`} target="_blank" >
+                      <Link to={`/faculty/1`} target="_blank" >
                         <h3 className="sldnn source-font mb-1 mt-2">Sr. Prof. Dr. Usha Tandon</h3>
                         <p className="facdesti source-font">Vice Chancellor</p>
                       </Link>

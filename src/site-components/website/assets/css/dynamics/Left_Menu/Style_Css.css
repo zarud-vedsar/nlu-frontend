@@ -591,7 +591,7 @@ padding: 0px !important;
   display: none;
 }
 .mcd-menu li a.active {
-border-bottom: 3px solid #2e3e50;
+border-bottom: 3px solid #B81365;
 border-left: none;
 border-right: none;
 }
@@ -643,7 +643,7 @@ i.fa.fa-university {
   /* bottom:0px; */
   /* left:45px; */
   /* background:#FFC0CB; */
-  color:#000 !important;
+  color:#B81365 !important;
   min-width:100%;
   /* text-transform:lowercase; */
   font-weight:normal;

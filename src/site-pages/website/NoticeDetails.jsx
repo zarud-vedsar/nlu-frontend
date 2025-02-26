@@ -19,6 +19,7 @@ const NoticeDetails = () => {
         );
         if (noticeResponse.data?.statusCode === 200) {
           setNoticeDetails(noticeResponse.data.data[0]); // Save the fetched notice details
+          console.log(noticeDetails)
           if (noticeResponse?.data?.data[0]?.description) {
             setHtml(
               validator?.unescape(noticeResponse?.data?.data[0]?.description)
@@ -43,12 +44,28 @@ const NoticeDetails = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="breadcrumb-text">
+              <h1 className="text-center">
+              {noticeDetails.notice_type === "notice"
+                    ? "Notice Details"
+                    : noticeDetails.notice_type === "event"
+                    ? "Event Details"
+                    : noticeDetails.notice_type === "publication"
+                    ? "Publication Details"
+                    : ""}
+                </h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li>
                       <Link to="/">Home</Link> <FaAngleRight />
                     </li>
-                    <li>Notice Details</li>
+                    <li> 
+                      {noticeDetails.notice_type === "notice"
+                        ? "Notice Details"
+                        : noticeDetails.notice_type === "event"
+                        ? "Event Details"
+                        : noticeDetails.notice_type === "publication"
+                        ? "Publication Details"
+                        : ""}</li>
                   </ul>
                 </div>
               </div>
@@ -62,7 +79,7 @@ const NoticeDetails = () => {
           <div className="row">
             <div className="col-md-12">
               <h2 className="heading-primary2">{
-               validator.unescape(noticeDetails?.title || "Notice Title")
+              validator.unescape(validator.unescape(noticeDetails?.title || "Notice Title"))
               }</h2>
               {
                 noticeDetails?.notice_date && (

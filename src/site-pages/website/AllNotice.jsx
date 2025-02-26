@@ -5,7 +5,7 @@ import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { useParams } from "react-router-dom";
 import validator from "validator";
 import { FaArrowRightLong, FaAnglesDown } from "react-icons/fa6";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaAngleRight } from "react-icons/fa6";
 const AllNotice = () => {
   const [AllNotice, setAllNotice] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -53,7 +53,7 @@ const AllNotice = () => {
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li>
-                      <Link to="/">Home</Link>
+                      <Link to="/">Home</Link> <FaAngleRight />
                     </li>
                     <li>
                       {id === "notice"

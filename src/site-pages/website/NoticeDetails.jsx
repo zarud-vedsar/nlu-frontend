@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { FaAngleRight } from "react-icons/fa6";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import validator from "validator";
 
@@ -45,7 +46,7 @@ const NoticeDetails = () => {
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
                     <li>
-                      <Link to="/">Home</Link>
+                      <Link to="/">Home</Link> <FaAngleRight />
                     </li>
                     <li>Notice Details</li>
                   </ul>
@@ -61,7 +62,7 @@ const NoticeDetails = () => {
           <div className="row">
             <div className="col-md-12">
               <h2 className="heading-primary2">{
-                noticeDetails?.title || "Notice Title"
+               validator.unescape(noticeDetails?.title || "Notice Title")
               }</h2>
               {
                 noticeDetails?.notice_date && (

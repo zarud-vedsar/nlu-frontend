@@ -11,6 +11,7 @@ import LlmCourseImg from '../../../site-components/website/assets/Images/course/
 import PhdCourseImg from '../../../site-components/website/assets/Images/course/phd.png';
 import BaLlbCourseImg from '../../../site-components/website/assets/Images/ba-llb.png';
 import validator from 'validator';
+import "../HarukiTabs.css";
 const Courses = () => {
   const { id } = useParams();
 
@@ -159,14 +160,14 @@ const Courses = () => {
               <h3 className="heading-primary2 butler-regular source-font">Course Details</h3>
               <div className="heading-divider mb-3"></div>
               <ul className="mcd-menu " style={{ position: "relative" }}>
-                <div className='borderbottomdiveder'>
+                <div className='borderbottomdiveder haruki_tabs-header'>
                   <hr></hr>
                 </div>
                 {content &&
                   content.map((post, index) => (
                     <li key={index}>
                       <Link
-                        className={post.fun == activeSidebar ? "active" : ""}
+                        className={`haruki_tab-button source-font transition-all ${post.fun == activeSidebar ? "active " : ""}`}
                         onClick={() => fetchData(post.fun, post.title)}
                       >
                         <i className="fa fa-university" />

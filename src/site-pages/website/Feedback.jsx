@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"; // Import axios
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import { toast, ToastContainer } from "react-toastify";
-import feedbackPng from "../../site-components/website/assets/Images/feedback.webp"
+import feedbackPng from "../../site-components/website/assets/Images/feedback-img.png"
 import { FaAddressBook, FaAngleRight, FaRegMessage, FaRegUser } from "react-icons/fa6";
 import { MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";

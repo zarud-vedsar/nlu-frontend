@@ -109,7 +109,7 @@ const Quotes = () => {
           <div className="row">
             <div className="col-md-10 col-lg-10 mx-auto">
 
-              <div className="faculty-slider-container shadow px-3" style={{ borderRadius: '20px' }}>
+              <div className="faculty-slider-container shadow px-3 mb-3" style={{ borderRadius: '20px' }}>
                 <button
                   className="prev-button"
                   id="id-quote-prev-btn"
@@ -121,7 +121,7 @@ const Quotes = () => {
                 </button>
                 <Slider ref={sliderRef} {...sliderSettings}>
                   {Quotes.map((quote, index) => (
-                    <div className="id-quotes-wrapper border-0 id-quotes-m-left py-3 " key={index}>
+                    <div className="id-quotes-wrapper border-0 id-quotes-m-left py-3 pl-0" key={index}>
                       <p className="source-font mb-3 text-center heading-para text-primary" style={{ fontSize: "18px" }}>
                         {quote.quotes}
                       </p>

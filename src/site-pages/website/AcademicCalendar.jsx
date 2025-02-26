@@ -104,6 +104,7 @@ function AcademicCalendar() {
       const response = await axios.post(`${NODE_API_URL}/api/calendar/fetch`, {
         deleteStatus: 0,
         listing: "yes",
+        status:1,
         fromDate,
         toDate,
       });

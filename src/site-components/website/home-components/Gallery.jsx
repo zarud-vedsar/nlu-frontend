@@ -93,7 +93,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="section" data-aos="fade-up" data-aos-delay="100" style={{background: "#f8f8f8"}}>
+    <div className="section" data-aos="fade-up" data-aos-delay="100" style={{ background: "#f8f8f8" }}>
       <div className="container">
         <div className="row">
           <div className="col-md-12 col-12 col-sm-12 text-center" style={{ position: "relative" }}>

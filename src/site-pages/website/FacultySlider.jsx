@@ -128,10 +128,10 @@ const FacultySlider = () => {
                     className="prev-button"
                     onClick={prevSlide}
                     aria-label="Previous Faculty"
+                    style={{}}
                   >
                     &#10094;
                   </button>
-
                   <Slider ref={sliderRef} {...sliderSettings}>
                     {facultyList.length > 0 &&
                       facultyList.map((faculty, index) => (
@@ -143,6 +143,10 @@ const FacultySlider = () => {
                                   src={`${FILE_API_URL}/user/${faculty.uid}/${faculty.avtar}`}
                                   alt={faculty.firstname}
                                   className="facimg"
+                                  style={{
+                                    width: '100%',
+                                    height: "300px"
+                                  }}
                                   loading="lazy"
                                   onError={(e) =>
                                     (e.target.src = `${FILE_API_URL}/user/dummy.webp`)
@@ -169,16 +173,16 @@ const FacultySlider = () => {
                   </button>
                 </div>
               </div>
-               <div className="col-md-12 text-center">
-                                      <Link
-                                        to="/faculty"
-                                        target="_blank"
-                                        style={{ minWidth: '230px' }}
-                                        className="btn btn-primary border-0 px-4 py-2 source-font"
-                                      >
-                                        All Faculty Members
-                                      </Link>
-                                    </div>
+              <div className="col-md-12 text-center">
+                <Link
+                  to="/faculty"
+                  target="_blank"
+                  style={{ minWidth: '230px' }}
+                  className="btn btn-primary border-0 px-4 py-2 source-font"
+                >
+                  All Faculty Members
+                </Link>
+              </div>
             </div>
 
           </div>

@@ -185,7 +185,7 @@ const Footer = () => {
                 )}
                 {iconLink.youtube && (
                   <Link
-                    to={iconLink.instagram}
+                    to={iconLink.youtube}
                     target="_blank"
                     className="mb-3 col-2"
                   >
@@ -193,12 +193,6 @@ const Footer = () => {
                       <span className="id-fb-icon">
                         <FaYoutube className="fticon youfticon" />
                       </span>
-                      {/* <h6
-                          className="id-fb-title"
-                          style={{ background: "#FF0000" }}
-                        >
-                          Youtube
-                        </h6> */}
                     </div>
                   </Link>
                 )}

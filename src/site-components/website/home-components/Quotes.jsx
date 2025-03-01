@@ -109,7 +109,10 @@ const Quotes = () => {
           <div className="row">
             <div className="col-md-10 col-lg-10 mx-auto">
 
-              <div className="faculty-slider-container shadow px-3 mb-3" style={{ borderRadius: '20px' }}>
+              <div className="faculty-slider-container px-3 mb-3 mt-3" style={{
+                borderRadius: '20px',
+                boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15), 0 -0.5rem 0.8rem rgba(0, 0, 0, 0.15)'
+              }}>
                 <button
                   className="prev-button"
                   id="id-quote-prev-btn"

@@ -42,46 +42,46 @@ const Courses = () => {
               Explore Our Comprehensive Courses Crafted for Academic Achievement and Professional Success
             </p>
           </div>
-          <div className="row mt-2 pr-0">
-            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 mt-1 text-center">
-              <Link to={`/courses/1`}>
-                <div className="course-img-container">
-                  <img src={BaLlbCourseImg} className="course-image" alt="Course Image" style={{ height: '230px' }} />
-                </div>
-                <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
-                  <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
-                    Bachelor of Arts and Bachelor of Laws with Honours (B.A. LL.B. (Hons.))
-                  </h3>
-                  <h4 className="course-learn-more mt-3">Know More <FaArrowRightLong /></h4>
-                </div>
-              </Link>
-            </div>
-            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 mt-1 text-center">
-              <Link to={`/courses/3`}>
-                <div className="course-img-container">
-                  <img src={LlmCourseImg} className="course-image" alt="Course Image" style={{ height: '230px' }} />
-                </div>
-                <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
-                  <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
-                    Master of Laws (LL. M.)
-                  </h3>
-                  <h4 className="course-learn-more mt-3">Know More <FaArrowRightLong /></h4>
-                </div>
-              </Link>
-            </div>
-            <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 mt-1 text-center">
-              <Link to={`/courses/2`}>
-                <div className="course-img-container">
-                  <img src={PhdCourseImg} className="course-image" alt="Course Image" style={{ height: '230px' }} />
-                </div>
-                <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
-                  <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
-                    Doctor of Philosophy in Law (Ph.D.)
-                  </h3>
-                  <h4 className="course-learn-more mt-3">Know More <FaArrowRightLong /></h4>
-                </div>
-              </Link>
-            </div>
+        </div>
+        <div className="row mt-2 pr-0">
+          <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 mt-1 text-center">
+            <Link to={`/courses/1`}>
+              <div className="course-img-container">
+                <img src={BaLlbCourseImg} className="course-image" alt="Course Image" style={{ height: '230px' }} />
+              </div>
+              <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
+                <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
+                  Bachelor of Arts and Bachelor of Laws with Honours (B.A. LL.B. (Hons.))
+                </h3>
+                <h4 className="course-learn-more mt-3">Know More <FaArrowRightLong /></h4>
+              </div>
+            </Link>
+          </div>
+          <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 mt-1 text-center">
+            <Link to={`/courses/3`}>
+              <div className="course-img-container">
+                <img src={LlmCourseImg} className="course-image" alt="Course Image" style={{ height: '230px' }} />
+              </div>
+              <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
+                <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
+                  Master of Laws (LL. M.)
+                </h3>
+                <h4 className="course-learn-more mt-3">Know More <FaArrowRightLong /></h4>
+              </div>
+            </Link>
+          </div>
+          <div className="col-md-4 col-lg-4 col-12 col-sm-12 mb-4 mt-1 text-center">
+            <Link to={`/courses/2`}>
+              <div className="course-img-container">
+                <img src={PhdCourseImg} className="course-image" alt="Course Image" style={{ height: '230px' }} />
+              </div>
+              <div className="course-detail d-flex justify-content-between align-items-start flex-column pt-3">
+                <h3 className="course-detail-title source-font" style={{ fontSize: '1.2em' }}>
+                  Doctor of Philosophy in Law (Ph.D.)
+                </h3>
+                <h4 className="course-learn-more mt-3">Know More <FaArrowRightLong /></h4>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

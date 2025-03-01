@@ -3902,9 +3902,23 @@ table tbody th {
 .fdb {
   height: 680px;
 }
-
+.order11{
+  order: 1;
+}
+.order12 {
+  order: 2;
+}
 @media screen and (min-width: 0px) and (max-width: 768px) {
   .fdb {
     height: 430px;
   }
+    .order11 {
+      order: 2;
+    }
+    .order12 {
+      order: 1;
+    }
+    .mt22{
+      margin-top: 20px;
+    }
 }

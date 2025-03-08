@@ -220,11 +220,13 @@ function AddExam() {
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
 
+                {hasPermission("View Compile Attendance","list") && (
                   <Link to="/admin/attendance-management/view-compile-attendance">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-list"></i> Compile Attendance
                     </button>
                   </Link>
+                  )}
                 </div>
               </div>
               </div>

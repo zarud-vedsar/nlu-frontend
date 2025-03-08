@@ -3,9 +3,6 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import {
-  FormField,
-} from "../../../site-components/admin/assets/FormField";
-import {
   capitalizeEachLetter,
   capitalizeFirstLetter,
   formatDate,
@@ -29,21 +26,20 @@ const SuccessTextareaField = ({
   className = "form-control",
   borderError = false,
   borderSuccess = false,
-  required = false
+  required = false,
 }) => {
-
   const borderShade = borderError
     ? "1px solid #FA5252"
     : borderSuccess
-      ? "1px solid rgb(97, 245, 63)"
-      : "";
+    ? "1px solid rgb(97, 245, 63)"
+    : "";
 
   const divStyle = {
     border: borderShade || "1px solid #ced4da",
     padding: "10px",
     borderRadius: "5px",
     minHeight: "38px",
-    backgroundColor: "#f8f9fa"
+    backgroundColor: "#f8f9fa",
   };
 
   return (
@@ -75,8 +71,8 @@ const SuccessFormField = ({
   const borderShade = borderError
     ? "1px solid #FA5252"
     : borderSuccess
-      ? "1px solid rgb(97, 245, 63)"
-      : "1px solid #ced4da";
+    ? "1px solid rgb(97, 245, 63)"
+    : "1px solid #ced4da";
 
   const divStyle = {
     border: borderShade,
@@ -91,7 +87,6 @@ const SuccessFormField = ({
     <div className={`${column} form-group`} id={colId}>
       <label className={labelClass} htmlFor={id}>
         {label}
-
       </label>
       <div style={divStyle} id={id} className={className}>
         {value || "N/A"}
@@ -111,12 +106,9 @@ const SuccessSingleSelectField = ({ value = "" }) => {
   };
 
   return (
-    <div style={divStyle}>
-      {value ? capitalizeFirstLetter(value) : "N/A"}
-    </div>
+    <div style={divStyle}>{value ? capitalizeFirstLetter(value) : "N/A"}</div>
   );
 };
-
 
 const SuccessMultiSelectField = ({ value = [] }) => {
   const divStyle = {
@@ -132,16 +124,14 @@ const SuccessMultiSelectField = ({ value = [] }) => {
     <div style={divStyle}>
       {value.length > 0
         ? value.map((item, index) => (
-          <span key={index} className="badge badge-primary mr-2">
-            {capitalizeFirstLetter(item)}
-          </span>
-        ))
+            <span key={index} className="badge badge-primary mr-2">
+              {capitalizeFirstLetter(item)}
+            </span>
+          ))
         : "N/A"}
     </div>
   );
 };
-
-
 
 const McqForm = ({ item, index }) => {
   const [formData, setFormData] = useState({
@@ -159,8 +149,8 @@ const McqForm = ({ item, index }) => {
     setFormData(item);
   }, [item]);
   /**
-  * ROLE & PERMISSION
-  */
+   * ROLE & PERMISSION
+   */
   const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate(); // Initialize useNavigate
   useEffect(() => {
@@ -277,15 +267,9 @@ const McqForm = ({ item, index }) => {
                 column="col-md-6 col-lg-6"
               />
               <div className="col-md-6 col-lg-6 col-12 col-sm-12 form-group">
-                <label className="font-weight-semibold">
-                  Correct Answer
-                </label>
+                <label className="font-weight-semibold">Correct Answer</label>
 
-                <SuccessMultiSelectField
-                  value={
-                    formData.answer_mcq
-                  }
-                />
+                <SuccessMultiSelectField value={formData.answer_mcq} />
               </div>
               <SuccessTextareaField
                 label="Remark "
@@ -421,15 +405,9 @@ const ScqForm = ({ item, index }) => {
                 column="col-md-6 col-lg-6"
               />
               <div className="col-md-6 col-lg-6 col-12 col-sm-12 form-group">
-                <label className="font-weight-semibold">
-                  Correct Answer
-                </label>
+                <label className="font-weight-semibold">Correct Answer</label>
 
-                <SuccessSingleSelectField
-                  value={
-                    formData.answer_scq
-                  }
-                />
+                <SuccessSingleSelectField value={formData.answer_scq} />
               </div>
               <SuccessTextareaField
                 label="Remark "
@@ -476,18 +454,10 @@ const ImageForm = ({ item, index }) => {
       setPreviewQuestion(
         `${FILE_API_URL}/assignment/${item?.unlink_question_image1}`
       );
-      setPreviewOption1(
-        `${FILE_API_URL}/assignment/${item?.unlink_option1}`
-      );
-      setPreviewOption2(
-        `${FILE_API_URL}/assignment/${item?.unlink_option2}`
-      );
-      setPreviewOption3(
-        `${FILE_API_URL}/assignment/${item?.unlink_option3}`
-      );
-      setPreviewOption4(
-        `${FILE_API_URL}/assignment/${item?.unlink_option4}`
-      );
+      setPreviewOption1(`${FILE_API_URL}/assignment/${item?.unlink_option1}`);
+      setPreviewOption2(`${FILE_API_URL}/assignment/${item?.unlink_option2}`);
+      setPreviewOption3(`${FILE_API_URL}/assignment/${item?.unlink_option3}`);
+      setPreviewOption4(`${FILE_API_URL}/assignment/${item?.unlink_option4}`);
     }
   }, []);
 
@@ -499,7 +469,6 @@ const ImageForm = ({ item, index }) => {
             <div className="card-title">Question {index + 1}</div>
 
             <div className="row col-12 form-group">
-
               {previewQuestion && (
                 <div className="col-md-12 col-lg-12 d-flex justify-content-center">
                   <img
@@ -634,9 +603,6 @@ const ImageForm = ({ item, index }) => {
                 </div>
               </div>
 
-
-
-
               <SuccessFormField
                 borderSuccess={
                   formData?.markedByStudent == "option5" &&
@@ -654,15 +620,9 @@ const ImageForm = ({ item, index }) => {
                 readOnly
               />
               <div className="col-md-6 col-lg-6 col-12 col-sm-12 form-group">
-                <label className="font-weight-semibold">
-                  Correct Answer
-                </label>
+                <label className="font-weight-semibold">Correct Answer</label>
 
-                <SuccessSingleSelectField
-                  value={
-                    formData.answer_image
-                  }
-                />
+                <SuccessSingleSelectField value={formData.answer_image} />
               </div>
               <SuccessTextareaField
                 label="Remark "
@@ -679,7 +639,6 @@ const ImageForm = ({ item, index }) => {
     </div>
   );
 };
-
 
 const QuizResponseView = () => {
   const [quizResponse, setQuizResponse] = useState([]);
@@ -701,10 +660,9 @@ const QuizResponseView = () => {
       return null;
     }
     try {
-      const response = await axios.post(
-        `${NODE_API_URL}/api/quiz/fetch`,
-        { dbId: quizId }
-      );
+      const response = await axios.post(`${NODE_API_URL}/api/quiz/fetch`, {
+        dbId: quizId,
+      });
       if (
         response?.data?.statusCode === 200 &&
         response?.data?.data?.length > 0
@@ -723,15 +681,10 @@ const QuizResponseView = () => {
   useEffect(() => {
     if (quizId) {
       fetchQuizDetail();
-
     }
   }, [quizId]);
   useEffect(() => {
-
     fetchQuestion();
-
-
-
   }, [quizDetail]);
 
   const fetchQuestion = async () => {
@@ -744,18 +697,13 @@ const QuizResponseView = () => {
       bformData.append("quiz_id", quizId);
       bformData.append("data", "load_quiz_questions");
 
-      const response = await axios.post(
-        `${PHP_API_URL}/quiz.php`,
-        bformData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${PHP_API_URL}/quiz.php`, bformData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       if (response?.data?.status === 200) {
         const questions = response?.data?.data;
-
 
         let answerSubmittedByStudent = {};
 
@@ -763,9 +711,6 @@ const QuizResponseView = () => {
           answerSubmittedByStudent[question?.question_id] =
             question?.answer?.split("$;");
         });
-
-
-
 
         if (questions[0]?.question_type === "mcq") {
           const formattedQuestions = questions.map((question) => ({
@@ -819,15 +764,12 @@ const QuizResponseView = () => {
 
           setQuestionList((prev) => [...prev, ...formattedQuestions]);
         }
-
       }
     } catch (e) {
     } finally {
       setLoading(false);
     }
   };
-
-
 
   const fetchQuizusingResponsePhp = async () => {
     setIsFetching(true);
@@ -844,17 +786,11 @@ const QuizResponseView = () => {
       bformData.append("loguserid", secureLocalStorage.getItem("login_id"));
       bformData.append("login_type", secureLocalStorage.getItem("loginType"));
 
-
-
-      const response = await axios.post(
-        `${PHP_API_URL}/quiz.php`,
-        bformData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post(`${PHP_API_URL}/quiz.php`, bformData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (response.data?.status === 200 && response.data.data.length > 0) {
         // toast.success(response?.data?.msg);
@@ -894,7 +830,8 @@ const QuizResponseView = () => {
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
                   <a href="./" className="breadcrumb-item">
-                    <i className="fas fa-home m-r-5" />Exam Management
+                    <i className="fas fa-home m-r-5" />
+                    Exam Management
                   </a>
                   <span className="breadcrumb-item">Quiz Response</span>
                   <span className="breadcrumb-item active">
@@ -913,12 +850,14 @@ const QuizResponseView = () => {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
-                  <Link to="/admin/quiz-response">
-                    <button className="ml-2 btn-md btn border-0 btn-secondary">
-                      <i className="fas fa-list mr-2"></i>Quiz Response
-                      List
-                    </button>
-                  </Link>
+
+                  { hasPermission("Quiz", "list") && (
+                    <Link to="/admin/quiz-response">
+                      <button className="ml-2 btn-md btn border-0 btn-secondary">
+                        <i className="fas fa-list mr-2"></i>Quiz Response List
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -928,9 +867,7 @@ const QuizResponseView = () => {
                   <div className="card-body">
                     <div className="row">
                       <div className="col-12 card-title">
-                        {capitalizeFirstLetter(
-                          quizDetail?.quiz_title
-                        )}
+                        {capitalizeFirstLetter(quizDetail?.quiz_title)}
                       </div>
                     </div>
                     <div className="row d-flex justify-content-between">
@@ -938,9 +875,7 @@ const QuizResponseView = () => {
                         <div className="col-12 mb-1">
                           {" "}
                           Question Type :{" "}
-                          {capitalizeFirstLetter(
-                            quizDetail?.question_type
-                          )}
+                          {capitalizeFirstLetter(quizDetail?.question_type)}
                         </div>
                         <div className="col-12 mb-1">
                           {" "}
@@ -948,19 +883,16 @@ const QuizResponseView = () => {
                         </div>
                         <div className="col-12 mb-1">
                           {" "}
-                          Number of questions :{" "}
-                          {quizDetail?.number_of_question}
+                          Number of questions : {quizDetail?.number_of_question}
                         </div>
                         <div className="col-12 mb-1">
                           {" "}
-                          Marks per question :{" "}
-                          {quizDetail?.marks_per_question}
+                          Marks per question : {quizDetail?.marks_per_question}
                         </div>
                         {quizDetail?.minus_mark > 0 && (
                           <div className="col-12 mb-1">
                             {" "}
-                            Marks per wrong answer :{" "}
-                            {quizDetail?.minus_mark}
+                            Marks per wrong answer : {quizDetail?.minus_mark}
                           </div>
                         )}
 
@@ -987,14 +919,16 @@ const QuizResponseView = () => {
                             </div>
                             <div className="col-12 mb-1">
                               {" "}
-                              Number of wrong questions :{" "}
-                              {quizResponse?.wrong}{" "}
+                              Number of wrong questions : {
+                                quizResponse?.wrong
+                              }{" "}
                               <i className="fa-solid fa-xmark text-danger"></i>
                             </div>
                             <div className="col-12 mb-1">
                               {" "}
-                              Number of right question :{" "}
-                              {quizResponse?.right_}{" "}
+                              Number of right question : {
+                                quizResponse?.right_
+                              }{" "}
                               <i className="fa-solid fa-check text-success"></i>
                             </div>{" "}
                           </>
@@ -1019,23 +953,17 @@ const QuizResponseView = () => {
                             <div className="col-12 mb-1">
                               {" "}
                               <i className="fa-solid fa-address-card mr-2"></i>{" "}
-                              {capitalizeEachLetter(
-                                quizResponse?.enrollmentNo
-                              )}
+                              {capitalizeEachLetter(quizResponse?.enrollmentNo)}
                             </div>
                             <div className="col-12 mb-1">
                               {" "}
                               <i className="fa-solid fa-envelope mr-2"></i>{" "}
-                              {capitalizeFirstLetter(
-                                quizResponse?.semail
-                              )}
+                              {capitalizeFirstLetter(quizResponse?.semail)}
                             </div>
                             <div className="col-12 ">
                               {" "}
                               <i className="fa-solid fa-phone mr-2"></i>{" "}
-                              {capitalizeFirstLetter(
-                                quizResponse?.sphone
-                              )}
+                              {capitalizeFirstLetter(quizResponse?.sphone)}
                             </div>
                           </div>
                           <div className="col-2">
@@ -1082,7 +1010,6 @@ const QuizResponseView = () => {
                   ))}
               </>
             )}
-
           </div>
         </div>
       </div>

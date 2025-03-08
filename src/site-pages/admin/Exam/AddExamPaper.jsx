@@ -68,19 +68,22 @@ function AddExam() {
     pass: 0,
   };
   // Jodit editor configuration
-  const config = useMemo(()=>({
-    readonly: false,
-    placeholder: "Enter your instructions here...",
-    spellcheck: true,
-    language: "en",
-    defaultMode: "1",
-    minHeight: 400,
-    maxHeight: -1,
-    defaultActionOnPaste: "insert_as_html",
-    defaultActionOnPasteFromWord: "insert_as_html",
-    askBeforePasteFromWord: false,
-    askBeforePasteHTML: false,
-  }),[]);
+  const config = useMemo(
+    () => ({
+      readonly: false,
+      placeholder: "Enter your instructions here...",
+      spellcheck: true,
+      language: "en",
+      defaultMode: "1",
+      minHeight: 400,
+      maxHeight: -1,
+      defaultActionOnPaste: "insert_as_html",
+      defaultActionOnPasteFromWord: "insert_as_html",
+      askBeforePasteFromWord: false,
+      askBeforePasteHTML: false,
+    }),
+    []
+  );
 
   // State variables: The true chaos handlers.
   const [formData, setFormData] = useState(initialFormData); // For holding all the exam data.
@@ -468,10 +471,10 @@ function AddExam() {
                 <nav className="breadcrumb breadcrumb-dash">
                   <Link to="/admin/" className="breadcrumb-item">
                     <i className="fas fa-home m-r-5" />
-                   Dashboard
+                    Dashboard
                   </Link>
                   <span className="breadcrumb-item active">
-                  Exam Management
+                    Exam Management
                   </span>
                   <span className="breadcrumb-item active">
                     {dbId ? "Update Exam Paper" : "Add Exam Paper"}
@@ -486,16 +489,18 @@ function AddExam() {
                   {dbId ? "Update Exam Paper" : "Add Exam Paper"}
                 </h5>
                 <div className="ml-auto id-mobile-go-back mb-2">
-
-                {/* The almighty 'Go Back' button */}
-                <button className="btn goback" onClick={goBack}>
-                  <i className="fas fa-arrow-left"></i> Go Back
-                </button>
-                <Link to="/admin/exam-paper/list">
-                  <button className="ml-2 btn-md btn border-0 btn-secondary">
-                    <i className="fas fa-list"></i> Exam Paper List
+                  {/* The almighty 'Go Back' button */}
+                  <button className="btn goback" onClick={goBack}>
+                    <i className="fas fa-arrow-left"></i> Go Back
                   </button>
-                </Link>
+
+                  {hasPermission("Exam Paper List", "list") && (
+                    <Link to="/admin/exam-paper/list">
+                      <button className="ml-2 btn-md btn border-0 btn-secondary">
+                        <i className="fas fa-list"></i> Exam Paper List
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

@@ -426,16 +426,18 @@ function AddQuiz() {
                 </h5>
                 <div className="ml-auto">
                   <button
-                    className="ml-auto btn-md btn border-0 btn-light mr-2"
+                    className="btn goback mr-2"
                     onClick={goBack}
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                  {hasPermission("Quiz","list") && (
                   <Link to="/admin/quiz">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-list"></i> Quiz List
                     </button>
                   </Link>
+                  )}
                 </div>
               </div>
             </div>

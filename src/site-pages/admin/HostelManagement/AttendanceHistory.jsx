@@ -353,11 +353,13 @@ function AttendanceHIstory() {
                       <FaFilter />
                     </span>
                   </Button>
+                  {hasPermission("Mark Hostel Attendance","mark attendance") && (
                   <Link to="/admin/hostel-management/mark-attendance">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-plus"></i> Mark Attendance
                     </button>
                   </Link>
+                  )}
                 </div>
               </div>
             </div>

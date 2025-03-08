@@ -390,15 +390,14 @@ function QuizList() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
-                    <Button
-                      variant="primary"
-                      className=" mb-2 mb-md-0"
+                    <button
+                      className="btn btn-primary"
                       onClick={handleShow}
                     >
                       <span>
                         <FaFilter /> 
                       </span>
-                    </Button>
+                    </button>
                   {
                     hasPermission("Quiz", "create") && (
                       <Link

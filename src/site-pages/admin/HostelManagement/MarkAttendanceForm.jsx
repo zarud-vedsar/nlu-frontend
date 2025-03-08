@@ -40,7 +40,7 @@ function MarkAttendanceForm() {
   const navigate = useNavigate(); // Initialize useNavigate
   useEffect(() => {
     if (RolePermission && RolePermission.length > 0) {
-      if (!hasPermission("Mark Hostel Attendance", "list")) {
+      if (!hasPermission("Mark Hostel Attendance", "mark attendance")) {
         navigate("/forbidden");
       }
     }
@@ -283,14 +283,16 @@ function MarkAttendanceForm() {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                  {hasPermission("Hostel Attendance History","list") && (
                   <Link to="/admin/hostel-management/attendance-history">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                      <i className="fas fa-list"></i> Attendance History 
                     </button>
                   </Link>
+                  )}
                 </div>
               </div>
-            </div>
+            </div> 
             <div className="card border-0">
               <div className="card-body">
                 <form onSubmit={loadStudent}>

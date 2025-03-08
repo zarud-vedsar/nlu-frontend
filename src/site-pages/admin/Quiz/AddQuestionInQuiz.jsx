@@ -1008,11 +1008,13 @@ const AddQuestionInQuiz = () => {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                  {hasPermission("Quiz","list") && (
                   <Link to="/admin/quiz">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-list"></i> Quiz List
                     </button>
                   </Link>
+                  )}
                 </div>
               </div>
             </div>

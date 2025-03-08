@@ -129,26 +129,7 @@ export const RoleData = [
       },
     ],
   },
-  {
-    title: "Expense Management",
-    items: [
-      {
-        label: "Expense Category",
-        value: "Expense Category",
-        crud: ["create", "update", "list", "delete"], // CRUD operations
-      },
-      {
-        label: "Add New Expense",
-        value: "Add New Expense",
-        crud: ["create"], // CRUD operations
-      },
-      {
-        label: "Expense List",
-        value: "Expense List",
-        crud: ["update", "list", "delete"], // CRUD operations
-      },
-    ],
-  },
+ 
   {
     title: "Learning Management",
     items: [
@@ -281,6 +262,26 @@ export const RoleData = [
         label: "Restock Notification List",
         value: "Restock Notification List",
         crud: ["list", "view", "Update Restock Notification Status"], // CRUD operations
+      },
+    ],
+  },
+  {
+    title: "Expense Management",
+    items: [
+      {
+        label: "Expense Category",
+        value: "Expense Category",
+        crud: ["create", "update", "status", "list", "delete", "recycle bin"], // CRUD operations
+      },
+      {
+        label: "Add New Expense",
+        value: "Add New Expense",
+        crud: ["create"], // CRUD operations
+      },
+      {
+        label: "Expense List",
+        value: "Expense List",
+        crud: ["update", "list", "delete"], // CRUD operations
       },
     ],
   },

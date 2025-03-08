@@ -11,6 +11,8 @@ import { DeleteSweetAlert } from "../../../site-components/Helper/DeleteSweetAle
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 import { capitalizeFirstLetter } from "../../../site-components/Helper/HelperFunction";
+import useRolePermission from "../../../site-components/admin/useRolePermission";
+import { useNavigate } from "react-router-dom";
 
 const MyVerticallyCenteredModal = (props = {}) => {
   const [content, setContent] = useState("");
@@ -123,6 +125,16 @@ const ExpenseCategory = () => {
   const [loading, setLoading] = useState(false);
   const [selectedmarque, setSelectedMarque] = useState(null);
   const [modalShow, setModalShow] = useState(false);
+
+   const { RolePermission, hasPermission } = useRolePermission();
+    const navigate = useNavigate(); // Initialize useNavigate
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Expense Category", "create")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
 
   const editMarque = (index) => {
     const currentLob = MarqueList[index];
@@ -322,6 +334,7 @@ const ExpenseCategory = () => {
                     </i>{" "}
                     Go Back
                   </Button>
+                  {hasPermission("Expense Category","recycle bin") && (
                   <Button
                     className={`btn ${
                       recycleTitle === "Show Recycle Bin"
@@ -333,6 +346,8 @@ const ExpenseCategory = () => {
                   >
                     {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
                   </Button>
+                  )}
+                  {hasPermission("Expense Category","create") && (
                   <Button
                     className="ml-2  mb-md-0 btn btn-secondaary"
                     onClick={() => setModalShow(true)}
@@ -342,6 +357,7 @@ const ExpenseCategory = () => {
                     </i>{" "}
                     Add New
                   </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -366,6 +382,7 @@ const ExpenseCategory = () => {
                         </h6>
 
                         <div className="d-flex align-items-center  justify-content-start">
+                          {hasPermission("Expense Category","status") && (
                           <div className="switch ">
                             <input
                               type="checkbox"
@@ -379,7 +396,9 @@ const ExpenseCategory = () => {
                               htmlFor={`switch${item.id}`}
                             ></label>
                           </div>
+                          )}
 
+                            {hasPermission("Expense Category","update") && (
                           <div className="d-flex ">
                             <div
                               onClick={() => editMarque(index)}
@@ -388,7 +407,9 @@ const ExpenseCategory = () => {
                               <i className="fas fa-edit"></i>
                             </div>
                           </div>
-                          {item.delete_status == 0 ? (
+                          )}
+                           
+                          {hasPermission("Expense Category","delete") && item.delete_status == 0 ? (
                             <OverlayTrigger
                               placement="bottom"
                               overlay={
@@ -417,6 +438,7 @@ const ExpenseCategory = () => {
                               </div>
                             </OverlayTrigger>
                           )}
+                        
                         </div>
                       </div>
                     </div>

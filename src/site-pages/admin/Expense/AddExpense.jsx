@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PHP_API_URL } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   capitalizeFirstLetter,
   dataFetchingPost,
@@ -14,6 +14,7 @@ import {
 } from "../../../site-components/admin/assets/FormField";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
+import useRolePermission from "../../../site-components/admin/useRolePermission";
 
 function AddExpense() {
   // Initial form state
@@ -32,6 +33,16 @@ function AddExpense() {
   const [expenseCategory, setExpenseCategory] = useState([]); // Department list
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
+
+     const { RolePermission, hasPermission } = useRolePermission();
+      const navigate = useNavigate(); // Initialize useNavigate
+      useEffect(() => {
+        if (RolePermission && RolePermission.length > 0) {
+          if (!hasPermission("Add New Expense", "create")) {
+            navigate("/forbidden");
+          }
+        }
+      }, [RolePermission, hasPermission]);
 
   // Fetch department list
   const fetchCategoryList = async () => {
@@ -259,12 +270,14 @@ function AddExpense() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                  {hasPermission("Expense List","list") && (
                   <Link
                     to="/admin/expense/list"
                     className="ml-2 btn-md btn border-0 btn-secondary"
                   >
                     <i className="fas fa-list" /> Expense List
                   </Link>
+                  )}
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@ import {
   PHP_API_URL,
 } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   capitalizeFirstLetter,
   dataFetchingPost,
@@ -27,6 +27,7 @@ import Tooltip from "react-bootstrap/Tooltip";
 import { InputText } from "primereact/inputtext";
 import { FaFilter } from "react-icons/fa";
 import { DeleteSweetAlert } from "../../../site-components/Helper/DeleteSweetAlert";
+import useRolePermission from "../../../site-components/admin/useRolePermission";
 
 function ExpenseList() {
   // Initial form state
@@ -45,7 +46,15 @@ function ExpenseList() {
 
     const [globalFilter, setGlobalFilter] = useState(""); // State for the search box
   
-   
+    const { RolePermission, hasPermission } = useRolePermission();
+    const navigate = useNavigate(); // Initialize useNavigate
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Expense List", "list")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
 
   const handleClose = () => setShowFilter(false);
   const handleShow = () => setShowFilter(true);
@@ -227,12 +236,14 @@ function ExpenseList() {
                       </span>
                     </Button>
                    
+                   {hasPermission("Add New Expense","create") && (
                   <Link
                     to="/admin/expense/add-new"
                     className="ml-2 btn-md btn border-0 btn-secondary"
                   >
                     <i className="fas fa-plus" /> Add New
                   </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -318,6 +329,7 @@ function ExpenseList() {
                       body={(row, { rowIndex }) => (
                         <div className="d-flex">
                           
+                          {hasPermission("Expense List","update") && (
                           <OverlayTrigger
                             placement="bottom"
                             overlay={
@@ -333,7 +345,9 @@ function ExpenseList() {
                               ></i>
                             </Link>
                           </OverlayTrigger>
+                          )}
                           
+                          {hasPermission("Expense List","delete") && (
                             <OverlayTrigger
                               placement="bottom"
                               overlay={
@@ -347,7 +361,7 @@ function ExpenseList() {
                                 ></i>
                               </div>
                             </OverlayTrigger>
-                          
+                          )}
                         </div>
                         
                       )}

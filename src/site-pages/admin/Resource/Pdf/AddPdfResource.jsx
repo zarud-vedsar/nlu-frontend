@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { NODE_API_URL } from "../../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
     capitalizeFirstLetter,
     dataFetchingPost,
@@ -11,6 +11,7 @@ import {
 import Select from "react-select";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
+import useRolePermission from "../../../../site-components/admin/useRolePermission";
 
 function AddNewResourcePdf() {
     // Initial form state
@@ -29,6 +30,15 @@ function AddNewResourcePdf() {
     const [previewPdf, setPreviewPdf] = useState(null);
     const [error, setError] = useState({ field: "", msg: "" }); // Error state
     const { dbId } = useParams();
+    const { RolePermission, hasPermission } = useRolePermission();
+    const navigate = useNavigate(); // Initialize useNavigate
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Add Pdfs", "create")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
     const courseListDropdown = async () => {
         try {
             const response = await axios.get(`${NODE_API_URL}/api/course/dropdown`);
@@ -281,11 +291,14 @@ function AddNewResourcePdf() {
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back
                                     </button>
-                                    <a href="/admin/list-resource-pdf">
+
+                                    {hasPermission("Pdfs List","list") && (
+                                    <Link to="/admin/list-resource-pdf">
                                         <button className="ml-2 btn-md btn border-0 btn-secondary">
                                             <i className="fas fa-list"></i> Pdf List
                                         </button>
-                                    </a>
+                                    </Link>
+                                    )}
                                 </div>
                             </div>
                         </div>

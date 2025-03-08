@@ -1,41 +1,52 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { NODE_API_URL } from "../../../../site-components/Helper/Constant";
-import { toast } from 'react-toastify';
-import { capitalizeFirstLetter, dataFetchingDelete, dataFetchingPatch, dataFetchingPost, formatDate, goBack } from '../../../../site-components/Helper/HelperFunction';
-import { DeleteSweetAlert } from '../../../../site-components/Helper/DeleteSweetAlert';
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/Column';
-import { InputText } from 'primereact/inputtext'; // Import InputText for the search box
-import '../../../../../node_modules/primeicons/primeicons.css';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
-import { Link, useNavigate } from 'react-router-dom';
-import secureLocalStorage from 'react-secure-storage';
-import pdfSample from "../../../../site-components/admin/assets/images/pdf.png"
+import { toast } from "react-toastify";
 import {
-  Modal,
-  Button,
-  Form,
-  Col,
-  Row,
-} from "react-bootstrap";
+  capitalizeFirstLetter,
+  dataFetchingDelete,
+  dataFetchingPatch,
+  dataFetchingPost,
+  formatDate,
+  goBack,
+} from "../../../../site-components/Helper/HelperFunction";
+import { DeleteSweetAlert } from "../../../../site-components/Helper/DeleteSweetAlert";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/Column";
+import { InputText } from "primereact/inputtext"; // Import InputText for the search box
+import "../../../../../node_modules/primeicons/primeicons.css";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import { Link, useNavigate } from "react-router-dom";
+import secureLocalStorage from "react-secure-storage";
+import pdfSample from "../../../../site-components/admin/assets/images/pdf.png";
+import { Modal, Button, Form, Col, Row } from "react-bootstrap";
 import Select from "react-select";
 import { FaFilter } from "react-icons/fa";
 import axios from "axios";
+import useRolePermission from "../../../../site-components/admin/useRolePermission";
+
 function ResourcePdfList() {
   const [ResourcePdfListing, setResourcePdfListing] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [globalFilter, setGlobalFilter] = useState(''); // State for the search box
+  const [globalFilter, setGlobalFilter] = useState(""); // State for the search box
   const [recycleTitle, setRecycleTitle] = useState("Show Recycle Bin");
   const navigate = useNavigate();
+
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Pdfs List", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
 
   const [filters, setFilters] = useState({
     status: null,
     courseid: null,
     semesterid: null,
     subjectid: null,
-
   });
   const [show, setShow] = useState(false);
   const [filterStatus, setFilterStatus] = useState();
@@ -53,16 +64,15 @@ function ResourcePdfList() {
       courseid: null,
       semesterid: null,
       subjectid: null,
-
     });
     setFilterStatus(null);
-    fetchResourcePdfListing({})
+    fetchResourcePdfListing({});
 
     handleClose();
   };
 
   const applyFilters = () => {
-    fetchResourcePdfListing(filters)
+    fetchResourcePdfListing(filters);
   };
 
   const courseListDropdown = async () => {
@@ -155,12 +165,17 @@ function ResourcePdfList() {
     setIsFetching(true);
     const { status, courseid, semesterid, subjectid } = filters;
     try {
-      const response = await dataFetchingPost(`${NODE_API_URL}/api/resource/pdf/fetchResourcePdfWithCourseSemesterSubject`,
+      const response = await dataFetchingPost(
+        `${NODE_API_URL}/api/resource/pdf/fetchResourcePdfWithCourseSemesterSubject`,
         {
-          courseid, semesterid, subjectid, status,
+          courseid,
+          semesterid,
+          subjectid,
+          status,
           deleteStatus,
-          listing: 'yes'
-        });
+          listing: "yes",
+        }
+      );
       if (response?.statusCode === 200 && response.data.length > 0) {
         setResourcePdfListing(response.data);
       } else {
@@ -179,28 +194,39 @@ function ResourcePdfList() {
     } finally {
       setIsFetching(false);
     }
-  }
+  };
   useEffect(() => {
     fetchResourcePdfListing();
   }, []);
   const showRecyleBin = () => {
-    setRecycleTitle(recycleTitle === "Show Recycle Bin" ? "Hide Recycle Bin" : "Show Recycle Bin");
+    setRecycleTitle(
+      recycleTitle === "Show Recycle Bin"
+        ? "Hide Recycle Bin"
+        : "Show Recycle Bin"
+    );
     fetchResourcePdfListing({}, recycleTitle === "Show Recycle Bin" ? 1 : 0);
-  }
+  };
 
   const handleToggleStatus = async (dbId, currentStatus) => {
-    if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
+    if (
+      !dbId ||
+      !Number.isInteger(parseInt(dbId, 10)) ||
+      parseInt(dbId, 10) <= 0
+    )
+      return toast.error("Invalid ID.");
     // Toggle the status (currentStatus is the current checkbox state)
     const newStatus = currentStatus === 1 ? 0 : 1;
     try {
-      const loguserid = secureLocalStorage.getItem('login_id');
-      const login_type = secureLocalStorage.getItem('loginType');
-      const response = await dataFetchingPatch(`${NODE_API_URL}/api/resource/pdf/status/${dbId}/${loguserid}/${login_type}`);
+      const loguserid = secureLocalStorage.getItem("login_id");
+      const login_type = secureLocalStorage.getItem("loginType");
+      const response = await dataFetchingPatch(
+        `${NODE_API_URL}/api/resource/pdf/status/${dbId}/${loguserid}/${login_type}`
+      );
       if (response?.statusCode === 200) {
         toast.success(response.message);
         // Update the notice list to reflect the status change
-        setResourcePdfListing(prevList =>
-          prevList.map(item =>
+        setResourcePdfListing((prevList) =>
+          prevList.map((item) =>
             item.id === dbId ? { ...item, status: newStatus } : item
           )
         );
@@ -218,15 +244,22 @@ function ResourcePdfList() {
         );
       }
     }
-  }
+  };
   const deleteStatus = async (dbId) => {
-    if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
+    if (
+      !dbId ||
+      !Number.isInteger(parseInt(dbId, 10)) ||
+      parseInt(dbId, 10) <= 0
+    )
+      return toast.error("Invalid ID.");
     try {
       const deleteAlert = await DeleteSweetAlert();
       if (deleteAlert) {
-        const loguserid = secureLocalStorage.getItem('login_id');
-        const login_type = secureLocalStorage.getItem('loginType');
-        const response = await dataFetchingDelete(`${NODE_API_URL}/api/resource/pdf/deleteStatus/${dbId}/${loguserid}/${login_type}`);
+        const loguserid = secureLocalStorage.getItem("login_id");
+        const login_type = secureLocalStorage.getItem("loginType");
+        const response = await dataFetchingDelete(
+          `${NODE_API_URL}/api/resource/pdf/deleteStatus/${dbId}/${loguserid}/${login_type}`
+        );
         if (response?.statusCode === 200) {
           toast.success(response.message);
           if (response.data == 1) {
@@ -234,7 +267,7 @@ function ResourcePdfList() {
           } else {
             fetchResourcePdfListing(filters, 0);
           }
-          showRecyleBin()
+          showRecyleBin();
         } else {
           toast.error("An error occurred. Please try again.");
         }
@@ -250,11 +283,16 @@ function ResourcePdfList() {
         );
       }
     }
-  }
+  };
   const updateDataFetch = async (dbId) => {
-    if (!dbId || (!Number.isInteger(parseInt(dbId, 10)) || parseInt(dbId, 10) <= 0)) return toast.error("Invalid ID.");
+    if (
+      !dbId ||
+      !Number.isInteger(parseInt(dbId, 10)) ||
+      parseInt(dbId, 10) <= 0
+    )
+      return toast.error("Invalid ID.");
     navigate(`/admin/add-resource-pdf/${dbId}`, { replace: false });
-  }
+  };
   return (
     <>
       <div className="page-container">
@@ -267,7 +305,7 @@ function ResourcePdfList() {
                     <i className="fas fa-home m-r-5" /> Dashboard
                   </a>
                   <span className="breadcrumb-item">Resource</span>
-                  
+
                   <span className="breadcrumb-item active">Pdf List</span>
                 </nav>
               </div>
@@ -282,30 +320,34 @@ function ResourcePdfList() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
-                    <Button
-                      variant="primary"
-                      className=" mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> 
-                      </span>
-                    </Button>
-                  <Link
-                    to={'/admin/add-resource-pdf'}
-                    className="ml-2 btn-md btn border-0 btn-secondary"
+                  <Button
+                    variant="primary"
+                    className=" mb-md-0"
+                    onClick={handleShow}
                   >
-                    <i className="fas fa-plus" /> Add New
-                  </Link>
+                    <span>
+                      <FaFilter />
+                    </span>
+                  </Button>
+                  {hasPermission("Add Pdfs", "create") && (
+                    <Link
+                      to={"/admin/add-resource-pdf"}
+                      className="ml-2 btn-md btn border-0 btn-secondary"
+                    >
+                      <i className="fas fa-plus" /> Add New
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
             <div className="card">
               <div className="card-body">
                 {/* Search Box */}
-                <div className='row'>
+                <div className="row">
                   <div className="col-md-7 col-lg-7 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
-                    <div className='search-icon'><i className="pi pi-search" /></div>
+                    <div className="search-icon">
+                      <i className="pi pi-search" />
+                    </div>
                     <InputText
                       type="search"
                       value={globalFilter}
@@ -314,12 +356,23 @@ function ResourcePdfList() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  
-                  <div className='col-md-4 col-lg-4 col-10 col-sm-4 mb-3'>
-                    <button className={`btn ${recycleTitle === "Show Recycle Bin" ? 'btn-secondary' : 'btn-danger'}`} onClick={showRecyleBin}>{recycleTitle} <i className="fa fa-recycle"></i></button>
+
+                  <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-3">
+                    {hasPermission("Pdfs List", "recycle bin") && (
+                      <button
+                        className={`btn ${
+                          recycleTitle === "Show Recycle Bin"
+                            ? "btn-secondary"
+                            : "btn-danger"
+                        }`}
+                        onClick={showRecyleBin}
+                      >
+                        {recycleTitle} <i className="fa fa-recycle"></i>
+                      </button>
+                    )}
                   </div>
                 </div>
-                <div className={`table-responsive ${isFetching ? 'form' : ''}`}>
+                <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   <DataTable
                     value={ResourcePdfListing}
                     removableSort
@@ -329,67 +382,118 @@ function ResourcePdfList() {
                     globalFilter={globalFilter} // Bind global filter
                     emptyMessage="No records found"
                     className="p-datatable-custom"
-                    tableStyle={{ minWidth: '50rem' }}
+                    tableStyle={{ minWidth: "50rem" }}
                     sortMode="multiple"
                   >
                     <Column field="coursename" header="Course" sortable />
-                    <Column field='semtitle' body={(row) => capitalizeFirstLetter(row.semtitle)} header="Semester" sortable />
-                    <Column field='subject' body={(row) => capitalizeFirstLetter(row.subject)} header="Subject" sortable />
+                    <Column
+                      field="semtitle"
+                      body={(row) => capitalizeFirstLetter(row.semtitle)}
+                      header="Semester"
+                      sortable
+                    />
+                    <Column
+                      field="subject"
+                      body={(row) => capitalizeFirstLetter(row.subject)}
+                      header="Subject"
+                      sortable
+                    />
                     <Column
                       body={(row) => {
                         return (
-                          <Link to={row.pdf} target='_blank'><img src={pdfSample} /></Link>
-                        )
+                          <Link to={row.pdf} target="_blank">
+                            <img src={pdfSample} />
+                          </Link>
+                        );
                       }}
-                      header="PDF" sortable />
-                    <Column field="created_at"
+                      header="PDF"
+                      sortable
+                    />
+                    <Column
+                      field="created_at"
                       body={(row) => formatDate(row.created_at)}
-                      header="Created At" sortable />
-                    {
-                      recycleTitle !== "Show Recycle Bin" && (
-                        <Column field="deleted_at"
-                          body={(row) => row.deleted_at && row.deleted_at != '0000-00-00' && formatDate(row.deleted_at)}
-                          header="Deleted At" sortable />
-                      )
-                    }
+                      header="Created At"
+                      sortable
+                    />
+                    {recycleTitle !== "Show Recycle Bin" && (
+                      <Column
+                        field="deleted_at"
+                        body={(row) =>
+                          row.deleted_at &&
+                          row.deleted_at != "0000-00-00" &&
+                          formatDate(row.deleted_at)
+                        }
+                        header="Deleted At"
+                        sortable
+                      />
+                    )}
                     <Column
                       header="Action"
                       body={(rowData) => (
                         <div className="d-flex">
-                          <div className="switch mt-1 w-auto">
-                            <input type="checkbox"
-                              checked={rowData.status === 1}  // This ensures the checkbox reflects the correct status
-                              onChange={() => handleToggleStatus(rowData.id, rowData.status)} // Pass the id and current status
-                              className="facultydepartment-checkbox" id={`switch${rowData.id}`} />
-                            <label className="mt-0" htmlFor={`switch${rowData.id}`}></label>
-                          </div>
-                          <div onClick={() => updateDataFetch(rowData.id)} className="avatar avatar-icon avatar-md avatar-orange">
-                            <i className="fas fa-edit"></i>
-                          </div>
-                          {
-                            rowData.deleteStatus == 0 ?
-                              (
+                          {hasPermission("Pdfs List", "status") && (
+                            <div className="switch mt-1 w-auto">
+                              <input
+                                type="checkbox"
+                                checked={rowData.status === 1} // This ensures the checkbox reflects the correct status
+                                onChange={() =>
+                                  handleToggleStatus(rowData.id, rowData.status)
+                                } // Pass the id and current status
+                                className="facultydepartment-checkbox"
+                                id={`switch${rowData.id}`}
+                              />
+                              <label
+                                className="mt-0"
+                                htmlFor={`switch${rowData.id}`}
+                              ></label>
+                            </div>
+                          )}
+
+                          {hasPermission("Pdfs List", "update") && (
+                            <div
+                              onClick={() => updateDataFetch(rowData.id)}
+                              className="avatar avatar-icon avatar-md avatar-orange"
+                            >
+                              <i className="fas fa-edit"></i>
+                            </div>
+                          )}
+                          {hasPermission("Pdfs List", "delete") && (
+                            <div>
+                              {rowData.deleteStatus == 0 ? (
                                 <OverlayTrigger
                                   placement="bottom"
-                                  overlay={<Tooltip id="button-tooltip-2">Delete</Tooltip>}
+                                  overlay={
+                                    <Tooltip id="button-tooltip-2">
+                                      Delete
+                                    </Tooltip>
+                                  }
                                 >
                                   <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
-                                    <i className="fas fa-trash-alt" onClick={() => deleteStatus(rowData.id)}></i>
+                                    <i
+                                      className="fas fa-trash-alt"
+                                      onClick={() => deleteStatus(rowData.id)}
+                                    ></i>
                                   </div>
                                 </OverlayTrigger>
-                              ) :
-                              (
+                              ) : (
                                 <OverlayTrigger
                                   placement="bottom"
-                                  overlay={<Tooltip id="button-tooltip-2">Restore</Tooltip>}
+                                  overlay={
+                                    <Tooltip id="button-tooltip-2">
+                                      Restore
+                                    </Tooltip>
+                                  }
                                 >
                                   <div className="avatar ml-2 avatar-icon avatar-md avatar-lime">
-                                    <i className="fas fa-recycle" onClick={() => deleteStatus(rowData.id)}></i>
+                                    <i
+                                      className="fas fa-recycle"
+                                      onClick={() => deleteStatus(rowData.id)}
+                                    ></i>
                                   </div>
                                 </OverlayTrigger>
-                              )
-                          }
-
+                              )}
+                            </div>
+                          )}
                         </div>
                       )}
                     />
@@ -400,7 +504,6 @@ function ResourcePdfList() {
           </div>
         </div>
       </div>
-
 
       {/* filter modal */}
       <Modal show={show} onHide={handleClose} className="modal-right">
@@ -431,11 +534,11 @@ function ResourcePdfList() {
                         (item) => item.id === parseInt(filters.courseid)
                       )
                         ? {
-                          value: parseInt(filters.courseid),
-                          label: courseListing.find(
-                            (item) => item.id === parseInt(filters.courseid)
-                          ).coursename,
-                        }
+                            value: parseInt(filters.courseid),
+                            label: courseListing.find(
+                              (item) => item.id === parseInt(filters.courseid)
+                            ).coursename,
+                          }
                         : { value: filters.courseid, label: "Select" }
                     }
                   />
@@ -464,17 +567,17 @@ function ResourcePdfList() {
                         (item) => item.id === filters.semesterid
                       )
                         ? {
-                          value: filters.semesterid,
-                          label: capitalizeFirstLetter(
-                            semesterListing.find(
-                              (item) => item.id === filters.semesterid
-                            ).semtitle
-                          ),
-                        }
+                            value: filters.semesterid,
+                            label: capitalizeFirstLetter(
+                              semesterListing.find(
+                                (item) => item.id === filters.semesterid
+                              ).semtitle
+                            ),
+                          }
                         : {
-                          value: filters.semesterid,
-                          label: "Select",
-                        }
+                            value: filters.semesterid,
+                            label: "Select",
+                          }
                     }
                   />
                 </Form.Group>
@@ -492,24 +595,24 @@ function ResourcePdfList() {
                         ...filters,
                         subjectid: selectedOption.value,
                       });
-
                     }}
                     value={
-                      subjectListing.find((item) => item.id === filters.subjectid)
+                      subjectListing.find(
+                        (item) => item.id === filters.subjectid
+                      )
                         ? {
-                          value: filters.subject,
-                          label: capitalizeFirstLetter(
-                            subjectListing.find(
-                              (item) => item.id === filters.subjectid
-                            ).subject
-                          ),
-                        }
+                            value: filters.subject,
+                            label: capitalizeFirstLetter(
+                              subjectListing.find(
+                                (item) => item.id === filters.subjectid
+                              ).subject
+                            ),
+                          }
                         : { value: filters.subject, label: "Select" }
                     }
                   />
                 </Form.Group>
               </Col>
-
 
               <Col md={12} className="mb-3">
                 <Form.Group controlId="status">
@@ -560,6 +663,6 @@ function ResourcePdfList() {
         `}
       </style>
     </>
-  )
+  );
 }
 export default ResourcePdfList;

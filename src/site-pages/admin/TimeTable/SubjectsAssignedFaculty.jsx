@@ -291,14 +291,16 @@ function SubjectsAssignedFaculty() {
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2 col-md-7 m-auto px-0">
+            <div className="row">
+              <div className="col-md-7 mx-auto">
+            <div className="card bg-transparent mb-2">
               <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new pt-2">
                   {dbId ? "Update Subject To Faculty" : " Add Subject To Faculty"}
                 </h5>
-                <div className="ml-auto id-mobile-go-back">
+                <div className="ml-auto mb-2 id-mobile-go-back">
                   <button
-                    className="mr-auto btn-md btn border-0 btn-light mr-2"
+                    className="mr-auto btn-md btn border-0 goback mr-2"
                     onClick={goBack}
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
@@ -311,6 +313,9 @@ function SubjectsAssignedFaculty() {
                 </div>
               </div>
             </div>
+            </div>
+            </div>
+
             <div className="row">
               <div className="col-md-7 mx-auto">
                 <div className="card">

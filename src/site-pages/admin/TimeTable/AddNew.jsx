@@ -342,7 +342,7 @@ function AddNew() {
                                 </h5>
                                 <div className="ml-auto id-mobile-go-back">
                                     <button
-                                        className="mr-auto btn-md btn border-0 btn-light mr-2"
+                                        className="mr-auto btn-md btn border-0 goback mr-2"
                                         onClick={goBack}
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back
@@ -361,7 +361,7 @@ function AddNew() {
                                     <div className="card-body">
                                         <form onSubmit={handleSubmit}>
                                             <div className="row">
-                                                <div className="col-md-6 col-12 form-group px-0">
+                                                <div className="col-md-6 col-12 form-group">
                                                     <label className="font-weight-semibold">
                                                         Course <span className="text-danger">*</span>
                                                     </label>
@@ -401,7 +401,7 @@ function AddNew() {
                                                     )}
                                                 </div>
 
-                                                <div className="col-md-6 col-12 form-group pr-0">
+                                                <div className="col-md-6 col-12 form-group">
                                                     <label className="font-weight-semibold">
                                                         Semester <span className="text-danger">*</span>
                                                     </label>
@@ -453,7 +453,7 @@ function AddNew() {
                                                     name="classroom"
                                                     id="classroom"
                                                     value={formData.classroom}
-                                                    column="col px-0"
+                                                    column="col-12 "
                                                     placeholder="CLASSROOM-2 (FIRST FLOOR)"
                                                     onChange={handleInputChange}
                                                 />
@@ -531,7 +531,7 @@ function AddNew() {
                                                 </div>
                                             ))}
                                             <div className="row mt-2">
-                                                <div className="col-1 font-12 border fw-5">Saturday</div>
+                                                <div className="col-lg-2 col-md-2 col-sm-12 font-12 border fw-5">Saturday</div>
                                                 <FormField
                                                     borderError={error.field === "saturdayValueAdded"}
                                                     errorMessage={
@@ -540,7 +540,7 @@ function AddNew() {
                                                     name="saturdayValueAdded"
                                                     id="saturdayValueAdded"
                                                     value={formData.saturdayValueAdded || "VALUE-ADDED COURSES/EXTRA-CURRICULAR ACTIVITIES/CO-CURRICULAR ACTIVITIES ETC."}
-                                                    column="col-11 px-0"
+                                                    column="col-10 px-0"
                                                     onChange={handleInputChange}
                                                 />
                                             </div>
@@ -603,7 +603,7 @@ function AddNew() {
                                                 </div>
                                             </div>
                                             <div className="row">
-                                                <div className="col-md-12 col-lg-12 col-12 px-0">
+                                                <div className="col-md-12 col-lg-12 col-12 px-0 mt-2">
                                                     <button
                                                         className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
                                                         type="submit"

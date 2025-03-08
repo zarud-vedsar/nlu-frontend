@@ -494,7 +494,7 @@ function AddExam() {
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
 
-                  {hasPermission("Add Exam Paper", "list") && (
+                  {hasPermission("Exam Paper List", "list") && (
                     <Link to="/admin/exam-paper/list">
                       <button className="ml-2 btn-md btn border-0 btn-secondary">
                         <i className="fas fa-list"></i> Exam Paper List

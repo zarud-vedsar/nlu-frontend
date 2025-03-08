@@ -1081,11 +1081,13 @@ const AddQuestionInAssignment = () => {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                  {hasPermission("Assignment","list") && (
                   <Link to="/admin/assignment">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-list"></i> Assignment List
                     </button>
                   </Link>
+                  )}
                 </div>
               </div>
             </div>

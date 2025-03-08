@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import {
   capitalizeFirstLetter,
   dataFetchingPost,
-  formatDate,
   goBack,
 } from "../../../../site-components/Helper/HelperFunction";
 import Select from "react-select";
@@ -382,16 +381,18 @@ function MarkAttendanceForm() {
                 <h5 className="card-title h6_new pt-2">Mark Class Attendance</h5>
                 <div className="ml-auto id-mobile-go-back">
                   <button
-                    className="mr-auto btn-md btn border-0 btn-light mr-2"
+                    className="mr-auto btn-md btn border-0 goback mr-2"
                     onClick={goBack}
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                  {hasPermission("Class Attendance History","list") && (
                   <Link to="/admin/student-management/attendance-history">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-list"></i> Attendance History
                     </button>
                   </Link>
+                  )}
                 </div>
               </div>
             </div>

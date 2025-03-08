@@ -1061,12 +1061,14 @@ const AssignmentResponseView = () => {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                  {hasPermission("Assignment","list") && (
                   <Link to="/admin/assignment-response">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-list mr-2"></i>Assignment Response
                       List
                     </button>
                   </Link>
+                  )}
                 </div>
               </div>
             </div>

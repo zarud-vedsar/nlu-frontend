@@ -30,7 +30,7 @@ export const RoleData = [
       {
         label: "Add Exam Paper",
         value: "Add Exam Paper",
-        crud: ["create","list"],
+        crud: ["create"],
       },
       {
         label: "Exam Paper List",
@@ -67,7 +67,7 @@ export const RoleData = [
         label: "Assignment Response",
         value: "Assignment Response",
         crud: ["list","marks add for description based"], 
-        //  pending - marks add for description based 
+        //  pending - marks add for description based , need permission to set in response page
       },
       {
         label: "Quiz",
@@ -81,6 +81,8 @@ export const RoleData = [
           "add question",
           "recycle bin",
         ], // CRUD operations
+                //  pending - need permission to set in response page
+
       },
       {
         label: "Quiz Response",
@@ -108,11 +110,7 @@ export const RoleData = [
         value: "Mark Hostel Attendance",
         crud: ["mark attendance"], // CRUD operations
       },
-      {
-        label: "Update Hostel Attendance",
-        value: "Update Hostel Attendance",
-        crud: ["update"], // CRUD operations
-      },
+      
       {
         label: "Hostel Attendance History",
         value: "Hostel Attendance History",

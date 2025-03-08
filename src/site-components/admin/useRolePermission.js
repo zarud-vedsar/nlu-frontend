@@ -15,6 +15,7 @@ const useRolePermission = () => {
   // Check if any permissions exist with subRole and crudType
   const hasPermission = (subRole, crudType) => {
     console.log(RolePermission)
+    console.log(subRole, crudType)
     if (loginType === 'superadmin') {
       return true;
     }

@@ -14,11 +14,13 @@ const useRolePermission = () => {
 
   // Check if any permissions exist with subRole and crudType
   const hasPermission = (subRole, crudType) => {
+    console.log(RolePermission)
+    if (loginType === 'superadmin') {
+      return true;
+    }
     return RolePermission?.some((rData) => {
       let arr = rData[Object.keys(rData)[0]]; // Get the array of roles
-      if (loginType === 'superadmin') {
-        return true;
-      }
+      
       return arr?.some(
         (item) => item.subRole === subRole && item.crud.includes(crudType)
       );

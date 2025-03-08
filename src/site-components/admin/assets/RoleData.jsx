@@ -30,7 +30,7 @@ export const RoleData = [
       {
         label: "Add Exam Paper",
         value: "Add Exam Paper",
-        crud: ["create"],
+        crud: ["create","list"],
       },
       {
         label: "Exam Paper List",
@@ -66,7 +66,8 @@ export const RoleData = [
       {
         label: "Assignment Response",
         value: "Assignment Response",
-        crud: ["list"], // CRUD operations
+        crud: ["list","marks add for description based"], 
+        //  pending - marks add for description based 
       },
       {
         label: "Quiz",

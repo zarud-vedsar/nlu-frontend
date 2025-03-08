@@ -958,6 +958,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
                 let resp = RolePermission.map((rData) => Object.keys(rData)[0]);
 
                 showMenu = resp.length > 0 && resp.includes(option.title);
+               
               }
               if (option.url && (showMenu || loginType === "superadmin")) {
                 return (

@@ -130,7 +130,7 @@ const ExpenseCategory = () => {
     const navigate = useNavigate(); // Initialize useNavigate
     useEffect(() => {
       if (RolePermission && RolePermission.length > 0) {
-        if (!hasPermission("Expense Category", "create")) {
+        if (!hasPermission("Expense Category", "list")) {
           navigate("/forbidden");
         }
       }
@@ -409,7 +409,9 @@ const ExpenseCategory = () => {
                           </div>
                           )}
                            
-                          {hasPermission("Expense Category","delete") && item.delete_status == 0 ? (
+                           {hasPermission("Expense Category","delete") && 
+                           <div>
+                          {item.delete_status == 0 ? (
                             <OverlayTrigger
                               placement="bottom"
                               overlay={
@@ -438,6 +440,7 @@ const ExpenseCategory = () => {
                               </div>
                             </OverlayTrigger>
                           )}
+                          </div> }
                         
                         </div>
                       </div>

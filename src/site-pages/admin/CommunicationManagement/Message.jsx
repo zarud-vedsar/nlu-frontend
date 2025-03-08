@@ -209,14 +209,16 @@ function Message() {
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2">
+            <div className="row">
+            <div className="col-md-7 mx-auto">
+            <div className="card bg-transparent mb-2 ">
               <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">
                   Send Message
                 </h5>
                 <div className="ml-auto id-mobile-go-back">
                   <button
-                    className="mr-auto btn-md btn border-0 btn-light mr-2"
+                    className="mr-auto  btn border-0 goback mr-2"
                     onClick={goBack}
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
@@ -229,6 +231,9 @@ function Message() {
                 </div>
               </div>
             </div>
+            </div>
+            </div>
+
             <div className="row">
               <div className="col-md-7 mx-auto">
                 <div className="card">
@@ -363,7 +368,7 @@ function Message() {
                             type="checkbox"
                             onChange={() => setMailsent(!mailsent)}
                           />
-                          <label htmlFor="mailsend" className="font-weight-semibold pl-1">
+                          <label htmlFor="mailsend" className="font-weight-semibold pl-1 mb-0">
                             Send On Mail
                           </label>
                         </div>

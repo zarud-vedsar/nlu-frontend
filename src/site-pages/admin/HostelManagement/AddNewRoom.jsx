@@ -331,7 +331,7 @@ function AddNewRoom() {
                                             onBlur={handleEditorChange}
                                         />
                                     </div>
-                                    <div className="col-md-12 col-lg-12 col-12 px-0">
+                                    <div className="col-md-12 col-lg-12 col-12 px-0 mt-2">
                                         <button
                                             disabled={isSubmit}
                                             className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
@@ -349,58 +349,62 @@ function AddNewRoom() {
                             </div>
                         </div>
                         <div className='card'>
-                            <div className='card-header'>
-                                <h6 className='card-title h6_new'>Sample Data</h6>
-                            </div>
-                            <div className='card-body'>
-                                <table className='table'>
-                                    <thead>
-                                        <tr>
-                                            <th>room_id</th>
-                                            <th>room_number</th>
-                                            <th>block</th>
-                                            <th>floor</th>
-                                            <th>capacity</th>
-                                            <th>occupied_beds</th>
-                                            <th>type</th>
-                                            <th>Amenities</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>A101</td>
-                                            <td>Block A</td>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>1</td>
-                                            <td>double</td>
-                                            <td>Wi-Fi, AC, Study Table</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>A102</td>
-                                            <td>Block A</td>
-                                            <td>1</td>
-                                            <td>3</td>
-                                            <td>2</td>
-                                            <td>triple</td>
-                                            <td>Wi-Fi, Fan, Wardrobe</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>B201</td>
-                                            <td>Block B</td>
-                                            <td>2</td>
-                                            <td>1</td>
-                                            <td>0</td>
-                                            <td>single</td>
-                                            <td>Wi-Fi, AC, Private Bathroom</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+    <div className='card-header'>
+        <h6 className='card-title h6_new'>Sample Data</h6>
+    </div>
+    <div className='card-body'>
+
+        <div className="table-responsive">
+            <table className='table table-bordered'>
+                <thead>
+                    <tr>
+                        <th>room_id</th>
+                        <th>room_number</th>
+                        <th>block</th>
+                        <th>floor</th>
+                        <th>capacity</th>
+                        <th>occupied_beds</th>
+                        <th>type</th>
+                        <th>Amenities</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>A101</td>
+                        <td>Block A</td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>double</td>
+                        <td>Wi-Fi, AC, Study Table</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>A102</td>
+                        <td>Block A</td>
+                        <td>1</td>
+                        <td>3</td>
+                        <td>2</td>
+                        <td>triple</td>
+                        <td>Wi-Fi, Fan, Wardrobe</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>B201</td>
+                        <td>Block B</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>single</td>
+                        <td>Wi-Fi, AC, Private Bathroom</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
                     </div>
                 </div>
             </div>

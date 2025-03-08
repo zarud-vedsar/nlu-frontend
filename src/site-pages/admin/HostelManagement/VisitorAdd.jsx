@@ -496,7 +496,7 @@ function AddNewRoom() {
                                         <div className="col-md-12 col-lg-12 col-12">
                                             <button
                                                 disabled={isSubmit}
-                                                className="btn btn-dark mt-3 d-flex justify-content-center align-items-center"
+                                                className="btn btn-dark mt-2 d-flex justify-content-center align-items-center"
                                                 type="submit"
                                             >
                                                 Submit{" "}

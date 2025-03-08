@@ -14,8 +14,8 @@ const SettingSideBar = () => {
 
   return (
     <>
-      <div className={`sidebar-container ${isMobile ? "mobile-scroll" : ""}`}>
-        <ul className={`nav d-flex ${isMobile ? "flex-row no-wrap" : "flex-column"} bg-white mb-0 py-3`}>
+      <div className={`sidebar-container `}>
+        <ul className={`nav d-flex ${isMobile ? "flex-row no-wrap mobile-scroll" : "flex-column"} bg-white mb-0 py-3`}>
           <li className={`nav-item ${id === 'email-setting' ? 'mark' : ''}`}>
             <Link to="/admin/email-setting" className="nav-link text-dark">
               Email Setting

@@ -587,7 +587,7 @@ function ViewApplication() {
                 <h5 className="card-title h6_new">Student Detail</h5>
                 <div className="ml-auto d-flex">
                   <button
-                    className="ml-auto btn-md btn border-0 btn-light mr-2"
+                    className="ml-auto btn-md btn border-0 btn-light"
                     onClick={() => window.history.back()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back

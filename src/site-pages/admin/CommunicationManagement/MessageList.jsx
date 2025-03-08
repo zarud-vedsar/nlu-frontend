@@ -113,7 +113,7 @@ function MessageList() {
               <div className="card-header border-0 bg-transparent id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title">Message List</h5>
                 <div className="ml-auto id-mobile-go-back">
-                  <button className="btn btn-secondary mr-2" onClick={goBack}>
+                  <button className="btn goback mr-2" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
 

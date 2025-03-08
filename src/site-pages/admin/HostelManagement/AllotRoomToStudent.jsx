@@ -288,7 +288,7 @@ function AllotRoomToStudent() {
                 </nav>
               </div>
             </div>
-            <div className="card bg-transparent mb-2 col-md-10 mx-auto">
+            <div className="card bg-transparent mb-2 col-md-10 mx-auto px-0">
               <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">
                 {dbId ? "Update Room Allotment" : "Add New Room Allotment"}

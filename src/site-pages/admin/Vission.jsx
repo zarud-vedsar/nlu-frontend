@@ -25,7 +25,7 @@ const Vission = () => {
   // Jodit editor configuration
 const config = useMemo(()=>({
     readonly: false,
-    placeholder: 'Enter your description here...',
+    // placeholder: 'Enter your description here...',
     spellcheck: true,
     defaultMode: '1',
     minHeight: 400,
@@ -176,7 +176,7 @@ const config = useMemo(()=>({
               <h5 className="card-title h6_new">Update Vission Section</h5>
               <div className="ml-auto">
                 <button
-                  className="ml-auto btn-md btn border-0 btn-light mr-2"
+                  className="ml-auto btn-md btn border-0 btn-light"
                   onClick={() => goBack()}
                 >
                   <i className="fas fa-arrow-left" /> Go Back

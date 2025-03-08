@@ -17,7 +17,6 @@ import axios from "axios";
 import Select from "react-select";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
-import { InputText } from "primereact/inputtext";
 import useRolePermission from "../../../site-components/admin/useRolePermission";
 function AssignmentResponse() {
   const [showFilter, setShowFilter] = useState(true);
@@ -223,7 +222,7 @@ function AssignmentResponse() {
                 <h5 className="card-title h6_new">Assignment Response</h5>
                 <div className="ml-auto">
                   <button
-                    className="ml-auto btn-md btn border-0 btn-light mr-2"
+                    className="btn goback"
                     onClick={() => goBack()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back

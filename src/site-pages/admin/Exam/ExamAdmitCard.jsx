@@ -355,9 +355,9 @@ function AddExam() {
                 </button>
               </div>
             </div>
+            {hasPermission("Admit Card", "create") && (
             <div className="card">
               <div className="card-body">
-                {hasPermission("Admit Card", "create") && (
                   <>
                     <div className="row">
                       <div className="col-md-3 col-12 form-group">
@@ -503,9 +503,10 @@ function AddExam() {
                       </div>
                     </div>
                   </>
-                )}
+                
               </div>
             </div>
+            )}
             <div className="row">
               <div className="col-md-12">
                 {hasPermission("Admit Card", "download") && (

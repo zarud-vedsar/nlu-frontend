@@ -385,11 +385,15 @@ function ViewCompiledAttendance() {
                   <button className="mr-auto btn goback" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+
+                  {hasPermission("Compile Class Attendance","create") && (
                   <Link to={"/admin/attendance/compiled-attendance"}>
                     <button className="btn btn-primary ml-2">
-                      <i className="fas fa-plus"></i> Add New
+                      <i className="fas fa-plus"></i> Compile Attendance
                     </button>
                   </Link>
+                  )}
+
                 </div>
               </div>
             </div>

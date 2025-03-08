@@ -487,94 +487,96 @@ const FacultyDashboard = () => {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-7">
-                  <div
-                    className="card"
-                    style={{ height: "450px", overflowY: "auto" }}
-                  >
-                    <div className="card-header d-flex justify-content-between align-items-center">
-                      <h5 className="card-title h6_new">
-                        Inventory: Product Issued
-                      </h5>
-                      <select
-                        className="selectpicker form-control"
-                        id="yearPicker"
-                        value={selectedYear}
-                        onChange={(e) =>
-                          setSelectedYear(Number(e.target.value))
-                        }
-                        style={{ width: "auto" }}
-                      >
-                        {availableYears.map((year) => (
-                          <option key={year} value={year}>
-                            {year}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="card-body ">
-                      <style>{keyframesStyle}</style>
-                      <div style={containerStyle}>
-                        {productIssued &&
-                          productIssued.map((product, index) => (
-                            <>
-                              <div style={boxStyle} className="rounded">
-                                <p className="text-danger mb-0 font-14">
-                                  {formatDate(product?.stockOutDate)}
-                                </p>
-                                <h4 className="font-15 mb-0">
-                                  {product?.pname
-                                    ? validator.unescape(product?.pname)
-                                    : ""}
-                                </h4>
-                                <div className="d-flex justify-content-between mb-0">
-                                  <p className="font-15 mb-0">
-                                    <span className="text-dark">Brand: </span>{" "}
-                                    <span
-                                      className="id-product-brand"
-                                      style={{
-                                        background: "#6096ba",
-                                        padding: "0px 5px",
-                                        borderRadius: "2px",
-                                        color: "white",
-                                      }}
-                                    >
-                                      {product?.pbrand
-                                        ? validator.unescape(product?.pbrand)
-                                        : ""}{" "}
-                                    </span>
-                                  </p>
-                                  <p className="font-15 mb-0">
-                                    <span className="text-dark">Code: </span>
-                                    {product?.pcode ? product?.pcode : ""}
-                                  </p>
-                                </div>
-
-                                <div className="d-flex justify-content-between mb-0">
-                                  <p className="mb-0">
-                                    <span className="text-dark">Unit: </span>
-                                    {product?.punit ? product?.punit : ""}
-                                  </p>
-
-                                  <p className="mb-0">
-                                    <span className="text-dark">
-                                      {" "}
-                                      Quantity:{" "}
-                                    </span>
-                                    <span style={quantityStyle}>
-                                      {product?.quantity
-                                        ? product?.quantity
-                                        : ""}{" "}
-                                    </span>
-                                  </p>
-                                </div>
-                              </div>
-                            </>
+                {productIssued && productIssued.length > 0 && (
+                  <div className="col-md-7">
+                    <div
+                      className="card"
+                      style={{ height: "450px", overflowY: "auto" }}
+                    >
+                      <div className="card-header d-flex justify-content-between align-items-center">
+                        <h5 className="card-title h6_new">
+                          Inventory: Product Issued
+                        </h5>
+                        <select
+                          className="selectpicker form-control"
+                          id="yearPicker"
+                          value={selectedYear}
+                          onChange={(e) =>
+                            setSelectedYear(Number(e.target.value))
+                          }
+                          style={{ width: "auto" }}
+                        >
+                          {availableYears.map((year) => (
+                            <option key={year} value={year}>
+                              {year}
+                            </option>
                           ))}
+                        </select>
+                      </div>
+                      <div className="card-body ">
+                        <style>{keyframesStyle}</style>
+                        <div style={containerStyle}>
+                          {productIssued &&
+                            productIssued.map((product, index) => (
+                              <>
+                                <div style={boxStyle} className="rounded">
+                                  <p className="text-danger mb-0 font-14">
+                                    {formatDate(product?.stockOutDate)}
+                                  </p>
+                                  <h4 className="font-15 mb-0">
+                                    {product?.pname
+                                      ? validator.unescape(product?.pname)
+                                      : ""}
+                                  </h4>
+                                  <div className="d-flex justify-content-between mb-0">
+                                    <p className="font-15 mb-0">
+                                      <span className="text-dark">Brand: </span>{" "}
+                                      <span
+                                        className="id-product-brand"
+                                        style={{
+                                          background: "#6096ba",
+                                          padding: "0px 5px",
+                                          borderRadius: "2px",
+                                          color: "white",
+                                        }}
+                                      >
+                                        {product?.pbrand
+                                          ? validator.unescape(product?.pbrand)
+                                          : ""}{" "}
+                                      </span>
+                                    </p>
+                                    <p className="font-15 mb-0">
+                                      <span className="text-dark">Code: </span>
+                                      {product?.pcode ? product?.pcode : ""}
+                                    </p>
+                                  </div>
+
+                                  <div className="d-flex justify-content-between mb-0">
+                                    <p className="mb-0">
+                                      <span className="text-dark">Unit: </span>
+                                      {product?.punit ? product?.punit : ""}
+                                    </p>
+
+                                    <p className="mb-0">
+                                      <span className="text-dark">
+                                        {" "}
+                                        Quantity:{" "}
+                                      </span>
+                                      <span style={quantityStyle}>
+                                        {product?.quantity
+                                          ? product?.quantity
+                                          : ""}{" "}
+                                      </span>
+                                    </p>
+                                  </div>
+                                </div>
+                              </>
+                            ))}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
             <div className="col-md-4 col-lg-4">

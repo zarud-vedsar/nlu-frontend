@@ -40,7 +40,7 @@ function MarkAttendanceForm() {
   const navigate = useNavigate(); // Initialize useNavigate
   useEffect(() => {
     if (RolePermission && RolePermission.length > 0) {
-      if (!hasPermission("Mark Hostel Attendance", "list")) {
+      if (!hasPermission("Mark Hostel Attendance", "mark attendance")) {
         navigate("/forbidden");
       }
     }

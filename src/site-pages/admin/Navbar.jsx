@@ -954,6 +954,7 @@ const Navbar = ({ toggleExpand, toggleFolded }) => {
               let activeClass =
                 Array.isArray(url) && url.length > 1 ? url[1] : false;
               let showMenu = true;
+              console.log(RolePermission)
               if (RolePermission && RolePermission.length > 0) {
                 let resp = RolePermission.map((rData) => Object.keys(rData)[0]);
 

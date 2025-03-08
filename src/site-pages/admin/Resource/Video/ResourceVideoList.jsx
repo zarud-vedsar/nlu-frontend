@@ -13,7 +13,7 @@ import axios from 'axios';
 import Select from "react-select";
 function ResourceVideoList() {
     const navigate = useNavigate();
-    const [showFilter, setShowFilter] = useState(true)
+    const [showFilter, setShowFilter] = useState(false)
     const [ResourceVideoList, setResourceVideoListing] = useState([]);
     const [courseListing, setCourseListing] = useState([]); // Form submission state
     const [semesterListing, setSemesterListing] = useState([]); // on course and year selection
@@ -272,7 +272,7 @@ function ResourceVideoList() {
                                 <h5 className="card-title h6_new">Video List</h5>
                                 <div className="ml-auto id-mobile-go-back">
                                     <button
-                                        className="mr-auto btn-md btn border-0 btn-light mr-2"
+                                        className="mr-auto btn-md btn border-0 goback mr-2"
                                         onClick={() => goBack()}
                                     >
                                         <i className="fas fa-arrow-left" /> Go Back
@@ -458,7 +458,7 @@ function ResourceVideoList() {
                                 </form>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row px-2">
                             {
                                 ResourceVideoList.length == 0 && (
                                     <>

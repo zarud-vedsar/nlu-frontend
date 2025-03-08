@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useRef, useState,useMemo } from "react";
 import { CKEDITOR_URL, NODE_API_URL } from "../../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { capitalizeFirstLetter, dataFetchingPost, goBack, extractGoogleDriveId } from "../../../../site-components/Helper/HelperFunction";
 import Select from "react-select";
 import secureLocalStorage from "react-secure-storage";
@@ -10,6 +10,7 @@ import axios from "axios";
 import { FormField } from "../../../../site-components/admin/assets/FormField";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
+import useRolePermission from "../../../../site-components/admin/useRolePermission";
 
 function AddResourceLiveClass() {
     // Initial form state
@@ -34,6 +35,17 @@ function AddResourceLiveClass() {
     const [previewImage, setPreviewImage] = useState(null);
     const [error, setError] = useState({ field: "", msg: "" }); // Error state
     const { dbId } = useParams();
+
+    const { RolePermission, hasPermission } = useRolePermission();
+    const navigate = useNavigate(); // Initialize useNavigate
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Add Live Class", "create")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
+
     // Jodit editor configuration
     const config = useMemo(()=>({
         readonly: false,
@@ -364,11 +376,13 @@ function AddResourceLiveClass() {
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back
                                     </button>
-                                    <a href="/admin/resource-live-class-url">
+                                    {hasPermission("Live Classes List","list") && (
+                                    <Link to="/admin/resource-live-class-url">
                                         <button className="ml-2 btn-md btn border-0 btn-secondary">
                                             <i className="fas fa-list"></i> Live Class List
                                         </button>
-                                    </a>
+                                    </Link>
+                                    )}
                                 </div>
                             </div>
                         </div>

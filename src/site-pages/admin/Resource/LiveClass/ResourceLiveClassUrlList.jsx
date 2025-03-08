@@ -35,6 +35,7 @@ import {
   Row,
   InputGroup,
 } from "react-bootstrap";
+import useRolePermission from "../../../../site-components/admin/useRolePermission";
 
 function MyVerticallyCenteredModal(props) {
   const [data, setData] = useState(null);
@@ -86,6 +87,15 @@ function ResourceLiveClassUrlList() {
   const [globalFilter, setGlobalFilter] = useState(""); // State for the search box
   const [modalShow, setModalShow] = useState(false);
   const [linkpreview, setLinkPreview] = useState(null);
+
+    const { RolePermission, hasPermission } = useRolePermission();
+      useEffect(() => {
+        if (RolePermission && RolePermission.length > 0) {
+          if (!hasPermission("Live Classes List", "list")) {
+            navigate("/forbidden");
+          }
+        }
+      }, [RolePermission, hasPermission]);
 
   const initialData = {
     courseid: "",
@@ -345,12 +355,14 @@ function ResourceLiveClassUrlList() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                  {hasPermission("Add Live Class","create") && (
                   <Link
                     to={"/admin/add-resource-live-class-url"}
                     className="ml-2 btn-md btn border-0 btn-secondary"
                   >
                     <i className="fas fa-plus" /> Add New
                   </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -479,7 +491,7 @@ function ResourceLiveClassUrlList() {
                     <div className="col-md-2 col-lg-2 col-12 d-flex justify-content-between align-items-center mt-2">
                       <button
                         disabled={isSubmit}
-                        className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
+                        className="btn btn-dark btn-block d-flex justify-content-center align-items-center mr-2"
                         type="submit"
                       >
                         Search{" "}
@@ -489,6 +501,7 @@ function ResourceLiveClassUrlList() {
                           </>
                         )}
                       </button>
+                      {hasPermission("Live Classes List","recycle bin") && (
                       <button
                         style={{ whiteSpace: "nowrap" }}
                         className={`btn ${recycleTitle === "Trash"
@@ -499,6 +512,7 @@ function ResourceLiveClassUrlList() {
                       >
                         {recycleTitle} <i className="fa fa-recycle"></i>
                       </button>
+                      )}
                     </div>
                   </div>
                 </form>
@@ -650,13 +664,25 @@ function ResourceLiveClassUrlList() {
                               >
                                 <i className="fas fa-eye"></i>
                               </div>
-
+                              {hasPermission("Live Classes List","status") && (
+                                                        <div className="switch mt-1 w-auto mr-2">
+                                                            <input type="checkbox"
+                                                                checked={rowData.status === 1}
+                                                                onChange={() => handleToggleStatus(rowData.id, rowData.status)}
+                                                                id={`switch${rowData.id}`} />
+                                                            <label className="mt-0" htmlFor={`switch${rowData.id}`}></label>
+                                                        </div>
+                                                        )}
+                              {hasPermission("Live Classes List","update") && (
                               <Link
                                 to={`/admin/add-resource-live-class-url/${rowData.id}`}
                                 className="avatar avatar-icon avatar-md avatar-orange"
                               >
                                 <i className="fas fa-edit"></i>
                               </Link>
+                              )}
+                              {hasPermission("Live Classes List","delete") && (
+                                <div>
                               {rowData.deleteStatus == 0 ? (
                                 <OverlayTrigger
                                   placement="bottom"
@@ -689,6 +715,8 @@ function ResourceLiveClassUrlList() {
                                     ></i>
                                   </div>
                                 </OverlayTrigger>
+                              )}
+                              </div>
                               )}
                             </div>
                           </>

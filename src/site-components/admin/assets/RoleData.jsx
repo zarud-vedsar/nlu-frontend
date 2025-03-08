@@ -136,13 +136,9 @@ export const RoleData = [
       {
         label: "Session",
         value: "Session",
-        crud: ["create", "update", "status", "list", "delete", "recycle bin"], // CRUD operations
+        crud: ["create", "update", "list"], // CRUD operations
       },
-      {
-        label: "Faculty Department",
-        value: "Faculty Department",
-        crud: ["create", "update", "status", "list", "delete", "recycle bin"], // CRUD operations
-      },
+      
       {
         label: "Department",
         value: "Department",
@@ -211,7 +207,7 @@ export const RoleData = [
       {
         label: "Live Classes List",
         value: "Live Classes List",
-        crud: ["update", "status", "list", "delete", "recycle bin"], // CRUD operations
+        crud: ["update", "list", "delete", "status","recycle bin"], // CRUD operations
       },
     ],
   },

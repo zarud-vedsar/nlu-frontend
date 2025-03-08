@@ -11,6 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage';
 import axios from 'axios';
 import Select from "react-select";
+import useRolePermission from '../../../../site-components/admin/useRolePermission';
 function ResourceVideoList() {
     const navigate = useNavigate();
     const [showFilter, setShowFilter] = useState(true)
@@ -21,6 +22,16 @@ function ResourceVideoList() {
     const [topicList, setTopicList] = useState([]);
     const [isSubmit, setIsSubmit] = useState(false); // Form submission state
     const [recycleTitle, setRecycleTitle] = useState("Trash");
+
+        const { RolePermission, hasPermission } = useRolePermission();
+        useEffect(() => {
+          if (RolePermission && RolePermission.length > 0) {
+            if (!hasPermission("Videos List", "list")) {
+              navigate("/forbidden");
+            }
+          }
+        }, [RolePermission, hasPermission]);
+
     const initialData = {
         courseid: "",
         semesterid: "",
@@ -277,12 +288,14 @@ function ResourceVideoList() {
                                     >
                                         <i className="fas fa-arrow-left" /> Go Back
                                     </button>
+                                    {hasPermission("Add Videos","create") && (
                                     <Link
                                         to={'/admin/add-resource-video'}
                                         className="ml-2 btn-md btn border-0 btn-secondary"
                                     >
                                         <i className="fas fa-plus" /> Add New
                                     </Link>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -452,8 +465,10 @@ function ResourceVideoList() {
                                                     </>
                                                 )}
                                             </button>
+                                            {hasPermission("Videos List","recycle bin") && (
                                             <button className={`btn ${recycleTitle === "Trash" ? 'btn-secondary' : 'btn-danger'}`} onClick={showRecyleBin}>{recycleTitle} <i className="fa fa-recycle"></i></button>
-                                        </div>
+                                            )}
+                                            </div>
                                     </div>
                                 </form>
                             </div>
@@ -486,6 +501,7 @@ function ResourceVideoList() {
                                                     <h6 className='card-title font-14 mb-1 mt-2'>{rowData.title}</h6>
                                                     <h6 className='card-text font-14'>Topic: {rowData.topic_name}</h6>
                                                     <div className='card-text d-flex'>
+                                                        {hasPermission("Videos List","status") && (
                                                         <div className="switch mt-1 w-auto mr-2">
                                                             <input type="checkbox"
                                                                 checked={rowData.status === 1}
@@ -493,9 +509,13 @@ function ResourceVideoList() {
                                                                 id={`switch${rowData.id}`} />
                                                             <label className="mt-0" htmlFor={`switch${rowData.id}`}></label>
                                                         </div>
+                                                        )}
+                                                        {hasPermission("Videos List","update") && (
                                                         <button onClick={() => updateDataFetch(rowData.id)} className="btn btn-warning font-14">
                                                             Edit <i className="fas fa-edit"></i>
-                                                        </button>
+                                                        </button> )}
+                                                        {hasPermission("Videos List","delete") && ( 
+                                                            <div>
                                                         {
                                                             rowData.deleteStatus == 0 ?
                                                                 <OverlayTrigger
@@ -516,6 +536,9 @@ function ResourceVideoList() {
                                                                     </button>
                                                                 </OverlayTrigger>
                                                         }
+                                                        </div>
+                                                    )}
+ 
                                                     </div>
                                                 </div>
                                             </div>

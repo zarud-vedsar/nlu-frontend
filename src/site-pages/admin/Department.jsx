@@ -19,6 +19,9 @@ import "../../../node_modules/primeicons/primeicons.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import secureLocalStorage from "react-secure-storage";
+import { useNavigate } from "react-router-dom";
+import useRolePermission from '../../site-components/admin/useRolePermission';
+
 function Department() {
     const [toggleShow, setToggleShow] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
@@ -32,6 +35,17 @@ function Department() {
         title: "",
     };
     const [formData, setFormData] = useState(iniatialForm);
+
+    const { RolePermission, hasPermission } = useRolePermission();
+    const navigate = useNavigate(); // Initialize useNavigate
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Department", "list")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
+
     const fetchList = async (deleteStatus = 0) => {
         setIsFetching(true);
         try {
@@ -256,12 +270,14 @@ function Department() {
                                     >
                                         <i className="fas fa-arrow-left" /> Go Back
                                     </button>
+                                    {hasPermission("Department","create") && (
                                     <button
                                         className="ml-2 btn-md btn border-0 btn-secondary"
                                         onClick={handleToggleShow}
                                     >
                                         <i className="fas fa-plus" /> Add New
                                     </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -279,9 +295,11 @@ function Department() {
                                             className="form-control dtsearch-input"
                                         />
                                     </div>
+                                    {hasPermission("Department","recycle bin") && (
                                     <div className='col-md-4 col-lg-4 col-10 col-sm-4 mb-3'>
                                         <button className={`btn ${recycleTitle === "Show Recycle Bin" ? 'btn-secondary' : 'btn-danger'}`} onClick={showRecyleBin}>{recycleTitle} <i className="fa fa-recycle"></i></button>
                                     </div>
+                                    )}
                                 </div>
                                 <div className={`table-responsive ${isFetching ? 'form' : ''}`}>
                                     <DataTable
@@ -310,13 +328,19 @@ function Department() {
                                             header="Action"
                                             body={(rowData) => (
                                                 <div className="d-flex">
+                                                  {hasPermission("Department","status") && (
                                                     <div className="switch mt-1 w-auto">
                                                         <input type="checkbox" checked={rowData.status == 1 ? true : false} onChange={() => handleToggleStatus(rowData.id)} className="facultydepartment-checkbox" id={`switch${rowData.id}`} />
                                                         <label className="mt-0" htmlFor={`switch${rowData.id}`}></label>
                                                     </div>
+                                                  )}
+                                                  {hasPermission("Department","update") && (
                                                     <div onClick={() => updateDataFetch(rowData.id)} className="avatar avatar-icon avatar-md avatar-orange">
                                                         <i className="fas fa-edit"></i>
                                                     </div>
+                                                  )}
+                                                  {hasPermission("Department","delete") && (
+                                                    <div>
                                                     {
                                                         rowData.deleteStatus == 0 ?
                                                             (
@@ -340,6 +364,7 @@ function Department() {
                                                                 </OverlayTrigger>
                                                             )
                                                     }
+                                                    </div> )}
 
                                                 </div>
                                             )}

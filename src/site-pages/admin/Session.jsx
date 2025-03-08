@@ -9,8 +9,10 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/Column';
 import { InputText } from 'primereact/inputtext'; // Import InputText for the search box
 import '../../../node_modules/primeicons/primeicons.css';
+import useRolePermission from '../../site-components/admin/useRolePermission';
 
 import secureLocalStorage from 'react-secure-storage';
+import { useNavigate } from 'react-router-dom';
 function Session() {
     const [toggleShow, setToggleShow] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
@@ -23,6 +25,17 @@ function Session() {
         title: "",
     };
     const [formData, setFormData] = useState(iniatialForm);
+
+    const { RolePermission, hasPermission } = useRolePermission();
+    const navigate = useNavigate(); // Initialize useNavigate
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Session", "list")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
+
     const fetchList = async (deleteStatus = 0) => {
         setIsFetching(true);
         try {
@@ -163,12 +176,14 @@ function Session() {
                                     >
                                         <i className="fas fa-arrow-left" /> Go Back
                                     </button>
+                                    {hasPermission("Session","create") && (
                                     <button
                                         className="ml-2 btn-md btn border-0 btn-secondary"
                                         onClick={handleToggleShow}
                                     >
                                         <i className="fas fa-plus" /> Add New
                                     </button>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -207,10 +222,11 @@ function Session() {
                                             header="Action"
                                             body={(rowData) => (
                                                 <div className="d-flex">
-                                                    
+                                                    {hasPermission("Session","update") && (
                                                     <div onClick={() => updateDataFetch(rowData.id)} className="avatar avatar-icon avatar-md avatar-orange">
                                                         <i className="fas fa-edit"></i>
                                                     </div>
+                                                    )}
                                                 </div>
                                             )}
                                         />

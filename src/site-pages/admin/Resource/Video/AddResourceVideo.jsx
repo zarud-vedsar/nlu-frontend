@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useRef, useState ,useMemo} from "react";
 import { NODE_API_URL } from "../../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { capitalizeFirstLetter, dataFetchingPost, goBack, extractGoogleDriveId } from "../../../../site-components/Helper/HelperFunction";
 import Select from "react-select";
 import secureLocalStorage from "react-secure-storage";
@@ -10,6 +10,7 @@ import axios from "axios";
 import { FormField } from "../../../../site-components/admin/assets/FormField";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
+import useRolePermission from "../../../../site-components/admin/useRolePermission";
 
 function AddResourceVideo() {
     // Initial form state
@@ -35,6 +36,16 @@ function AddResourceVideo() {
     const [topicList, setTopicList] = useState([]);
     const [error, setError] = useState({ field: "", msg: "" }); // Error state
     const { dbId } = useParams();
+    const navigate = useNavigate();
+    const { RolePermission, hasPermission } = useRolePermission();
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Add Videos", "create")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
+
     // Jodit editor configuration
     const config = useMemo(()=>({
         readonly: false,
@@ -369,11 +380,14 @@ function AddResourceVideo() {
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back
                                     </button>
-                                    <a href="/admin/list-resource-video">
+
+                                    {hasPermission("Videos List","list") && (
+                                    <Link to="/admin/list-resource-video">
                                         <button className="ml-2 btn-md btn border-0 btn-secondary">
                                             <i className="fas fa-list"></i> Video List
                                         </button>
-                                    </a>
+                                    </Link>
+                                    )}
                                 </div>
                             </div>
                         </div>

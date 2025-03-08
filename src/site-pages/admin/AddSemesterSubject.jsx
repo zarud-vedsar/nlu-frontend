@@ -251,14 +251,16 @@ function SemesterSubjectAdd() {
                                 </nav>
                             </div>
                         </div>
-                        <div className="card bg-transparent mb-2 col-md-10 m-auto">
+                        <div className="row">
+                            <div className=" col-md-10 mx-auto">
+                            <div className="card bg-transparent ">
                             <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                                 <h5 className="card-title h6_new">
                                     {semesterId ? "Update Subject" : "Add New Subject"}
                                 </h5>
                                 <div className="ml-auto id-mobile-go-back">
                                     <button
-                                        className="mr-auto btn-md btn border-0 btn-light mr-2"
+                                        className="mr-auto btn-md btn border-0 goback mr-2"
                                         onClick={goBack}
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back
@@ -271,6 +273,10 @@ function SemesterSubjectAdd() {
                                 </div>
                             </div>
                         </div>
+                            </div>
+                        </div>
+                        
+
                         <div className="row">
                             <div className="col-md-10 mx-auto">
                                 <div className="card">

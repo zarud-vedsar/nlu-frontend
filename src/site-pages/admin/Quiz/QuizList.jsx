@@ -385,13 +385,13 @@ function QuizList() {
                 <h5 className="card-title h6_new">Quiz List </h5>
                 <div className="ml-auto id-mobile-go-back">
                   <button
-                    className="mr-auto btn-md btn border-0 btn-light mr-2"
+                    className="mr-auto btn-md btn border-0 goback mr-2"
                     onClick={() => goBack()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-primary ml-2"
                       onClick={handleShow}
                     >
                       <span>
@@ -428,7 +428,7 @@ function QuizList() {
                     />
                   </div>
                  
-                  <div className="col-md-4 col-lg-4 col-10 col-sm-4">
+                  <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-2">
                     {
                       hasPermission("Quiz", "recycle bin") && (
                         <button

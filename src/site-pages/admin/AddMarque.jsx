@@ -175,7 +175,7 @@ const AddMarque = () => {
               </h5>
               <div className="ml-auto id-mobile-go-back">
                 <button
-                  className="mr-auto btn-md btn border-0 btn-light mr-2"
+                  className="mr-auto btn-md btn border-0 goback mr-2"
                   onClick={() => goBack()}
                 >
                   <i className="fas fa-arrow-left" /> Go Back

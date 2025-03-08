@@ -17,7 +17,7 @@ import secureLocalStorage from "react-secure-storage";
 import { FormField } from "../../site-components/admin/assets/FormField";
 
 function UserLogList() {
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
   const [logList, setLogList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [facultyListing, setFacultyListing] = useState([]);

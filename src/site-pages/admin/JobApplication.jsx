@@ -183,7 +183,7 @@ const JobApplication = () => {
                   <Button
                     variant="light"
                     onClick={() => window.history.back()}
-                    className="mb-2 mb-md-0"
+                    className="mb-2 mb-md-0 goback"
                   >
                     <i className="fas">
                       <FaArrowLeft />

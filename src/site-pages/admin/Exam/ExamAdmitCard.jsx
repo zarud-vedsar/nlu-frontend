@@ -487,7 +487,7 @@ function AddExam() {
                           Example: END-TERM EXAMINATION NOVEMBER-DECEMBER, 2024
                         </p>
                       </div>
-                      <div className="col-md-12 col-12">
+                      <div className="col-md-12 col-12 mt-2">
                         <button
                           onClick={fetchAdmitCard}
                           className="btn btn-dark d-flex justify-content-center align-items-center"

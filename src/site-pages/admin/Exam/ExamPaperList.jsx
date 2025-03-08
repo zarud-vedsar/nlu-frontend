@@ -702,7 +702,7 @@ function ExamList() {
               </div>
             </div>
             <div className="card border-0 bg-transparent mb-0">
-              <div className="card-header bg-transparent mb-0 px-0 id-pc-divices-header px-0 id-mobile-divice-d-block">
+              <div className="card-body bg-transparent mb-0 px-0 id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new font-16 pt-0">Exam Paper List</h5>
                 <div className="ml-auto id-mobile-go-back">
                   <button className="mr-auto btn goback mr-2" onClick={goBack}>

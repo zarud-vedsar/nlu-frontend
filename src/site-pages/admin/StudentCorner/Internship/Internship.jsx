@@ -345,7 +345,7 @@ const Internship = () => {
                 <Button
                 variant="light"
                 onClick={() => window.history.back()}
-                className="mb-2 mb-md-0 mr-2"
+                className="mb-2 mb-md-0 mr-2 goback"
               >
                 <i className="fas">
                   <FaArrowLeft />

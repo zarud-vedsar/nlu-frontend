@@ -75,7 +75,7 @@ function MyVerticallyCenteredModal(props) {
 
 function ResourceLiveClassUrlList() {
   const navigate = useNavigate();
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
   const [ResourceLiveClassUrlList, setResourceLiveClassUrlListing] = useState(
     []
   );
@@ -350,7 +350,7 @@ function ResourceLiveClassUrlList() {
                 <h5 className="card-title h6_new pt-2">Live Class List</h5>
                 <div className="ml-auto id-mobile-go-back mb-2">
                   <button
-                    className="mr-auto btn-md btn border-0 btn-light mr-2"
+                    className="mr-auto btn-md btn border-0 goback mr-2"
                     onClick={() => goBack()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back

@@ -326,7 +326,7 @@ const config = useMemo(()=>({
                 </h5>
                 <div className="ml-auto id-mobile-go-back">
                   <button
-                    className="mr-auto btn-md btn border-0 btn-light mr-2"
+                    className="mr-auto btn-md btn border-0 goback mr-2"
                     onClick={() => goBack()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back
@@ -586,7 +586,7 @@ const config = useMemo(()=>({
                       />
                     </div>
 
-                    <div className="col-md-12 col-lg-12 col-12">
+                    <div className="col-md-12 col-lg-12 col-12 mt-2">
                       <button
                         className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
                         type="submit"

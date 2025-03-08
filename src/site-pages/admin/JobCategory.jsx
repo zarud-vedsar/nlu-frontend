@@ -319,7 +319,7 @@ const JobCategory = () => {
                 <Button
                   variant="light"
                   onClick={() => window.history.back()}
-                  className=" mb-md-0 mr-2"
+                  className=" mb-md-0 mr-2 goback"
                 >
                   <i className="fas">
                     <FaArrowLeft />

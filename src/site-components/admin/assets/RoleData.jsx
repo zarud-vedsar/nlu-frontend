@@ -109,7 +109,7 @@ export const RoleData = [
         label: "Mark Hostel Attendance",
         value: "Mark Hostel Attendance",
         crud: ["mark attendance"], // CRUD operations
-        //have issue in rendering page
+        
       },
       
       {

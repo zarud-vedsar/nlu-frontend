@@ -193,7 +193,7 @@ function UseFulLinks() {
                                             className="form-control dtsearch-input"
                                         />
                                     </div>
-                                    <div className='col-md-4 col-lg-4 col-10 col-sm-4'>
+                                    <div className='col-md-4 col-lg-4 col-10 col-sm-4 mb-2'>
                                         <button className={`btn ${recycleTitle === "Show Recycle Bin" ? 'btn-secondary' : 'btn-danger'}`} onClick={showRecyleBin}>{recycleTitle} <i className="fa fa-recycle"></i></button>
                                     </div>
                                 </div>

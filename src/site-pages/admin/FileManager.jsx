@@ -207,9 +207,9 @@ const FileManager = () => {
             </div>
 
             <div className="card bg-transparent mb-2">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">File List</h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back">
                   <button
                     onClick={() => window.history.back()}
                     className="mb-2 mb-md-0 btn mr-2 btn-light"
@@ -239,7 +239,7 @@ const FileManager = () => {
             ) : (
               <div className="row">
                 {messages.map((item, index) => (
-                  <div key={index} className="col-md-3 mt-3 flex-wrap">
+                  <div key={index} className="col-md-3 mt-3 col-sm-6 flex-wrap">
                     <div className="card">
                       <div className="card-body">
                         <div className="row ">

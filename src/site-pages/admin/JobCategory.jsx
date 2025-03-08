@@ -319,7 +319,7 @@ const JobCategory = () => {
                 <Button
                   variant="light"
                   onClick={() => window.history.back()}
-                  className="mb-2 mb-md-0 mr-2"
+                  className=" mb-md-0 mr-2"
                 >
                   <i className="fas">
                     <FaArrowLeft />
@@ -331,13 +331,13 @@ const JobCategory = () => {
                     recycleTitle === "Show Recycle Bin"
                       ? "btn-secondary"
                       : "btn-danger"
-                  } ml-auto mb-2`}
+                  } ml-auto`}
                   onClick={showRecyleBin}
                 >
                   {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
                 </Button>
                 <Button
-                  className="ml-2 mb-2 mb-md-0 btn btn-secondary"
+                  className="ml-2  mb-md-0 btn btn-secondary"
                   onClick={() => setModalShow(true)}
                 >
                   <i className="fas">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios"; // Import axios
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import { toast, ToastContainer } from "react-toastify";
-import feedbackPng from "../../site-components/website/assets/Images/feedback.webp"
+import feedbackPng from "../../site-components/website/assets/Images/feedback-img.png"
 import { FaAddressBook, FaAngleRight, FaRegMessage, FaRegUser } from "react-icons/fa6";
 import { MdOutlineMailOutline, MdOutlinePhone } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
@@ -91,8 +91,8 @@ const Feedback = () => {
                 <h1 className="heading-primary2 butler-regular text-white text-center">Feedback</h1>
                 <div className="breadcrumb-bar">
                   <ul className="breadcrumb text-center">
-                    <li><Link to="/">Home</Link> <FaAngleRight /></li> 
-                     <li><span>Contact</span> <FaAngleRight /></li>
+                    <li><Link to="/">Home</Link> <FaAngleRight /></li>
+                    <li><span>Contact</span> <FaAngleRight /></li>
                     <li>Feedback</li>
                   </ul>
                 </div>
@@ -105,13 +105,13 @@ const Feedback = () => {
       <section className="section bg-f5">
         <div className="container">
           <div className="row">
-            <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+            <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12" style={{ display: "flex", justifyContent: "center" }}>
               <img
-                className="img-fluid rounded-3 mt-5"
+                className="img-fluid rounded-3 mt-5 fdb"
                 src={feedbackPng}
                 alt="Institution"
                 style={{
-                  display: "block",
+                  display: "block"
                 }}
               />
             </div>

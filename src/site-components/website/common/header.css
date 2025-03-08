@@ -232,7 +232,6 @@
 .navigation__nested_item:hover .navigation__nested_item_dropdown-content {
     display: block;
 }
-
 .id-college-name {
     padding: 9px 0px;
     text-align: center;
@@ -241,28 +240,20 @@
 .id-college-text {
     font-size: 16px !important;
 }
-
 @media (min-width: 0px) and (max-width: 820px) {
     .page-mine-header {
         top: 0px;
     }
 }
-
 @media (min-width: 769px) {
     .floating_btn {
-        bottom: 147px;
+        bottom: 130px;
     }
 
     .floating_btn1 {
-        bottom: 220px;
+        bottom: 200px;
     }
-
-    
-
 }
-
-
-
 .page-mine-header {
     display: flex;
     align-items: center;

@@ -414,7 +414,7 @@ const JobRecruitmentList = () => {
                 <Button
                 variant="light"
                 onClick={() => window.history.back()}
-                className="mb-2 mb-md-0"
+                className="mb-2 mb-md-0 mr-2"
               >
                 <i className="fas">
                   <FaArrowLeft />

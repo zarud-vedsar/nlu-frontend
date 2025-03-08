@@ -580,7 +580,7 @@ function AddResourceVideo() {
                                                 <div className="col-md-12 col-lg-12 col-12">
                                                     <button
                                                         disabled={isSubmit}
-                                                        className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
+                                                        className="btn btn-dark btn-block d-flex justify-content-center align-items-center mt-2"
                                                         type="submit"
                                                     >
                                                         Save{" "}

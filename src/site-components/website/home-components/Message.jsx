@@ -85,7 +85,7 @@ const Message = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="row">
-              <div className="col-md-7">
+              <div className="col-md-7 order11 mt22">
                 <div className="vicmsg-bx">
                   <div className="vicmsg-top">
                     <h3 className="message-heading source-font mb-3 mt-3">MESSAGE FROM THE <br />
@@ -103,7 +103,7 @@ const Message = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-md-5 mt-3">
+              <div className="col-md-5 mt-3 order12">
                 <div className="image-post1">
                   <div className="vicemsgsec-img-sec1">
                     <video className="vidmsg"

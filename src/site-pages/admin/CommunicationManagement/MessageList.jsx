@@ -110,14 +110,14 @@ function MessageList() {
             </div>
 
             <div className="card border-0 bg-transparent mb-2">
-              <div className="card-header border-0 bg-transparent d-flex justify-content-between align-items-center px-0">
+              <div className="card-header border-0 bg-transparent id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title">Message List</h5>
-                <div className="ml-auto">
-                  <button className="btn btn-secondary mr-2" onClick={goBack}>
+                <div className="ml-auto id-mobile-go-back">
+                  <button className="btn goback mr-2" onClick={goBack}>
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
 
-                    <button className="btn btn-info text-white mr-2" onClick={handleShow}><i className="fa fa-filter"></i></button>
+                    <button className="btn btn-info text-white mr-2 ml-auto" onClick={handleShow}><i className="fa fa-filter"></i></button>
 
                   <Link to="/admin/cmn-mng-message">
                     <button className="btn btn-secondary">

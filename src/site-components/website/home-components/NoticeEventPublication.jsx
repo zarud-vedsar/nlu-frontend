@@ -62,7 +62,7 @@ const NoticeEventPublication = () => {
         style={{
           position: "absolute",
           top: "50%",
-          left:"0px !impor",
+          left: "0px !impor",
           [direction]: isMobile ? "0px" : "0px", // Adjust based on screen width
           transform: "translateY(-50%)",
           background: "#2e3e50",
@@ -86,7 +86,7 @@ const NoticeEventPublication = () => {
     );
   };
   const settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -102,32 +102,6 @@ const NoticeEventPublication = () => {
     ],
   };
 
-  const settings2 = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    arrows: true,
-    autoplay: true, // Enable auto-scroll
-    centerMode: false,
-    autoplaySpeed: 2800, // Change slides every 3 seconds
-    prevArrow: <CustomArrow direction="left" />,
-    nextArrow: <CustomArrow direction="right" />,
-    responsive: [
-      { breakpoint: 1024, settings: { slidesToShow: 2, centerMode: false } },
-      { breakpoint: 768, settings: { slidesToShow: 1, centerMode: false } },
-    ],
-    // responsive: [
-    //   {
-    //     breakpoint: 768,
-    //     settings: {
-    //       slidesToShow: 1,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    // ],
-  };
   return (
     <>
       <section className="public bg-f5" data-aos="fade-up" data-aos-delay="50">
@@ -231,7 +205,7 @@ const NoticeEventPublication = () => {
                     <h2 className="heading-primary2 source-font id-title-font-size  id-title-font-size-mobile-device">Latest News</h2>
                     <div className='heading-divider'></div>
                     <p className="text-center mt-3 mb-1 source-font id-sub-title id-sub-title-mobile-view">
-                      Our Latest News and Announcements
+                      Latest News & Announcements
                     </p>
                   </div>
                 </div>
@@ -239,10 +213,10 @@ const NoticeEventPublication = () => {
                 <div className="col-md-12">
                   <div
                     className="card border-0 rounded-0 border-bottom-2 soft-shadow mx-auto border-bottom border-primary"
-                    style={{ minHeight: "383px" }}
+                    style={{ height: "387px" }}
                   >
                     <div className="card-body pb-0">
-                      <div className="rightconten">
+                      <div className="">
                         <div className="marquee-container">
                           <div className="eventdiv marquee-content">
                             {events &&
@@ -304,12 +278,12 @@ const NoticeEventPublication = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-12 text-center">
+                  <div className="col-md-12 text-center mt-5">
                     <Link
                       to="/view-all/notice"
                       target="_blank"
                       style={{ minWidth: '230px' }}
-                      className="btn btn-primary border-0 mt-4 px-4 py-2 source-font"
+                      className="btn btn-primary border-0 px-4 py-2 source-font"
                     >
                       More News
                     </Link>

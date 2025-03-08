@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 
 
 function CellComplainList() {
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
   const [cellList, setCellList] = useState([]);
   const [cellTypeList, setCellTypeList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);

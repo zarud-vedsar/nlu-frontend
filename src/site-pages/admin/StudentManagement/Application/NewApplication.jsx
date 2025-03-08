@@ -17,7 +17,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
 
 function NewApplication() {
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
   const [applicationList, setApplicationListing] = useState([]);
   const [courseListing, setCourseListing] = useState([]); // Form submission state
   const [semesterListing, setSemesterListing] = useState([]); // on course and year selection
@@ -149,7 +149,7 @@ function NewApplication() {
                 <h5 className="card-title h6_new">Applications List</h5>
                 <div className="ml-auto">
                   <button
-                    className="ml-auto btn-md btn border-0 btn-light mr-2"
+                    className="ml-auto btn-md btn border-0 btn-light"
                     onClick={() => goBack()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back

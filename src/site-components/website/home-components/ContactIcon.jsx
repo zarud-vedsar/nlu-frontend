@@ -55,5 +55,4 @@ function ContactIcon() {
         </>
     )
 }
-
 export default ContactIcon

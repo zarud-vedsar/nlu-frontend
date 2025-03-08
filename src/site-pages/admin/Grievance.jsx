@@ -153,7 +153,7 @@ const Grievance = () => {
             <div className="card">
               <div className="card-body">
                 <div className="row d-flex align-items-end">
-                  <div className="col-md-5 col-lg-5 col-12 col-sm-12 p-input-icon-left  d-flex justify-content-start align-items-center">
+                  <div className="col-md-6 col-lg-6 col-12 col-sm-12 p-input-icon-left  d-flex justify-content-start align-items-center">
                     <div className="search-icon">
                       <i className="pi pi-search" />
                     </div>
@@ -165,7 +165,7 @@ const Grievance = () => {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  <div className="col mr-3 ">
+                  <div className="col-md-3 col-lg-3 col-12 col-sm-12 mt-2 ">
                     <label htmlFor="start-date" className="mr-2">
                       Start Date
                     </label>
@@ -178,7 +178,7 @@ const Grievance = () => {
                     />
                   </div>
 
-                  <div className="col ">
+                  <div className="col-md-3 col-lg-3 col-12 col-sm-12  mt-2">
                     <label htmlFor="end-date" className="mr-2">
                       End Date
                     </label>
@@ -190,7 +190,7 @@ const Grievance = () => {
                       onChange={(e) => setFormData((prev)=>({...prev,endDate:e.target.value}))}
                     />
                   </div>
-                  <div className="">
+                  <div className="col-md-3 col-lg-3 col-12 col-sm-12 mr-3 mt-2">
                     <button className="btn btn-secondary" onClick={loadGrievanceData}>
                       Fetch
                     </button>

@@ -1,7 +1,5 @@
 import React, { useRef } from 'react';
 import Slider from "react-slick";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import QuotesBg from '../assets/Images/quotesbg.png'
 
 const Quotes = () => {
   const sliderRef = useRef(null);
@@ -68,38 +66,6 @@ const Quotes = () => {
 
   ];
 
-  // const CustomArrow = ({ onClick, direction }) => {
-  //   const isMobile = window.innerWidth <= 768; // Check for mobile view
-
-  //   return (
-  //     <div
-  //       onClick={onClick}
-  //       style={{
-  //         position: "absolute",
-  //         top: "50%",
-  //         [direction]: isMobile ? "-15px" : "0px", // Adjust based on screen width
-  //         transform: "translateY(-50%)",
-  //         background: "#2e3e50",
-  //         borderRadius: "50%",
-  //         width: "40px",
-  //         height: "40px",
-  //         display: "flex",
-  //         alignItems: "center",
-  //         justifyContent: "center",
-  //         cursor: "pointer",
-  //         zIndex: 10,
-  //       }}
-  //     >
-  //       {direction === "left" ? (
-  //         <FaChevronLeft color="white" />
-  //       ) : (
-  //         <FaChevronRight color="white" />
-  //       )}
-  //     </div>
-  //   );
-  // };
-
-
   const sliderSettings = {
     infinite: false,
     speed: 500,
@@ -136,25 +102,29 @@ const Quotes = () => {
     }
   };
 
-
   return (
     <>
       <section className="section" data-aos="fade-up" data-aos-delay="100">
         <div className="container">
           <div className="row">
             <div className="col-md-10 col-lg-10 mx-auto">
-           
-              <div className="faculty-slider-container shadow px-3" style={{ borderRadius: '20px' }}>
-              <button
-                    className="prev-button id-quote-prev-btn"
-                    onClick={prevSlide}
-                    aria-label="Previous Faculty"
-                  >
-                    &#10094;
-                  </button>
+
+              <div className="faculty-slider-container px-3 mb-3 mt-3" style={{
+                borderRadius: '20px',
+                boxShadow: '0 0.5rem 1rem rgba(0, 0, 0, 0.15), 0 -0.5rem 0.8rem rgba(0, 0, 0, 0.15)'
+              }}>
+                <button
+                  className="prev-button"
+                  id="id-quote-prev-btn"
+                  onClick={prevSlide}
+                  aria-label="Previous Faculty"
+                  style={{ left: '-30px !important' }}
+                >
+                  &#10094;
+                </button>
                 <Slider ref={sliderRef} {...sliderSettings}>
                   {Quotes.map((quote, index) => (
-                    <div className="id-quotes-wrapper id-quotes-m-left py-3 " key={index}>
+                    <div className="id-quotes-wrapper border-0 id-quotes-m-left py-3 pl-0" key={index}>
                       <p className="source-font mb-3 text-center heading-para text-primary" style={{ fontSize: "18px" }}>
                         {quote.quotes}
                       </p>
@@ -165,14 +135,15 @@ const Quotes = () => {
                   ))}
                 </Slider>
                 <button
-                    className="next-button id-quote-nxt-btn"
-                    onClick={nextSlide}
-                    aria-label="Next Faculty"
-                  >
-                    &#10095;
-                  </button>
+                  className="next-button"
+                  id="id-quote-nxt-btn"
+                  onClick={nextSlide}
+                  aria-label="Next Faculty"
+                >
+                  &#10095;
+                </button>
               </div>
-              
+
             </div>
           </div>
         </div>

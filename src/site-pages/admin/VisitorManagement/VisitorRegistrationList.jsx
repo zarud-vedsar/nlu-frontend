@@ -276,14 +276,14 @@ function VisitorRegistrationHistory() {
                 </h5>
                 <div className="ml-auto id-mobile-go-back">
                   <button
-                    className="mr-auto btn-md btn border-0 goBack mr-2"
+                    className="mr-auto btn-md btn border-0 goBack"
                     onClick={goBack}
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
                     <Button
                       variant="primary"
-                      className="  mb-md-0"
+                      className=" ml-2  mb-md-0"
                       onClick={handleShow}
                     >
                       <span>

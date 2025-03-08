@@ -250,7 +250,7 @@ const StudentTestimonial = () => {
                   <Button
                     variant="light"
                     onClick={() => window.history.back()}
-                    className="mr-2 mb-md-0"
+                    className="mr-2 mb-md-0 goback btn"
                   >
                     <i className="fas">
                       <FaArrowLeft />

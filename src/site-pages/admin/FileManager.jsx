@@ -212,7 +212,7 @@ const FileManager = () => {
                 <div className="ml-auto id-mobile-go-back">
                   <button
                     onClick={() => window.history.back()}
-                    className="mb-2 mb-md-0 btn mr-2 btn-light"
+                    className="mb-2 mb-md-0 btn mr-2 goback"
                   >
                     <i className="fas">
                       <FaArrowLeft />

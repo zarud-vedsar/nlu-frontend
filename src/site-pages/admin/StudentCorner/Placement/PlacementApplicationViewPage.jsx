@@ -399,7 +399,7 @@ const PlacementApplicationViewPage = () => {
               <div className="ml-auto id-mobile-go-back">
               <Button
               variant="light"
-              className="mb-2 mb-md-0"
+              className="mb-2 mb-md-0 goback btn"
               onClick={() => window.history.back()}
             >
               <i className="fas">

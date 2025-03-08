@@ -420,11 +420,11 @@ function AddQuiz() {
               </div>
             </div>
             <div className="card bg-transparent mb-2">
-              <div className="card-header d-flex justify-content-between align-items-center px-0">
+              <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">
                   {quizId ? "Update Quiz" : "Add New Quiz"}
                 </h5>
-                <div className="ml-auto">
+                <div className="ml-auto id-mobile-go-back">
                   <button
                     className="btn goback mr-2"
                     onClick={goBack}

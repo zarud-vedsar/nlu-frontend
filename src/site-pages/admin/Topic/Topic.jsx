@@ -360,7 +360,7 @@ function Topic() {
                   </button>
                     <Button
                       variant="primary"
-                      className="  mb-md-0"
+                      className="ml-2  mb-md-0"
                       onClick={handleShow}
                     >
                       <span>

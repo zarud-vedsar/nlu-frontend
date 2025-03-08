@@ -186,7 +186,7 @@ function InventoryReport() {
                 <h5 className="card-title h6_new">Inventory Report</h5>
                 <div className="ml-auto">
                   <button
-                    className="ml-auto btn-md btn border-0 btn-light mr-2"
+                    className="ml-auto btn-md btn border-0 goback mr-2"
                     onClick={() => goBack()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back

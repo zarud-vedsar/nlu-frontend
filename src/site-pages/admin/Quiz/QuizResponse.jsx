@@ -19,7 +19,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
 import useRolePermission from "../../../site-components/admin/useRolePermission";
 function QuizResponse() {
-  const [showFilter, setShowFilter] = useState(true);
+  const [showFilter, setShowFilter] = useState(false);
   const [applicationList, setQuizResponseList] = useState([]);
   const [courseListing, setCourseListing] = useState([]); // Form submission state
   const [semesterListing, setSemesterListing] = useState([]); // on course and year selection

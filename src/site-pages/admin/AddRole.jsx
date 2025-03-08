@@ -202,7 +202,7 @@ function AddRole() {
               </h5>
               <div className="ml-auto id-mobile-go-back">
                 <button
-                  className="btn btn-light border-0 mr-2"
+                  className="btn goback border-0 mr-2"
                   onClick={goBack}
                 >
                   <i className="fas fa-arrow-left" /> Go Back

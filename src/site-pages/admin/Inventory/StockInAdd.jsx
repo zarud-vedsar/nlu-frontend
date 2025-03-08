@@ -182,7 +182,7 @@ function Registration() {
                                     </button>
                                     <Link to="/admin/inventory/product/stockin/history">
                                         <button className="ml-2 btn-md btn border-0 btn-secondary">
-                                            Stock In History  <i className="fas fa-list"></i>
+                                        <i className="fas fa-list"></i> Stock In History 
                                         </button>
                                     </Link>
                                 </div>

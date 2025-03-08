@@ -278,7 +278,7 @@ const Gallery = () => {
                   <Button
                     variant="light"
                     onClick={() => window.history.back()}
-                    className="mb-2 mr-2 mb-md-0"
+                    className="mb-2 mr-2 mb-md-0 goback"
                   >
                     <i className="fas">
                       <FaArrowLeft />

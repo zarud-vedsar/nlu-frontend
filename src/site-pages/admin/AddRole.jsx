@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   capitalizeEachLetter,
-  goBack
+  goBack,
 } from "../../site-components/Helper/HelperFunction";
 import { RoleData } from "../../site-components/admin/assets/RoleData";
 import { FormField } from "../../site-components/admin/assets/FormField";
@@ -10,11 +10,23 @@ import { toast } from "react-toastify";
 import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 function AddRole() {
   const location = useLocation();
   const dbId = location?.state?.dbId;
   const [roleData, setRoleData] = useState([]);
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Add New", "create")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
   useEffect(() => {
     setRoleData(RoleData);
   }, []);
@@ -126,7 +138,6 @@ function AddRole() {
     });
   };
 
-
   const handleSubmit = async (e) => {
     const filteredPermissions = formData.rolePermissions.filter(
       (permissionObj) => {
@@ -146,10 +157,7 @@ function AddRole() {
     formData2.append("data", "role_add");
     formData2.append("updateid", formData.dbId);
     formData2.append("roleName", formData.roleName);
-    formData2.append(
-      "rolePermissions",
-      JSON.stringify(filteredPermissions)
-    );
+    formData2.append("rolePermissions", JSON.stringify(filteredPermissions));
     formData2.append("loguserid", secureLocalStorage.getItem("login_id"));
     formData2.append("login_type", secureLocalStorage.getItem("loginType"));
     try {
@@ -187,7 +195,7 @@ function AddRole() {
                 <Link to="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </Link>
-             
+
                 <span className="breadcrumb-item active">
                   Role & Permission
                 </span>
@@ -201,18 +209,17 @@ function AddRole() {
                 {dbId ? "Update Page" : "Add New"}
               </h5>
               <div className="ml-auto id-mobile-go-back">
-                <button
-                  className="btn goback border-0 mr-2"
-                  onClick={goBack}
-                >
+                <button className="btn goback border-0 mr-2" onClick={goBack}>
                   <i className="fas fa-arrow-left" /> Go Back
                 </button>
-                <Link
-                  to="/admin/role-list"
-                  className="btn btn-secondary border-0"
-                >
-                  <i className="fas fa-list" /> Role List
-                </Link>
+                {hasPermission("Role List", "list") && (
+                  <Link
+                    to="/admin/role-list"
+                    className="btn btn-secondary border-0"
+                  >
+                    <i className="fas fa-list" /> Role List
+                  </Link>
+                )}
               </div>
             </div>
           </div>

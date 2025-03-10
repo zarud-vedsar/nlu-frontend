@@ -29,15 +29,25 @@ import "../../../node_modules/primeicons/primeicons.css";
 
 import { useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
+import useRolePermission from '../../site-components/admin/useRolePermission';
 
 const JobApplication = () => {
-  const navigate = useNavigate();
   const [selectedJobCategory, setSelectedJobCategory] = useState();
   const [selectedStatus, setSelectedStatus] = useState();
   const [selectedApplicationStatus, setSelectedApplicationStatus] = useState();
 
   const [facultyList, setFacultyList] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
+
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Job Applications", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
 
   const [filters, setFilters] = useState({
     email: "",

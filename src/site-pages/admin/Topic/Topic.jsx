@@ -22,6 +22,7 @@ import { Modal, Button, Form, Col, Row } from "react-bootstrap";
 import Select from "react-select";
 import { FaFilter } from "react-icons/fa";
 import axios from "axios";
+import useRolePermission from "../../../site-components/admin/useRolePermission";
 
 function Topic() {
   const [SemesterSubjectListing, setSemesterSubjectListing] = useState([]);
@@ -39,12 +40,21 @@ function Topic() {
   });
   const [show, setShow] = useState(false);
   const [filterStatus, setFilterStatus] = useState();
-  const navigate = useNavigate();
 
   const [courseListing, setCourseListing] = useState([]); // Form submission state
   const [semesterListing, setSemesterListing] = useState([]); // on course and year selection
   const [subjectListing, setSubjectListing] = useState([]);
   const [topicListing, setTopicListing] = useState([]);
+
+  const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Topic", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -336,14 +346,14 @@ function Topic() {
             <div className="page-header mb-0">
               <div className="header-sub-title">
                 <nav className="breadcrumb breadcrumb-dash">
-                <a href="/admin/" className="breadcrumb-item">
-                                     <i className="fas fa-home m-r-5" />
-                                    Dashboard
-                                   </a>
-                                   <span className="breadcrumb-item active">
-                                   Learning Management
-                                   </span>
-                  
+                  <a href="/admin/" className="breadcrumb-item">
+                    <i className="fas fa-home m-r-5" />
+                    Dashboard
+                  </a>
+                  <span className="breadcrumb-item active">
+                    Learning Management
+                  </span>
+
                   <span className="breadcrumb-item active">Topic</span>
                 </nav>
               </div>
@@ -358,21 +368,23 @@ function Topic() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
-                    <Button
-                      variant="primary"
-                      className="ml-2  mb-md-0"
-                      onClick={handleShow}
-                    >
-                      <span>
-                        <FaFilter /> 
-                      </span>
-                    </Button>
-                  <Link
-                    to={"/admin/topic/add-new"}
-                    className="ml-2 btn-md btn border-0 btn-secondary"
+                  <Button
+                    variant="primary"
+                    className="ml-2  mb-md-0"
+                    onClick={handleShow}
                   >
-                    <i className="fas fa-plus" /> Add New
-                  </Link>
+                    <span>
+                      <FaFilter />
+                    </span>
+                  </Button>
+                  {hasPermission("Topic", "create") && (
+                    <Link
+                      to={"/admin/topic/add-new"}
+                      className="ml-2 btn-md btn border-0 btn-secondary"
+                    >
+                      <i className="fas fa-plus" /> Add New
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -392,17 +404,20 @@ function Topic() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  
+
                   <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-3">
-                    <button
-                      className={`btn ${recycleTitle === "Show Recycle Bin"
-                          ? "btn-secondary"
-                          : "btn-danger"
+                    {hasPermission("Topic", "recycle bin") && (
+                      <button
+                        className={`btn ${
+                          recycleTitle === "Show Recycle Bin"
+                            ? "btn-secondary"
+                            : "btn-danger"
                         }`}
-                      onClick={showRecyleBin}
-                    >
-                      {recycleTitle} <i className="fa fa-recycle"></i>
-                    </button>
+                        onClick={showRecyleBin}
+                      >
+                        {recycleTitle} <i className="fa fa-recycle"></i>
+                      </button>
+                    )}
                   </div>
                 </div>
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
@@ -419,19 +434,19 @@ function Topic() {
                     sortMode="multiple"
                   >
                     <Column
-                    field="topic_name"
+                      field="topic_name"
                       body={(row) => capitalizeFirstLetter(row.topic_name)}
                       header="Topic Name"
                       sortable
                     />
                     <Column
-                    field="subjectname"
+                      field="subjectname"
                       body={(row) => capitalizeFirstLetter(row.subjectname)}
                       header="Subject"
                       sortable
                     />
                     <Column
-                    field="semtitle"
+                      field="semtitle"
                       body={(row) => capitalizeFirstLetter(row.semtitle)}
                       header="Semester"
                       sortable
@@ -461,41 +476,51 @@ function Topic() {
                       header="Action"
                       body={(rowData) => (
                         <div className="d-flex">
-                          <div className="switch mt-1 w-auto">
-                            <input
-                              type="checkbox"
-                              checked={rowData.status === 1} // This ensures the checkbox reflects the correct status
-                              onChange={() =>
-                                handleToggleStatus(rowData.id, rowData.status)
-                              } // Pass the id and current status
-                              className="facultydepartment-checkbox"
-                              id={`switch${rowData.id}`}
-                            />
-                            <label
-                              className="mt-0"
-                              htmlFor={`switch${rowData.id}`}
-                            ></label>
-                          </div>
-                          <div
-                            onClick={() => updateDataFetch(rowData.id)}
-                            className="avatar avatar-icon avatar-md avatar-orange"
-                          >
-                            <i className="fas fa-edit"></i>
-                          </div>
-                          {rowData.deleteStatus == 0 ? (
-                            <OverlayTrigger
-                              placement="bottom"
-                              overlay={
-                                <Tooltip id="button-tooltip-2">Delete</Tooltip>
-                              }
+                          {hasPermission("Topic", "status") && (
+                            <div className="switch mt-1 w-auto">
+                              <input
+                                type="checkbox"
+                                checked={rowData.status === 1} // This ensures the checkbox reflects the correct status
+                                onChange={() =>
+                                  handleToggleStatus(rowData.id, rowData.status)
+                                } // Pass the id and current status
+                                className="facultydepartment-checkbox"
+                                id={`switch${rowData.id}`}
+                              />
+                              <label
+                                className="mt-0"
+                                htmlFor={`switch${rowData.id}`}
+                              ></label>
+                            </div>
+                          )}
+                          {hasPermission("Topic", "update") && (
+                            <div
+                              onClick={() => updateDataFetch(rowData.id)}
+                              className="avatar avatar-icon avatar-md avatar-orange"
                             >
-                              <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
-                                <i
-                                  className="fas fa-trash-alt"
-                                  onClick={() => deleteStatus(rowData.id)}
-                                ></i>
-                              </div>
-                            </OverlayTrigger>
+                              <i className="fas fa-edit"></i>
+                            </div>
+                          )}
+                          {rowData.deleteStatus == 0 ? (
+                            <>
+                              {hasPermission("Topic", "delete") && (
+                                <OverlayTrigger
+                                  placement="bottom"
+                                  overlay={
+                                    <Tooltip id="button-tooltip-2">
+                                      Delete
+                                    </Tooltip>
+                                  }
+                                >
+                                  <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
+                                    <i
+                                      className="fas fa-trash-alt"
+                                      onClick={() => deleteStatus(rowData.id)}
+                                    ></i>
+                                  </div>
+                                </OverlayTrigger>
+                              )}
+                            </>
                           ) : (
                             <OverlayTrigger
                               placement="bottom"
@@ -551,11 +576,11 @@ function Topic() {
                         (item) => item.id === parseInt(filters.courseid)
                       )
                         ? {
-                          value: parseInt(filters.courseid),
-                          label: courseListing.find(
-                            (item) => item.id === parseInt(filters.courseid)
-                          ).coursename,
-                        }
+                            value: parseInt(filters.courseid),
+                            label: courseListing.find(
+                              (item) => item.id === parseInt(filters.courseid)
+                            ).coursename,
+                          }
                         : { value: filters.courseid, label: "Select" }
                     }
                   />
@@ -584,17 +609,17 @@ function Topic() {
                         (item) => item.id === filters.semesterid
                       )
                         ? {
-                          value: filters.semesterid,
-                          label: capitalizeFirstLetter(
-                            semesterListing.find(
-                              (item) => item.id === filters.semesterid
-                            ).semtitle
-                          ),
-                        }
+                            value: filters.semesterid,
+                            label: capitalizeFirstLetter(
+                              semesterListing.find(
+                                (item) => item.id === filters.semesterid
+                              ).semtitle
+                            ),
+                          }
                         : {
-                          value: filters.semesterid,
-                          label: "Select",
-                        }
+                            value: filters.semesterid,
+                            label: "Select",
+                          }
                     }
                   />
                 </Form.Group>
@@ -621,13 +646,13 @@ function Topic() {
                     value={
                       subjectListing.find((item) => item.id === filters.subject)
                         ? {
-                          value: filters.subject,
-                          label: capitalizeFirstLetter(
-                            subjectListing.find(
-                              (item) => item.id === filters.subject
-                            ).subject
-                          ),
-                        }
+                            value: filters.subject,
+                            label: capitalizeFirstLetter(
+                              subjectListing.find(
+                                (item) => item.id === filters.subject
+                              ).subject
+                            ),
+                          }
                         : { value: filters.subject, label: "Select" }
                     }
                   />
@@ -650,13 +675,13 @@ function Topic() {
                     value={
                       topicListing.find((item) => item.id === filters.topicid)
                         ? {
-                          value: filters.topicid,
-                          label: capitalizeFirstLetter(
-                            topicListing.find(
-                              (item) => item.id === filters.topicid
-                            ).topic_name
-                          ),
-                        }
+                            value: filters.topicid,
+                            label: capitalizeFirstLetter(
+                              topicListing.find(
+                                (item) => item.id === filters.topicid
+                              ).topic_name
+                            ),
+                          }
                         : { value: filters.topicid, label: "Select" }
                     }
                   />

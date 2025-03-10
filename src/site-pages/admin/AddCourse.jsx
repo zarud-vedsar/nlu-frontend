@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { NODE_API_URL, CKEDITOR_URL } from "../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   dataFetchingPost,
   goBack,
@@ -15,6 +15,7 @@ import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
+import useRolePermission from "../../site-components/admin/useRolePermission";
 
 function CourseAdd() {
   // Initial form state
@@ -38,6 +39,16 @@ function CourseAdd() {
   const [department, setDepartment] = useState([]); // Department list
   const [isSubmit, setIsSubmit] = useState(false); // Form submission state
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
+
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate(); // Initialize useNavigate
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Course", "create")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
 
   const qualifications = [
     "High School",
@@ -331,12 +342,14 @@ const config = useMemo(()=>({
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                  {hasPermission("Course", "list") && (
                   <Link
                     to="/admin/course"
                     className="ml-2 btn-md btn border-0 btn-secondary"
                   >
                     <i className="fas fa-list" /> Course List
                   </Link>
+                  )}
                 </div>
               </div>
             </div>

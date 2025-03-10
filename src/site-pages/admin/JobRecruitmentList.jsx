@@ -33,7 +33,7 @@ import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert"
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-
+import useRolePermission from "../../site-components/admin/useRolePermission";
 
 const decodeHtml = async (html) => {
   try {
@@ -54,16 +54,16 @@ const decodeHtml = async (html) => {
 };
 
 function MyVerticallyCenteredModal(props) {
-  const [description,setDescription] = useState();
-  
-  useEffect(()=>{
-    const decode = async ()=>{
-      await decodeHtml(props?.selectedInternship?.description).then((res)=>{
+  const [description, setDescription] = useState();
+
+  useEffect(() => {
+    const decode = async () => {
+      await decodeHtml(props?.selectedInternship?.description).then((res) => {
         setDescription(res);
-      })
+      });
     };
-    decode()
-  },[props?.selectedInternship?.description])
+    decode();
+  }, [props?.selectedInternship?.description]);
   return (
     <Modal
       {...props}
@@ -94,8 +94,6 @@ function MyVerticallyCenteredModal(props) {
 }
 
 const JobRecruitmentList = () => {
-  const navigate = useNavigate();
-
   const [internshipList, setInternshipList] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [recycleTitle, setRecycleTitle] = useState("Show Recycle Bin");
@@ -103,6 +101,17 @@ const JobRecruitmentList = () => {
   const [loading, setLoading] = useState(false);
   const [selectedInternship, setSelectedInternship] = useState(null);
   const [modalShow, setModalShow] = useState(false);
+
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Job", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
   const [filters, setFilters] = useState({
     status: "",
     jobType: "",
@@ -395,204 +404,220 @@ const JobRecruitmentList = () => {
     <>
       <div className="page-container">
         <div className="main-content">
-        <div className="container-fluid">
-          <div className="">
-            <nav className="breadcrumb breadcrumb-dash">
-            <a href="/admin/home" className="breadcrumb-item">
+          <div className="container-fluid">
+            <div className="">
+              <nav className="breadcrumb breadcrumb-dash">
+                <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
-              <span className="breadcrumb-item active">Recruitment</span>
+                <span className="breadcrumb-item active">Recruitment</span>
 
-              <span className="breadcrumb-item active"> Job</span>
-            </nav>
-          </div>
-          <div className="card bg-transparent mb-2">
+                <span className="breadcrumb-item active"> Job</span>
+              </nav>
+            </div>
+            <div className="card bg-transparent mb-2">
               <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">Job List</h5>
                 <div className="ml-auto id-mobile-go-back">
-                <Button
-                variant="light"
-                onClick={() => window.history.back()}
-                className="mb-2 mb-md-0 mr-2"
-              >
-                <i className="fas">
-                  <FaArrowLeft />
-                </i>{" "}
-                Go Back
-              </Button>
-              <Button
-                variant="primary"
-                className="ml-auto mb-2 mb-md-0"
-                onClick={handleShow}
-              >
-                <i className="fas">
-                  <FaFilter />
-                </i>
-              </Button>
+                  <Button
+                    variant="light"
+                    onClick={() => window.history.back()}
+                    className="mb-2 mb-md-0 mr-2"
+                  >
+                    <i className="fas">
+                      <FaArrowLeft />
+                    </i>{" "}
+                    Go Back
+                  </Button>
+                  <Button
+                    variant="primary"
+                    className="ml-auto mb-2 mb-md-0"
+                    onClick={handleShow}
+                  >
+                    <i className="fas">
+                      <FaFilter />
+                    </i>
+                  </Button>
 
-              <Link
-                className="ml-2 mb-2 mb-md-0 btn btn-secondary"
-                to="/admin/job-recruitment-form"
-              >
-                <i className="fas">
-                  <IoMdAdd />
-                </i>{" "}
-                Add New
-              </Link>
+                  {hasPermission("Job", "create") && (
+                    <Link
+                      className="ml-2 mb-2 mb-md-0 btn btn-secondary"
+                      to="/admin/job-recruitment-form"
+                    >
+                      <i className="fas">
+                        <IoMdAdd />
+                      </i>{" "}
+                      Add New
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
-          
-          <div className="card">
-            <div className="card-body">
-              <div className="row">
-                <div className="col-md-9 col-lg-9 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
-                  <div className="search-icon">
-                    <i className="pi pi-search" />
+
+            <div className="card">
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-md-9 col-lg-9 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                    <div className="search-icon">
+                      <i className="pi pi-search" />
+                    </div>
+                    <InputText
+                      type="search"
+                      value={globalFilter}
+                      onChange={(e) => setGlobalFilter(e.target.value)}
+                      placeholder="Search"
+                      className="form-control dtsearch-input"
+                    />
                   </div>
-                  <InputText
-                    type="search"
-                    value={globalFilter}
-                    onChange={(e) => setGlobalFilter(e.target.value)}
-                    placeholder="Search"
-                    className="form-control dtsearch-input"
-                  />
+                  <div className="col-md-3 col-lg-3 col-10 col-sm-4 mb-3">
+                  {hasPermission("Job","recycle bin") && (
+                    <button
+                      className={`btn ${
+                        recycleTitle === "Show Recycle Bin"
+                          ? "btn-secondary"
+                          : "btn-danger"
+                      }`}
+                      onClick={showRecyleBin}
+                    >
+                      {recycleTitle} <i className="fa fa-recycle"></i>
+                    </button>
+                  )}
+                  </div>
                 </div>
-                <div className="col-md-3 col-lg-3 col-10 col-sm-4 mb-3">
-                  <button
-                    className={`btn ${
-                      recycleTitle === "Show Recycle Bin"
-                        ? "btn-secondary"
-                        : "btn-danger"
-                    }`}
-                    onClick={showRecyleBin}
-                  >
-                    {recycleTitle} <i className="fa fa-recycle"></i>
-                  </button>
-                </div>
+
+                {loading ? (
+                  <div className="text-center">
+                    <Spinner animation="border" />
+                  </div>
+                ) : (
+                  <div className="table-responsive">
+                    <DataTable
+                      value={internshipList}
+                      paginator
+                      rows={10}
+                      rowsPerPageOptions={[10, 25, 50]}
+                      globalFilter={globalFilter}
+                      emptyMessage="No records found"
+                      className="p-datatable-custom"
+                      tableStyle={{ minWidth: "50rem" }}
+                      sortMode="multiple"
+                    >
+                      <Column
+                        body={(rowData, { rowIndex }) => rowIndex + 1}
+                        header="#"
+                        sortable
+                      />
+
+                      <Column field="cat_title" header="Category" sortable />
+                      <Column field="position" header="Position" sortable />
+                      <Column field="job_type" header="Job Type" sortable />
+                      <Column field="vacancy" header="Vacancy" sortable />
+
+                      <Column
+                        field="post_date"
+                        header="Post Date"
+                        sortable
+                        body={(rowData) => formatDate(rowData.post_date)}
+                      />
+                      <Column
+                        field="post_last_date"
+                        header="Last Date To Apply"
+                        sortable
+                        body={(rowData) => formatDate(rowData.post_last_date)}
+                      />
+
+                      <Column
+                        header="Action"
+                        body={(rowData, { rowIndex }) => (
+                          <div className="d-flex justify-content-around">
+                            {hasPermission("Job","status") && (
+                            <div className="switch mt-1 w-auto">
+                              <input
+                                type="checkbox"
+                                checked={rowData.status == 1 ? true : false}
+                                onChange={() => updateStatus(rowData.id)}
+                                className="facultydepartment-checkbox"
+                                id={`switch${rowData.id}`}
+                              />
+                              <label
+                                className="mt-0"
+                                htmlFor={`switch${rowData.id}`}
+                              ></label>
+                            </div>
+                            )}
+                            {hasPermission("Job","update") && (
+                            <div
+                              onClick={() => editDetail(rowData.id)}
+                              className="avatar avatar-icon avatar-md avatar-orange"
+                            >
+                              <i className="fas fa-edit"></i>
+                            </div>
+                            )}
+                            <div className="d-flex">
+                              <OverlayTrigger
+                                placement="bottom"
+                                overlay={
+                                  <Tooltip id="button-tooltip-2">
+                                    View Description
+                                  </Tooltip>
+                                }
+                              >
+                                <div className="avatar avatar-icon avatar-md avatar-orange">
+                                  <i
+                                    className="fa-solid fa-eye"
+                                    onClick={() => viewAllImages(rowIndex)}
+                                  ></i>
+                                </div>
+                              </OverlayTrigger>
+                            </div>
+                            {rowData.delete_status == 0 ? (
+                              <>
+                              {hasPermission("Job","delete") && (
+                              <OverlayTrigger
+                                placement="bottom"
+                                overlay={
+                                  <Tooltip id="button-tooltip-2">
+                                    Delete
+                                  </Tooltip>
+                                }
+                              >
+                                <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
+                                  <i
+                                    className="fas fa-trash-alt"
+                                    onClick={() => deleteInternship(rowData.id)}
+                                  ></i>
+                                </div>
+                              </OverlayTrigger>
+                              )}
+                            </>
+                            ) : (
+                              <OverlayTrigger
+                                placement="bottom"
+                                overlay={
+                                  <Tooltip id="button-tooltip-2">
+                                    Restore
+                                  </Tooltip>
+                                }
+                              >
+                                <div className="avatar ml-2 avatar-icon avatar-md avatar-lime">
+                                  <i
+                                    className="fas fa-recycle"
+                                    onClick={() => deleteInternship(rowData.id)}
+                                  ></i>
+                                </div>
+                              </OverlayTrigger>
+                            )}
+                          </div>
+                        )}
+                        sortable
+                      />
+                    </DataTable>
+                  </div>
+                )}
               </div>
-
-              {loading ? (
-                <div className="text-center">
-                  <Spinner animation="border" />
-                </div>
-              ) : (
-                <div className="table-responsive">
-                  <DataTable
-                    value={internshipList}
-                    paginator
-                    rows={10}
-                    rowsPerPageOptions={[10, 25, 50]}
-                    globalFilter={globalFilter}
-                    emptyMessage="No records found"
-                    className="p-datatable-custom"
-                    tableStyle={{ minWidth: "50rem" }}
-                    sortMode="multiple"
-                  >
-                    <Column
-                      body={(rowData, { rowIndex }) => rowIndex + 1}
-                      header="#"
-                      sortable
-                    />
-
-                    <Column field="cat_title" header="Category" sortable />
-                    <Column field="position" header="Position" sortable />
-                    <Column field="job_type" header="Job Type" sortable />
-                    <Column field="vacancy" header="Vacancy" sortable />
-
-                    <Column
-                      field="post_date"
-                      header="Post Date"
-                      sortable
-                      body={(rowData) => formatDate(rowData.post_date)}
-                    />
-                    <Column
-                      field="post_last_date"
-                      header="Last Date To Apply"
-                      sortable
-                      body={(rowData) => formatDate(rowData.post_last_date)}
-                    />
-
-                    <Column
-                      header="Action"
-                      body={(rowData, { rowIndex }) => (
-                        <div className="d-flex justify-content-around">
-                          <div className="switch mt-1 w-auto">
-                            <input
-                              type="checkbox"
-                              checked={rowData.status == 1 ? true : false}
-                              onChange={() => updateStatus(rowData.id)}
-                              className="facultydepartment-checkbox"
-                              id={`switch${rowData.id}`}
-                            />
-                            <label
-                              className="mt-0"
-                              htmlFor={`switch${rowData.id}`}
-                            ></label>
-                          </div>
-                          <div
-                            onClick={() => editDetail(rowData.id)}
-                            className="avatar avatar-icon avatar-md avatar-orange"
-                          >
-                            <i className="fas fa-edit"></i>
-                          </div>
-                          <div className="d-flex">
-                            <OverlayTrigger
-                              placement="bottom"
-                              overlay={
-                                <Tooltip id="button-tooltip-2">
-                                  View Description
-                                </Tooltip>
-                              }
-                            >
-                              <div className="avatar avatar-icon avatar-md avatar-orange">
-                                <i
-                                  className="fa-solid fa-eye"
-                                  onClick={() => viewAllImages(rowIndex)}
-                                ></i>
-                              </div>
-                            </OverlayTrigger>
-                          </div>
-                          {rowData.delete_status == 0 ? (
-                            <OverlayTrigger
-                              placement="bottom"
-                              overlay={
-                                <Tooltip id="button-tooltip-2">Delete</Tooltip>
-                              }
-                            >
-                              <div className="avatar ml-2 avatar-icon avatar-md avatar-red">
-                                <i
-                                  className="fas fa-trash-alt"
-                                  onClick={() => deleteInternship(rowData.id)}
-                                ></i>
-                              </div>
-                            </OverlayTrigger>
-                          ) : (
-                            <OverlayTrigger
-                              placement="bottom"
-                              overlay={
-                                <Tooltip id="button-tooltip-2">Restore</Tooltip>
-                              }
-                            >
-                              <div className="avatar ml-2 avatar-icon avatar-md avatar-lime">
-                                <i
-                                  className="fas fa-recycle"
-                                  onClick={() => deleteInternship(rowData.id)}
-                                ></i>
-                              </div>
-                            </OverlayTrigger>
-                          )}
-                        </div>
-                      )}
-                      sortable
-                    />
-                  </DataTable>
-                </div>
-              )}
             </div>
           </div>
-        </div>
         </div>
       </div>
 

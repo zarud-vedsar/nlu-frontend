@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import StudyMaterial from "../../../../site-components/admin/assets/images/application.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useRolePermission from '../../../../site-components/admin/useRolePermission';
 
 const Reports = () => {
+  const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Reports", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
   return (
     <>
       <div className="page-container">

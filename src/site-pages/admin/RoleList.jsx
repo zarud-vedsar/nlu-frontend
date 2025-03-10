@@ -22,11 +22,20 @@ import validator from "validator";
 import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
 import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert";
-
+import useRolePermission from '../../site-components/admin/useRolePermission'
 function NoticeList() {
   const [role, setRole] = useState([]);
   const [globalFilter, setGlobalFilter] = useState(""); // State for the search box
   const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Role List", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
   const fetchRoleList = async () => {
     const sendFormData = new FormData();
     sendFormData.append("data", "RoleList");
@@ -154,6 +163,7 @@ useEffect(() => {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                  {hasPermission("Add New","create") && (
                   <button
                     onClick={() =>
                       navigate("/admin/add-role", { replace: false })
@@ -162,6 +172,7 @@ useEffect(() => {
                   >
                     <i className="fas fa-plus" /> Add New
                   </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -249,6 +260,7 @@ useEffect(() => {
                       header="Action"
                       body={(rowData) => (
                         <div className="d-flex">
+                          {hasPermission("Role List","status") && (
                           <div className="switch mt-1 w-auto">
                             <input
                               type="checkbox"
@@ -263,12 +275,16 @@ useEffect(() => {
                               htmlFor={`switch${rowData.id}`}
                             ></label>
                           </div>
+                          )}
+                          {hasPermission("Role List","update") && (
                           <div
                             onClick={() => updateDataFetch(rowData.id)}
                             className="avatar avatar-icon avatar-md avatar-orange"
                           >
                             <i className="fas fa-edit"></i>
                           </div>
+                          )}
+                          {hasPermission("Role List","delete") && (
                           <OverlayTrigger
                             placement="bottom"
                             overlay={
@@ -282,6 +298,7 @@ useEffect(() => {
                               ></i>
                             </div>
                           </OverlayTrigger>
+                          )}
                         </div>
                       )}
                     />

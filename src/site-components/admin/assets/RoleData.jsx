@@ -1,3 +1,5 @@
+//  pending - marks add for description based , need permission to set in response page
+// need to check exam related page in exam module
 export const RoleData = [
   {
     title: "Dashboard",
@@ -67,7 +69,6 @@ export const RoleData = [
         label: "Assignment Response",
         value: "Assignment Response",
         crud: ["list","marks add for description based"], 
-        //  pending - marks add for description based , need permission to set in response page
       },
       {
         label: "Quiz",
@@ -152,7 +153,7 @@ export const RoleData = [
       {
         label: "Course",
         value: "Course",
-        crud: ["create", "update", "status", "list", "delete", "recycle bin"], // CRUD operations
+        crud: ["create", "update", "status", "list", "delete", "recycle bin", "update course info"], // CRUD operations
       },
       {
         label: "Semester",
@@ -585,7 +586,7 @@ export const RoleData = [
       {
         label: "Media Category",
         value: "Media Category",
-        crud: ["create", "update", "status", "list", "delete"], // CRUD operations
+        crud: ["create", "update", "status", "list", "delete","recycle bin"], // CRUD operations
       },
       {
         label: "Image",
@@ -605,7 +606,7 @@ export const RoleData = [
       {
         label: "Job Category",
         value: "Job Category",
-        crud: ["create", "update", "status", "list", "delete"], // CRUD operations
+        crud: ["create", "update", "status", "list", "delete","recycle bin"], // CRUD operations
       },
       {
         label: "Job",
@@ -725,7 +726,7 @@ export const RoleData = [
       {
         label: "File Manager",
         value: "File Manager",
-        crud: ["list","create"], // CRUD operations
+        crud: ["list","upload file"], // CRUD operations
       },
     ],
   },
@@ -735,7 +736,7 @@ export const RoleData = [
       {
         label: "University Settings",
         value: "University Settings",
-        crud: ["update"], // CRUD operations
+        crud: ["email setting","contact setting","social media","contact icon","session setting"], // CRUD operations
       },
     ],
   },

@@ -10,6 +10,8 @@ import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 
 import pdf_image from "../../site-components/admin/assets/images/avatars/pdf-icon.webp";
+import { useNavigate } from "react-router-dom";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 
 const MyVerticallyCenteredModal = (props = {}) => {
   const [title, setTitle] = useState("");
@@ -146,6 +148,16 @@ const FileManager = () => {
   const [loading, setLoading] = useState(false);
   const [modalShow, setModalShow] = useState(false);
 
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate()
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("File Manager", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
   useEffect(() => {
     load_vendor();
   }, []);
@@ -220,6 +232,7 @@ const FileManager = () => {
                     Go Back
                   </button>
 
+                  {hasPermission("File Manager", "upload file") && (
                   <button
                     className="btn btn-success py-2"
                     onClick={() => setModalShow(true)}
@@ -228,6 +241,7 @@ const FileManager = () => {
                     Upload File{" "}
                     <i className="fa fa-upload" aria-hidden="true"></i>
                   </button>
+                  )}
                 </div>
               </div>
             </div>

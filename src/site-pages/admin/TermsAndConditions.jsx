@@ -6,9 +6,20 @@ import { PHP_API_URL } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
+import { useNavigate } from "react-router-dom";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 const TermsAndConditions = () => {
   const [formData, setFormData] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
+  const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Terms And Conditions", "create")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
   // Jodit editor configuration
 const config = useMemo(()=>({
     readonly: false,

@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
-  Modal,
   Button,
-  Form,
-  Table,
   Spinner,
-  Col,
-  Row,
-  InputGroup,
 } from "react-bootstrap";
-import Select from "react-select";
-import { FaFilter } from "react-icons/fa";
+
 import { IoMdAdd } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -29,6 +22,7 @@ import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert"
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
 import { capitalizeFirstLetter } from "../../site-components/Helper/HelperFunction";
+import useRolePermission from '../../site-components/admin/useRolePermission';
 const Gallery = () => {
   const navigate = useNavigate();
   const [gallery, setGallery] = useState([]);
@@ -36,6 +30,16 @@ const Gallery = () => {
   const [category, setCategory] = useState();
 
   const [loading, setLoading] = useState(false);
+
+   const { RolePermission, hasPermission } = useRolePermission();
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Image", "list")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
+
 
   useEffect(() => {
     const loadData = async () => {
@@ -285,7 +289,7 @@ const Gallery = () => {
                     </i>{" "}
                     Go Back
                   </Button>
-
+{hasPermission("Image", "recycle bin") && (
                   <button
                     className={`btn ml-2 ${
                       recycleTitle === "Show Recycle Bin"
@@ -296,7 +300,8 @@ const Gallery = () => {
                   >
                     {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
                   </button>
-
+                  )}
+                  {hasPermission("Image", "create") && (
                   <Link
                     variant="dark"
                     className="ml-2  mb-md-0 btn btn-secondary"
@@ -307,6 +312,7 @@ const Gallery = () => {
                     </i>{" "}
                     Add New
                   </Link>
+                )}
                 </div>
               </div>
             </div>
@@ -368,6 +374,7 @@ const Gallery = () => {
                             : `${item.gallery_images.length} Image`}
                         </div>
                         <div className="d-flex align-items-center  justify-content-start">
+                       { hasPermission("Image", "status") && ( 
                           <div className="switch ">
                             <input
                               type="checkbox"
@@ -381,16 +388,21 @@ const Gallery = () => {
                               htmlFor={`switch${item.id}`}
                             ></label>
                           </div>
+                       )}
 
                           <div className="d-flex ">
+                          { hasPermission("Image", "update") && (
                             <div
                               onClick={() => editDetail(item.id)}
                               className="avatar avatar-icon avatar-md avatar-orange"
                             >
                               <i className="fas fa-edit"></i>
                             </div>
+                          )}
                           </div>
                           {item.delete_status == 0 ? (
+                            <>
+                             { hasPermission("Image", "delete") && (
                             <OverlayTrigger
                               placement="bottom"
                               overlay={
@@ -404,6 +416,8 @@ const Gallery = () => {
                                 ></i>
                               </div>
                             </OverlayTrigger>
+                             )}
+                            </>
                           ) : (
                             <OverlayTrigger
                               placement="bottom"

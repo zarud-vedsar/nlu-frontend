@@ -4,10 +4,11 @@ import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
 import { PHP_API_URL, CKEDITOR_URL } from "../../site-components/Helper/Constant";
 import { toast, } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
+import useRolePermission from "../../site-components/admin/useRolePermission";
 const UpdateCourseContent = () => {
   const { id } = useParams();
   const [sllaybus, setSllaybus] = useState("");
@@ -15,6 +16,17 @@ const UpdateCourseContent = () => {
   const [activity, setActivity] = useState("");
   const [timetable, setTimetable] = useState("");
   const [feeStructure, setFeeStructure] = useState("");
+
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate(); // Initialize useNavigate
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Course", "update course info")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
   const getDetail = async (data, id) => {
     const bformData = new FormData();
     bformData.append("loguserid", secureLocalStorage.getItem("login_id"));

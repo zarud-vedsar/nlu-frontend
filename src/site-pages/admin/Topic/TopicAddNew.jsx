@@ -5,7 +5,7 @@ import {
   CKEDITOR_URL,
 } from "../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   capitalizeFirstLetter,
   dataFetchingPost,
@@ -17,7 +17,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
-
+import useRolePermission from '../../../site-components/admin/useRolePermission';
 function TopicAddNew() {
   const initialForm = {
     dbId: "",
@@ -35,6 +35,16 @@ function TopicAddNew() {
   const [semesterListing, setSemesterListing] = useState([]); // on course and year selection
   const [subjectListing, setSubjectListing] = useState([]);
   const [previewimage, setPreviewimage] = useState(null);
+
+  const navigate = useNavigate();
+    const { RolePermission, hasPermission } = useRolePermission();
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Topic", "create")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
 
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
   // Jodit editor configuration
@@ -330,11 +340,13 @@ function TopicAddNew() {
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
+                  {hasPermission("Topic", "list") && (
                   <Link to="/admin/topic">
                     <button className="ml-2 btn-md btn border-0 btn-secondary">
                       <i className="fas fa-list"></i> Topic List
                     </button>
                   </Link>
+                  )}
                 </div>
               </div>
             </div>

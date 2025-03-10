@@ -10,8 +10,20 @@ import {
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import JoditEditor from "jodit-react"; // Import Jodit editor
+import { useNavigate } from "react-router-dom";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 
 const AntiRagging = () => {
+
+  const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Anti Ragging Policy", "create")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
 
   const [formData, setFormData] = useState('');
   const [isSubmit, setIsSubmit] = useState(false);

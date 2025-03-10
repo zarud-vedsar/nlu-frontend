@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
     dataFetchingPost,
     goBack, productUnits
@@ -13,6 +13,8 @@ import { toast } from "react-toastify";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import Select from "react-select";
+import useRolePermission from "../../../site-components/admin/useRolePermission";
+
 function Registration() {
     const { dbId } = useParams();
     const initialData = {
@@ -29,6 +31,17 @@ function Registration() {
     const [error, setError] = useState({ field: "", msg: "" }); // Error state
     const [isSubmit, setIsSubmit] = useState(false); // Form submission state
     const [productDropdown, setproductDropdown] = useState([]);
+
+    const { RolePermission, hasPermission } = useRolePermission();
+    const navigate = useNavigate()
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Stock In", "create")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
     const errorMsg = (field, msg) => {
         setError((prev) => ({
             ...prev,
@@ -180,11 +193,13 @@ function Registration() {
                                     >
                                         <i className="fas fa-arrow-left"></i> Go Back
                                     </button>
+                                    {hasPermission("Stock In History", "list") && (
                                     <Link to="/admin/inventory/product/stockin/history">
                                         <button className="ml-2 btn-md btn border-0 btn-secondary">
                                         <i className="fas fa-list"></i> Stock In History 
                                         </button>
                                     </Link>
+                                    )}
                                 </div>
                             </div>
                         </div>

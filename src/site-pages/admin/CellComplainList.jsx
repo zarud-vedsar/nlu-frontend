@@ -16,11 +16,9 @@ import { Column } from "primereact/Column";
 import secureLocalStorage from "react-secure-storage";
 import { FormField } from "../../site-components/admin/assets/FormField";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Modal, Button, Spinner } from "react-bootstrap";
 import { InputText } from "primereact/inputtext";
-import { Link } from "react-router-dom";
-
-
+import { Link, useNavigate } from "react-router-dom";
+import useRolePermission from '../../site-components/admin/useRolePermission'
 function CellComplainList() {
   const [showFilter, setShowFilter] = useState(false);
   const [cellList, setCellList] = useState([]);
@@ -31,8 +29,17 @@ function CellComplainList() {
   const [modalMessage, setModalMessage] = useState();
   const [globalFilter, setGlobalFilter] = useState("");
 
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Cell Complain", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
   const viewMessage = (data) => {
-   
     setModalMessage(data);
     setModalShow(true);
   };
@@ -47,7 +54,9 @@ function CellComplainList() {
 
   const getFirstDayOfMonth = () => {
     const now = new Date();
-    return formatDateForMonth(new Date(now.getFullYear(), now.getMonth()-2, 1));
+    return formatDateForMonth(
+      new Date(now.getFullYear(), now.getMonth() - 2, 1)
+    );
   };
 
   const getLastDayOfMonth = () => {
@@ -263,19 +272,19 @@ function CellComplainList() {
               <div className="card-body">
                 {/* Search Box */}
                 <div className="row align-items-center">
-                                <div className="col-md-12 col-lg-12 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
-                                  <div className="search-icon">
-                                    <i className="pi pi-search" />
-                                  </div>
-                                  <InputText
-                                    type="search"
-                                    value={globalFilter}
-                                    onChange={(e) => setGlobalFilter(e.target.value)}
-                                    placeholder="Search"
-                                    className="form-control dtsearch-input"
-                                  />
-                                </div>
-                              </div>
+                  <div className="col-md-12 col-lg-12 col-12 col-sm-8 p-input-icon-left mb-3 d-flex justify-content-start align-items-center">
+                    <div className="search-icon">
+                      <i className="pi pi-search" />
+                    </div>
+                    <InputText
+                      type="search"
+                      value={globalFilter}
+                      onChange={(e) => setGlobalFilter(e.target.value)}
+                      placeholder="Search"
+                      className="form-control dtsearch-input"
+                    />
+                  </div>
+                </div>
 
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   {cellList.length > 0 ? (
@@ -290,7 +299,6 @@ function CellComplainList() {
                       tableStyle={{ minWidth: "50rem" }}
                       sortMode="multiple"
                       globalFilter={globalFilter}
-                      
                     >
                       <Column
                         body={(row, { rowIndex }) => rowIndex + 1}
@@ -341,12 +349,21 @@ function CellComplainList() {
                         body={(row) => formatDate(row.created_at)}
                         header="Date"
                         sortable
-                        
                         field="created_at"
                       />
-                      
-                      <Column body={(row) => row.cell} header="Cell" sortable  field="cell" />
-                      <Column body={(row) => row.subject} header="Subject" sortable  field="subject" />
+
+                      <Column
+                        body={(row) => row.cell}
+                        header="Cell"
+                        sortable
+                        field="cell"
+                      />
+                      <Column
+                        body={(row) => row.subject}
+                        header="Subject"
+                        sortable
+                        field="subject"
+                      />
                       <Column
                         header="View Complain"
                         body={(row) => (
@@ -359,13 +376,13 @@ function CellComplainList() {
                                 </Tooltip>
                               }
                             >
-                              <Link to={`/admin/cell-complain-details/${row.id}`} className="avatar avatar-icon avatar-md avatar-orange">
-                                <i
-                                  className="fa-solid fa-eye"
-                                ></i>
+                              <Link
+                                to={`/admin/cell-complain-details/${row.id}`}
+                                className="avatar avatar-icon avatar-md avatar-orange"
+                              >
+                                <i className="fa-solid fa-eye"></i>
                               </Link>
                             </OverlayTrigger>{" "}
-                            
                           </div>
                         )}
                       />
@@ -383,7 +400,6 @@ function CellComplainList() {
           </div>
         </div>
       </div>
-
     </>
   );
 }

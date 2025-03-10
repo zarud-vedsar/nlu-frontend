@@ -8,10 +8,11 @@ import {
   NODE_API_URL,
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Select from "react-select";
 
 import { useParams } from "react-router-dom";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 
 const GalleryForm = () => {
   const { id } = useParams();
@@ -31,6 +32,16 @@ const GalleryForm = () => {
   const [errorKey, setErrorKey] = useState();
   const [errorMessage, setErrorMessage] = useState();
   const [loading, setLoading] = useState(true);
+
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Image", "create")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
 
   const updateCategory = (e) => {
     setSelectCategory(e);
@@ -299,11 +310,13 @@ const GalleryForm = () => {
                 >
                   <i className="fas fa-arrow-left" /> Go Back
                 </button>
+                {hasPermission("Image","list") && (
                 <Link to="/admin/gallery">
                   <button className="ml-2 btn-md btn border-0 btn-primary mr-2">
                     <i className="fa-solid fa-list"></i> Galley
                   </button>
                 </Link>
+                )}
               </div>
             </div>
           </div>

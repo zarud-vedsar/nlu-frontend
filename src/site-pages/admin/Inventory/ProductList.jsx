@@ -16,6 +16,8 @@ import { FormField } from '../../../site-components/admin/assets/FormField';
 import secureLocalStorage from 'react-secure-storage';
 import validator from "validator";
 import Select from "react-select";
+import useRolePermission from "../../../site-components/admin/useRolePermission";
+
 function ProductList() {
     const [ProductList, setProductList] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
@@ -26,6 +28,14 @@ function ProductList() {
     const handleShow = () => setShow(true);
     const [categoryList, setCategoryList] = useState([]);
     const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Product List", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
     // initialize form fields
     const initialData = {
         pname: '',
@@ -203,11 +213,13 @@ function ProductList() {
                                     >
                                         <i className="fas fa-arrow-left" /> Go Back
                                     </button>
+                                    {hasPermission("Add Product","create") && (
                                     <button onClick={() => navigate("/admin/inventory/add-product", { replace: false })}
                                         className="mr-2 ml-2 btn border-0 btn-secondary"
                                     >
                                         <i className="fas fa-plus" /> Add New
                                     </button>
+                                    )}
                                     <button className="btn btn-info text-white" onClick={handleShow}><i className="fa fa-filter"></i></button>
                                 </div>
                             </div>
@@ -226,10 +238,12 @@ function ProductList() {
                                             className="form-control dtsearch-input"
                                         />
                                     </div>
+                                    {hasPermission("Product List","recycle bin") && (
                                     <div className='col-md-4 col-lg-4 col-10 mb-4 col-sm-3 d-flex justify-content-between align-items-center'>
                                         <button className={`btn ${recycleTitle === "Trash" ? 'btn-secondary' : 'btn-danger'}`} onClick={showRecyleBin}>{recycleTitle} <i className="fa fa-recycle"></i></button>
                                         
                                     </div>
+                                    )}
                                 </div>
                                 <div className={`table-responsive ${isFetching ? 'form' : ''}`}>
                                     <DataTable
@@ -264,6 +278,7 @@ function ProductList() {
                                             header="Action"
                                             body={(rowData) => (
                                                 <div className="d-flex">
+                                                    {hasPermission("Product List","status") && (
                                                     <div className="switch mt-1 w-auto">
                                                         <input
                                                             type="checkbox"
@@ -273,12 +288,17 @@ function ProductList() {
                                                         />
                                                         <label className="mt-0" htmlFor={`switch${rowData.id}`}></label>
                                                     </div>
+                                                    )}
+                                                    {hasPermission("Product List","update") && (
                                                     <Link to={`/admin/inventory/add-product/${rowData.id}`} className="avatar avatar-icon avatar-md avatar-orange">
                                                         <i className="fas fa-edit"></i>
                                                     </Link>
+                                                    )}
                                                     {
                                                         parseInt(rowData.deleteStatus) == 0 ?
                                                             (
+                                                                <>
+                                                                {hasPermission("Product List","delete") && (
                                                                 <OverlayTrigger
                                                                     placement="bottom"
                                                                     overlay={<Tooltip id="button-tooltip-2">Delete</Tooltip>}
@@ -287,6 +307,8 @@ function ProductList() {
                                                                         <i className="fas fa-trash-alt" onClick={() => deleteStatus(rowData.id)}></i>
                                                                     </div>
                                                                 </OverlayTrigger>
+                                                                )}
+                                                                </>
                                                             ) :
                                                             (
                                                                 <OverlayTrigger

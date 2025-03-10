@@ -3,7 +3,7 @@ import { FaRegEdit } from "react-icons/fa";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   PHP_API_URL,
   CKEDITOR_URL,
@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
 import secureLocalStorage from "react-secure-storage";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 const JobRecruitmentForm = () => {
   const { id } = useParams();
   const [errorKey, setErrorKey] = useState();
@@ -22,6 +23,17 @@ const JobRecruitmentForm = () => {
   const [jobTypes, setJobTypes] = useState([]);
   const [minExperienceList, setMinExperienceList] = useState([]);
   const [loading, setLoading] = useState();
+
+   const { RolePermission, hasPermission } = useRolePermission();
+    const navigate = useNavigate();
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Job", "create")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
+
   const config = useMemo(()=>({
     readonly: false,
     placeholder: "Enter your content here...",
@@ -364,12 +376,14 @@ const JobRecruitmentForm = () => {
                   </i>{" "}
                   Go Back
                 </Button>
+                {hasPermission("Job","list") && (
                 <Link
                   to="/admin/job-recruitment"
                   className="ml-2 btn-md btn border-0 btn-secondary"
                 >
                   <i className="fas fa-list" /> Job List
                 </Link>
+                )}
               </div>
             </div>
           </div>

@@ -17,12 +17,24 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import { Link, useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
+import useRolePermission from '../../site-components/admin/useRolePermission';
+
 function Course() {
   const [CourseListing, setCourseListing] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [globalFilter, setGlobalFilter] = useState(""); // State for the search box
   const [recycleTitle, setRecycleTitle] = useState("Show Recycle Bin");
-  const navigate = useNavigate();
+
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate(); // Initialize useNavigate
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Course", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
   const fetchList = async (deleteStatus = 0) => {
     setIsFetching(true);
     try {
@@ -183,16 +195,18 @@ function Course() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                  {hasPermission("Course", "create") && (
                   <Link
                     to={"/admin/add-course"}
                     className="ml-2 btn-md btn border-0 btn-secondary"
                   >
                     <i className="fas fa-plus" /> Add New
                   </Link>
+                  )}
                 </div>
               </div>
             </div>
-           
+
             <div className="card">
               <div className="card-body">
                 {/* Search Box */}
@@ -210,6 +224,7 @@ function Course() {
                     />
                   </div>
                   <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-3">
+                    {hasPermission("Course", "recycle bin") && (
                     <button
                       className={`btn ${
                         recycleTitle === "Show Recycle Bin"
@@ -220,6 +235,7 @@ function Course() {
                     >
                       {recycleTitle} <i className="fa fa-recycle"></i>
                     </button>
+                    )}
                   </div>
                 </div>
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
@@ -275,6 +291,7 @@ function Course() {
                       header="Action"
                       body={(rowData) => (
                         <div className="d-flex">
+                          {hasPermission("Course", "update course info") && (
                           <div>
                             <OverlayTrigger
                               placement="bottom"
@@ -295,6 +312,8 @@ function Course() {
                               </div>
                             </OverlayTrigger>
                           </div>
+                          )}
+                          {hasPermission("Course", "status") && (
                           <div className="switch mt-1 w-auto">
                             <input
                               type="checkbox"
@@ -308,14 +327,18 @@ function Course() {
                               className="mt-0"
                               htmlFor={`switch${rowData.id}`}
                             ></label>
-                          </div>
+                          </div>)}
+                          {hasPermission("Course", "update") && (
                           <div
                             onClick={() => updateDataFetch(rowData.id)}
                             className="avatar avatar-icon avatar-md avatar-orange"
                           >
                             <i className="fas fa-edit"></i>
-                          </div>
-                          {rowData.deleteStatus == 0 ? (
+                          </div> )}
+                          { rowData.deleteStatus == 0 ? (
+                             <div>
+                            {hasPermission("Course", "delete") && (
+                             
                             <OverlayTrigger
                               placement="bottom"
                               overlay={
@@ -329,6 +352,7 @@ function Course() {
                                 ></i>
                               </div>
                             </OverlayTrigger>
+                            )} </div> 
                           ) : (
                             <OverlayTrigger
                               placement="bottom"

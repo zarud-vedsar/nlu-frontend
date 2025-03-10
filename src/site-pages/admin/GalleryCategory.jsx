@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert";
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
-
+import useRolePermission from '../../site-components/admin/useRolePermission';
 const MyVerticallyCenteredModal = (props = {}) => {
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
@@ -116,7 +116,15 @@ const MyVerticallyCenteredModal = (props = {}) => {
 };
 
 const GalleryCategory = () => {
+  const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Media Category", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
 
   const [MarqueList, setMarqueList] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -318,6 +326,7 @@ const GalleryCategory = () => {
                     </i>{" "}
                     Go Back
                   </Button>
+                  {hasPermission("Media Category","recycle bin") && (
                   <Button
                     className={`btn  ${
                       recycleTitle === "Show Recycle Bin"
@@ -328,6 +337,8 @@ const GalleryCategory = () => {
                   >
                     {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
                   </Button>
+                  )}
+                  {hasPermission("Media Category","create") && (
                   <Button
                     className="ml-2  mb-md-0 btn btn-secondaary"
                     onClick={() => setModalShow(true)}
@@ -337,6 +348,7 @@ const GalleryCategory = () => {
                     </i>{" "}
                     Add New
                   </Button>
+                  )}
                 </div>
               </div>
             </div>
@@ -361,6 +373,8 @@ const GalleryCategory = () => {
                         </h6>
 
                         <div className="d-flex align-items-center  justify-content-start">
+
+                        {hasPermission("Media Category","status") && (
                           <div className="switch ">
                             <input
                               type="checkbox"
@@ -374,16 +388,21 @@ const GalleryCategory = () => {
                               htmlFor={`switch${item.id}`}
                             ></label>
                           </div>
+                        )}
 
                           <div className="d-flex ">
+                          {hasPermission("Media Category","update") && (
                             <div
                               onClick={() => editMarque(index)}
                               className="avatar avatar-icon avatar-md avatar-orange"
                             >
                               <i className="fas fa-edit"></i>
                             </div>
+                          )}
                           </div>
                           {item.delete_status == 0 ? (
+                            <>
+                            {hasPermission("Media Category","delete") && (
                             <OverlayTrigger
                               placement="bottom"
                               overlay={
@@ -397,6 +416,8 @@ const GalleryCategory = () => {
                                 ></i>
                               </div>
                             </OverlayTrigger>
+                            )}
+                            </>
                           ) : (
                             <OverlayTrigger
                               placement="bottom"

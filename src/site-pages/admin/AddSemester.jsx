@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NODE_API_URL } from "../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   capitalizeFirstLetter,
   dataFetchingGet,
@@ -11,6 +11,7 @@ import {
 import Select from "react-select";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 
 function SemesterAdd() {
   // Initial form state
@@ -26,6 +27,16 @@ function SemesterAdd() {
   const [courseListing, setCourseListing] = useState([]); // Form submission state
   const [yearListing, setYearListing] = useState([]); // on course selection
   const [error, setError] = useState({ field: "", msg: "" }); // Error state
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate(); // Initialize useNavigate
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Semester", "create")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
   const semesterList = [
     "semester 1",
     "semester 2",
@@ -213,12 +224,14 @@ function SemesterAdd() {
                       >
                         <i className="fas fa-arrow-left" /> Go Back
                       </button>
+                      {hasPermission("Semester","list") && (
                       <Link
                         to="/admin/semester"
                         className="ml-2 btn-md btn border-0 btn-secondary"
                       >
                         <i className="fas fa-list" /> Semester List
                       </Link>
+                      )}
                     </div>
                   </div>
                 </div>

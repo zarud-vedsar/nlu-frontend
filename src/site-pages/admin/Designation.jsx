@@ -21,6 +21,9 @@ import "../../../node_modules/primeicons/primeicons.css";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import secureLocalStorage from "react-secure-storage";
+import { useNavigate } from "react-router-dom";
+import useRolePermission from '../../site-components/admin/useRolePermission';
+
 function Designation() {
     const [toggleShow, setToggleShow] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
@@ -36,6 +39,17 @@ function Designation() {
         department_id: ''
     };
     const [formData, setFormData] = useState(iniatialForm);
+
+    const { RolePermission, hasPermission } = useRolePermission();
+    const navigate = useNavigate(); // Initialize useNavigate
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Designation", "list")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
+
     const fetchList = async () => {
         setIsFetching(true);
         try {
@@ -297,13 +311,14 @@ function Designation() {
                                     >
                                         <i className="fas fa-arrow-left" /> Go Back
                                     </button>
+                                    { hasPermission("Designation", "create") && (
                                     <button
                                         className="ml-2 btn-md btn border-0 btn-secondary"
                                         onClick={handleToggleShow}
                                     >
                                         <i className="fas fa-plus" /> Add New
-                                    </button>
-                                </div>
+                                    </button> )}
+                                                                    </div>
                             </div>
                         </div>
                         <div className="card">
@@ -320,9 +335,10 @@ function Designation() {
                                             className="form-control dtsearch-input"
                                         />
                                     </div>
+                                      {hasPermission("Designation", "recycle bin") && (
                                     <div className='col-md-4 col-lg-4 col-10 col-sm-4 mb-3'>
                                         <button className={`btn ${recycleTitle === "Show Recycle Bin" ? 'btn-secondary' : 'btn-danger'}`} onClick={showRecyleBin}>{recycleTitle} <i className="fa fa-recycle"></i></button>
-                                    </div>
+                                    </div> )}
                                 </div>
                                 <div className={`table-responsive ${isFetching ? 'form' : ''}`}>
                                     <DataTable
@@ -352,6 +368,7 @@ function Designation() {
                                             header="Action"
                                             body={(rowData) => (
                                                 <div className="d-flex">
+                                                  {hasPermission("Designation", "status") && (
                                                     <div className="switch mt-1 w-auto">
                                                         <input type="checkbox"
                                                             checked={rowData.status === 1}
@@ -359,9 +376,14 @@ function Designation() {
                                                             id={`switch${rowData.id}`} />
                                                         <label className="mt-0" htmlFor={`switch${rowData.id}`}></label>
                                                     </div>
+                                                  )}
+                                                  {hasPermission("Designation", "update") && (
                                                     <div onClick={() => updateDataFetch(rowData.id)} className="avatar avatar-icon avatar-md avatar-orange">
                                                         <i className="fas fa-edit"></i>
                                                     </div>
+                                                  )}
+                                                  {hasPermission("Designation", "delete") && (
+                                                    <div>
                                                     {
                                                         parseInt(rowData.deleteStatus) == 0 ?
                                                             (
@@ -385,6 +407,8 @@ function Designation() {
                                                                 </OverlayTrigger>
                                                             )
                                                     }
+                                                    </div>
+                                                  )}
 
                                                 </div>
                                             )}

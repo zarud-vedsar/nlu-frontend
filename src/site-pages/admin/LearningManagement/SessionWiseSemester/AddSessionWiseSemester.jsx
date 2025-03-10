@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NODE_API_URL, PHP_API_URL } from "../../../../site-components/Helper/Constant";
 import { toast } from "react-toastify";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   capitalizeFirstLetter,
   dataFetchingPost,
@@ -11,6 +11,8 @@ import Select from "react-select";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import { FormField } from "../../../../site-components/admin/assets/FormField";
+import useRolePermission from "../../../../site-components/admin/useRolePermission";
+
 function AddSessionWiseSemester() {
   // Initial form state
   const initialForm = {
@@ -27,6 +29,16 @@ function AddSessionWiseSemester() {
   const [semesterList, setSemesterList] = useState([]);
   const [sessionList, setSessionList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+
+  const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Session Wise Semester Class", "create")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
 
   const courseListDropdown = async () => {
     try {
@@ -292,11 +304,13 @@ function AddSessionWiseSemester() {
                       >
                         <i className="fas fa-arrow-left" /> Go Back
                       </button>
+                      {hasPermission("Session Wise Semester Class", "list") && (
                        <Link to="/admin/learning-management/session-wise-semester/list">
                                                           <button className="ml-2 btn-md btn border-0 btn-secondary">
                                                             <i className="fas fa-list"></i> Class List
                                                           </button>
                                                         </Link>
+                      )}
                       
                     </div>
                   </div>

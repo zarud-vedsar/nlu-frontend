@@ -8,9 +8,20 @@ import {
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
+import { useNavigate } from "react-router-dom";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 const TermsAndUse = () => {
   const [formData, setFormData] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
+  const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Terms Of Use Policy", "create")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
   // Jodit editor configuration
 const config = useMemo(()=>({
     readonly: false,

@@ -23,6 +23,7 @@ import { Modal, Button, Form, Col, Row } from "react-bootstrap";
 import Select from "react-select";
 import { FaFilter } from "react-icons/fa";
 import axios from "axios";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 function SemesterSubjectList() {
   const [SemesterSubjectListing, setSemesterSubjectListing] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
@@ -48,6 +49,15 @@ function SemesterSubjectList() {
   const practNonPract = ["Yes", "No"];
   const isGroup = ["Yes", "No"];
   const subjectType = ["Compulsory", "Optional", "Elective", "Seminar", "optional-paper"];
+
+  const { RolePermission, hasPermission } = useRolePermission();
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Semester Wise Subject", "list")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -334,8 +344,9 @@ function SemesterSubjectList() {
               <div className="card-header id-pc-divices-header px-0 id-mobile-divice-d-block">
                 <h5 className="card-title h6_new">Semester Wise Subject List</h5>
                 <div className="ml-auto id-mobile-go-back">
+                  
                   <button
-                    className="mr-auto btn-md btn border-0 goback mr-2 "
+                    className=" btn-md btn border-0 goback mr-2 "
                     onClick={() => goBack()}
                   >
                     <i className="fas fa-arrow-left" /> Go Back
@@ -350,12 +361,14 @@ function SemesterSubjectList() {
                         <FaFilter />
                       </span>
                     </Button>
+                    {hasPermission("Semester Wise Subject", "create") && (
                   <Link
                     to={"/admin/add-semester-subject"}
                     className="ml-2 btn-md btn border-0 btn-secondary"
                   >
                     <i className="fas fa-plus" /> Add New
                   </Link>
+                    )}
                 </div>
               </div>
             </div>
@@ -377,6 +390,7 @@ function SemesterSubjectList() {
                   </div>
                  
                   <div className="col-md-4 col-lg-4 col-10 col-sm-4 mb-3">
+                    {hasPermission("Semester Wise Subject", "recycle bin") && (
                     <button
                       className={`btn ${recycleTitle === "Show Recycle Bin"
                           ? "btn-secondary"
@@ -386,6 +400,7 @@ function SemesterSubjectList() {
                     >
                       {recycleTitle} <i className="fa fa-recycle"></i>
                     </button>
+                    )}
                   </div>
                 </div>
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
@@ -466,6 +481,7 @@ function SemesterSubjectList() {
                       header="Action"
                       body={(rowData) => (
                         <div className="d-flex">
+                          {hasPermission("Semester Wise Subject", "status") && (
                           <div className="switch mt-1 w-auto">
                             <input
                               type="checkbox"
@@ -481,13 +497,18 @@ function SemesterSubjectList() {
                               htmlFor={`switch${rowData.id}`}
                             ></label>
                           </div>
+                          )}
+                          {hasPermission("Semester Wise Subject", "update") && (
                           <div
                             onClick={() => updateDataFetch(rowData.id)}
                             className="avatar avatar-icon avatar-md avatar-orange"
                           >
                             <i className="fas fa-edit"></i>
-                          </div>
+                          </div> 
+                          )}
                           {rowData.deleteStatus == 0 ? (
+                            <>
+                            {hasPermission("Semester Wise Subject", "delete") && (
                             <OverlayTrigger
                               placement="bottom"
                               overlay={
@@ -501,6 +522,8 @@ function SemesterSubjectList() {
                                 ></i>
                               </div>
                             </OverlayTrigger>
+                            )}
+                            </>
                           ) : (
                             <OverlayTrigger
                               placement="bottom"

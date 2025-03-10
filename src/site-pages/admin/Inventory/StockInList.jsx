@@ -2,27 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { NODE_API_URL } from "../../../site-components/Helper/Constant";
 import {
-  dataFetchingDelete,
-  dataFetchingPatch,
   dataFetchingPost,
   formatDate,
   goBack,
-  productUnits,
 } from "../../../site-components/Helper/HelperFunction";
-import { DeleteSweetAlert } from "../../../site-components/Helper/DeleteSweetAlert";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/Column";
 import { InputText } from "primereact/inputtext"; // Import InputText for the search box
 import "../../../../node_modules/primeicons/primeicons.css";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+
 import { toast } from "react-toastify";
 import { Offcanvas } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FormField } from "../../../site-components/admin/assets/FormField";
-import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
 import Select from "react-select";
+import useRolePermission from "../../../site-components/admin/useRolePermission";
 function ProductList() {
   const [ProductList, setProductList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
@@ -32,7 +27,16 @@ function ProductList() {
   const handleShow = () => setShow(true);
   const [categoryList, setCategoryList] = useState([]);
   const [productDropdown, setproductDropdown] = useState([]);
+
+  const { RolePermission, hasPermission } = useRolePermission();
   const navigate = useNavigate();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Stock In History", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
   // initialize form fields
   const initialData = {
     catId: "",
@@ -168,9 +172,7 @@ function ProductList() {
                     <i className="fas fa-home m-r-5" /> Dashboard
                   </a>
                   <span className="breadcrumb-item">Inventory Management</span>
-                  <span className="breadcrumb-item active">
-                    Stock In 
-                  </span>
+                  <span className="breadcrumb-item active">Stock In</span>
                 </nav>
               </div>
             </div>
@@ -179,22 +181,24 @@ function ProductList() {
                 <h5 className="card-title h6_new pt-0">Stock In History</h5>
                 <div className="ml-auto id-mobile-go-back">
                   <button
-                    className="mr-auto btn-md btn border-0 goBack mr-2"
+                    className=" btn-md btn border-0 goBack mr-2"
                     onClick={goBack}
                   >
                     <i className="fas fa-arrow-left"></i> Go Back
                   </button>
                   <button
-                      className="btn btn-info text-white"
-                      onClick={handleShow}
-                    >
-                      <i className="fa fa-filter"></i>
-                    </button>
-                  <Link to="/admin/inventory/product/add-stock/">
-                    <button className="ml-2 btn-md btn border-0 btn-secondary">
-                      <i className="fas fa-plus"></i> Add New Stock
-                    </button>
-                  </Link>
+                    className="btn btn-info text-white"
+                    onClick={handleShow}
+                  >
+                    <i className="fa fa-filter"></i>
+                  </button>
+                  {hasPermission("Stock In", "create") && (
+                    <Link to="/admin/inventory/product/add-stock/">
+                      <button className="ml-2 btn-md btn border-0 btn-secondary">
+                        <i className="fas fa-plus"></i> Add New Stock
+                      </button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -214,7 +218,6 @@ function ProductList() {
                       className="form-control dtsearch-input"
                     />
                   </div>
-                  
                 </div>
                 <div className={`table-responsive ${isFetching ? "form" : ""}`}>
                   <DataTable
@@ -229,13 +232,13 @@ function ProductList() {
                     sortMode="multiple"
                   >
                     <Column
-                    field="pname"
+                      field="pname"
                       header="Product"
                       sortable
                       body={(rowData) => validator.unescape(rowData.pname)}
                     />
                     <Column
-                    field="punit"
+                      field="punit"
                       header="Unit"
                       sortable
                       body={(rowData) =>
@@ -245,7 +248,7 @@ function ProductList() {
                       }
                     />
                     <Column
-                    field="pbrand"
+                      field="pbrand"
                       header="Brand"
                       sortable
                       body={(rowData) =>
@@ -255,13 +258,13 @@ function ProductList() {
                       }
                     />
                     <Column
-                    field="quantity"
+                      field="quantity"
                       header="Quantity"
                       sortable
                       body={(rowData) => rowData.quantity}
                     />
                     <Column
-                    field="stockInDate"
+                      field="stockInDate"
                       body={(row) =>
                         row.stockInDate
                           ? formatDate(row.stockInDate)
@@ -271,7 +274,7 @@ function ProductList() {
                       sortable
                     />
                     <Column
-                    field="created_at"
+                      field="created_at"
                       body={(row) =>
                         row.created_at
                           ? formatDate(row.created_at)
@@ -284,12 +287,14 @@ function ProductList() {
                       header="Action"
                       body={(rowData) => (
                         <div className="d-flex">
-                          <Link
-                            to={`/admin/inventory/product/add-stock/${rowData.id}`}
-                            className="avatar avatar-icon avatar-md avatar-orange"
-                          >
-                            <i className="fas fa-edit"></i>
-                          </Link>
+                          {hasPermission("Stock In History", "update") && (
+                            <Link
+                              to={`/admin/inventory/product/add-stock/${rowData.id}`}
+                              className="avatar avatar-icon avatar-md avatar-orange"
+                            >
+                              <i className="fas fa-edit"></i>
+                            </Link>
+                          )}
                         </div>
                       )}
                     />

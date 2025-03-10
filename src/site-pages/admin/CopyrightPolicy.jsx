@@ -3,13 +3,26 @@ import { toast } from "react-toastify";
 import { goBack } from "../../site-components/Helper/HelperFunction";
 import axios from "axios";
 import {
-  PHP_API_URL, CKEDITOR_URL
+  PHP_API_URL,
+  CKEDITOR_URL,
 } from "../../site-components/Helper/Constant";
 import secureLocalStorage from "react-secure-storage";
 import validator from "validator";
 import JoditEditor from "jodit-react"; // Import Jodit editor
+import { useNavigate } from "react-router-dom";
+import useRolePermission from "../../site-components/admin/useRolePermission";
 
 const CopyrightPolicy = () => {
+  const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Copyright Policy", "create")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
+
   const [formData, setFormData] = useState("");
   const [isSubmit, setIsSubmit] = useState(false);
   const getPrivacyPolicyData = async () => {
@@ -29,29 +42,30 @@ const CopyrightPolicy = () => {
         }
       );
       if (response.data.status === 200) {
-        setFormData(validator.unescape(response.data?.data[0].content || ''));
-
+        setFormData(validator.unescape(response.data?.data[0].content || ""));
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   useEffect(() => {
     getPrivacyPolicyData();
   }, []);
   // Jodit editor configuration
-const config = useMemo(()=>({
-    readonly: false,
-    placeholder: 'Enter your description here...',
-    spellcheck: true,
-    defaultMode: '1',
-    minHeight: 400,
-    maxHeight: -1,
-    defaultActionOnPaste: 'insert_as_html',
-    defaultActionOnPasteFromWord: 'insert_as_html',
-    askBeforePasteFromWord: false,
-    askBeforePasteHTML: false,
-    language: 'en',
-  }),[]);
+  const config = useMemo(
+    () => ({
+      readonly: false,
+      placeholder: "Enter your description here...",
+      spellcheck: true,
+      defaultMode: "1",
+      minHeight: 400,
+      maxHeight: -1,
+      defaultActionOnPaste: "insert_as_html",
+      defaultActionOnPasteFromWord: "insert_as_html",
+      askBeforePasteFromWord: false,
+      askBeforePasteHTML: false,
+      language: "en",
+    }),
+    []
+  );
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmit(true);
@@ -77,13 +91,10 @@ const config = useMemo(()=>({
         }
       );
 
-      if (
-        response?.data?.status === 200 ||
-        response?.data?.status === 201
-      ) {
+      if (response?.data?.status === 200 || response?.data?.status === 201) {
         toast.success(response.data.msg);
         if (response.data.status === 201) {
-          setFormData('');
+          setFormData("");
         }
       } else {
         toast.error("An error occurred. Please try again.");
@@ -104,8 +115,8 @@ const config = useMemo(()=>({
   };
 
   const handleEditorChange = (newContent) => {
-    setFormData(newContent)
-  }
+    setFormData(newContent);
+  };
   return (
     <div className="page-container">
       <div className="main-content">
@@ -113,11 +124,11 @@ const config = useMemo(()=>({
           <div className="page-header mb-0">
             <div className="header-sub-title">
               <nav className="breadcrumb breadcrumb-dash">
-              <a href="/admin/home" className="breadcrumb-item">
+                <a href="/admin/home" className="breadcrumb-item">
                   <i className="fas fa-home m-r-5" /> Dashboard
                 </a>
 
-              <span className="breadcrumb-item active">Policies</span>
+                <span className="breadcrumb-item active">Policies</span>
                 <span className="breadcrumb-item active">Copyright Policy</span>
               </nav>
             </div>
@@ -136,21 +147,20 @@ const config = useMemo(()=>({
             </div>
           </div>
           <form onSubmit={handleSubmit}>
-
             <div className="card">
               <div className="card-body">
                 <div className="row mb-4">
                   <div className="col-md-12 ">
                     {/* JoditEditor component */}
-                    <label className='font-weight-semibold'>Description</label>
+                    <label className="font-weight-semibold">Description</label>
                     <JoditEditor
-                      value={formData || ''}
+                      value={formData || ""}
                       config={config}
                       onBlur={handleEditorChange}
                     />
                   </div>
                 </div>
-                <div >
+                <div>
                   <button
                     className="btn btn-dark btn-block d-flex justify-content-center align-items-center"
                     type="submit"
@@ -165,8 +175,6 @@ const config = useMemo(()=>({
                 </div>
               </div>
             </div>
-
-
           </form>
         </div>
       </div>
@@ -175,4 +183,3 @@ const config = useMemo(()=>({
 };
 
 export default CopyrightPolicy;
-

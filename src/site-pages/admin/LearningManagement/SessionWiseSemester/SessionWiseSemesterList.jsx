@@ -17,15 +17,26 @@ import "../../../../../node_modules/primeicons/primeicons.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
+import useRolePermission from '../../../../site-components/admin/useRolePermission';
 
 function SessionWiseSemesterList() {
   const [semesterListing, setSemesterListing] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const navigate = useNavigate();
   const [sessionList, setSessionList] = useState([]);
   const [selectedSesssion, setSelectedSession] = useState(
     localStorage.getItem("session")
   );
+
+  const navigate = useNavigate();
+  const { RolePermission, hasPermission } = useRolePermission();
+    useEffect(() => {
+      if (RolePermission && RolePermission.length > 0) {
+        if (!hasPermission("Session Wise Semester Class", "list")) {
+          navigate("/forbidden");
+        }
+      }
+    }, [RolePermission, hasPermission]);
+
   const fetchSemesterListing = async () => {
     if (!selectedSesssion) return;
     setIsFetching(true);
@@ -148,6 +159,7 @@ function SessionWiseSemesterList() {
                   >
                     <i className="fas fa-arrow-left" /> Go Back
                   </button>
+                  {hasPermission("Session Wise Semester Class", "create") && (
                   <Link
                     to={
                       "/admin/learning-management/session-wise-semester/add-new/"
@@ -156,6 +168,7 @@ function SessionWiseSemesterList() {
                   >
                     <i className="fas fa-plus" /> Add New
                   </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -229,12 +242,14 @@ function SessionWiseSemesterList() {
                       header="Action"
                       body={(rowData) => (
                         <div className="d-flex">
+                          {hasPermission("Session Wise Semester Class", "update") && (
                           <div
                             onClick={() => updateDataFetch(rowData.id)}
                             className="avatar avatar-icon avatar-md avatar-orange"
                           >
                             <i className="fas fa-edit"></i>
                           </div>
+                          )}
                         </div>
                       )}
                     />

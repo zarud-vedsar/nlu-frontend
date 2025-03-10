@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { DeleteSweetAlert } from "../../site-components/Helper/DeleteSweetAlert";
 import secureLocalStorage from "react-secure-storage";
 import { toast } from "react-toastify";
+import useRolePermission from '../../site-components/admin/useRolePermission';
 
 const MyVerticallyCenteredModal = (props = {}) => {
   const [content, setContent] = useState("");
@@ -122,15 +123,23 @@ const MyVerticallyCenteredModal = (props = {}) => {
 };
 
 const JobCategory = () => {
-  const navigate = useNavigate();
 
   const [MarqueList, setMarqueList] = useState([]);
-  const [globalFilter, setGlobalFilter] = useState("");
   const [recycleTitle, setRecycleTitle] = useState("Show Recycle Bin");
 
   const [loading, setLoading] = useState(false);
   const [selectedmarque, setSelectedMarque] = useState(null);
   const [modalShow, setModalShow] = useState(false);
+
+  const { RolePermission, hasPermission } = useRolePermission();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (RolePermission && RolePermission.length > 0) {
+      if (!hasPermission("Job Category", "list")) {
+        navigate("/forbidden");
+      }
+    }
+  }, [RolePermission, hasPermission]);
 
   const editMarque = (index) => {
     const currentLob = MarqueList[index];
@@ -326,6 +335,7 @@ const JobCategory = () => {
                   </i>{" "}
                   Go Back
                 </Button>
+                {hasPermission("Job Category", "recycle bin") && (
                 <Button
                   className={`btn ${
                     recycleTitle === "Show Recycle Bin"
@@ -336,6 +346,8 @@ const JobCategory = () => {
                 >
                   {!isMobile && recycleTitle} <i className="fa fa-recycle"></i>
                 </Button>
+                )}
+                {hasPermission("Job Category", "create") && (
                 <Button
                   className="ml-2  mb-md-0 btn btn-secondary"
                   onClick={() => setModalShow(true)}
@@ -345,6 +357,7 @@ const JobCategory = () => {
                   </i>{" "}
                   Add New
                 </Button>
+                )}
               </div>
             </div>
           </div>
@@ -369,6 +382,7 @@ const JobCategory = () => {
                       </h6>
 
                       <div className="d-flex align-items-center  justify-content-start">
+                        {hasPermission("Job Category", "status") && (
                         <div className="switch ">
                           <input
                             type="checkbox"
@@ -382,8 +396,11 @@ const JobCategory = () => {
                             htmlFor={`switch${item.id}`}
                           ></label>
                         </div>
+                        )}
 
+                        {hasPermission("Job Category", "update") && (
                         <div className="d-flex ">
+                          
                           <div
                             onClick={() => editMarque(index)}
                             className="avatar avatar-icon avatar-md avatar-orange"
@@ -391,7 +408,10 @@ const JobCategory = () => {
                             <i className="fas fa-edit"></i>
                           </div>
                         </div>
+                        )}
                         {item.delete_status == 0 ? (
+                          <>
+                          {hasPermission("Job Category", "delete") && (
                           <OverlayTrigger
                             placement="bottom"
                             overlay={
@@ -404,7 +424,10 @@ const JobCategory = () => {
                                 onClick={() => deleteMarque(item.id)}
                               ></i>
                             </div>
+                           
                           </OverlayTrigger>
+                          )}
+                          </>
                         ) : (
                           <OverlayTrigger
                             placement="bottom"
